@@ -7,6 +7,8 @@ import com.fym.lta.dto.EmployeeDto;
 
 import java.util.List;
 
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author Mina
@@ -111,7 +113,18 @@ public class StaffScreen extends javax.swing.JPanel {
     }//GEN-END:initComponents
     
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        // TODO add your handling code here:
+       
+        if (staffTable.getSelectedRow() >= 0) {
+            StaffInsert sIScreen = new StaffInsert();
+            sIScreen.setStaffUpdateId(Integer.parseInt(staffTable.getValueAt(staffTable.getSelectedRow(),
+                                                                            0).toString())); //Passa ID
+        
+            UsersScreen.createPopupMenu(sIScreen);
+        } else {
+            JOptionPane.showOptionDialog(null, "You Should Select A user to Update ", "User Updaete ",
+                                         JOptionPane.DEFAULT_OPTION, JOptionPane.INFORMATION_MESSAGE, null, null, null);
+        }
+       
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void fName_TextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_fName_TextFieldActionPerformed
@@ -125,7 +138,25 @@ public class StaffScreen extends javax.swing.JPanel {
     //  private StaffBao business = new BaoFactory().CreateNewStaffMember();
     // StaffMemberDto S = new  StaffMemberDto();
     private void btnDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteActionPerformed
-        // TODO add your handling code here:
+       
+    int selectedEmployeeid = Integer.parseInt(staffTable.getValueAt(staffTable.getSelectedRow(), 0).toString());
+       EmployeeDto selectedEmployee_Delete = new EmployeeDto(); // this user i want to delete
+       selectedEmployee_Delete.setEmp_id(selectedEmployeeid);
+       
+       if (business.deleteEmployee(selectedEmployee_Delete)) {
+           int msgRes =
+               JOptionPane.showOptionDialog(null, "Deleted Successfully ", "Staff Deleting ",
+                                            JOptionPane.DEFAULT_OPTION, JOptionPane.INFORMATION_MESSAGE, null, null,
+                                            null);
+
+           if (msgRes == JOptionPane.OK_OPTION) {
+            employeeTableReset(business. listEmployee() );
+               staffTable.repaint();
+           }
+       } else {
+           JOptionPane.showMessageDialog(this, "Can not delete may be deleted using another Employee ");
+       } 
+       
     }//GEN-LAST:event_btnDeleteActionPerformed
 
     private void jButton1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MouseClicked

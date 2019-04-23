@@ -33,6 +33,14 @@ public class Queries {
         "INSERT INTO EMPLOYEE (FNAME,SNAME,TNAME,FAMILY_NAME) VALUES (?,?,?,?)";
 
     public static final String LIST_ALL_EMPLOYEE = "SELECT * FROM EMPLOYEE";
+    
+    public static final String DELETE_EMPLOYEE = "DELETE FROM EMPLOYEE WHERE ID = ? ";
+    
+    public static final String IS_EMPLOYEE_EXISTE = "SELECT ID FROM EMPLOYEE WHERE FNAME = ?" ;
+    
+    public static final String UPDATE_EMPLOYEE =
+        "UPDATE EMPLOYEE SET  FNAME = ?, SNAME = ?, TNAME = ?,FAMILY_NAME = ? WHERE ID = ?";
+     
     //____________________________________________________________________
 
 

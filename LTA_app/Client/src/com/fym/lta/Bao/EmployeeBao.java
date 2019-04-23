@@ -11,7 +11,7 @@ public interface EmployeeBao {
      */
    public boolean insertEmployee(EmployeeDto Employee);
 
-
+    public boolean updateEmployee(EmployeeDto Employee);
     /**
      * search for Employee  
      */

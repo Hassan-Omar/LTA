@@ -60,7 +60,20 @@ public class EmployeeDaoImp implements EmployeeDao {
 
     @Override
     public boolean delete_Employee(EmployeeDto Employee) {
-        // TODO Implement this method
+        try (JdbcRowSet jdbcRs = RowSetProvider.newFactory().createJdbcRowSet()) {
+            jdbcRs.setUrl(ConnectionFactory.getUrl());
+            jdbcRs.setUsername(ConnectionFactory.getUsername());
+            jdbcRs.setPassword(ConnectionFactory.getPassword());
+            jdbcRs.setCommand(Queries.DELETE_EMPLOYEE);
+            
+            jdbcRs.setInt(1, Employee.getEmp_id());
+            System.out.println(Employee.getEmp_id());
+            jdbcRs.execute();
+            return true;
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
         return false;
     }
 
@@ -96,14 +109,65 @@ public class EmployeeDaoImp implements EmployeeDao {
     }
 
     @Override
-    public boolean Update_Employee(EmployeeDto Employee) {
-        // TODO Implement this method
-        return false;
+    public boolean Update_Employee(EmployeeDto Employee) throws LTAException {
+        try (JdbcRowSet jdbcRs = RowSetProvider.newFactory().createJdbcRowSet()) {
+                                jdbcRs.setUrl(ConnectionFactory.getUrl());
+                                jdbcRs.setUsername(ConnectionFactory.getUsername());
+                                jdbcRs.setPassword(ConnectionFactory.getPassword());
+                          jdbcRs.setCommand(Queries.UPDATE_EMPLOYEE);
+                                     
+                                //jdbcRs.setString(1, Employee.get);                                         
+                                jdbcRs.setString(1, Employee.getFName());  
+                                jdbcRs.setString(2, Employee.getSName()); 
+                                jdbcRs.setString(3,Employee.getThName());
+                                jdbcRs.setString(4,Employee.getFamilyName());
+                                jdbcRs.setInt(5,Employee.getEmp_id());
+                            //    jdbcRs.setInt(3,Employee.getCareerDgree().getEMPLOYEE_TYPE());
+                         
+                          /*
+                               if (Employee.getUPDATED_BY() != null)
+                                    jdbcRs.setString(9, Employee.getUPDATED_BY());
+                                else
+                                jdbcRs.setNull(9, Types.VARCHAR);
+                          
+                                // check if the update date is not setted we we will set it 
+                                if (Employee.getUPDATE_DATE() != null)
+                                    jdbcRs.setDate(10, new java.sql.Date(Employee.getUPDATE_DATE().getTime()));
+                                else
+                                    jdbcRs.setNull(10, java.sql.Types.DATE);
+
+                            */
+                          System.out.println("------------");
+                                jdbcRs.execute();
+                              return true ;
+                            }catch(java.sql.SQLIntegrityConstraintViolationException e){
+                                LTAException ex = new LTAException();
+                                ex.setExactMessage("Error in Update May be not exist !");
+                                throw ex;
+                            }catch(Exception e){
+                               e.printStackTrace();     
+                            }
+                       
+                      return false;
     }
 
     @Override
     public boolean isExist(EmployeeDto Employee) {
-        // TODO Implement this method
+        try (JdbcRowSet jdbcRs = RowSetProvider.newFactory().createJdbcRowSet()) {
+            jdbcRs.setUrl(ConnectionFactory.getUrl());
+            jdbcRs.setUsername(ConnectionFactory.getUsername());
+            jdbcRs.setPassword(ConnectionFactory.getPassword());
+            jdbcRs.setCommand(Queries.IS_EMPLOYEE_EXISTE);
+            jdbcRs.setString(1, Employee.getFName());
+            jdbcRs.execute();
+            if (jdbcRs.next()) {
+                return true;
+            } else {
+                return false;
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
         return false;
     }
 

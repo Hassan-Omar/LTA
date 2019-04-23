@@ -1,29 +1,29 @@
 package com.fym.lta.ui;
 
 import com.fym.lta.Bao.BaoFactory;
-import com.fym.lta.Bao.DepartmentBao;
 import com.fym.lta.Bao.EmployeeBao;
-
-import com.fym.lta.dto.DepartmentDto;
-
 import com.fym.lta.dto.EmployeeDto;
-
 
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.Rectangle;
-
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
 public class StaffInsert extends JPanel {
+    private int staffUpdateId = 0;
+
+    public void setStaffUpdateId(int staffUpdateId) {
+        this.staffUpdateId = staffUpdateId;
+    }
     private JLabel jLabel1 = new JLabel();
     private JLabel jLabel4 = new JLabel();
     private JLabel jLabel5 = new JLabel();
@@ -43,10 +43,10 @@ public class StaffInsert extends JPanel {
     private JLabel jLabel3 = new JLabel();
     private JLabel jLabel11 = new JLabel();
     private JLabel jLabel12 = new JLabel();
-    
-    private int id ; 
-    private String name ;
-    private String department ; 
+
+    private int id;
+    private String name;
+    private String department;
 
     public StaffInsert() {
         try {
@@ -57,7 +57,7 @@ public class StaffInsert extends JPanel {
     }
 
     private void jbInit() throws Exception {
-        this.setLayout( null );
+        this.setLayout(null);
         this.setSize(new Dimension(690, 351));
         jLabel1.setText("Insert new Staff Member");
         jLabel1.setBounds(new Rectangle(215, 5, 225, 55));
@@ -67,10 +67,10 @@ public class StaffInsert extends JPanel {
         jLabel5.setBounds(new Rectangle(35, 240, 115, 35));
         department_TextField.setBounds(new Rectangle(115, 185, 172, 30));
         department_TextField.addActionListener(new ActionListener() {
-                public void actionPerformed(ActionEvent e) {
-                    department_TextField_actionPerformed(e);
-                }
-            });
+            public void actionPerformed(ActionEvent e) {
+                department_TextField_actionPerformed(e);
+            }
+        });
         position_compBox.setBounds(new Rectangle(115, 240, 160, 25));
         position_compBox.addItem("Professor");
         position_compBox.addItem("Associate Professor");
@@ -80,10 +80,10 @@ public class StaffInsert extends JPanel {
         btnInsertStaffM.setText("Save");
         btnInsertStaffM.setBounds(new Rectangle(265, 290, 110, 30));
         btnInsertStaffM.addActionListener(new ActionListener() {
-                public void actionPerformed(ActionEvent e) {
-                    jButton1_actionPerformed(e);
-                }
-            });
+            public void actionPerformed(ActionEvent e) {
+                jButton1_actionPerformed(e);
+            }
+        });
         jLabel6.setText("Name");
         jLabel6.setBounds(new Rectangle(35, 120, 115, 35));
         fname_TextField.setBounds(new Rectangle(115, 125, 100, 30));
@@ -148,84 +148,83 @@ public class StaffInsert extends JPanel {
     }
 
 
-    
     private EmployeeBao business = new BaoFactory().CreateemployeeBao();
-    EmployeeDto S = new  EmployeeDto();
+    EmployeeDto S = new EmployeeDto();
+
     private void jButton1_actionPerformed(ActionEvent e) {
-       int index = position_compBox.getSelectedIndex() ; 
-        if (index==0)
+        int index = position_compBox.getSelectedIndex();
+        if (index == 0)
             S.setCareerDgree("employee");
-        else if (index== 1)
+        else if (index == 1)
             S.setCareerDgree("doctro");
-        
-        
-        
-            S.setFName(fname_TextField.getText());
+
+
         S.setFName(fname_TextField.getText());
+        S.setFamilyName(name = familyname_TextField.getText());
         S.setSName(sname_TextField.getText());
-        S.setLName(thirdname_TextField.getText());
-        S.setFamilyName(familyname_TextField.getText());
-        S.setEmail("hadele this");
-      //  S.setCareerDgree(position_compBox.getSelectedIndex());   //should to refer to each position for a number and the returned number will come here 
-        business.insertEmployee(S);
+        S.setThName(thirdname_TextField.getText());
+        //   S.setFamilyName(familyname_TextField.getText());
+        //S.setEmail("hadele this");
+
+boolean status = false ;
+        if (staffUpdateId != 0) {
+           status =  business.updateEmployee(S);
+        } else
+         status =  business.insertEmployee(S);
+        
+        
+        
+        if (status)
+            JOptionPane.showMessageDialog(null, "Done Successfully ") ;          
+        else
+        JOptionPane.showMessageDialog(null, "unSuccessfull ") ;      
     }
 
-   
-
-   
 
     private void fname_TextField_actionPerformed(ActionEvent e) {
         name = fname_TextField.getText();
-        if (name.equals(""))
-        {
+        if (name.equals("")) {
             jLabel10.setText("Invalid format");
+        } else {
+            jLabel10.setText("  ");
         }
-        else   {
-                jLabel10.setText("  ");
-               }       
     }
 
     private void sname_TextField_actionPerformed(ActionEvent e) {
         name = sname_TextField.getText();
-        if (name.equals(""))
-        {
+        if (name.equals("")) {
             jLabel10.setText("Invalid format");
+        } else {
+            jLabel10.setText("  ");
         }
-        else   {
-                jLabel10.setText("  ");
-               }      
     }
 
     private void thirdname_TextField_actionPerformed(ActionEvent e) {
         name = thirdname_TextField.getText();
-        if (name.equals(""))
-        {
+        if (name.equals("")) {
             jLabel10.setText("Invalid format");
+        } else {
+            jLabel10.setText("  ");
         }
-        else   {
-                jLabel10.setText("  ");
-               }      
     }
+
     private void familyname_TextField_actionPerformed(ActionEvent e) {
         name = familyname_TextField.getText();
-        if (name.equals(""))
-        {
+        if (name.equals("")) {
             jLabel10.setText("Invalid format");
+        } else {
+            jLabel10.setText("  ");
         }
-        else   {
-                jLabel10.setText("  ");
-               }  
-        
+
     }
+
     private void department_TextField_actionPerformed(ActionEvent e) {
         department = department_TextField.getText();
-        if (name.equals(""))
-        {
+        if (name.equals("")) {
             jLabel10.setText("Invalid format");
+        } else {
+            jLabel10.setText("  ");
         }
-        else   {
-                jLabel10.setText("  ");
-               }  
-        
+
     }
 }

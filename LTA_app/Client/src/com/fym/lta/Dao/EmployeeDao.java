@@ -1,6 +1,7 @@
 package com.fym.lta.Dao;
 
 
+import com.fym.lta.common.LTAException;
 import com.fym.lta.dto.EmployeeDto;
 
 import java.util.List;
@@ -25,7 +26,7 @@ public interface EmployeeDao {
 
     // this behavior to update building data
 
-    public boolean Update_Employee (EmployeeDto Employee);
+    public boolean Update_Employee (EmployeeDto Employee)throws LTAException;
     
     // this behavior to check  building existance
      public boolean isExist (EmployeeDto Employee);

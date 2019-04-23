@@ -2,6 +2,7 @@ package com.fym.lta.Bao;
 
 import com.fym.lta.Dao.DaoFactory;
 import com.fym.lta.Dao.EmployeeDao;
+import com.fym.lta.common.LTAException;
 import com.fym.lta.dto.EmployeeDto;
 
 import java.util.List;
@@ -11,11 +12,9 @@ public class EmployeeBaoImp implements EmployeeBao {
 
 
     public boolean insertEmployee(EmployeeDto Employee) {
-        // shut off this part untile u implment this method
-        // if (empDaoObject.isExist(Employee))
+    
         return empDaoObject.insert_Employee(Employee);
-        //else // report me
-    }
+     }
 
     public List<EmployeeDto> SearchEmployee(EmployeeDto Employee) {
 
@@ -23,6 +22,13 @@ public class EmployeeBaoImp implements EmployeeBao {
 
     }
 
+    public boolean updateEmployee(EmployeeDto Employee){
+
+        try {
+            return empDaoObject.Update_Employee(Employee);
+        } catch (LTAException e) {
+        }
+   return false; }
 
     public List<EmployeeDto> listEmployee() {
 
@@ -30,6 +36,6 @@ public class EmployeeBaoImp implements EmployeeBao {
     }
 
     public boolean deleteEmployee(EmployeeDto Employee) {
-        return false;
+        return empDaoObject.delete_Employee(Employee);
     }
 }
