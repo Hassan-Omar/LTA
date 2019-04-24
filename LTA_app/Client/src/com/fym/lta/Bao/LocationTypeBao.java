@@ -16,14 +16,9 @@ public interface LocationTypeBao {
 
 
     /**
-     * search for LocationType  
-     * i
-     */
-    public List<LocationTypeDto> searchLocationType(LocationTypeDto LocationType);
-
-
-    /**
      * delete a LocationType 
      */
     public boolean deleteLocationType (LocationTypeDto LocationType);
+
+    public List<LocationTypeDto> searchLocationType(LocationTypeDto locType);
 }

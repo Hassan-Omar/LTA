@@ -23,6 +23,9 @@ public class LocationDto {
         this.Location_equipments = Location_equipments;
     }
 
+    public LocationDto() {
+    }
+
 
     public void setLocation_id(int building_id) {
         this.Location_id = building_id;

@@ -18,6 +18,7 @@ public class StaffScreen extends javax.swing.JPanel {
     /** Creates new form StaffSearch */
     public StaffScreen() {
         initComponents();
+        if(business.listEmployee()!=null)
         employeeTableReset(business.listEmployee());
       
 
@@ -166,7 +167,11 @@ public class StaffScreen extends javax.swing.JPanel {
 
     private void btnSearchMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnSearchMouseClicked
 
-       
+            if (fName_TextField.getText()!= null)
+            {  EmployeeDto e = new EmployeeDto() ;
+               e.setFName(fName_TextField.getText());
+                employeeTableReset(business.SearchEmployee(e) ); } 
+                else
             employeeTableReset(business.listEmployee());   
         
 

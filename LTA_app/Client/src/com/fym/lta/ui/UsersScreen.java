@@ -231,24 +231,12 @@ public class UsersScreen extends javax.swing.JPanel {
         // this part still not handeled good
 
         UserDto searchUser = null;
-        String str = userEnteredName.getText(); // entered name
+       
 
-
-        /*  if (userFullName != null && userFullName != " " && userFullName != "") {
-            String[] username_arr = null;
-            try {
-                // username_arr = userFullName.split(" ");
-            } catch (Exception e) { // Report this Exception
-
-            }
-            //searchUser = new UserDto();
-            //searchUser.setFName(username_arr[0]);
-            // searchUser.setSName(username_arr[1]);
-        }
-        */
-        if (searchFlag) {
+ 
+        if ( userEnteredName.getText()!= null) {
             searchUser = new UserDto();
-            searchUser.setFName(str);
+            searchUser.setEmail( userEnteredName.getText());
             searchReturnedUsers = user.seachForUsers(searchUser);
         }
 
@@ -257,7 +245,7 @@ public class UsersScreen extends javax.swing.JPanel {
         } // store the result of our search
 
         userTableReset(searchReturnedUsers);
-        usersTable.repaint();
+     
 
     }//GEN-LAST:event_searchUserBTNMouseClicked
 

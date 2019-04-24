@@ -65,7 +65,7 @@ public class UserDaoImp implements UserDao {
             jdbcRs.setUsername(ConnectionFactory.getUsername());
             jdbcRs.setPassword(ConnectionFactory.getPassword());
             jdbcRs.setCommand(Queries.USER_SEARCH);
-            jdbcRs.setString(1, '%' + user.getFName().toLowerCase().trim() + '%');
+            jdbcRs.setString(1, '%' + user.getEmail().toLowerCase().trim() + '%');
 
             jdbcRs.execute();
 
@@ -116,7 +116,7 @@ public class UserDaoImp implements UserDao {
             jdbcRs.setUrl(ConnectionFactory.getUrl());
             jdbcRs.setUsername(ConnectionFactory.getUsername());
             jdbcRs.setPassword(ConnectionFactory.getPassword());
-            jdbcRs.setCommand(Queries.IS_USER_EXISTE);
+            jdbcRs.setCommand(Queries.IS_USER_EXIST);
             jdbcRs.setString(1, user.getEmail());
             jdbcRs.execute();
             if (jdbcRs.next()) {

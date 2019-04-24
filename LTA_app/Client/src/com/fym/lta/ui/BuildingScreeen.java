@@ -31,6 +31,9 @@ public class BuildingScreeen extends javax.swing.JPanel {
     /** Creates new form Building */
     public BuildingScreeen() {
         initComponents();
+        //if (buildingBaoObject.listBuilding()!=null)
+            buildingTableReset(buildingBaoObject.listBuilding());
+        BuildingTable.repaint();
     }
 
     /** This method is called from within the constructor to
@@ -240,9 +243,11 @@ public class BuildingScreeen extends javax.swing.JPanel {
     }//GEN-LAST:event_insertBuildingBTNMouseClicked
 
     private void searchBuildingBTNMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_searchBuildingBTNMouseClicked
-     
+        if (BuildingEnteredCode.getText()!= null )
+            buildingTableReset( buildingBaoObject.SearchBuilding(BuildingEnteredCode.getText())) ;
+        else
         buildingTableReset( buildingBaoObject.listBuilding()) ;
-        BuildingTable.repaint();
+      
     }//GEN-LAST:event_searchBuildingBTNMouseClicked
 
     private void insertBuildingBTNActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_insertBuildingBTNActionPerformed

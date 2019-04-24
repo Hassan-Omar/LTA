@@ -9,7 +9,6 @@ import com.fym.lta.dto.EmployeeDto;
 import java.sql.SQLException;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 
 import javax.sql.rowset.JdbcRowSet;
@@ -114,7 +113,7 @@ public class EmployeeDaoImp implements EmployeeDao {
                                 jdbcRs.setUrl(ConnectionFactory.getUrl());
                                 jdbcRs.setUsername(ConnectionFactory.getUsername());
                                 jdbcRs.setPassword(ConnectionFactory.getPassword());
-                          jdbcRs.setCommand(Queries.UPDATE_EMPLOYEE);
+                                jdbcRs.setCommand(Queries.UPDATE_EMPLOYEE);
                                      
                                 //jdbcRs.setString(1, Employee.get);                                         
                                 jdbcRs.setString(1, Employee.getFName());  
@@ -137,8 +136,9 @@ public class EmployeeDaoImp implements EmployeeDao {
                                     jdbcRs.setNull(10, java.sql.Types.DATE);
 
                             */
-                          System.out.println("------------");
+                          System.out.println("------------"+Employee.getEmp_id());
                                 jdbcRs.execute();
+                                System.out.println("---+++-");
                               return true ;
                             }catch(java.sql.SQLIntegrityConstraintViolationException e){
                                 LTAException ex = new LTAException();
@@ -157,7 +157,7 @@ public class EmployeeDaoImp implements EmployeeDao {
             jdbcRs.setUrl(ConnectionFactory.getUrl());
             jdbcRs.setUsername(ConnectionFactory.getUsername());
             jdbcRs.setPassword(ConnectionFactory.getPassword());
-            jdbcRs.setCommand(Queries.IS_EMPLOYEE_EXISTE);
+            jdbcRs.setCommand(Queries.IS_EMPLOYEE_EXIST);
             jdbcRs.setString(1, Employee.getFName());
             jdbcRs.execute();
             if (jdbcRs.next()) {
@@ -173,7 +173,39 @@ public class EmployeeDaoImp implements EmployeeDao {
 
     @Override
     public List<EmployeeDto> search_employees(EmployeeDto Employee) {
-        // TODO Implement this method
-        return Collections.emptyList();
+       
+        List<EmployeeDto> employees = null;
+
+        try (JdbcRowSet jdbcRs = RowSetProvider.newFactory().createJdbcRowSet()) {
+            jdbcRs.setUrl(ConnectionFactory.getUrl());
+            jdbcRs.setUsername(ConnectionFactory.getUsername());
+            jdbcRs.setPassword(ConnectionFactory.getPassword());
+            jdbcRs.setCommand(Queries.EMPLOYEE_SEARCH);
+            jdbcRs.setString(1, '%' + Employee.getFName().toLowerCase().trim() + '%');
+
+            jdbcRs.execute();
+
+
+            while (jdbcRs.next()) {
+                if (employees == null)
+                    employees = new ArrayList<>();
+
+               EmployeeDto lSerch = new EmployeeDto();
+                lSerch.setFName(jdbcRs.getString(2));
+                lSerch.setSName(jdbcRs.getString(3));
+                lSerch.setLName(jdbcRs.getString(4));
+                lSerch.setFamilyName(jdbcRs.getString(5));
+                lSerch.setuser_Id(jdbcRs.getInt(6));
+               
+                 
+                employees.add(lSerch);
+
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        return employees;
+        
     }
 }

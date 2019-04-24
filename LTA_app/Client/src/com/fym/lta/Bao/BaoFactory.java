@@ -1,6 +1,7 @@
 
 package com.fym.lta.Bao;
 
+
 public class BaoFactory {
 
     public UserBao CreateUserBao() {
@@ -16,7 +17,7 @@ public class BaoFactory {
         return new ScreenBaoImp();
     }
 
-    public LocationBao CreateLocationDao() {
+    public LocationBao createLocationBao() {
         return new LocationBaoImp();
     }
 

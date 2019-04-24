@@ -30,5 +30,8 @@ public interface BuildingDao {
     
     // this behavior to check data existance 
     public boolean isExist (BuildingDto building);
+    
+
+    public List<BuildingDto> searchBuildings(String code);
 
 }

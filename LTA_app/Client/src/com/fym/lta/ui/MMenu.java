@@ -2,7 +2,6 @@
 package com.fym.lta.ui;
 
 import java.io.File;
-import java.io.IOException;
 
 import javax.swing.JPanel;
 
@@ -193,6 +192,11 @@ public class MMenu extends javax.swing.JFrame {
         jMenu2.setText(" Locations’and spaces management      ");
 
         jMenuItem9.setText("Locations master screen");
+        jMenuItem9.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem9ActionPerformed(evt);
+            }
+        });
         jMenu2.add(jMenuItem9);
 
         jMenuItem10.setText("Location Manual Assignment");
@@ -400,6 +404,12 @@ public class MMenu extends javax.swing.JFrame {
     private void jMenuItem4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem4ActionPerformed
    switchtoPanel(new  BuildingScreeen() ); 
     }//GEN-LAST:event_jMenuItem4ActionPerformed
+
+    private void jMenuItem9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem9ActionPerformed
+    switchtoPanel( new MasterScreen()); 
+  
+       
+    }//GEN-LAST:event_jMenuItem9ActionPerformed
 
     /**
      * @param args the command line arguments

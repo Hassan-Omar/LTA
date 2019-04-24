@@ -11,13 +11,11 @@ import com.fym.lta.Dao.SchedualDao;
 import com.fym.lta.Dao.SlotDao;
 import com.fym.lta.Dao.UserDao;
 import com.fym.lta.dto.BuildingDto;
-
 import com.fym.lta.dto.CourseDto;
 import com.fym.lta.dto.DepartmentDto;
 import com.fym.lta.dto.EquipmentDto;
 import com.fym.lta.dto.FloorDto;
 import com.fym.lta.dto.LocationDto;
-
 import com.fym.lta.dto.SchedualDto;
 import com.fym.lta.dto.SlotDto;
 import com.fym.lta.dto.UserDto;
@@ -43,7 +41,7 @@ public class SearchEngine {
     // all  comming just to use dao methods of get all ;
 
     public List<LocationDto> getallLocations() {
-        LocationDao Location = new DaoFactory().CreateLocationDao();
+        LocationDao Location = new DaoFactory().createLocationDao();
         return Location.getAll_Locations();
     }
 

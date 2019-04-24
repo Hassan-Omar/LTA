@@ -16,7 +16,7 @@ public interface BuildingBao {
      * search for Building
      */
 
-    public BuildingDto SearchBuilding(String name);
+    public List<BuildingDto> SearchBuilding(String code);
 
     /**
      * return all Buildings from db

@@ -1,5 +1,6 @@
 package com.fym.lta.Dao;
 
+
 public class DaoFactory {
 
     public UserDao CreateUserDao() {
@@ -14,7 +15,7 @@ public class DaoFactory {
         return new ScreenDaoImp();
     }
 
-    public LocationDao CreateLocationDao() {
+    public LocationDao createLocationDao() {
         return new LocationDaoImp();
     }
 

@@ -10,9 +10,10 @@ public interface LocationDao {
 
     public List<LocationDto> getAll_Locations();
 
+    public List<LocationDto> searchLocations(String code);
     // this behavior to delete  Location data
 
-    public boolean delete_Location (LocationDto Location);
+    public boolean delete_Location(LocationDto Location);
 
     // this behavior to search for Location by id
 
@@ -20,8 +21,12 @@ public interface LocationDao {
 
     // this behavior to update Location data
     public boolean Update_Location(LocationDto Location);
-    
-    // this to check location existance 
-    
+
+    // this to check location existance
+
     public boolean isExist(LocationDto Location);
+
+
+
+
 }

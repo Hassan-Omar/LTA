@@ -20,8 +20,8 @@ public class BuildingBaoImp implements BuildingBao {
         return status;
     }
 
-    public BuildingDto SearchBuilding(String code) {
-        return null;
+    public List<BuildingDto> SearchBuilding(String code) {
+        return buildingBaoObject.searchBuildings(code);
     }
 
     public List<BuildingDto> listBuilding() {

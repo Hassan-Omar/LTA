@@ -33,8 +33,8 @@ public class BuildingDaoImp implements BuildingDao {
                 Building.setBuilding_id(jdbcRs.getInt(1));
                 Building.setCode(jdbcRs.getString(2));
                 Building.setDescription(jdbcRs.getString(3));
-               // there are others still not added 
-          
+                // there are others still not added
+
                 Buildings.add(Building);
 
             }
@@ -56,7 +56,8 @@ public class BuildingDaoImp implements BuildingDao {
         } catch (Exception e) {
             e.printStackTrace();
         }
-        return false;    }
+        return false;
+    }
 
     public boolean insert_Building(BuildingDto building) throws LTAException {
         try (JdbcRowSet jdbcRs = RowSetProvider.newFactory().createJdbcRowSet()) {
@@ -64,41 +65,37 @@ public class BuildingDaoImp implements BuildingDao {
             jdbcRs.setUsername(ConnectionFactory.getUsername());
             jdbcRs.setPassword(ConnectionFactory.getPassword());
             jdbcRs.setCommand(Queries.INSER_NEW_BUILDING);
-            
-            
-            jdbcRs.setString(1, building.getCode()); 
+
+
+            jdbcRs.setString(1, building.getCode());
             jdbcRs.setString(2, building.getDescription());
-            
+
             if (building.getUPDATE_DATE() != null)
-                jdbcRs.setDate(3,new java.sql.Date(building.getUPDATE_DATE().getTime()));  
+                jdbcRs.setDate(3, new java.sql.Date(building.getUPDATE_DATE().getTime()));
             else
                 jdbcRs.setNull(3, java.sql.Types.DATE);
-            
+
             if (building.getINSERTION_DATE() != null)
-                jdbcRs.setDate(4, new java.sql.Date(building.getINSERTION_DATE().getTime())); 
+                jdbcRs.setDate(4, new java.sql.Date(building.getINSERTION_DATE().getTime()));
             else
                 jdbcRs.setNull(4, java.sql.Types.DATE);
-            
-            
-            
-            
+
+
             // check if the person who imserte  is not setted we we will set it empty
             if (building.getINSERTED_BY() != null)
-                jdbcRs.setString(5, building.getINSERTED_BY()); 
+                jdbcRs.setString(5, building.getINSERTED_BY());
             else
                 jdbcRs.setNull(5, Types.VARCHAR);
 
 
             if (building.getUPDATED_BY() != null)
-                jdbcRs.setString(6, building.getUPDATED_BY()); 
+                jdbcRs.setString(6, building.getUPDATED_BY());
             else
                 jdbcRs.setNull(6, Types.VARCHAR);
-            
-            
-            
-            
+
+
             jdbcRs.execute();
-            
+
             return true;
         } catch (java.sql.SQLIntegrityConstraintViolationException e) {
             LTAException ex = new LTAException();
@@ -116,6 +113,62 @@ public class BuildingDaoImp implements BuildingDao {
     }
 
     public boolean isExist(BuildingDto building) {
+        try (JdbcRowSet jdbcRs = RowSetProvider.newFactory().createJdbcRowSet()) {
+            jdbcRs.setUrl(ConnectionFactory.getUrl());
+            jdbcRs.setUsername(ConnectionFactory.getUsername());
+            jdbcRs.setPassword(ConnectionFactory.getPassword());
+            jdbcRs.setCommand(Queries.IS_BUILDING_EXIST);
+            jdbcRs.setString(1, building.getCode());
+            jdbcRs.execute();
+            if (jdbcRs.next()) {
+                return true;
+            } else {
+                return false;
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
         return false;
     }
+    
+    
+    public List<BuildingDto> searchBuildings(String code){
+        
+        
+            List<BuildingDto> buildings = null;
+
+            try (JdbcRowSet jdbcRs = RowSetProvider.newFactory().createJdbcRowSet()) {
+                jdbcRs.setUrl(ConnectionFactory.getUrl());
+                jdbcRs.setUsername(ConnectionFactory.getUsername());
+                jdbcRs.setPassword(ConnectionFactory.getPassword());
+                jdbcRs.setCommand(Queries.BUILDINGS_SEARCH);
+                jdbcRs.setString(1, '%' + code.toLowerCase().trim() + '%');
+
+                jdbcRs.execute();
+
+
+                while (jdbcRs.next()) {
+                    if (buildings == null)
+                        buildings = new ArrayList<>();
+
+                   BuildingDto lSerch = new BuildingDto();
+                    lSerch.setCode(jdbcRs.getString(2));
+                    lSerch.setBuilding_id(jdbcRs.getInt(1));
+                    lSerch.setDescription(jdbcRs.getString(3));
+                   
+                     
+                    buildings.add(lSerch);
+
+                }
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+
+            return buildings;
+        
+        
+        
+        }
+    
+    
 }
