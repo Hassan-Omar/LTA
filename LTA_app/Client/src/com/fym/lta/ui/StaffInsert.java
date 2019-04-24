@@ -19,6 +19,9 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 
 public class StaffInsert extends JPanel {
+    public int getStaffUpdateId() {
+        return staffUpdateId;
+    }
     private int staffUpdateId = 0;
 
     public void setStaffUpdateId(int staffUpdateId) {
@@ -168,6 +171,7 @@ public class StaffInsert extends JPanel {
 
 boolean status = false ;
         if (staffUpdateId != 0) {
+            S.setEmp_id(this.getStaffUpdateId());
            status =  business.updateEmployee(S);
         } else
          status =  business.insertEmployee(S);

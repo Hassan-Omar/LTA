@@ -73,7 +73,7 @@ public class Queries {
     public static final String IS_LOCATION_EXIST = "SELECT L_ID FROM LOCATION WHERE CODE = ?";
 
     public static final String UPDATE_LOCATION =
-        "UPDATE LOCATION SET L_ID = ? ,CODE =? , DESCRIPTION = ?, CAPACITY = ?";
+        "UPDATE LOCATION SET  CODE =? , DESCRIPTION = ?, CAPACITY = ? WHERE L_ID =?";
     
     public static final String LOCATION_SEARCH = "SELECT * FROM LOCATION WHERE LOWER(CODE) LIKE ?";
 

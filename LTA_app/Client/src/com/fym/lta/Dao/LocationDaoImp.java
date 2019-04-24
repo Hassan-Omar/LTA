@@ -96,10 +96,12 @@ public class LocationDaoImp implements LocationDao {
                     jdbc.setPassword(ConnectionFactory.getPassword());
                     
                     jdbc.setCommand(Queries.UPDATE_LOCATION);
-                    jdbc.setInt(1, Location.getLocation_id());
-                    jdbc.setString(2, Location.getCode());
-                    jdbc.setString(3, Location.getDescription());
-                    jdbc.setInt(4, Location.getCapacity());
+                  
+                    jdbc.setString(1, Location.getCode());
+                    jdbc.setString(2, Location.getDescription());
+                    jdbc.setInt(3, Location.getCapacity());
+                    jdbc.setInt(4, Location.getLocation_id());
+            System.out.println("-------->"+Location.getLocation_id());
                     jdbc.execute();   
                     return true;  
                 }
@@ -158,7 +160,7 @@ public class LocationDaoImp implements LocationDao {
                 lSerch.setCode(jdbcRs.getString(2));
                 lSerch.setLocation_id(jdbcRs.getInt(1));
                 lSerch.setDescription(jdbcRs.getString(3));
-               
+                lSerch.setCapacity(jdbcRs.getInt(5));
                  
                 locations.add(lSerch);
 
