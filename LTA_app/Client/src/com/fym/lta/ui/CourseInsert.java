@@ -1,18 +1,15 @@
 package com.fym.lta.ui;
 
-import com.fym.lta.Bao.BaoFactory;
-import com.fym.lta.Bao.CourseBao;
-import com.fym.lta.Bao.LocationTypeBao;
+import com.fym.lta.bao.BaoFactory;
+import com.fym.lta.bao.CourseBao;
+import com.fym.lta.bao.LocationTypeBao;
 import com.fym.lta.dto.CourseDto;
-
 import com.fym.lta.dto.LocationTypeDto;
 
 import java.awt.Color;
 import java.awt.Dimension;
-
 import java.awt.Font;
 import java.awt.Rectangle;
-
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -25,7 +22,7 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 
 public class CourseInsert extends JPanel {
-    LocationTypeBao locTypeBusiness = new BaoFactory().CreateLocationTypeBao();
+    LocationTypeBao locTypeBusiness = new BaoFactory().createLocationTypeBao();
     private JLabel jLabel1 = new JLabel();
     private JLabel jLabel2 = new JLabel();
     private JLabel jLabel3 = new JLabel();
@@ -150,7 +147,7 @@ public class CourseInsert extends JPanel {
         this.add(jLabel1, null);
     }
 
-    private CourseBao business = new BaoFactory().CreateCourseBao();
+    private CourseBao business = new BaoFactory().createCourseBao();
      CourseDto S = new CourseDto();
      LocationTypeDto locType = new LocationTypeDto();
     private void jButton1_actionPerformed(ActionEvent e) {

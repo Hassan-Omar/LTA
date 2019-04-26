@@ -1,14 +1,14 @@
-package com.fym.lta.Bao;
+package com.fym.lta.bao;
 
-import com.fym.lta.Dao.DaoFactory;
-import com.fym.lta.Dao.EmployeeDao;
+import com.fym.lta.dao.DaoFactory;
+import com.fym.lta.dao.EmployeeDao;
 import com.fym.lta.common.LTAException;
 import com.fym.lta.dto.EmployeeDto;
 
 import java.util.List;
 
 public class EmployeeBaoImp implements EmployeeBao {
-    EmployeeDao empDaoObject = new DaoFactory().CreateEmployeeDao();
+    EmployeeDao empDaoObject = new DaoFactory().createEmployeeDao();
 
 
     public boolean insertEmployee(EmployeeDto Employee) {

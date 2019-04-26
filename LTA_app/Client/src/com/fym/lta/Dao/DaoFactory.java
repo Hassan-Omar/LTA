@@ -1,17 +1,17 @@
-package com.fym.lta.Dao;
+package com.fym.lta.dao;
 
 
 public class DaoFactory {
 
-    public UserDao CreateUserDao() {
+    public UserDao createUserDao() {
         return new UserDaoImp();
     }
 
-    public RoleDao CreateRoleDao() {
+    public RoleDao createRoleDao() {
         return new RoleDaoImp();
     }
 
-    public ScreenDao CreateScreenDao() {
+    public ScreenDao createScreenDao() {
         return new ScreenDaoImp();
     }
 
@@ -19,39 +19,39 @@ public class DaoFactory {
         return new LocationDaoImp();
     }
 
-    public CourseDao CreateCourseDao() {
+    public CourseDao createCourseDao() {
         return new CourseDaoImp();
     }
 
-    public SchedualDao CreateSchedualDao() {
+    public SchedualDao createSchedualDao() {
         return new SchedualDaoImp();
     }
 
-    public SlotDao CreateSlotDao() {
+    public SlotDao createSlotDao() {
         return new SlotDaoImp();
     }
 
-    public DepartmentDao CreateDepartmentDao() {
+    public DepartmentDao createDepartmentDao() {
         return new DepartmentDaoImp();
     }
 
-    public BuildingDao CreateBuildingDao() {
+    public BuildingDao createBuildingDao() {
         return new BuildingDaoImp();
     }
 
-    public FloorDao CreateFloorDao() {
+    public FloorDao createFloorDao() {
         return new FloorDaoImp();
     }
 
-    public LocationTypeDao CreateLocationTypeDao() {
+    public LocationTypeDao createLocationTypeDao() {
         return new LocationTypeDaoImp();
     }
 
-    public EquipmentDao CreateEquipmentDao() {
+    public EquipmentDao createEquipmentDao() {
         return new EquipmentDaoImp();
     }
 
-    public EmployeeDao CreateEmployeeDao() {
+    public EmployeeDao createEmployeeDao() {
         return new EmployeeDaoImp();
     }
 

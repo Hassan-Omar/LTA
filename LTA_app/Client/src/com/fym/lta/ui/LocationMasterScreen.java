@@ -1,21 +1,19 @@
 
 package com.fym.lta.ui;
 
-import com.fym.lta.Bao.BaoFactory;
-import com.fym.lta.Bao.LocationBao;
+import com.fym.lta.bao.BaoFactory;
+import com.fym.lta.bao.LocationBao;
 import com.fym.lta.dto.LocationDto;
 
 import java.util.List;
 
-import javax.swing.JFrame;
 import javax.swing.JOptionPane;
-import javax.swing.JPanel;
 
 /**
  *
  * @author Nada
  */
-public class MasterScreen extends javax.swing.JPanel {
+public class LocationMasterScreen extends javax.swing.JPanel {
     private LocationBao business  = new BaoFactory().createLocationBao();
     private void setTableModel(List<LocationDto> location){
         Object [][] locationArr = new Object [location.size()][4];
@@ -33,19 +31,12 @@ public class MasterScreen extends javax.swing.JPanel {
         ));   }  
    
     /** Creates new form MasterScreen */
-    public MasterScreen() {
+    public LocationMasterScreen() {
         initComponents();
       if(business.ListAll()!=null)
       setTableModel(business.ListAll());
     }
-    // this method to create a popup menu
-    public static void createPopupMenu(JPanel panel) {
-        JFrame poupInsert = new JFrame();
-        poupInsert.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        poupInsert.setContentPane(panel);
-        poupInsert.setSize(800, 900); // setting size
-        poupInsert.setVisible(true);
-    }
+  
     /** This method is called from within the constructor to
      * initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is
@@ -73,37 +64,6 @@ public class MasterScreen extends javax.swing.JPanel {
 
         Table.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
                 {null, null, null, null}
             },
             new String [] {
@@ -206,7 +166,7 @@ public class MasterScreen extends javax.swing.JPanel {
     }//GEN-END:initComponents
 
     private void insertActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_insertActionPerformed
-    createPopupMenu(new DefineLocation());    
+    UsersScreen.createPopupMenu(new DefineLocation());    
     }//GEN-LAST:event_insertActionPerformed
 
     private void searchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchActionPerformed
@@ -251,7 +211,7 @@ public class MasterScreen extends javax.swing.JPanel {
                define_update.setLocationUpdateCode(Table.getValueAt(Table.getSelectedRow(), 1).toString()); // pass code
                define_update.setLocationUpdateDesc(Table.getValueAt(Table.getSelectedRow(), 2).toString()); // pass description
                define_update.setLocationUpdateCap(Integer.parseInt(Table.getValueAt(Table.getSelectedRow(), 3).toString())); // pass capacity
-               createPopupMenu(define_update);
+               UsersScreen.createPopupMenu(define_update);
                
      //   DefineLocation define_update  = new DefineLocation();
      //   createPopupMenu(define_update);

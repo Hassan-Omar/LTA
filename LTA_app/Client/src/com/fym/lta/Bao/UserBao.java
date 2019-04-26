@@ -1,4 +1,4 @@
-package com.fym.lta.Bao;
+package com.fym.lta.bao;
 
 import com.fym.lta.dto.UserDto;
 

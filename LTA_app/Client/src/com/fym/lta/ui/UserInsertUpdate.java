@@ -1,9 +1,9 @@
 
 package com.fym.lta.ui;
 
-import com.fym.lta.Bao.BaoFactory;
-import com.fym.lta.Bao.LoginEngine;
-import com.fym.lta.Bao.UserBao;
+import com.fym.lta.bao.BaoFactory;
+import com.fym.lta.bao.LoginEngine;
+import com.fym.lta.bao.UserBao;
 import com.fym.lta.dto.RoleDto;
 import com.fym.lta.dto.UserDto;
 
@@ -16,23 +16,20 @@ import javax.swing.JOptionPane;
  * @author h.omar
  */
 public class UserInsertUpdate extends javax.swing.JPanel {
-    private UserBao BusinessUser = new BaoFactory().CreateUserBao();
+    private UserBao BusinessUser = new BaoFactory().createUserBao();
     private int userUpdateId = 0;
     private String userUpdateEmail = " ";
 
-    public void setUserUpdateId(int userUpdateId) {
-        this.userUpdateId = userUpdateId;
-    }
-
-    public void setUserUpdateEmail(String userUpdateEmail) {
-        this.userUpdateEmail = userUpdateEmail;
-    }
+   UserBao user = new BaoFactory().createUserBao();
 
     /** Creates new form UserInsertUpdate */
     public UserInsertUpdate() {
         initComponents();
+      
     }
 
+   
+   
     /** This method is called from within the constructor to
      * initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is
@@ -42,6 +39,7 @@ public class UserInsertUpdate extends javax.swing.JPanel {
     private void initComponents() {//GEN-BEGIN:initComponents
 
         userName = new javax.swing.JTextField();
+       
         jLabel1 = new javax.swing.JLabel();
         userFName = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
@@ -284,12 +282,22 @@ public class UserInsertUpdate extends javax.swing.JPanel {
           flag = true ; 
          
         if (status) {
-            JOptionPane.showMessageDialog(this, " Done Successfully ");
+            int msgRes =
+                JOptionPane.showOptionDialog(null, "Deleted Successfully ", "User Deleting ",
+                                             JOptionPane.DEFAULT_OPTION, JOptionPane.INFORMATION_MESSAGE, null,
+                                             null, null);
+
+           // if (msgRes == JOptionPane.OK_OPTION) {
+                // check this 
+           //     userTableReset(user.listAll());  need to be static 
+          //  }
         } else
             JOptionPane.showMessageDialog(this,
                                           "Can not insert or update Ther are a problem please check entered data ");
     }//GEN-LAST:event_doneBTNMouseClicked
-
+    public void setUserUpdateId(int userUpdateId) {
+        this.userUpdateId = userUpdateId;
+    }
     private void userEmailKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_userEmailKeyTyped
 
         String mail = userEmail.getText();

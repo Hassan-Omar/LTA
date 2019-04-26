@@ -1,14 +1,14 @@
-package com.fym.lta.Bao;
+package com.fym.lta.bao;
 
-import com.fym.lta.Dao.BuildingDao;
-import com.fym.lta.Dao.DaoFactory;
+import com.fym.lta.dao.BuildingDao;
+import com.fym.lta.dao.DaoFactory;
 import com.fym.lta.common.LTAException;
 import com.fym.lta.dto.BuildingDto;
 
 import java.util.List;
 
 public class BuildingBaoImp implements BuildingBao {
-    BuildingDao buildingBaoObject = new DaoFactory().CreateBuildingDao();
+    BuildingDao buildingBaoObject = new DaoFactory().createBuildingDao();
 
     public boolean saveBuilding(BuildingDto building) {
         boolean status = false;

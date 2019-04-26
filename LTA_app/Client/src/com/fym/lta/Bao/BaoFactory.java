@@ -1,19 +1,19 @@
 
-package com.fym.lta.Bao;
+package com.fym.lta.bao;
 
 
 public class BaoFactory {
 
-    public UserBao CreateUserBao() {
+    public UserBao createUserBao() {
         return new UserBaoImp();
     }
 
 
-    public RoleBao CreateRoleBao() {
+    public RoleBao createRoleBao() {
         return new RoleBaoImp();
     }
 
-    public ScreenBao CreateScreenBao() {
+    public ScreenBao createScreenBao() {
         return new ScreenBaoImp();
     }
 
@@ -21,43 +21,43 @@ public class BaoFactory {
         return new LocationBaoImp();
     }
 
-    public CourseBao CreateCourseBao() {
+    public CourseBao createCourseBao() {
         return new CourseBaoImp();
     }
 
-    public SchedualBao CreateSchedualBao() {
+    public SchedualBao createSchedualBao() {
         return new SchedualBaoImp();
     }
 
-    public SlotBao CreateSlotBao() {
+    public SlotBao createSlotBao() {
         return new SlotBaoImp();
     }
 
-    public DepartmentBao CreateDepartmentBao() {
+    public DepartmentBao createDepartmentBao() {
         return new DepartmentBaoImp();
     }
 
-    public BuildingBao CreateBuildingBao() {
+    public BuildingBao createBuildingBao() {
         return new BuildingBaoImp();
     }
 
-    public FloorBao CreateFloorBao() {
+    public FloorBao createFloorBao() {
         return new FloorBaoImp();
     }
 
-    public LocationTypeBao CreateLocationTypeBao() {
+    public LocationTypeBao createLocationTypeBao() {
         return new LocationTypeBaoImp();
     }
 
-    public EquipmentBao CreateEquipmentBao() {
+    public EquipmentBao createEquipmentBao() {
         return new EquipmentBaoImp();
     }
 
-    public EmployeeBao CreateemployeeBao() {
+    public EmployeeBao createemployeeBao() {
         return new EmployeeBaoImp();
     }
 
-    public LoginEngine CreateLoginEngine() {
+    public LoginEngine createLoginEngine() {
         return new LoginEngine();
     }
 

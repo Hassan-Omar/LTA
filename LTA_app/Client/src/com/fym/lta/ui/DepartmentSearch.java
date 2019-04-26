@@ -1,8 +1,8 @@
 
 package com.fym.lta.ui;
 
-import com.fym.lta.Bao.BaoFactory;
-import com.fym.lta.Bao.DepartmentBao;
+import com.fym.lta.bao.BaoFactory;
+import com.fym.lta.bao.DepartmentBao;
 import com.fym.lta.dto.DepartmentDto;
 
 /**
@@ -139,7 +139,7 @@ public class DepartmentSearch extends javax.swing.JPanel {
     }//GEN-END:initComponents
     
     
-    private DepartmentBao business = new BaoFactory().CreateDepartmentBao();
+    private DepartmentBao business = new BaoFactory().createDepartmentBao();
     DepartmentDto D = new DepartmentDto();
     private void btnSearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSearchActionPerformed
     

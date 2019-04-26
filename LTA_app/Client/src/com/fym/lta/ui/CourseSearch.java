@@ -1,8 +1,8 @@
 
 package com.fym.lta.ui;
 
-import com.fym.lta.Bao.BaoFactory;
-import com.fym.lta.Bao.CourseBao;
+import com.fym.lta.bao.BaoFactory;
+import com.fym.lta.bao.CourseBao;
 import com.fym.lta.dto.CourseDto;
 
 /**
@@ -153,7 +153,7 @@ public class CourseSearch extends javax.swing.JPanel {
         // TODO add your handling code here:
     }//GEN-LAST:event_jTable1AncestorResized
 
-    private CourseBao business = new BaoFactory().CreateCourseBao();
+    private CourseBao business = new BaoFactory().createCourseBao();
         CourseDto S = new CourseDto();
     private void btnSearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSearchActionPerformed
     jPanel1.setVisible(true);

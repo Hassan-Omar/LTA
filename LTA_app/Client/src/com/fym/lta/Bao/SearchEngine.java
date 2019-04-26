@@ -1,15 +1,15 @@
-package com.fym.lta.Bao;
+package com.fym.lta.bao;
 
-import com.fym.lta.Dao.BuildingDao;
-import com.fym.lta.Dao.CourseDao;
-import com.fym.lta.Dao.DaoFactory;
-import com.fym.lta.Dao.DepartmentDao;
-import com.fym.lta.Dao.EquipmentDao;
-import com.fym.lta.Dao.FloorDao;
-import com.fym.lta.Dao.LocationDao;
-import com.fym.lta.Dao.SchedualDao;
-import com.fym.lta.Dao.SlotDao;
-import com.fym.lta.Dao.UserDao;
+import com.fym.lta.dao.BuildingDao;
+import com.fym.lta.dao.CourseDao;
+import com.fym.lta.dao.DaoFactory;
+import com.fym.lta.dao.DepartmentDao;
+import com.fym.lta.dao.EquipmentDao;
+import com.fym.lta.dao.FloorDao;
+import com.fym.lta.dao.LocationDao;
+import com.fym.lta.dao.SchedualDao;
+import com.fym.lta.dao.SlotDao;
+import com.fym.lta.dao.UserDao;
 import com.fym.lta.dto.BuildingDto;
 import com.fym.lta.dto.CourseDto;
 import com.fym.lta.dto.DepartmentDto;
@@ -46,43 +46,43 @@ public class SearchEngine {
     }
 
     public List<BuildingDto> getAllBuildings() {
-        BuildingDao building = new DaoFactory().CreateBuildingDao();
+        BuildingDao building = new DaoFactory().createBuildingDao();
         return building.getAll_Buildings();
     }
 
     public List<UserDto> getallUsers() {
-        UserDao User = new DaoFactory().CreateUserDao();
+        UserDao User = new DaoFactory().createUserDao();
         return User.getAll_Users();
     }
 
     public List<EquipmentDto> getAllEquipments() {
-        EquipmentDao Equipment = new DaoFactory().CreateEquipmentDao();
+        EquipmentDao Equipment = new DaoFactory().createEquipmentDao();
         return Equipment.getAll_Equipments();
     }
 
     public List<FloorDto> getallFloors() {
-        FloorDao Floor = new DaoFactory().CreateFloorDao();
+        FloorDao Floor = new DaoFactory().createFloorDao();
         return Floor.getAll_Floors();
     }
 
     public List<DepartmentDto> getAllDepartments() {
-        DepartmentDao Department = new DaoFactory().CreateDepartmentDao();
+        DepartmentDao Department = new DaoFactory().createDepartmentDao();
         return Department.getAll_Departments();
     }
 
 
     public List<CourseDto> getAllCourses() {
-        CourseDao Course = new DaoFactory().CreateCourseDao();
+        CourseDao Course = new DaoFactory().createCourseDao();
         return Course.getAll_Courses();
     }
 
     public List<SlotDto> getallSlots() {
-        SlotDao Slot = new DaoFactory().CreateSlotDao();
+        SlotDao Slot = new DaoFactory().createSlotDao();
         return Slot.getAll_Slots();
     }
 
     public List<SchedualDto> getAllDScheduals() {
-        SchedualDao Schedual = new DaoFactory().CreateSchedualDao();
+        SchedualDao Schedual = new DaoFactory().createSchedualDao();
         return Schedual.getAll_Scheduals();
     }
 }

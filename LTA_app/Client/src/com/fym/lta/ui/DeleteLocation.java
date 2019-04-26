@@ -1,8 +1,8 @@
 
 package com.fym.lta.ui;
 
-import com.fym.lta.Bao.BaoFactory;
-import com.fym.lta.Bao.LocationBao;
+import com.fym.lta.bao.BaoFactory;
+import com.fym.lta.bao.LocationBao;
 import com.fym.lta.dto.LocationDto;
 
 /**

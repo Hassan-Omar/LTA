@@ -1,7 +1,7 @@
-package com.fym.lta.Bao;
+package com.fym.lta.bao;
 
-import com.fym.lta.Dao.DaoFactory;
-import com.fym.lta.Dao.LocationDao;
+import com.fym.lta.dao.DaoFactory;
+import com.fym.lta.dao.LocationDao;
 import com.fym.lta.dto.LocationDto;
 
 import java.util.List;

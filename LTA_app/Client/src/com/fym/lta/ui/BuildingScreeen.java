@@ -1,15 +1,13 @@
 
 package com.fym.lta.ui;
 
-import com.fym.lta.Bao.BaoFactory;
-import com.fym.lta.Bao.BuildingBao;
+import com.fym.lta.bao.BaoFactory;
+import com.fym.lta.bao.BuildingBao;
 import com.fym.lta.dto.BuildingDto;
 
 import java.util.List;
 
-import javax.swing.JFrame;
 import javax.swing.JOptionPane;
-import javax.swing.JPanel;
 
 /**
  *
@@ -17,16 +15,8 @@ import javax.swing.JPanel;
  */
 public class BuildingScreeen extends javax.swing.JPanel {
     
-   BuildingBao buildingBaoObject = new BaoFactory().CreateBuildingBao();
-    
-    public static void createPopupMenu(JPanel panel) {
-        JFrame poupInsert = new JFrame();
-        poupInsert.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        poupInsert.setContentPane(panel);
-        poupInsert.setSize(800, 900); // setting size
-        poupInsert.setVisible(true);
-    }
- 
+   BuildingBao buildingBaoObject = new BaoFactory().createBuildingBao();
+
 
     /** Creates new form Building */
     public BuildingScreeen() {
@@ -210,7 +200,7 @@ public class BuildingScreeen extends javax.swing.JPanel {
         uIScreen.setBuildingUpdateId(Integer.parseInt(BuildingTable.getValueAt(BuildingTable.getSelectedRow(), 4).toString())); //Pass the ID
         uIScreen.setBuildingUpdateCode(BuildingTable.getValueAt(BuildingTable.getSelectedRow(), 1).toString()); // pass the code
         uIScreen.setBuildingUpdateDescription(BuildingTable.getValueAt(BuildingTable.getSelectedRow(), 1).toString()); // pass the description
-        createPopupMenu(uIScreen);*/
+        UsersScreen.createPopupMenu(uIScreen);*/
 
     }//GEN-LAST:event_ubdateBuildingBTNActionPerformed
 
@@ -239,7 +229,7 @@ public class BuildingScreeen extends javax.swing.JPanel {
     }//GEN-LAST:event_deleteBuildingBTNMouseClicked
 
     private void insertBuildingBTNMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_insertBuildingBTNMouseClicked
-    createPopupMenu(new BuildingInsertUpdate ());
+    UsersScreen.createPopupMenu(new BuildingInsertUpdate ());
     }//GEN-LAST:event_insertBuildingBTNMouseClicked
 
     private void searchBuildingBTNMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_searchBuildingBTNMouseClicked

@@ -1,33 +1,20 @@
 
 package com.fym.lta.ui;
 
-import com.fym.lta.Bao.BaoFactory;
-import com.fym.lta.Bao.RoleBao;
-
+import com.fym.lta.bao.BaoFactory;
+import com.fym.lta.bao.RoleBao;
 import com.fym.lta.dto.RoleDto;
-
-import com.fym.lta.dto.UserDto;
 
 import java.awt.Color;
 import java.awt.Dimension;
-
 import java.awt.Font;
 import java.awt.Rectangle;
-
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.KeyAdapter;
-
-import java.awt.event.KeyEvent;
-
-import java.awt.event.MouseAdapter;
-
-import java.awt.event.MouseEvent;
 
 import javax.swing.BorderFactory;
 import javax.swing.JButton;
 import javax.swing.JCheckBox;
-import javax.swing.JComboBox;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
@@ -42,7 +29,7 @@ public class RoleInsert extends JPanel {
     private JButton doneBTN = new JButton();
     private JLabel jLabel5 = new JLabel();
     private int id;
-    private RoleBao role = new BaoFactory().CreateRoleBao();
+    private RoleBao role = new BaoFactory().createRoleBao();
     private String permission;
     private JPanel jPanel1 = new JPanel();
     private JCheckBox viewCheckBox = new JCheckBox();

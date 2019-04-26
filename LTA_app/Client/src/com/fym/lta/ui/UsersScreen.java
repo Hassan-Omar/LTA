@@ -1,8 +1,8 @@
 
 package com.fym.lta.ui;
 
-import com.fym.lta.Bao.BaoFactory;
-import com.fym.lta.Bao.UserBao;
+import com.fym.lta.bao.BaoFactory;
+import com.fym.lta.bao.UserBao;
 import com.fym.lta.dto.UserDto;
 
 import java.util.List;
@@ -16,10 +16,11 @@ import javax.swing.JPanel;
  * @author h.omar
  */
 public class UsersScreen extends javax.swing.JPanel {
-    private UserBao user = new BaoFactory().CreateUserBao();
+    private UserBao user = new BaoFactory().createUserBao();
     private List<UserDto> searchReturnedUsers;
     private int selectedUserid = 0;
     private boolean searchFlag;
+    static String email ;
 
     /** Creates new form Users_search */
     public UsersScreen() {
@@ -31,7 +32,6 @@ public class UsersScreen extends javax.swing.JPanel {
     // this method to create a popup menu
     public static void createPopupMenu(JPanel panel) {
         JFrame poupInsert = new JFrame();
-        poupInsert.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         poupInsert.setContentPane(panel);
         poupInsert.setSize(800, 900); // setting size
         poupInsert.setVisible(true);
@@ -58,26 +58,9 @@ public class UsersScreen extends javax.swing.JPanel {
 
         jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Users\n", 0, 0, new java.awt.Font("Adobe Arabic", 1, 24))); // NOI18N
 
+        usersTable.setFont(new java.awt.Font("Perpetua", 1, 18)); // NOI18N
         usersTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
                 {null, null, null, null, null}
             },
             new String [] {
@@ -88,7 +71,7 @@ public class UsersScreen extends javax.swing.JPanel {
                 java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.Integer.class
             };
             boolean[] canEdit = new boolean [] {
-                true, false, false, true, false
+                false, false, false, false, false
             };
 
             public Class getColumnClass(int columnIndex) {
@@ -99,7 +82,7 @@ public class UsersScreen extends javax.swing.JPanel {
                 return canEdit [columnIndex];
             }
         });
-        usersTable.setRowHeight(20);
+        usersTable.setRowHeight(30);
         jScrollPane1.setViewportView(usersTable);
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
@@ -121,9 +104,9 @@ public class UsersScreen extends javax.swing.JPanel {
 
         ubdateUserBTN.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         ubdateUserBTN.setText("Update");
-        ubdateUserBTN.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                ubdateUserBTNActionPerformed(evt);
+        ubdateUserBTN.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                ubdateUserBTNMouseClicked(evt);
             }
         });
 
@@ -132,11 +115,6 @@ public class UsersScreen extends javax.swing.JPanel {
         deleteUserBTN.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 deleteUserBTNMouseClicked(evt);
-            }
-        });
-        deleteUserBTN.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                deleteUserBTNActionPerformed(evt);
             }
         });
 
@@ -211,21 +189,6 @@ public class UsersScreen extends javax.swing.JPanel {
         );
     }//GEN-END:initComponents
 
-    private void ubdateUserBTNActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ubdateUserBTNActionPerformed
-        if (usersTable.getSelectedRow() >= 0) {
-            UserInsertUpdate uIScreen = new UserInsertUpdate();
-            uIScreen.setUserUpdateId(Integer.parseInt(usersTable.getValueAt(usersTable.getSelectedRow(),
-                                                                            4).toString())); //Passa ID
-            uIScreen.setUserUpdateEmail(usersTable.getValueAt(usersTable.getSelectedRow(),
-                                                              1).toString()); // pass the Email
-            createPopupMenu(uIScreen);
-        } else {
-            JOptionPane.showOptionDialog(null, "You Should Select A user to Update ", "User Updaete ",
-                                         JOptionPane.DEFAULT_OPTION, JOptionPane.INFORMATION_MESSAGE, null, null, null);
-        }
-    
-    }//GEN-LAST:event_ubdateUserBTNActionPerformed
-
     private void searchUserBTNMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_searchUserBTNMouseClicked
 
         // this part still not handeled good
@@ -265,7 +228,8 @@ public class UsersScreen extends javax.swing.JPanel {
                                                  null, null);
 
                 if (msgRes == JOptionPane.OK_OPTION) {
-                    userTableReset(user.seachForUsers(null));
+                    // check this 
+                    userTableReset(user.listAll());
                     usersTable.repaint();
                 }
             } else {
@@ -284,15 +248,23 @@ public class UsersScreen extends javax.swing.JPanel {
         
     }//GEN-LAST:event_insertUserBTNMouseClicked
 
-    private void deleteUserBTNActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteUserBTNActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_deleteUserBTNActionPerformed
-
     private void userEnteredNameKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_userEnteredNameKeyTyped
        
         searchFlag = true; 
      
     }//GEN-LAST:event_userEnteredNameKeyTyped
+
+    private void ubdateUserBTNMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ubdateUserBTNMouseClicked
+        if (usersTable.getSelectedRow() >= 0) {
+            UserInsertUpdate uIScreen = new UserInsertUpdate();
+            uIScreen.setUserUpdateId(Integer.parseInt(usersTable.getValueAt(usersTable.getSelectedRow(),
+                                                                            4).toString())); //Passa ID
+           // email  = usersTable.getValueAt(usersTable.getSelectedRow(),
+             //                                                 1).toString() ; 
+            createPopupMenu(uIScreen);
+        } else {
+            JOptionPane.showMessageDialog(this , "You Should Select A user to Update ");}
+    }//GEN-LAST:event_ubdateUserBTNMouseClicked
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

@@ -1,15 +1,12 @@
 package com.fym.lta.ui;
 
-import com.fym.lta.Bao.BaoFactory;
-
-import com.fym.lta.Bao.DepartmentBao;
-
+import com.fym.lta.bao.BaoFactory;
+import com.fym.lta.bao.DepartmentBao;
 import com.fym.lta.dto.BuildingDto;
 import com.fym.lta.dto.DepartmentDto;
 
 import java.awt.Dimension;
 import java.awt.Rectangle;
-
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -17,7 +14,6 @@ import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
-import javax.swing.SwingConstants;
 
 public class DepartmentInsert extends JPanel {
     private JLabel jLabel1 = new JLabel();
@@ -75,7 +71,7 @@ public class DepartmentInsert extends JPanel {
         this.add(jLabel1, null);
     }
 
-    private DepartmentBao business = new BaoFactory().CreateDepartmentBao();
+    private DepartmentBao business = new BaoFactory().createDepartmentBao();
     DepartmentDto D = new  DepartmentDto();
     BuildingDto B= new BuildingDto();
     private void btnSave_actionPerformed(ActionEvent e) {

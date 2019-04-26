@@ -1,7 +1,7 @@
 
 package com.fym.lta.ui;
 
-import com.fym.lta.Bao.LoginEngine;
+import com.fym.lta.bao.LoginEngine;
 
 import java.io.BufferedWriter;
 import java.io.File;
@@ -111,10 +111,9 @@ public class Login extends javax.swing.JFrame {
     }//GEN-LAST:event_jCheckBox1ActionPerformed
 
     private void login_btnMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_login_btnMouseClicked
-    boolean usernamStatus =
-        LoginEngine.checkUsername(username.getText()); // passing username to check
+    boolean usernamStatus = LoginEngine.checkUsername(username.getText()); // passing username to check
     boolean passwordStatus =
-        LoginEngine.checkPassword(userPassword.getPassword().toString()); // passing password to check
+            LoginEngine.checkPassword(userPassword.getPassword().toString()); // passing password to check
 
     if (jCheckBox1.isSelected()) // this means i must store this values
 
@@ -137,7 +136,7 @@ public class Login extends javax.swing.JFrame {
 
                 FileInputStream fis = new FileInputStream("original");
                 FileOutputStream fos = new FileOutputStream("ab.txt");
-                LoginEngine.encrypt(key, fis, fos);
+                    LoginEngine.encrypt(key, fis, fos);
                 File file = new File("original");
                 file.delete() ; 
                 // delete original file 

@@ -406,7 +406,7 @@ public class MMenu extends javax.swing.JFrame {
     }//GEN-LAST:event_jMenuItem4ActionPerformed
 
     private void jMenuItem9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem9ActionPerformed
-    switchtoPanel( new MasterScreen()); 
+    switchtoPanel( new LocationMasterScreen()); 
   
        
     }//GEN-LAST:event_jMenuItem9ActionPerformed

@@ -1,7 +1,7 @@
 package com.fym.lta.ui;
 
-import com.fym.lta.Bao.BaoFactory;
-import com.fym.lta.Bao.RoleBao;
+import com.fym.lta.bao.BaoFactory;
+import com.fym.lta.bao.RoleBao;
 import com.fym.lta.dto.RoleDto;
 
 import java.util.List;
@@ -12,7 +12,7 @@ import java.util.List;
  */
 public class RoleScreen extends javax.swing.JPanel {
 int selectedRoleID = 0 ;
-RoleBao role =new BaoFactory().CreateRoleBao();
+RoleBao role =new BaoFactory().createRoleBao();
 List<RoleDto> searchReturnedRoles = null ; 
 
     /** Creates new form RoleScreen */

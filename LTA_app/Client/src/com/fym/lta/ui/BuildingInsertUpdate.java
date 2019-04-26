@@ -1,9 +1,9 @@
 
 package com.fym.lta.ui;
 
-import com.fym.lta.Bao.BaoFactory;
-import com.fym.lta.Bao.BuildingBao;
-import com.fym.lta.Bao.LoginEngine;
+import com.fym.lta.bao.BaoFactory;
+import com.fym.lta.bao.BuildingBao;
+import com.fym.lta.bao.LoginEngine;
 import com.fym.lta.dto.BuildingDto;
 
 import java.sql.Date;
@@ -92,7 +92,7 @@ public class BuildingInsertUpdate extends javax.swing.JPanel {
 
     private void jButton1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MouseClicked
    
-        BuildingBao business = new BaoFactory().CreateBuildingBao();
+        BuildingBao business = new BaoFactory().createBuildingBao();
         BuildingDto b = new BuildingDto();
         
         b.setCode(code.getText());

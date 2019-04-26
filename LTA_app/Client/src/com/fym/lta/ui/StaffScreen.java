@@ -1,8 +1,8 @@
 
 package com.fym.lta.ui;
 
-import com.fym.lta.Bao.BaoFactory;
-import com.fym.lta.Bao.EmployeeBao;
+import com.fym.lta.bao.BaoFactory;
+import com.fym.lta.bao.EmployeeBao;
 import com.fym.lta.dto.EmployeeDto;
 
 import java.util.List;
@@ -14,7 +14,7 @@ import javax.swing.JOptionPane;
  * @author Mina
  */
 public class StaffScreen extends javax.swing.JPanel {
-    private EmployeeBao business = new BaoFactory().CreateemployeeBao();
+    private EmployeeBao business = new BaoFactory().createemployeeBao();
     /** Creates new form StaffSearch */
     public StaffScreen() {
         initComponents();

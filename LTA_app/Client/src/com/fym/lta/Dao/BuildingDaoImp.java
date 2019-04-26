@@ -1,4 +1,4 @@
-package com.fym.lta.Dao;
+package com.fym.lta.dao;
 
 import com.fym.lta.common.ConnectionFactory;
 import com.fym.lta.common.LTAException;

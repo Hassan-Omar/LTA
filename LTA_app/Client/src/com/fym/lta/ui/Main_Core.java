@@ -1,7 +1,7 @@
 
 package com.fym.lta.ui;
 
-import com.fym.lta.Bao.LoginEngine;
+import com.fym.lta.bao.LoginEngine;
 
 import java.io.BufferedReader;
 import java.io.File;
@@ -60,7 +60,7 @@ public class Main_Core {
             }
 
             if (LoginEngine.checkUsername(usernameDe)) {
-                // now we know that login  done successfully so we can pass this user to our system 
+                // now we know that login  done successfully so we can pass this user to our system
                 LoginEngine.currentUser =usernameDe ; 
                 MMenu mu = new MMenu();
                 mu.setVisible(true);

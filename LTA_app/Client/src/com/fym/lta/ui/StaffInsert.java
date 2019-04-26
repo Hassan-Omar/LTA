@@ -1,7 +1,7 @@
 package com.fym.lta.ui;
 
-import com.fym.lta.Bao.BaoFactory;
-import com.fym.lta.Bao.EmployeeBao;
+import com.fym.lta.bao.BaoFactory;
+import com.fym.lta.bao.EmployeeBao;
 import com.fym.lta.dto.EmployeeDto;
 
 import java.awt.Color;
@@ -151,7 +151,7 @@ public class StaffInsert extends JPanel {
     }
 
 
-    private EmployeeBao business = new BaoFactory().CreateemployeeBao();
+    private EmployeeBao business = new BaoFactory().createemployeeBao();
     EmployeeDto S = new EmployeeDto();
 
     private void jButton1_actionPerformed(ActionEvent e) {

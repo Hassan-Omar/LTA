@@ -1,5 +1,5 @@
 
-package com.fym.lta.Dao;
+package com.fym.lta.dao;
 
 import com.fym.lta.common.LTAException;
 import com.fym.lta.dto.BuildingDto;
