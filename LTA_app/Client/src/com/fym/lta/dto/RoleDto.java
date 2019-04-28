@@ -1,30 +1,21 @@
 package com.fym.lta.dto;
 
 
+import java.util.Date;
 import java.util.List;
 
 public class RoleDto {
-    private int Role_id;
-    private String code, Description, permissontype;
-    private List<ScreenDto> Role_Screens;
+    private int role_id;
+    private String code, description ,insertedBy, updatedBy ;
+    private List<ScreenDto> role_Screens;
+    private Date inertion_Date, update_Date;
 
-
-    public RoleDto(String permissontype) {
-        super();
-        this.permissontype = permissontype;
-    }
-
-    public RoleDto(int Role_id) {
-        super();
-        this.Role_id = Role_id;
-    }
-
-    public void setRole_id(int Role_id) {
-        this.Role_id = Role_id;
+    public void setRole_id(int role_id) {
+        this.role_id = role_id;
     }
 
     public int getRole_id() {
-        return Role_id;
+        return role_id;
     }
 
     public void setCode(String code) {
@@ -35,27 +26,52 @@ public class RoleDto {
         return code;
     }
 
-    public void setDescription(String Description) {
-        this.Description = Description;
+    public void setDescription(String description) {
+        this.description = description;
     }
 
     public String getDescription() {
-        return Description;
+        return description;
     }
 
-    public void setRole_Screens(List<ScreenDto> Role_Screens) {
-        this.Role_Screens = Role_Screens;
+    public void setInsertedBy(String insertedBy) {
+        this.insertedBy = insertedBy;
+    }
+
+    public String getInsertedBy() {
+        return insertedBy;
+    }
+
+    public void setUpdatedBy(String updatedBy) {
+        this.updatedBy = updatedBy;
+    }
+
+    public String getUpdatedBy() {
+        return updatedBy;
+    }
+
+    public void setRole_Screens(List<ScreenDto> role_Screens) {
+        this.role_Screens = role_Screens;
     }
 
     public List<ScreenDto> getRole_Screens() {
-        return Role_Screens;
+        return role_Screens;
     }
 
-    public void setPermissontype(String permissontype) {
-        this.permissontype = permissontype;
+    public void setInertion_Date(Date inertion_Date) {
+        this.inertion_Date = inertion_Date;
     }
 
-    public String getPermissontype() {
-        return permissontype;
+    public Date getInertion_Date() {
+        return inertion_Date;
     }
+
+    public void setUpdate_Date(Date update_Date) {
+        this.update_Date = update_Date;
+    }
+
+    public Date getUpdate_Date() {
+        return update_Date;
+    }
+
 }

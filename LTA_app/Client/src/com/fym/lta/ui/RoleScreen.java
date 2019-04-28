@@ -1,23 +1,33 @@
 package com.fym.lta.ui;
 
 import com.fym.lta.bao.BaoFactory;
+import com.fym.lta.bao.LoginEngine;
 import com.fym.lta.bao.RoleBao;
 import com.fym.lta.dto.RoleDto;
 
+import java.sql.Date;
+
 import java.util.List;
+
+import javax.swing.JOptionPane;
 
 /**
  *
  * @author h.omar
  */
 public class RoleScreen extends javax.swing.JPanel {
-int selectedRoleID = 0 ;
-RoleBao role =new BaoFactory().createRoleBao();
-List<RoleDto> searchReturnedRoles = null ; 
+    // create role using bussiness factory
+    RoleBao role = new BaoFactory().createRoleBao();
+    boolean updateFlag = false;
 
     /** Creates new form RoleScreen */
     public RoleScreen() {
         initComponents();
+        // hide the  insertUpdatePanel panel
+        insertUpdatePanel.setVisible(false);
+        // fill table data from DB
+        if (role.getAll() != null)
+            roleTableReset(role.getAll());
     }
 
     /** This method is called from within the constructor to
@@ -35,51 +45,44 @@ List<RoleDto> searchReturnedRoles = null ;
         ubdateRoleBTN = new javax.swing.JButton();
         deleteRoleBTN = new javax.swing.JButton();
         insertRoleBTN = new javax.swing.JButton();
-        RoleEnteredCode = new javax.swing.JTextField();
+        roleEnteredCode = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
         searchUserBTN = new javax.swing.JButton();
+        insertUpdatePanel = new javax.swing.JPanel();
+        enteredCode = new javax.swing.JTextField();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        enteredDescription = new javax.swing.JTextArea();
+        SaveBtn = new javax.swing.JButton();
+        jLabel2 = new javax.swing.JLabel();
+        label1 = new java.awt.Label();
 
         jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Roles", 0, 0, new java.awt.Font("Adobe Arabic", 1, 24))); // NOI18N
 
         rolesTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null}
+
             },
             new String [] {
-                "Code", "Decription", "ID"
+                "Code", "Decription"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.String.class, java.lang.String.class, java.lang.Integer.class
+                java.lang.String.class, java.lang.String.class
+            };
+            boolean[] canEdit = new boolean [] {
+                false, false
             };
 
             public Class getColumnClass(int columnIndex) {
                 return types [columnIndex];
             }
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
         });
         rolesTable.setRowHeight(20);
         jScrollPane1.setViewportView(rolesTable);
-        rolesTable.getColumnModel().getColumn(0).setHeaderValue("Code");
-        rolesTable.getColumnModel().getColumn(1).setHeaderValue("Decription");
-        rolesTable.getColumnModel().getColumn(2).setHeaderValue("ID");
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -153,12 +156,12 @@ List<RoleDto> searchReturnedRoles = null ;
                 .addContainerGap())
         );
 
-        RoleEnteredCode.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        RoleEnteredCode.setText(" ");
+        roleEnteredCode.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jLabel1.setText("Enter Role Code");
 
+        searchUserBTN.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         searchUserBTN.setText("Search");
         searchUserBTN.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -166,78 +169,214 @@ List<RoleDto> searchReturnedRoles = null ;
             }
         });
 
+        insertUpdatePanel.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+
+        enteredDescription.setColumns(20);
+        enteredDescription.setRows(5);
+        jScrollPane2.setViewportView(enteredDescription);
+
+        SaveBtn.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        SaveBtn.setText("Save");
+        SaveBtn.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                SaveBtnMouseClicked(evt);
+            }
+        });
+
+        jLabel2.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        jLabel2.setText("Code");
+
+        label1.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        label1.setText("Description");
+
+        javax.swing.GroupLayout insertUpdatePanelLayout = new javax.swing.GroupLayout(insertUpdatePanel);
+        insertUpdatePanel.setLayout(insertUpdatePanelLayout);
+        insertUpdatePanelLayout.setHorizontalGroup(
+            insertUpdatePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, insertUpdatePanelLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(insertUpdatePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(label1, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 82, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 15, Short.MAX_VALUE)
+                .addGroup(insertUpdatePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(SaveBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(insertUpdatePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                        .addComponent(enteredCode, javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 283, Short.MAX_VALUE)))
+                .addContainerGap())
+        );
+        insertUpdatePanelLayout.setVerticalGroup(
+            insertUpdatePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(insertUpdatePanelLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(insertUpdatePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(enteredCode, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(115, 115, 115)
+                .addGroup(insertUpdatePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(label1, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 78, Short.MAX_VALUE)
+                .addComponent(SaveBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 78, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(67, 67, 67))
+        );
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap(353, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(227, 227, 227))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                    .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                        .addGap(19, 19, 19)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 333, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(RoleEnteredCode, javax.swing.GroupLayout.PREFERRED_SIZE, 484, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(69, 69, 69)
-                                .addComponent(searchUserBTN)))
-                        .addGap(451, 451, 451))))
+                                .addComponent(roleEnteredCode, javax.swing.GroupLayout.PREFERRED_SIZE, 484, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(searchUserBTN)
+                                .addGap(224, 224, 224))
+                            .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 333, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addGap(60, 60, 60)
+                .addComponent(insertUpdatePanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(162, 162, 162))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(40, 40, 40)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(RoleEnteredCode, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(searchUserBTN, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(25, 25, 25)
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 387, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(103, Short.MAX_VALUE))
+                .addGap(10, 10, 10)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(insertUpdatePanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(roleEnteredCode, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(searchUserBTN, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(25, 25, 25)
+                        .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 387, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(87, Short.MAX_VALUE))
         );
     }//GEN-END:initComponents
 
     private void ubdateRoleBTNActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ubdateRoleBTNActionPerformed
-        UsersScreen.createPopupMenu(new RoleInsert());
+        if (rolesTable.getSelectedRow() >= 0) {
+            // copy data from table to entereddata textfield
+            enteredCode.setText(rolesTable.getValueAt(rolesTable.getSelectedRow(), 0).toString());
+            // copy text data from table enteredDescription
+            enteredDescription.setText(rolesTable.getValueAt(rolesTable.getSelectedRow(), 1).toString());
+            updateFlag = true;
+            insertUpdatePanel.setVisible(true);
+        } else
+            JOptionPane.showMessageDialog(this, "Please select a role to update");
+       
+       
     }//GEN-LAST:event_ubdateRoleBTNActionPerformed
 
     private void deleteRoleBTNMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_deleteRoleBTNMouseClicked
-        selectedRoleID =Integer.parseInt(rolesTable.getValueAt(rolesTable.getSelectedRow(), 3).toString());
-        RoleDto selectedRole_Delete =new RoleDto(""); // this role i want to delete
-        selectedRole_Delete.setRole_id(selectedRoleID);
-        role.deleteRole(selectedRole_Delete); // call business to delete
-        // don't forget you need to update the users table and remove this record
-        // and check the returned value to tell the user if the delete is done or not
+        String selectedRoleCode =
+            rolesTable.getValueAt(rolesTable.getSelectedRow(), 0).toString(); // hold the code of role
+        if (rolesTable.getSelectedRow() >= 0) {
+            // call bussiness method
+            if (role.deleteRole(selectedRoleCode)) {
+                JOptionPane.showMessageDialog(this, "deleted Successfully  ");
+                // reset table's content
+                roleTableReset(role.getAll());
+            } else
+                JOptionPane.showMessageDialog(this, "can't delete ");
+        } else
+            JOptionPane.showMessageDialog(this, "You should select a role to delete ");
     }//GEN-LAST:event_deleteRoleBTNMouseClicked
 
     private void insertRoleBTNMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_insertRoleBTNMouseClicked
-        UsersScreen.createPopupMenu(new RoleInsert());
-
+        insertUpdatePanel.setVisible(true);
+        updateFlag = false; 
     }//GEN-LAST:event_insertRoleBTNMouseClicked
 
     private void searchUserBTNMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_searchUserBTNMouseClicked
- 
-        RoleDto searchRole = new RoleDto("") ;
-        searchRole.setCode( RoleEnteredCode.getText()); // passing  entered role code 
-        
-        searchReturnedRoles =  role.SearchRole(searchRole); // store the result of our search
+        String code = null; // hold entered data
+
+        if (roleEnteredCode.getText() != null)
+            code = roleEnteredCode.getText(); // passing  entered role code
+        else
+            JOptionPane.showMessageDialog(this, "You should enter a code to search ");
+
+        // reset table's data
+        roleTableReset(role.search_forRole(code.trim())); 
     }//GEN-LAST:event_searchUserBTNMouseClicked
+
+    private void SaveBtnMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_SaveBtnMouseClicked
+
+
+        
+     
+        RoleDto myrole = new RoleDto();
+        myrole.setCode(enteredCode.getText()); // passing entered data
+        myrole.setDescription(enteredDescription.getText()); // passing entered  description
+        // passing insertion time and insertion date
+        if (updateFlag) {
+            myrole.setUpdate_Date(new Date(System.currentTimeMillis()));
+            myrole.setUpdatedBy(LoginEngine.currentUser);
+            updateFlag = false;
+        } else {
+            myrole.setUpdatedBy(LoginEngine.currentUser);
+            myrole.setInsertedBy(LoginEngine.currentUser);
+            myrole.setUpdate_Date(new Date(System.currentTimeMillis()));
+            myrole.setInertion_Date(new Date(System.currentTimeMillis()));
+        }
+
+        boolean statuse = role.saveRole(myrole);
+        if (statuse) {
+            JOptionPane.showMessageDialog(this, " Done Successfully ");
+            // reset table content
+            roleTableReset(role.getAll());
+            insertUpdatePanel.setVisible(false);
+        } else
+            JOptionPane.showMessageDialog(this,
+                                          "Can not insert or update Ther are a problem please check entered data ");
+
+    
+     
+     
+     
+    }//GEN-LAST:event_SaveBtnMouseClicked
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JTextField RoleEnteredCode;
+    private javax.swing.JButton SaveBtn;
     private javax.swing.JButton deleteRoleBTN;
+    private javax.swing.JTextField enteredCode;
+    private javax.swing.JTextArea enteredDescription;
     private javax.swing.JButton insertRoleBTN;
+    private javax.swing.JPanel insertUpdatePanel;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
+    private java.awt.Label label1;
+    private javax.swing.JTextField roleEnteredCode;
     private javax.swing.JTable rolesTable;
     private javax.swing.JButton searchUserBTN;
     private javax.swing.JButton ubdateRoleBTN;
     // End of variables declaration//GEN-END:variables
+
+
+    // this function put roles data in the table
+    void roleTableReset(List<RoleDto> roles) {
+        Object[][] rolesArr = new Object[roles.size()][2];
+
+        for (int i = 0; i < roles.size(); i++) {
+            rolesArr[i][0] = roles.get(i).getCode();
+            rolesArr[i][1] = roles.get(i).getDescription();
+
+        }
+        rolesTable.setModel(new javax.swing.table.DefaultTableModel(rolesArr, new String[] { "Code", "Description" }));
+
+    }
+
 
 }

@@ -2,8 +2,8 @@ package com.fym.lta.common;
 
 
 public class Queries {
-   
-   
+
+
     //_____________________________ USER MODULE _______________________________________
     public static final String INSER_NEW_USER =
         "INSERT INTO USERS (USERNAME,PASSWORD,ROLE_ID,INSERTION_DATE,UPDATE_DATE" +
@@ -25,6 +25,23 @@ public class Queries {
     //___________________________________________________________________________________
 
 
+    //____________________________ ROLES MODULE _________________________________
+    public static final String INSER_NEW_ROLE =
+        "INSERT INTO ROLE (CODE ,DESCRIPTION ,INSERTED_BY ,UPDATED_BY ,INSERTION_DATE ,UPDATE_DATE ) VALUES(?,?,?,?,?,?)";
+
+    public static final String LIST_ALL_ROLES = "SELECT CODE , DESCRIPTION  FROM ROLE";
+
+    public static final String DELETE_ROLE = " DELETE FROM ROLE WHERE CODE = ?";
+
+    public static final String IS_ROLE_EXIST = "SELECT CODE FROM ROLE WHERE CODE = ?";
+
+    public static final String UPDATE_ROLE =
+        "UPDATE ROLE SET DESCRIPTION = ? ,UPDATED_BY = ? ,UPDATE_DATE = ?  WHERE CODE = ?";
+
+    public static final String ROLE_SEARCH = "SELECT  CODE , DESCRIPTION  FROM ROLE WHERE LOWER(CODE) LIKE ?";
+
+    //___________________________________________________________________________________
+
 
     //____________________________ STAFF MEMBERS MODULE _________________________________
     public static final String INSER_NEW_EMPLOYEE =
@@ -38,12 +55,10 @@ public class Queries {
 
     public static final String UPDATE_EMPLOYEE =
         "UPDATE EMPLOYEE SET  FNAME = ?, SNAME = ?, TNAME = ?,FAMILY_NAME = ? WHERE ID = ?";
-    
+
     public static final String EMPLOYEE_SEARCH = "SELECT * FROM EMPLOYEE WHERE LOWER(FNAME) LIKE ?";
 
     //___________________________________________________________________________________
-
-
 
 
     //________________________________ BUILDING MODULE __________________________________
@@ -56,11 +71,9 @@ public class Queries {
     public static final String IS_BUILDING_EXIST = "SELECT B_ID FROM BUILDING WHERE CODE = ?";
 
     public static final String LIST_ALL_BUILDINGS = "SELECT * FROM BUILDING ";
-    
+
     public static final String BUILDINGS_SEARCH = "SELECT * FROM BUILDING WHERE LOWER(CODE) LIKE ?";
     //___________________________________________________________________________________
-    
-
 
 
     //________________________________ LOCATION MODULE __________________________________
@@ -74,8 +87,10 @@ public class Queries {
 
     public static final String UPDATE_LOCATION =
         "UPDATE LOCATION SET  CODE =? , DESCRIPTION = ?, CAPACITY = ? WHERE L_ID =?";
-    
+
     public static final String LOCATION_SEARCH = "SELECT * FROM LOCATION WHERE LOWER(CODE) LIKE ?";
 
     //___________________________________________________________________________________
+
+
 }

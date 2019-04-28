@@ -3,7 +3,6 @@ package com.fym.lta.dao;
 import com.fym.lta.common.ConnectionFactory;
 import com.fym.lta.common.LTAException;
 import com.fym.lta.common.Queries;
-import com.fym.lta.dto.RoleDto;
 import com.fym.lta.dto.UserDto;
 
 import java.sql.Types;
@@ -40,7 +39,7 @@ public class UserDaoImp implements UserDao {
                     users = new ArrayList<>();
                 user = new UserDto();
                 user.setuser_Id(jdbcRs.getInt(13));
-                user.setUserRole(new RoleDto(jdbcRs.getInt(3)));
+              //  user.setUserRole(new RoleDto(jdbcRs.getInt(3)));
                 user.setFName(jdbcRs.getString(9));
                 user.setSName(jdbcRs.getString(10));
                 user.setLName(jdbcRs.getString(11));
@@ -76,7 +75,7 @@ public class UserDaoImp implements UserDao {
 
                 UserDto userSerch = new UserDto();
                 userSerch.setuser_Id(jdbcRs.getInt(13));
-                userSerch.setUserRole(new RoleDto(jdbcRs.getInt(3)));
+                //userSerch.setUserRole(new RoleDto(jdbcRs.getInt(3)));
                 userSerch.setFName(jdbcRs.getString(9));
                 userSerch.setSName(jdbcRs.getString(10));
                 userSerch.setLName(jdbcRs.getString(11));
@@ -146,26 +145,26 @@ public class UserDaoImp implements UserDao {
             jdbcRs.setInt(3, user.getUserRole().getRole_id()); // set it's role
 
             // check if the inserted date is not setted we we will set it
-            if (user.getINSERTION_DATE() != null)
-                jdbcRs.setDate(4, new java.sql.Date(user.getINSERTION_DATE().getTime()));
+            if (user.getInertion_Date() != null)
+                jdbcRs.setDate(4, new java.sql.Date(user.getInertion_Date().getTime()));
             else
                 jdbcRs.setNull(4, java.sql.Types.DATE);
 
             // check if the update date is not setted we we will set it
-            if (user.getUPDATE_DATE() != null)
-                jdbcRs.setDate(5, new java.sql.Date(user.getUPDATE_DATE().getTime()));
+            if (user.getUpdate_Date() != null)
+                jdbcRs.setDate(5, new java.sql.Date(user.getUpdate_Date().getTime()));
             else
                 jdbcRs.setNull(5, java.sql.Types.DATE);
 
             // check if the person who imserte  is not setted we we will set it empty
-            if (user.getINSERTED_BY() != null)
-                jdbcRs.setString(6, user.getINSERTED_BY());
+            if (user.getInsertedBy()!= null)
+                jdbcRs.setString(6, user.getInsertedBy());
             else
                 jdbcRs.setNull(6, Types.VARCHAR);
 
 
-            if (user.getUPDATED_BY() != null)
-                jdbcRs.setString(7, user.getUPDATED_BY());
+            if (user.getUpdatedBy() != null)
+                jdbcRs.setString(7, user.getUpdatedBy());
             else
                 jdbcRs.setNull(7, Types.VARCHAR);
 
@@ -210,14 +209,14 @@ public class UserDaoImp implements UserDao {
             jdbcRs.setString(6, user.getSName());
             jdbcRs.setString(7, user.getLName());
             jdbcRs.setString(8, user.getFamilyName());
-            if (user.getUPDATED_BY() != null)
-                jdbcRs.setString(9, user.getUPDATED_BY());
+            if (user.getUpdatedBy() != null)
+                jdbcRs.setString(9, user.getUpdatedBy());
             else
                 jdbcRs.setNull(9, Types.VARCHAR);
 
             // check if the update date is not setted we we will set it
-            if (user.getUPDATE_DATE() != null)
-                jdbcRs.setDate(10, new java.sql.Date(user.getUPDATE_DATE().getTime()));
+            if (user.getUpdate_Date() != null)
+                jdbcRs.setDate(10, new java.sql.Date(user.getUpdate_Date().getTime()));
             else
                 jdbcRs.setNull(10, java.sql.Types.DATE);
 

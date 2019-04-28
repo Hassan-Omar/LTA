@@ -26,6 +26,7 @@ public class UsersScreen extends javax.swing.JPanel {
     public UsersScreen() {
 
         initComponents();
+        if (user.listAll()!= null)
         userTableReset(user.listAll());
     }
 
@@ -282,7 +283,7 @@ public class UsersScreen extends javax.swing.JPanel {
     public void userTableReset(List<UserDto> users) {
         int userRoleid;
 
-        Object[][] usersArr = new Object[users.size()][5];
+        Object[][] usersArr = new Object[users.size()][4];
 
         for (int i = 0; i < users.size(); i++) {
             usersArr[i][0] =
@@ -290,17 +291,17 @@ public class UsersScreen extends javax.swing.JPanel {
                 users.get(i).getFamilyName();
             usersArr[i][1] = users.get(i).getEmail();
             usersArr[i][2] = users.get(i).getUserName();
-            userRoleid = users.get(i).getUserRole().getRole_id();
+          //  userRoleid = users.get(i).getUserRole().getRole_id();
 
-            if (userRoleid == 1)
-                usersArr[i][3] = "Role Employee";
-            else
-                usersArr[i][3] = "Admin";
+          //  if (userRoleid == 1)
+              //  usersArr[i][3] = "Role Employee";
+        //    else
+           //     usersArr[i][3] = "Admin";
 
-            usersArr[i][4] = users.get(i).getuser_Id();
+            usersArr[i][3] = users.get(i).getuser_Id();
         }
         usersTable.setModel(new javax.swing.table.DefaultTableModel(usersArr, new String[] {
-                                                                    "Name", "Email", "Login Username", "Role", "ID"
+                                                                    "Name", "Email", "Login Username", "ID"
             }));
     }
 

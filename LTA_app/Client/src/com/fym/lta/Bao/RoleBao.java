@@ -15,15 +15,21 @@ public interface RoleBao {
 
 
     /**
-     * search for Role 
+     * search for a certain Role 
      */
 
-    public List<RoleDto> SearchRole(RoleDto role);
+    public List<RoleDto> search_forRole(String code);
 
+
+    /**
+     * return all Role stored in DB
+     */
+
+    public List<RoleDto> getAll();
 
     /**
      * delete a Role 
      */
 
-    public boolean deleteRole(RoleDto role);
+    public boolean deleteRole(String code);
 }
