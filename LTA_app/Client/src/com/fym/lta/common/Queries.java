@@ -39,8 +39,19 @@ public class Queries {
         "UPDATE ROLE SET DESCRIPTION = ? ,UPDATED_BY = ? ,UPDATE_DATE = ?  WHERE CODE = ?";
 
     public static final String ROLE_SEARCH = "SELECT  CODE , DESCRIPTION  FROM ROLE WHERE LOWER(CODE) LIKE ?";
+    
+    public static final String ROLE_SCREEN_INSERT = "INSERT INTO ROLE_SCREEN (ROLEID ,SCREENID ,PERMISSIONTYPE ) VALUES (?,?,?)";
 
     //___________________________________________________________________________________
+
+
+
+
+
+
+
+
+
 
 
     //____________________________ STAFF MEMBERS MODULE _________________________________
@@ -91,6 +102,9 @@ public class Queries {
     public static final String LOCATION_SEARCH = "SELECT * FROM LOCATION WHERE LOWER(CODE) LIKE ?";
 
     //___________________________________________________________________________________
+
+
+
 
 
 }

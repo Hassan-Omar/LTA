@@ -213,7 +213,7 @@
           <Group type="102" alignment="0" attributes="0">
               <EmptySpace min="-2" pref="252" max="-2" attributes="0"/>
               <Component id="mainPanel" min="-2" max="-2" attributes="0"/>
-              <EmptySpace max="32767" attributes="0"/>
+              <EmptySpace pref="15" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -234,7 +234,7 @@
         <DimensionLayout dim="0">
           <Group type="103" groupAlignment="0" attributes="0">
               <Group type="102" alignment="0" attributes="0">
-                  <EmptySpace min="-2" pref="190" max="-2" attributes="0"/>
+                  <EmptySpace min="-2" pref="187" max="-2" attributes="0"/>
                   <Component id="jLabel1" min="-2" pref="485" max="-2" attributes="0"/>
                   <EmptySpace pref="146" max="32767" attributes="0"/>
               </Group>

@@ -6,12 +6,20 @@ import java.util.List;
 
 public class RoleDto {
     private int role_id;
-    private String code, description ,insertedBy, updatedBy ;
+    private String code, description ,insertedBy, updatedBy ,permission ;
     private List<ScreenDto> role_Screens;
     private Date inertion_Date, update_Date;
 
     public void setRole_id(int role_id) {
         this.role_id = role_id;
+    }
+
+    public void setPermission(String permission) {
+        this.permission = permission;
+    }
+
+    public String getPermission() {
+        return permission;
     }
 
     public int getRole_id() {

@@ -1,15 +1,17 @@
 package com.fym.lta.bao;
 
+import com.fym.lta.dto.RoleDto;
 import com.fym.lta.dto.ScreenDto;
+
+import java.util.List;
 
 public interface ScreenBao {
 
 
     /**
-     * insert new Screen if it doesn't exists
-     * otherwise it updates the exis. once
+     * insert a permission  to an exist role to accesss the screens
      */
-    public boolean saveScreen(ScreenDto Screen);
+    public boolean saveScreenRoles(List<ScreenDto> screens ,RoleDto role );
 
 
 
