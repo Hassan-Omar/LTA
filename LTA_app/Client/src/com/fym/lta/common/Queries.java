@@ -11,17 +11,20 @@ public class Queries {
 
     public static final String LIST_ALL_USER = "SELECT * FROM USERS ";
 
-    public static final String DELETE_USER = "DELETE FROM USERS WHERE ID = ? ";
+    public static final String DELETE_USER = "DELETE FROM USERS WHERE EMAIL = ? ";
 
     public static final String UPDATE_USER =
-        "UPDATE USERS SET USERNAME = ?, PASSWORD = ?, EMAIL = ? , ROLE_ID = ? " +
-        ",FNAME = ?, SNAME = ?, LNAME = ?,FAMILYNAME = ?,UPDATED_BY = ? ,UPDATE_DATE = ? WHERE ID = ?";
+        "UPDATE USERS SET USERNAME = ?, PASSWORD = ?, ROLE_ID = ? " +
+        ",FNAME = ?, SNAME = ?, LNAME = ?,FAMILYNAME = ?,UPDATED_BY = ? ,UPDATE_DATE = ? WHERE EMAIL = ? ";
 
-    public static final String IS_USER_EXIST = "SELECT ID FROM USERS WHERE EMAIL = ?";
-
+    public static final String IS_USERNAME_EXIST = "SELECT USERNAME FROM USERS WHERE USERNAME = ?";
 
     public static final String USER_SEARCH = "SELECT * FROM USERS WHERE LOWER(EMAIL) LIKE ?";
-
+    
+    public static final String LOGIN_CHECK = "SELECT USERNAME,PASSWORD FROM USERS WHERE USERNAME = ? AND PASSWORD = ?";
+    
+     public static final String IS_USER_EXIST = "SELECT EMAIL ,USERNAME FROM USERS WHERE EMAIL = ? OR USERNAME = ?";
+    
     //___________________________________________________________________________________
 
 
@@ -29,7 +32,7 @@ public class Queries {
     public static final String INSER_NEW_ROLE =
         "INSERT INTO ROLE (CODE ,DESCRIPTION ,INSERTED_BY ,UPDATED_BY ,INSERTION_DATE ,UPDATE_DATE ) VALUES(?,?,?,?,?,?)";
 
-    public static final String LIST_ALL_ROLES = "SELECT CODE , DESCRIPTION  FROM ROLE";
+    public static final String LIST_ALL_ROLES = "SELECT CODE , DESCRIPTION ,ID  FROM ROLE";
 
     public static final String DELETE_ROLE = " DELETE FROM ROLE WHERE CODE = ?";
 
@@ -38,7 +41,7 @@ public class Queries {
     public static final String UPDATE_ROLE =
         "UPDATE ROLE SET DESCRIPTION = ? ,UPDATED_BY = ? ,UPDATE_DATE = ?  WHERE CODE = ?";
 
-    public static final String ROLE_SEARCH = "SELECT  CODE , DESCRIPTION  FROM ROLE WHERE LOWER(CODE) LIKE ?";
+    public static final String ROLE_SEARCH = "SELECT CODE , DESCRIPTION ,ID FROM ROLE WHERE LOWER(CODE) LIKE ?";
     
     public static final String ROLE_SCREEN_INSERT = "INSERT INTO ROLE_SCREEN (ROLEID ,SCREENID ,PERMISSIONTYPE ) VALUES (?,?,?)";
 

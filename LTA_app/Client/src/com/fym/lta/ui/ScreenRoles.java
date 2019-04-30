@@ -348,7 +348,6 @@ public class ScreenRoles extends javax.swing.JPanel {
         );
 
         roleCombo.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        roleCombo.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Roles" }));
 
         label1.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         label1.setText("Role");
@@ -424,9 +423,9 @@ public class ScreenRoles extends javax.swing.JPanel {
         jPanel7Layout.setHorizontalGroup(
             jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel7Layout.createSequentialGroup()
-                .addGap(76, 76, 76)
+                .addGap(24, 24, 24)
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(80, Short.MAX_VALUE))
+                .addContainerGap(98, Short.MAX_VALUE))
         );
         jPanel7Layout.setVerticalGroup(
             jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)

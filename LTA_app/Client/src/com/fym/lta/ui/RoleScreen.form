@@ -200,7 +200,7 @@
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Tahoma" size="18" style="1"/>
             </Property>
-            <Property name="text" type="java.lang.String" value="Insert  New User"/>
+            <Property name="text" type="java.lang.String" value="Insert  New Role"/>
             <Property name="actionCommand" type="java.lang.String" value="Insert  New Role"/>
           </Properties>
           <Events>

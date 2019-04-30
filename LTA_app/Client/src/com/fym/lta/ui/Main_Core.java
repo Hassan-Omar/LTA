@@ -2,12 +2,12 @@
 package com.fym.lta.ui;
 
 import com.fym.lta.bao.LoginEngine;
+import com.fym.lta.dao.DaoFactory;
+import com.fym.lta.dao.UserDao;
 
 import java.io.BufferedReader;
 import java.io.File;
-
 import java.io.FileInputStream;
-
 import java.io.FileOutputStream;
 import java.io.FileReader;
 import java.io.IOException;
@@ -16,9 +16,13 @@ import java.io.IOException;
 public class Main_Core {
 
     Main_Core main_Core = new Main_Core();
+    
+
 
     public static void main(String[] args) {
-        String usernameDe = " ";
+        UserDao userDaoObj = new DaoFactory().createUserDao();
+
+        String usernameDe = "";
 
         // check if the user logged
         boolean exists = false;
@@ -58,8 +62,9 @@ public class Main_Core {
             } catch (Throwable e) {
                 e.printStackTrace();
             }
-
-            if (LoginEngine.checkUsername(usernameDe)) {
+            
+            if (userDaoObj.isUsernameExists(usernameDe)) 
+            {
                 // now we know that login  done successfully so we can pass this user to our system
                 LoginEngine.currentUser =usernameDe ; 
                 MMenu mu = new MMenu();
