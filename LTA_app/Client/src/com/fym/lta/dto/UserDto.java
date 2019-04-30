@@ -6,41 +6,8 @@ public class UserDto {
     private int user_Id;
     private String password, userName;
     private RoleDto userRole;
-    private String fName, sName, lName, familyName, email, INSERTED_BY, UPDATED_BY;
-    private Date INSERTION_DATE, UPDATE_DATE;
-
-    public void setINSERTED_BY(String INSERTED_BY) {
-        this.INSERTED_BY = INSERTED_BY;
-    }
-
-    public String getINSERTED_BY() {
-        return INSERTED_BY;
-    }
-
-    public void setUPDATED_BY(String UPDATED_BY) {
-        this.UPDATED_BY = UPDATED_BY;
-    }
-
-    public String getUPDATED_BY() {
-        return UPDATED_BY;
-    }
-
-    public void setINSERTION_DATE(Date INSERTION_DATE) {
-        this.INSERTION_DATE = INSERTION_DATE;
-    }
-
-    public Date getINSERTION_DATE() {
-        return INSERTION_DATE;
-    }
-
-    public void setUPDATE_DATE(Date UPDATE_DATE) {
-        this.UPDATE_DATE = UPDATE_DATE;
-    }
-
-    public Date getUPDATE_DATE() {
-        return UPDATE_DATE;
-    }
-    
+    private String fName, sName, lName, familyName, email, insertedBy, updatedBy;
+    private Date inertion_Date, update_Date;
 
     public void setFName(String fName) {
         this.fName = fName;
@@ -48,6 +15,38 @@ public class UserDto {
 
     public String getFName() {
         return fName;
+    }
+
+    public void setInsertedBy(String insertedBy) {
+        this.insertedBy = insertedBy;
+    }
+
+    public String getInsertedBy() {
+        return insertedBy;
+    }
+
+    public void setUpdatedBy(String updatedBy) {
+        this.updatedBy = updatedBy;
+    }
+
+    public String getUpdatedBy() {
+        return updatedBy;
+    }
+
+    public void setInertion_Date(Date inertion_Date) {
+        this.inertion_Date = inertion_Date;
+    }
+
+    public Date getInertion_Date() {
+        return inertion_Date;
+    }
+
+    public void setUpdate_Date(Date update_Date) {
+        this.update_Date = update_Date;
+    }
+
+    public Date getUpdate_Date() {
+        return update_Date;
     }
 
     public void setSName(String sName) {

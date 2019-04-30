@@ -6,80 +6,16 @@
       <SubComponents>
         <Menu class="javax.swing.JMenu" name="jMenu5">
           <Properties>
-            <Property name="text" type="java.lang.String" value="Insert New          "/>
+            <Property name="text" type="java.lang.String" value="Open File                  "/>
             <Property name="actionCommand" type="java.lang.String" value="Insert New   "/>
           </Properties>
           <Events>
             <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="jMenu5MouseClicked"/>
           </Events>
-          <SubComponents>
-            <MenuItem class="javax.swing.JMenuItem" name="inserttable">
-              <Properties>
-                <Property name="text" type="java.lang.String" value="Table"/>
-              </Properties>
-              <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="inserttableActionPerformed"/>
-              </Events>
-            </MenuItem>
-            <MenuItem class="javax.swing.JMenuItem" name="insertcourse">
-              <Properties>
-                <Property name="text" type="java.lang.String" value="Course"/>
-              </Properties>
-              <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="insertcourseActionPerformed"/>
-              </Events>
-            </MenuItem>
-            <MenuItem class="javax.swing.JMenuItem" name="insertuser">
-              <Properties>
-                <Property name="text" type="java.lang.String" value="User"/>
-                <Property name="name" type="java.lang.String" value="user" noResource="true"/>
-              </Properties>
-              <Events>
-                <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="insertuserMouseClicked"/>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="insertuserActionPerformed"/>
-              </Events>
-            </MenuItem>
-            <MenuItem class="javax.swing.JMenuItem" name="insertrole">
-              <Properties>
-                <Property name="text" type="java.lang.String" value="Role"/>
-              </Properties>
-              <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="insertroleActionPerformed"/>
-              </Events>
-            </MenuItem>
-            <MenuItem class="javax.swing.JMenuItem" name="insertdepartment">
-              <Properties>
-                <Property name="text" type="java.lang.String" value="Departments"/>
-              </Properties>
-            </MenuItem>
-            <MenuItem class="javax.swing.JMenuItem" name="insertbuilding">
-              <Properties>
-                <Property name="text" type="java.lang.String" value="Building"/>
-              </Properties>
-            </MenuItem>
-            <MenuItem class="javax.swing.JMenuItem" name="insertfloor">
-              <Properties>
-                <Property name="text" type="java.lang.String" value="Floor"/>
-              </Properties>
-              <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="insertfloorActionPerformed"/>
-              </Events>
-            </MenuItem>
-            <MenuItem class="javax.swing.JMenuItem" name="insertlocation">
-              <Properties>
-                <Property name="text" type="java.lang.String" value="Location"/>
-              </Properties>
-            </MenuItem>
-            <MenuItem class="javax.swing.JMenuItem" name="insertloctiontype">
-              <Properties>
-                <Property name="text" type="java.lang.String" value="location Type"/>
-              </Properties>
-            </MenuItem>
-          </SubComponents>
         </Menu>
         <Menu class="javax.swing.JMenu" name="jMenu6">
           <Properties>
-            <Property name="text" type="java.lang.String" value="Short Cuts          "/>
+            <Property name="text" type="java.lang.String" value="                  Short Cuts                  "/>
           </Properties>
           <SubComponents>
             <Menu class="javax.swing.JMenu" name="jMenu1">
@@ -134,11 +70,17 @@
                   <Properties>
                     <Property name="text" type="java.lang.String" value="Location Manual Assignment"/>
                   </Properties>
+                  <Events>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jMenuItem10ActionPerformed"/>
+                  </Events>
                 </MenuItem>
                 <MenuItem class="javax.swing.JMenuItem" name="jMenuItem11">
                   <Properties>
                     <Property name="text" type="java.lang.String" value="Location Automatic Assignment"/>
                   </Properties>
+                  <Events>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jMenuItem11ActionPerformed"/>
+                  </Events>
                 </MenuItem>
               </SubComponents>
             </Menu>
@@ -192,7 +134,7 @@
         </Menu>
         <Menu class="javax.swing.JMenu" name="userQuickSearch">
           <Properties>
-            <Property name="text" type="java.lang.String" value="  Quick Search "/>
+            <Property name="text" type="java.lang.String" value="                   Quick Search                   "/>
             <Property name="horizontalTextPosition" type="int" value="4"/>
           </Properties>
           <SubComponents>
@@ -234,9 +176,14 @@
             </MenuItem>
           </SubComponents>
         </Menu>
+        <Menu class="javax.swing.JMenu" name="jMenu4">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="                  About                  "/>
+          </Properties>
+        </Menu>
         <Menu class="javax.swing.JMenu" name="logout">
           <Properties>
-            <Property name="text" type="java.lang.String" value="                                                     Log Out"/>
+            <Property name="text" type="java.lang.String" value=" Log Out"/>
           </Properties>
           <Events>
             <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="logoutMouseClicked"/>
@@ -270,9 +217,9 @@
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" alignment="0" attributes="0">
-              <EmptySpace max="-2" attributes="0"/>
-              <Component id="mainPanel" max="32767" attributes="0"/>
-              <EmptySpace max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="252" max="-2" attributes="0"/>
+              <Component id="mainPanel" min="-2" max="-2" attributes="0"/>
+              <EmptySpace pref="15" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -292,15 +239,33 @@
       <Layout>
         <DimensionLayout dim="0">
           <Group type="103" groupAlignment="0" attributes="0">
-              <EmptySpace min="0" pref="1044" max="32767" attributes="0"/>
+              <Group type="102" alignment="0" attributes="0">
+                  <EmptySpace min="-2" pref="187" max="-2" attributes="0"/>
+                  <Component id="jLabel1" min="-2" pref="485" max="-2" attributes="0"/>
+                  <EmptySpace pref="146" max="32767" attributes="0"/>
+              </Group>
           </Group>
         </DimensionLayout>
         <DimensionLayout dim="1">
           <Group type="103" groupAlignment="0" attributes="0">
-              <EmptySpace min="0" pref="758" max="32767" attributes="0"/>
+              <Group type="102" alignment="0" attributes="0">
+                  <EmptySpace min="-2" pref="222" max="-2" attributes="0"/>
+                  <Component id="jLabel1" min="-2" pref="244" max="-2" attributes="0"/>
+                  <EmptySpace pref="292" max="32767" attributes="0"/>
+              </Group>
           </Group>
         </DimensionLayout>
       </Layout>
+      <SubComponents>
+        <Component class="javax.swing.JLabel" name="jLabel1">
+          <Properties>
+            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+              <Font name="Tekton Pro Ext" size="48" style="1"/>
+            </Property>
+            <Property name="text" type="java.lang.String" value="Welcom To  LTA"/>
+          </Properties>
+        </Component>
+      </SubComponents>
     </Container>
   </SubComponents>
 </Form>

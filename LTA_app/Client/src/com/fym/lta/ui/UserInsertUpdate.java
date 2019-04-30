@@ -4,7 +4,6 @@ package com.fym.lta.ui;
 import com.fym.lta.bao.BaoFactory;
 import com.fym.lta.bao.LoginEngine;
 import com.fym.lta.bao.UserBao;
-import com.fym.lta.dto.RoleDto;
 import com.fym.lta.dto.UserDto;
 
 import java.sql.Date;
@@ -208,9 +207,9 @@ public class UserInsertUpdate extends javax.swing.JPanel {
     private void doneBTNMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_doneBTNMouseClicked
         UserDto User = new UserDto();
         if (userUpdateId != 0) {
-            User.setUPDATE_DATE(new Date(System.currentTimeMillis()));
+            User.setUpdate_Date(new Date(System.currentTimeMillis()));
             User.setuser_Id(userUpdateId);
-            User.setUPDATED_BY(LoginEngine.currentUser); // we need a method return this value and this only to test db connection
+            User.setUpdatedBy(LoginEngine.currentUser); // we need a method return this value and this only to test db connection
         }
 
         boolean status=false , flag = true; // holding the value of the upate or insert the user , falg to control on
@@ -266,11 +265,11 @@ public class UserInsertUpdate extends javax.swing.JPanel {
             JOptionPane.showMessageDialog(this, "this Email name is very long the maxmum is 45 character  ");
         }
 
-        User.setUserRole(new RoleDto(userRole.getSelectedIndex() + 1));
-        User.setUPDATED_BY(LoginEngine.currentUser); // we need a method return this value and this only to test db connection
-        User.setINSERTED_BY(LoginEngine.currentUser);
-        User.setINSERTION_DATE(new Date(System.currentTimeMillis()));
-        User.setUPDATE_DATE(new Date(System.currentTimeMillis()));
+       // User.setUserRole(new RoleDto(userRole.getSelectedIndex() + 1));
+        User.setUpdatedBy(LoginEngine.currentUser); // we need a method return this value and this only to test db connection
+        User.setInsertedBy(LoginEngine.currentUser);
+        User.setUpdate_Date(new Date(System.currentTimeMillis()));
+        User.setInertion_Date(new Date(System.currentTimeMillis()));
 
 
         if (User.getuser_Id() > 0 && flag) {

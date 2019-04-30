@@ -2,6 +2,8 @@ package com.fym.lta.dao;
 
 import com.fym.lta.dto.LocationDto;
 
+import com.fym.lta.dto.LocationTypeDto;
+
 import java.util.List;
 
 public interface LocationDao {
@@ -25,8 +27,9 @@ public interface LocationDao {
     // this to check location existance
 
     public boolean isExist(LocationDto Location);
-
-
+    
+    //this to filter location types 
+  //  public List<LocationDto> filter(String LocationTypeCode,String BuildingCode);
 
 
 }

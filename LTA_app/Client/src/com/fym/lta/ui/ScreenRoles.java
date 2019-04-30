@@ -1,15 +1,34 @@
 
 package com.fym.lta.ui;
 
+import com.fym.lta.bao.BaoFactory;
+import com.fym.lta.bao.RoleBao;
+import com.fym.lta.bao.ScreenBao;
+import com.fym.lta.dto.RoleDto;
+import com.fym.lta.dto.ScreenDto;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author h.omar
  */
 public class ScreenRoles extends javax.swing.JPanel {
+    // creeate bussiness and dto objects
+    RoleBao roleBaoObj = new BaoFactory().createRoleBao();
+    ScreenBao screenBaoObj = new BaoFactory().createScreenBao();
+    List<RoleDto> allRoles = new ArrayList();
+    String permission = ""; //hold permission value
+    List<ScreenDto> selectedScreens = new ArrayList(); //hold the values of selected screens
 
     /** Creates new form ScreenRoles */
     public ScreenRoles() {
         initComponents();
+        allRoles = roleBaoObj.getAll();
+        setRolesCombo(allRoles);
     }
 
     /** This method is called from within the constructor to
@@ -43,7 +62,7 @@ public class ScreenRoles extends javax.swing.JPanel {
         LocationMasterCheckbox = new javax.swing.JCheckBox();
         locationMAssigmentCheckbox = new javax.swing.JCheckBox();
         locationAutoAssigmentCheckbox = new javax.swing.JCheckBox();
-        jComboBox1 = new javax.swing.JComboBox();
+        roleCombo = new javax.swing.JComboBox();
         label1 = new java.awt.Label();
         jPanel7 = new javax.swing.JPanel();
         jPanel2 = new javax.swing.JPanel();
@@ -53,7 +72,7 @@ public class ScreenRoles extends javax.swing.JPanel {
         deletePermission = new javax.swing.JCheckBox();
         label2 = new java.awt.Label();
         jPanel8 = new javax.swing.JPanel();
-        jButton1 = new javax.swing.JButton();
+        doneBtn = new javax.swing.JButton();
 
         jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Screens", 0, 0, new java.awt.Font("Adobe Arabic", 1, 24))); // NOI18N
         jPanel1.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
@@ -328,8 +347,8 @@ public class ScreenRoles extends javax.swing.JPanel {
                 .addGap(0, 26, Short.MAX_VALUE))
         );
 
-        jComboBox1.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Role Employee", "Admin" }));
+        roleCombo.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        roleCombo.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Roles" }));
 
         label1.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         label1.setText("Role");
@@ -338,15 +357,35 @@ public class ScreenRoles extends javax.swing.JPanel {
 
         insertPermission.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         insertPermission.setText("Insert");
+        insertPermission.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                insertPermissionActionPerformed(evt);
+            }
+        });
 
         viewPermission.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         viewPermission.setText("View");
+        viewPermission.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                viewPermissionActionPerformed(evt);
+            }
+        });
 
         updatePermission.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         updatePermission.setText("Update");
+        updatePermission.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                updatePermissionActionPerformed(evt);
+            }
+        });
 
         deletePermission.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         deletePermission.setText("Delete");
+        deletePermission.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                deletePermissionActionPerformed(evt);
+            }
+        });
 
         label2.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         label2.setText(" Permissions");
@@ -397,8 +436,13 @@ public class ScreenRoles extends javax.swing.JPanel {
                 .addContainerGap(282, Short.MAX_VALUE))
         );
 
-        jButton1.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jButton1.setText("Done");
+        doneBtn.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        doneBtn.setText("Done");
+        doneBtn.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                doneBtnMouseClicked(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel8Layout = new javax.swing.GroupLayout(jPanel8);
         jPanel8.setLayout(jPanel8Layout);
@@ -406,14 +450,14 @@ public class ScreenRoles extends javax.swing.JPanel {
             jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel8Layout.createSequentialGroup()
                 .addContainerGap(25, Short.MAX_VALUE)
-                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 162, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(doneBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 162, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
         jPanel8Layout.setVerticalGroup(
             jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel8Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(doneBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
 
@@ -428,7 +472,7 @@ public class ScreenRoles extends javax.swing.JPanel {
                         .addComponent(label1, javax.swing.GroupLayout.PREFERRED_SIZE, 141, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
                         .addContainerGap()
-                        .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 147, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(roleCombo, javax.swing.GroupLayout.PREFERRED_SIZE, 147, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(18, 18, 18)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -450,7 +494,7 @@ public class ScreenRoles extends javax.swing.JPanel {
                         .addGroup(layout.createSequentialGroup()
                             .addComponent(label1, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                            .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(roleCombo, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGap(267, 267, 267))))
                 .addGap(18, 18, 18)
                 .addComponent(jPanel8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -459,60 +503,95 @@ public class ScreenRoles extends javax.swing.JPanel {
     }//GEN-END:initComponents
 
     private void buildingCheckboxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buildingCheckboxActionPerformed
-        // TODO add your handling code here:
+        selectedScreens.add(new ScreenDto(1));
     }//GEN-LAST:event_buildingCheckboxActionPerformed
 
-    private void floorCheckboxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_floorCheckboxActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_floorCheckboxActionPerformed
-
     private void locationtypeCheckboxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_locationtypeCheckboxActionPerformed
-        // TODO add your handling code here:
+        selectedScreens.add(new ScreenDto(3));        
     }//GEN-LAST:event_locationtypeCheckboxActionPerformed
 
     private void depaertmentCheckboxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_depaertmentCheckboxActionPerformed
-        // TODO add your handling code here:
+        selectedScreens.add(new ScreenDto(4));
     }//GEN-LAST:event_depaertmentCheckboxActionPerformed
 
     private void staffCheckboxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_staffCheckboxActionPerformed
-        // TODO add your handling code here:
+        selectedScreens.add(new ScreenDto(5));
     }//GEN-LAST:event_staffCheckboxActionPerformed
 
     private void subjectCheckboxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_subjectCheckboxActionPerformed
-        // TODO add your handling code here:
+        selectedScreens.add(new ScreenDto(6));        
     }//GEN-LAST:event_subjectCheckboxActionPerformed
 
     private void usersCheckboxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_usersCheckboxActionPerformed
-        // TODO add your handling code here:
+        selectedScreens.add(new ScreenDto(9));        
     }//GEN-LAST:event_usersCheckboxActionPerformed
 
     private void roleCheckboxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_roleCheckboxActionPerformed
-        // TODO add your handling code here:
+        selectedScreens.add(new ScreenDto(10));        
     }//GEN-LAST:event_roleCheckboxActionPerformed
 
     private void ScreenRolesCheckboxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ScreenRolesCheckboxActionPerformed
-        // TODO add your handling code here:
+        selectedScreens.add(new ScreenDto(11));        
     }//GEN-LAST:event_ScreenRolesCheckboxActionPerformed
 
     private void SpaceOccupancyCheckboxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SpaceOccupancyCheckboxActionPerformed
-        // TODO add your handling code here:
+        selectedScreens.add(new ScreenDto(7));    
     }//GEN-LAST:event_SpaceOccupancyCheckboxActionPerformed
 
     private void ScheduleCheckboxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ScheduleCheckboxActionPerformed
-        // TODO add your handling code here:
+        selectedScreens.add(new ScreenDto(8));        
     }//GEN-LAST:event_ScheduleCheckboxActionPerformed
 
     private void LocationMasterCheckboxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_LocationMasterCheckboxActionPerformed
-        // TODO add your handling code here:
+        selectedScreens.add(new ScreenDto(12));        
     }//GEN-LAST:event_LocationMasterCheckboxActionPerformed
 
     private void locationMAssigmentCheckboxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_locationMAssigmentCheckboxActionPerformed
-        // TODO add your handling code here:
+        selectedScreens.add(new ScreenDto(13));        
     }//GEN-LAST:event_locationMAssigmentCheckboxActionPerformed
 
     private void locationAutoAssigmentCheckboxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_locationAutoAssigmentCheckboxActionPerformed
-        // TODO add your handling code here:
+        selectedScreens.add(new ScreenDto(14));        
     }//GEN-LAST:event_locationAutoAssigmentCheckboxActionPerformed
+
+    private void doneBtnMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_doneBtnMouseClicked
+       
+       
+        // now we selectrole selected index is same as
+        RoleDto role = allRoles.get(roleCombo.getSelectedIndex());
+        role.setPermission(permission);
+        // calling bussiness to save 
+        if(screenBaoObj.saveScreenRoles(selectedScreens, role))
+        {
+        JOptionPane.showMessageDialog(this , "Saved successfully") ;     
+        }
+        else 
+        JOptionPane.showMessageDialog(this , "Can't Save") ;     
+
+       
+       
+    }//GEN-LAST:event_doneBtnMouseClicked
+
+    private void updatePermissionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_updatePermissionActionPerformed
+        permission += " update ";
+    }//GEN-LAST:event_updatePermissionActionPerformed
+
+    private void deletePermissionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deletePermissionActionPerformed
+        permission += " delete ";
+    }//GEN-LAST:event_deletePermissionActionPerformed
+
+    private void insertPermissionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_insertPermissionActionPerformed
+        permission += " insert ";
+    }//GEN-LAST:event_insertPermissionActionPerformed
+
+    private void viewPermissionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_viewPermissionActionPerformed
+
+        permission += " view ";
+    }//GEN-LAST:event_viewPermissionActionPerformed
+
+    private void floorCheckboxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_floorCheckboxActionPerformed
+        selectedScreens.add(new ScreenDto(2));        
+    }//GEN-LAST:event_floorCheckboxActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -523,10 +602,9 @@ public class ScreenRoles extends javax.swing.JPanel {
     private javax.swing.JCheckBox buildingCheckbox;
     private javax.swing.JCheckBox deletePermission;
     private javax.swing.JCheckBox depaertmentCheckbox;
+    private javax.swing.JButton doneBtn;
     private javax.swing.JCheckBox floorCheckbox;
     private javax.swing.JCheckBox insertPermission;
-    private javax.swing.JButton jButton1;
-    private javax.swing.JComboBox jComboBox1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
@@ -545,11 +623,22 @@ public class ScreenRoles extends javax.swing.JPanel {
     private javax.swing.JCheckBox locationMAssigmentCheckbox;
     private javax.swing.JCheckBox locationtypeCheckbox;
     private javax.swing.JCheckBox roleCheckbox;
+    private javax.swing.JComboBox roleCombo;
     private javax.swing.JCheckBox staffCheckbox;
     private javax.swing.JCheckBox subjectCheckbox;
     private javax.swing.JCheckBox updatePermission;
     private javax.swing.JCheckBox usersCheckbox;
     private javax.swing.JCheckBox viewPermission;
     // End of variables declaration//GEN-END:variables
+
+
+
+    // this function just to list the role data in roleCombo
+    void setRolesCombo(List<RoleDto> roles) {
+        for (int i = 0; i < roles.size(); i++) {
+            roleCombo.addItem(roles.get(i).getDescription()); // name not desc
+        }
+
+    }
 
 }

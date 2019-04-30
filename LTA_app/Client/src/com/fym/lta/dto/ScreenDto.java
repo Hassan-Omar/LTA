@@ -7,7 +7,9 @@ public class ScreenDto {
     private String Description;
     private List<RoleDto> Role_Screens;
 
-
+    public ScreenDto(int i) {
+        setScreen_id(i);
+    }
 
 
     public void setScreen_id(int Screen_id) {

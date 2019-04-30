@@ -6,9 +6,18 @@ import java.util.List;
 public class LocationDto {
 
     private int Location_id, capacity;
+
+    public void setOccupation_purpose(String occupation_purpose) {
+        this.occupation_purpose = occupation_purpose;
+    }
+
+    public String getOccupation_purpose() {
+        return occupation_purpose;
+    }
     private String code, description, color;
     private LocationTypeDto type;
     private List<EquipmentDto> Location_equipments;
+    private String occupation_purpose ; 
 
     public LocationDto(int Location_id, int capacity, String code,
                        String description, String color, LocationTypeDto type,
@@ -26,14 +35,14 @@ public class LocationDto {
     public LocationDto() {
     }
 
-
-    public void setLocation_id(int building_id) {
-        this.Location_id = building_id;
+    public void setLocation_id(int Location_id) {
+        this.Location_id = Location_id;
     }
 
     public int getLocation_id() {
         return Location_id;
     }
+
 
     public void setCode(String code) {
         this.code = code;

@@ -31,10 +31,8 @@ public class LocationDaoImp implements LocationDao {
                      location = new LocationDto();
                      location.setLocation_id(jdbc.getInt(1));
                      location.setCode(jdbc.getString(2));
-                      location.setDescription(jdbc.getString(3));
-                      location.setCapacity(jdbc.getInt(5));
-                   //  location.setType(new LocationTypeDto(jdbc.getString("country")));
-                      
+                     location.setDescription(jdbc.getString(3));
+                     location.setCapacity(jdbc.getInt(5));           
                      locat.add(location);
                   }
               }
@@ -69,9 +67,10 @@ public class LocationDaoImp implements LocationDao {
                     jdbc.setUsername(ConnectionFactory.getUsername());
                     jdbc.setPassword(ConnectionFactory.getPassword());
                     jdbc.setCommand(Queries.INSER_NEW_LOCATION);
-                    jdbc.setString(1, Location.getCode());
-                    jdbc.setString(2, Location.getDescription());
-                    jdbc.setInt(3, Location.getCapacity());
+                    jdbc.setInt(1, Location.getLocation_id());
+                    jdbc.setString(2, Location.getCode());
+                    jdbc.setString(3, Location.getDescription());
+                    jdbc.setInt(4, Location.getCapacity());
                     jdbc.execute(); 
                    
                     return true;
@@ -96,12 +95,12 @@ public class LocationDaoImp implements LocationDao {
                     jdbc.setPassword(ConnectionFactory.getPassword());
                     
                     jdbc.setCommand(Queries.UPDATE_LOCATION);
-                  
-                    jdbc.setString(1, Location.getCode());
-                    jdbc.setString(2, Location.getDescription());
-                    jdbc.setInt(3, Location.getCapacity());
-                    jdbc.setInt(4, Location.getLocation_id());
-            System.out.println("-------->"+Location.getLocation_id());
+                    
+                    jdbc.setInt(1, Location.getLocation_id());
+                    jdbc.setString(2, Location.getCode());
+                    jdbc.setString(3, Location.getDescription());
+                    jdbc.setInt(4, Location.getCapacity());
+             //System.out.println("-------->"+Location.getLocation_id());
                     jdbc.execute();   
                     return true;  
                 }
@@ -171,4 +170,10 @@ public class LocationDaoImp implements LocationDao {
 
         return locations;
     }
+    
+   // public List<LocationDto> filter(String LocationTypeCode,String BuildingCode){
+        
+        
+     //   return 
+  //  }
 }
