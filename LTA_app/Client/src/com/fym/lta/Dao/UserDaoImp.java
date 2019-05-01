@@ -40,10 +40,6 @@ public class UserDaoImp implements UserDao {
                 user = new UserDto();
                 user.setuser_Id(jdbcRs.getInt(13));
                 //user.setUserRole(new RoleDto(jdbcRs.getInt(3)));
-                user.setFName(jdbcRs.getString(9));
-                user.setSName(jdbcRs.getString(10));
-                user.setLName(jdbcRs.getString(11));
-                user.setFamilyName(jdbcRs.getString(12));
                 user.setEmail(jdbcRs.getString(8));
                 user.setUserName(jdbcRs.getString(1));
                 users.add(user);
@@ -76,10 +72,6 @@ public class UserDaoImp implements UserDao {
                 UserDto userSerch = new UserDto();
                 userSerch.setuser_Id(jdbcRs.getInt(13));
                 //userSerch.setUserRole(new RoleDto(jdbcRs.getInt(3)));
-                userSerch.setFName(jdbcRs.getString(9));
-                userSerch.setSName(jdbcRs.getString(10));
-                userSerch.setLName(jdbcRs.getString(11));
-                userSerch.setFamilyName(jdbcRs.getString(12));
                 userSerch.setEmail(jdbcRs.getString(8));
                 userSerch.setUserName(jdbcRs.getString(1));
                 users.add(userSerch);
@@ -174,11 +166,8 @@ public class UserDaoImp implements UserDao {
 
             // setting full name ,email
             jdbcRs.setString(8, user.getEmail());
-            jdbcRs.setString(9, user.getFName());
-            jdbcRs.setString(10, user.getSName());
-            jdbcRs.setString(11, user.getLName());
-            jdbcRs.setString(12, user.getFamilyName());
-
+           
+           
 
             jdbcRs.execute();
             return true;
@@ -208,10 +197,6 @@ public class UserDaoImp implements UserDao {
             // putting the full name to update it
             // by logic i can not understantd  why i  need to update the name but i assumed that
             // one of names entered with error
-            jdbcRs.setString(4, user.getFName());
-            jdbcRs.setString(5, user.getSName());
-            jdbcRs.setString(6, user.getLName());
-            jdbcRs.setString(7, user.getFamilyName());
             if (user.getUpdatedBy() != null)
                 jdbcRs.setString(8, user.getUpdatedBy());
             else

@@ -118,7 +118,7 @@ public class EmployeeDaoImp implements EmployeeDao {
                                 //jdbcRs.setString(1, Employee.get);                                         
                                 jdbcRs.setString(1, Employee.getFName());  
                                 jdbcRs.setString(2, Employee.getSName()); 
-                                jdbcRs.setString(3,Employee.getThName());
+                                jdbcRs.setString(3,Employee.getLName());
                                 jdbcRs.setString(4,Employee.getFamilyName());
                                 jdbcRs.setInt(5,Employee.getEmp_id());
                             //    jdbcRs.setInt(3,Employee.getCareerDgree().getEMPLOYEE_TYPE());

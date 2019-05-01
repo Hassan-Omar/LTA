@@ -3,9 +3,16 @@ package com.fym.lta.dto;
 import java.util.List;
 
 public class EmployeeDto extends UserDto {
+    public void setLName(String lName) {
+        this.lName = lName;
+    }
+
+    public String getLName() {
+        return lName;
+    }
     private int emp_id ;
     private boolean empType ; // this true if the type is a staff member 
-    private String fName, sName, thName, familyName, email,careerDgree;
+    private String fName, sName, lName, familyName, email,careerDgree;
     private List<CourseDto> teachingCoursese ;
     
 
@@ -42,13 +49,7 @@ public class EmployeeDto extends UserDto {
         return sName;
     }
 
-    public void setThName(String thName) {
-        this.thName = thName;
-    }
 
-    public String getThName() {
-        return thName;
-    }
 
     public void setFamilyName(String familyName) {
         this.familyName = familyName;

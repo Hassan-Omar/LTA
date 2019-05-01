@@ -68,4 +68,9 @@ public class UserBaoImp implements UserBao {
     }
 
 
+    @Override
+    public boolean isUsernameExists(String username) {
+        // delegate to dao method 
+        return userDaoObject.isUsernameExists(username);
+    }
 }

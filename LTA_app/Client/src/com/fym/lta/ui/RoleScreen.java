@@ -276,9 +276,10 @@ public class RoleScreen extends javax.swing.JPanel {
     }//GEN-LAST:event_ubdateRoleBTNActionPerformed
 
     private void deleteRoleBTNMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_deleteRoleBTNMouseClicked
-        String selectedRoleCode =
-            rolesTable.getValueAt(rolesTable.getSelectedRow(), 0).toString(); // hold the code of role
+    insertUpdatePanel.setVisible(false);  
         if (rolesTable.getSelectedRow() >= 0) {
+            String selectedRoleCode =
+                rolesTable.getValueAt(rolesTable.getSelectedRow(), 0).toString(); // hold the code of role
             // call bussiness method
             if (role.deleteRole(selectedRoleCode)) {
                 JOptionPane.showMessageDialog(this, "deleted Successfully  ");
@@ -296,7 +297,8 @@ public class RoleScreen extends javax.swing.JPanel {
     }//GEN-LAST:event_insertRoleBTNMouseClicked
 
     private void searchUserBTNMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_searchUserBTNMouseClicked
-       
+    insertUpdatePanel.setVisible(false);
+
         if (roleEnteredCode.getText() == null)
             roleTableReset(role.getAll()); 
         else

@@ -1,9 +1,9 @@
 
 package com.fym.lta.ui;
 
+import com.fym.lta.bao.BaoFactory;
 import com.fym.lta.bao.LoginEngine;
-import com.fym.lta.dao.DaoFactory;
-import com.fym.lta.dao.UserDao;
+import com.fym.lta.bao.UserBao;
 
 import java.io.BufferedReader;
 import java.io.File;
@@ -16,19 +16,17 @@ import java.io.IOException;
 public class Main_Core {
 
     Main_Core main_Core = new Main_Core();
-    
 
 
     public static void main(String[] args) {
-        UserDao userDaoObj = new DaoFactory().createUserDao();
+        UserBao userBaoObj = new BaoFactory().createUserBao();
 
         String usernameDe = "";
 
         // check if the user logged
         boolean exists = false;
         try {
-            exists =
-                    new File(System.getProperty("user.dir"), "ab.txt").exists();
+            exists = new File(System.getProperty("user.dir"), "ab.txt").exists();
 
         } catch (Exception e) {
             e.printStackTrace();
@@ -39,8 +37,7 @@ public class Main_Core {
 
 
             try {
-                String key =
-                    "squirrel123"; // needs to be at least 8 characters for DES
+                String key = "squirrel123"; // needs to be at least 8 characters for DES
 
                 FileInputStream fis2 = new FileInputStream("ab.txt");
                 FileOutputStream fos2 = new FileOutputStream("original");
@@ -52,8 +49,7 @@ public class Main_Core {
                     usernameDe = reader.readLine();
                     reader.close();
                     System.out.print(usernameDe);
-                    File file =
-                        new File("original");
+                    File file = new File("original");
                     file.delete();
                 } catch (IOException e) {
                     e.printStackTrace();
@@ -62,11 +58,10 @@ public class Main_Core {
             } catch (Throwable e) {
                 e.printStackTrace();
             }
-            
-            if (userDaoObj.isUsernameExists(usernameDe)) 
-            {
+
+            if (userBaoObj.isUsernameExists(usernameDe)) {
                 // now we know that login  done successfully so we can pass this user to our system
-                LoginEngine.currentUser =usernameDe ; 
+                LoginEngine.currentUser = usernameDe;
                 MMenu mu = new MMenu();
                 mu.setVisible(true);
             } else {
