@@ -96,10 +96,10 @@ public class LocationDaoImp implements LocationDao {
                     
                     jdbc.setCommand(Queries.UPDATE_LOCATION);
                     
-                    jdbc.setInt(1, Location.getLocation_id());
-                    jdbc.setString(2, Location.getCode());
-                    jdbc.setString(3, Location.getDescription());
-                    jdbc.setInt(4, Location.getCapacity());
+                    jdbc.setInt(4, Location.getLocation_id());
+                    jdbc.setString(1, Location.getCode());
+                    jdbc.setString(2, Location.getDescription());
+                    jdbc.setInt(3, Location.getCapacity());
              //System.out.println("-------->"+Location.getLocation_id());
                     jdbc.execute();   
                     return true;  
