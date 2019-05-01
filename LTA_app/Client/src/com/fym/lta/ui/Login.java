@@ -1,7 +1,9 @@
 
 package com.fym.lta.ui;
 
+import com.fym.lta.bao.BaoFactory;
 import com.fym.lta.bao.LoginEngine;
+import com.fym.lta.bao.UserBao;
 
 import java.io.BufferedWriter;
 import java.io.File;
@@ -15,6 +17,9 @@ import java.io.IOException;
  * @author h.omar
  */
 public class Login extends javax.swing.JFrame {
+
+    // create the bussiness object to check entered data
+    UserBao userBaoObj = new BaoFactory().createUserBao();
 
     /** Creates new form Login */
     public Login() {
@@ -111,48 +116,52 @@ public class Login extends javax.swing.JFrame {
     }//GEN-LAST:event_jCheckBox1ActionPerformed
 
     private void login_btnMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_login_btnMouseClicked
-    boolean usernamStatus = LoginEngine.checkUsername(username.getText()); // passing username to check
-    boolean passwordStatus =
-            LoginEngine.checkPassword(userPassword.getPassword().toString()); // passing password to check
+                                                                       
+        boolean loginStatus =
+            userBaoObj.checkLogin(username.getText(),
+                                  new String(userPassword.getPassword())); // passing username ,password to check
 
-    if (jCheckBox1.isSelected()) // this means i must store this values
+        if (jCheckBox1.isSelected()) // this means i must store this values encrypted in ab file
 
-    {
-        if ((usernamStatus) && (passwordStatus)) {
-            
-           
-           BufferedWriter writer = null;
-                try {     
-                    writer = new BufferedWriter( new FileWriter("original"));
-                writer.write(username.getText());
-                    writer.close(); 
-                 } catch (IOException ex) {
-                     // Report can not store your password
-                 }  
+        {System.out.println("======>"+loginStatus );
+            if (loginStatus) {
 
-            try {
-                
-                String key = "squirrel123"; // needs to be at least 8 characters for DES
 
-                FileInputStream fis = new FileInputStream("original");
-                FileOutputStream fos = new FileOutputStream("ab.txt");
+                BufferedWriter writer = null;
+                try {
+                    writer = new BufferedWriter(new FileWriter("original"));
+                    writer.write(username.getText());
+                    writer.close();
+                } catch (IOException ex) {
+                    ex.printStackTrace();
+                }
+
+                try {
+
+                    String key = "squirrel123"; // needs to be at least 8 characters for DES
+
+                    FileInputStream fis = new FileInputStream("original");
+                    FileOutputStream fos = new FileOutputStream("ab.txt");
                     LoginEngine.encrypt(key, fis, fos);
-                File file = new File("original");
-                file.delete() ; 
-                // delete original file 
+                    File file = new File("original");
+                    file.delete();
+                    // delete original file
 
-            } catch (IOException ex) {
-                // Report can not store your password
-            } catch (Throwable e) {
+                } catch (IOException ex) {
+                    ex.printStackTrace();
+                } catch (Throwable e) {
+                    // must go up to user and tell him no logged file found login again 
+                    e.printStackTrace();
+
                 }
             }
-    }
+        }
 
-    if ((usernamStatus) && (passwordStatus)) {
-        MMenu mu = new MMenu();
-        mu.setVisible(true);
-        this.setVisible(false);
-    }
+        if (loginStatus) {
+            MMenu mu = new MMenu();
+            mu.setVisible(true);
+            this.setVisible(false);
+        }
 
     
 

@@ -118,7 +118,7 @@ public class RoleScreen extends javax.swing.JPanel {
         });
 
         insertRoleBTN.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        insertRoleBTN.setText("Insert  New User");
+        insertRoleBTN.setText("Insert  New Role");
         insertRoleBTN.setActionCommand("Insert  New Role");
         insertRoleBTN.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -264,10 +264,10 @@ public class RoleScreen extends javax.swing.JPanel {
     private void ubdateRoleBTNActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ubdateRoleBTNActionPerformed
         if (rolesTable.getSelectedRow() >= 0) {
             // copy data from table to entereddata textfield
-            enteredCode.setText(rolesTable.getValueAt(rolesTable.getSelectedRow(), 0).toString());
+           // enteredCode.setText(rolesTable.getValueAt(rolesTable.getSelectedRow(), 0).toString());
             // copy text data from table enteredDescription
-            enteredDescription.setText(rolesTable.getValueAt(rolesTable.getSelectedRow(), 1).toString());
-            updateFlag = true;
+           // enteredDescription.setText(rolesTable.getValueAt(rolesTable.getSelectedRow(), 1).toString());
+           updateFlag = true;
             insertUpdatePanel.setVisible(true);
         } else
             JOptionPane.showMessageDialog(this, "Please select a role to update");
@@ -292,19 +292,23 @@ public class RoleScreen extends javax.swing.JPanel {
 
     private void insertRoleBTNMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_insertRoleBTNMouseClicked
         insertUpdatePanel.setVisible(true);
-        updateFlag = false; 
+        updateFlag = false;
     }//GEN-LAST:event_insertRoleBTNMouseClicked
 
     private void searchUserBTNMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_searchUserBTNMouseClicked
-        String code = null; // hold entered data
-
-        if (roleEnteredCode.getText() != null)
-            code = roleEnteredCode.getText(); // passing  entered role code
+       
+        if (roleEnteredCode.getText() == null)
+            roleTableReset(role.getAll()); 
         else
-            JOptionPane.showMessageDialog(this, "You should enter a code to search ");
+        {   if(role.search_forRole(roleEnteredCode.getText().trim())==null) {
+            JOptionPane.showMessageDialog(this, "not found");
+            roleTableReset(role.getAll());
+        }
+               else
+              roleTableReset(role.search_forRole(roleEnteredCode.getText().trim())); 
+            }       
 
-        // reset table's data
-        roleTableReset(role.search_forRole(code.trim())); 
+     
     }//GEN-LAST:event_searchUserBTNMouseClicked
 
     private void SaveBtnMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_SaveBtnMouseClicked
@@ -312,8 +316,7 @@ public class RoleScreen extends javax.swing.JPanel {
 
         
      
-        RoleDto myrole = new RoleDto();
-        myrole.setCode(enteredCode.getText()); // passing entered data
+        RoleDto myrole = new RoleDto(enteredCode.getText());
         myrole.setDescription(enteredDescription.getText()); // passing entered  description
         // passing insertion time and insertion date
         if (updateFlag) {

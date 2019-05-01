@@ -229,7 +229,7 @@ public class BuildingScreeen extends javax.swing.JPanel {
     }//GEN-LAST:event_deleteBuildingBTNMouseClicked
 
     private void insertBuildingBTNMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_insertBuildingBTNMouseClicked
-    UsersScreen.createPopupMenu(new BuildingInsertUpdate ());
+    //UsersScreen.createPopupMenu(new BuildingInsertUpdate ());
     }//GEN-LAST:event_insertBuildingBTNMouseClicked
 
     private void searchBuildingBTNMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_searchBuildingBTNMouseClicked

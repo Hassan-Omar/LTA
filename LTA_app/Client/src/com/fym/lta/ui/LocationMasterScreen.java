@@ -384,7 +384,10 @@ public class LocationMasterScreen extends javax.swing.JPanel {
     }//GEN-END:initComponents
 
     private void insertActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_insertActionPerformed
+
       define_location.setVisible(true); 
+
+   // UsersScreen.createPopupMenu(new DefineLocation());    
 
     }//GEN-LAST:event_insertActionPerformed
 
@@ -425,6 +428,7 @@ public class LocationMasterScreen extends javax.swing.JPanel {
     private void updateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_updateActionPerformed
    if (Table.getSelectedRow()>=0)
    {     try{
+
             //   Location_idUpdate = 1;
              id.setText(Table.getValueAt(Table.getSelectedRow(), 0).toString());
              code.setText(Table.getValueAt(Table.getSelectedRow(), 1).toString());
@@ -438,6 +442,8 @@ public class LocationMasterScreen extends javax.swing.JPanel {
              //  define_update.setLocationUpdateDesc(Table.getValueAt(Table.getSelectedRow(), 2).toString()); // pass description
             //   define_update.setLocationUpdateCap(Integer.parseInt(Table.getValueAt(Table.getSelectedRow(), 3).toString())); // pass capacity
              //  UsersScreen.createPopupMenu(define_update);
+
+              
                
      //   DefineLocation define_update  = new DefineLocation();
      //   createPopupMenu(define_update);

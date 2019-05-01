@@ -11,12 +11,12 @@ public interface UserBao {
      * otherwise it updates the exis. once
      * if flag true operation will done on a staff member
      */
-    public boolean insertUser(UserDto user);
+    public boolean saveUser(UserDto user);
 
     /**
      * Search for  Users . this return a list of users .
      */
-    public List<UserDto> seachForUsers(UserDto user);
+    public List<UserDto> seachForUsers ( String email );
     
     /**
      *  this return a list of users .
@@ -26,8 +26,9 @@ public interface UserBao {
     /**
      * delete a User using id
      */
-    public boolean deleteUser(UserDto user);
+    public boolean deleteUser(String email);
     
+   
     
-    public boolean updateUser(UserDto user);
+    public  boolean checkLogin(String username , String password) ;
 }

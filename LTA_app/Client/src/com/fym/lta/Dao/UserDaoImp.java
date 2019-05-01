@@ -39,7 +39,7 @@ public class UserDaoImp implements UserDao {
                     users = new ArrayList<>();
                 user = new UserDto();
                 user.setuser_Id(jdbcRs.getInt(13));
-              //  user.setUserRole(new RoleDto(jdbcRs.getInt(3)));
+                //user.setUserRole(new RoleDto(jdbcRs.getInt(3)));
                 user.setFName(jdbcRs.getString(9));
                 user.setSName(jdbcRs.getString(10));
                 user.setLName(jdbcRs.getString(11));
@@ -56,7 +56,7 @@ public class UserDaoImp implements UserDao {
     }
 
     @Override
-    public List<UserDto> search_Users(UserDto user) {
+    public List<UserDto> search_Users(String email) {
         List<UserDto> users = null;
 
         try (JdbcRowSet jdbcRs = RowSetProvider.newFactory().createJdbcRowSet()) {
@@ -64,7 +64,7 @@ public class UserDaoImp implements UserDao {
             jdbcRs.setUsername(ConnectionFactory.getUsername());
             jdbcRs.setPassword(ConnectionFactory.getPassword());
             jdbcRs.setCommand(Queries.USER_SEARCH);
-            jdbcRs.setString(1, '%' + user.getEmail().toLowerCase().trim() + '%');
+            jdbcRs.setString(1, '%' + email.toLowerCase().trim() + '%');
 
             jdbcRs.execute();
 
@@ -94,13 +94,13 @@ public class UserDaoImp implements UserDao {
 
 
     @Override
-    public boolean delete_User(UserDto user) {
+    public boolean delete_User(String email) {
         try (JdbcRowSet jdbcRs = RowSetProvider.newFactory().createJdbcRowSet()) {
             jdbcRs.setUrl(ConnectionFactory.getUrl());
             jdbcRs.setUsername(ConnectionFactory.getUsername());
             jdbcRs.setPassword(ConnectionFactory.getPassword());
             jdbcRs.setCommand(Queries.DELETE_USER);
-            jdbcRs.setInt(1, user.getuser_Id());
+            jdbcRs.setString(1, email);
             jdbcRs.execute();
             return true;
         } catch (Exception e) {
@@ -110,19 +110,22 @@ public class UserDaoImp implements UserDao {
     }
 
     @Override
-    public boolean isExists(UserDto user) {
+    public boolean isExists(String username , String  email)
+    {
         try (JdbcRowSet jdbcRs = RowSetProvider.newFactory().createJdbcRowSet()) {
             jdbcRs.setUrl(ConnectionFactory.getUrl());
             jdbcRs.setUsername(ConnectionFactory.getUsername());
             jdbcRs.setPassword(ConnectionFactory.getPassword());
             jdbcRs.setCommand(Queries.IS_USER_EXIST);
-            jdbcRs.setString(1, user.getEmail());
+            jdbcRs.setString(1,  email );
+            jdbcRs.setString(2,  username );
             jdbcRs.execute();
-            if (jdbcRs.next()) {
-                return true;
-            } else {
-                return false;
-            }
+            
+            if(jdbcRs.next())
+            {
+               return true ;  
+                }
+            
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -132,7 +135,8 @@ public class UserDaoImp implements UserDao {
 
     @Override
     public boolean insert_User(UserDto user) throws LTAException {
-        try (JdbcRowSet jdbcRs = RowSetProvider.newFactory().createJdbcRowSet()) {
+        try (JdbcRowSet jdbcRs = RowSetProvider.newFactory().createJdbcRowSet()) 
+        {
             jdbcRs.setUrl(ConnectionFactory.getUrl());
             jdbcRs.setUsername(ConnectionFactory.getUsername());
             jdbcRs.setPassword(ConnectionFactory.getPassword());
@@ -142,7 +146,7 @@ public class UserDaoImp implements UserDao {
             jdbcRs.setString(1, user.getUserName()); //set username
             jdbcRs.setString(2, user.getPassword()); // setpassword
 
-            jdbcRs.setInt(3, user.getUserRole().getRole_id()); // set it's role
+            jdbcRs.setInt(3,user.getuser_Id()); // set it's role
 
             // check if the inserted date is not setted we we will set it
             if (user.getInertion_Date() != null)
@@ -190,7 +194,7 @@ public class UserDaoImp implements UserDao {
     }
 
     @Override
-    public boolean Update_User(UserDto user) throws LTAException {
+    public boolean updateUser(UserDto user) throws LTAException {
         try (JdbcRowSet jdbcRs = RowSetProvider.newFactory().createJdbcRowSet()) {
             jdbcRs.setUrl(ConnectionFactory.getUrl());
             jdbcRs.setUsername(ConnectionFactory.getUsername());
@@ -200,27 +204,26 @@ public class UserDaoImp implements UserDao {
 
             jdbcRs.setString(1, user.getUserName()); //put username to update it
             jdbcRs.setString(2, user.getPassword()); //put password to update it
-            jdbcRs.setString(3, user.getEmail());
-            jdbcRs.setInt(4, user.getUserRole().getRole_id());
+            jdbcRs.setInt(3,user.getuser_Id());
             // putting the full name to update it
             // by logic i can not understantd  why i  need to update the name but i assumed that
             // one of names entered with error
-            jdbcRs.setString(5, user.getFName());
-            jdbcRs.setString(6, user.getSName());
-            jdbcRs.setString(7, user.getLName());
-            jdbcRs.setString(8, user.getFamilyName());
+            jdbcRs.setString(4, user.getFName());
+            jdbcRs.setString(5, user.getSName());
+            jdbcRs.setString(6, user.getLName());
+            jdbcRs.setString(7, user.getFamilyName());
             if (user.getUpdatedBy() != null)
-                jdbcRs.setString(9, user.getUpdatedBy());
+                jdbcRs.setString(8, user.getUpdatedBy());
             else
-                jdbcRs.setNull(9, Types.VARCHAR);
+                jdbcRs.setNull(8, Types.VARCHAR);
 
             // check if the update date is not setted we we will set it
             if (user.getUpdate_Date() != null)
-                jdbcRs.setDate(10, new java.sql.Date(user.getUpdate_Date().getTime()));
+                jdbcRs.setDate(9, new java.sql.Date(user.getUpdate_Date().getTime()));
             else
-                jdbcRs.setNull(10, java.sql.Types.DATE);
+                jdbcRs.setNull(9, java.sql.Types.DATE);
 
-            jdbcRs.setInt(11, user.getuser_Id()); // this is a key we will use it to update
+            jdbcRs.setString(10, user.getEmail()); // this is a key we will use it to update
 
             jdbcRs.execute();
             return true;
@@ -228,6 +231,53 @@ public class UserDaoImp implements UserDao {
             LTAException ex = new LTAException();
             ex.setExactMessage("Error in Update May be not exist !");
             throw ex;
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        return false;
+    }
+
+    @Override
+    public boolean loginCheck(String password, String username) {
+        try (JdbcRowSet jdbcRs = RowSetProvider.newFactory().createJdbcRowSet()) {
+            jdbcRs.setUrl(ConnectionFactory.getUrl());
+            jdbcRs.setUsername(ConnectionFactory.getUsername());
+            jdbcRs.setPassword(ConnectionFactory.getPassword());
+            jdbcRs.setCommand(Queries.LOGIN_CHECK);
+            jdbcRs.setString(1,username);
+            jdbcRs.setString(2,password); 
+            jdbcRs.execute();
+ 
+            if(jdbcRs.next())
+            {  
+               return true ;  
+                }
+       
+         
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        return false;
+    }
+
+    @Override
+    public boolean isUsernameExists(String username) {
+        try (JdbcRowSet jdbcRs = RowSetProvider.newFactory().createJdbcRowSet()) {
+            jdbcRs.setUrl(ConnectionFactory.getUrl());
+            jdbcRs.setUsername(ConnectionFactory.getUsername());
+            jdbcRs.setPassword(ConnectionFactory.getPassword());
+            jdbcRs.setCommand(Queries.IS_USERNAME_EXIST);
+            jdbcRs.setString(1,username);
+            jdbcRs.execute();
+        
+            if(jdbcRs.next())
+            {  
+               return true ;  
+                }
+        
+         
         } catch (Exception e) {
             e.printStackTrace();
         }

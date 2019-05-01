@@ -26,9 +26,9 @@ public class RoleDaoImp implements RoleDao {
             RoleDto role = null;
             while (jdbcRs.next()) {
 
-                role = new RoleDto();
-                role.setCode(jdbcRs.getString(1));
+                role = new RoleDto(jdbcRs.getString(1));
                 role.setDescription(jdbcRs.getString(2));
+                role.setRole_id(jdbcRs.getInt(3));
               
                 roles.add(role);
             }
@@ -113,20 +113,21 @@ public class RoleDaoImp implements RoleDao {
             jdbcRs.setUsername(ConnectionFactory.getUsername());
             jdbcRs.setPassword(ConnectionFactory.getPassword());
             jdbcRs.setCommand(Queries.UPDATE_ROLE);
-            jdbcRs.setString(1, role.getCode());
-            jdbcRs.setString(2, role.getDescription());
-           
+            
+            jdbcRs.setString(1, role.getDescription());
            
             if (role.getUpdatedBy() != null)
-                jdbcRs.setString(3, role.getUpdatedBy());
+                jdbcRs.setString(2, role.getUpdatedBy());
             else
-                jdbcRs.setNull(3, Types.VARCHAR);
+                jdbcRs.setNull(2, Types.VARCHAR);
 
             // check if the update date is not setted we we will set it
           if (role.getUpdate_Date() != null)
-                jdbcRs.setDate(4, new java.sql.Date(role.getUpdate_Date().getTime()));
+                jdbcRs.setDate(3, new java.sql.Date(role.getUpdate_Date().getTime()));
             else
-                jdbcRs.setNull(4, java.sql.Types.DATE);
+                jdbcRs.setNull(3, java.sql.Types.DATE);
+            
+            jdbcRs.setString(4, role.getCode());
            
             jdbcRs.execute();
             
@@ -171,9 +172,11 @@ public class RoleDaoImp implements RoleDao {
             RoleDto role = null;
             while (jdbcRs.next()) {
                 roles = new ArrayList<>();
-                role = new RoleDto();
-                role.setCode(jdbcRs.getString(1));
+                
+                role = new RoleDto(jdbcRs.getString(1));
                 role.setDescription(jdbcRs.getString(2));
+                role.setRole_id(jdbcRs.getInt(3));
+              
                 roles.add(role);
 
             }

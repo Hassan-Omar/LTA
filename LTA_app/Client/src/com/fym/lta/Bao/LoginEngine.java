@@ -12,22 +12,8 @@ import javax.crypto.SecretKeyFactory;
 import javax.crypto.spec.DESKeySpec;
 
 public class LoginEngine {
-   public static  String currentUser ; 
-
-
-    // this method to check if the entered password as same as  stored password
-
-    public static boolean checkPassword(String pass) {
-        return true;
-    }
-
-    // this method to check if the entered username as same as  stored username
-
-    public static  boolean checkUsername(String username) {
-        return true;
-    }
-
-
+   public static  String currentUser ;  // this to hold the value of current user 
+  
 
     public static void encrypt(String key, InputStream is, OutputStream os) throws Throwable {
             encryptOrDecrypt(key, Cipher.ENCRYPT_MODE, is, os);
