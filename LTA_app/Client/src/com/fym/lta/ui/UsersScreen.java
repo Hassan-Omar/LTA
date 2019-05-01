@@ -18,31 +18,31 @@ import javax.swing.JOptionPane;
  * @author h.omar
  */
 public class UsersScreen extends javax.swing.JPanel {
-    // bussiness object to save or delete , search  methods 
+    // bussiness object to save or delete , search  methods
     private UserBao userBaoObj = new BaoFactory().createUserBao();
-    // list  to hold the returned data from the search 
+    // list  to hold the returned data from the search
     private List<UserDto> searchReturnedUsers;
     // this to hold the status of update if ture this means the selected user need to be updated
     private boolean updateFlage = false;
-    static String emailToUpdate; // hold the emaial of the selected user 
+    static String emailToUpdate; // hold the emaial of the selected user
     // all current  roles stord in DB
     List<RoleDto> allRoles = new BaoFactory().createRoleBao().getAll();
     // all current employees stored in DB
     List<EmployeeDto> allEmployees = new BaoFactory().createemployeeBao().listEmployee();
-    // hold the value of the status of availability of the entered usernsme true if it is available 
-    boolean usernameAvailabilty = true ;
+    // hold the value of the status of availability of the entered usernsme true if it is available
+    boolean usernameAvailabilty = true;
 
     /** Creates new form Users_search */
     public UsersScreen() {
 
         initComponents();
-        // check if the the dao layer doesn't return null to reset the table model 
+        // check if the the dao layer doesn't return null to reset the table model
         if (userBaoObj.listAll() != null)
             userTableReset(userBaoObj.listAll());
-        // initialize our Combobox in the form 
+        // initialize our Combobox in the form
         listComboRoles(allRoles);
         listComboEmployee(allEmployees);
-        
+
         insertPanel.setVisible(false);
     }
 
@@ -69,13 +69,13 @@ public class UsersScreen extends javax.swing.JPanel {
         userPassword = new javax.swing.JPasswordField();
         jLabel4 = new javax.swing.JLabel();
         userEmail = new javax.swing.JTextField();
-        jLabel8 = new javax.swing.JLabel();
+        emailLabel = new javax.swing.JLabel();
         mailLabel = new javax.swing.JLabel();
         label1 = new java.awt.Label();
         doneBTN = new javax.swing.JButton();
         userRoleCombo = new javax.swing.JComboBox();
         employeesCombo = new javax.swing.JComboBox();
-        label2 = new java.awt.Label();
+        employeesLabel = new java.awt.Label();
 
         jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Users\n", 0, 0, new java.awt.Font("Adobe Arabic", 1, 24))); // NOI18N
 
@@ -184,8 +184,8 @@ public class UsersScreen extends javax.swing.JPanel {
             }
         });
 
-        jLabel8.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jLabel8.setText("Email");
+        emailLabel.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        emailLabel.setText("Email");
 
         mailLabel.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         mailLabel.setForeground(new java.awt.Color(255, 0, 0));
@@ -205,8 +205,8 @@ public class UsersScreen extends javax.swing.JPanel {
 
         employeesCombo.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
 
-        label2.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        label2.setText("Employees");
+        employeesLabel.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        employeesLabel.setText("Employees");
 
         javax.swing.GroupLayout insertPanelLayout = new javax.swing.GroupLayout(insertPanel);
         insertPanel.setLayout(insertPanelLayout);
@@ -219,7 +219,7 @@ public class UsersScreen extends javax.swing.JPanel {
                         .addGroup(insertPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                             .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, 86, Short.MAX_VALUE)
-                            .addComponent(jLabel8, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addComponent(emailLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addGap(36, 36, 36)
                         .addGroup(insertPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(usernameBox, javax.swing.GroupLayout.PREFERRED_SIZE, 373, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -241,7 +241,7 @@ public class UsersScreen extends javax.swing.JPanel {
                                 .addComponent(label1, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(insertPanelLayout.createSequentialGroup()
                                 .addGap(202, 202, 202)
-                                .addComponent(label2, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addComponent(employeesLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
             .addGroup(insertPanelLayout.createSequentialGroup()
@@ -262,11 +262,11 @@ public class UsersScreen extends javax.swing.JPanel {
                     .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(52, 52, 52)
                 .addGroup(insertPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(emailLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(userEmail, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(mailLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(93, 93, 93)
-                .addComponent(label2, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(employeesLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(employeesCombo, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(40, 40, 40)
@@ -327,7 +327,7 @@ public class UsersScreen extends javax.swing.JPanel {
     }//GEN-END:initComponents
 
     private void searchUserBTNMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_searchUserBTNMouseClicked
-        insertPanel.setVisible(false) ;
+        insertPanel.setVisible(false);
         if (userEnteredName.getText() != null) {
 
             searchReturnedUsers = userBaoObj.seachForUsers(userEnteredName.getText());
@@ -351,7 +351,7 @@ public class UsersScreen extends javax.swing.JPanel {
 
     private void deleteUserBTNMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_deleteUserBTNMouseClicked
         
-        insertPanel.setVisible(false) ;
+        insertPanel.setVisible(false);
         if (usersTable.getSelectedRow() >= 0) {
             String selectedEmaill = usersTable.getValueAt(usersTable.getSelectedRow(), 1).toString();
             // call business to delete
@@ -374,30 +374,23 @@ public class UsersScreen extends javax.swing.JPanel {
     }//GEN-LAST:event_deleteUserBTNMouseClicked
 
     private void insertUserBTNMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_insertUserBTNMouseClicked
+        clearData() ;
         updateFlage = false;
         insertPanel.setVisible(true);
         
     }//GEN-LAST:event_insertUserBTNMouseClicked
 
     private void ubdateUserBTNMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ubdateUserBTNMouseClicked
-        if (usersTable.getSelectedRow() >= 0) { // emailToUpdate = usersTable.getValueAt(usersTable.getSelectedRow(), 1).toString();
-            // userEmail.setVisible(false);
-            /*  // read the user email from the table
-    //List<UserDto> users  = userBaoObj.seachForUsers(emailToUpdate) ; // this must return only one user
-    try {
-         // now we will pass user's data to insertion panel
-         userFName.setText(users.get(0).getFName());
-         userSName.setText(users.get(0).getSName());
-         userLName.setText(users.get(0).getLName());
-         userFamilyName.setText(users.get(0).getFamilyName());
-         usernameTxt.setText(users.get(0).getUserName());
-         userEmail.setText(emailToUpdate);
-
-        }
-    catch(NullPointerException e)
-    {
-        e.printStackTrace();
-    } */updateFlage = true;
+        if (usersTable.getSelectedRow() >= 0) { 
+          
+            // hide fixed data component 
+            employeesCombo.setVisible(false);
+            employeesLabel.setVisible(false);
+            emailLabel.setVisible(false);
+            userEmail.setVisible(false);
+            // copy data from table to the insertPanel 
+            usernameBox.setText(usersTable.getValueAt(usersTable.getSelectedRow(),1).toString());
+            updateFlage = true;
             insertPanel.setVisible(true);
         } else
             JOptionPane.showMessageDialog(this, "please select a user to update");
@@ -421,13 +414,6 @@ public class UsersScreen extends javax.swing.JPanel {
         UserDto user = new UserDto();
 
 
-        if (userEmail.getText().length() < 45)
-            user.setEmail(userEmail.getText());
-        else {
-            flag = false;
-            JOptionPane.showMessageDialog(this, "this Email name is very long the maxmum is 45 character  ");
-        }
-
         if (userPassword.getPassword().toString().length() < 66)
             user.setPassword(new String(userPassword.getPassword()));
         else {
@@ -442,12 +428,21 @@ public class UsersScreen extends javax.swing.JPanel {
             JOptionPane.showMessageDialog(this, "this username is very long the maxmum is 66 character  ");
         }
 
-       
-       RoleDto role = new RoleDto(allRoles.get(userRoleCombo.getSelectedIndex()).getCode());
-       role.setRole_id(allRoles.get(userRoleCombo.getSelectedIndex()).getRole_id() );
-       user.setUserRole(role);
+        // now we need to create a role to give it to this user
+        RoleDto role = new RoleDto(allRoles.get(userRoleCombo.getSelectedIndex()).getCode());
+        role.setRole_id(allRoles.get(userRoleCombo.getSelectedIndex()).getRole_id());
+        user.setUserRole(role);
+
+        // now we will crate an employee to be connected with our user
+        EmployeeDto employee = new EmployeeDto();
+        employee.setEmp_id(allEmployees.get(employeesCombo.getSelectedIndex()).getEmp_id());
+        user.setUser_Employee(employee);
 
         if (!updateFlage) {
+
+            if (userEmail.getText().length() < 45)
+                user.setEmail(userEmail.getText());
+            
             user.setUpdatedBy(LoginEngine.currentUser); // we need a method return this value and this only to test db connection
             user.setInsertedBy(LoginEngine.currentUser);
             user.setUpdate_Date(new Date(System.currentTimeMillis()));
@@ -455,56 +450,57 @@ public class UsersScreen extends javax.swing.JPanel {
         }
 
         else {
+
+            if (userEmail.getText().length() < 45)
+                user.setEmail( usersTable.getValueAt(usersTable.getSelectedRow(),1).toString());
+            
             user.setUpdate_Date(new Date(System.currentTimeMillis()));
             user.setUpdatedBy(LoginEngine.currentUser); // we need a method return this value and this only to test db connection
 
         }
         // call bao to save user
-       if(usernameAvailabilty)
-       {
-        if (userBaoObj.saveUser(user)) {
-            JOptionPane.showMessageDialog(this, "User Saved ");
-            insertPanel.setVisible(false);
-            userTableReset(userBaoObj.listAll());
+        if (usernameAvailabilty) {
+            if (userBaoObj.saveUser(user)) {
+                JOptionPane.showMessageDialog(this, "User Saved ");
+                insertPanel.setVisible(false);
+                userTableReset(userBaoObj.listAll());
+
+            } else
+                JOptionPane.showMessageDialog(this,
+                                              "Can not insert or update Ther are a problem please check entered data ");
+
 
         } else
-            JOptionPane.showMessageDialog(this,
-                                          "Can not insert or update Ther are a problem please check entered data ");
-        
-    
-           }
-    else  
-        JOptionPane.showMessageDialog(this,
-                                      "please Change user name ");
+            JOptionPane.showMessageDialog(this, "please Change user name ");
         
     }//GEN-LAST:event_doneBTNMouseClicked
 
     private void usernameBoxMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_usernameBoxMouseExited
-     if (  userBaoObj.isUsernameExists(usernameBox.getText()) && !(updateFlage) )
-     {
-         JOptionPane.showMessageDialog(this , "This Username is already exist ");
-         // assigne false to block the save method
-         usernameAvailabilty = false  ;
-     }      
-     
-     else  usernameAvailabilty = true  ;
+        if (userBaoObj.isUsernameExists(usernameBox.getText()) && !(updateFlage)) {
+            JOptionPane.showMessageDialog(this, "This Username is already exist ");
+            // assigne false to block the save method
+            usernameAvailabilty = false;
+        }
+
+        else
+            usernameAvailabilty = true;
     }//GEN-LAST:event_usernameBoxMouseExited
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton deleteUserBTN;
     private javax.swing.JButton doneBTN;
+    private javax.swing.JLabel emailLabel;
     private javax.swing.JComboBox employeesCombo;
+    private java.awt.Label employeesLabel;
     private javax.swing.JPanel insertPanel;
     private javax.swing.JButton insertUserBTN;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel8;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private java.awt.Label label1;
-    private java.awt.Label label2;
     private javax.swing.JLabel mailLabel;
     private javax.swing.JButton searchUserBTN;
     private javax.swing.JButton ubdateUserBTN;
@@ -519,38 +515,54 @@ public class UsersScreen extends javax.swing.JPanel {
     public void userTableReset(List<UserDto> users) {
         int userRoleid;
 
-        Object[][] usersArr = new Object[users.size()][3];
+        Object[][] usersArr = new Object[users.size()][4];
 
         for (int i = 0; i < users.size(); i++) {
-           // usersArr[i][0] =
+            // View the full name 
+            usersArr[i][0] = users.get(i).getFName() +" "+users.get(i).getSName() +" "
+            +users.get(i).getLName()+ " " +users.get(i).getFamilyName() ; 
+            
             usersArr[i][1] = users.get(i).getEmail();
             usersArr[i][2] = users.get(i).getUserName();
-          // usersArr[i][3] = users.get(i).getUserRole().getCode();
+            usersArr[i][3] = users.get(i).getUserRole().getCode();
         }
         usersTable.setModel(new javax.swing.table.DefaultTableModel(usersArr, new String[] {
-                                                                    "Name", "Email", "Login Username" ,"Role code " }));
+                                                                    "Name", "Email", "Login Username", "Role code "
+            }));
     }
-    
-    
-  void listComboRoles(List<RoleDto> roles)  
-  {
-      for(int i=0 ; i<roles.size() ; i++)
-      {
-          userRoleCombo.addItem(roles.get(i).getCode());
-      }
-      
-      }
-  
-  
-    void listComboEmployee (List<EmployeeDto> emp)  
-    {
-        for(int i=0 ; i<emp.size() ; i++)
-        {
-            employeesCombo.addItem(emp.get(i).getFName() + "  "+
-                                  emp.get(i).getSName()+"  "+emp.get(i).getLName()
-                                   +"  "+emp.get(i).getFamilyName());
+
+
+    void listComboRoles(List<RoleDto> roles) {
+        for (int i = 0; i < roles.size(); i++) {
+            userRoleCombo.addItem(roles.get(i).getCode());
         }
+
+    }
+
+
+    void listComboEmployee(List<EmployeeDto> emp) {
+        for (int i = 0; i < emp.size(); i++) {
+            employeesCombo.addItem(emp.get(i).getFName() + "  " + emp.get(i).getSName() + "  " + emp.get(i).getLName() +
+                                   "  " + emp.get(i).getFamilyName());
+        }
+
+    }
+
+
+void clearData ()
+{
+        usernameBox.setText(null);
+        userPassword.setText(null);
+        userEmail.setText(null);
+        employeesCombo.setSelectedIndex(0);
+        userRoleCombo.setSelectedIndex(0);
         
-        }
+        // show hiden components again 
+        employeesCombo.setVisible(true);
+        employeesLabel.setVisible(true);
+        emailLabel.setVisible(true);
+        userEmail.setVisible(true);
+    }
+
 
 }

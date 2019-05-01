@@ -201,7 +201,6 @@
               <Font name="Tahoma" size="18" style="1"/>
             </Property>
             <Property name="text" type="java.lang.String" value="Insert  New Role"/>
-            <Property name="actionCommand" type="java.lang.String" value="Insert  New Role"/>
           </Properties>
           <Events>
             <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="insertRoleBTNMouseClicked"/>
@@ -251,13 +250,13 @@
                   <EmptySpace max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Component id="label1" alignment="0" min="-2" pref="116" max="-2" attributes="0"/>
-                      <Component id="jLabel2" alignment="0" min="-2" pref="82" max="-2" attributes="0"/>
+                      <Component id="codeLabel" alignment="0" min="-2" pref="82" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace pref="15" max="32767" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Component id="SaveBtn" min="-2" pref="131" max="-2" attributes="0"/>
                       <Group type="103" alignment="0" groupAlignment="1" max="-2" attributes="0">
-                          <Component id="enteredCode" alignment="0" max="32767" attributes="0"/>
+                          <Component id="enteredCodeBox" alignment="0" max="32767" attributes="0"/>
                           <Component id="jScrollPane2" pref="283" max="32767" attributes="0"/>
                       </Group>
                   </Group>
@@ -270,8 +269,8 @@
               <Group type="102" alignment="0" attributes="0">
                   <EmptySpace max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="enteredCode" alignment="3" min="-2" pref="40" max="-2" attributes="0"/>
-                      <Component id="jLabel2" alignment="3" min="-2" pref="40" max="-2" attributes="0"/>
+                      <Component id="enteredCodeBox" alignment="3" min="-2" pref="40" max="-2" attributes="0"/>
+                      <Component id="codeLabel" alignment="3" min="-2" pref="40" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace min="-2" pref="115" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
@@ -286,7 +285,7 @@
         </DimensionLayout>
       </Layout>
       <SubComponents>
-        <Component class="javax.swing.JTextField" name="enteredCode">
+        <Component class="javax.swing.JTextField" name="enteredCodeBox">
         </Component>
         <Container class="javax.swing.JScrollPane" name="jScrollPane2">
           <AuxValues>
@@ -314,7 +313,7 @@
             <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="SaveBtnMouseClicked"/>
           </Events>
         </Component>
-        <Component class="javax.swing.JLabel" name="jLabel2">
+        <Component class="javax.swing.JLabel" name="codeLabel">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Tahoma" size="18" style="1"/>

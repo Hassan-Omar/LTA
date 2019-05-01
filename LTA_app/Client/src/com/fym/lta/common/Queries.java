@@ -3,28 +3,32 @@ package com.fym.lta.common;
 
 public class Queries {
 
-
     //_____________________________ USER MODULE _______________________________________
     public static final String INSER_NEW_USER =
         "INSERT INTO USERS (USERNAME,PASSWORD,ROLE_ID,INSERTION_DATE,UPDATE_DATE" +
-        ",INSERTED_BY,UPDATED_BY,EMAIL,FNAME,SNAME,LNAME,FAMILYNAME) " + "VALUES (?,?,?,?,?,?,?,?,?,?,?,?)";
+        ",INSERTED_BY,UPDATED_BY,EMAIL,EMP_ID) " + "VALUES (?,?,?,?,?,?,?,?,?)";
 
-    public static final String LIST_ALL_USER = "SELECT * FROM USERS ";
+    public static final String LIST_ALL_USER =
+        "SELECT EMPLOYEE.FNAME , EMPLOYEE.SNAME , EMPLOYEE.TNAME , EMPLOYEE.FAMILY_NAME " +
+        ",USERS.USERNAME ,USERS.INSERTION_DATE ,USERS.UPDATE_DATE ,USERS.INSERTED_BY ,USERS.UPDATED_BY ,USERS.EMAIL,ROLE.CODE " +
+        "FROM EMPLOYEE , USERS , ROLE " + "WHERE EMPLOYEE.ID = USERS.EMP_ID AND ROLE.ROLEID = USERS.ROLE_ID  ";
 
     public static final String DELETE_USER = "DELETE FROM USERS WHERE EMAIL = ? ";
 
     public static final String UPDATE_USER =
         "UPDATE USERS SET USERNAME = ?, PASSWORD = ?, ROLE_ID = ? " +
-        ",FNAME = ?, SNAME = ?, LNAME = ?,FAMILYNAME = ?,UPDATED_BY = ? ,UPDATE_DATE = ? WHERE EMAIL = ? ";
+        ",UPDATED_BY = ? ,UPDATE_DATE = ? WHERE EMAIL = ? ";
 
     public static final String IS_USERNAME_EXIST = "SELECT USERNAME FROM USERS WHERE USERNAME = ?";
 
-    public static final String USER_SEARCH = "SELECT * FROM USERS WHERE LOWER(EMAIL) LIKE ?";
-    
+    public static final String USER_SEARCH ="SELECT EMPLOYEE.FNAME , EMPLOYEE.SNAME , EMPLOYEE.TNAME , EMPLOYEE.FAMILY_NAME " +
+        ",USERS.USERNAME ,USERS.INSERTION_DATE ,USERS.UPDATE_DATE ,USERS.INSERTED_BY ,USERS.UPDATED_BY ,USERS.EMAIL,ROLE.CODE " +
+        "FROM EMPLOYEE , USERS , ROLE " +
+        "WHERE EMPLOYEE.ID = USERS.EMP_ID AND ROLE.ROLEID = USERS.ROLE_ID AND LOWER(EMAIL) LIKE ? ";
+
     public static final String LOGIN_CHECK = "SELECT USERNAME,PASSWORD FROM USERS WHERE USERNAME = ? AND PASSWORD = ?";
-    
-     public static final String IS_USER_EXIST = "SELECT EMAIL ,USERNAME FROM USERS WHERE EMAIL = ? OR USERNAME = ?";
-    
+
+    public static final String IS_USER_EXIST = "SELECT EMAIL ,USERNAME FROM USERS WHERE EMAIL = ? OR USERNAME = ?";
     //___________________________________________________________________________________
 
 
@@ -32,7 +36,7 @@ public class Queries {
     public static final String INSER_NEW_ROLE =
         "INSERT INTO ROLE (CODE ,DESCRIPTION ,INSERTED_BY ,UPDATED_BY ,INSERTION_DATE ,UPDATE_DATE ) VALUES(?,?,?,?,?,?)";
 
-    public static final String LIST_ALL_ROLES = "SELECT CODE , DESCRIPTION ,ID  FROM ROLE";
+    public static final String LIST_ALL_ROLES = "SELECT CODE , DESCRIPTION ,ROLEID  FROM ROLE";
 
     public static final String DELETE_ROLE = " DELETE FROM ROLE WHERE CODE = ?";
 
@@ -41,20 +45,12 @@ public class Queries {
     public static final String UPDATE_ROLE =
         "UPDATE ROLE SET DESCRIPTION = ? ,UPDATED_BY = ? ,UPDATE_DATE = ?  WHERE CODE = ?";
 
-    public static final String ROLE_SEARCH = "SELECT CODE , DESCRIPTION ,ID FROM ROLE WHERE LOWER(CODE) LIKE ?";
-    
-    public static final String ROLE_SCREEN_INSERT = "INSERT INTO ROLE_SCREEN (ROLEID ,SCREENID ,PERMISSIONTYPE ) VALUES (?,?,?)";
+    public static final String ROLE_SEARCH = "SELECT CODE , DESCRIPTION ,ROLEID FROM ROLE WHERE LOWER(CODE) LIKE ?";
+
+    public static final String ROLE_SCREEN_INSERT =
+        "INSERT INTO ROLE_SCREEN (ROLEID ,SCREENID ,PERMISSIONTYPE ) VALUES (?,?,?)";
 
     //___________________________________________________________________________________
-
-
-
-
-
-
-
-
-
 
 
     //____________________________ STAFF MEMBERS MODULE _________________________________
@@ -105,9 +101,6 @@ public class Queries {
     public static final String LOCATION_SEARCH = "SELECT * FROM LOCATION WHERE LOWER(CODE) LIKE ?";
 
     //___________________________________________________________________________________
-
-
-
 
 
 }
