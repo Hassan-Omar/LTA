@@ -29,6 +29,9 @@ public interface UserBao {
     public boolean deleteUser(String email);
     
    
+    // this method to check if the username logged is  right exist
+    public boolean isUsernameExists(String username );
     
+    // method to check if the entered user and pass is correct
     public  boolean checkLogin(String username , String password) ;
 }

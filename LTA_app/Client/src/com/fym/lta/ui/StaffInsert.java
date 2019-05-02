@@ -165,7 +165,7 @@ public class StaffInsert extends JPanel {
         S.setFName(fname_TextField.getText());
         S.setFamilyName(name = familyname_TextField.getText());
         S.setSName(sname_TextField.getText());
-        S.setThName(thirdname_TextField.getText());
+        S.setLName(thirdname_TextField.getText());
         //   S.setFamilyName(familyname_TextField.getText());
         //S.setEmail("hadele this");
 

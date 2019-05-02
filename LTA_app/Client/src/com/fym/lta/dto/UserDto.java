@@ -6,8 +6,15 @@ public class UserDto {
     private int user_Id;
     private String password, userName;
     private RoleDto userRole;
-    private String fName, sName, lName, familyName, email, insertedBy, updatedBy;
+    private EmployeeDto user_Employee ;
+    private String fName, sName, lName, familyName,email, insertedBy, updatedBy;
     private Date inertion_Date, update_Date;
+
+   
+   
+    public void setInsertedBy(String insertedBy) {
+        this.insertedBy = insertedBy;
+    }
 
     public void setFName(String fName) {
         this.fName = fName;
@@ -17,8 +24,28 @@ public class UserDto {
         return fName;
     }
 
-    public void setInsertedBy(String insertedBy) {
-        this.insertedBy = insertedBy;
+    public void setSName(String sName) {
+        this.sName = sName;
+    }
+
+    public String getSName() {
+        return sName;
+    }
+
+    public void setLName(String lName) {
+        this.lName = lName;
+    }
+
+    public String getLName() {
+        return lName;
+    }
+
+    public void setFamilyName(String familyName) {
+        this.familyName = familyName;
+    }
+
+    public String getFamilyName() {
+        return familyName;
     }
 
     public String getInsertedBy() {
@@ -49,29 +76,7 @@ public class UserDto {
         return update_Date;
     }
 
-    public void setSName(String sName) {
-        this.sName = sName;
-    }
-
-    public String getSName() {
-        return sName;
-    }
-
-    public void setLName(String thName) {
-        this.lName = thName;
-    }
-
-    public String getLName() {
-        return lName;
-    }
-
-    public void setFamilyName(String familyName) {
-        this.familyName = familyName;
-    }
-
-    public String getFamilyName() {
-        return familyName;
-    }
+   
 
     public void setEmail(String email) {
         this.email = email;
@@ -99,6 +104,14 @@ public class UserDto {
 
     public void setUserName(String userName) {
         this.userName = userName;
+    }
+
+    public void setUser_Employee(EmployeeDto user_Employee) {
+        this.user_Employee = user_Employee;
+    }
+
+    public EmployeeDto getUser_Employee() {
+        return user_Employee;
     }
 
     public String getUserName() {

@@ -39,15 +39,6 @@ public class MMenu extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu5 = new javax.swing.JMenu();
-        jMenu6 = new javax.swing.JMenu();
-        jMenu1 = new javax.swing.JMenu();
-        userShortCut = new javax.swing.JMenuItem();
-        jMenuItem2 = new javax.swing.JMenuItem();
-        roleScreen = new javax.swing.JMenuItem();
-        jMenu2 = new javax.swing.JMenu();
-        jMenuItem9 = new javax.swing.JMenuItem();
-        jMenuItem10 = new javax.swing.JMenuItem();
-        jMenuItem11 = new javax.swing.JMenuItem();
         jMenu3 = new javax.swing.JMenu();
         jMenuItem4 = new javax.swing.JMenuItem();
         jMenuItem5 = new javax.swing.JMenuItem();
@@ -55,6 +46,14 @@ public class MMenu extends javax.swing.JFrame {
         jMenuItem7 = new javax.swing.JMenuItem();
         jMenuItem8 = new javax.swing.JMenuItem();
         staffmember = new javax.swing.JMenuItem();
+        jMenu2 = new javax.swing.JMenu();
+        jMenuItem9 = new javax.swing.JMenuItem();
+        jMenuItem10 = new javax.swing.JMenuItem();
+        jMenuItem11 = new javax.swing.JMenuItem();
+        jMenu1 = new javax.swing.JMenu();
+        userShortCut = new javax.swing.JMenuItem();
+        jMenuItem2 = new javax.swing.JMenuItem();
+        roleScreen = new javax.swing.JMenuItem();
         userQuickSearch = new javax.swing.JMenu();
         userquicksearch = new javax.swing.JMenuItem();
         buildingquicksearch = new javax.swing.JMenuItem();
@@ -96,71 +95,7 @@ public class MMenu extends javax.swing.JFrame {
         });
         jMenuBar1.add(jMenu5);
 
-        jMenu6.setText("                  Short Cuts                  ");
-
-        jMenu1.setText("Authentication and Authorization    ");
-        jMenu1.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jMenu1MouseClicked(evt);
-            }
-        });
-
-        userShortCut.setText("User");
-        userShortCut.setName("user"); // NOI18N
-        userShortCut.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                userShortCutActionPerformed(evt);
-            }
-        });
-        jMenu1.add(userShortCut);
-
-        jMenuItem2.setText("Role");
-        jMenuItem2.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem2ActionPerformed(evt);
-            }
-        });
-        jMenu1.add(jMenuItem2);
-
-        roleScreen.setText("Role Screens");
-        roleScreen.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                roleScreenActionPerformed(evt);
-            }
-        });
-        jMenu1.add(roleScreen);
-
-        jMenu6.add(jMenu1);
-
-        jMenu2.setText(" Locations’and spaces management      ");
-
-        jMenuItem9.setText("Locations master screen");
-        jMenuItem9.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem9ActionPerformed(evt);
-            }
-        });
-        jMenu2.add(jMenuItem9);
-
-        jMenuItem10.setText("Location Manual Assignment");
-        jMenuItem10.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem10ActionPerformed(evt);
-            }
-        });
-        jMenu2.add(jMenuItem10);
-
-        jMenuItem11.setText("Location Automatic Assignment");
-        jMenuItem11.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem11ActionPerformed(evt);
-            }
-        });
-        jMenu2.add(jMenuItem11);
-
-        jMenu6.add(jMenu2);
-
-        jMenu3.setLabel("Basic Data Management     ");
+        jMenu3.setText("Basic Data Management                  ");
 
         jMenuItem4.setText("Building");
         jMenuItem4.addActionListener(new java.awt.event.ActionListener() {
@@ -195,9 +130,69 @@ public class MMenu extends javax.swing.JFrame {
         });
         jMenu3.add(staffmember);
 
-        jMenu6.add(jMenu3);
+        jMenuBar1.add(jMenu3);
 
-        jMenuBar1.add(jMenu6);
+        jMenu2.setText(" Locations’and spaces management                  ");
+
+        jMenuItem9.setText("Locations master screen");
+        jMenuItem9.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem9ActionPerformed(evt);
+            }
+        });
+        jMenu2.add(jMenuItem9);
+
+        jMenuItem10.setText("Location Manual Assignment");
+        jMenuItem10.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem10ActionPerformed(evt);
+            }
+        });
+        jMenu2.add(jMenuItem10);
+
+        jMenuItem11.setText("Location Automatic Assignment");
+        jMenuItem11.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem11ActionPerformed(evt);
+            }
+        });
+        jMenu2.add(jMenuItem11);
+
+        jMenuBar1.add(jMenu2);
+
+        jMenu1.setText("Authentication and Authorization                  ");
+        jMenu1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jMenu1MouseClicked(evt);
+            }
+        });
+
+        userShortCut.setText("User");
+        userShortCut.setName("user"); // NOI18N
+        userShortCut.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                userShortCutActionPerformed(evt);
+            }
+        });
+        jMenu1.add(userShortCut);
+
+        jMenuItem2.setText("Role");
+        jMenuItem2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem2ActionPerformed(evt);
+            }
+        });
+        jMenu1.add(jMenuItem2);
+
+        roleScreen.setText("Role Screens");
+        roleScreen.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                roleScreenActionPerformed(evt);
+            }
+        });
+        jMenu1.add(roleScreen);
+
+        jMenuBar1.add(jMenu1);
 
         userQuickSearch.setText("                   Quick Search                   ");
         userQuickSearch.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
@@ -239,11 +234,6 @@ public class MMenu extends javax.swing.JFrame {
         logout.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 logoutMouseClicked(evt);
-            }
-        });
-        logout.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                logoutActionPerformed(evt);
             }
         });
         jMenuBar1.add(logout);
@@ -292,17 +282,16 @@ public class MMenu extends javax.swing.JFrame {
        
     }//GEN-LAST:event_userShortCutActionPerformed
 
-    private void logoutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_logoutActionPerformed
-          
-    }//GEN-LAST:event_logoutActionPerformed
-
     private void logoutMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_logoutMouseClicked
         try {
             File file = new File("ab.txt");
 
             if (file.delete()) { 
-                //  exit and close the programm
-                System.exit(0);
+                // initialize login frame and make it visible
+                Login log = new Login() ; 
+                log.setVisible(true) ;
+                // dispose the curren farm
+                dispose();
             }
         } catch (Exception e) {
             e.printStackTrace();
@@ -393,7 +382,6 @@ public class MMenu extends javax.swing.JFrame {
     private javax.swing.JMenu jMenu3;
     private javax.swing.JMenu jMenu4;
     private javax.swing.JMenu jMenu5;
-    private javax.swing.JMenu jMenu6;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenuItem jMenuItem10;
     private javax.swing.JMenuItem jMenuItem11;
