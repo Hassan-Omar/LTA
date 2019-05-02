@@ -1,6 +1,7 @@
 package com.fym.lta.bao;
 
 import com.fym.lta.dao.DaoFactory;
+import com.fym.lta.dao.RoleDao;
 import com.fym.lta.dao.ScreenDao;
 import com.fym.lta.dto.RoleDto;
 import com.fym.lta.dto.ScreenDto;
@@ -12,7 +13,32 @@ public class ScreenBaoImp implements ScreenBao {
     // create dao object
     ScreenDao screeenDaoObj = new DaoFactory().createScreenDao();
 
+    // create object of RoleDao
+    RoleDao RoleDaoObj = new DaoFactory().createRoleDao();
+
+
+    // delgate to screeenDaoObj methods
+
+    @Override
     public boolean saveScreenRoles(List<ScreenDto> screens, RoleDto role) {
         return screeenDaoObj.saveScreenRoles(screens, role);
+    }
+
+
+    @Override
+    public String getCurrentPermission(int screenID) {
+        // using the current username we can get it's role ID
+        int roleID = RoleDaoObj.getCurrenRoleID(LoginEngine.currentUser);
+        // delegate to dao method
+        return screeenDaoObj.getCurrentPermission(roleID, screenID);
+    }
+
+    @Override
+    public List<ScreenDto> list_Of_AavailableScreens() {
+
+        // using the current username we can get it's role ID
+        int roleID = RoleDaoObj.getCurrenRoleID(LoginEngine.currentUser);
+        // delegate to dao method
+        return screeenDaoObj.list_Of_AavailableScreens(roleID);
     }
 }

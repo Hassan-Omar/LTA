@@ -24,13 +24,17 @@ public class UsersScreen extends javax.swing.JPanel {
     private List<UserDto> searchReturnedUsers;
     // this to hold the status of update if ture this means the selected user need to be updated
     private boolean updateFlage = false;
-    static String emailToUpdate; // hold the emaial of the selected user
+    // hold the emaial of the selected user
+    static String emailToUpdate;
     // all current  roles stord in DB
     List<RoleDto> allRoles = new BaoFactory().createRoleBao().getAll();
     // all current employees stored in DB
     List<EmployeeDto> allEmployees = new BaoFactory().createemployeeBao().listEmployee();
     // hold the value of the status of availability of the entered usernsme true if it is available
     boolean usernameAvailabilty = true;
+
+  
+
 
     /** Creates new form Users_search */
     public UsersScreen() {
@@ -44,6 +48,10 @@ public class UsersScreen extends javax.swing.JPanel {
         listComboEmployee(allEmployees);
 
         insertPanel.setVisible(false);
+        // roleID = 9 
+        // now one step we will create an object of ScreenBao to know the current permission 
+        String permissionType = new BaoFactory().createScreenBao().getCurrentPermission(9);
+        Utilities.mandate(ubdateUserBTN,insertUserBTN , deleteUserBTN ,9,permissionType);
     }
 
     /** This method is called from within the constructor to
@@ -374,22 +382,22 @@ public class UsersScreen extends javax.swing.JPanel {
     }//GEN-LAST:event_deleteUserBTNMouseClicked
 
     private void insertUserBTNMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_insertUserBTNMouseClicked
-        clearData() ;
+        clearData();
         updateFlage = false;
         insertPanel.setVisible(true);
         
     }//GEN-LAST:event_insertUserBTNMouseClicked
 
     private void ubdateUserBTNMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ubdateUserBTNMouseClicked
-        if (usersTable.getSelectedRow() >= 0) { 
-          
-            // hide fixed data component 
+        if (usersTable.getSelectedRow() >= 0) {
+
+            // hide fixed data component
             employeesCombo.setVisible(false);
             employeesLabel.setVisible(false);
             emailLabel.setVisible(false);
             userEmail.setVisible(false);
-            // copy data from table to the insertPanel 
-            usernameBox.setText(usersTable.getValueAt(usersTable.getSelectedRow(),1).toString());
+            // copy data from table to the insertPanel
+            usernameBox.setText(usersTable.getValueAt(usersTable.getSelectedRow(), 1).toString());
             updateFlage = true;
             insertPanel.setVisible(true);
         } else
@@ -442,7 +450,7 @@ public class UsersScreen extends javax.swing.JPanel {
 
             if (userEmail.getText().length() < 45)
                 user.setEmail(userEmail.getText());
-            
+
             user.setUpdatedBy(LoginEngine.currentUser); // we need a method return this value and this only to test db connection
             user.setInsertedBy(LoginEngine.currentUser);
             user.setUpdate_Date(new Date(System.currentTimeMillis()));
@@ -452,8 +460,8 @@ public class UsersScreen extends javax.swing.JPanel {
         else {
 
             if (userEmail.getText().length() < 45)
-                user.setEmail( usersTable.getValueAt(usersTable.getSelectedRow(),1).toString());
-            
+                user.setEmail(usersTable.getValueAt(usersTable.getSelectedRow(), 1).toString());
+
             user.setUpdate_Date(new Date(System.currentTimeMillis()));
             user.setUpdatedBy(LoginEngine.currentUser); // we need a method return this value and this only to test db connection
 
@@ -517,11 +525,13 @@ public class UsersScreen extends javax.swing.JPanel {
 
         Object[][] usersArr = new Object[users.size()][4];
 
-        for (int i = 0; i < users.size(); i++) {
-            // View the full name 
-            usersArr[i][0] = users.get(i).getFName() +" "+users.get(i).getSName() +" "
-            +users.get(i).getLName()+ " " +users.get(i).getFamilyName() ; 
-            
+        for (int i = 0; i < users.size();
+             i++) {
+            // View the full name
+            usersArr[i][0] =
+                               users.get(i).getFName() + " " + users.get(i).getSName() + " " + users.get(i).getLName() +
+                               " " + users.get(i).getFamilyName();
+
             usersArr[i][1] = users.get(i).getEmail();
             usersArr[i][2] = users.get(i).getUserName();
             usersArr[i][3] = users.get(i).getUserRole().getCode();
@@ -548,16 +558,15 @@ public class UsersScreen extends javax.swing.JPanel {
 
     }
 
-
-void clearData ()
-{
+    // this method just to clear text and reset the valus on the insrt panel
+    void clearData() { // clear prvious data
         usernameBox.setText(null);
         userPassword.setText(null);
         userEmail.setText(null);
         employeesCombo.setSelectedIndex(0);
         userRoleCombo.setSelectedIndex(0);
-        
-        // show hiden components again 
+
+        // show hiden components again
         employeesCombo.setVisible(true);
         employeesLabel.setVisible(true);
         emailLabel.setVisible(true);

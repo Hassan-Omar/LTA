@@ -29,7 +29,7 @@ public class RoleDaoImp implements RoleDao {
                 role = new RoleDto(jdbcRs.getString(1));
                 role.setDescription(jdbcRs.getString(2));
                 role.setRole_id(jdbcRs.getInt(3));
-              
+
                 roles.add(role);
             }
 
@@ -67,12 +67,10 @@ public class RoleDaoImp implements RoleDao {
             jdbcRs.setCommand(Queries.INSER_NEW_ROLE);
             jdbcRs.setString(1, role.getCode());
             jdbcRs.setString(2, role.getDescription());
-            
-            
-            
+
 
             // check if the person who inserte  is not setted we we will set it empty
-            if (role.getInsertedBy()!= null)
+            if (role.getInsertedBy() != null)
                 jdbcRs.setString(3, role.getInsertedBy());
             else
                 jdbcRs.setNull(3, Types.VARCHAR);
@@ -113,24 +111,24 @@ public class RoleDaoImp implements RoleDao {
             jdbcRs.setUsername(ConnectionFactory.getUsername());
             jdbcRs.setPassword(ConnectionFactory.getPassword());
             jdbcRs.setCommand(Queries.UPDATE_ROLE);
-            
+
             jdbcRs.setString(1, role.getDescription());
-           
+
             if (role.getUpdatedBy() != null)
                 jdbcRs.setString(2, role.getUpdatedBy());
             else
                 jdbcRs.setNull(2, Types.VARCHAR);
 
             // check if the update date is not setted we we will set it
-          if (role.getUpdate_Date() != null)
+            if (role.getUpdate_Date() != null)
                 jdbcRs.setDate(3, new java.sql.Date(role.getUpdate_Date().getTime()));
             else
                 jdbcRs.setNull(3, java.sql.Types.DATE);
-            
+
             jdbcRs.setString(4, role.getCode());
-           
+
             jdbcRs.execute();
-            
+
             return true;
         }
 
@@ -172,11 +170,11 @@ public class RoleDaoImp implements RoleDao {
             RoleDto role = null;
             while (jdbcRs.next()) {
                 roles = new ArrayList<>();
-                
+
                 role = new RoleDto(jdbcRs.getString(1));
                 role.setDescription(jdbcRs.getString(2));
                 role.setRole_id(jdbcRs.getInt(3));
-              
+
                 roles.add(role);
 
             }
@@ -185,5 +183,27 @@ public class RoleDaoImp implements RoleDao {
             e.printStackTrace();
         }
         return roles;
+    }
+
+    @Override
+    public int getCurrenRoleID(String username) {
+        int roleID = 0;
+        try (JdbcRowSet jdbcRs = RowSetProvider.newFactory().createJdbcRowSet()) {
+            jdbcRs.setUrl(ConnectionFactory.getUrl());
+            jdbcRs.setUsername(ConnectionFactory.getUsername());
+            jdbcRs.setPassword(ConnectionFactory.getPassword());
+            jdbcRs.setCommand(Queries.CURRENT_ROLE);
+            jdbcRs.setString(1, username);
+            jdbcRs.execute();
+
+            while (jdbcRs.next()) {
+                roleID = jdbcRs.getInt(1);
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return roleID;
+
     }
 }

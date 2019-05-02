@@ -21,9 +21,12 @@ public class BuildingScreeen extends javax.swing.JPanel {
     /** Creates new form Building */
     public BuildingScreeen() {
         initComponents();
-        //if (buildingBaoObject.listBuilding()!=null)
+        if (buildingBaoObject.listBuilding()!=null)
             buildingTableReset(buildingBaoObject.listBuilding());
-        BuildingTable.repaint();
+        // screenID = 1 
+        // now one step we will create an object of ScreenBao to know the current permission 
+        String permissionType = new BaoFactory().createScreenBao().getCurrentPermission(1);
+        Utilities.mandate(ubdateBuildingBTN,insertBuildingBTN , deleteBuildingBTN ,1,permissionType);
     }
 
     /** This method is called from within the constructor to
@@ -138,6 +141,7 @@ public class BuildingScreeen extends javax.swing.JPanel {
             }
         });
 
+        searchBuildingBTN.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         searchBuildingBTN.setText("Search");
         searchBuildingBTN.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -181,7 +185,7 @@ public class BuildingScreeen extends javax.swing.JPanel {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(BuildingEnteredCode, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(searchBuildingBTN, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 6, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 9, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(ubdateBuildingBTN, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)

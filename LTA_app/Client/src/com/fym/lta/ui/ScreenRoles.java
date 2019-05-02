@@ -21,7 +21,7 @@ public class ScreenRoles extends javax.swing.JPanel {
     RoleBao roleBaoObj = new BaoFactory().createRoleBao();
     ScreenBao screenBaoObj = new BaoFactory().createScreenBao();
     List<RoleDto> allRoles = new ArrayList();
-    String permission = ""; //hold permission value
+    String permission = "view  "; //hold permission value
     List<ScreenDto> selectedScreens = new ArrayList(); //hold the values of selected screens
 
     /** Creates new form ScreenRoles */
@@ -29,6 +29,15 @@ public class ScreenRoles extends javax.swing.JPanel {
         initComponents();
         allRoles = roleBaoObj.getAll();
         setRolesCombo(allRoles);
+        
+        viewPermission.setSelected(true);
+        viewPermission.setEnabled(false);
+        
+
+        // roleID = 11 
+        // now one step we will create an object of ScreenBao to know the current permission 
+        // String permissionType = new BaoFactory().createScreenBao().getCurrentPermission(11);
+        //  Utilities.mandate(ubdateUserBTN,insertUserBTN , deleteUserBTN ,11,permissionType);
     }
 
     /** This method is called from within the constructor to
@@ -364,11 +373,6 @@ public class ScreenRoles extends javax.swing.JPanel {
 
         viewPermission.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         viewPermission.setText("View");
-        viewPermission.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                viewPermissionActionPerformed(evt);
-            }
-        });
 
         updatePermission.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         updatePermission.setText("Update");
@@ -476,7 +480,7 @@ public class ScreenRoles extends javax.swing.JPanel {
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jPanel7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+                .addGap(174, 174, 174))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addGap(0, 0, Short.MAX_VALUE)
                 .addComponent(jPanel8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -582,11 +586,6 @@ public class ScreenRoles extends javax.swing.JPanel {
     private void insertPermissionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_insertPermissionActionPerformed
         permission += " insert ";
     }//GEN-LAST:event_insertPermissionActionPerformed
-
-    private void viewPermissionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_viewPermissionActionPerformed
-
-        permission += " view ";
-    }//GEN-LAST:event_viewPermissionActionPerformed
 
     private void floorCheckboxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_floorCheckboxActionPerformed
         selectedScreens.add(new ScreenDto(2));        

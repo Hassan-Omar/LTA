@@ -20,7 +20,10 @@ public class StaffScreen extends javax.swing.JPanel {
         initComponents();
         if(business.listEmployee()!=null)
         employeeTableReset(business.listEmployee());
-      
+        // roleID = 5 
+        // now one step we will create an object of ScreenBao to know the current permission 
+        String permissionType = new BaoFactory().createScreenBao().getCurrentPermission(5);
+        Utilities.mandate(updateStaffBtn,insertStaffBtn , deleteStaffBtn ,5,permissionType);
 
     }
 
@@ -36,11 +39,11 @@ public class StaffScreen extends javax.swing.JPanel {
         fName_TextField = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
-        btnDelete = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
+        deleteStaffBtn = new javax.swing.JButton();
+        updateStaffBtn = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         staffTable = new javax.swing.JTable();
-        jButton1 = new javax.swing.JButton();
+        insertStaffBtn = new javax.swing.JButton();
 
         setLayout(null);
 
@@ -69,23 +72,23 @@ public class StaffScreen extends javax.swing.JPanel {
         add(jLabel2);
         jLabel2.setBounds(430, 0, 178, 41);
 
-        btnDelete.setText("Delete");
-        btnDelete.addActionListener(new java.awt.event.ActionListener() {
+        deleteStaffBtn.setText("Delete");
+        deleteStaffBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnDeleteActionPerformed(evt);
+                deleteStaffBtnActionPerformed(evt);
             }
         });
-        add(btnDelete);
-        btnDelete.setBounds(580, 120, 90, 50);
+        add(deleteStaffBtn);
+        deleteStaffBtn.setBounds(580, 120, 90, 50);
 
-        jButton2.setText("Update");
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
+        updateStaffBtn.setText("Update");
+        updateStaffBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
+                updateStaffBtnActionPerformed(evt);
             }
         });
-        add(jButton2);
-        jButton2.setBounds(360, 120, 80, 50);
+        add(updateStaffBtn);
+        updateStaffBtn.setBounds(360, 120, 80, 50);
 
         staffTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -103,17 +106,17 @@ public class StaffScreen extends javax.swing.JPanel {
         add(jScrollPane1);
         jScrollPane1.setBounds(230, 210, 620, 270);
 
-        jButton1.setText("insert new");
-        jButton1.addMouseListener(new java.awt.event.MouseAdapter() {
+        insertStaffBtn.setText("insert new");
+        insertStaffBtn.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jButton1MouseClicked(evt);
+                insertStaffBtnMouseClicked(evt);
             }
         });
-        add(jButton1);
-        jButton1.setBounds(730, 120, 100, 50);
+        add(insertStaffBtn);
+        insertStaffBtn.setBounds(730, 120, 100, 50);
     }//GEN-END:initComponents
     
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+    private void updateStaffBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_updateStaffBtnActionPerformed
        
         if (staffTable.getSelectedRow() >= 0) {
             StaffInsert sIScreen = new StaffInsert();
@@ -126,7 +129,7 @@ public class StaffScreen extends javax.swing.JPanel {
                                          JOptionPane.DEFAULT_OPTION, JOptionPane.INFORMATION_MESSAGE, null, null, null);
         }
        
-    }//GEN-LAST:event_jButton2ActionPerformed
+    }//GEN-LAST:event_updateStaffBtnActionPerformed
 
     private void fName_TextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_fName_TextFieldActionPerformed
         // TODO add your handling code here:
@@ -138,7 +141,7 @@ public class StaffScreen extends javax.swing.JPanel {
     
     //  private StaffBao business = new BaoFactory().CreateNewStaffMember();
     // StaffMemberDto S = new  StaffMemberDto();
-    private void btnDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteActionPerformed
+    private void deleteStaffBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteStaffBtnActionPerformed
        
     int selectedEmployeeid = Integer.parseInt(staffTable.getValueAt(staffTable.getSelectedRow(), 0).toString());
        EmployeeDto selectedEmployee_Delete = new EmployeeDto(); // this user i want to delete
@@ -158,12 +161,12 @@ public class StaffScreen extends javax.swing.JPanel {
            JOptionPane.showMessageDialog(this, "Can not delete may be deleted using another Employee ");
        } 
        
-    }//GEN-LAST:event_btnDeleteActionPerformed
+    }//GEN-LAST:event_deleteStaffBtnActionPerformed
 
-    private void jButton1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MouseClicked
+    private void insertStaffBtnMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_insertStaffBtnMouseClicked
        // UsersScreen.createPopupMenu(new StaffInsert());
   
-    }//GEN-LAST:event_jButton1MouseClicked
+    }//GEN-LAST:event_insertStaffBtnMouseClicked
 
     private void btnSearchMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnSearchMouseClicked
 
@@ -181,15 +184,15 @@ public class StaffScreen extends javax.swing.JPanel {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnDelete;
     private javax.swing.JButton btnSearch;
+    private javax.swing.JButton deleteStaffBtn;
     private javax.swing.JTextField fName_TextField;
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
+    private javax.swing.JButton insertStaffBtn;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable staffTable;
+    private javax.swing.JButton updateStaffBtn;
     // End of variables declaration//GEN-END:variables
 
     public void employeeTableReset(List<EmployeeDto> employees) {

@@ -14,6 +14,13 @@ public interface ScreenBao {
     public boolean saveScreenRoles(List<ScreenDto> screens ,RoleDto role );
 
 
-
-
+    /**
+     * this method to give us the current permission on  a certain screen 
+     */
+    public String getCurrentPermission(int screenID) ;
+    
+    /**
+      * this method return the list of screen available screen 
+    */
+    public List<ScreenDto> list_Of_AavailableScreens () ; 
 }

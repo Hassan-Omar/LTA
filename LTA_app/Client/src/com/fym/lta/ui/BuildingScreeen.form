@@ -58,7 +58,7 @@
                   <Component id="BuildingEnteredCode" alignment="3" min="-2" pref="45" max="-2" attributes="0"/>
                   <Component id="searchBuildingBTN" alignment="3" min="-2" pref="45" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace pref="6" max="32767" attributes="0"/>
+              <EmptySpace pref="9" max="32767" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
                   <Component id="ubdateBuildingBTN" alignment="1" min="-2" pref="54" max="-2" attributes="0"/>
                   <Group type="103" alignment="0" groupAlignment="3" attributes="0">
@@ -206,6 +206,9 @@
     </Component>
     <Component class="javax.swing.JButton" name="searchBuildingBTN">
       <Properties>
+        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+          <Font name="Tahoma" size="18" style="1"/>
+        </Property>
         <Property name="text" type="java.lang.String" value="Search"/>
       </Properties>
       <Events>
