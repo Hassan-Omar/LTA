@@ -3,7 +3,10 @@ package com.fym.lta.ui;
 
 import com.fym.lta.bao.BaoFactory;
 import com.fym.lta.bao.LocationBao;
+import com.fym.lta.dto.FloorDto;
 import com.fym.lta.dto.LocationDto;
+
+import com.fym.lta.dto.LocationTypeDto;
 
 import java.awt.BorderLayout;
 
@@ -11,6 +14,7 @@ import java.util.List;
 
 import javax.persistence.Table;
 
+import javax.swing.JComboBox;
 import javax.swing.JOptionPane;
 import javax.swing.SwingUtilities;
 
@@ -45,17 +49,20 @@ public class LocationMasterScreen extends javax.swing.JPanel {
    //  }
       
     private void setTableModel(List<LocationDto> location){
-        Object [][] locationArr = new Object [location.size()][4];
+        Object [][] locationArr = new Object [location.size()][6];
         for(int i =0;i<location.size();i++){
             locationArr[i][0] = location.get(i).getLocation_id();
             locationArr[i][1] = location.get(i).getCode();
             locationArr[i][2] = location.get(i).getDescription();
             locationArr[i][3] = location.get(i).getCapacity();
+            locationArr[i][4] = location.get(i).getFloor_code();
+            locationArr[i][5] = location.get(i).getLocationtype();
+            
            
         }
         Table.setModel(new javax.swing.table.DefaultTableModel(locationArr,
             new String [] {
-                "Location Id", "Location Code" , "Description", "capacity"
+                "Location Id", "Location Code" , "Description", "capacity" , "Floor","Location Type"
             }
         ));   }  
    
@@ -100,6 +107,12 @@ public class LocationMasterScreen extends javax.swing.JPanel {
         code = new javax.swing.JTextField();
         desc = new javax.swing.JTextField();
         capacity = new javax.swing.JTextField();
+        building_combo = new javax.swing.JComboBox();
+        floor_combo = new javax.swing.JComboBox();
+        jLabel5 = new javax.swing.JLabel();
+        jLabel6 = new javax.swing.JLabel();
+        jLabel7 = new javax.swing.JLabel();
+        type_combo = new javax.swing.JComboBox();
 
         setBorder(javax.swing.BorderFactory.createTitledBorder("Location Master Screen"));
         setPreferredSize(new java.awt.Dimension(400, 400));
@@ -110,41 +123,41 @@ public class LocationMasterScreen extends javax.swing.JPanel {
 
         Table.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null}
             },
             new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
+                "Title 1", "Title 2", "Title 3", "Title 4", "Title 5", "Title 6", "Title 7"
             }
         ));
         jScrollPane1.setViewportView(Table);
@@ -153,7 +166,7 @@ public class LocationMasterScreen extends javax.swing.JPanel {
         master.setLayout(masterLayout);
         masterLayout.setHorizontalGroup(
             masterLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 762, Short.MAX_VALUE)
+            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 945, Short.MAX_VALUE)
         );
         masterLayout.setVerticalGroup(
             masterLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -164,10 +177,10 @@ public class LocationMasterScreen extends javax.swing.JPanel {
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 3;
         gridBagConstraints.gridwidth = 7;
-        gridBagConstraints.ipadx = 743;
+        gridBagConstraints.ipadx = 926;
         gridBagConstraints.ipady = 275;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(32, 41, 0, 0);
+        gridBagConstraints.insets = new java.awt.Insets(46, 55, 57, 0);
         add(master, gridBagConstraints);
 
         insert.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
@@ -178,13 +191,13 @@ public class LocationMasterScreen extends javax.swing.JPanel {
             }
         });
         gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 5;
+        gridBagConstraints.gridx = 4;
         gridBagConstraints.gridy = 2;
-        gridBagConstraints.gridwidth = 8;
+        gridBagConstraints.gridwidth = 2;
         gridBagConstraints.ipadx = 14;
         gridBagConstraints.ipady = 30;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(73, 143, 0, 0);
+        gridBagConstraints.insets = new java.awt.Insets(85, 128, 0, 0);
         add(insert, gridBagConstraints);
 
         delete.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
@@ -197,11 +210,11 @@ public class LocationMasterScreen extends javax.swing.JPanel {
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 2;
-        gridBagConstraints.gridwidth = 4;
+        gridBagConstraints.gridwidth = 3;
         gridBagConstraints.ipadx = 31;
         gridBagConstraints.ipady = 30;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(73, 144, 0, 0);
+        gridBagConstraints.insets = new java.awt.Insets(85, 148, 0, 0);
         add(delete, gridBagConstraints);
 
         update.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
@@ -217,7 +230,7 @@ public class LocationMasterScreen extends javax.swing.JPanel {
         gridBagConstraints.ipadx = 35;
         gridBagConstraints.ipady = 30;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(73, 41, 0, 0);
+        gridBagConstraints.insets = new java.awt.Insets(85, 85, 0, 0);
         add(update, gridBagConstraints);
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
@@ -226,7 +239,7 @@ public class LocationMasterScreen extends javax.swing.JPanel {
         gridBagConstraints.ipadx = 385;
         gridBagConstraints.ipady = 26;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(112, 69, 0, 0);
+        gridBagConstraints.insets = new java.awt.Insets(139, 171, 0, 0);
         add(jTextField1, gridBagConstraints);
 
         search.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
@@ -237,13 +250,13 @@ public class LocationMasterScreen extends javax.swing.JPanel {
             }
         });
         gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 5;
+        gridBagConstraints.gridx = 4;
         gridBagConstraints.gridy = 0;
         gridBagConstraints.gridheight = 2;
         gridBagConstraints.ipadx = 21;
         gridBagConstraints.ipady = 24;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(112, 114, 0, 0);
+        gridBagConstraints.insets = new java.awt.Insets(132, 109, 0, 0);
         add(search, gridBagConstraints);
 
         define_location.setBorder(javax.swing.BorderFactory.createTitledBorder("Define Location"));
@@ -277,9 +290,9 @@ public class LocationMasterScreen extends javax.swing.JPanel {
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addGap(18, 18, 18)
                 .addComponent(jCheckBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 48, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 36, Short.MAX_VALUE)
                 .addComponent(jCheckBox2, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(45, 45, 45)
+                .addGap(27, 27, 27)
                 .addComponent(jCheckBox3, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18))
         );
@@ -310,76 +323,126 @@ public class LocationMasterScreen extends javax.swing.JPanel {
             }
         });
 
+        building_combo.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        building_combo.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Civil Building", "Electrical Building ", "Architecture Building", " " }));
+        building_combo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                building_comboActionPerformed(evt);
+            }
+        });
+
+        floor_combo.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        floor_combo.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "1st Floor ", "2nd Floor ", "3rd Floor ", "4th Floor" }));
+
+        jLabel5.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jLabel5.setText("Choose Building ");
+
+        jLabel6.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jLabel6.setText("Choose Floor ");
+
+        jLabel7.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jLabel7.setText("Location Type ");
+
+        type_combo.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        type_combo.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Class ", "Hall", "Lab", " " }));
+        type_combo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                type_comboActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout define_locationLayout = new javax.swing.GroupLayout(define_location);
         define_location.setLayout(define_locationLayout);
         define_locationLayout.setHorizontalGroup(
             define_locationLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(define_locationLayout.createSequentialGroup()
-                .addGap(28, 28, 28)
-                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(save, javax.swing.GroupLayout.PREFERRED_SIZE, 78, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(22, 22, 22))
-            .addGroup(define_locationLayout.createSequentialGroup()
-                .addGap(43, 43, 43)
                 .addGroup(define_locationLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, define_locationLayout.createSequentialGroup()
-                        .addGroup(define_locationLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGroup(define_locationLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(id, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 156, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(code, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 156, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(define_locationLayout.createSequentialGroup()
-                        .addGroup(define_locationLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                            .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGap(46, 46, 46)
                         .addGroup(define_locationLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(desc, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 156, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(capacity, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 156, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addGap(122, 122, 122))
+                            .addGroup(define_locationLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addGroup(define_locationLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                    .addGroup(define_locationLayout.createSequentialGroup()
+                        .addGap(41, 41, 41)
+                        .addComponent(building_combo, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(68, 68, 68)
+                .addGroup(define_locationLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(code, javax.swing.GroupLayout.PREFERRED_SIZE, 156, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(id, javax.swing.GroupLayout.PREFERRED_SIZE, 156, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(capacity, javax.swing.GroupLayout.PREFERRED_SIZE, 156, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(desc, javax.swing.GroupLayout.PREFERRED_SIZE, 156, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(0, 0, Short.MAX_VALUE))
+            .addGroup(define_locationLayout.createSequentialGroup()
+                .addGap(28, 28, 28)
+                .addGroup(define_locationLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(define_locationLayout.createSequentialGroup()
+                        .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(save, javax.swing.GroupLayout.PREFERRED_SIZE, 78, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(22, 22, 22))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, define_locationLayout.createSequentialGroup()
+                        .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 158, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(56, 56, 56)
+                        .addGroup(define_locationLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(floor_combo, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 71, Short.MAX_VALUE)
+                        .addGroup(define_locationLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(type_combo, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 154, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(18, 18, 18))))
         );
         define_locationLayout.setVerticalGroup(
             define_locationLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(define_locationLayout.createSequentialGroup()
-                .addGap(42, 42, 42)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(define_locationLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel6)
+                    .addComponent(jLabel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jLabel7))
+                .addGap(15, 15, 15)
+                .addGroup(define_locationLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(floor_combo, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(building_combo, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(type_combo, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(32, 32, 32)
                 .addGroup(define_locationLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(id, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(24, 24, 24)
-                .addGroup(define_locationLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGap(31, 31, 31)
+                .addGroup(define_locationLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(code, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(24, 24, 24)
+                .addGap(28, 28, 28)
                 .addGroup(define_locationLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
                     .addComponent(desc, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(26, 26, 26)
+                .addGroup(define_locationLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(capacity, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGroup(define_locationLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(define_locationLayout.createSequentialGroup()
-                        .addGap(29, 29, 29)
-                        .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(230, 230, 230)
+                        .addComponent(save, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(define_locationLayout.createSequentialGroup()
-                        .addGap(18, 18, 18)
-                        .addComponent(capacity, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 58, Short.MAX_VALUE)
-                .addGroup(define_locationLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, define_locationLayout.createSequentialGroup()
-                        .addComponent(save, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(38, 38, 38))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, define_locationLayout.createSequentialGroup()
-                        .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(23, 23, 23))))
+                        .addGap(63, 63, 63)
+                        .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(23, 23, 23))
         );
 
         gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 13;
+        gridBagConstraints.gridx = 7;
         gridBagConstraints.gridy = 0;
-        gridBagConstraints.gridheight = 5;
-        gridBagConstraints.ipady = 52;
+        gridBagConstraints.gridheight = 4;
+        gridBagConstraints.ipadx = 59;
+        gridBagConstraints.ipady = -14;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(79, 35, 0, 22);
+        gridBagConstraints.insets = new java.awt.Insets(52, 72, 57, 101);
         add(define_location, gridBagConstraints);
     }//GEN-END:initComponents
 
@@ -428,12 +491,13 @@ public class LocationMasterScreen extends javax.swing.JPanel {
     private void updateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_updateActionPerformed
    if (Table.getSelectedRow()>=0)
    {     try{
-
             //   Location_idUpdate = 1;
              id.setText(Table.getValueAt(Table.getSelectedRow(), 0).toString());
              code.setText(Table.getValueAt(Table.getSelectedRow(), 1).toString());
              desc.setText(Table.getValueAt(Table.getSelectedRow(), 2).toString());
              capacity.setText(Table.getValueAt(Table.getSelectedRow(), 3).toString());
+             floor_combo.setSelectedItem(Table.getValueAt(Table.getSelectedRow(), 4).toString());
+             type_combo.setSelectedItem(Table.getValueAt(Table.getSelectedRow(), 5).toString());
              define_location.setVisible(true);
                Location_idUpdate = 1;
              //  DefineLocation define_update  = new DefineLocation();
@@ -460,17 +524,27 @@ public class LocationMasterScreen extends javax.swing.JPanel {
     }//GEN-LAST:event_updateActionPerformed
 
     private void saveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_saveActionPerformed
-        try{
+        try{ 
+            //To get values from comboBox
+            String floor =  floor_combo.getSelectedItem().toString();
+            String type =  type_combo.getSelectedItem().toString();
+            
+            //To insert location Data
             LocationDto LocationObject = new LocationDto();
             LocationObject.setLocation_id(Integer.parseInt(id.getText()));
             LocationObject.setCode(code.getText());
             LocationObject.setCapacity(Integer.parseInt(capacity.getText()));
             LocationObject.setDescription(desc.getText());
+           // LocationObject.setFloor(new FloorDto(Integer.parseInt(floor)));
+           // LocationObject.setType(new LocationTypeDto(type));
+           LocationObject.setFloor_code(floor);
+            LocationObject.setLocationtype(type); 
+            
             if(Location_idUpdate!=0)
             {
-             //   LocationObject.setLocation_id(this.getLocation_idUpdate());
+                //   LocationObject.setLocation_id(this.getLocation_idUpdate());
                 if(Locationbusiness.updateLocation(LocationObject)) {
-                JOptionPane.showMessageDialog(this, "Location Updated Successfully");
+                    JOptionPane.showMessageDialog(this, "Location Updated Successfully");
                     setTableModel(Locationbusiness.ListAll());
                     Table.repaint();  }
                 else
@@ -482,11 +556,11 @@ public class LocationMasterScreen extends javax.swing.JPanel {
                 Table.repaint();
             }else
             JOptionPane.showMessageDialog(this, "Error occured");
-        }   
-           
-        } catch(java.lang.NumberFormatException e){
-            JOptionPane.showMessageDialog(this, "Error occured, There is an Error in data Or Some Of Data is Missed !");
         }
+
+        } //catch(java.lang.NumberFormatException e){
+           // JOptionPane.showMessageDialog(this, "Error occured, There is an Error in data Or Some Of Data is Missed !");
+       // }
         catch(Exception e){
             e.printStackTrace();
         }
@@ -496,14 +570,24 @@ public class LocationMasterScreen extends javax.swing.JPanel {
         // TODO add your handling code here:
     }//GEN-LAST:event_idActionPerformed
 
+    private void type_comboActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_type_comboActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_type_comboActionPerformed
+
+    private void building_comboActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_building_comboActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_building_comboActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTable Table;
+    private javax.swing.JComboBox building_combo;
     private javax.swing.JTextField capacity;
     private javax.swing.JTextField code;
     private javax.swing.JPanel define_location;
     private javax.swing.JButton delete;
     private javax.swing.JTextField desc;
+    private javax.swing.JComboBox floor_combo;
     private javax.swing.JTextField id;
     private javax.swing.JButton insert;
     private javax.swing.JCheckBox jCheckBox1;
@@ -513,12 +597,16 @@ public class LocationMasterScreen extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTextField jTextField1;
     private javax.swing.JPanel master;
     private javax.swing.JButton save;
     private javax.swing.JButton search;
+    private javax.swing.JComboBox type_combo;
     private javax.swing.JButton update;
     // End of variables declaration//GEN-END:variables
 

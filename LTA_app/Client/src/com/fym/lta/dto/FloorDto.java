@@ -8,6 +8,11 @@ public class FloorDto {
     private String code, Description;
     private List<LocationDto> floor_Location;
 
+    public FloorDto(int Floor_id) {
+        super();
+        this.Floor_id = Floor_id;
+    }
+
     public FloorDto(int Floor_id, String code, String Description,
                     List<LocationDto> floor_Location) {
         super();

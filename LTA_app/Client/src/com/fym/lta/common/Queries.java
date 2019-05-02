@@ -91,7 +91,7 @@ public class Queries {
 
 
     //________________________________ LOCATION MODULE __________________________________
-    public static final String INSER_NEW_LOCATION = "INSERT INTO LOCATION (L_ID ,CODE , DESCRIPTION,CAPACITY) VALUES(?,?,?,?)";
+    public static final String INSER_NEW_LOCATION = "INSERT INTO LOCATION (L_ID ,CODE , DESCRIPTION,CAPACITY ,TYPE_CODE,FLOOR_CODE) VALUES(?,?,?,?,?,?)";
     
     public static final String INSER_NEW_OCCUPATION_PURPOSE = "INSERT INTO LOCATION (OCCUPATION_PURPOSE) VALUES(?)";
 
@@ -102,7 +102,7 @@ public class Queries {
     public static final String IS_LOCATION_EXIST = "SELECT L_ID FROM LOCATION WHERE CODE = ?";
 
     public static final String UPDATE_LOCATION =
-        "UPDATE LOCATION SET   CODE =? , DESCRIPTION = ?, CAPACITY = ? WHERE L_ID =?";
+        "UPDATE LOCATION SET   CODE =? , DESCRIPTION = ?, CAPACITY = ? , TYPE_CODE = ? , FLOOR_CODE = ? WHERE L_ID =?";
 
     public static final String LOCATION_SEARCH = "SELECT * FROM LOCATION WHERE LOWER(CODE) LIKE ?";
 

@@ -2,7 +2,9 @@ package com.fym.lta.dao;
 
 import com.fym.lta.common.ConnectionFactory;
 import com.fym.lta.common.Queries;
+import com.fym.lta.dto.FloorDto;
 import com.fym.lta.dto.LocationDto;
+import com.fym.lta.dto.LocationTypeDto;
 import com.fym.lta.ui.DefineLocation;
 
 import java.util.ArrayList;
@@ -32,7 +34,13 @@ public class LocationDaoImp implements LocationDao {
                      location.setLocation_id(jdbc.getInt(1));
                      location.setCode(jdbc.getString(2));
                      location.setDescription(jdbc.getString(3));
-                     location.setCapacity(jdbc.getInt(5));           
+                     location.setCapacity(jdbc.getInt(5));
+                     location.setLocationtype(jdbc.getString(6));
+                     location.setFloor_code(jdbc.getString(7));
+                         
+                   //location.setType(new LocationTypeDto(jdbc.getString(6)));
+                  // location.setFloor(new FloorDto(jdbc.getInt(7)));               
+                      
                      locat.add(location);
                   }
               }
@@ -71,6 +79,10 @@ public class LocationDaoImp implements LocationDao {
                     jdbc.setString(2, Location.getCode());
                     jdbc.setString(3, Location.getDescription());
                     jdbc.setInt(4, Location.getCapacity());
+                  //jdbc.setString(5, Location.getType().getCode());
+                  //jdbc.setInt(6, Location.getFloor().getFloor_id());
+                    jdbc.setString(5, Location.getLocationtype());
+                    jdbc.setString(6, Location.getFloor_code());
                     jdbc.execute(); 
                    
                     return true;
@@ -95,11 +107,15 @@ public class LocationDaoImp implements LocationDao {
                     jdbc.setPassword(ConnectionFactory.getPassword());
                     
                     jdbc.setCommand(Queries.UPDATE_LOCATION);
-                    
-                    jdbc.setInt(4, Location.getLocation_id());
                     jdbc.setString(1, Location.getCode());
                     jdbc.setString(2, Location.getDescription());
                     jdbc.setInt(3, Location.getCapacity());
+                  //jdbc.setString(4, Location.getType().getCode());
+                 // jdbc.setInt(5,Location.getFloor().getFloor_id());
+                    jdbc.setString(4, Location.getLocationtype());
+                    jdbc.setString(5,Location.getFloor_code());
+                    jdbc.setInt(6, Location.getLocation_id());
+                   
              //System.out.println("-------->"+Location.getLocation_id());
                     jdbc.execute();   
                     return true;  
