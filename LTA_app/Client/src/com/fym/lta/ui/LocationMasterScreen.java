@@ -76,11 +76,23 @@ public class LocationMasterScreen extends javax.swing.JPanel {
     /** Creates new form MasterScreen */
     public LocationMasterScreen() {
         initComponents();
+
        
         define_location.setVisible(false);
         
       if(Locationbusiness.ListAll()!=null)
       setTableModel(Locationbusiness.ListAll());
+      if(Locationbusiness.ListAll()!=null)
+      setTableModel(Locationbusiness.ListAll());
+
+      if(Locationbusiness.ListAll()!=null)
+      setTableModel(Locationbusiness.ListAll());
+      
+        // roleID = 12
+        // now one step we will create an object of ScreenBao to know the current permission 
+        String permissionType = new BaoFactory().createScreenBao().getCurrentPermission(12);
+        Utilities.mandate(updateLocationBtn, insertLocationBtn , deleteLocationBtn ,12,permissionType);
+
     }
   
     /** This method is called from within the constructor to
@@ -95,9 +107,9 @@ public class LocationMasterScreen extends javax.swing.JPanel {
         master = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         Table = new javax.swing.JTable();
-        insert = new javax.swing.JButton();
-        delete = new javax.swing.JButton();
-        update = new javax.swing.JButton();
+        insertLocationBtn = new javax.swing.JButton();
+        deleteLocationBtn = new javax.swing.JButton();
+        updateLocationBtn = new javax.swing.JButton();
         jTextField1 = new javax.swing.JTextField();
         search = new javax.swing.JButton();
         define_location = new javax.swing.JPanel();
@@ -130,6 +142,7 @@ public class LocationMasterScreen extends javax.swing.JPanel {
 
         Table.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
+
                 {null, null, null, null, null, null, null},
                 {null, null, null, null, null, null, null},
                 {null, null, null, null, null, null, null},
@@ -161,7 +174,43 @@ public class LocationMasterScreen extends javax.swing.JPanel {
                 {null, null, null, null, null, null, null},
                 {null, null, null, null, null, null, null},
                 {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null}
+                {null, null, null, null, null, null, null},
+
+                {null, null, null, null},
+
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+
             },
             new String [] {
                 "Title 1", "Title 2", "Title 3", "Title 4", "Title 5", "Title 6", "Title 7"
@@ -190,11 +239,14 @@ public class LocationMasterScreen extends javax.swing.JPanel {
         gridBagConstraints.insets = new java.awt.Insets(46, 55, 57, 0);
         add(master, gridBagConstraints);
 
+
         insert.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        insert.setText("Insert New Location ");
-        insert.addActionListener(new java.awt.event.ActionListener() {
+
+        insertLocationBtn.setText("Insert New Location ");
+        insertLocationBtn.addActionListener(new java.awt.event.ActionListener() {
+
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                insertActionPerformed(evt);
+                insertLocationBtnActionPerformed(evt);
             }
         });
         gridBagConstraints = new java.awt.GridBagConstraints();
@@ -204,14 +256,22 @@ public class LocationMasterScreen extends javax.swing.JPanel {
         gridBagConstraints.ipadx = 14;
         gridBagConstraints.ipady = 30;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(85, 128, 0, 0);
-        add(insert, gridBagConstraints);
 
-        delete.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        delete.setText("Delete Location ");
-        delete.addActionListener(new java.awt.event.ActionListener() {
+       
+        add(insertLocationBtn, gridBagConstraints);
+
+        gridBagConstraints.insets = new java.awt.Insets(73, 151, 0, 0);
+        add(insertLocationBtn, gridBagConstraints);
+
+
+
+        deleteLocationBtn.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18
+
+        deleteLocationBtn.setText("Delete Location ");
+        deleteLocationBtn.addActionListener(new java.awt.event.ActionListener() {
+
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                deleteActionPerformed(evt);
+                deleteLocationBtnActionPerformed(evt);
             }
         });
         gridBagConstraints = new java.awt.GridBagConstraints();
@@ -221,14 +281,25 @@ public class LocationMasterScreen extends javax.swing.JPanel {
         gridBagConstraints.ipadx = 31;
         gridBagConstraints.ipady = 30;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(85, 148, 0, 0);
-        add(delete, gridBagConstraints);
 
-        update.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        update.setText("Update Location ");
-        update.addActionListener(new java.awt.event.ActionListener() {
+        gridBagConstraints.insets = new java.awt.Insets(85, 148, 0, 0);
+        add(deleteLocationBtn, gridBagConstraints);
+
+        gridBagConstraints.insets = new java.awt.Insets(73, 144, 0, 0);
+        add(deleteLocationBtn, gridBagConstraints);
+
+        gridBagConstraints.insets = new java.awt.Insets(73, 144, 0, 0);
+        add(deleteLocationBtn, gridBagConstraints);
+
+
+        updateLocationBtn.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        
+
+        updateLocationBtn.setText("Update Location ");
+        updateLocationBtn.addActionListener(new java.awt.event.ActionListener() {
+
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                updateActionPerformed(evt);
+                updateLocationBtnActionPerformed(evt);
             }
         });
         gridBagConstraints = new java.awt.GridBagConstraints();
@@ -237,8 +308,16 @@ public class LocationMasterScreen extends javax.swing.JPanel {
         gridBagConstraints.ipadx = 35;
         gridBagConstraints.ipady = 30;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+
         gridBagConstraints.insets = new java.awt.Insets(85, 85, 0, 0);
-        add(update, gridBagConstraints);
+        add( updateLocationBtn, gridBagConstraints);
+
+        gridBagConstraints.insets = new java.awt.Insets(73, 31, 0, 0);
+        add( updateLocationBtn, gridBagConstraints);
+
+        gridBagConstraints.insets = new java.awt.Insets(73, 31, 0, 0);
+        add(updateLocationBtn, gridBagConstraints);
+
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 0;
@@ -453,13 +532,14 @@ public class LocationMasterScreen extends javax.swing.JPanel {
         add(define_location, gridBagConstraints);
     }//GEN-END:initComponents
 
-    private void insertActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_insertActionPerformed
 
-      define_location.setVisible(true); 
+   
 
-   // UsersScreen.createPopupMenu(new DefineLocation());    
+    
+    private void insertLocationBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_insertLocationBtnActionPerformed
+    define_location.setVisible(true);  
+    }//GEN-LAST:event_insertLocationBtnActionPerformed
 
-    }//GEN-LAST:event_insertActionPerformed
 
     private void searchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchActionPerformed
     try {
@@ -475,7 +555,7 @@ public class LocationMasterScreen extends javax.swing.JPanel {
     }   
     }//GEN-LAST:event_searchActionPerformed
 
-    private void deleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteActionPerformed
+    private void deleteLocationBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteLocationBtnActionPerformed
     try{
         int LocationIndex = Integer.parseInt(Table.getValueAt(Table.getSelectedRow(), 0).toString());
         LocationDto selected_Location = new LocationDto(); // selected Location, To delete.
@@ -493,9 +573,9 @@ public class LocationMasterScreen extends javax.swing.JPanel {
             catch(Exception e){
             e.printStackTrace();
             }
-    }//GEN-LAST:event_deleteActionPerformed
+    }//GEN-LAST:event_deleteLocationBtnActionPerformed
 
-    private void updateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_updateActionPerformed
+    private void updateLocationBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_updateLocationBtnActionPerformed
    if (Table.getSelectedRow()>=0)
    {     try{
             //   Location_idUpdate = 1;
@@ -529,7 +609,7 @@ public class LocationMasterScreen extends javax.swing.JPanel {
      }
    else JOptionPane.showMessageDialog(this, " you should select a location ");
    
-    }//GEN-LAST:event_updateActionPerformed
+    }//GEN-LAST:event_updateLocationBtnActionPerformed
 
     private void saveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_saveActionPerformed
         try{ 
@@ -597,6 +677,7 @@ public class LocationMasterScreen extends javax.swing.JPanel {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTable Table;
+
     private javax.swing.JComboBox building_combo;
     private javax.swing.JTextField capacity;
     private javax.swing.JTextField code;
@@ -617,13 +698,21 @@ public class LocationMasterScreen extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JPanel jPanel2;
+
+    private javax.swing.JButton deleteLocationBtn;
+    private javax.swing.JButton insertLocationBtn;
+
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTextField jTextField1;
     private javax.swing.JPanel master;
     private javax.swing.JButton save;
     private javax.swing.JButton search;
+
     private javax.swing.JComboBox type_combo;
-    private javax.swing.JButton update;
+
+
+    private javax.swing.JButton updateLocationBtn;
+
     // End of variables declaration//GEN-END:variables
 
 }

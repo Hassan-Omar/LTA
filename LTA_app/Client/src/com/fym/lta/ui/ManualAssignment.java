@@ -41,6 +41,11 @@ public class ManualAssignment extends javax.swing.JPanel {
             // TODO: Add catch code
             e.printStackTrace();
         }
+        // roleID = 13 
+        // now one step we will create an object of ScreenBao to know the current permission 
+        //String permissionType = new BaoFactory().createScreenBao().getCurrentPermission(13);
+       // Utilities.mandate(ubdateUserBTN,insertUserBTN , deleteUserBTN ,13,permissionType);
+   
     }
 
     /** This method is called from within the constructor to

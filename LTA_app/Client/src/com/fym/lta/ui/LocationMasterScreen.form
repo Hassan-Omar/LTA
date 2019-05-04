@@ -82,7 +82,7 @@
         </Container>
       </SubComponents>
     </Container>
-    <Component class="javax.swing.JButton" name="insert">
+    <Component class="javax.swing.JButton" name="insertLocationBtn">
       <Properties>
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
           <Font name="Tahoma" size="18" style="0"/>
@@ -90,7 +90,7 @@
         <Property name="text" type="java.lang.String" value="Insert New Location "/>
       </Properties>
       <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="insertActionPerformed"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="insertLocationBtnActionPerformed"/>
       </Events>
       <Constraints>
         <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignGridBagLayout" value="org.netbeans.modules.form.compat2.layouts.DesignGridBagLayout$GridBagConstraintsDescription">
@@ -98,7 +98,7 @@
         </Constraint>
       </Constraints>
     </Component>
-    <Component class="javax.swing.JButton" name="delete">
+    <Component class="javax.swing.JButton" name="deleteLocationBtn">
       <Properties>
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
           <Font name="Tahoma" size="18" style="0"/>
@@ -106,7 +106,7 @@
         <Property name="text" type="java.lang.String" value="Delete Location "/>
       </Properties>
       <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="deleteActionPerformed"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="deleteLocationBtnActionPerformed"/>
       </Events>
       <Constraints>
         <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignGridBagLayout" value="org.netbeans.modules.form.compat2.layouts.DesignGridBagLayout$GridBagConstraintsDescription">
@@ -114,7 +114,7 @@
         </Constraint>
       </Constraints>
     </Component>
-    <Component class="javax.swing.JButton" name="update">
+    <Component class="javax.swing.JButton" name="updateLocationBtn">
       <Properties>
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
           <Font name="Tahoma" size="18" style="0"/>
@@ -122,7 +122,7 @@
         <Property name="text" type="java.lang.String" value="Update Location "/>
       </Properties>
       <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="updateActionPerformed"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="updateLocationBtnActionPerformed"/>
       </Events>
       <Constraints>
         <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignGridBagLayout" value="org.netbeans.modules.form.compat2.layouts.DesignGridBagLayout$GridBagConstraintsDescription">

@@ -1,11 +1,19 @@
 package com.fym.lta.dto;
 
-import java.util.List;
 
 public class ScreenDto {
     private int Screen_id;
     private String Description;
-    private List<RoleDto> Role_Screens;
+    
+    private RoleDto Role_Screen;
+
+    public void setRole_Screen(RoleDto Role_Screen) {
+        this.Role_Screen = Role_Screen;
+    }
+
+    public RoleDto getRole_Screen() {
+        return Role_Screen;
+    }
 
     public ScreenDto(int i) {
         setScreen_id(i);
@@ -28,11 +36,5 @@ public class ScreenDto {
         return Description;
     }
 
-    public void setRole_Screens(List<RoleDto> Role_Screens) {
-        this.Role_Screens = Role_Screens;
-    }
 
-    public List<RoleDto> getRole_Screens() {
-        return Role_Screens;
-    }
 }

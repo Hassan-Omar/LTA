@@ -9,11 +9,16 @@ import com.fym.lta.dto.DepartmentDto;
  *
  * @author Mina
  */
-public class DepartmentSearch extends javax.swing.JPanel {
+public class DepartmentsScreen extends javax.swing.JPanel {
 
     /** Creates new form DepartmentSearch */
-    public DepartmentSearch() {
+    public DepartmentsScreen() {
         initComponents();
+        // roleID = 4 
+        // now one step we will create an object of ScreenBao to know the current permission 
+        String permissionType = new BaoFactory().createScreenBao().getCurrentPermission(4);
+        Utilities.mandate(departmrntUpdateBtn, departmrntInsertBtn, departmrntDeleteBtn ,4,permissionType);
+        
     }
 
     /** This method is called from within the constructor to
@@ -30,10 +35,11 @@ public class DepartmentSearch extends javax.swing.JPanel {
         btnSearch = new javax.swing.JButton();
         jLabel3 = new javax.swing.JLabel();
         departmentCode_TextField = new javax.swing.JTextField();
-        btnDelete = new javax.swing.JButton();
-        btnUpdate = new javax.swing.JButton();
+        departmrntDeleteBtn = new javax.swing.JButton();
+        departmrntUpdateBtn = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
+        departmrntInsertBtn = new javax.swing.JButton();
 
         jLabel1.setText("Search For Department ");
 
@@ -54,17 +60,17 @@ public class DepartmentSearch extends javax.swing.JPanel {
 
         jLabel3.setText("Code");
 
-        btnDelete.setText("Delete ");
-        btnDelete.addActionListener(new java.awt.event.ActionListener() {
+        departmrntDeleteBtn.setText("Delete ");
+        departmrntDeleteBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnDeleteActionPerformed(evt);
+                departmrntDeleteBtnActionPerformed(evt);
             }
         });
 
-        btnUpdate.setText("Update");
-        btnUpdate.addActionListener(new java.awt.event.ActionListener() {
+        departmrntUpdateBtn.setText("Update");
+        departmrntUpdateBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnUpdateActionPerformed(evt);
+                departmrntUpdateBtnActionPerformed(evt);
             }
         });
 
@@ -81,16 +87,17 @@ public class DepartmentSearch extends javax.swing.JPanel {
         ));
         jScrollPane1.setViewportView(jTable1);
 
+        departmrntInsertBtn.setText("Insert new");
+        departmrntInsertBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                departmrntInsertBtnActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(104, 104, 104)
-                .addComponent(btnUpdate)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(btnDelete)
-                .addGap(196, 196, 196))
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -101,18 +108,28 @@ public class DepartmentSearch extends javax.swing.JPanel {
                             .addGap(67, 67, 67)
                             .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(67, 67, 67)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(departmentName_TextField, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 141, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(departmentCode_TextField, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(88, 88, 88)
-                                .addComponent(btnSearch)))))
-                .addContainerGap(91, Short.MAX_VALUE))
+                                .addGap(104, 104, 104)
+                                .addComponent(departmrntUpdateBtn))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(67, 67, 67)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(departmentName_TextField, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 141, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 72, Short.MAX_VALUE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGroup(layout.createSequentialGroup()
+                                    .addComponent(departmentCode_TextField, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGap(88, 88, 88)
+                                    .addComponent(btnSearch)))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(departmrntDeleteBtn)
+                                .addGap(32, 32, 32)
+                                .addComponent(departmrntInsertBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                .addContainerGap(87, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -123,18 +140,19 @@ public class DepartmentSearch extends javax.swing.JPanel {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(departmentName_TextField, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(departmentCode_TextField, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnSearch, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 32, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnUpdate)
-                    .addComponent(btnDelete))
+                    .addComponent(departmrntUpdateBtn)
+                    .addComponent(departmrntDeleteBtn)
+                    .addComponent(departmrntInsertBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 198, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+                .addGap(18, 18, 18))
         );
     }//GEN-END:initComponents
     
@@ -151,25 +169,30 @@ public class DepartmentSearch extends javax.swing.JPanel {
      
     
     
-    private void btnUpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUpdateActionPerformed
+    private void departmrntUpdateBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_departmrntUpdateBtnActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_btnUpdateActionPerformed
+    }//GEN-LAST:event_departmrntUpdateBtnActionPerformed
 
     private void departmentName_TextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_departmentName_TextFieldActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_departmentName_TextFieldActionPerformed
 
-    private void btnDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteActionPerformed
+    private void departmrntDeleteBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_departmrntDeleteBtnActionPerformed
    // D.setDepartment_id(Integer.parseInt(id_TextField.getText()));
-    }//GEN-LAST:event_btnDeleteActionPerformed
+    }//GEN-LAST:event_departmrntDeleteBtnActionPerformed
+
+    private void departmrntInsertBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_departmrntInsertBtnActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_departmrntInsertBtnActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnDelete;
     private javax.swing.JButton btnSearch;
-    private javax.swing.JButton btnUpdate;
     private javax.swing.JTextField departmentCode_TextField;
     private javax.swing.JTextField departmentName_TextField;
+    private javax.swing.JButton departmrntDeleteBtn;
+    private javax.swing.JButton departmrntInsertBtn;
+    private javax.swing.JButton departmrntUpdateBtn;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;

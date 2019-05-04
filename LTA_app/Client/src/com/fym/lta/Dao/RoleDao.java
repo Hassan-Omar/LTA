@@ -25,5 +25,8 @@ public interface RoleDao {
     
     // this behavior to search for all Roles have the enterd letters
     public List<RoleDto> search_forRole(String code);
+    
+    // this return a number " id of the current user's role " 
+    public int getCurrenRoleID (String username);
 
 }

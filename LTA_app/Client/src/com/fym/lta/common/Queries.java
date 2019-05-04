@@ -21,7 +21,8 @@ public class Queries {
 
     public static final String IS_USERNAME_EXIST = "SELECT USERNAME FROM USERS WHERE USERNAME = ?";
 
-    public static final String USER_SEARCH ="SELECT EMPLOYEE.FNAME , EMPLOYEE.SNAME , EMPLOYEE.TNAME , EMPLOYEE.FAMILY_NAME " +
+    public static final String USER_SEARCH =
+        "SELECT EMPLOYEE.FNAME , EMPLOYEE.SNAME , EMPLOYEE.TNAME , EMPLOYEE.FAMILY_NAME " +
         ",USERS.USERNAME ,USERS.INSERTION_DATE ,USERS.UPDATE_DATE ,USERS.INSERTED_BY ,USERS.UPDATED_BY ,USERS.EMAIL,ROLE.CODE " +
         "FROM EMPLOYEE , USERS , ROLE " +
         "WHERE EMPLOYEE.ID = USERS.EMP_ID AND ROLE.ROLEID = USERS.ROLE_ID AND LOWER(EMAIL) LIKE ? ";
@@ -47,9 +48,21 @@ public class Queries {
 
     public static final String ROLE_SEARCH = "SELECT CODE , DESCRIPTION ,ROLEID FROM ROLE WHERE LOWER(CODE) LIKE ?";
 
+    public static final String CURRENT_ROLE =
+        "SELECT ROLE.ROLEID FROM ROLE ,USERS WHERE  USERS.ROLE_ID = ROLE.ROLEID AND USERS.USERNAME  = ?";
+
+    //___________________________________________________________________________________
+
+
+    //____________________________ AUTHNTICATION MODULE _________________________________
+
     public static final String ROLE_SCREEN_INSERT =
         "INSERT INTO ROLE_SCREEN (ROLEID ,SCREENID ,PERMISSIONTYPE ) VALUES (?,?,?)";
 
+    public static final String GET_CURRENT_PERMISSION =
+        "SELECT PERMISSIONTYPE FROM ROLE_SCREEN WHERE ROLEID = ? AND SCREENID = ? ";
+
+    public static final String GET_AVAILABLE_SCREENS = "SELECT SCREENID FROM ROLE_SCREEN WHERE ROLEID = ? ";
     //___________________________________________________________________________________
 
 

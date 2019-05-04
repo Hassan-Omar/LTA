@@ -19,6 +19,11 @@ public class CourseSearch extends javax.swing.JPanel {
 
 {
         initComponents();
+        
+        // roleID = 6
+        // now one step we will create an object of ScreenBao to know the current permission 
+        String permissionType = new BaoFactory().createScreenBao().getCurrentPermission(6);
+        Utilities.mandate(updateCourseBtn,insertCourseBtn , deleteCourseBtn ,6,permissionType); 
     }
 
     /** This method is called from within the constructor to
@@ -34,9 +39,9 @@ public class CourseSearch extends javax.swing.JPanel {
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jPanel1 = new javax.swing.JPanel();
-        btnUpdate = new javax.swing.JButton();
-        btnDelete = new javax.swing.JButton();
-        btnSave = new javax.swing.JButton();
+        updateCourseBtn = new javax.swing.JButton();
+        deleteCourseBtn = new javax.swing.JButton();
+        insertCourseBtn = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
 
@@ -51,11 +56,11 @@ public class CourseSearch extends javax.swing.JPanel {
 
         jLabel2.setText("Course Name");
 
-        btnUpdate.setText("Update");
+        updateCourseBtn.setText("Update");
 
-        btnDelete.setText("Delete");
+        deleteCourseBtn.setText("Delete");
 
-        btnSave.setText("Save");
+        insertCourseBtn.setText("Insert New");
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -81,32 +86,30 @@ public class CourseSearch extends javax.swing.JPanel {
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(135, 135, 135)
-                .addComponent(btnUpdate)
-                .addGap(157, 157, 157)
-                .addComponent(btnDelete)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 512, Short.MAX_VALUE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(btnSave)
-                .addContainerGap())
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(52, 52, 52)
+                        .addComponent(updateCourseBtn)
+                        .addGap(107, 107, 107)
+                        .addComponent(deleteCourseBtn)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(insertCourseBtn))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 512, Short.MAX_VALUE)))
+                .addGap(81, 81, 81))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnUpdate)
-                    .addComponent(btnDelete))
+                    .addComponent(updateCourseBtn)
+                    .addComponent(deleteCourseBtn)
+                    .addComponent(insertCourseBtn))
                 .addGap(18, 18, 18)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(0, 169, Short.MAX_VALUE)
-                        .addComponent(btnSave))
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 190, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -165,16 +168,16 @@ public class CourseSearch extends javax.swing.JPanel {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnDelete;
-    private javax.swing.JButton btnSave;
     private javax.swing.JButton btnSearch;
-    private javax.swing.JButton btnUpdate;
     private javax.swing.JTextField courseName_textField;
+    private javax.swing.JButton deleteCourseBtn;
+    private javax.swing.JButton insertCourseBtn;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTable1;
+    private javax.swing.JButton updateCourseBtn;
     // End of variables declaration//GEN-END:variables
 
 }
