@@ -15,6 +15,11 @@ public class LocationTypeDto {
         this.code = code;
     }
 
+    public LocationTypeDto(int LocationType_id) {
+        super();
+        this.LocationType_id = LocationType_id;
+    }
+
     public void setLocationType_id(int LocationType_id) {
         this.LocationType_id = LocationType_id;
     }

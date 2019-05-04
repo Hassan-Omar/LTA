@@ -2,7 +2,11 @@
 package com.fym.lta.ui;
 
 import com.fym.lta.bao.BaoFactory;
+import com.fym.lta.bao.BuildingBao;
+import com.fym.lta.bao.FloorBao;
 import com.fym.lta.bao.LocationBao;
+import com.fym.lta.bao.LocationTypeBao;
+import com.fym.lta.dto.BuildingDto;
 import com.fym.lta.dto.FloorDto;
 import com.fym.lta.dto.LocationDto;
 
@@ -48,21 +52,24 @@ public class LocationMasterScreen extends javax.swing.JPanel {
   //   this.capacityUpdate = capacityUpdate ;  
    //  }
       
-    private void setTableModel(List<LocationDto> location){
-        Object [][] locationArr = new Object [location.size()][6];
+    private void setTableModel(List<LocationDto> location  ){
+        Object [][] locationArr = new Object [location.size()][4];
+        
         for(int i =0;i<location.size();i++){
             locationArr[i][0] = location.get(i).getLocation_id();
             locationArr[i][1] = location.get(i).getCode();
             locationArr[i][2] = location.get(i).getDescription();
             locationArr[i][3] = location.get(i).getCapacity();
-            locationArr[i][4] = location.get(i).getFloor_code();
-            locationArr[i][5] = location.get(i).getLocationtype();
+            locationArr[i][4] = location.get(i).getBuilding().getCode();
+            locationArr[i][5] = location.get(i).getFloor().getCode();
+            locationArr[i][6] = location.get(i).getType().getCode();
+          
             
            
         }
         Table.setModel(new javax.swing.table.DefaultTableModel(locationArr,
             new String [] {
-                "Location Id", "Location Code" , "Description", "capacity" , "Floor","Location Type"
+                "Location Id", "Location Code" , "Description", "capacity" ,"Building", "Floor","Location Type"
             }
         ));   }  
    
@@ -344,7 +351,7 @@ public class LocationMasterScreen extends javax.swing.JPanel {
         jLabel7.setText("Location Type ");
 
         type_combo.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        type_combo.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Class ", "Hall", "Lab", " " }));
+        type_combo.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Class", "Hall", "Lab", "" }));
         type_combo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 type_comboActionPerformed(evt);
@@ -496,8 +503,9 @@ public class LocationMasterScreen extends javax.swing.JPanel {
              code.setText(Table.getValueAt(Table.getSelectedRow(), 1).toString());
              desc.setText(Table.getValueAt(Table.getSelectedRow(), 2).toString());
              capacity.setText(Table.getValueAt(Table.getSelectedRow(), 3).toString());
-             floor_combo.setSelectedItem(Table.getValueAt(Table.getSelectedRow(), 4).toString());
-             type_combo.setSelectedItem(Table.getValueAt(Table.getSelectedRow(), 5).toString());
+             building_combo.setSelectedIndex(Integer.parseInt(Table.getValueAt(Table.getSelectedRow(),4).toString()));
+             floor_combo.setSelectedIndex(Integer.parseInt(Table.getValueAt(Table.getSelectedRow(), 5).toString()));
+             type_combo.setSelectedItem(Integer.parseInt(Table.getValueAt(Table.getSelectedRow(),6).toString()));
              define_location.setVisible(true);
                Location_idUpdate = 1;
              //  DefineLocation define_update  = new DefineLocation();
@@ -528,17 +536,25 @@ public class LocationMasterScreen extends javax.swing.JPanel {
             //To get values from comboBox
             String floor =  floor_combo.getSelectedItem().toString();
             String type =  type_combo.getSelectedItem().toString();
-            
+            String building = building_combo.getSelectedItem().toString();
             //To insert location Data
+            BuildingDto BuildingObject = new BuildingDto();
+            FloorDto FloorObject = new FloorDto();
+            LocationTypeDto LocationTypeObject = new LocationTypeDto();
+            
             LocationDto LocationObject = new LocationDto();
             LocationObject.setLocation_id(Integer.parseInt(id.getText()));
             LocationObject.setCode(code.getText());
             LocationObject.setCapacity(Integer.parseInt(capacity.getText()));
             LocationObject.setDescription(desc.getText());
-           // LocationObject.setFloor(new FloorDto(Integer.parseInt(floor)));
-           // LocationObject.setType(new LocationTypeDto(type));
-           LocationObject.setFloor_code(floor);
-            LocationObject.setLocationtype(type); 
+            LocationObject.setFloor(new FloorDto (floor_combo.getSelectedIndex()));
+            LocationObject.setType(new LocationTypeDto(type_combo.getSelectedIndex()));
+            LocationObject.setBuilding(new BuildingDto(building_combo.getSelectedIndex()));
+             FloorObject.setCode(floor);
+             LocationTypeObject.setCode(type);
+            BuildingObject.setCode(building);
+        
+           
             
             if(Location_idUpdate!=0)
             {

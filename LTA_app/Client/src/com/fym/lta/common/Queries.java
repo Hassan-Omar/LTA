@@ -87,22 +87,39 @@ public class Queries {
 
 
     //________________________________ LOCATION MODULE __________________________________
-    public static final String INSER_NEW_LOCATION = "INSERT INTO LOCATION (L_ID ,CODE , DESCRIPTION,CAPACITY ,TYPE_CODE,FLOOR_CODE) VALUES(?,?,?,?,?,?)";
+    public static final String INSER_NEW_LOCATION = "INSERT INTO LOCATION (L_ID ,CODE , DESCRIPTION,CAPACITY ,BUILDING_ID,FLOOR_ID, TYPE_ID) VALUES(?,?,?,?,?,?,?)";
     
     public static final String INSER_NEW_OCCUPATION_PURPOSE = "INSERT INTO LOCATION (OCCUPATION_PURPOSE) VALUES(?)";
 
-    public static final String LIST_ALL_LOCATION = "SELECT * FROM LOCATION ";
+    public static final String LIST_ALL_LOCATION = "select location.l_id,location.code ,location.description ,location.capacity, floor.code floor_code ,building.code building_code ,location_type.\"code \" type_code " + 
+    "from location , floor ,building ,location_type " + 
+    "where location.floor_id = floor.id and location.building_id =building.b_id and location.type_id =location_type.t_id and location.floor_id = floor.id";
 
     public static final String DELETE_LOCATION = "DELETE FROM LOCATION WHERE L_ID  = ? ";
 
     public static final String IS_LOCATION_EXIST = "SELECT L_ID FROM LOCATION WHERE CODE = ?";
 
     public static final String UPDATE_LOCATION =
-        "UPDATE LOCATION SET   CODE =? , DESCRIPTION = ?, CAPACITY = ? , TYPE_CODE = ? , FLOOR_CODE = ? WHERE L_ID =?";
+        "UPDATE LOCATION SET   CODE =? , DESCRIPTION = ?, CAPACITY = ? , TYPE_ID = ? , FLOOR_ID = ? , BUILDING_ID = ? WHERE L_ID =?";
 
     public static final String LOCATION_SEARCH = "SELECT * FROM LOCATION WHERE LOWER(CODE) LIKE ?";
 
     //___________________________________________________________________________________
 
+    //________________________________ EQUIPMENT MODULE __________________________________
+    public static final String INSER_NEW_Equipment = "INSERT INTO Equipment (ID ,CODE , TYPE ,LIFE_SPAN ,USING_START_TIME) VALUES(?,?,?,?,?)";
+    
+    public static final String LIST_ALL_EQUIPMENTS = "SELECT * FROM Equipment ";
+
+    public static final String DELETE_Equipment = "DELETE FROM Equipment WHERE ID  = ? ";
+
+    public static final String IS_Equipment_EXIST = "SELECT ID FROM Equipment WHERE CODE = ?";
+
+    public static final String UPDATE_Equipment =
+        "UPDATE Equipment SET   CODE =? , TYPE = ?, LIFE_SPAN = ? , USING_START_TIME = ?  WHERE ID =?";
+
+    public static final String Equipment_SEARCH = "SELECT * FROM Equipment WHERE LOWER(CODE) LIKE ?";
+
+    //___________________________________________________________________________________
 
 }

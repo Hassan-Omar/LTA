@@ -2,6 +2,8 @@ package com.fym.lta.dao;
 
 import com.fym.lta.dto.EquipmentDto;
 
+import com.fym.lta.dto.LocationDto;
+
 import java.util.List;
 
 public interface EquipmentDao {
@@ -15,7 +17,7 @@ public interface EquipmentDao {
 
     public boolean delete_Equipment (EquipmentDto Equipment);
 
-    // this behavior to search for Equipment by id
+    // this behavior to insert  Equipment 
 
     public boolean insert_Equipment(EquipmentDto Equipment);
 
@@ -26,5 +28,8 @@ public interface EquipmentDao {
     // this behavior to check Equipment existance 
     
     public boolean isExist (EquipmentDto Equipment);
+    
+    // this behavior to search for Equipment by code
+    public List<EquipmentDto> searchEquipments(String code);
     
 }

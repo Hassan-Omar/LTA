@@ -14,7 +14,10 @@ public class EquipmentDto {
         this.type = type;
         this.startingTime = startingTime;
     }
-
+    
+    public EquipmentDto(){
+        
+    }
 
     public void setEquipment_id(int Equipment_id) {
         this.Equipment_id = Equipment_id;

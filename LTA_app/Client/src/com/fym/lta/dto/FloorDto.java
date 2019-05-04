@@ -7,10 +7,34 @@ public class FloorDto {
     private int Floor_id;
     private String code, Description;
     private List<LocationDto> floor_Location;
+    private BuildingDto building ;
+
+    public FloorDto(BuildingDto building) {
+        super();
+        this.building = building;
+    }
 
     public FloorDto(int Floor_id) {
         super();
         this.Floor_id = Floor_id;
+    }
+
+    public void setBuilding(BuildingDto building) {
+        this.building = building;
+    }
+
+    public BuildingDto getBuilding() {
+        return building;
+    }
+
+    public FloorDto (){
+        
+    }
+
+
+    public FloorDto(String code) {
+        super();
+        this.code = code;
     }
 
     public FloorDto(int Floor_id, String code, String Description,

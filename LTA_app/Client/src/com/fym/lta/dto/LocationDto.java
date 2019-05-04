@@ -6,26 +6,17 @@ import java.util.List;
 public class LocationDto {
 
     private int Location_id, capacity ;
-    private FloorDto floor ; 
-    private String floor_code;
+    private FloorDto floor ;
+    private BuildingDto building ;
 
-
-    public void setFloor_code(String floor_code) {
-        this.floor_code = floor_code;
+    public void setBuilding(BuildingDto building) {
+        this.building = building;
     }
 
-    public String getFloor_code() {
-        return floor_code;
+    public BuildingDto getBuilding() {
+        return building;
     }
-
-    public void setLocationtype(String Locationtype) {
-        this.Locationtype = Locationtype;
-    }
-
-    public String getLocationtype() {
-        return Locationtype;
-    }
-    private String Locationtype;
+    
 
     public void setOccupation_purpose(String occupation_purpose) {
         this.occupation_purpose = occupation_purpose;
@@ -44,20 +35,19 @@ public class LocationDto {
     }
 
 
-    private String code, description, color;
+    private String code, description;
     private LocationTypeDto type;
     private List<EquipmentDto> Location_equipments;
     private String occupation_purpose ; 
 
     public LocationDto(int Location_id, int capacity, String code,
-                       String description, String color, LocationTypeDto type,
+                       String description,  LocationTypeDto type,
                        List<EquipmentDto> Location_equipments) {
         super();
         this.Location_id = Location_id;
         this.capacity = capacity;
         this.code = code;
         this.description = description;
-        this.color = color;
         this.type = type;
         this.Location_equipments = Location_equipments;
     }
@@ -98,13 +88,6 @@ public class LocationDto {
         return capacity;
     }
 
-    public void setColor(String color) {
-        this.color = color;
-    }
-
-    public String getColor() {
-        return color;
-    }
 
     public void setType(LocationTypeDto type) {
         this.type = type;

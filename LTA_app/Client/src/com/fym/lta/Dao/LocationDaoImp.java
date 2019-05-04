@@ -2,10 +2,11 @@ package com.fym.lta.dao;
 
 import com.fym.lta.common.ConnectionFactory;
 import com.fym.lta.common.Queries;
+import com.fym.lta.dto.BuildingDto;
 import com.fym.lta.dto.FloorDto;
 import com.fym.lta.dto.LocationDto;
 import com.fym.lta.dto.LocationTypeDto;
-import com.fym.lta.ui.DefineLocation;
+
 
 import java.util.ArrayList;
 import java.util.List;
@@ -34,13 +35,13 @@ public class LocationDaoImp implements LocationDao {
                      location.setLocation_id(jdbc.getInt(1));
                      location.setCode(jdbc.getString(2));
                      location.setDescription(jdbc.getString(3));
-                     location.setCapacity(jdbc.getInt(5));
-                     location.setLocationtype(jdbc.getString(6));
-                     location.setFloor_code(jdbc.getString(7));
-                         
-                   //location.setType(new LocationTypeDto(jdbc.getString(6)));
-                  // location.setFloor(new FloorDto(jdbc.getInt(7)));               
-                      
+                     location.setCapacity(jdbc.getInt(4));
+                   //  location.setLocationtype(jdbc.getString(6));
+                    // location.setFloor_code(jdbc.getString(7));
+                    // location.setBuilding_code(jdbc.getString(14));  
+                     location.setFloor((new FloorDto(jdbc.getString("floor_code")))) ;   
+                     location.setType(new LocationTypeDto(jdbc.getString("type_code")));
+                     location.setBuilding(new BuildingDto(jdbc.getString("building_code"))); 
                      locat.add(location);
                   }
               }
@@ -79,11 +80,27 @@ public class LocationDaoImp implements LocationDao {
                     jdbc.setString(2, Location.getCode());
                     jdbc.setString(3, Location.getDescription());
                     jdbc.setInt(4, Location.getCapacity());
-                  //jdbc.setString(5, Location.getType().getCode());
-                  //jdbc.setInt(6, Location.getFloor().getFloor_id());
-                    jdbc.setString(5, Location.getLocationtype());
-                    jdbc.setString(6, Location.getFloor_code());
+                    jdbc.setInt(5, Location.getBuilding().getBuilding_id());
+                    jdbc.setInt(6, Location.getFloor().getFloor_id());
+                    jdbc.setInt(7, Location.getType().getLocationType_id());
+                    
+                   
+                  //  jdbc.setString(6, Location.getFloor_code());
+                  //  jdbc.setString(7, Location.getLocationtype());
+                   
+                    
                     jdbc.execute(); 
+                   jdbc.setCommand("insert into Building (CODE) VALUES(?)");
+                   jdbc.setString(1,new BuildingDto().getCode());
+                   jdbc.execute();
+                   
+                    jdbc.setCommand("insert into Floor (CODE) VALUES(?)");
+                    jdbc.setString(1,new FloorDto().getCode());
+                    jdbc.execute();
+            
+                    jdbc.setCommand("insert into Location_type (CODE) VALUES(?)");
+                    jdbc.setString(1,new LocationTypeDto().getCode());
+                    jdbc.execute();
                    
                     return true;
                 }
@@ -110,20 +127,22 @@ public class LocationDaoImp implements LocationDao {
                     jdbc.setString(1, Location.getCode());
                     jdbc.setString(2, Location.getDescription());
                     jdbc.setInt(3, Location.getCapacity());
-                  //jdbc.setString(4, Location.getType().getCode());
-                 // jdbc.setInt(5,Location.getFloor().getFloor_id());
-                    jdbc.setString(4, Location.getLocationtype());
-                    jdbc.setString(5,Location.getFloor_code());
-                    jdbc.setInt(6, Location.getLocation_id());
+                    jdbc.setInt(4, Location.getType().getLocationType_id());
+                    jdbc.setInt(5,Location.getFloor().getFloor_id());
+                    jdbc.setInt(6,Location.getBuilding().getBuilding_id());
+                   // jdbc.setString(4, Location.getLocationtype());
+                  //  jdbc.setString(5,Location.getFloor_code());
+                  //  jdbc.setString(6,Location.getBuilding_code());
+                    jdbc.setInt(7, Location.getLocation_id());
                    
              //System.out.println("-------->"+Location.getLocation_id());
                     jdbc.execute();   
                     return true;  
                 }
-                catch(java.sql.SQLIntegrityConstraintViolationException e ){
-                 JOptionPane.showMessageDialog(new DefineLocation(), "Unique Constrain Violated");
-                  return false;
-                        }
+           //     catch(java.sql.SQLIntegrityConstraintViolationException e ){
+            //     JOptionPane.showMessageDialog(new DefineLocation(), "Unique Constrain Violated");
+             //     return false;
+             //           }
             //     catch(java.sql.SQLException e){
               //     JOptionPane.showMessageDialog( new DefineLocation() , "Database Failed");
            //     }
@@ -175,7 +194,7 @@ public class LocationDaoImp implements LocationDao {
                 lSerch.setCode(jdbcRs.getString(2));
                 lSerch.setLocation_id(jdbcRs.getInt(1));
                 lSerch.setDescription(jdbcRs.getString(3));
-                lSerch.setCapacity(jdbcRs.getInt(5));
+                lSerch.setCapacity(jdbcRs.getInt(4));
                  
                 locations.add(lSerch);
 

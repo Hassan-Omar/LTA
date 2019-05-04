@@ -13,6 +13,11 @@ public class BuildingDto {
         return INSERTED_BY;
     }
 
+    public BuildingDto(int building_id) {
+        super();
+        this.building_id = building_id;
+    }
+
     public void setUPDATED_BY(String UPDATED_BY) {
         this.UPDATED_BY = UPDATED_BY;
     }
@@ -35,6 +40,11 @@ public class BuildingDto {
 
     public Date getUPDATE_DATE() {
         return UPDATE_DATE;
+    }
+
+    public BuildingDto(String code) {
+        super();
+        this.code = code;
     }
     private int building_id;
     private String code, Description ,INSERTED_BY, UPDATED_BY;
