@@ -56,6 +56,7 @@ public class MMenu extends javax.swing.JFrame {
         departmentM_Item = new javax.swing.JMenuItem();
         courseM_Item = new javax.swing.JMenuItem();
         staffM_Item = new javax.swing.JMenuItem();
+        jMenuItem1 = new javax.swing.JMenuItem();
         jMenu2 = new javax.swing.JMenu();
         locationMasterM_Item = new javax.swing.JMenuItem();
         locationManualM_Item = new javax.swing.JMenuItem();
@@ -151,6 +152,14 @@ public class MMenu extends javax.swing.JFrame {
             }
         });
         jMenu3.add(staffM_Item);
+
+        jMenuItem1.setText("Equipment");
+        jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem1ActionPerformed(evt);
+            }
+        });
+        jMenu3.add(jMenuItem1);
 
         jMenuBar1.add(jMenu3);
 
@@ -372,6 +381,10 @@ public class MMenu extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_locationTypeM_ItemActionPerformed
 
+    private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
+    switchtoPanel(new EquipmentScreen()); 
+    }//GEN-LAST:event_jMenuItem1ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -423,6 +436,7 @@ public class MMenu extends javax.swing.JFrame {
     private javax.swing.JMenu jMenu5;
     private javax.swing.JMenu jMenu6;
     private javax.swing.JMenuBar jMenuBar1;
+    private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JMenuItem locationAutoM_Item;
     private javax.swing.JMenuItem locationManualM_Item;
     private javax.swing.JMenuItem locationMasterM_Item;

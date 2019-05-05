@@ -1,22 +1,63 @@
 package com.fym.lta.dto;
 
+import java.util.Date;
+
 public class EquipmentDto {
 
-    private int Equipment_id, lifSpan;
-    private String code, type, startingTime;
-
-    public EquipmentDto(int Equipment_id, int lifSpan, String code,
-                        String type, String startingTime) {
-        super();
-        this.Equipment_id = Equipment_id;
-        this.lifSpan = lifSpan;
-        this.code = code;
-        this.type = type;
-        this.startingTime = startingTime;
-    }
+    private int Equipment_id, lifSpan ;
+    private String code, type,insertedBy, updatedBy;
+    private LocationDto location_equipment ;
+    private Date inertion_Date, update_Date, startingTime;
     
+
+    public void setInsertedBy(String insertedBy) {
+        this.insertedBy = insertedBy;
+    }
+
+    public String getInsertedBy() {
+        return insertedBy;
+    }
+
+    public void setUpdatedBy(String updatedBy) {
+        this.updatedBy = updatedBy;
+    }
+
+    public String getUpdatedBy() {
+        return updatedBy;
+    }
+
+    public void setInertion_Date(Date inertion_Date) {
+        this.inertion_Date = inertion_Date;
+    }
+
+    public Date getInertion_Date() {
+        return inertion_Date;
+    }
+
+    public void setUpdate_Date(Date update_Date) {
+        this.update_Date = update_Date;
+    }
+
+    public Date getUpdate_Date() {
+        return update_Date;
+    }
+
+    public void setLocation_equipment(LocationDto location_equipment) {
+        this.location_equipment = location_equipment;
+    }
+
+    public LocationDto getLocation_equipment() {
+        return location_equipment;
+    }
+
+
     public EquipmentDto(){
         
+    }
+
+    public EquipmentDto(int Equipment_id) {
+        super();
+        this.Equipment_id = Equipment_id;
     }
 
     public void setEquipment_id(int Equipment_id) {
@@ -51,11 +92,12 @@ public class EquipmentDto {
         return type;
     }
 
-    public void setStartingTime(String startingTime) {
+    public void setStartingTime(Date startingTime) {
         this.startingTime = startingTime;
     }
 
-    public String getStartingTime() {
+    public Date getStartingTime() {
         return startingTime;
     }
+
 }

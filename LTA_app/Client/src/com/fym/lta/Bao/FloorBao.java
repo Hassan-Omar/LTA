@@ -24,4 +24,11 @@ public interface FloorBao {
      * delete a Floor
      */
     public boolean deleteFloor(FloorDto floor);
+    
+    /**
+     * list All Floors 
+     */
+
+    public List<FloorDto> listAll();
+
 }

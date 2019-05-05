@@ -32,4 +32,7 @@ public interface EquipmentDao {
     // this behavior to search for Equipment by code
     public List<EquipmentDto> searchEquipments(String code);
     
+    //this behavior to save list of Equipment in the location
+    public boolean save_Equipment(List<EquipmentDto> equipment,LocationDto location);
+    
 }

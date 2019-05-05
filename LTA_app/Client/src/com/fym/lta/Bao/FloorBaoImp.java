@@ -17,4 +17,8 @@ public class FloorBaoImp implements FloorBao {
     public boolean deleteFloor(FloorDto floor) {
         return false;
     }
+    
+    public List<FloorDto> listAll(){
+        return Collections.emptyList();   
+    }
 }

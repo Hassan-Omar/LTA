@@ -1,6 +1,6 @@
 <References xmlns="http://xmlns.oracle.com/adf/jndi">
-  <Reference name="her_connection" className="oracle.jdeveloper.db.adapter.DatabaseProvider"
-             credentialStoreKey="her_connection" xmlns="">
+  <Reference name="system2" className="oracle.jdeveloper.db.adapter.DatabaseProvider" credentialStoreKey="system2"
+             xmlns="">
     <Factory className="oracle.jdevimpl.db.adapter.DatabaseProviderFactory1212"/>
     <RefAddresses>
       <StringRefAddr addrType="sid">
@@ -16,16 +16,19 @@
         <Contents>localhost</Contents>
       </StringRefAddr>
       <StringRefAddr addrType="user">
-        <Contents>hr</Contents>
+        <Contents>sys</Contents>
       </StringRefAddr>
       <SecureRefAddr addrType="password"/>
       <StringRefAddr addrType="oraDriverType">
         <Contents>thin</Contents>
       </StringRefAddr>
+      <StringRefAddr addrType="role">
+        <Contents>SYSDBA</Contents>
+      </StringRefAddr>
     </RefAddresses>
   </Reference>
-  <Reference name="LTAConnection" className="oracle.jdeveloper.db.adapter.DatabaseProvider"
-             credentialStoreKey="LTAConnection" xmlns="">
+  <Reference name="LTAconnection" className="oracle.jdeveloper.db.adapter.DatabaseProvider"
+             credentialStoreKey="LTAconnection" xmlns="">
     <Factory className="oracle.jdevimpl.db.adapter.DatabaseProviderFactory1212"/>
     <RefAddresses>
       <StringRefAddr addrType="sid">
@@ -50,6 +53,18 @@
     </RefAddresses>
   </Reference>
 </References>
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

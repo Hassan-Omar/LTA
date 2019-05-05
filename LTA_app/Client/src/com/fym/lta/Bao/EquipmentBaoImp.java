@@ -4,9 +4,9 @@ import com.fym.lta.dao.DaoFactory;
 import com.fym.lta.dao.EquipmentDao;
 
 import com.fym.lta.dto.EquipmentDto;
+
 import com.fym.lta.dto.LocationDto;
 
-import java.util.Collections;
 import java.util.List;
 
 public class EquipmentBaoImp implements EquipmentBao {
@@ -35,12 +35,17 @@ public class EquipmentBaoImp implements EquipmentBao {
     { return daoEquipment.Update_Equipment(Equipment);
                    }
 
-    @Override
+  
    public List<EquipmentDto> SearchEquipment(String name){
         return daoEquipment. searchEquipments(name);
     }
     
     public List<EquipmentDto> ListAll() {
         return daoEquipment.getAll_Equipments();
+    }
+    
+    public boolean saveEquipment(List<EquipmentDto> equipment,LocationDto locat){
+        
+    return daoEquipment.save_Equipment(equipment,locat);
     }
 }

@@ -63,6 +63,11 @@ public class Login extends javax.swing.JFrame {
                 login_btnMouseClicked(evt);
             }
         });
+        login_btn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                login_btnActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -166,6 +171,10 @@ public class Login extends javax.swing.JFrame {
     
 
     }//GEN-LAST:event_login_btnMouseClicked
+
+    private void login_btnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_login_btnActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_login_btnActionPerformed
 
     /**
      * @param args the command line arguments

@@ -3,17 +3,26 @@ package com.fym.lta.ui;
 
 import com.fym.lta.bao.BaoFactory;
 import com.fym.lta.bao.BuildingBao;
+import com.fym.lta.bao.EquipmentBao;
 import com.fym.lta.bao.FloorBao;
 import com.fym.lta.bao.LocationBao;
 import com.fym.lta.bao.LocationTypeBao;
+import com.fym.lta.bao.LoginEngine;
 import com.fym.lta.dto.BuildingDto;
+import com.fym.lta.dto.EquipmentDto;
 import com.fym.lta.dto.FloorDto;
 import com.fym.lta.dto.LocationDto;
 
 import com.fym.lta.dto.LocationTypeDto;
 
+import com.fym.lta.dto.RoleDto;
+
+import com.fym.lta.dto.ScreenDto;
+
 import java.awt.BorderLayout;
 
+import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import javax.persistence.Table;
@@ -28,66 +37,57 @@ import javax.swing.SwingUtilities;
  */
 public class LocationMasterScreen extends javax.swing.JPanel {
     private LocationBao Locationbusiness  = new BaoFactory().createLocationBao();
+    private EquipmentBao Equipmentbuisness = new BaoFactory().createEquipmentBao();
     private int Location_idUpdate ;
+    List<BuildingDto> Allbuildings = new BaoFactory().createBuildingBao().listBuilding();
+ //   List<BuildingDto> Allfloors = new BaoFactory().createFloorBao().listAll();
+ //   List<BuildingDto> AlllocationTypes = new BaoFactory().createLocationTypeBao().;
+    List<EquipmentDto> SelectedEquipments =  new ArrayList();
 
-   // public int getLocation_idUpdate() {
-   //  return Location_idUpdate;
-    //}
-    private String codeUpdate = " ";
-    private String descUpdate = " ";
-   // private int capacityUpdate = 0 ;
-    
-    
-   // public void setLocationId(int Location_idUpdate) {
-   //  this.Location_idUpdate = Location_idUpdate;
-  //  }
 
-    public void setLocationUpdateCode(String codeUpdate) {
-     this.codeUpdate = codeUpdate ;  
+    //To add comboBox items//
+    // We get a list of saved items in Database//
+ void listComboBuildings(List<BuildingDto> building) {
+     for (int i = 0; i < building.size(); i++) {
+         building_combo.addItem(building.get(i).getCode());
      }
-    public void setLocationUpdateDesc(String descUpdate) {
-     this.descUpdate = descUpdate ;  
-     }
-  //  public void setLocationUpdateCap(int capacityUpdate) {
-  //   this.capacityUpdate = capacityUpdate ;  
-   //  }
+
+ }
       
     private void setTableModel(List<LocationDto> location  ){
-        Object [][] locationArr = new Object [location.size()][4];
+        Object [][] locationArr = new Object [location.size()][12];
         
         for(int i =0;i<location.size();i++){
             locationArr[i][0] = location.get(i).getLocation_id();
             locationArr[i][1] = location.get(i).getCode();
             locationArr[i][2] = location.get(i).getDescription();
             locationArr[i][3] = location.get(i).getCapacity();
-            locationArr[i][4] = location.get(i).getBuilding().getCode();
-            locationArr[i][5] = location.get(i).getFloor().getCode();
-            locationArr[i][6] = location.get(i).getType().getCode();
+            locationArr[i][4] = location.get(i).getStatus();
+            locationArr[i][5] = location.get(i).getBuilding().getCode();
+            locationArr[i][6] = location.get(i).getFloor().getCode();
+            locationArr[i][7] = location.get(i).getType().getCode();
+            locationArr[i][8] = location.get(i).getInsertedBy();
+            locationArr[i][9] = location.get(i).getInertion_Date();
+            locationArr[i][10] = location.get(i).getUpdatedBy();
+            locationArr[i][11] = location.get(i).getUpdate_Date();
           
             
            
         }
-        Table.setModel(new javax.swing.table.DefaultTableModel(locationArr,
+        LocationTable.setModel(new javax.swing.table.DefaultTableModel(locationArr,
             new String [] {
-                "Location Id", "Location Code" , "Description", "capacity" ,"Building", "Floor","Location Type"
+                "Location Id", "Location Code" , "Description", "capacity" ,"Location Status","Building", "Floor","Location Type" , "Inserted By","Insertion Date","Updated By","Update Date"
             }
         ));   }  
    
     /** Creates new form MasterScreen */
     public LocationMasterScreen() {
         initComponents();
-
-       
+      if(Locationbusiness.ListAll()!=null)
+      setTableModel(Locationbusiness.ListAll());
+        listComboBuildings(Allbuildings);
         define_location.setVisible(false);
         
-      if(Locationbusiness.ListAll()!=null)
-      setTableModel(Locationbusiness.ListAll());
-      if(Locationbusiness.ListAll()!=null)
-      setTableModel(Locationbusiness.ListAll());
-
-      if(Locationbusiness.ListAll()!=null)
-      setTableModel(Locationbusiness.ListAll());
-      
         // roleID = 12
         // now one step we will create an object of ScreenBao to know the current permission 
         String permissionType = new BaoFactory().createScreenBao().getCurrentPermission(12);
@@ -106,7 +106,7 @@ public class LocationMasterScreen extends javax.swing.JPanel {
 
         master = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        Table = new javax.swing.JTable();
+        LocationTable = new javax.swing.JTable();
         insertLocationBtn = new javax.swing.JButton();
         deleteLocationBtn = new javax.swing.JButton();
         updateLocationBtn = new javax.swing.JButton();
@@ -140,111 +140,71 @@ public class LocationMasterScreen extends javax.swing.JPanel {
         master.setBorder(javax.swing.BorderFactory.createTitledBorder("Locations "));
         master.setPreferredSize(new java.awt.Dimension(400, 400));
 
-        Table.setModel(new javax.swing.table.DefaultTableModel(
+        LocationTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-
-                {null, null, null, null},
-
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
-
+                {null, null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null, null}
             },
             new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4", "Title 5", "Title 6", "Title 7"
+                "Title 1", "Title 2", "Title 3", "Title 4", "Title 5", "Title 6", "Title 7", "Title 8", "Title 9", "Title 10", "Title 11", "Title 12"
             }
         ));
-        jScrollPane1.setViewportView(Table);
+        jScrollPane1.setViewportView(LocationTable);
 
         javax.swing.GroupLayout masterLayout = new javax.swing.GroupLayout(master);
         master.setLayout(masterLayout);
         masterLayout.setHorizontalGroup(
             masterLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 945, Short.MAX_VALUE)
+            .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 981, Short.MAX_VALUE)
         );
         masterLayout.setVerticalGroup(
             masterLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 298, Short.MAX_VALUE)
+            .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 333, Short.MAX_VALUE)
         );
 
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 3;
         gridBagConstraints.gridwidth = 7;
-        gridBagConstraints.ipadx = 926;
-        gridBagConstraints.ipady = 275;
+        gridBagConstraints.ipadx = 962;
+        gridBagConstraints.ipady = 310;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(46, 55, 57, 0);
+        gridBagConstraints.insets = new java.awt.Insets(26, 38, 62, 0);
         add(master, gridBagConstraints);
 
-
-        insert.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-
+        insertLocationBtn.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         insertLocationBtn.setText("Insert New Location ");
         insertLocationBtn.addActionListener(new java.awt.event.ActionListener() {
-
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 insertLocationBtnActionPerformed(evt);
             }
@@ -256,20 +216,12 @@ public class LocationMasterScreen extends javax.swing.JPanel {
         gridBagConstraints.ipadx = 14;
         gridBagConstraints.ipady = 30;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-
-       
+        gridBagConstraints.insets = new java.awt.Insets(70, 131, 0, 0);
         add(insertLocationBtn, gridBagConstraints);
 
-        gridBagConstraints.insets = new java.awt.Insets(73, 151, 0, 0);
-        add(insertLocationBtn, gridBagConstraints);
-
-
-
-        deleteLocationBtn.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18
-
+        deleteLocationBtn.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         deleteLocationBtn.setText("Delete Location ");
         deleteLocationBtn.addActionListener(new java.awt.event.ActionListener() {
-
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 deleteLocationBtnActionPerformed(evt);
             }
@@ -281,23 +233,12 @@ public class LocationMasterScreen extends javax.swing.JPanel {
         gridBagConstraints.ipadx = 31;
         gridBagConstraints.ipady = 30;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-
-        gridBagConstraints.insets = new java.awt.Insets(85, 148, 0, 0);
+        gridBagConstraints.insets = new java.awt.Insets(70, 142, 0, 0);
         add(deleteLocationBtn, gridBagConstraints);
-
-        gridBagConstraints.insets = new java.awt.Insets(73, 144, 0, 0);
-        add(deleteLocationBtn, gridBagConstraints);
-
-        gridBagConstraints.insets = new java.awt.Insets(73, 144, 0, 0);
-        add(deleteLocationBtn, gridBagConstraints);
-
 
         updateLocationBtn.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        
-
         updateLocationBtn.setText("Update Location ");
         updateLocationBtn.addActionListener(new java.awt.event.ActionListener() {
-
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 updateLocationBtnActionPerformed(evt);
             }
@@ -308,16 +249,15 @@ public class LocationMasterScreen extends javax.swing.JPanel {
         gridBagConstraints.ipadx = 35;
         gridBagConstraints.ipady = 30;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-
-        gridBagConstraints.insets = new java.awt.Insets(85, 85, 0, 0);
-        add( updateLocationBtn, gridBagConstraints);
-
-        gridBagConstraints.insets = new java.awt.Insets(73, 31, 0, 0);
-        add( updateLocationBtn, gridBagConstraints);
-
-        gridBagConstraints.insets = new java.awt.Insets(73, 31, 0, 0);
+        gridBagConstraints.insets = new java.awt.Insets(70, 98, 0, 0);
         add(updateLocationBtn, gridBagConstraints);
 
+        jTextField1.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jTextField1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextField1ActionPerformed(evt);
+            }
+        });
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 0;
@@ -325,7 +265,7 @@ public class LocationMasterScreen extends javax.swing.JPanel {
         gridBagConstraints.ipadx = 385;
         gridBagConstraints.ipady = 26;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(139, 171, 0, 0);
+        gridBagConstraints.insets = new java.awt.Insets(155, 184, 0, 0);
         add(jTextField1, gridBagConstraints);
 
         search.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
@@ -342,7 +282,7 @@ public class LocationMasterScreen extends javax.swing.JPanel {
         gridBagConstraints.ipadx = 21;
         gridBagConstraints.ipady = 24;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(132, 109, 0, 0);
+        gridBagConstraints.insets = new java.awt.Insets(148, 115, 0, 0);
         add(search, gridBagConstraints);
 
         define_location.setBorder(javax.swing.BorderFactory.createTitledBorder("Define Location"));
@@ -352,12 +292,27 @@ public class LocationMasterScreen extends javax.swing.JPanel {
 
         jCheckBox1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jCheckBox1.setText("Air Condition");
+        jCheckBox1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jCheckBox1ActionPerformed(evt);
+            }
+        });
 
         jCheckBox2.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jCheckBox2.setText("Data Show");
+        jCheckBox2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jCheckBox2ActionPerformed(evt);
+            }
+        });
 
         jCheckBox3.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jCheckBox3.setText("White Board");
+        jCheckBox3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jCheckBox3ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -410,7 +365,6 @@ public class LocationMasterScreen extends javax.swing.JPanel {
         });
 
         building_combo.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        building_combo.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Civil Building", "Electrical Building ", "Architecture Building", " " }));
         building_combo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 building_comboActionPerformed(evt);
@@ -418,7 +372,6 @@ public class LocationMasterScreen extends javax.swing.JPanel {
         });
 
         floor_combo.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        floor_combo.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "1st Floor ", "2nd Floor ", "3rd Floor ", "4th Floor" }));
 
         jLabel5.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jLabel5.setText("Choose Building ");
@@ -430,7 +383,6 @@ public class LocationMasterScreen extends javax.swing.JPanel {
         jLabel7.setText("Location Type ");
 
         type_combo.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        type_combo.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Class", "Hall", "Lab", "" }));
         type_combo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 type_comboActionPerformed(evt);
@@ -528,7 +480,7 @@ public class LocationMasterScreen extends javax.swing.JPanel {
         gridBagConstraints.ipadx = 59;
         gridBagConstraints.ipady = -14;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(52, 72, 57, 101);
+        gridBagConstraints.insets = new java.awt.Insets(68, 66, 62, 114);
         add(define_location, gridBagConstraints);
     }//GEN-END:initComponents
 
@@ -537,86 +489,82 @@ public class LocationMasterScreen extends javax.swing.JPanel {
 
     
     private void insertLocationBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_insertLocationBtnActionPerformed
+    clearData();
+    Location_idUpdate = 0;
     define_location.setVisible(true);  
     }//GEN-LAST:event_insertLocationBtnActionPerformed
 
 
     private void searchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchActionPerformed
     try {
-       
-        if (jTextField1.getText()!= null)
+        define_location.setVisible(false);
+        if (jTextField1.getText()!= null){
         setTableModel(Locationbusiness.searchLocation(jTextField1.getText()));
+        jTextField1.setText(null);}
         else 
         setTableModel(Locationbusiness.ListAll()); 
         
-    } catch (Exception e) {
+    } 
+    catch(java.lang.NullPointerException e){
+        JOptionPane.showMessageDialog(this, "This location isn't existed ");    
+    }
+    catch (Exception e) {
         // TODO: Add catch code
         e.printStackTrace();
-    }   
+    }  
+    
     }//GEN-LAST:event_searchActionPerformed
 
     private void deleteLocationBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteLocationBtnActionPerformed
-    try{
-        int LocationIndex = Integer.parseInt(Table.getValueAt(Table.getSelectedRow(), 0).toString());
-        LocationDto selected_Location = new LocationDto(); // selected Location, To delete.
-        selected_Location.setLocation_id(LocationIndex); 
-        if (Locationbusiness.deleteLocation(selected_Location)) {  //if returned true, location will be deleted
-            JOptionPane.showMessageDialog(this, "Location is Deleted Successfully");
-                setTableModel(Locationbusiness.ListAll()); 
-                Table.repaint() ;
-            }else
-            JOptionPane.showMessageDialog(this, "Error occured");
-            
-            } //catch(java.lang.NumberFormatException e){
-          //  JOptionPane.showMessageDialog(this, "Error occured, There is an Error in data Or Some Of Data is Missed !");  
-         //   }
-            catch(Exception e){
+    if (LocationTable.getSelectedRow() >= 0) {
+          try{ 
+               define_location.setVisible(false);
+               int LocationIndex = Integer.parseInt(LocationTable.getValueAt(LocationTable.getSelectedRow(), 0).toString());
+               LocationDto selected_Location = new LocationDto(); // selected Location, To delete.
+               selected_Location.setLocation_id(LocationIndex); 
+               if (Locationbusiness.deleteLocation(selected_Location)) {  //if returned true, location will be deleted
+                      JOptionPane.showMessageDialog(this, "Location is Deleted Successfully");
+                      setTableModel(Locationbusiness.ListAll()); 
+                      LocationTable.repaint() ; }
+              else
+              JOptionPane.showMessageDialog(this, "Can't delete this Location ! ");         
+             } 
+         catch(Exception e){
             e.printStackTrace();
             }
+    }
+    else { // if no location is selected on the table
+            JOptionPane.showMessageDialog(this, "you should select a location to delete  ");
+        }
     }//GEN-LAST:event_deleteLocationBtnActionPerformed
 
     private void updateLocationBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_updateLocationBtnActionPerformed
-   if (Table.getSelectedRow()>=0)
-   {     try{
-            //   Location_idUpdate = 1;
-             id.setText(Table.getValueAt(Table.getSelectedRow(), 0).toString());
-             code.setText(Table.getValueAt(Table.getSelectedRow(), 1).toString());
-             desc.setText(Table.getValueAt(Table.getSelectedRow(), 2).toString());
-             capacity.setText(Table.getValueAt(Table.getSelectedRow(), 3).toString());
-             building_combo.setSelectedIndex(Integer.parseInt(Table.getValueAt(Table.getSelectedRow(),4).toString()));
-             floor_combo.setSelectedIndex(Integer.parseInt(Table.getValueAt(Table.getSelectedRow(), 5).toString()));
-             type_combo.setSelectedItem(Integer.parseInt(Table.getValueAt(Table.getSelectedRow(),6).toString()));
+     if (LocationTable.getSelectedRow()>=0) {
+            id.setVisible(false); // No need to update Id
+           try{
+             id.setText(LocationTable.getValueAt(LocationTable.getSelectedRow(), 0).toString());
+             code.setText(LocationTable.getValueAt(LocationTable.getSelectedRow(), 1).toString());
+             desc.setText(LocationTable.getValueAt(LocationTable.getSelectedRow(), 2).toString());
+             capacity.setText(LocationTable.getValueAt(LocationTable.getSelectedRow(), 3).toString());
+           //  building_combo.setSelectedIndex(Integer.parseInt(Table.getValueAt(Table.getSelectedRow(),4).toString()));
+           //  floor_combo.setSelectedIndex(Integer.parseInt(Table.getValueAt(Table.getSelectedRow(), 5).toString()));
+           //  type_combo.setSelectedItem(Integer.parseInt(Table.getValueAt(Table.getSelectedRow(),6).toString()));
              define_location.setVisible(true);
                Location_idUpdate = 1;
-             //  DefineLocation define_update  = new DefineLocation();
-             //  define_update.setLocationId(Integer.parseInt(Table.getValueAt(Table.getSelectedRow(), 0).toString())); //Passa ID
-            //   define_update.setLocationUpdateCode(Table.getValueAt(Table.getSelectedRow(), 1).toString()); // pass code
-             //  define_update.setLocationUpdateDesc(Table.getValueAt(Table.getSelectedRow(), 2).toString()); // pass description
-            //   define_update.setLocationUpdateCap(Integer.parseInt(Table.getValueAt(Table.getSelectedRow(), 3).toString())); // pass capacity
-             //  UsersScreen.createPopupMenu(define_update);
-
-              
-               
-     //   DefineLocation define_update  = new DefineLocation();
-     //   createPopupMenu(define_update);
-      //   setTableModel(Locationbusiness.ListAll());
-       //  Table.repaint();
-         
-          
            }catch(Exception e){
                e.printStackTrace();
       }
      }
-   else JOptionPane.showMessageDialog(this, " you should select a location ");
+   else JOptionPane.showMessageDialog(this, " you should select a location to update ");
    
     }//GEN-LAST:event_updateLocationBtnActionPerformed
 
     private void saveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_saveActionPerformed
         try{ 
             //To get values from comboBox
-            String floor =  floor_combo.getSelectedItem().toString();
-            String type =  type_combo.getSelectedItem().toString();
-            String building = building_combo.getSelectedItem().toString();
+            //String floor =  floor_combo.getSelectedItem().toString();
+           // String type =  type_combo.getSelectedItem().toString();
+          
             //To insert location Data
             BuildingDto BuildingObject = new BuildingDto();
             FloorDto FloorObject = new FloorDto();
@@ -627,36 +575,47 @@ public class LocationMasterScreen extends javax.swing.JPanel {
             LocationObject.setCode(code.getText());
             LocationObject.setCapacity(Integer.parseInt(capacity.getText()));
             LocationObject.setDescription(desc.getText());
-            LocationObject.setFloor(new FloorDto (floor_combo.getSelectedIndex()));
-            LocationObject.setType(new LocationTypeDto(type_combo.getSelectedIndex()));
-            LocationObject.setBuilding(new BuildingDto(building_combo.getSelectedIndex()));
-             FloorObject.setCode(floor);
-             LocationTypeObject.setCode(type);
-            BuildingObject.setCode(building);
+            LocationObject.setStatus("Not assigned");
+            FloorObject.setFloor_id(4);
+            LocationObject.setFloor(FloorObject);
+            LocationTypeObject.setLocationType_id(4);
+            LocationObject.setType(LocationTypeObject);
+            BuildingObject.setBuilding_id(Allbuildings.get(building_combo.getSelectedIndex()).getBuilding_id());
+            LocationObject.setBuilding(BuildingObject);
+          //  LocationObject.setBuilding(new BuildingDto(building_combo.getSelectedItem().toString()));
+           // LocationObject.setFloor(new FloorDto (floor_combo.getSelectedIndex()));
+          //  LocationObject.setType(new LocationTypeDto(type_combo.getSelectedIndex()));
+          //  LocationObject.setBuilding(new BuildingDto(building_combo.getSelectedIndex()));
+           //  FloorObject.setCode(floor);
+           //  LocationTypeObject.setCode(type);
+         //   BuildingObject.setCode(building_combo.getSelectedItem().toString());
         
-           
-            
             if(Location_idUpdate!=0)
-            {
-                //   LocationObject.setLocation_id(this.getLocation_idUpdate());
-                if(Locationbusiness.updateLocation(LocationObject)) {
+            {     
+                    LocationObject.setUpdatedBy(LoginEngine.currentUser);
+                    LocationObject.setUpdate_Date(new Date(System.currentTimeMillis()));
+                if(Locationbusiness.updateLocation(LocationObject)) {//&&Equipmentbuisness.saveEquipment(SelectedEquipments, LocationObject)
                     JOptionPane.showMessageDialog(this, "Location Updated Successfully");
                     setTableModel(Locationbusiness.ListAll());
-                    Table.repaint();  }
+                    LocationTable.repaint();  }
                 else
-                JOptionPane.showMessageDialog(this, "Error occured update");}
+                JOptionPane.showMessageDialog(this, "Error occured in update");}
+            
             else
-            {    if( Locationbusiness.insertLocation(LocationObject)){
+            {    
+            LocationObject.setInsertedBy(LoginEngine.currentUser);
+            LocationObject.setInertion_Date(new Date(System.currentTimeMillis()));
+                if( Locationbusiness.insertLocation(LocationObject)){
                 JOptionPane.showMessageDialog(this, "Location Saved Successfully");
                 setTableModel(Locationbusiness.ListAll());
-                Table.repaint();
+               // Table.repaint();
             }else
-            JOptionPane.showMessageDialog(this, "Error occured");
+            JOptionPane.showMessageDialog(this, "Error occured in insertion");
         }
 
-        } //catch(java.lang.NumberFormatException e){
-           // JOptionPane.showMessageDialog(this, "Error occured, There is an Error in data Or Some Of Data is Missed !");
-       // }
+        } catch(java.lang.NumberFormatException e){
+            JOptionPane.showMessageDialog(this, "Error occured, There is an Error in data Type Or Some Of Data is Missed !");
+        }
         catch(Exception e){
             e.printStackTrace();
         }
@@ -674,19 +633,33 @@ public class LocationMasterScreen extends javax.swing.JPanel {
         // TODO add your handling code here:
     }//GEN-LAST:event_building_comboActionPerformed
 
+    private void jCheckBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBox1ActionPerformed
+       SelectedEquipments.add(new EquipmentDto(1));
+    }//GEN-LAST:event_jCheckBox1ActionPerformed
+
+    private void jCheckBox2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBox2ActionPerformed
+    SelectedEquipments.add(new EquipmentDto(2));
+    }//GEN-LAST:event_jCheckBox2ActionPerformed
+
+    private void jCheckBox3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBox3ActionPerformed
+    SelectedEquipments.add(new EquipmentDto(3));
+    }//GEN-LAST:event_jCheckBox3ActionPerformed
+
+    private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
+    }//GEN-LAST:event_jTextField1ActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JTable Table;
-
+    private javax.swing.JTable LocationTable;
     private javax.swing.JComboBox building_combo;
     private javax.swing.JTextField capacity;
     private javax.swing.JTextField code;
     private javax.swing.JPanel define_location;
-    private javax.swing.JButton delete;
+    private javax.swing.JButton deleteLocationBtn;
     private javax.swing.JTextField desc;
     private javax.swing.JComboBox floor_combo;
     private javax.swing.JTextField id;
-    private javax.swing.JButton insert;
+    private javax.swing.JButton insertLocationBtn;
     private javax.swing.JCheckBox jCheckBox1;
     private javax.swing.JCheckBox jCheckBox2;
     private javax.swing.JCheckBox jCheckBox3;
@@ -698,21 +671,26 @@ public class LocationMasterScreen extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JPanel jPanel2;
-
-    private javax.swing.JButton deleteLocationBtn;
-    private javax.swing.JButton insertLocationBtn;
-
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTextField jTextField1;
     private javax.swing.JPanel master;
     private javax.swing.JButton save;
     private javax.swing.JButton search;
-
     private javax.swing.JComboBox type_combo;
-
-
     private javax.swing.JButton updateLocationBtn;
-
     // End of variables declaration//GEN-END:variables
+    
+    // this method just to clear text and reset the valus on the insrt panel
+    void clearData() { // clear prvious data
+        id.setText(null);
+        code.setText(null);
+        desc.setText(null);
+        capacity.setText(null);
+     //   building_combo.setSelectedIndex(0);
+     //   floor_combo.setSelectedIndex(0);
+     //   location_combo.setSelectedIndex(0);
 
+        // show hidden components again
+        id.setVisible(true);
+    }
 }

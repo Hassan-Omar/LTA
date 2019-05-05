@@ -2,6 +2,8 @@ package com.fym.lta.bao;
 
 import com.fym.lta.dto.EquipmentDto;
 
+import com.fym.lta.dto.LocationDto;
+
 import java.util.List;
 
 public interface EquipmentBao {
@@ -33,4 +35,12 @@ public interface EquipmentBao {
      * List All Equipments 
      */
     public List<EquipmentDto> ListAll();
+    
+    /**
+     * save List of Equipments in specific location
+     */
+    
+    public boolean saveEquipment(List<EquipmentDto> equipment , LocationDto location);
+    
+   
 }

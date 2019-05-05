@@ -1,6 +1,7 @@
 
 package com.fym.lta.dto;
 
+import java.util.Date;
 import java.util.List;
 
 public class LocationDto {
@@ -11,6 +12,11 @@ public class LocationDto {
 
     public void setBuilding(BuildingDto building) {
         this.building = building;
+    }
+
+    public LocationDto(String code) {
+        super();
+        this.code = code;
     }
 
     public BuildingDto getBuilding() {
@@ -34,11 +40,20 @@ public class LocationDto {
         return floor;
     }
 
+    public void setStatus(String status) {
+        this.status = status;
+    }
 
-    private String code, description;
+    public String getStatus() {
+        return status;
+    }
+
+
+    private String code, description , status ,insertedBy, updatedBy;;
     private LocationTypeDto type;
     private List<EquipmentDto> Location_equipments;
     private String occupation_purpose ; 
+    private Date inertion_Date, update_Date;
 
     public LocationDto(int Location_id, int capacity, String code,
                        String description,  LocationTypeDto type,
@@ -50,6 +65,38 @@ public class LocationDto {
         this.description = description;
         this.type = type;
         this.Location_equipments = Location_equipments;
+    }
+
+    public void setInsertedBy(String insertedBy) {
+        this.insertedBy = insertedBy;
+    }
+
+    public String getInsertedBy() {
+        return insertedBy;
+    }
+
+    public void setUpdatedBy(String updatedBy) {
+        this.updatedBy = updatedBy;
+    }
+
+    public String getUpdatedBy() {
+        return updatedBy;
+    }
+
+    public void setInertion_Date(Date inertion_Date) {
+        this.inertion_Date = inertion_Date;
+    }
+
+    public Date getInertion_Date() {
+        return inertion_Date;
+    }
+
+    public void setUpdate_Date(Date update_Date) {
+        this.update_Date = update_Date;
+    }
+
+    public Date getUpdate_Date() {
+        return update_Date;
     }
 
     public LocationDto() {

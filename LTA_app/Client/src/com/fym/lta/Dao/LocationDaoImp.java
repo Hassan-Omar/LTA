@@ -36,12 +36,14 @@ public class LocationDaoImp implements LocationDao {
                      location.setCode(jdbc.getString(2));
                      location.setDescription(jdbc.getString(3));
                      location.setCapacity(jdbc.getInt(4));
-                   //  location.setLocationtype(jdbc.getString(6));
-                    // location.setFloor_code(jdbc.getString(7));
-                    // location.setBuilding_code(jdbc.getString(14));  
-                     location.setFloor((new FloorDto(jdbc.getString("floor_code")))) ;   
-                     location.setType(new LocationTypeDto(jdbc.getString("type_code")));
-                     location.setBuilding(new BuildingDto(jdbc.getString("building_code"))); 
+                     location.setStatus(jdbc.getString(5));
+                     location.setBuilding(new BuildingDto(jdbc.getString("building_code")));
+                      location.setFloor((new FloorDto(jdbc.getString("floor_code")))) ;   
+                      location.setType(new LocationTypeDto(jdbc.getString("type_code"))); 
+                     location.setInsertedBy(jdbc.getString(9)); 
+                     location.setInertion_Date(jdbc.getDate(10)); 
+                     location.setUpdatedBy(jdbc.getString(11));    
+                     location.setUpdate_Date(jdbc.getDate(12));     
                      locat.add(location);
                   }
               }
@@ -80,28 +82,15 @@ public class LocationDaoImp implements LocationDao {
                     jdbc.setString(2, Location.getCode());
                     jdbc.setString(3, Location.getDescription());
                     jdbc.setInt(4, Location.getCapacity());
-                    jdbc.setInt(5, Location.getBuilding().getBuilding_id());
-                    jdbc.setInt(6, Location.getFloor().getFloor_id());
-                    jdbc.setInt(7, Location.getType().getLocationType_id());
-                    
-                   
-                  //  jdbc.setString(6, Location.getFloor_code());
-                  //  jdbc.setString(7, Location.getLocationtype());
-                   
-                    
+                    jdbc.setString(5, Location.getStatus());
+                    jdbc.setInt(6, Location.getBuilding().getBuilding_id());
+                    jdbc.setInt(7, Location.getFloor().getFloor_id());
+                    jdbc.setInt(8, Location.getType().getLocationType_id());
+                    jdbc.setString(9, Location.getInsertedBy());
+                    jdbc.setDate(10, new java.sql.Date(Location.getInertion_Date().getTime()));
+                   // jdbc.setString(11, Location.getUpdatedBy());
+                  //  jdbc.setDate(12, new java.sql.Date(Location.getUpdate_Date().getTime()));
                     jdbc.execute(); 
-                   jdbc.setCommand("insert into Building (CODE) VALUES(?)");
-                   jdbc.setString(1,new BuildingDto().getCode());
-                   jdbc.execute();
-                   
-                    jdbc.setCommand("insert into Floor (CODE) VALUES(?)");
-                    jdbc.setString(1,new FloorDto().getCode());
-                    jdbc.execute();
-            
-                    jdbc.setCommand("insert into Location_type (CODE) VALUES(?)");
-                    jdbc.setString(1,new LocationTypeDto().getCode());
-                    jdbc.execute();
-                   
                     return true;
                 }
                 catch(java.sql.SQLIntegrityConstraintViolationException e ){
@@ -127,13 +116,15 @@ public class LocationDaoImp implements LocationDao {
                     jdbc.setString(1, Location.getCode());
                     jdbc.setString(2, Location.getDescription());
                     jdbc.setInt(3, Location.getCapacity());
-                    jdbc.setInt(4, Location.getType().getLocationType_id());
-                    jdbc.setInt(5,Location.getFloor().getFloor_id());
-                    jdbc.setInt(6,Location.getBuilding().getBuilding_id());
-                   // jdbc.setString(4, Location.getLocationtype());
-                  //  jdbc.setString(5,Location.getFloor_code());
-                  //  jdbc.setString(6,Location.getBuilding_code());
-                    jdbc.setInt(7, Location.getLocation_id());
+                    jdbc.setString(4, Location.getStatus());
+                    jdbc.setInt(5, Location.getBuilding().getBuilding_id());
+                    jdbc.setInt(6, Location.getFloor().getFloor_id());
+                    jdbc.setInt(7, Location.getType().getLocationType_id());
+                //    jdbc.setString(8, Location.getInsertedBy());
+               //    jdbc.setDate(10, new java.sql.Date(Location.getInertion_Date().getTime()));
+                     jdbc.setString(8, Location.getUpdatedBy());
+                     jdbc.setDate(9, new java.sql.Date(Location.getUpdate_Date().getTime()));
+                    jdbc.setInt(10, Location.getLocation_id());
                    
              //System.out.println("-------->"+Location.getLocation_id());
                     jdbc.execute();   
@@ -182,19 +173,23 @@ public class LocationDaoImp implements LocationDao {
             jdbcRs.setPassword(ConnectionFactory.getPassword());
             jdbcRs.setCommand(Queries.LOCATION_SEARCH);
             jdbcRs.setString(1, '%' + code.toLowerCase().trim() + '%');
-
             jdbcRs.execute();
-
-
             while (jdbcRs.next()) {
                 if (locations == null)
                     locations = new ArrayList<>();
-
                LocationDto lSerch = new LocationDto();
                 lSerch.setCode(jdbcRs.getString(2));
                 lSerch.setLocation_id(jdbcRs.getInt(1));
                 lSerch.setDescription(jdbcRs.getString(3));
                 lSerch.setCapacity(jdbcRs.getInt(4));
+                lSerch.setStatus(jdbcRs.getString(5));
+                lSerch.setBuilding(new BuildingDto(jdbcRs.getString("building_code")));
+                lSerch.setFloor((new FloorDto(jdbcRs.getString("floor_code")))) ;   
+                lSerch.setType(new LocationTypeDto(jdbcRs.getString("type_code"))); 
+                lSerch.setInsertedBy(jdbcRs.getString(9)); 
+                lSerch.setInertion_Date(jdbcRs.getDate(10)); 
+                lSerch.setUpdatedBy(jdbcRs.getString(11));    
+                lSerch.setUpdate_Date(jdbcRs.getDate(12));     
                  
                 locations.add(lSerch);
 
