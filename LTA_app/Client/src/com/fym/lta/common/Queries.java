@@ -98,6 +98,43 @@ public class Queries {
     public static final String BUILDINGS_SEARCH = "SELECT * FROM BUILDING WHERE LOWER(CODE) LIKE ?";
     //___________________________________________________________________________________
 
+    //________________________________ BUILDING_FLOOR MODULE __________________________________
+      public static final String INSER_NEW_FLOOR =
+          "INSERT INTO FLOOR (CODE,DESCRIPTON,INSERTION_DATE,UPDATE_DATE,INSERTED_BY,UPDATED_BY)" +
+          "VALUES (?,?,?,?,?,?)";
+
+      public static final String DELETE_FLOOR = "DELETE FROM FLOOR WHERE CODE = ? ";
+
+      public static final String IS_FLOOR_EXIST = "SELECT ID FROM FLOOR WHERE CODE = ?";
+      
+      public static final String UPDATE_FLOOR =
+          "UPDATE FLOOR SET  DESCRIPTON = ? , UPDATED_BY = ? ,UPDATE_DATE = ? WHERE CODE = ?";
+
+      public static final String LIST_ALL_FLOORS = "SELECT * FROM FLOOR ";
+      
+      public static final String FLOORS_SEARCH = "SELECT * FROM FLOOR WHERE LOWER(CODE) LIKE ?";
+      //___________________________________________________________________________________
+      
+      
+      
+      //________________________________ LOCATION_TYPE MODULE __________________________________
+      public static final String INSER_NEW_LOCATION_TYPE =
+          "INSERT INTO LOCATION_TYPE (CODE,DESCRIPTION,INSERTED_BY,UPDATED_BY,INSERTION_DATE,UPDATE_DATE)" +
+          "VALUES (?,?,?,?,?,?)";
+
+      public static final String DELETE_LOCATION_TYPE = "DELETE FROM LOCATION_TYPE WHERE CODE = ? ";
+
+      public static final String IS_LOCATION_TYPE_EXIST = "SELECT T_ID FROM LOCATION_TYPE WHERE CODE = ?";
+      
+      public static final String UPDATE_LOCATION_TYPE =
+          "UPDATE LOCATION_TYPE SET  DESCRIPTION = ?, UPDATED_BY = ? ,UPDATE_DATE = ? WHERE CODE = ?";
+
+      public static final String LIST_ALL_LOCATION_TYPES = "SELECT * FROM LOCATION_TYPE ";
+      
+      public static final String LOCATION_TYPE_SEARCH = "SELECT * FROM LOCATION_TYPE WHERE LOWER(CODE) LIKE ?";
+      //___________________________________________________________________________________
+      
+
 
     //________________________________ LOCATION MODULE __________________________________
     public static final String INSER_NEW_LOCATION = "INSERT INTO LOCATION (CODE , DESCRIPTION,CAPACITY) VALUES(?,?,?)";

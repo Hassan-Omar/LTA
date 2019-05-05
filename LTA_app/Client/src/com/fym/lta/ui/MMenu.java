@@ -120,6 +120,11 @@ public class MMenu extends javax.swing.JFrame {
 
         floorM_Item.setText("Building Floor");
         floorM_Item.setEnabled(false);
+        floorM_Item.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                floorM_ItemActionPerformed(evt);
+            }
+        });
         jMenu3.add(floorM_Item);
 
         locationTypeM_Item.setText("location Type");
@@ -370,8 +375,12 @@ public class MMenu extends javax.swing.JFrame {
     }//GEN-LAST:event_assigendrolequicksearchActionPerformed
 
     private void locationTypeM_ItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_locationTypeM_ItemActionPerformed
-        // TODO add your handling code here:
+    switchtoPanel(new LocationTypeScreen() ) ;
     }//GEN-LAST:event_locationTypeM_ItemActionPerformed
+
+    private void floorM_ItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_floorM_ItemActionPerformed
+    switchtoPanel(new FloorScreen()) ; 
+    }//GEN-LAST:event_floorM_ItemActionPerformed
 
     /**
      * @param args the command line arguments
