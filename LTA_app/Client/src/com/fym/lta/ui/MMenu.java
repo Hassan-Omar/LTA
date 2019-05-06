@@ -181,6 +181,11 @@ public class MMenu extends javax.swing.JFrame {
 
         locationManualM_Item.setText("Location Manual Assignment");
         locationManualM_Item.setEnabled(false);
+        locationManualM_Item.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                locationManualM_ItemActionPerformed(evt);
+            }
+        });
         jMenu2.add(locationManualM_Item);
 
         locationAutoM_Item.setText("Location Automatic Assignment");
@@ -395,6 +400,10 @@ public class MMenu extends javax.swing.JFrame {
     private void floorM_ItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_floorM_ItemActionPerformed
     switchtoPanel(new FloorScreen()) ; 
     }//GEN-LAST:event_floorM_ItemActionPerformed
+
+    private void locationManualM_ItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_locationManualM_ItemActionPerformed
+    switchtoPanel(new ManualAssignment()) ; 
+    }//GEN-LAST:event_locationManualM_ItemActionPerformed
 
 
     /**

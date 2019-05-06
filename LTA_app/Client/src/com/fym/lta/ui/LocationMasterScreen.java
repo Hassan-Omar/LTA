@@ -21,13 +21,20 @@ import com.fym.lta.dto.ScreenDto;
 
 import java.awt.BorderLayout;
 
+import java.awt.Checkbox;
+
+import java.awt.Component;
+
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
 import javax.persistence.Table;
 
+import javax.swing.DefaultListModel;
+import javax.swing.JCheckBox;
 import javax.swing.JComboBox;
+import javax.swing.JList;
 import javax.swing.JOptionPane;
 import javax.swing.SwingUtilities;
 
@@ -36,27 +43,52 @@ import javax.swing.SwingUtilities;
  * @author Nada
  */
 public class LocationMasterScreen extends javax.swing.JPanel {
+    
+    //To create a refrence from LocationBao , EquipmentBao 
     private LocationBao Locationbusiness  = new BaoFactory().createLocationBao();
     private EquipmentBao Equipmentbuisness = new BaoFactory().createEquipmentBao();
+    
+    // flag , if it equals 1 we update, if zero we insert  
     private int Location_idUpdate ;
+   
+    //To Get list of building , floor , location type to set comboBox items 
     List<BuildingDto> Allbuildings = new BaoFactory().createBuildingBao().listBuilding();
- //   List<BuildingDto> Allfloors = new BaoFactory().createFloorBao().listAll();
- //   List<BuildingDto> AlllocationTypes = new BaoFactory().createLocationTypeBao().;
-    List<EquipmentDto> SelectedEquipments =  new ArrayList();
+    List<FloorDto> Allfloors = new BaoFactory().createFloorBao().listFloor();
+    List<LocationTypeDto> AlllocationTypes = new BaoFactory().createLocationTypeBao().listLocationType();
+    List<EquipmentDto> AllEquipments = new BaoFactory().createEquipmentBao().ListAll();
 
 
-    //To add comboBox items//
+        //To add comboBox items//
     // We get a list of saved items in Database//
- void listComboBuildings(List<BuildingDto> building) {
-     for (int i = 0; i < building.size(); i++) {
-         building_combo.addItem(building.get(i).getCode());
-     }
-
- }
+     void listComboBuildings(List<BuildingDto> building) {
+           for (int i = 0; i < building.size(); i++) {
+               building_combo.addItem(building.get(i).getCode());
+                     }
+    }
+     
+    void listComboFloors(List<FloorDto> floor) {
+          for (int i = 0; i < floor.size(); i++) {
+             floor_combo.addItem(floor.get(i).getCode());
+                    }
+    }
+    
+    void listComboLocationTypes(List<LocationTypeDto> LocationType) {
+          for (int i = 0; i < LocationType.size(); i++) {
+             type_combo.addItem(LocationType.get(i).getCode());
+                    }
+    }
+    
+    void listEquipments(List<EquipmentDto> Equipment) {
+        DefaultListModel list = new DefaultListModel();
+          for (int i = 0; i < Equipment.size(); i++) {
+                 list.addElement(Equipment.get(i).getCode());  
+                    }
+          EquipmentList.setModel(list);
+    }
       
+    // To Set the retrieved data from database into the locationTable//  
     private void setTableModel(List<LocationDto> location  ){
         Object [][] locationArr = new Object [location.size()][12];
-        
         for(int i =0;i<location.size();i++){
             locationArr[i][0] = location.get(i).getLocation_id();
             locationArr[i][1] = location.get(i).getCode();
@@ -69,16 +101,15 @@ public class LocationMasterScreen extends javax.swing.JPanel {
             locationArr[i][8] = location.get(i).getInsertedBy();
             locationArr[i][9] = location.get(i).getInertion_Date();
             locationArr[i][10] = location.get(i).getUpdatedBy();
-            locationArr[i][11] = location.get(i).getUpdate_Date();
-          
-            
-           
-        }
+            locationArr[i][11] = location.get(i).getUpdate_Date();  }    
+        
         LocationTable.setModel(new javax.swing.table.DefaultTableModel(locationArr,
             new String [] {
                 "Location Id", "Location Code" , "Description", "capacity" ,"Location Status","Building", "Floor","Location Type" , "Inserted By","Insertion Date","Updated By","Update Date"
             }
         ));   }  
+    
+    
    
     /** Creates new form MasterScreen */
     public LocationMasterScreen() {
@@ -86,6 +117,9 @@ public class LocationMasterScreen extends javax.swing.JPanel {
       if(Locationbusiness.ListAll()!=null)
       setTableModel(Locationbusiness.ListAll());
         listComboBuildings(Allbuildings);
+        listComboFloors(Allfloors);
+        listComboLocationTypes(AlllocationTypes);
+        listEquipments(AllEquipments);
         define_location.setVisible(false);
         
         // roleID = 12
@@ -114,9 +148,8 @@ public class LocationMasterScreen extends javax.swing.JPanel {
         search = new javax.swing.JButton();
         define_location = new javax.swing.JPanel();
         jPanel2 = new javax.swing.JPanel();
-        jCheckBox1 = new javax.swing.JCheckBox();
-        jCheckBox2 = new javax.swing.JCheckBox();
-        jCheckBox3 = new javax.swing.JCheckBox();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        EquipmentList = new javax.swing.JList();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
@@ -132,6 +165,7 @@ public class LocationMasterScreen extends javax.swing.JPanel {
         jLabel6 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
         type_combo = new javax.swing.JComboBox();
+        jLabel8 = new javax.swing.JLabel();
 
         setBorder(javax.swing.BorderFactory.createTitledBorder("Location Master Screen"));
         setPreferredSize(new java.awt.Dimension(400, 400));
@@ -142,6 +176,14 @@ public class LocationMasterScreen extends javax.swing.JPanel {
 
         LocationTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
+                {null, null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null, null},
                 {null, null, null, null, null, null, null, null, null, null, null, null},
                 {null, null, null, null, null, null, null, null, null, null, null, null},
                 {null, null, null, null, null, null, null, null, null, null, null, null},
@@ -185,21 +227,21 @@ public class LocationMasterScreen extends javax.swing.JPanel {
         master.setLayout(masterLayout);
         masterLayout.setHorizontalGroup(
             masterLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 981, Short.MAX_VALUE)
+            .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 1077, Short.MAX_VALUE)
         );
         masterLayout.setVerticalGroup(
             masterLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 333, Short.MAX_VALUE)
+            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 441, Short.MAX_VALUE)
         );
 
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 3;
         gridBagConstraints.gridwidth = 7;
-        gridBagConstraints.ipadx = 962;
-        gridBagConstraints.ipady = 310;
+        gridBagConstraints.ipadx = 1058;
+        gridBagConstraints.ipady = 418;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(26, 38, 62, 0);
+        gridBagConstraints.insets = new java.awt.Insets(26, 61, 28, 0);
         add(master, gridBagConstraints);
 
         insertLocationBtn.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
@@ -216,7 +258,7 @@ public class LocationMasterScreen extends javax.swing.JPanel {
         gridBagConstraints.ipadx = 14;
         gridBagConstraints.ipady = 30;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(70, 131, 0, 0);
+        gridBagConstraints.insets = new java.awt.Insets(70, 160, 0, 0);
         add(insertLocationBtn, gridBagConstraints);
 
         deleteLocationBtn.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
@@ -227,13 +269,12 @@ public class LocationMasterScreen extends javax.swing.JPanel {
             }
         });
         gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridx = 2;
         gridBagConstraints.gridy = 2;
-        gridBagConstraints.gridwidth = 3;
         gridBagConstraints.ipadx = 31;
         gridBagConstraints.ipady = 30;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(70, 142, 0, 0);
+        gridBagConstraints.insets = new java.awt.Insets(70, 188, 0, 0);
         add(deleteLocationBtn, gridBagConstraints);
 
         updateLocationBtn.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
@@ -246,10 +287,11 @@ public class LocationMasterScreen extends javax.swing.JPanel {
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 2;
+        gridBagConstraints.gridwidth = 2;
         gridBagConstraints.ipadx = 35;
         gridBagConstraints.ipady = 30;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(70, 98, 0, 0);
+        gridBagConstraints.insets = new java.awt.Insets(70, 128, 0, 0);
         add(updateLocationBtn, gridBagConstraints);
 
         jTextField1.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
@@ -259,13 +301,14 @@ public class LocationMasterScreen extends javax.swing.JPanel {
             }
         });
         gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridx = 2;
         gridBagConstraints.gridy = 0;
         gridBagConstraints.gridwidth = 2;
+        gridBagConstraints.gridheight = 2;
         gridBagConstraints.ipadx = 385;
         gridBagConstraints.ipady = 26;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(155, 184, 0, 0);
+        gridBagConstraints.insets = new java.awt.Insets(195, 6, 0, 0);
         add(jTextField1, gridBagConstraints);
 
         search.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
@@ -282,7 +325,7 @@ public class LocationMasterScreen extends javax.swing.JPanel {
         gridBagConstraints.ipadx = 21;
         gridBagConstraints.ipady = 24;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(148, 115, 0, 0);
+        gridBagConstraints.insets = new java.awt.Insets(195, 123, 0, 0);
         add(search, gridBagConstraints);
 
         define_location.setBorder(javax.swing.BorderFactory.createTitledBorder("Define Location"));
@@ -290,52 +333,23 @@ public class LocationMasterScreen extends javax.swing.JPanel {
 
         jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder("Location Contains:"));
 
-        jCheckBox1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jCheckBox1.setText("Air Condition");
-        jCheckBox1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jCheckBox1ActionPerformed(evt);
-            }
+        EquipmentList.setModel(new javax.swing.AbstractListModel() {
+            String[] strings = { " " };
+            public int getSize() { return strings.length; }
+            public Object getElementAt(int i) { return strings[i]; }
         });
-
-        jCheckBox2.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jCheckBox2.setText("Data Show");
-        jCheckBox2.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jCheckBox2ActionPerformed(evt);
-            }
-        });
-
-        jCheckBox3.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jCheckBox3.setText("White Board");
-        jCheckBox3.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jCheckBox3ActionPerformed(evt);
-            }
-        });
+        EquipmentList.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        jScrollPane2.setViewportView(EquipmentList);
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel2Layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jCheckBox3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jCheckBox2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jCheckBox1, javax.swing.GroupLayout.DEFAULT_SIZE, 115, Short.MAX_VALUE))
-                .addContainerGap(192, Short.MAX_VALUE))
+            .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 328, Short.MAX_VALUE)
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(18, 18, 18)
-                .addComponent(jCheckBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 36, Short.MAX_VALUE)
-                .addComponent(jCheckBox2, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(27, 27, 27)
-                .addComponent(jCheckBox3, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18))
+            .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 198, Short.MAX_VALUE)
         );
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
@@ -418,26 +432,26 @@ public class LocationMasterScreen extends javax.swing.JPanel {
                 .addGap(28, 28, 28)
                 .addGroup(define_locationLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(define_locationLayout.createSequentialGroup()
-                        .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(save, javax.swing.GroupLayout.PREFERRED_SIZE, 78, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(22, 22, 22))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, define_locationLayout.createSequentialGroup()
                         .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 158, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(56, 56, 56)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 58, Short.MAX_VALUE)
                         .addGroup(define_locationLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(floor_combo, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 71, Short.MAX_VALUE)
+                            .addComponent(floor_combo, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(98, 98, 98)
                         .addGroup(define_locationLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(type_combo, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 154, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(18, 18, 18))))
+                        .addGap(18, 18, 18))
+                    .addGroup(define_locationLayout.createSequentialGroup()
+                        .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(save, javax.swing.GroupLayout.PREFERRED_SIZE, 78, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(22, 22, 22))))
         );
         define_locationLayout.setVerticalGroup(
             define_locationLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(define_locationLayout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap(33, Short.MAX_VALUE)
                 .addGroup(define_locationLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel6)
                     .addComponent(jLabel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -447,41 +461,52 @@ public class LocationMasterScreen extends javax.swing.JPanel {
                     .addComponent(floor_combo, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(building_combo, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(type_combo, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(32, 32, 32)
-                .addGroup(define_locationLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(id, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(31, 31, 31)
-                .addGroup(define_locationLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(code, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(28, 28, 28)
-                .addGroup(define_locationLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel3)
-                    .addComponent(desc, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(26, 26, 26)
-                .addGroup(define_locationLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(capacity, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGroup(define_locationLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(define_locationLayout.createSequentialGroup()
-                        .addGap(230, 230, 230)
+                        .addGap(465, 465, 465)
                         .addComponent(save, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(define_locationLayout.createSequentialGroup()
+                        .addGap(32, 32, 32)
+                        .addGroup(define_locationLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(id, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(31, 31, 31)
+                        .addGroup(define_locationLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(code, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(28, 28, 28)
+                        .addGroup(define_locationLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel3)
+                            .addComponent(desc, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(26, 26, 26)
+                        .addGroup(define_locationLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(capacity, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(63, 63, 63)
                         .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(23, 23, 23))
+                .addGap(27, 27, 27))
         );
 
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 7;
         gridBagConstraints.gridy = 0;
         gridBagConstraints.gridheight = 4;
-        gridBagConstraints.ipadx = 59;
-        gridBagConstraints.ipady = -14;
+        gridBagConstraints.ipadx = 46;
+        gridBagConstraints.ipady = 21;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(68, 66, 62, 114);
+        gridBagConstraints.insets = new java.awt.Insets(188, 81, 28, 69);
         add(define_location, gridBagConstraints);
+
+        jLabel8.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jLabel8.setText("Enter Location Code");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 0;
+        gridBagConstraints.ipadx = 37;
+        gridBagConstraints.ipady = 26;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+        gridBagConstraints.insets = new java.awt.Insets(197, 129, 0, 0);
+        add(jLabel8, gridBagConstraints);
     }//GEN-END:initComponents
 
 
@@ -540,17 +565,17 @@ public class LocationMasterScreen extends javax.swing.JPanel {
 
     private void updateLocationBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_updateLocationBtnActionPerformed
      if (LocationTable.getSelectedRow()>=0) {
-            id.setVisible(false); // No need to update Id
+         // No need to update Id, so we hide it//
+            id.setVisible(false); 
+            jLabel1.setVisible(false);
            try{
              id.setText(LocationTable.getValueAt(LocationTable.getSelectedRow(), 0).toString());
              code.setText(LocationTable.getValueAt(LocationTable.getSelectedRow(), 1).toString());
              desc.setText(LocationTable.getValueAt(LocationTable.getSelectedRow(), 2).toString());
              capacity.setText(LocationTable.getValueAt(LocationTable.getSelectedRow(), 3).toString());
-           //  building_combo.setSelectedIndex(Integer.parseInt(Table.getValueAt(Table.getSelectedRow(),4).toString()));
-           //  floor_combo.setSelectedIndex(Integer.parseInt(Table.getValueAt(Table.getSelectedRow(), 5).toString()));
-           //  type_combo.setSelectedItem(Integer.parseInt(Table.getValueAt(Table.getSelectedRow(),6).toString()));
              define_location.setVisible(true);
-               Location_idUpdate = 1;
+               // flag , if it equals 1 we update, if zero we insert  
+             Location_idUpdate = 1; 
            }catch(Exception e){
                e.printStackTrace();
       }
@@ -560,36 +585,32 @@ public class LocationMasterScreen extends javax.swing.JPanel {
     }//GEN-LAST:event_updateLocationBtnActionPerformed
 
     private void saveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_saveActionPerformed
-        try{ 
-            //To get values from comboBox
-            //String floor =  floor_combo.getSelectedItem().toString();
-           // String type =  type_combo.getSelectedItem().toString();
-          
-            //To insert location Data
+     try{ 
+            //Create Dto Objects to get data from UI and then pass it to Bao//
             BuildingDto BuildingObject = new BuildingDto();
             FloorDto FloorObject = new FloorDto();
             LocationTypeDto LocationTypeObject = new LocationTypeDto();
-            
             LocationDto LocationObject = new LocationDto();
+          
+            //To get data from UI//
             LocationObject.setLocation_id(Integer.parseInt(id.getText()));
             LocationObject.setCode(code.getText());
             LocationObject.setCapacity(Integer.parseInt(capacity.getText()));
             LocationObject.setDescription(desc.getText());
             LocationObject.setStatus("Not assigned");
-            FloorObject.setFloor_id(4);
-            LocationObject.setFloor(FloorObject);
-            LocationTypeObject.setLocationType_id(4);
-            LocationObject.setType(LocationTypeObject);
+         
+            LocationObject.setLocation_equipments(EquipmentList.getSelectedValuesList());
+           
+           
+             //To set id for building ,floor , locationType//
             BuildingObject.setBuilding_id(Allbuildings.get(building_combo.getSelectedIndex()).getBuilding_id());
             LocationObject.setBuilding(BuildingObject);
-          //  LocationObject.setBuilding(new BuildingDto(building_combo.getSelectedItem().toString()));
-           // LocationObject.setFloor(new FloorDto (floor_combo.getSelectedIndex()));
-          //  LocationObject.setType(new LocationTypeDto(type_combo.getSelectedIndex()));
-          //  LocationObject.setBuilding(new BuildingDto(building_combo.getSelectedIndex()));
-           //  FloorObject.setCode(floor);
-           //  LocationTypeObject.setCode(type);
-         //   BuildingObject.setCode(building_combo.getSelectedItem().toString());
-        
+            FloorObject.setFloor_id(Allfloors.get(floor_combo.getSelectedIndex()).getFloor_id());
+            LocationObject.setFloor(FloorObject);
+            LocationTypeObject.setLocationType_id(AlllocationTypes.get(type_combo.getSelectedIndex()).getLocationType_id());
+            LocationObject.setType(LocationTypeObject);
+         
+             //To Check whether to insert or update data// 
             if(Location_idUpdate!=0)
             {     
                     LocationObject.setUpdatedBy(LoginEngine.currentUser);
@@ -608,7 +629,7 @@ public class LocationMasterScreen extends javax.swing.JPanel {
                 if( Locationbusiness.insertLocation(LocationObject)){
                 JOptionPane.showMessageDialog(this, "Location Saved Successfully");
                 setTableModel(Locationbusiness.ListAll());
-               // Table.repaint();
+                LocationTable.repaint();
             }else
             JOptionPane.showMessageDialog(this, "Error occured in insertion");
         }
@@ -633,23 +654,12 @@ public class LocationMasterScreen extends javax.swing.JPanel {
         // TODO add your handling code here:
     }//GEN-LAST:event_building_comboActionPerformed
 
-    private void jCheckBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBox1ActionPerformed
-       SelectedEquipments.add(new EquipmentDto(1));
-    }//GEN-LAST:event_jCheckBox1ActionPerformed
-
-    private void jCheckBox2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBox2ActionPerformed
-    SelectedEquipments.add(new EquipmentDto(2));
-    }//GEN-LAST:event_jCheckBox2ActionPerformed
-
-    private void jCheckBox3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBox3ActionPerformed
-    SelectedEquipments.add(new EquipmentDto(3));
-    }//GEN-LAST:event_jCheckBox3ActionPerformed
-
     private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
     }//GEN-LAST:event_jTextField1ActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JList EquipmentList;
     private javax.swing.JTable LocationTable;
     private javax.swing.JComboBox building_combo;
     private javax.swing.JTextField capacity;
@@ -660,9 +670,6 @@ public class LocationMasterScreen extends javax.swing.JPanel {
     private javax.swing.JComboBox floor_combo;
     private javax.swing.JTextField id;
     private javax.swing.JButton insertLocationBtn;
-    private javax.swing.JCheckBox jCheckBox1;
-    private javax.swing.JCheckBox jCheckBox2;
-    private javax.swing.JCheckBox jCheckBox3;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -670,8 +677,10 @@ public class LocationMasterScreen extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTextField jTextField1;
     private javax.swing.JPanel master;
     private javax.swing.JButton save;
@@ -680,17 +689,18 @@ public class LocationMasterScreen extends javax.swing.JPanel {
     private javax.swing.JButton updateLocationBtn;
     // End of variables declaration//GEN-END:variables
     
-    // this method just to clear text and reset the valus on the insrt panel
+    // this method just to clear text and reset the valus on the insert panel
     void clearData() { // clear prvious data
         id.setText(null);
         code.setText(null);
         desc.setText(null);
         capacity.setText(null);
-     //   building_combo.setSelectedIndex(0);
-     //   floor_combo.setSelectedIndex(0);
-     //   location_combo.setSelectedIndex(0);
-
+        
         // show hidden components again
         id.setVisible(true);
+        jLabel1.setVisible(true);
     }
+    
+    
+   
 }

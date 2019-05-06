@@ -2,8 +2,10 @@ package com.fym.lta.bao;
 
 import com.fym.lta.dao.DaoFactory;
 import com.fym.lta.dao.LocationDao;
+import com.fym.lta.dto.EquipmentDto;
 import com.fym.lta.dto.LocationDto;
 
+import java.util.Collections;
 import java.util.List;
 
 public class LocationBaoImp implements LocationBao{
@@ -47,10 +49,15 @@ public class LocationBaoImp implements LocationBao{
         return daoLocation.getAll_Locations();
     }
     
-  //  public List<LocationDto> filterLocations(String LocationTypeCode,String BuildingCode){
+    public List<LocationDto> filterLocations(String LocationTypeCode,String BuildingCode){
         
- //       return 
-  //  }
+        return daoLocation.filter(LocationTypeCode,BuildingCode);
+    }
+    
+    public boolean saveEquipment(List<EquipmentDto> equipment,LocationDto locat){
+        
+    return daoLocation.save_Equipment(equipment,locat);
+    }
 }
 
    

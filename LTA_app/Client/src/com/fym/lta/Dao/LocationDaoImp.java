@@ -3,6 +3,7 @@ package com.fym.lta.dao;
 import com.fym.lta.common.ConnectionFactory;
 import com.fym.lta.common.Queries;
 import com.fym.lta.dto.BuildingDto;
+import com.fym.lta.dto.EquipmentDto;
 import com.fym.lta.dto.FloorDto;
 import com.fym.lta.dto.LocationDto;
 import com.fym.lta.dto.LocationTypeDto;
@@ -15,6 +16,8 @@ import javax.sql.rowset.JdbcRowSet;
 import javax.sql.rowset.RowSetProvider;
 
 import javax.swing.JOptionPane;
+
+import javax.xml.stream.Location;
 
 public class LocationDaoImp implements LocationDao {
     
@@ -86,19 +89,19 @@ public class LocationDaoImp implements LocationDao {
                     jdbc.setInt(6, Location.getBuilding().getBuilding_id());
                     jdbc.setInt(7, Location.getFloor().getFloor_id());
                     jdbc.setInt(8, Location.getType().getLocationType_id());
-                    jdbc.setString(9, Location.getInsertedBy());
-                    jdbc.setDate(10, new java.sql.Date(Location.getInertion_Date().getTime()));
+                    jdbc.setObject(9, Location.getLocation_equipments().toString());
+                    jdbc.setString(10, Location.getInsertedBy());
+                    jdbc.setDate(11, new java.sql.Date(Location.getInertion_Date().getTime()));
                    // jdbc.setString(11, Location.getUpdatedBy());
                   //  jdbc.setDate(12, new java.sql.Date(Location.getUpdate_Date().getTime()));
                     jdbc.execute(); 
                     return true;
                 }
                 catch(java.sql.SQLIntegrityConstraintViolationException e ){
-               //  JOptionPane.showMessageDialog(new DefineLocation(), "Unique Constrain Violated");
-                  
+                JOptionPane.showMessageDialog( null, "Unique Constrain Violated, please insert unique ID");
                         }
             //     catch(java.sql.SQLException e){
-              //     JOptionPane.showMessageDialog( new DefineLocation() , "Database Failed");
+              //     JOptionPane.showMessageDialog( null , "Database Failed");
            //     }
                 catch(Exception e){
                     e.printStackTrace();      
@@ -130,12 +133,12 @@ public class LocationDaoImp implements LocationDao {
                     jdbc.execute();   
                     return true;  
                 }
-           //     catch(java.sql.SQLIntegrityConstraintViolationException e ){
-            //     JOptionPane.showMessageDialog(new DefineLocation(), "Unique Constrain Violated");
-             //     return false;
-             //           }
+                catch(java.sql.SQLIntegrityConstraintViolationException e ){
+                 JOptionPane.showMessageDialog( null ,"Unique Constrain Violated, please insert unique ID");
+                  return false;
+                        }
             //     catch(java.sql.SQLException e){
-              //     JOptionPane.showMessageDialog( new DefineLocation() , "Database Failed");
+              //     JOptionPane.showMessageDialog( null , "Database Failed");
            //     }
                 catch(Exception e){
                    e.printStackTrace();   
@@ -201,9 +204,60 @@ public class LocationDaoImp implements LocationDao {
         return locations;
     }
     
-   // public List<LocationDto> filter(String LocationTypeCode,String BuildingCode){
+    public List<LocationDto> filter(String LocationTypeCode,String BuildingCode){
+        List<LocationDto> locations = null;
         
-        
-     //   return 
-  //  }
+        try (JdbcRowSet jdbcRs = RowSetProvider.newFactory().createJdbcRowSet()) {
+            jdbcRs.setUrl(ConnectionFactory.getUrl());
+            jdbcRs.setUsername(ConnectionFactory.getUsername());
+            jdbcRs.setPassword(ConnectionFactory.getPassword());
+            jdbcRs.setCommand(Queries.LOCATION_FILTER);
+            jdbcRs.setString(1, LocationTypeCode);
+            jdbcRs.setString(2,  BuildingCode);                
+            jdbcRs.execute();
+            while (jdbcRs.next()) {
+                if (locations == null)
+                    locations = new ArrayList<>();
+                LocationDto lFilter = new LocationDto();
+                lFilter.setCode(jdbcRs.getString(2));
+                lFilter.setLocation_id(jdbcRs.getInt(1));
+                lFilter.setDescription(jdbcRs.getString(3));
+                lFilter.setCapacity(jdbcRs.getInt(4));
+                lFilter.setStatus(jdbcRs.getString(5));
+                lFilter.setBuilding(new BuildingDto(jdbcRs.getString("building_code")));
+                lFilter.setFloor((new FloorDto(jdbcRs.getString("floor_code")))) ;   
+                lFilter.setType(new LocationTypeDto(jdbcRs.getString("type_code"))); 
+                lFilter.setInsertedBy(jdbcRs.getString(9)); 
+                lFilter.setInertion_Date(jdbcRs.getDate(10)); 
+                lFilter.setUpdatedBy(jdbcRs.getString(11));    
+                lFilter.setUpdate_Date(jdbcRs.getDate(12));     
+                 
+                locations.add(lFilter);
+
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        return locations; 
+    }
+    
+    public boolean save_Equipment(List<EquipmentDto> equipment ,LocationDto location){
+     try (JdbcRowSet jdbcRs = RowSetProvider.newFactory().createJdbcRowSet()) {
+         jdbcRs.setUrl(ConnectionFactory.getUrl());
+         jdbcRs.setUsername(ConnectionFactory.getUsername());
+         jdbcRs.setPassword(ConnectionFactory.getPassword());
+         for (int i = 0; i < equipment.size(); i++) {
+             jdbcRs.setCommand("insert into location_equipment (location_id , equipment_id) values(?,?)");
+             jdbcRs.setInt(1, location.getLocation_id());
+             jdbcRs.setInt(2, equipment.get(i).getEquipment_id());
+             jdbcRs.execute();
+         }
+         return true;
+     } catch (Exception e) {
+         e.printStackTrace();
+     }
+
+     return false;
+    }
 }

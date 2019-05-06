@@ -8,6 +8,12 @@ public class LocationDto {
 
     private int Location_id, capacity ;
     private FloorDto floor ;
+
+    public LocationDto(FloorDto floor, BuildingDto building) {
+        super();
+        this.floor = floor;
+        this.building = building;
+    }
     private BuildingDto building ;
 
     public void setBuilding(BuildingDto building) {

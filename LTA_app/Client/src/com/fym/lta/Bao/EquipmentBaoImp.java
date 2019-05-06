@@ -44,8 +44,5 @@ public class EquipmentBaoImp implements EquipmentBao {
         return daoEquipment.getAll_Equipments();
     }
     
-    public boolean saveEquipment(List<EquipmentDto> equipment,LocationDto locat){
-        
-    return daoEquipment.save_Equipment(equipment,locat);
-    }
+   
 }

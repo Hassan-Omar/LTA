@@ -1,5 +1,6 @@
 package com.fym.lta.dao;
 
+import com.fym.lta.dto.EquipmentDto;
 import com.fym.lta.dto.LocationDto;
 
 import com.fym.lta.dto.LocationTypeDto;
@@ -32,7 +33,8 @@ public interface LocationDao {
     public boolean isExist(LocationDto Location);
     
     //this to filter location types 
-  //  public List<LocationDto> filter(String LocationTypeCode,String BuildingCode);
+   public List<LocationDto> filter(String LocationTypeCode,String BuildingCode);
 
-
+    //this behavior to save list of Equipment in the location
+    public boolean save_Equipment(List<EquipmentDto> equipment,LocationDto location);
 }

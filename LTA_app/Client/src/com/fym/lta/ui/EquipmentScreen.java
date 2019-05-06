@@ -6,6 +6,7 @@ import com.fym.lta.bao.EquipmentBao;
 import com.fym.lta.bao.LoginEngine;
 import com.fym.lta.dto.BuildingDto;
 import com.fym.lta.dto.EquipmentDto;
+import com.fym.lta.dto.FloorDto;
 import com.fym.lta.dto.LocationDto;
 
 import java.util.Date;
@@ -21,43 +22,41 @@ import javax.swing.JOptionPane;
  */
 public class EquipmentScreen extends javax.swing.JPanel {
     
+    //To create a refrence from EquipmentBao 
     private EquipmentBao Equipmentbusiness  = new BaoFactory().createEquipmentBao();
+    
+    //To Get list of  locations  to set comboBox items 
     List<LocationDto> All_locations = new BaoFactory().createLocationBao().ListAll();
+  
+    // flag , if it equals 1 we update, if zero we insert 
     private int Equipment_idUpdate ;
     
     
     //To add comboBox items//
-    // We get a list of saved items in Database//
+    // We get a list of saved items in Database//  
     void listComboLocations(List<LocationDto> location) {
     for (int i = 0; i < location.size(); i++) {
-      location_combo.addItem(location.get(i).getCode());
+      location_combo.addItem(location.get(i).getCode()); }
     }
-
-    }
-    
+   
+    // To Set the retrieved data from database into the locationTable// 
     private void setTableModel(List<EquipmentDto> equipment){
         Object [][] equipmentArr = new Object [equipment.size()][10];
         for(int i =0;i<equipment.size();i++){
             equipmentArr[i][0] = equipment.get(i).getEquipment_id();
             equipmentArr[i][1] = equipment.get(i).getCode();
             equipmentArr[i][2] = equipment.get(i).getType();
-            equipmentArr[i][3] = equipment.get(i).getLocation_equipment().getCode();
-            equipmentArr[i][4] = equipment.get(i).getLifSpan();
-            equipmentArr[i][5] = equipment.get(i).getStartingTime();
+            equipmentArr[i][3] = equipment.get(i).getLifSpan();
+            equipmentArr[i][4] = equipment.get(i).getStartingTime();
+            equipmentArr[i][5] = equipment.get(i).getLocation_equipment().getCode();     
             equipmentArr[i][6] = equipment.get(i).getInsertedBy();
             equipmentArr[i][7] = equipment.get(i).getInertion_Date();
             equipmentArr[i][8] = equipment.get(i).getUpdatedBy();
-            equipmentArr[i][9] = equipment.get(i).getUpdate_Date();
-          //  equipmentArr[i][4] = equipment.get(i).getBuilding_code();
-         //   equipmentArr[i][5] = equipment.get(i).getFloor_code();
-         //   equipmentArr[i][6] = equipment.get(i).getLocationtype();
-          
-            
-           
+            equipmentArr[i][9] = equipment.get(i).getUpdate_Date();      
         }
         EquipmentTable.setModel(new javax.swing.table.DefaultTableModel(equipmentArr,
             new String [] {
-                "Equipment Id", "Equipment Code" , "Equipment Type","Location" , "Life Span" ,"Starting time","Inserted By" , "Insertion Date" , "Updated By","Update Date"
+                "Equipment Id", "Equipment Code" , "Equipment Type", "Life Span" ,"Starting time","Location" ,"Inserted By" , "Insertion Date" , "Updated By","Update Date"
             }
         ));   }  
     
@@ -89,11 +88,7 @@ public class EquipmentScreen extends javax.swing.JPanel {
         jTextField1 = new javax.swing.JTextField();
         search = new javax.swing.JButton();
         DefineEquipment = new javax.swing.JPanel();
-        building_combo = new javax.swing.JComboBox();
-        floor_combo = new javax.swing.JComboBox();
         location_combo = new javax.swing.JComboBox();
-        jLabel5 = new javax.swing.JLabel();
-        jLabel6 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
@@ -104,6 +99,7 @@ public class EquipmentScreen extends javax.swing.JPanel {
         jLabel4 = new javax.swing.JLabel();
         years_number = new javax.swing.JTextField();
         save = new javax.swing.JButton();
+        jLabel8 = new javax.swing.JLabel();
 
         setLayout(new java.awt.GridBagLayout());
 
@@ -112,41 +108,41 @@ public class EquipmentScreen extends javax.swing.JPanel {
 
         EquipmentTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null}
+                {null, null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null, null}
             },
             new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4", "Title 5", "Title 6", "Title 7", "Title 8", "Title 9", "Title 10"
+                "Title 1", "Title 2", "Title 3", "Title 4", "Title 5", "Title 6", "Title 7", "Title 8", "Title 9", "Title 10", "Title 11", "Title 12"
             }
         ));
         jScrollPane1.setViewportView(EquipmentTable);
@@ -155,22 +151,21 @@ public class EquipmentScreen extends javax.swing.JPanel {
         master.setLayout(masterLayout);
         masterLayout.setHorizontalGroup(
             masterLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 945, Short.MAX_VALUE)
+            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 1139, Short.MAX_VALUE)
         );
         masterLayout.setVerticalGroup(
             masterLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 298, Short.MAX_VALUE)
+            .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 303, Short.MAX_VALUE)
         );
 
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 3;
-        gridBagConstraints.gridwidth = 6;
-        gridBagConstraints.gridheight = 5;
-        gridBagConstraints.ipadx = 926;
-        gridBagConstraints.ipady = 275;
+        gridBagConstraints.gridy = 4;
+        gridBagConstraints.gridwidth = 7;
+        gridBagConstraints.ipadx = 1120;
+        gridBagConstraints.ipady = 280;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(29, 69, 43, 0);
+        gridBagConstraints.insets = new java.awt.Insets(29, 133, 49, 0);
         add(master, gridBagConstraints);
 
         insert.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
@@ -181,13 +176,13 @@ public class EquipmentScreen extends javax.swing.JPanel {
             }
         });
         gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 3;
-        gridBagConstraints.gridy = 2;
+        gridBagConstraints.gridx = 4;
+        gridBagConstraints.gridy = 3;
         gridBagConstraints.gridwidth = 2;
         gridBagConstraints.ipadx = 2;
         gridBagConstraints.ipady = 30;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(81, 74, 0, 0);
+        gridBagConstraints.insets = new java.awt.Insets(67, 74, 0, 0);
         add(insert, gridBagConstraints);
 
         delete.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
@@ -198,12 +193,12 @@ public class EquipmentScreen extends javax.swing.JPanel {
             }
         });
         gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 1;
-        gridBagConstraints.gridy = 2;
+        gridBagConstraints.gridx = 2;
+        gridBagConstraints.gridy = 3;
         gridBagConstraints.ipadx = 19;
         gridBagConstraints.ipady = 30;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(81, 154, 0, 0);
+        gridBagConstraints.insets = new java.awt.Insets(67, 154, 0, 0);
         add(delete, gridBagConstraints);
 
         update.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
@@ -215,20 +210,22 @@ public class EquipmentScreen extends javax.swing.JPanel {
         });
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 2;
+        gridBagConstraints.gridy = 3;
+        gridBagConstraints.gridwidth = 2;
         gridBagConstraints.ipadx = 23;
         gridBagConstraints.ipady = 30;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(81, 118, 0, 0);
+        gridBagConstraints.insets = new java.awt.Insets(67, 182, 0, 0);
         add(update, gridBagConstraints);
         gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 0;
         gridBagConstraints.gridwidth = 3;
+        gridBagConstraints.gridheight = 2;
         gridBagConstraints.ipadx = 385;
         gridBagConstraints.ipady = 26;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(59, 320, 0, 0);
+        gridBagConstraints.insets = new java.awt.Insets(62, 61, 0, 0);
         add(jTextField1, gridBagConstraints);
 
         search.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
@@ -239,25 +236,16 @@ public class EquipmentScreen extends javax.swing.JPanel {
             }
         });
         gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 3;
+        gridBagConstraints.gridx = 4;
         gridBagConstraints.gridy = 0;
-        gridBagConstraints.gridheight = 2;
+        gridBagConstraints.gridheight = 3;
         gridBagConstraints.ipadx = 21;
         gridBagConstraints.ipady = 24;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(52, 121, 0, 0);
+        gridBagConstraints.insets = new java.awt.Insets(55, 131, 0, 0);
         add(search, gridBagConstraints);
 
         DefineEquipment.setBorder(javax.swing.BorderFactory.createTitledBorder("Define Equipment"));
-
-        building_combo.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        building_combo.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                building_comboActionPerformed(evt);
-            }
-        });
-
-        floor_combo.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
 
         location_combo.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         location_combo.addActionListener(new java.awt.event.ActionListener() {
@@ -265,12 +253,6 @@ public class EquipmentScreen extends javax.swing.JPanel {
                 location_comboActionPerformed(evt);
             }
         });
-
-        jLabel5.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        jLabel5.setText("Choose Building ");
-
-        jLabel6.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        jLabel6.setText("Choose Floor ");
 
         jLabel7.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jLabel7.setText("Location  ");
@@ -311,17 +293,14 @@ public class EquipmentScreen extends javax.swing.JPanel {
                         .addGap(29, 29, 29)
                         .addGroup(DefineEquipmentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(building_combo, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(DefineEquipmentLayout.createSequentialGroup()
                         .addGap(39, 39, 39)
                         .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(DefineEquipmentLayout.createSequentialGroup()
                         .addGap(20, 20, 20)
-                        .addGroup(DefineEquipmentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 149, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 158, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addGap(29, 29, 29)
+                        .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 149, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(38, 38, 38)
                 .addGroup(DefineEquipmentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(DefineEquipmentLayout.createSequentialGroup()
                         .addGroup(DefineEquipmentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -329,38 +308,28 @@ public class EquipmentScreen extends javax.swing.JPanel {
                             .addComponent(code, javax.swing.GroupLayout.PREFERRED_SIZE, 156, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(type, javax.swing.GroupLayout.PREFERRED_SIZE, 156, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(years_number, javax.swing.GroupLayout.PREFERRED_SIZE, 156, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addContainerGap())
+                        .addContainerGap(119, Short.MAX_VALUE))
                     .addGroup(DefineEquipmentLayout.createSequentialGroup()
-                        .addGap(9, 9, 9)
-                        .addGroup(DefineEquipmentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(floor_combo, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 76, Short.MAX_VALUE)
-                        .addGroup(DefineEquipmentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, DefineEquipmentLayout.createSequentialGroup()
-                                .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(30, 30, 30))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, DefineEquipmentLayout.createSequentialGroup()
-                                .addGroup(DefineEquipmentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(save, javax.swing.GroupLayout.PREFERRED_SIZE, 78, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(location_combo, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGap(41, 41, 41))))))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(save, javax.swing.GroupLayout.PREFERRED_SIZE, 78, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(41, 41, 41))))
+            .addGroup(DefineEquipmentLayout.createSequentialGroup()
+                .addGap(174, 174, 174)
+                .addComponent(location_combo, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, DefineEquipmentLayout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(178, 178, 178))
         );
         DefineEquipmentLayout.setVerticalGroup(
             DefineEquipmentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(DefineEquipmentLayout.createSequentialGroup()
-                .addGap(47, 47, 47)
-                .addGroup(DefineEquipmentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(DefineEquipmentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(jLabel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jLabel6)))
+                .addGap(58, 58, 58)
+                .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(DefineEquipmentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(building_combo, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(floor_combo, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(location_combo, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(62, 62, 62)
+                .addComponent(location_combo, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(51, 51, 51)
                 .addGroup(DefineEquipmentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(id, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -382,14 +351,25 @@ public class EquipmentScreen extends javax.swing.JPanel {
         );
 
         gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 6;
+        gridBagConstraints.gridx = 7;
         gridBagConstraints.gridy = 0;
-        gridBagConstraints.gridheight = 4;
-        gridBagConstraints.ipadx = 64;
+        gridBagConstraints.gridheight = 5;
+        gridBagConstraints.ipadx = 107;
         gridBagConstraints.ipady = 21;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(42, 53, 0, 12);
+        gridBagConstraints.insets = new java.awt.Insets(42, 42, 49, 22);
         add(DefineEquipment, gridBagConstraints);
+
+        jLabel8.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jLabel8.setText("Enter Equipment Code");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 0;
+        gridBagConstraints.ipadx = 13;
+        gridBagConstraints.ipady = 23;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+        gridBagConstraints.insets = new java.awt.Insets(59, 133, 0, 0);
+        add(jLabel8, gridBagConstraints);
     }//GEN-END:initComponents
 
     private void insertActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_insertActionPerformed
@@ -403,8 +383,7 @@ public class EquipmentScreen extends javax.swing.JPanel {
     private void deleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteActionPerformed
     if (EquipmentTable.getSelectedRow() >= 0) {
         try{
-                DefineEquipment.setVisible(false);
-            if (EquipmentTable.getSelectedRow()>=0){
+             DefineEquipment.setVisible(false);
             int EquipmentIndex = Integer.parseInt(EquipmentTable.getValueAt(EquipmentTable.getSelectedRow(), 0).toString());
             EquipmentDto selected_Equipment = new EquipmentDto(); // selected Equipment, To delete.
             selected_Equipment.setEquipment_id(EquipmentIndex);
@@ -415,16 +394,11 @@ public class EquipmentScreen extends javax.swing.JPanel {
             }else
             JOptionPane.showMessageDialog(this, "Can't delete this equipment ! ");
             }
-                else { //No selection on table
-                    JOptionPane.showMessageDialog(this, "you should select an Equipment ");
-                }
-            }
         catch(Exception e){
             e.printStackTrace();
         }
     }
     else {  // if no equipment is selected on the table
-       
        JOptionPane.showMessageDialog(this, "you should select an Equipment to delete  ");
     }
         
@@ -433,18 +407,17 @@ public class EquipmentScreen extends javax.swing.JPanel {
 
     private void updateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_updateActionPerformed
         if (EquipmentTable.getSelectedRow()>=0)
-        {    
-            id.setVisible(false); // No need to update Id
+        {    // No need to update Id, so we hide it//
+            id.setVisible(false); 
+            jLabel1.setVisible(false);
             try{
             id.setText(EquipmentTable.getValueAt(EquipmentTable.getSelectedRow(), 0).toString());
             code.setText(EquipmentTable.getValueAt(EquipmentTable.getSelectedRow(), 1).toString());
             type.setText(EquipmentTable.getValueAt(EquipmentTable.getSelectedRow(), 2).toString());
-            years_number.setText(EquipmentTable.getValueAt(EquipmentTable.getSelectedRow(), 4).toString());   
-             
-            //location_combo.setSelectedIndex(Integer.parseInt(EquipmentTable.getValueAt(EquipmentTable.getSelectedRow(),3).toString()));              
-           // building_combo.setSelectedItem(EquipmentTable.getValueAt(EquipmentTable.getSelectedRow(),4).toString());
-           // floor_combo.setSelectedItem(EquipmentTable.getValueAt(EquipmentTable.getSelectedRow(), 5).toString());      
+            years_number.setText(EquipmentTable.getValueAt(EquipmentTable.getSelectedRow(), 3).toString());       
             DefineEquipment.setVisible(true);
+                
+            // flag , if it equals 1 we update, if zero we insert     
             Equipment_idUpdate = 1;    
             
         }catch(Exception e){
@@ -466,7 +439,7 @@ public class EquipmentScreen extends javax.swing.JPanel {
             setTableModel(Equipmentbusiness.ListAll());
 
         } catch(java.lang.NullPointerException e){
-        JOptionPane.showMessageDialog(this, "This location isn't existed ");    
+        JOptionPane.showMessageDialog(this, "This Equipment isn't existed ");    
         }
           catch (Exception e) {
             // TODO: Add catch code
@@ -474,37 +447,27 @@ public class EquipmentScreen extends javax.swing.JPanel {
         }
     }//GEN-LAST:event_searchActionPerformed
 
-    private void building_comboActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_building_comboActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_building_comboActionPerformed
-
     private void location_comboActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_location_comboActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_location_comboActionPerformed
 
     private void saveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_saveActionPerformed
         try{
-          
-            //To get values from comboBox
-          //  String floor =  floor_combo.getSelectedItem().toString();
-          //  String location =  location_combo.getSelectedItem().toString();
-          //  String building = building_combo.getSelectedItem().toString();
-            //To insert Equipment Data
+            //Create Dto Objects to get data from UI and then pass it to Bao//
            EquipmentDto EquipmentObject = new EquipmentDto();
            LocationDto LocationObject = new LocationDto();  
+           
+            //To get data from UI//
             EquipmentObject.setEquipment_id(Integer.parseInt(id.getText()));
             EquipmentObject.setCode(code.getText());
             EquipmentObject.setType(type.getText());
             EquipmentObject.setLifSpan(Integer.parseInt(years_number.getText()));
+           
+            //To set id for location//
             LocationObject.setLocation_id(All_locations.get(location_combo.getSelectedIndex()).getLocation_id());
             EquipmentObject.setLocation_equipment(LocationObject);
-           // LocationObject.setCode(location_combo.getSelectedItem().toString());
-            // EquipmentObject.setFloor(new FloorDto(Integer.parseInt(floor)));
-            // EquipmentObject.setType(new LocationTypeDto(type));
-      //      EquipmentObject.setFloor_code(floor);
-      //      EquipmentObject.setLocationtype(location);
-      //      EquipmentObject.setBuilding_code(building);
-
+          
+            //To Check whether to insert or update data// 
             if(Equipment_idUpdate !=0)
             {       
                     EquipmentObject.setUpdatedBy(LoginEngine.currentUser);
@@ -544,19 +507,16 @@ public class EquipmentScreen extends javax.swing.JPanel {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel DefineEquipment;
     private javax.swing.JTable EquipmentTable;
-    private javax.swing.JComboBox building_combo;
     private javax.swing.JTextField code;
     private javax.swing.JButton delete;
-    private javax.swing.JComboBox floor_combo;
     private javax.swing.JTextField id;
     private javax.swing.JButton insert;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTextField jTextField1;
     private javax.swing.JComboBox location_combo;
@@ -568,18 +528,16 @@ public class EquipmentScreen extends javax.swing.JPanel {
     private javax.swing.JTextField years_number;
     // End of variables declaration//GEN-END:variables
     
-    // this method just to clear text and reset the valus on the insrt panel
+    // this method just to clear text and reset the valus on the insert panel
     void clearData() { // clear prvious data
         id.setText(null);
         code.setText(null);
         type.setText(null);
         years_number.setText(null);
-     //   building_combo.setSelectedIndex(0);
-     //   floor_combo.setSelectedIndex(0);
-     //   location_combo.setSelectedIndex(0);
-
-        // show hiden components again
         
+        // show hiden components again
+        id.setVisible(true);
+        jLabel1.setVisible(true);      
     }
     
    

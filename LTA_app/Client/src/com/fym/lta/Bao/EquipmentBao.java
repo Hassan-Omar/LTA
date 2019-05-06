@@ -36,11 +36,6 @@ public interface EquipmentBao {
      */
     public List<EquipmentDto> ListAll();
     
-    /**
-     * save List of Equipments in specific location
-     */
-    
-    public boolean saveEquipment(List<EquipmentDto> equipment , LocationDto location);
-    
+   
    
 }

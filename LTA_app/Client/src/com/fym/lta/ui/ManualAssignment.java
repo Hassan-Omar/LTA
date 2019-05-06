@@ -3,39 +3,73 @@ package com.fym.lta.ui;
 
 import com.fym.lta.bao.BaoFactory;
 import com.fym.lta.bao.LocationBao;
+import com.fym.lta.dto.BuildingDto;
 import com.fym.lta.dto.LocationDto;
 
+import com.fym.lta.dto.LocationTypeDto;
+
 import java.util.List;
+
+import javax.swing.JOptionPane;
 
 /**
  *
  * @author Nada
  */
 public class ManualAssignment extends javax.swing.JPanel {
-    private LocationBao Location_business;
-    private LocationDto locat;
-    private void setTableModel(List<LocationDto> location){
-        Object [][] locationArr = new Object [location.size()][2];
-        for(int i =0;i<location.size();i++){
-            locationArr[i][0] = location.get(i).getCode();
-            locationArr[i][1] = location.get(i).getCapacity();
-           // locationArr[i][2] = location.get(i).getOccupation_purpose();
-            
-        }
-        LocatTable.setModel(new javax.swing.table.DefaultTableModel(locationArr,
-            new String [] {
-                "Location Type", "Building Code " 
-            }
-        ));    
+    
+    //To create a refrence from LocationBao 
+    private LocationBao Locationbusiness  = new BaoFactory().createLocationBao();
+    
+    //To Get list of building , location type to set comboBox items 
+    List<BuildingDto> Allbuildings = new BaoFactory().createBuildingBao().listBuilding();
+    List<LocationTypeDto> AlllocationTypes = new BaoFactory().createLocationTypeBao().listLocationType(); 
+   
+    //To add comboBox items//
+    // We get a list of saved items in Database//
+    void listComboBuildings(List<BuildingDto> building) {
+       for (int i = 0; i < building.size(); i++) {
+           building_combo.addItem(building.get(i).getCode());
+                 }
     }
+    
+    void listComboLocationTypes(List<LocationTypeDto> LocationType) {
+          for (int i = 0; i < LocationType.size(); i++) {
+             type_combo.addItem(LocationType.get(i).getCode());
+                    }
+    }
+    
+    // To Set the retrieved data from database into the locationTable// 
+    private void setTableModel(List<LocationDto> location  ){
+        Object [][] locationArr = new Object [location.size()][12];
+        for(int i =0;i<location.size();i++){
+            locationArr[i][0] = location.get(i).getLocation_id();
+            locationArr[i][1] = location.get(i).getCode();
+            locationArr[i][2] = location.get(i).getDescription();
+            locationArr[i][3] = location.get(i).getCapacity();
+            locationArr[i][4] = location.get(i).getStatus();
+            locationArr[i][5] = location.get(i).getBuilding().getCode();
+            locationArr[i][6] = location.get(i).getFloor().getCode();
+            locationArr[i][7] = location.get(i).getType().getCode();
+            locationArr[i][8] = location.get(i).getInsertedBy();
+            locationArr[i][9] = location.get(i).getInertion_Date();
+            locationArr[i][10] = location.get(i).getUpdatedBy();
+            locationArr[i][11] = location.get(i).getUpdate_Date();  }    
+        
+        LocationTable.setModel(new javax.swing.table.DefaultTableModel(locationArr,
+            new String [] {
+                "Location Id", "Location Code" , "Description", "capacity" ,"Location Status","Building", "Floor","Location Type" , "Inserted By","Insertion Date","Updated By","Update Date"
+            }
+        ));   }
 
     /** Creates new form ManualAssignment */
     public ManualAssignment() {
         try {
-            Location_business = new BaoFactory().createLocationBao();
             initComponents();
-        
-            setTableModel(Location_business.ListAll());            
+            if(Locationbusiness.ListAll()!=null)
+            setTableModel(Locationbusiness.ListAll());
+            listComboBuildings(Allbuildings); 
+            listComboLocationTypes(AlllocationTypes);
             
         } catch (Exception e) {
             // TODO: Add catch code
@@ -57,133 +91,199 @@ public class ManualAssignment extends javax.swing.JPanel {
     private void initComponents() {//GEN-BEGIN:initComponents
         java.awt.GridBagConstraints gridBagConstraints;
 
-        jScrollPane1 = new javax.swing.JScrollPane();
-        LocatTable = new javax.swing.JTable();
-        jComboBox1 = new javax.swing.JComboBox();
-        jComboBox2 = new javax.swing.JComboBox();
+        type_combo = new javax.swing.JComboBox();
+        building_combo = new javax.swing.JComboBox();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
+        master = new javax.swing.JPanel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        LocationTable = new javax.swing.JTable();
+        done = new javax.swing.JButton();
 
         setBorder(javax.swing.BorderFactory.createTitledBorder("Location Manual Assignment"));
         setLayout(new java.awt.GridBagLayout());
 
-        LocatTable.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        LocatTable.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null}
-            },
-            new String [] {
-                "Location Type", " Building Code", "Occupation Purpose"
-            }
-        ) {
-            Class[] types = new Class [] {
-                java.lang.String.class, java.lang.String.class, java.lang.Object.class
-            };
-            boolean[] canEdit = new boolean [] {
-                false, false, true
-            };
-
-            public Class getColumnClass(int columnIndex) {
-                return types [columnIndex];
-            }
-
-            public boolean isCellEditable(int rowIndex, int columnIndex) {
-                return canEdit [columnIndex];
+        type_combo.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        type_combo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                type_comboActionPerformed(evt);
             }
         });
-        LocatTable.setToolTipText("");
-        LocatTable.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        jScrollPane1.setViewportView(LocatTable);
-
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 2;
-        gridBagConstraints.gridwidth = 5;
-        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
-        gridBagConstraints.ipadx = 522;
-        gridBagConstraints.ipady = 233;
+        gridBagConstraints.ipadx = 137;
+        gridBagConstraints.ipady = 36;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.weightx = 1.0;
-        gridBagConstraints.weighty = 1.0;
-        gridBagConstraints.insets = new java.awt.Insets(27, 31, 17, 57);
-        add(jScrollPane1, gridBagConstraints);
+        gridBagConstraints.insets = new java.awt.Insets(28, 209, 0, 0);
+        add(type_combo, gridBagConstraints);
 
-        jComboBox1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Class", "Hall", "Lab", " " }));
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 1;
-        gridBagConstraints.ipadx = 49;
-        gridBagConstraints.ipady = 19;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(6, 76, 0, 0);
-        add(jComboBox1, gridBagConstraints);
-
-        jComboBox2.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jComboBox2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Civil_Building", "Electrical_Building", "Arch_Building ", " " }));
+        building_combo.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        building_combo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                building_comboActionPerformed(evt);
+            }
+        });
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 2;
-        gridBagConstraints.gridy = 1;
-        gridBagConstraints.ipady = 19;
+        gridBagConstraints.gridy = 2;
+        gridBagConstraints.ipadx = 133;
+        gridBagConstraints.ipady = 36;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(6, 233, 0, 0);
-        add(jComboBox2, gridBagConstraints);
+        gridBagConstraints.insets = new java.awt.Insets(28, 198, 0, 0);
+        add(building_combo, gridBagConstraints);
 
-        jLabel1.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jLabel1.setText("Location Type");
+        jLabel1.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        jLabel1.setText("Choose Location Type");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 0;
         gridBagConstraints.gridwidth = 2;
-        gridBagConstraints.ipadx = 15;
-        gridBagConstraints.ipady = 10;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(117, 76, 0, 0);
+        gridBagConstraints.insets = new java.awt.Insets(136, 200, 0, 0);
         add(jLabel1, gridBagConstraints);
 
-        jLabel2.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jLabel2.setText("Building Code ");
+        jLabel2.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        jLabel2.setText("Choose Building  ");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 2;
         gridBagConstraints.gridy = 0;
         gridBagConstraints.gridwidth = 2;
-        gridBagConstraints.ipadx = 37;
+        gridBagConstraints.gridheight = 2;
+        gridBagConstraints.ipadx = 12;
         gridBagConstraints.ipady = 10;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(117, 247, 0, 0);
+        gridBagConstraints.insets = new java.awt.Insets(136, 198, 0, 0);
         add(jLabel2, gridBagConstraints);
+
+        master.setBorder(javax.swing.BorderFactory.createTitledBorder("Locations "));
+        master.setPreferredSize(new java.awt.Dimension(400, 400));
+
+        LocationTable.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null, null}
+            },
+            new String [] {
+                "Title 1", "Title 2", "Title 3", "Title 4", "Title 5", "Title 6", "Title 7", "Title 8", "Title 9", "Title 10", "Title 11", "Title 12"
+            }
+        ));
+        jScrollPane1.setViewportView(LocationTable);
+
+        javax.swing.GroupLayout masterLayout = new javax.swing.GroupLayout(master);
+        master.setLayout(masterLayout);
+        masterLayout.setHorizontalGroup(
+            masterLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 1087, Short.MAX_VALUE)
+        );
+        masterLayout.setVerticalGroup(
+            masterLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 302, Short.MAX_VALUE)
+        );
+
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 4;
+        gridBagConstraints.gridwidth = 5;
+        gridBagConstraints.ipadx = 1068;
+        gridBagConstraints.ipady = 279;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+        gridBagConstraints.insets = new java.awt.Insets(37, 58, 9, 51);
+        add(master, gridBagConstraints);
+
+        done.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        done.setText("Filter Locations");
+        done.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                doneActionPerformed(evt);
+            }
+        });
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 4;
+        gridBagConstraints.gridy = 2;
+        gridBagConstraints.gridheight = 2;
+        gridBagConstraints.ipady = 28;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+        gridBagConstraints.insets = new java.awt.Insets(59, 243, 0, 51);
+        add(done, gridBagConstraints);
     }//GEN-END:initComponents
+
+    private void type_comboActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_type_comboActionPerformed
+  
+    }//GEN-LAST:event_type_comboActionPerformed
+
+    private void building_comboActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_building_comboActionPerformed
+  
+    }//GEN-LAST:event_building_comboActionPerformed
+
+    private void doneActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_doneActionPerformed
+    try {
+         //To check if the user selected an item or not 
+        // if so, filtered list of location will be returned based on location type & building
+        if (!(building_combo.getSelectedItem().equals(null)&&type_combo.getSelectedItem().equals(null))){
+        setTableModel(Locationbusiness.filterLocations(type_combo.getSelectedItem().toString(),building_combo.getSelectedItem().toString()));
+        }
+        else 
+         // if the user didn't select any thing , list of all locations will be returned   
+        setTableModel(Locationbusiness.ListAll());      
+    } 
+        catch(java.lang.NullPointerException e){
+            JOptionPane.showMessageDialog(this, "This location isn't existed ");    
+        }
+        catch (Exception e) {
+            // TODO: Add catch code
+                e.printStackTrace();
+            } 
+    }//GEN-LAST:event_doneActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JTable LocatTable;
-    private javax.swing.JComboBox jComboBox1;
-    private javax.swing.JComboBox jComboBox2;
+    private javax.swing.JTable LocationTable;
+    private javax.swing.JComboBox building_combo;
+    private javax.swing.JButton done;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JPanel master;
+    private javax.swing.JComboBox type_combo;
     // End of variables declaration//GEN-END:variables
 
 }

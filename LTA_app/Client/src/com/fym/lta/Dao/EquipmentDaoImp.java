@@ -2,6 +2,7 @@ package com.fym.lta.dao;
 
 import com.fym.lta.common.ConnectionFactory;
 import com.fym.lta.common.Queries;
+import com.fym.lta.dto.BuildingDto;
 import com.fym.lta.dto.EquipmentDto;
 
 import com.fym.lta.dto.LocationDto;
@@ -35,9 +36,9 @@ public class EquipmentDaoImp implements EquipmentDao {
                      equipment.setEquipment_id(jdbc.getInt(1));
                      equipment.setCode(jdbc.getString(2));
                      equipment.setType(jdbc.getString(3)); 
-                     equipment.setLocation_equipment(new LocationDto(jdbc.getString("Location")));  
-                     equipment.setLifSpan(jdbc.getInt(5));    
-                     equipment.setStartingTime(jdbc.getDate(6));
+                     equipment.setLifSpan(jdbc.getInt(4));    
+                     equipment.setStartingTime(jdbc.getDate(5)); 
+                     equipment.setLocation_equipment(new LocationDto(jdbc.getString("Location")));   
                      equipment.setInsertedBy(jdbc.getString(7));
                      equipment.setUpdatedBy(jdbc.getString(8)); 
                      equipment.setInertion_Date(jdbc.getDate(9));
@@ -90,7 +91,7 @@ public class EquipmentDaoImp implements EquipmentDao {
           
                 }
         //     catch(java.sql.SQLException e){
-        //     JOptionPane.showMessageDialog( new DefineLocation() , "Database Failed");
+        //     JOptionPane.showMessageDialog( null , "Database Failed");
         //     }
                 catch(Exception e){
                     e.printStackTrace();      
@@ -184,22 +185,5 @@ public class EquipmentDaoImp implements EquipmentDao {
         return equip;
     }
     
-    public boolean save_Equipment(List<EquipmentDto> equipment ,LocationDto location){
-     try (JdbcRowSet jdbcRs = RowSetProvider.newFactory().createJdbcRowSet()) {
-         jdbcRs.setUrl(ConnectionFactory.getUrl());
-         jdbcRs.setUsername(ConnectionFactory.getUsername());
-         jdbcRs.setPassword(ConnectionFactory.getPassword());
-         for (int i = 0; i < equipment.size(); i++) {
-             jdbcRs.setCommand("insert into location_equipment (location_id , equipment_id) values(?,?)");
-             jdbcRs.setInt(1, location.getLocation_id());
-             jdbcRs.setInt(2, equipment.get(i).getEquipment_id());
-             jdbcRs.execute();
-         }
-         return true;
-     } catch (Exception e) {
-         e.printStackTrace();
-     }
-
-     return false;
-    }
+    
 }
