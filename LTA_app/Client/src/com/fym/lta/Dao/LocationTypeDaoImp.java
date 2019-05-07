@@ -4,7 +4,7 @@ import com.fym.lta.common.ConnectionFactory;
 import com.fym.lta.common.LTAException;
 import com.fym.lta.common.Queries;
 import com.fym.lta.dto.LocationTypeDto;
-import com.fym.lta.ui.DefineLocation;
+
 
 import java.sql.Types;
 
@@ -33,8 +33,8 @@ public class LocationTypeDaoImp implements LocationTypeDao {
                 if (LocationTypes == null)
                     LocationTypes = new ArrayList<>();
                 LocationType = new LocationTypeDto();
-                LocationType.setCode(jdbcRs.getString(8));
-                LocationType.setDescription(jdbcRs.getString(2));
+                LocationType.setCode(jdbcRs.getString(2));
+                LocationType.setDescription(jdbcRs.getString(3));
                 
                 
                 LocationTypes.add(LocationType);
@@ -137,10 +137,7 @@ public class LocationTypeDaoImp implements LocationTypeDao {
 
             jdbcRs.execute();
             return true;
-        } catch (java.sql.SQLIntegrityConstraintViolationException e) {
-            JOptionPane.showMessageDialog(new DefineLocation(), "Unique Constrain Violated");
-            return false;
-        }
+        } 
 
         catch (Exception e) {
             e.printStackTrace();

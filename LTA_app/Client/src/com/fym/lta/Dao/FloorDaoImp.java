@@ -4,7 +4,7 @@ import com.fym.lta.common.ConnectionFactory;
 import com.fym.lta.common.LTAException;
 import com.fym.lta.common.Queries;
 import com.fym.lta.dto.FloorDto;
-import com.fym.lta.ui.DefineLocation;
+
 
 import java.sql.Types;
 
@@ -133,10 +133,7 @@ public class FloorDaoImp implements FloorDao {
 
         jdbcRs.execute();
         return true;
-    } catch (java.sql.SQLIntegrityConstraintViolationException e) {
-        JOptionPane.showMessageDialog(new DefineLocation(), "Unique Constrain Violated");
-        return false;
-    }
+    } 
 
     catch (Exception e) {
         e.printStackTrace();

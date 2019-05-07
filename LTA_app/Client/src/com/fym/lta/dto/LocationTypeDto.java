@@ -7,6 +7,26 @@ public class LocationTypeDto {
 
     private int LocationType_id;
     private String code, Description;
+
+
+    public LocationTypeDto(){
+        
+    }
+
+    public LocationTypeDto(String code) {
+        super();
+        this.code = code;
+    }
+
+    public LocationTypeDto(int LocationType_id) {
+        super();
+        this.LocationType_id = LocationType_id;
+    }
+
+
+
+
+
     private String  insertedBy, updatedBy;
     private Date inertion_Date, update_Date;
     public void setLocationType_id(int LocationType_id) {
@@ -20,6 +40,8 @@ public class LocationTypeDto {
     public void setCode(String code) {
         this.code = code;
     }
+
+   
 
     public String getCode() {
         return code;

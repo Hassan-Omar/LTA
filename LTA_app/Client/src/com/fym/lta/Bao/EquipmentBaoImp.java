@@ -1,20 +1,48 @@
 package com.fym.lta.bao;
 
+import com.fym.lta.dao.DaoFactory;
+import com.fym.lta.dao.EquipmentDao;
+
 import com.fym.lta.dto.EquipmentDto;
 
-import java.util.Collections;
+import com.fym.lta.dto.LocationDto;
+
 import java.util.List;
 
 public class EquipmentBaoImp implements EquipmentBao {
-    public boolean saveEquipment(EquipmentDto Equipment) {
-        return false;
-    }
-
-    public List<EquipmentDto> SearchEquipment(String name) {
-        return Collections.emptyList();
+    
+    private EquipmentDao daoEquipment = new DaoFactory().createEquipmentDao();
+    
+    public boolean insertEquipment(EquipmentDto Equipment) {
+        boolean saveFlage = true;
+        try{
+                saveFlage = daoEquipment.insert_Equipment(Equipment);
+        }catch(Exception e){
+            e.printStackTrace();
+            return false;
+        }
+        return saveFlage;
     }
 
     public boolean deleteEquipment(EquipmentDto Equipment) {
-        return false;
+        boolean flag; 
+        flag = daoEquipment.delete_Equipment(Equipment);
+        return flag;
     }
+    
+    public boolean updateEquipment(EquipmentDto Equipment)
+    
+    { return daoEquipment.Update_Equipment(Equipment);
+                   }
+
+  
+   public List<EquipmentDto> SearchEquipment(String name){
+        return daoEquipment. searchEquipments(name);
+    }
+    
+    public List<EquipmentDto> ListAll() {
+        return daoEquipment.getAll_Equipments();
+    }
+    
+   
 }

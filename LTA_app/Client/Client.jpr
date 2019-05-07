@@ -109,16 +109,7 @@
          <list n="libraryDefinitions">
             <hash>
                <list n="classPath">
-                  <url path="../../../../../Users/h.omar/Downloads/Compressed/ojdbc6-2.0.jar" jar-entry=""/>
-               </list>
-               <value n="deployedByDefault" v="true"/>
-               <value n="description" v="Ojdbc6-2.0.jar"/>
-               <value n="id" v="Ojdbc6-2.0.jar"/>
-               <value n="locked" v="true"/>
-            </hash>
-            <hash>
-               <list n="classPath">
-                  <url path="../../../../../Users/h.omar/Downloads/ojdbc6.jar" jar-entry=""/>
+                  <url path="../../../../../Users/El-Wattaneya/Desktop/ojdbc6.jar" jar-entry=""/>
                </list>
                <value n="deployedByDefault" v="true"/>
                <value n="description" v="Ojdbc6.jar"/>
@@ -130,10 +121,6 @@
       <list n="libraryReferences">
          <hash>
             <value n="id" v="Java EE"/>
-            <value n="isJDK" v="false"/>
-         </hash>
-         <hash>
-            <value n="id" v="Ojdbc6-2.0.jar"/>
             <value n="isJDK" v="false"/>
          </hash>
          <hash>
