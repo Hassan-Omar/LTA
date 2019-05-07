@@ -21,7 +21,7 @@ public class ScreenBaoImp implements ScreenBao {
 
     @Override
     public boolean saveScreenRoles(List<ScreenDto> screens, RoleDto role) {
-        return screeenDaoObj.saveScreenRoles(screens, role);
+        return screeenDaoObj.insertScreenRoles(screens, role);
     }
 
 

@@ -61,7 +61,7 @@ public class StaffInsert extends JPanel {
 
     private void jbInit() throws Exception {
         this.setLayout(null);
-        this.setSize(new Dimension(690, 351));
+        this.setSize(new Dimension(763, 385));
         jLabel1.setText("Insert new Staff Member");
         jLabel1.setBounds(new Rectangle(215, 5, 225, 55));
         jLabel4.setText("Department");
