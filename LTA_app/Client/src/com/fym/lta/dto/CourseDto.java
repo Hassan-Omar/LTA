@@ -9,6 +9,7 @@ public class CourseDto {
     private List<EmployeeDto> Instructors; // max 2 Instructors
     private List<SlotDto> periods; // max 2 Slot
     private List<LocationTypeDto> neededLocType ; // this to know what type is needed lab or room  
+    
 
     public CourseDto(int Course_id, int hoursperWeak, String code,
                      String Description, String name) {

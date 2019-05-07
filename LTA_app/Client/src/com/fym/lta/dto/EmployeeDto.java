@@ -7,16 +7,16 @@ public class EmployeeDto extends UserDto {
         this.lName = lName;
     }
 
-    public String getLName() {
-        return lName;
-    }
-
     public void setFullName(String FullName) {
         this.FullName = FullName;
     }
 
     public String getFullName() {
         return FullName;
+    }
+
+    public String getLName() {
+        return lName;
     }
     private int emp_id ;
     private boolean empType ; // this true if the type is a staff member 

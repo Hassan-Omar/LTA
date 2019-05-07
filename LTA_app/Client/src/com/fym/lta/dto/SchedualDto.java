@@ -2,11 +2,11 @@ package com.fym.lta.dto;
 
 import java.util.List;
 
-public class SchedualDto {
+public class SchedualDto
+{
     private int student_number;
-    private String SCHEDULECODE, Description, academicYear,CodeDeparment;
+    private String SCHEDULECODE, Description, CodeDeparment,academicYear;
     private List<SlotDto> Schedual_Slots;
-
     public SchedualDto(int student_number, String SCHEDULECODE, String Description,
                        String academicYear, List<SlotDto> Schedual_Slots) {
         super();

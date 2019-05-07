@@ -167,6 +167,7 @@ public class Queries {
     public static final String LIST_ALL_EQUIPMENTS = "SELECT equipment.id , equipment.code ,equipment.type, equipment.life_span, equipment.using_start_time ,location.code Location, equipment.inserted_by ,equipment.updated_by ,equipment.insertion_date, equipment.update_date " + 
     "FROM Equipment , location  where equipment.location_id = location.l_id ";
 
+
     public static final String DELETE_Equipment = "DELETE FROM Equipment WHERE ID  = ? ";
 
     public static final String IS_Equipment_EXIST = "SELECT ID FROM Equipment WHERE CODE = ?";
@@ -178,5 +179,29 @@ public class Queries {
     "FROM Equipment , location where equipment.location_id = location.l_id and LOWER(equipment.code) LIKE ?";
 
     //___________________________________________________________________________________
+
+
+    //___________________________________________________________________________________
+   
+    //________________________________ Schedule MODULE __________________________________
+
+
+    public static final String  INSER_NEW_SCHEDULE =
+    "INSERT INTO grade_schedule (SCHEDULECODE , ACADEMIC_YEAR,DEPARTMENT_CODE ) VALUES(?,?,?)";
+    
+    public static final String  INSER_NEW_SLotSCHEDULE =
+    "INSERT INTO SCHEDULE_CONSISTS_OF_SLOT (SCHEDULE_CODE , SLOT_ID ) VALUES(?,?) " ;
+    
+    public static final String DELETE_SCHEDULE = 
+    "DELETE FROM grade_schedule WHERE SCHEDULECODE =? ";
+    
+    public static final String LIST_ALL_SCHEDULE = 
+    "SELECT SCHEDULECODE,ACADEMIC_YEAR,DEPARTMENT_CODE FROM grade_schedule " ;
+    
+    public static final String Search_SCHEDULE =
+    "SELECT SCHEDULECODE,ACADEMIC_YEAR,DEPARTMENT_CODE  FROM grade_schedule WHERE LOWER(SCHEDULECODE) LIKE ?  ";
+
+    public static final String IS_EXIST_SCHEDULE =
+    "SELECT SCHEDULECODE FROM grade_schedule WHERE SCHEDULECODE = ?" ;
 
 }
