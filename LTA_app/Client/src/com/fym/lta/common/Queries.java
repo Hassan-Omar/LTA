@@ -63,6 +63,10 @@ public class Queries {
         "SELECT PERMISSIONTYPE FROM ROLE_SCREEN WHERE ROLEID = ? AND SCREENID = ? ";
 
     public static final String GET_AVAILABLE_SCREENS = "SELECT SCREENID FROM ROLE_SCREEN WHERE ROLEID = ? ";
+
+    public static final String SCREEN_ROLE_ISEXIST = "SELECT SCREENID FROM ROLE_SCREEN WHERE ROLEID = ? AND SCREENID = ?";
+    
+    public static final String UPDATESCREEN_ROLE  = "UPDATE ROLE_SCREEN SET PERMISSIONTYPE = ? WHERE ROLEID =? AND  SCREENID =? ";
     //___________________________________________________________________________________
 
 
