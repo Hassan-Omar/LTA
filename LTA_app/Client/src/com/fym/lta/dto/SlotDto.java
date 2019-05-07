@@ -17,6 +17,9 @@ public class SlotDto {
 
     }
 
+    public SlotDto() {
+    }
+
     public void setSlot_id(int Slot_id) {
         this.Slot_id = Slot_id;
     }

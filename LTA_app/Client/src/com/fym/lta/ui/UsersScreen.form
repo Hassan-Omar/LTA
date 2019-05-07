@@ -393,6 +393,9 @@
               <StringArray count="0"/>
             </Property>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="userRoleComboActionPerformed"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JComboBox" name="employeesCombo">
           <Properties>
@@ -403,6 +406,9 @@
               <StringArray count="0"/>
             </Property>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="employeesComboActionPerformed"/>
+          </Events>
         </Component>
         <Component class="java.awt.Label" name="employeesLabel">
           <Properties>

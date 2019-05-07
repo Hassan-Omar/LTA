@@ -4,17 +4,28 @@ import java.util.List;
 
 public class SchedualDto {
     private int student_number;
-    private String code, Description, academicYear;
+    private String SCHEDULECODE, Description, academicYear,CodeDeparment;
     private List<SlotDto> Schedual_Slots;
 
-    public SchedualDto(int student_number, String code, String Description,
+    public SchedualDto(int student_number, String SCHEDULECODE, String Description,
                        String academicYear, List<SlotDto> Schedual_Slots) {
         super();
         this.student_number = student_number;
-        this.code = code;
+        this.SCHEDULECODE = SCHEDULECODE;
         this.Description = Description;
         this.academicYear = academicYear;
         this.Schedual_Slots = Schedual_Slots;
+    }
+
+    public void setCodeDeparment(String CodeDeparment) {
+        this.CodeDeparment = CodeDeparment;
+    }
+
+    public String getCodeDeparment() {
+        return CodeDeparment;
+    }
+
+    public SchedualDto() {
     }
 
     public void setStudent_number(int student_number) {
@@ -25,12 +36,12 @@ public class SchedualDto {
         return student_number;
     }
 
-    public void setCode(String code) {
-        this.code = code;
+    public void setSCHEDULECODE(String SCHEDULECODE) {
+        this.SCHEDULECODE = SCHEDULECODE;
     }
 
-    public String getCode() {
-        return code;
+    public String getSCHEDULECODE() {
+        return SCHEDULECODE;
     }
 
     public void setDescription(String Description) {

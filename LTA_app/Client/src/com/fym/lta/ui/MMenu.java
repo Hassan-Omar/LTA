@@ -1,4 +1,3 @@
-
 package com.fym.lta.ui;
 
 import com.fym.lta.bao.BaoFactory;
@@ -57,6 +56,7 @@ public class MMenu extends javax.swing.JFrame {
         departmentM_Item = new javax.swing.JMenuItem();
         courseM_Item = new javax.swing.JMenuItem();
         staffM_Item = new javax.swing.JMenuItem();
+        jMenuItem1 = new javax.swing.JMenuItem();
         jMenu2 = new javax.swing.JMenu();
         locationMasterM_Item = new javax.swing.JMenuItem();
         locationManualM_Item = new javax.swing.JMenuItem();
@@ -120,6 +120,11 @@ public class MMenu extends javax.swing.JFrame {
 
         floorM_Item.setText("Building Floor");
         floorM_Item.setEnabled(false);
+        floorM_Item.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                floorM_ItemActionPerformed(evt);
+            }
+        });
         jMenu3.add(floorM_Item);
 
         locationTypeM_Item.setText("location Type");
@@ -153,6 +158,14 @@ public class MMenu extends javax.swing.JFrame {
         });
         jMenu3.add(staffM_Item);
 
+        jMenuItem1.setText("Equipment");
+        jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem1ActionPerformed(evt);
+            }
+        });
+        jMenu3.add(jMenuItem1);
+
         jMenuBar1.add(jMenu3);
 
         jMenu2.setText(" Locations’and spaces management                  ");
@@ -168,6 +181,11 @@ public class MMenu extends javax.swing.JFrame {
 
         locationManualM_Item.setText("Location Manual Assignment");
         locationManualM_Item.setEnabled(false);
+        locationManualM_Item.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                locationManualM_ItemActionPerformed(evt);
+            }
+        });
         jMenu2.add(locationManualM_Item);
 
         locationAutoM_Item.setText("Location Automatic Assignment");
@@ -370,8 +388,23 @@ public class MMenu extends javax.swing.JFrame {
     }//GEN-LAST:event_assigendrolequicksearchActionPerformed
 
     private void locationTypeM_ItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_locationTypeM_ItemActionPerformed
-        // TODO add your handling code here:
+    switchtoPanel(new LocationTypeScreen() ) ;
     }//GEN-LAST:event_locationTypeM_ItemActionPerformed
+
+
+    private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
+    switchtoPanel(new EquipmentScreen()); 
+    }//GEN-LAST:event_jMenuItem1ActionPerformed
+
+
+    private void floorM_ItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_floorM_ItemActionPerformed
+    switchtoPanel(new FloorScreen()) ; 
+    }//GEN-LAST:event_floorM_ItemActionPerformed
+
+    private void locationManualM_ItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_locationManualM_ItemActionPerformed
+    switchtoPanel(new ManualAssignment()) ; 
+    }//GEN-LAST:event_locationManualM_ItemActionPerformed
+
 
     /**
      * @param args the command line arguments
@@ -424,6 +457,7 @@ public class MMenu extends javax.swing.JFrame {
     private javax.swing.JMenu jMenu5;
     private javax.swing.JMenu jMenu6;
     private javax.swing.JMenuBar jMenuBar1;
+    private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JMenuItem locationAutoM_Item;
     private javax.swing.JMenuItem locationManualM_Item;
     private javax.swing.JMenuItem locationMasterM_Item;

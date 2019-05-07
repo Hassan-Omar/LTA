@@ -98,22 +98,85 @@ public class Queries {
     public static final String BUILDINGS_SEARCH = "SELECT * FROM BUILDING WHERE LOWER(CODE) LIKE ?";
     //___________________________________________________________________________________
 
+    //________________________________ BUILDING_FLOOR MODULE __________________________________
+      public static final String INSER_NEW_FLOOR =
+          "INSERT INTO FLOOR (CODE,DESCRIPTON,INSERTION_DATE,UPDATE_DATE,INSERTED_BY,UPDATED_BY)" +
+          "VALUES (?,?,?,?,?,?)";
+
+      public static final String DELETE_FLOOR = "DELETE FROM FLOOR WHERE CODE = ? ";
+
+      public static final String IS_FLOOR_EXIST = "SELECT ID FROM FLOOR WHERE CODE = ?";
+      
+      public static final String UPDATE_FLOOR =
+          "UPDATE FLOOR SET  DESCRIPTON = ? , UPDATED_BY = ? ,UPDATE_DATE = ? WHERE CODE = ?";
+
+      public static final String LIST_ALL_FLOORS = "SELECT * FROM FLOOR ";
+      
+      public static final String FLOORS_SEARCH = "SELECT * FROM FLOOR WHERE LOWER(CODE) LIKE ?";
+      //___________________________________________________________________________________
+      
+      
+      
+      //________________________________ LOCATION_TYPE MODULE __________________________________
+      public static final String INSER_NEW_LOCATION_TYPE =
+          "INSERT INTO LOCATION_TYPE (CODE,DESCRIPTION,INSERTED_BY,UPDATED_BY,INSERTION_DATE,UPDATE_DATE)" +
+          "VALUES (?,?,?,?,?,?)";
+
+      public static final String DELETE_LOCATION_TYPE = "DELETE FROM LOCATION_TYPE WHERE CODE = ? ";
+
+      public static final String IS_LOCATION_TYPE_EXIST = "SELECT T_ID FROM LOCATION_TYPE WHERE CODE = ?";
+      
+      public static final String UPDATE_LOCATION_TYPE =
+          "UPDATE LOCATION_TYPE SET  DESCRIPTION = ?, UPDATED_BY = ? ,UPDATE_DATE = ? WHERE CODE = ?";
+
+      public static final String LIST_ALL_LOCATION_TYPES = "SELECT * FROM LOCATION_TYPE ";
+      
+      public static final String LOCATION_TYPE_SEARCH = "SELECT * FROM LOCATION_TYPE WHERE LOWER(CODE) LIKE ?";
+      //___________________________________________________________________________________
+      
+
 
     //________________________________ LOCATION MODULE __________________________________
-    public static final String INSER_NEW_LOCATION = "INSERT INTO LOCATION (CODE , DESCRIPTION,CAPACITY) VALUES(?,?,?)";
+    public static final String INSER_NEW_LOCATION = "INSERT INTO LOCATION (L_ID ,CODE , DESCRIPTION,CAPACITY,STATUS,BUILDING_ID,FLOOR_ID, TYPE_ID ,EQUIPMENT_CODE,INSERTED_BY,INSERTION_DATE) VALUES(?,?,?,?,?,?,?,?,?,?,?)";
+    
+    public static final String INSER_NEW_OCCUPATION_PURPOSE = "INSERT INTO LOCATION (OCCUPATION_PURPOSE) VALUES(?)";
 
-    public static final String LIST_ALL_LOCATION = "SELECT * FROM LOCATION ";
+    public static final String LIST_ALL_LOCATION = "select location.l_id,location.code ,location.description ,location.capacity,location.status,building.code building_code , floor.code floor_code  ,location_type.\"code \" type_code ,location.inserted_by,location.insertion_date,location.updated_by,location.update_date " + 
+    "from location , floor ,building ,location_type " + 
+    "where location.floor_id = floor.id and location.building_id =building.b_id and location.type_id =location_type.t_id ";
 
     public static final String DELETE_LOCATION = "DELETE FROM LOCATION WHERE L_ID  = ? ";
 
     public static final String IS_LOCATION_EXIST = "SELECT L_ID FROM LOCATION WHERE CODE = ?";
 
     public static final String UPDATE_LOCATION =
-        "UPDATE LOCATION SET  CODE =? , DESCRIPTION = ?, CAPACITY = ? WHERE L_ID =?";
+        "UPDATE LOCATION SET   CODE =? , DESCRIPTION = ?, CAPACITY = ? ,STATUS = ?,   BUILDING_ID = ? ,FLOOR_ID = ? ,TYPE_ID = ?,UPDATED_BY = ? , UPDATE_DATE =?   WHERE L_ID =?";
 
-    public static final String LOCATION_SEARCH = "SELECT * FROM LOCATION WHERE LOWER(CODE) LIKE ?";
-
+    public static final String LOCATION_SEARCH = "select location.l_id,location.code ,location.description ,location.capacity,location.status,building.code building_code , floor.code floor_code  ,location_type.\"code \" type_code ,location.inserted_by,location.insertion_date,location.updated_by,location.update_date " + 
+    "from location , floor ,building ,location_type " + 
+    "where location.floor_id = floor.id and location.building_id =building.b_id and location.type_id =location_type.t_id  and LOWER(location.CODE) LIKE ?";
+    
+    public static final String LOCATION_FILTER = "select location.l_id,location.code ,location.description ,location.capacity,location.status,building.code building_code , floor.code floor_code  ,location_type.\"code \" type_code ,location.inserted_by,location.insertion_date,location.updated_by,location.update_date " + 
+     "from location , floor ,building ,location_type " +  
+     "where location.floor_id = floor.id and location.building_id =building.b_id and location.type_id =location_type.t_id  and LOWER(location_type.\"code \") LIKE ? and lower(building.code) like ? " ;
     //___________________________________________________________________________________
 
+    //________________________________ EQUIPMENT MODULE __________________________________
+    public static final String INSER_NEW_Equipment = "INSERT INTO Equipment (ID ,CODE , TYPE ,LIFE_SPAN ,USING_START_TIME ,inserted_by ,insertion_date,Location_id) VALUES(?,?,?,?,?,?,?,?)";
+    
+    public static final String LIST_ALL_EQUIPMENTS = "SELECT equipment.id , equipment.code ,equipment.type, equipment.life_span, equipment.using_start_time ,location.code Location, equipment.inserted_by ,equipment.updated_by ,equipment.insertion_date, equipment.update_date " + 
+    "FROM Equipment , location  where equipment.location_id = location.l_id ";
+
+    public static final String DELETE_Equipment = "DELETE FROM Equipment WHERE ID  = ? ";
+
+    public static final String IS_Equipment_EXIST = "SELECT ID FROM Equipment WHERE CODE = ?";
+
+    public static final String UPDATE_Equipment =
+        "UPDATE Equipment SET   CODE =? , TYPE = ?, LIFE_SPAN = ? ,  updated_by = ? , update_date=? , location_id = ? WHERE ID =?";
+
+    public static final String Equipment_SEARCH = "SELECT equipment.id , equipment.code ,equipment.type, location.code Location, equipment.life_span , equipment.using_start_time ,equipment.inserted_by ,equipment.updated_by ,equipment.insertion_date, equipment.update_date " + 
+    "FROM Equipment , location where equipment.location_id = location.l_id and LOWER(equipment.code) LIKE ?";
+
+    //___________________________________________________________________________________
 
 }

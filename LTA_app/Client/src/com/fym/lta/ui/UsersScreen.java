@@ -210,8 +210,18 @@ public class UsersScreen extends javax.swing.JPanel {
         });
 
         userRoleCombo.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        userRoleCombo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                userRoleComboActionPerformed(evt);
+            }
+        });
 
         employeesCombo.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        employeesCombo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                employeesComboActionPerformed(evt);
+            }
+        });
 
         employeesLabel.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         employeesLabel.setText("Employees");
@@ -493,6 +503,14 @@ public class UsersScreen extends javax.swing.JPanel {
         else
             usernameAvailabilty = true;
     }//GEN-LAST:event_usernameBoxMouseExited
+
+    private void employeesComboActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_employeesComboActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_employeesComboActionPerformed
+
+    private void userRoleComboActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_userRoleComboActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_userRoleComboActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
