@@ -212,17 +212,17 @@ public class Queries {
           
       public static final String LIST_ALL_DEPARTMENT = "SELECT * FROM DEPARTMENT";
       
-      public static final String DELETE_DEPARTMENT = "DELETE FROM DEPARTMENT WHERE ID = ? ";
+      public static final String DELETE_DEPARTMENT = "DELETE FROM DEPARTMENT WHERE CODE = ? ";
       
       public static final String INSERT_NEW_DEPARTMENT =
-          "INSERT INTO DEPARTMENT (CODE,NAME,HOME_BUILDING) VALUES (?,?,?)";
-      
+          "INSERT INTO DEPARTMENT (CODE,NAME) VALUES (?,?)";
+    
       public static final String UPDATE_DEPARTMENT =
-          "UPDATE DEPARTMENT SET  CODE = ?, NAME = ?,HOME_BUILDING = ? WHERE ID = ?";
+          "UPDATE DEPARTMENT SET  NAME = ? WHERE CODE = ?";
       
-      public static final String IS_DEPARTMENT_EXIST = "SELECT ID FROM DEPARTMENT WHERE NAME = ?";
+      public static final String IS_DEPARTMENT_EXIST = "SELECT * FROM DEPARTMENT WHERE CODE = ?";
       
-      public static final String DEPARTMENT_SEARCH = "SELECT * FROM DEPARTMENT WHERE LOWER(NAME) LIKE ?";
+      public static final String DEPARTMENT_SEARCH = "SELECT * FROM DEPARTMENT WHERE LOWER(CODE) LIKE ? OR  LOWER(NAME) LIKE ?";
       
       //_________________________________________________________________________________________
       
