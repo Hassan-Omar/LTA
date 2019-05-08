@@ -46,12 +46,6 @@ public class ScheduleInsert extends javax.swing.JPanel
     private void initComponents() {//GEN-BEGIN:initComponents
 
         panel1 = new java.awt.Panel();
-        PanelInsert = new javax.swing.JPanel();
-        academicYearlable = new javax.swing.JLabel();
-        departmentlable = new javax.swing.JLabel();
-        insert = new javax.swing.JButton();
-        academicYearcombox = new javax.swing.JComboBox();
-        departmentcombox = new javax.swing.JComboBox();
         jPanel1 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         table = new javax.swing.JTable();
@@ -60,74 +54,28 @@ public class ScheduleInsert extends javax.swing.JPanel
         ScheduleCode = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
         deleteUserBTN = new javax.swing.JButton();
+        PanelInsert = new javax.swing.JPanel();
+        academicYearlable = new javax.swing.JLabel();
+        departmentlable = new javax.swing.JLabel();
+        insert = new javax.swing.JButton();
+        academicYearcombox = new javax.swing.JComboBox();
+        departmentcombox = new javax.swing.JComboBox();
 
-        PanelInsert.setBorder(javax.swing.BorderFactory.createTitledBorder("Insert New SCHEDULE"));
-
-        academicYearlable.setText("Select Academic Year ");
-
-        departmentlable.setText("Select Department");
-
-        insert.setText("Insert ");
-        insert.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                insertActionPerformed(evt);
-            }
-        });
-
-        academicYearcombox.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "First Year    ", "Second Year    ", "Third Year    ", "Fourth Year " }));
-
-        departmentcombox.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Electrical - Computer   ", "Electrical - Power   ", "Electrical - Communication    ", "Civil  ", "Architecture   ", "Mechanical" }));
-
-        javax.swing.GroupLayout PanelInsertLayout = new javax.swing.GroupLayout(PanelInsert);
-        PanelInsert.setLayout(PanelInsertLayout);
-        PanelInsertLayout.setHorizontalGroup(
-            PanelInsertLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, PanelInsertLayout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(PanelInsertLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(insert)
-                    .addGroup(PanelInsertLayout.createSequentialGroup()
-                        .addGroup(PanelInsertLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(departmentlable, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(academicYearlable))
-                        .addGap(41, 41, 41)
-                        .addGroup(PanelInsertLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(departmentcombox, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(academicYearcombox, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addContainerGap())
-        );
-        PanelInsertLayout.setVerticalGroup(
-            PanelInsertLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(PanelInsertLayout.createSequentialGroup()
-                .addGap(22, 22, 22)
-                .addGroup(PanelInsertLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(departmentlable)
-                    .addComponent(departmentcombox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(PanelInsertLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(academicYearlable)
-                    .addComponent(academicYearcombox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(insert)
-                .addContainerGap(115, Short.MAX_VALUE))
-        );
+        setLayout(null);
 
         javax.swing.GroupLayout panel1Layout = new javax.swing.GroupLayout(panel1);
         panel1.setLayout(panel1Layout);
         panel1Layout.setHorizontalGroup(
             panel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(panel1Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(PanelInsert, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+            .addGap(0, 339, Short.MAX_VALUE)
         );
         panel1Layout.setVerticalGroup(
             panel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(panel1Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(PanelInsert, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+            .addGap(0, 269, Short.MAX_VALUE)
         );
+
+        add(panel1);
+        panel1.setBounds(961, 26, 339, 269);
 
         jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Tables", 0, 0, new java.awt.Font("Adobe Arabic", 1, 24))); // NOI18N
 
@@ -170,7 +118,7 @@ public class ScheduleInsert extends javax.swing.JPanel
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 680, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 428, Short.MAX_VALUE)
                 .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
@@ -181,13 +129,18 @@ public class ScheduleInsert extends javax.swing.JPanel
                 .addContainerGap())
         );
 
+        add(jPanel1);
+        jPanel1.setBounds(0, 234, 462, 243);
+
         insertUserBTN.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        insertUserBTN.setText("Insert  New User");
+        insertUserBTN.setText("Insert  New Schedule");
         insertUserBTN.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 insertUserBTNMouseClicked(evt);
             }
         });
+        add(insertUserBTN);
+        insertUserBTN.setBounds(129, 102, 239, 54);
 
         searchUserBTN.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         searchUserBTN.setText("Search");
@@ -201,11 +154,17 @@ public class ScheduleInsert extends javax.swing.JPanel
                 searchUserBTNActionPerformed(evt);
             }
         });
+        add(searchUserBTN);
+        searchUserBTN.setBounds(380, 110, 97, 45);
 
         ScheduleCode.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        add(ScheduleCode);
+        ScheduleCode.setBounds(0, 45, 484, 45);
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jLabel1.setText("Enter Schedule Code");
+        add(jLabel1);
+        jLabel1.setBounds(12, 0, 333, 39);
 
         deleteUserBTN.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         deleteUserBTN.setLabel("Delete");
@@ -214,54 +173,62 @@ public class ScheduleInsert extends javax.swing.JPanel
                 deleteUserBTNMouseClicked(evt);
             }
         });
+        add(deleteUserBTN);
+        deleteUserBTN.setBounds(0, 102, 111, 54);
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
-        this.setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 333, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(49, 49, 49)
-                                .addComponent(deleteUserBTN, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(111, 111, 111)
-                                .addComponent(insertUserBTN, javax.swing.GroupLayout.PREFERRED_SIZE, 213, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(ScheduleCode, javax.swing.GroupLayout.PREFERRED_SIZE, 484, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(62, 62, 62)
-                        .addComponent(searchUserBTN)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(panel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(26, 26, 26)
-                .addComponent(panel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(21, 21, 21)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(ScheduleCode, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(searchUserBTN, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(deleteUserBTN, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 12, Short.MAX_VALUE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(insertUserBTN, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)))
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+        PanelInsert.setBorder(javax.swing.BorderFactory.createTitledBorder("Insert New SCHEDULE"));
+
+        academicYearlable.setText("Select Academic Year ");
+
+        departmentlable.setText("Select Department");
+
+        insert.setText("Insert ");
+        insert.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                insertActionPerformed(evt);
+            }
+        });
+
+        academicYearcombox.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "First Year    ", "Second Year    ", "Third Year    ", "Fourth Year " }));
+
+        departmentcombox.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Electrical - Computer   ", "Electrical - Power   ", "Electrical - Communication    ", "Civil  ", "Architecture   ", "Mechanical" }));
+
+        javax.swing.GroupLayout PanelInsertLayout = new javax.swing.GroupLayout(PanelInsert);
+        PanelInsert.setLayout(PanelInsertLayout);
+        PanelInsertLayout.setHorizontalGroup(
+            PanelInsertLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, PanelInsertLayout.createSequentialGroup()
+                .addContainerGap(142, Short.MAX_VALUE)
+                .addGroup(PanelInsertLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(insert)
+                    .addGroup(PanelInsertLayout.createSequentialGroup()
+                        .addGroup(PanelInsertLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(departmentlable, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(academicYearlable))
+                        .addGap(41, 41, 41)
+                        .addGroup(PanelInsertLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(departmentcombox, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(academicYearcombox, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addContainerGap())
         );
+        PanelInsertLayout.setVerticalGroup(
+            PanelInsertLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(PanelInsertLayout.createSequentialGroup()
+                .addGap(22, 22, 22)
+                .addGroup(PanelInsertLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(departmentlable)
+                    .addComponent(departmentcombox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(PanelInsertLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(academicYearlable)
+                    .addComponent(academicYearcombox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(insert)
+                .addContainerGap(302, Short.MAX_VALUE))
+        );
+
+        add(PanelInsert);
+        PanelInsert.setBounds(510, 45, 445, 432);
     }//GEN-END:initComponents
 
     private void insertActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_insertActionPerformed
@@ -390,7 +357,7 @@ public class ScheduleInsert extends javax.swing.JPanel
         if (searchSchedual == null) {
             JOptionPane.showMessageDialog(this, "not found");
             
-            TableReset(SchedualBao.listAll());
+           
         }
 
         else

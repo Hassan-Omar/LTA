@@ -145,7 +145,7 @@ public class Queries {
     
     public static final String INSER_NEW_OCCUPATION_PURPOSE = "INSERT INTO LOCATION (OCCUPATION_PURPOSE) VALUES(?)";
 
-    public static final String LIST_ALL_LOCATION = "select location.l_id,location.code ,location.description ,location.capacity,location.status,building.code building_code , floor.code floor_code  ,location_type.\"code \" type_code ,location.inserted_by,location.insertion_date,location.updated_by,location.update_date " + 
+    public static final String LIST_ALL_LOCATION = "select location.l_id,location.code ,location.description ,location.capacity,location.status,building.code building_code , floor.code floor_code  ,location_type.CODE type_code ,location.inserted_by,location.insertion_date,location.updated_by,location.update_date " + 
     "from location , floor ,building ,location_type " + 
     "where location.floor_id = floor.id and location.building_id =building.b_id and location.type_id =location_type.t_id ";
 
@@ -156,11 +156,11 @@ public class Queries {
     public static final String UPDATE_LOCATION =
         "UPDATE LOCATION SET   CODE =? , DESCRIPTION = ?, CAPACITY = ? ,STATUS = ?,   BUILDING_ID = ? ,FLOOR_ID = ? ,TYPE_ID = ?,UPDATED_BY = ? , UPDATE_DATE =?   WHERE L_ID =?";
 
-    public static final String LOCATION_SEARCH = "select location.l_id,location.code ,location.description ,location.capacity,location.status,building.code building_code , floor.code floor_code  ,location_type.\"code \" type_code ,location.inserted_by,location.insertion_date,location.updated_by,location.update_date " + 
+    public static final String LOCATION_SEARCH = "select location.l_id,location.code ,location.description ,location.capacity,location.status,building.code building_code , floor.code floor_code  ,location_type.CODE type_code ,location.inserted_by,location.insertion_date,location.updated_by,location.update_date " + 
     "from location , floor ,building ,location_type " + 
     "where location.floor_id = floor.id and location.building_id =building.b_id and location.type_id =location_type.t_id  and LOWER(location.CODE) LIKE ?";
     
-    public static final String LOCATION_FILTER = "select location.l_id,location.code ,location.description ,location.capacity,location.status,building.code building_code , floor.code floor_code  ,location_type.\"code \" type_code ,location.inserted_by,location.insertion_date,location.updated_by,location.update_date " + 
+    public static final String LOCATION_FILTER = "select location.l_id,location.code ,location.description ,location.capacity,location.status,building.code building_code , floor.code floor_code  ,location_type.CODE type_code ,location.inserted_by,location.insertion_date,location.updated_by,location.update_date " + 
      "from location , floor ,building ,location_type " +  
      "where location.floor_id = floor.id and location.building_id =building.b_id and location.type_id =location_type.t_id  and LOWER(location_type.\"code \") LIKE ? and lower(building.code) like ? " ;
     //___________________________________________________________________________________

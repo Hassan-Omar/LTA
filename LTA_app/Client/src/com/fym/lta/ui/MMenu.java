@@ -13,7 +13,8 @@ import javax.swing.JPanel;
  *
  * @author h.omar
  */
-public class MMenu extends javax.swing.JFrame {
+public class MMenu extends javax.swing.JFrame
+{
     // create bao object and get all avaialable screens in one steps
     List<ScreenDto> availableScreens = new BaoFactory().createScreenBao().list_Of_AavailableScreens();
 
