@@ -109,6 +109,31 @@ public class BuildingDaoImp implements BuildingDao {
     }
 
     public boolean Update_Building(BuildingDto building) {
+        try (JdbcRowSet jdbcRs = RowSetProvider.newFactory().createJdbcRowSet()) {
+            jdbcRs.setUrl(ConnectionFactory.getUrl());
+            jdbcRs.setUsername(ConnectionFactory.getUsername());
+            jdbcRs.setPassword(ConnectionFactory.getPassword());
+            jdbcRs.setCommand(Queries.UPDATE_BUILDING);
+            jdbcRs.setString(1, building.getDescription());
+
+            if (building.getUPDATED_BY() != null)
+                jdbcRs.setString(2, building.getUPDATED_BY());
+            else
+                jdbcRs.setNull(2, Types.VARCHAR);
+           
+            if (building.getUPDATE_DATE() != null)
+                jdbcRs.setDate(3, new java.sql.Date(building.getUPDATE_DATE().getTime()));
+            else
+                jdbcRs.setNull(3, java.sql.Types.DATE);
+
+           
+            jdbcRs.setString(4, building.getCode());
+
+            jdbcRs.execute();
+            return true;
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
         return false;
     }
 

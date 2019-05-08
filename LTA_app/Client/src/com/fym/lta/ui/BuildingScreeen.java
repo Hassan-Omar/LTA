@@ -3,8 +3,10 @@ package com.fym.lta.ui;
 
 import com.fym.lta.bao.BaoFactory;
 import com.fym.lta.bao.BuildingBao;
+import com.fym.lta.bao.LoginEngine;
 import com.fym.lta.dto.BuildingDto;
 
+import java.util.Date;
 import java.util.List;
 
 import javax.swing.JOptionPane;
@@ -14,19 +16,20 @@ import javax.swing.JOptionPane;
  * @author karima
  */
 public class BuildingScreeen extends javax.swing.JPanel {
-    
-   BuildingBao buildingBaoObject = new BaoFactory().createBuildingBao();
 
+    BuildingBao buildingBaoObject = new BaoFactory().createBuildingBao();
+    boolean updateFlag = false;
 
     /** Creates new form Building */
     public BuildingScreeen() {
         initComponents();
-        if (buildingBaoObject.listBuilding()!=null)
+        if (buildingBaoObject.listBuilding() != null)
             buildingTableReset(buildingBaoObject.listBuilding());
-        // screenID = 1 
-        // now one step we will create an object of ScreenBao to know the current permission 
+        insertPanel.setVisible(false);
+        // screenID = 1
+        // now one step we will create an object of ScreenBao to know the current permission
         String permissionType = new BaoFactory().createScreenBao().getCurrentPermission(1);
-        Utilities.mandate(ubdateBuildingBTN,insertBuildingBTN , deleteBuildingBTN ,1,permissionType);
+        Utilities.mandate(ubdateBuildingBTN, insertBuildingBTN, deleteBuildingBTN, 1, permissionType);
     }
 
     /** This method is called from within the constructor to
@@ -39,55 +42,58 @@ public class BuildingScreeen extends javax.swing.JPanel {
 
         jPanel1 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        BuildingTable = new javax.swing.JTable();
+        buildingTable = new javax.swing.JTable();
         ubdateBuildingBTN = new javax.swing.JButton();
         deleteBuildingBTN = new javax.swing.JButton();
         BuildingEnteredCode = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
         insertBuildingBTN = new javax.swing.JButton();
         searchBuildingBTN = new javax.swing.JButton();
+        insertPanel = new javax.swing.JPanel();
+        jLabel2 = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
+        code = new javax.swing.JTextField();
+        desc = new javax.swing.JTextField();
+        jButton1 = new javax.swing.JButton();
 
         jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Building", 0, 0, new java.awt.Font("Adobe Arabic", 1, 24))); // NOI18N
 
-        BuildingTable.setModel(new javax.swing.table.DefaultTableModel(
+        buildingTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null}
+                {null, null},
+                {null, null},
+                {null, null},
+                {null, null},
+                {null, null},
+                {null, null},
+                {null, null},
+                {null, null},
+                {null, null},
+                {null, null},
+                {null, null},
+                {null, null},
+                {null, null},
+                {null, null},
+                {null, null},
+                {null, null},
+                {null, null},
+                {null, null},
+                {null, null}
             },
             new String [] {
-                "ID", "Code", "Description"
+                "Code", "Description"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.Integer.class, java.lang.String.class, java.lang.String.class
+                java.lang.String.class, java.lang.String.class
             };
 
             public Class getColumnClass(int columnIndex) {
                 return types [columnIndex];
             }
         });
-        BuildingTable.setRowHeight(20);
-        jScrollPane1.setViewportView(BuildingTable);
-        BuildingTable.getColumnModel().getColumn(0).setHeaderValue("ID");
-        BuildingTable.getColumnModel().getColumn(1).setHeaderValue("Code");
-        BuildingTable.getColumnModel().getColumn(2).setHeaderValue("Description");
+        buildingTable.setRowHeight(20);
+        jScrollPane1.setViewportView(buildingTable);
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -95,7 +101,7 @@ public class BuildingScreeen extends javax.swing.JPanel {
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane1)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 707, Short.MAX_VALUE)
                 .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
@@ -149,6 +155,61 @@ public class BuildingScreeen extends javax.swing.JPanel {
             }
         });
 
+        jLabel2.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        jLabel2.setText("Description");
+
+        jLabel3.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        jLabel3.setText("Code");
+
+        code.setText(" ");
+
+        desc.setText(" ");
+        desc.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                descActionPerformed(evt);
+            }
+        });
+
+        jButton1.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        jButton1.setText("Save");
+        jButton1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jButton1MouseClicked(evt);
+            }
+        });
+
+        javax.swing.GroupLayout insertPanelLayout = new javax.swing.GroupLayout(insertPanel);
+        insertPanel.setLayout(insertPanelLayout);
+        insertPanelLayout.setHorizontalGroup(
+            insertPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, insertPanelLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(insertPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 126, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 148, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 34, Short.MAX_VALUE)
+                .addGroup(insertPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(code, javax.swing.GroupLayout.PREFERRED_SIZE, 204, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(desc, javax.swing.GroupLayout.PREFERRED_SIZE, 286, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 147, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(37, 37, 37))
+        );
+        insertPanelLayout.setVerticalGroup(
+            insertPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(insertPanelLayout.createSequentialGroup()
+                .addGap(26, 26, 26)
+                .addGroup(insertPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(code, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(53, 53, 53)
+                .addGroup(insertPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(desc, javax.swing.GroupLayout.PREFERRED_SIZE, 169, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -156,75 +217,68 @@ public class BuildingScreeen extends javax.swing.JPanel {
             .addGroup(layout.createSequentialGroup()
                 .addGap(40, 40, 40)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(layout.createSequentialGroup()
+                        .addComponent(ubdateBuildingBTN, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(138, 138, 138)
+                        .addComponent(deleteBuildingBTN, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(141, 141, 141)
+                        .addComponent(insertBuildingBTN, javax.swing.GroupLayout.PREFERRED_SIZE, 253, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(1, 1, 1)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 333, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(layout.createSequentialGroup()
-                                .addGap(1, 1, 1)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 333, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addComponent(BuildingEnteredCode, javax.swing.GroupLayout.PREFERRED_SIZE, 484, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGap(67, 67, 67)
-                                        .addComponent(searchBuildingBTN))))
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(ubdateBuildingBTN, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(138, 138, 138)
-                                .addComponent(deleteBuildingBTN, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(141, 141, 141)
-                                .addComponent(insertBuildingBTN, javax.swing.GroupLayout.PREFERRED_SIZE, 253, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(0, 162, Short.MAX_VALUE)))
+                                .addComponent(BuildingEnteredCode, javax.swing.GroupLayout.PREFERRED_SIZE, 484, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(67, 67, 67)
+                                .addComponent(searchBuildingBTN)))))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 12, Short.MAX_VALUE)
+                .addComponent(insertPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(37, 37, 37)
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(21, 21, 21)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(BuildingEnteredCode, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(searchBuildingBTN, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 9, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(ubdateBuildingBTN, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(deleteBuildingBTN, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(insertBuildingBTN, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(18, 18, 18)
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+                    .addComponent(insertPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(21, 21, 21)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(BuildingEnteredCode, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(searchBuildingBTN, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 9, Short.MAX_VALUE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(ubdateBuildingBTN, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                .addComponent(deleteBuildingBTN, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(insertBuildingBTN, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(18, 18, 18)
+                        .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap())))
         );
 
         jPanel1.getAccessibleContext().setAccessibleName("Building ");
     }//GEN-END:initComponents
-//Update Buttom
+    //Update Buttom
     private void ubdateBuildingBTNActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ubdateBuildingBTNActionPerformed
-       /* BuildingInsertUpdate uIScreen  = new BuildingInsertUpdate();
-        uIScreen.setBuildingUpdateId(Integer.parseInt(BuildingTable.getValueAt(BuildingTable.getSelectedRow(), 4).toString())); //Pass the ID
-        uIScreen.setBuildingUpdateCode(BuildingTable.getValueAt(BuildingTable.getSelectedRow(), 1).toString()); // pass the code
-        uIScreen.setBuildingUpdateDescription(BuildingTable.getValueAt(BuildingTable.getSelectedRow(), 1).toString()); // pass the description
-        UsersScreen.createPopupMenu(uIScreen);*/
-
+        code.setText(buildingTable.getValueAt(buildingTable.getSelectedRow(), 0).toString());
+        insertPanel.setVisible(true);
+        code.setEnabled(false);
+        updateFlag = true;
     }//GEN-LAST:event_ubdateBuildingBTNActionPerformed
 
     private void deleteBuildingBTNMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_deleteBuildingBTNMouseClicked
      
-     int  selectedBuildingid = Integer.parseInt(BuildingTable.getValueAt(BuildingTable.getSelectedRow(), 0).toString());
-       BuildingDto selectedBuilding_Delete = new BuildingDto(); // this Building i want to delete
-      selectedBuilding_Delete.setBuilding_id(selectedBuildingid);
-        // call business to delete
-        // don't forget you need to update the users table and remove this record
-        // and check the returned value to tell the user if the delete is done or not
-      if (buildingBaoObject.deleteBuilding(selectedBuilding_Delete)) {
-            int msgRes =
-            JOptionPane.showOptionDialog(null, "Deleted Successfully ", "Building Deleting ",
-                JOptionPane.DEFAULT_OPTION, JOptionPane.INFORMATION_MESSAGE, null, null,
-                null);
+        String code = buildingTable.getValueAt(buildingTable.getSelectedRow(), 0).toString();
+        BuildingDto selectedBuilding_Delete = new BuildingDto(); // this Building i want to delete
+        selectedBuilding_Delete.setCode(code);
 
-            if (msgRes == JOptionPane.OK_OPTION) {
+        if (buildingBaoObject.deleteBuilding(selectedBuilding_Delete)) {
+            {
+                JOptionPane.showMessageDialog(this, "deleted");
                 buildingTableReset(buildingBaoObject.listBuilding());
-                BuildingTable.repaint() ;
             }
         } else {
             JOptionPane.showMessageDialog(this, "Can not delete may be deleted using another user ");
@@ -233,14 +287,21 @@ public class BuildingScreeen extends javax.swing.JPanel {
     }//GEN-LAST:event_deleteBuildingBTNMouseClicked
 
     private void insertBuildingBTNMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_insertBuildingBTNMouseClicked
-    //UsersScreen.createPopupMenu(new BuildingInsertUpdate ());
+        insertPanel.setVisible(true);
+        code.setEnabled(true);
+        updateFlag = false;
     }//GEN-LAST:event_insertBuildingBTNMouseClicked
 
     private void searchBuildingBTNMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_searchBuildingBTNMouseClicked
-        if (BuildingEnteredCode.getText()!= null )
-            buildingTableReset( buildingBaoObject.SearchBuilding(BuildingEnteredCode.getText())) ;
-        else
-        buildingTableReset( buildingBaoObject.listBuilding()) ;
+        if (BuildingEnteredCode.getText() != null)
+            if (buildingBaoObject.SearchBuilding(BuildingEnteredCode.getText()) != null)
+                buildingTableReset(buildingBaoObject.SearchBuilding(BuildingEnteredCode.getText()));
+            else
+                JOptionPane.showMessageDialog(this, "not found");
+        else {
+            JOptionPane.showMessageDialog(this, "you should enter a building code");
+            buildingTableReset(buildingBaoObject.listBuilding());
+        }
       
     }//GEN-LAST:event_searchBuildingBTNMouseClicked
 
@@ -250,13 +311,47 @@ public class BuildingScreeen extends javax.swing.JPanel {
         
     }//GEN-LAST:event_insertBuildingBTNActionPerformed
 
+    private void descActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_descActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_descActionPerformed
+
+    private void jButton1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MouseClicked
+
+        BuildingBao business = new BaoFactory().createBuildingBao();
+        BuildingDto b = new BuildingDto();
+
+        b.setCode(code.getText());
+        b.setDescription(desc.getText());
+        if (updateFlag) {
+            b.setUPDATE_DATE(new Date(System.currentTimeMillis()));
+            b.setUPDATED_BY(LoginEngine.currentUser);
+        } else {
+            b.setINSERTION_DATE(new Date(System.currentTimeMillis()));
+            b.setINSERTED_BY(LoginEngine.currentUser);
+
+            b.setUPDATE_DATE(new Date(System.currentTimeMillis()));
+            b.setUPDATED_BY(LoginEngine.currentUser);
+        }
+        if (business.saveBuilding(b)) {
+            JOptionPane.showMessageDialog(this, "Saved");
+            buildingTableReset(business.listBuilding());
+        } else
+            JOptionPane.showMessageDialog(this, "Can't Save");
+    }//GEN-LAST:event_jButton1MouseClicked
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextField BuildingEnteredCode;
-    private javax.swing.JTable BuildingTable;
+    private javax.swing.JTable buildingTable;
+    private javax.swing.JTextField code;
     private javax.swing.JButton deleteBuildingBTN;
+    private javax.swing.JTextField desc;
     private javax.swing.JButton insertBuildingBTN;
+    private javax.swing.JPanel insertPanel;
+    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JButton searchBuildingBTN;
@@ -268,21 +363,17 @@ public class BuildingScreeen extends javax.swing.JPanel {
 
 
     public void buildingTableReset(List<BuildingDto> buildings) {
-        int userRoleid;
-        Object[][] usersArr = new Object[buildings.size()][3];
+
+        Object[][] usersArr = new Object[buildings.size()][2];
 
         for (int i = 0; i < buildings.size(); i++) {
-            usersArr[i][0] = buildings.get(i).getBuilding_id();
-            usersArr[i][1] = buildings.get(i).getCode();
-            usersArr[i][2] = buildings.get(i).getDescription();
-       
+            usersArr[i][0] = buildings.get(i).getCode();
+            usersArr[i][1] = buildings.get(i).getDescription();
+
         }
-        BuildingTable.setModel(new javax.swing.table.DefaultTableModel(usersArr, new String[] {
-                                                                    "ID", "CODE", "DESCRIPTION"
-            }));
+        buildingTable.setModel(new javax.swing.table.DefaultTableModel(usersArr, new String[] {
+                                                                       "CODE", "DESCRIPTION" }));
     }
-
-
 
 
 }

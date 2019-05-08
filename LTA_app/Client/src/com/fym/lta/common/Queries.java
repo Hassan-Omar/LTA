@@ -94,6 +94,8 @@ public class Queries {
         "VALUES (?,?,?,?,?,?)";
 
     public static final String DELETE_BUILDING = "DELETE FROM BUILDING WHERE B_ID = ? ";
+    
+    public static final String UPDATE_BUILDING = "UPDATE BUILDING SET DESCRIPTION=? , UPDATED_BY = ? , UPDATE_DATE = ?  WHERE CODE=? ";
 
     public static final String IS_BUILDING_EXIST = "SELECT B_ID FROM BUILDING WHERE CODE = ?";
 
