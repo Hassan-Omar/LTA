@@ -26,6 +26,9 @@ public interface DepartmentDao {
 
     public boolean isExist(DepartmentDto Department);
     
+    // this behavior to search for a Deprtment Data 
+    public List<DepartmentDto> Search_Department(DepartmentDto Department); 
+    
     
     
     

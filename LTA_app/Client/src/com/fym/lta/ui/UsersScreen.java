@@ -433,7 +433,7 @@ public class UsersScreen extends javax.swing.JPanel {
 
 
         if (userPassword.getPassword().toString().length() < 66)
-            user.setPassword(new String(userPassword.getPassword()));
+            user.setPassword(Utilities.getMd5(new String(userPassword.getPassword())));
         else {
             flag = false;
             JOptionPane.showMessageDialog(this, "this password is very long the maxmum is 66 character  ");
