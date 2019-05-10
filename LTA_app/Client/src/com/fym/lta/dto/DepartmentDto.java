@@ -1,11 +1,45 @@
 package com.fym.lta.dto;
 
-import java.util.*;
+import java.util.Date;
+import java.util.List;
 
 public class DepartmentDto {
     private int department_id;
-    private String name, code, Description;
+    private String name, code, Description,insertedBy, updatedBy;
+    private Date inertion_Date, update_Date;
     private BuildingDto homebuilding;
+
+    public void setInsertedBy(String insertedBy) {
+        this.insertedBy = insertedBy;
+    }
+
+    public String getInsertedBy() {
+        return insertedBy;
+    }
+
+    public void setUpdatedBy(String updatedBy) {
+        this.updatedBy = updatedBy;
+    }
+
+    public String getUpdatedBy() {
+        return updatedBy;
+    }
+
+    public void setInertion_Date(Date inertion_Date) {
+        this.inertion_Date = inertion_Date;
+    }
+
+    public Date getInertion_Date() {
+        return inertion_Date;
+    }
+
+    public void setUpdate_Date(Date update_Date) {
+        this.update_Date = update_Date;
+    }
+
+    public Date getUpdate_Date() {
+        return update_Date;
+    }
     private List<CourseDto> Department_Courses;
     private List<EmployeeDto> Department_StaffMembers;
     private List<SchedualDto> Department_Scheduals;

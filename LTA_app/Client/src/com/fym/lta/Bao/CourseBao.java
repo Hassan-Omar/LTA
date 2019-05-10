@@ -2,6 +2,8 @@ package com.fym.lta.bao;
 
 import com.fym.lta.dto.CourseDto;
 
+import java.util.List;
+
 public interface CourseBao {
 
     /**
@@ -16,11 +18,14 @@ public interface CourseBao {
      * search for Course 
      */
 
-    public CourseDto SearchCourse(String Code);
+    public List<CourseDto> SearchCourse(CourseDto Course);
 
 
     /**
      * delete a Course 
      */
     public boolean deleteCourse(CourseDto Course);
+
+  
+    public List<CourseDto> listCourses() ;
 }

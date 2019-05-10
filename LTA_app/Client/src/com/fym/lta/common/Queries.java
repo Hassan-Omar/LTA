@@ -63,6 +63,10 @@ public class Queries {
         "SELECT PERMISSIONTYPE FROM ROLE_SCREEN WHERE ROLEID = ? AND SCREENID = ? ";
 
     public static final String GET_AVAILABLE_SCREENS = "SELECT SCREENID FROM ROLE_SCREEN WHERE ROLEID = ? ";
+
+    public static final String SCREEN_ROLE_ISEXIST = "SELECT SCREENID FROM ROLE_SCREEN WHERE ROLEID = ? AND SCREENID = ?";
+    
+    public static final String UPDATESCREEN_ROLE  = "UPDATE ROLE_SCREEN SET PERMISSIONTYPE = ? WHERE ROLEID =? AND  SCREENID =? ";
     //___________________________________________________________________________________
 
 
@@ -90,6 +94,8 @@ public class Queries {
         "VALUES (?,?,?,?,?,?)";
 
     public static final String DELETE_BUILDING = "DELETE FROM BUILDING WHERE B_ID = ? ";
+    
+    public static final String UPDATE_BUILDING = "UPDATE BUILDING SET DESCRIPTION=? , UPDATED_BY = ? , UPDATE_DATE = ?  WHERE CODE=? ";
 
     public static final String IS_BUILDING_EXIST = "SELECT B_ID FROM BUILDING WHERE CODE = ?";
 
@@ -179,4 +185,48 @@ public class Queries {
 
     //___________________________________________________________________________________
 
+
+
+    //__________________________________Course Model_________________________________________
+      
+      public static final String LIST_ALL_COURSES = "SELECT * FROM COURSE";
+      
+      public static final String DELETE_COURSE = "DELETE FROM COURSE WHERE CODE = ? ";
+      
+      public static final String UPDATE_COURSE = 
+          "UPDATE COURSE SET  CODE = ?, NAME = ?, HOUR_PER_WEEK = ? ,UPDATED_BY = ? ,UPDATE_DATE = ? WHERE CODE = ?";
+      
+      public static final String IS_COURSE_EXIST = "SELECT ID FROM COURSE WHERE NAME = ?";
+      
+      public static final String INSERT_NEW_COURSE =
+          "INSERT INTO COURSE (CODE,NAME,HOUR_PER_WEEK,INSERTED_BY ,UPDATED_BY ,INSERTION_DATE ,UPDATE_DATE) VALUES (?,?,?,?,?,?,?)";
+   
+      public static final String SEARCH_COURSES = "SELECT * FROM COURSE WHERE LOWER(CODE) LIKE ? OR LOWER(NAME) LIKE ?";
+    
+      
+      //_________________________________________________________________________________________
+      
+      
+      
+      
+      
+      //________________________________ Department Module __________________________________
+          
+      public static final String LIST_ALL_DEPARTMENT = "SELECT * FROM DEPARTMENT";
+      
+      public static final String DELETE_DEPARTMENT = "DELETE FROM DEPARTMENT WHERE CODE = ? ";
+      
+      public static final String INSERT_NEW_DEPARTMENT =
+          "INSERT INTO DEPARTMENT (CODE,NAME) VALUES (?,?)";
+    
+      public static final String UPDATE_DEPARTMENT =
+          "UPDATE DEPARTMENT SET  NAME = ? WHERE CODE = ?";
+      
+      public static final String IS_DEPARTMENT_EXIST = "SELECT * FROM DEPARTMENT WHERE CODE = ?";
+      
+      public static final String DEPARTMENT_SEARCH = "SELECT * FROM DEPARTMENT WHERE LOWER(CODE) LIKE ? OR  LOWER(NAME) LIKE ?";
+      
+      //_________________________________________________________________________________________
+      
+      
 }

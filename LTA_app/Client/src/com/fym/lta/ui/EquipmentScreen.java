@@ -4,15 +4,11 @@ package com.fym.lta.ui;
 import com.fym.lta.bao.BaoFactory;
 import com.fym.lta.bao.EquipmentBao;
 import com.fym.lta.bao.LoginEngine;
-import com.fym.lta.dto.BuildingDto;
 import com.fym.lta.dto.EquipmentDto;
-import com.fym.lta.dto.FloorDto;
 import com.fym.lta.dto.LocationDto;
 
 import java.util.Date;
 import java.util.List;
-
-import javax.persistence.Table;
 
 import javax.swing.JOptionPane;
 

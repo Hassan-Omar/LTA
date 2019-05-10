@@ -118,7 +118,7 @@ public class StaffScreen extends javax.swing.JPanel {
     
     private void updateStaffBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_updateStaffBtnActionPerformed
        
-        if (staffTable.getSelectedRow() >= 0) {
+    /*    if (staffTable.getSelectedRow() >= 0) {
             StaffInsert sIScreen = new StaffInsert();
             sIScreen.setStaffUpdateId(Integer.parseInt(staffTable.getValueAt(staffTable.getSelectedRow(),
                                                                             0).toString())); //Passa ID
@@ -127,7 +127,7 @@ public class StaffScreen extends javax.swing.JPanel {
         } else {
             JOptionPane.showOptionDialog(null, "You Should Select A user to Update ", "User Updaete ",
                                          JOptionPane.DEFAULT_OPTION, JOptionPane.INFORMATION_MESSAGE, null, null, null);
-        }
+        } */
        
     }//GEN-LAST:event_updateStaffBtnActionPerformed
 

@@ -138,6 +138,11 @@ public class MMenu extends javax.swing.JFrame {
 
         departmentM_Item.setText("Departments");
         departmentM_Item.setEnabled(false);
+        departmentM_Item.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                departmentM_ItemActionPerformed(evt);
+            }
+        });
         jMenu3.add(departmentM_Item);
 
         courseM_Item.setText("Course");
@@ -315,7 +320,7 @@ public class MMenu extends javax.swing.JFrame {
     }//GEN-LAST:event_jMenuItem3ActionPerformed
 
     private void courseM_ItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_courseM_ItemActionPerformed
-        // TODO add your handling code here:
+      switchtoPanel(new CourseScreen() );
     }//GEN-LAST:event_courseM_ItemActionPerformed
 
     private void jMenu1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jMenu1MouseClicked
@@ -404,6 +409,11 @@ public class MMenu extends javax.swing.JFrame {
     private void locationManualM_ItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_locationManualM_ItemActionPerformed
     switchtoPanel(new ManualAssignment()) ; 
     }//GEN-LAST:event_locationManualM_ItemActionPerformed
+
+    private void departmentM_ItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_departmentM_ItemActionPerformed
+       switchtoPanel(new DepartmentsScreen() );
+       
+    }//GEN-LAST:event_departmentM_ItemActionPerformed
 
 
     /**
