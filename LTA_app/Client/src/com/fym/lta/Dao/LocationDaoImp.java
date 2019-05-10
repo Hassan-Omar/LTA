@@ -21,6 +21,8 @@ import javax.xml.stream.Location;
 
 public class LocationDaoImp implements LocationDao {
     
+    /*this function is to list all locations on the specific building , floor
+     and has a specific type */
     public List<LocationDto> getAll_Locations() {
         List<LocationDto>  locat = null;
               try(JdbcRowSet jdbc = RowSetProvider.newFactory().createJdbcRowSet();) {
@@ -56,7 +58,8 @@ public class LocationDaoImp implements LocationDao {
               
               return locat;
     }
-
+ 
+       //this is to delete location using its ID
     public boolean delete_Location(LocationDto Location) {
         try(JdbcRowSet jdbc = RowSetProvider.newFactory().createJdbcRowSet();) {
                         jdbc.setUrl(ConnectionFactory.getUrl());
@@ -73,7 +76,8 @@ public class LocationDaoImp implements LocationDao {
                    
             }
 
-
+      /*this is to insert new location in a specific building and floor
+      with specific location type*/
     public boolean insert_Location(LocationDto Location) {
         
         try(JdbcRowSet jdbc = RowSetProvider.newFactory().createJdbcRowSet();) {
@@ -89,9 +93,8 @@ public class LocationDaoImp implements LocationDao {
                     jdbc.setInt(6, Location.getBuilding().getBuilding_id());
                     jdbc.setInt(7, Location.getFloor().getFloor_id());
                     jdbc.setInt(8, Location.getType().getLocationType_id());
-                    jdbc.setObject(9, Location.getLocation_equipments().toString());
-                    jdbc.setString(10, Location.getInsertedBy());
-                    jdbc.setDate(11, new java.sql.Date(Location.getInertion_Date().getTime()));
+                    jdbc.setString(9, Location.getInsertedBy());
+                    jdbc.setDate(10, new java.sql.Date(Location.getInertion_Date().getTime()));
                    // jdbc.setString(11, Location.getUpdatedBy());
                   //  jdbc.setDate(12, new java.sql.Date(Location.getUpdate_Date().getTime()));
                     jdbc.execute(); 
@@ -108,7 +111,8 @@ public class LocationDaoImp implements LocationDao {
                 }
         return false;    
     }
-
+      
+      //this is to update location
     public boolean Update_Location(LocationDto Location) {
         try(JdbcRowSet jdbc = RowSetProvider.newFactory().createJdbcRowSet();) {
                     jdbc.setUrl(ConnectionFactory.getUrl());
@@ -165,7 +169,8 @@ public class LocationDaoImp implements LocationDao {
         }
         return false;
     }
-
+    
+    //this is to search for location using code letters
     @Override
     public List<LocationDto> searchLocations(String code) {
         List<LocationDto> locations = null;
@@ -204,6 +209,7 @@ public class LocationDaoImp implements LocationDao {
         return locations;
     }
     
+    //this is to filter locations based on location type and building
     public List<LocationDto> filter(String LocationTypeCode,String BuildingCode){
         List<LocationDto> locations = null;
         

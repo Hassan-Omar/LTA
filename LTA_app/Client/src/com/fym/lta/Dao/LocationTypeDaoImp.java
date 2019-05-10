@@ -33,6 +33,7 @@ public class LocationTypeDaoImp implements LocationTypeDao {
                 if (LocationTypes == null)
                     LocationTypes = new ArrayList<>();
                 LocationType = new LocationTypeDto();
+                LocationType.setLocationType_id(jdbcRs.getInt(1));
                 LocationType.setCode(jdbcRs.getString(2));
                 LocationType.setDescription(jdbcRs.getString(3));
                 

@@ -20,6 +20,8 @@ import javax.sql.rowset.RowSetProvider;
 import javax.swing.JOptionPane;
 
 public class EquipmentDaoImp implements EquipmentDao {
+    
+    //this function is to list all equipments on the specific location
     public List<EquipmentDto> getAll_Equipments() {
         List<EquipmentDto>  equip = null;
               try(JdbcRowSet jdbc = RowSetProvider.newFactory().createJdbcRowSet();) {
@@ -53,7 +55,7 @@ public class EquipmentDaoImp implements EquipmentDao {
               
               return equip;
     }
-
+    //this is to delete an equipment using its ID
     public boolean delete_Equipment(EquipmentDto Equipment) {
         try(JdbcRowSet jdbc = RowSetProvider.newFactory().createJdbcRowSet();) {
                         jdbc.setUrl(ConnectionFactory.getUrl());
@@ -68,7 +70,7 @@ public class EquipmentDaoImp implements EquipmentDao {
                         return false;
                     }
     }
-
+    //this is to insert an equipment using its ID into a specific location
     public boolean insert_Equipment(EquipmentDto Equipment) {
         try(JdbcRowSet jdbc = RowSetProvider.newFactory().createJdbcRowSet();) {
                     jdbc.setUrl(ConnectionFactory.getUrl());
@@ -98,7 +100,7 @@ public class EquipmentDaoImp implements EquipmentDao {
                 }
         return false;    
     }
-
+    //this is to update an equipment using its ID
     public boolean Update_Equipment(EquipmentDto Equipment) {
         try(JdbcRowSet jdbc = RowSetProvider.newFactory().createJdbcRowSet();) {
                     jdbc.setUrl(ConnectionFactory.getUrl());
@@ -146,20 +148,16 @@ public class EquipmentDaoImp implements EquipmentDao {
         }
         return false;
     }
-    
+    //this is to search for equipment using code letters
     public List<EquipmentDto> searchEquipments(String code){
         List<EquipmentDto> equip = null;
-
         try (JdbcRowSet jdbcRs = RowSetProvider.newFactory().createJdbcRowSet()) {
             jdbcRs.setUrl(ConnectionFactory.getUrl());
             jdbcRs.setUsername(ConnectionFactory.getUsername());
             jdbcRs.setPassword(ConnectionFactory.getPassword());
             jdbcRs.setCommand(Queries.Equipment_SEARCH);
             jdbcRs.setString(1, '%' + code.toLowerCase().trim() + '%');
-
             jdbcRs.execute();
-
-
             while (jdbcRs.next()) {
                 if (equip == null)
                     equip = new ArrayList<>();
@@ -173,8 +171,7 @@ public class EquipmentDaoImp implements EquipmentDao {
                 equip_search.setInsertedBy(jdbcRs.getString(7));
                 equip_search.setUpdatedBy(jdbcRs.getString(8)); 
                 equip_search.setInertion_Date(jdbcRs.getDate(9));
-                equip_search.setUpdate_Date(jdbcRs.getDate(10));  
-                 
+                equip_search.setUpdate_Date(jdbcRs.getDate(10));    
                 equip.add(equip_search);
 
             }

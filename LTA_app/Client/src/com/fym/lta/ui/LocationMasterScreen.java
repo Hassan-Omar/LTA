@@ -46,7 +46,6 @@ public class LocationMasterScreen extends javax.swing.JPanel {
     
     //To create a refrence from LocationBao , EquipmentBao 
     private LocationBao Locationbusiness  = new BaoFactory().createLocationBao();
-    private EquipmentBao Equipmentbuisness = new BaoFactory().createEquipmentBao();
     
     // flag , if it equals 1 we update, if zero we insert  
     private int Location_idUpdate ;
@@ -58,8 +57,8 @@ public class LocationMasterScreen extends javax.swing.JPanel {
     List<EquipmentDto> AllEquipments = new BaoFactory().createEquipmentBao().ListAll();
 
 
-        //To add comboBox items//
-    // We get a list of saved items in Database//
+        /*To add comboBox items
+        We get a list of saved items in Database*/
      void listComboBuildings(List<BuildingDto> building) {
            for (int i = 0; i < building.size(); i++) {
                building_combo.addItem(building.get(i).getCode());
@@ -397,11 +396,6 @@ public class LocationMasterScreen extends javax.swing.JPanel {
         jLabel7.setText("Location Type ");
 
         type_combo.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        type_combo.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                type_comboActionPerformed(evt);
-            }
-        });
 
         javax.swing.GroupLayout define_locationLayout = new javax.swing.GroupLayout(define_location);
         define_location.setLayout(define_locationLayout);
@@ -439,8 +433,8 @@ public class LocationMasterScreen extends javax.swing.JPanel {
                             .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(98, 98, 98)
                         .addGroup(define_locationLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(type_combo, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 154, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 154, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(type_combo, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(18, 18, 18))
                     .addGroup(define_locationLayout.createSequentialGroup()
                         .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -510,9 +504,6 @@ public class LocationMasterScreen extends javax.swing.JPanel {
     }//GEN-END:initComponents
 
 
-   
-
-    
     private void insertLocationBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_insertLocationBtnActionPerformed
     clearData();
     Location_idUpdate = 0;
@@ -599,7 +590,7 @@ public class LocationMasterScreen extends javax.swing.JPanel {
             LocationObject.setDescription(desc.getText());
             LocationObject.setStatus("Not assigned");
          
-            LocationObject.setLocation_equipments(EquipmentList.getSelectedValuesList());
+          //  LocationObject.setLocation_equipments(EquipmentList.getSelectedValuesList());
            
            
              //To set id for building ,floor , locationType//
@@ -608,6 +599,7 @@ public class LocationMasterScreen extends javax.swing.JPanel {
             FloorObject.setFloor_id(Allfloors.get(floor_combo.getSelectedIndex()).getFloor_id());
             LocationObject.setFloor(FloorObject);
             LocationTypeObject.setLocationType_id(AlllocationTypes.get(type_combo.getSelectedIndex()).getLocationType_id());
+            System.out.println(AlllocationTypes.get(type_combo.getSelectedIndex()));
             LocationObject.setType(LocationTypeObject);
          
              //To Check whether to insert or update data// 
@@ -645,10 +637,6 @@ public class LocationMasterScreen extends javax.swing.JPanel {
     private void idActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_idActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_idActionPerformed
-
-    private void type_comboActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_type_comboActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_type_comboActionPerformed
 
     private void building_comboActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_building_comboActionPerformed
         // TODO add your handling code here:

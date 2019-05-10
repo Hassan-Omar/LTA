@@ -32,8 +32,8 @@ public class EquipmentScreen extends javax.swing.JPanel {
     private int Equipment_idUpdate ;
     
     
-    //To add comboBox items//
-    // We get a list of saved items in Database//  
+    /*To add comboBox items
+     We get a list of saved items in Database*/  
     void listComboLocations(List<LocationDto> location) {
     for (int i = 0; i < location.size(); i++) {
       location_combo.addItem(location.get(i).getCode()); }
