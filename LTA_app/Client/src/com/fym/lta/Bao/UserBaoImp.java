@@ -64,7 +64,7 @@ public class UserBaoImp implements UserBao {
 
     // this method delegate the dao user to check if the entered password as same as  stored password
     public boolean checkLogin(String username, String password) {
-        return userDaoObject.loginCheck(username, password);
+        return userDaoObject.loginCheck(password,username );
     }
 
 

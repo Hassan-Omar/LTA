@@ -14,8 +14,12 @@ public class BuildingBaoImp implements BuildingBao {
         boolean status = false;
 
         try {
+            if (buildingBaoObject.isExist(building))
+            status = buildingBaoObject.Update_Building(building);
+                else 
             status = buildingBaoObject.insert_Building(building);
         } catch (LTAException e) {
+            e.printStackTrace();
         }
         return status;
     }

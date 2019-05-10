@@ -124,14 +124,14 @@ public class Login extends javax.swing.JFrame {
                                                                        
         boolean loginStatus =
             userBaoObj.checkLogin(username.getText(),
-                                  new String(userPassword.getPassword())); // passing username ,password to check
+                                  Utilities.getMd5(new String (userPassword.getPassword()))); // passing username ,password to check
 
         if (jCheckBox1.isSelected()) // this means i must store this values encrypted in ab file
 
-        {System.out.println("======>"+loginStatus );
+        {System.out.println("======>"+loginStatus +"password  "+ Utilities.getMd5(new String (userPassword.getPassword())));
             if (loginStatus) {
 
-
+                LoginEngine.currentUser = username.getText();
                 BufferedWriter writer = null;
                 try {
                     writer = new BufferedWriter(new FileWriter("original"));

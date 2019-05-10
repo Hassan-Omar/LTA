@@ -109,7 +109,7 @@
          <list n="libraryDefinitions">
             <hash>
                <list n="classPath">
-                  <url path="../../../../../Users/El-Wattaneya/Desktop/ojdbc6.jar" jar-entry=""/>
+                  <url path="../../../../../Users/h.omar/Downloads/ojdbc6.jar" jar-entry=""/>
                </list>
                <value n="deployedByDefault" v="true"/>
                <value n="description" v="Ojdbc6.jar"/>

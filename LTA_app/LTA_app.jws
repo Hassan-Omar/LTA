@@ -32,4 +32,11 @@
    <list n="listOfChildren">
       <hash><url n="URL" path="Client/Client.jpr"/></hash>
    </list>
+   <hash n="oracle.jdeveloper.model.PathsConfiguration">
+      <hash n="ApplicationSrcContentSet">
+         <list n="url-path">
+            <url path="src/"/>
+         </list>
+      </hash>
+   </hash>
 </jws:workspace>

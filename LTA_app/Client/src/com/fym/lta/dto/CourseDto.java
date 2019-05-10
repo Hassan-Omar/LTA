@@ -1,11 +1,13 @@
 package com.fym.lta.dto;
 
+import java.util.Date;
 import java.util.List;
 
 
 public class CourseDto {
     private int Course_id, hoursperWeak,enteredNeededSlots;
-    private String code, Description, name;
+    private String code, Description, name ,insertedBy, updatedBy;
+    private Date inertion_Date, update_Date;
     private List<EmployeeDto> Instructors; // max 2 Instructors
     private List<SlotDto> periods; // max 2 Slot
     private List<LocationTypeDto> neededLocType ; // this to know what type is needed lab or room  
@@ -19,6 +21,39 @@ public class CourseDto {
         this.code = code;
         this.Description = Description;
         this.name = name;
+    }
+
+    public void setInsertedBy(String insertedBy) {
+        this.insertedBy = insertedBy;
+    }
+
+    public String getInsertedBy() {
+        return insertedBy;
+    }
+
+
+    public void setUpdatedBy(String updatedBy) {
+        this.updatedBy = updatedBy;
+    }
+
+    public String getUpdatedBy() {
+        return updatedBy;
+    }
+
+    public void setInertion_Date(Date inertion_Date) {
+        this.inertion_Date = inertion_Date;
+    }
+
+    public Date getInertion_Date() {
+        return inertion_Date;
+    }
+
+    public void setUpdate_Date(Date update_Date) {
+        this.update_Date = update_Date;
+    }
+
+    public Date getUpdate_Date() {
+        return update_Date;
     }
 
     public void setEnteredNeededSlots(int enteredNeededSlots) {

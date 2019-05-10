@@ -2,6 +2,8 @@ package com.fym.lta.dao;
 
 import com.fym.lta.dto.CourseDto;
 
+import com.fym.lta.dto.EmployeeDto;
+
 import java.util.List;
 
 public interface CourseDao {
@@ -22,4 +24,7 @@ public interface CourseDao {
     
     // this behavior to check  Course data existance
     public boolean isExist (CourseDto Course) ; 
+    
+    // this behavior to Search for Course data 
+    public List<CourseDto> search_Courses(CourseDto Course);
 }
