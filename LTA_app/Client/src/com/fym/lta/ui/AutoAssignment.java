@@ -23,45 +23,20 @@ public class AutoAssignment extends javax.swing.JPanel {
      */
     @SuppressWarnings("unchecked")
     private void initComponents() {//GEN-BEGIN:initComponents
-        java.awt.GridBagConstraints gridBagConstraints;
 
-        upload = new javax.swing.JButton();
+        decitionPanel = new javax.swing.JPanel();
 
         setBorder(javax.swing.BorderFactory.createTitledBorder("Location Automatic Assignment"));
-        setLayout(new java.awt.GridBagLayout());
+        setLayout(null);
 
-        upload.setText("Upload File");
-        upload.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                uploadActionPerformed(evt);
-            }
-        });
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 0;
-        gridBagConstraints.ipadx = 48;
-        gridBagConstraints.ipady = 33;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(122, 139, 204, 210);
-        add(upload, gridBagConstraints);
+        decitionPanel.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        add(decitionPanel);
+        decitionPanel.setBounds(50, 50, 770, 160);
     }//GEN-END:initComponents
-
-    private void uploadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_uploadActionPerformed
-        JFileChooser chooser = new JFileChooser();
-        FileNameExtensionFilter filter = new FileNameExtensionFilter("Excel file", "xls", "xlsx");
-        chooser.setFileFilter(filter);
-        int returnVal = chooser.showOpenDialog(getParent());
-        if(returnVal == JFileChooser.APPROVE_OPTION) {
-            JOptionPane.showMessageDialog(null,"You chose to open this file: " +
-                chooser.getSelectedFile().getName());
-        }
-        else
-        JOptionPane.showMessageDialog(null, "Invalid File");
-    }//GEN-LAST:event_uploadActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton upload;
+    private javax.swing.JPanel decitionPanel;
     // End of variables declaration//GEN-END:variables
 
 }
