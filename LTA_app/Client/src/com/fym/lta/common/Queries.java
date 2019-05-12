@@ -29,7 +29,7 @@ public class Queries {
 
     public static final String LOGIN_CHECK = "SELECT USERNAME,PASSWORD FROM USERS WHERE USERNAME = ? AND PASSWORD = ?";
 
-    public static final String IS_USER_EXIST = "SELECT EMAIL ,USERNAME FROM USERS WHERE EMAIL = ? OR USERNAME = ?";
+    public static final String IS_USER_EXIST = "SELECT EMAIL ,USERNAME FROM USERS WHERE EMAIL = ?";
     //___________________________________________________________________________________
 
 
@@ -64,21 +64,25 @@ public class Queries {
 
     public static final String GET_AVAILABLE_SCREENS = "SELECT SCREENID FROM ROLE_SCREEN WHERE ROLEID = ? ";
 
-    public static final String SCREEN_ROLE_ISEXIST = "SELECT SCREENID FROM ROLE_SCREEN WHERE ROLEID = ? AND SCREENID = ?";
-    
-    public static final String UPDATESCREEN_ROLE  = "UPDATE ROLE_SCREEN SET PERMISSIONTYPE = ? WHERE ROLEID =? AND  SCREENID =? ";
+    public static final String SCREEN_ROLE_ISEXIST =
+        "SELECT SCREENID FROM ROLE_SCREEN WHERE ROLEID = ? AND SCREENID = ?";
+
+    public static final String UPDATESCREEN_ROLE =
+        "UPDATE ROLE_SCREEN SET PERMISSIONTYPE = ? WHERE ROLEID =? AND  SCREENID =? ";
     //___________________________________________________________________________________
 
 
     //____________________________ STAFF MEMBERS MODULE _________________________________
-    public static final String INSER_NEW_EMPLOYEE =
-        "INSERT INTO EMPLOYEE (FNAME,SNAME,TNAME,FAMILY_NAME) VALUES (?,?,?,?)";
+    public static final String INSER_NEW_EMPLOYEE = "INSERT INTO EMPLOYEE (FULLNAME,EMAIL) VALUES (?,?)";
 
+    /*  public static final String INSER_NEW_EMPLOYEE_From_Table =
+          "INSERT INTO EMPLOYEE (FULLNAME,EMAIL) VALUES (?,?)";
+*/
     public static final String LIST_ALL_EMPLOYEE = "SELECT * FROM EMPLOYEE";
 
     public static final String DELETE_EMPLOYEE = "DELETE FROM EMPLOYEE WHERE ID = ? ";
 
-    public static final String IS_EMPLOYEE_EXIST = "SELECT ID FROM EMPLOYEE WHERE FNAME = ?";
+    public static final String IS_EMPLOYEE_EXIST = "SELECT ID FROM EMPLOYEE WHERE EMAIL = ?";
 
     public static final String UPDATE_EMPLOYEE =
         "UPDATE EMPLOYEE SET  FNAME = ?, SNAME = ?, TNAME = ?,FAMILY_NAME = ? WHERE ID = ?";
@@ -94,8 +98,9 @@ public class Queries {
         "VALUES (?,?,?,?,?,?)";
 
     public static final String DELETE_BUILDING = "DELETE FROM BUILDING WHERE B_ID = ? ";
-    
-    public static final String UPDATE_BUILDING = "UPDATE BUILDING SET DESCRIPTION=? , UPDATED_BY = ? , UPDATE_DATE = ?  WHERE CODE=? ";
+
+    public static final String UPDATE_BUILDING =
+        "UPDATE BUILDING SET DESCRIPTION=? , UPDATED_BY = ? , UPDATE_DATE = ?  WHERE CODE=? ";
 
     public static final String IS_BUILDING_EXIST = "SELECT B_ID FROM BUILDING WHERE CODE = ?";
 
@@ -105,51 +110,51 @@ public class Queries {
     //___________________________________________________________________________________
 
     //________________________________ BUILDING_FLOOR MODULE __________________________________
-      public static final String INSER_NEW_FLOOR =
-          "INSERT INTO FLOOR (CODE,DESCRIPTON,INSERTION_DATE,UPDATE_DATE,INSERTED_BY,UPDATED_BY)" +
-          "VALUES (?,?,?,?,?,?)";
+    public static final String INSER_NEW_FLOOR =
+        "INSERT INTO FLOOR (CODE,DESCRIPTON,INSERTION_DATE,UPDATE_DATE,INSERTED_BY,UPDATED_BY)" +
+        "VALUES (?,?,?,?,?,?)";
 
-      public static final String DELETE_FLOOR = "DELETE FROM FLOOR WHERE CODE = ? ";
+    public static final String DELETE_FLOOR = "DELETE FROM FLOOR WHERE CODE = ? ";
 
-      public static final String IS_FLOOR_EXIST = "SELECT ID FROM FLOOR WHERE CODE = ?";
-      
-      public static final String UPDATE_FLOOR =
-          "UPDATE FLOOR SET  DESCRIPTON = ? , UPDATED_BY = ? ,UPDATE_DATE = ? WHERE CODE = ?";
+    public static final String IS_FLOOR_EXIST = "SELECT ID FROM FLOOR WHERE CODE = ?";
 
-      public static final String LIST_ALL_FLOORS = "SELECT * FROM FLOOR ";
-      
-      public static final String FLOORS_SEARCH = "SELECT * FROM FLOOR WHERE LOWER(CODE) LIKE ?";
-      //___________________________________________________________________________________
-      
-      
-      
-      //________________________________ LOCATION_TYPE MODULE __________________________________
-      public static final String INSER_NEW_LOCATION_TYPE =
-          "INSERT INTO LOCATION_TYPE (CODE,DESCRIPTION,INSERTED_BY,UPDATED_BY,INSERTION_DATE,UPDATE_DATE)" +
-          "VALUES (?,?,?,?,?,?)";
+    public static final String UPDATE_FLOOR =
+        "UPDATE FLOOR SET  DESCRIPTON = ? , UPDATED_BY = ? ,UPDATE_DATE = ? WHERE CODE = ?";
 
-      public static final String DELETE_LOCATION_TYPE = "DELETE FROM LOCATION_TYPE WHERE CODE = ? ";
+    public static final String LIST_ALL_FLOORS = "SELECT * FROM FLOOR ";
 
-      public static final String IS_LOCATION_TYPE_EXIST = "SELECT T_ID FROM LOCATION_TYPE WHERE CODE = ?";
-      
-      public static final String UPDATE_LOCATION_TYPE =
-          "UPDATE LOCATION_TYPE SET  DESCRIPTION = ?, UPDATED_BY = ? ,UPDATE_DATE = ? WHERE CODE = ?";
+    public static final String FLOORS_SEARCH = "SELECT * FROM FLOOR WHERE LOWER(CODE) LIKE ?";
+    //___________________________________________________________________________________
 
-      public static final String LIST_ALL_LOCATION_TYPES = "SELECT * FROM LOCATION_TYPE ";
-      
-      public static final String LOCATION_TYPE_SEARCH = "SELECT * FROM LOCATION_TYPE WHERE LOWER(CODE) LIKE ?";
-      //___________________________________________________________________________________
-      
+
+    //________________________________ LOCATION_TYPE MODULE __________________________________
+    public static final String INSER_NEW_LOCATION_TYPE =
+        "INSERT INTO LOCATION_TYPE (CODE,DESCRIPTION,INSERTED_BY,UPDATED_BY,INSERTION_DATE,UPDATE_DATE)" +
+        "VALUES (?,?,?,?,?,?)";
+
+    public static final String DELETE_LOCATION_TYPE = "DELETE FROM LOCATION_TYPE WHERE CODE = ? ";
+
+    public static final String IS_LOCATION_TYPE_EXIST = "SELECT T_ID FROM LOCATION_TYPE WHERE CODE = ?";
+
+    public static final String UPDATE_LOCATION_TYPE =
+        "UPDATE LOCATION_TYPE SET  DESCRIPTION = ?, UPDATED_BY = ? ,UPDATE_DATE = ? WHERE CODE = ?";
+
+    public static final String LIST_ALL_LOCATION_TYPES = "SELECT * FROM LOCATION_TYPE ";
+
+    public static final String LOCATION_TYPE_SEARCH = "SELECT * FROM LOCATION_TYPE WHERE LOWER(CODE) LIKE ?";
+    //___________________________________________________________________________________
 
 
     //________________________________ LOCATION MODULE __________________________________
-    public static final String INSER_NEW_LOCATION = "INSERT INTO LOCATION (L_ID ,CODE , DESCRIPTION,CAPACITY,STATUS,BUILDING_ID,FLOOR_ID, TYPE_ID ,EQUIPMENT_CODE,INSERTED_BY,INSERTION_DATE) VALUES(?,?,?,?,?,?,?,?,?,?,?)";
-    
+    public static final String INSER_NEW_LOCATION =
+        "INSERT INTO LOCATION (L_ID ,CODE , DESCRIPTION,CAPACITY,STATUS,BUILDING_ID,FLOOR_ID, TYPE_ID ,EQUIPMENT_CODE,INSERTED_BY,INSERTION_DATE) VALUES(?,?,?,?,?,?,?,?,?,?,?)";
+
     public static final String INSER_NEW_OCCUPATION_PURPOSE = "INSERT INTO LOCATION (OCCUPATION_PURPOSE) VALUES(?)";
 
-    public static final String LIST_ALL_LOCATION = "select location.l_id,location.code ,location.description ,location.capacity,location.status,building.code building_code , floor.code floor_code  ,location_type.CODE type_code ,location.inserted_by,location.insertion_date,location.updated_by,location.update_date " + 
-    "from location , floor ,building ,location_type " + 
-    "where location.floor_id = floor.id and location.building_id =building.b_id and location.type_id =location_type.t_id ";
+    public static final String LIST_ALL_LOCATION =
+        "select location.l_id,location.code ,location.description ,location.capacity,location.status,building.code building_code , floor.code floor_code  ,location_type.CODE type_code ,location.inserted_by,location.insertion_date,location.updated_by,location.update_date " +
+        "from location , floor ,building ,location_type " +
+        "where location.floor_id = floor.id and location.building_id =building.b_id and location.type_id =location_type.t_id ";
 
     public static final String DELETE_LOCATION = "DELETE FROM LOCATION WHERE L_ID  = ? ";
 
@@ -158,20 +163,24 @@ public class Queries {
     public static final String UPDATE_LOCATION =
         "UPDATE LOCATION SET   CODE =? , DESCRIPTION = ?, CAPACITY = ? ,STATUS = ?,   BUILDING_ID = ? ,FLOOR_ID = ? ,TYPE_ID = ?,UPDATED_BY = ? , UPDATE_DATE =?   WHERE L_ID =?";
 
-    public static final String LOCATION_SEARCH = "select location.l_id,location.code ,location.description ,location.capacity,location.status,building.code building_code , floor.code floor_code  ,location_type.CODE type_code ,location.inserted_by,location.insertion_date,location.updated_by,location.update_date " + 
-    "from location , floor ,building ,location_type " + 
-    "where location.floor_id = floor.id and location.building_id =building.b_id and location.type_id =location_type.t_id  and LOWER(location.CODE) LIKE ?";
-    
-    public static final String LOCATION_FILTER = "select location.l_id,location.code ,location.description ,location.capacity,location.status,building.code building_code , floor.code floor_code  ,location_type.CODE type_code ,location.inserted_by,location.insertion_date,location.updated_by,location.update_date " + 
-     "from location , floor ,building ,location_type " +  
-     "where location.floor_id = floor.id and location.building_id =building.b_id and location.type_id =location_type.t_id  and LOWER(location_type.\"code \") LIKE ? and lower(building.code) like ? " ;
+    public static final String LOCATION_SEARCH =
+        "select location.l_id,location.code ,location.description ,location.capacity,location.status,building.code building_code , floor.code floor_code  ,location_type.CODE type_code ,location.inserted_by,location.insertion_date,location.updated_by,location.update_date " +
+        "from location , floor ,building ,location_type " +
+        "where location.floor_id = floor.id and location.building_id =building.b_id and location.type_id =location_type.t_id  and LOWER(location.CODE) LIKE ?";
+
+    public static final String LOCATION_FILTER =
+        "select location.l_id,location.code ,location.description ,location.capacity,location.status,building.code building_code , floor.code floor_code  ,location_type.CODE type_code ,location.inserted_by,location.insertion_date,location.updated_by,location.update_date " +
+        "from location , floor ,building ,location_type " +
+        "where location.floor_id = floor.id and location.building_id =building.b_id and location.type_id =location_type.t_id  and LOWER(location_type.\"code \") LIKE ? and lower(building.code) like ? ";
     //___________________________________________________________________________________
 
     //________________________________ EQUIPMENT MODULE __________________________________
-    public static final String INSER_NEW_Equipment = "INSERT INTO Equipment (ID ,CODE , TYPE ,LIFE_SPAN ,USING_START_TIME ,inserted_by ,insertion_date,Location_id) VALUES(?,?,?,?,?,?,?,?)";
-    
-    public static final String LIST_ALL_EQUIPMENTS = "SELECT equipment.id , equipment.code ,equipment.type, equipment.life_span, equipment.using_start_time ,location.code Location, equipment.inserted_by ,equipment.updated_by ,equipment.insertion_date, equipment.update_date " + 
-    "FROM Equipment , location  where equipment.location_id = location.l_id ";
+    public static final String INSER_NEW_Equipment =
+        "INSERT INTO Equipment (ID ,CODE , TYPE ,LIFE_SPAN ,USING_START_TIME ,inserted_by ,insertion_date,Location_id) VALUES(?,?,?,?,?,?,?,?)";
+
+    public static final String LIST_ALL_EQUIPMENTS =
+        "SELECT equipment.id , equipment.code ,equipment.type, equipment.life_span, equipment.using_start_time ,location.code Location, equipment.inserted_by ,equipment.updated_by ,equipment.insertion_date, equipment.update_date " +
+        "FROM Equipment , location  where equipment.location_id = location.l_id ";
 
 
     public static final String DELETE_Equipment = "DELETE FROM Equipment WHERE ID  = ? ";
@@ -181,78 +190,78 @@ public class Queries {
     public static final String UPDATE_Equipment =
         "UPDATE Equipment SET   CODE =? , TYPE = ?, LIFE_SPAN = ? ,  updated_by = ? , update_date=? , location_id = ? WHERE ID =?";
 
-    public static final String Equipment_SEARCH = "SELECT equipment.id , equipment.code ,equipment.type, location.code Location, equipment.life_span , equipment.using_start_time ,equipment.inserted_by ,equipment.updated_by ,equipment.insertion_date, equipment.update_date " + 
-    "FROM Equipment , location where equipment.location_id = location.l_id and LOWER(equipment.code) LIKE ?";
+    public static final String Equipment_SEARCH =
+        "SELECT equipment.id , equipment.code ,equipment.type, location.code Location, equipment.life_span , equipment.using_start_time ,equipment.inserted_by ,equipment.updated_by ,equipment.insertion_date, equipment.update_date " +
+        "FROM Equipment , location where equipment.location_id = location.l_id and LOWER(equipment.code) LIKE ?";
 
     //___________________________________________________________________________________
 
 
     //___________________________________________________________________________________
-   
+
     //________________________________ Schedule MODULE __________________________________
 
 
-    public static final String  INSER_NEW_SCHEDULE =
-    "INSERT INTO grade_schedule (SCHEDULECODE , ACADEMIC_YEAR,DEPARTMENT_CODE ) VALUES(?,?,?)";
-    
-    public static final String  INSER_NEW_SLotSCHEDULE =
-    "INSERT INTO SCHEDULE_CONSISTS_OF_SLOT (SCHEDULE_CODE , SLOT_ID ) VALUES(?,?) " ;
-    
-    public static final String DELETE_SCHEDULE = 
-    "DELETE FROM grade_schedule WHERE SCHEDULECODE =? ";
-    
-    public static final String LIST_ALL_SCHEDULE = 
-    "SELECT SCHEDULECODE,ACADEMIC_YEAR,DEPARTMENT_CODE FROM grade_schedule " ;
-    
+    public static final String INSER_NEW_SCHEDULE =
+        "INSERT INTO grade_schedule (SCHEDULECODE , ACADEMIC_YEAR,DEPARTMENT_CODE ) VALUES(?,?,?)";
+
+    public static final String INSER_NEW_SLotSCHEDULE =
+        "INSERT INTO SCHEDULE_CONSISTS_OF_SLOT (SCHEDULE_CODE , SLOT_ID ) VALUES(?,?) ";
+
+    public static final String DELETE_SCHEDULE = "DELETE FROM grade_schedule WHERE SCHEDULECODE =? ";
+
+    public static final String LIST_ALL_SCHEDULE =
+        "SELECT SCHEDULECODE,ACADEMIC_YEAR,DEPARTMENT_CODE FROM grade_schedule ";
+
     public static final String Search_SCHEDULE =
-    "SELECT SCHEDULECODE,ACADEMIC_YEAR,DEPARTMENT_CODE  FROM grade_schedule WHERE LOWER(SCHEDULECODE) LIKE ?  ";
+        "SELECT SCHEDULECODE,ACADEMIC_YEAR,DEPARTMENT_CODE  FROM grade_schedule WHERE LOWER(SCHEDULECODE) LIKE ?  ";
 
     public static final String IS_EXIST_SCHEDULE =
-    "SELECT SCHEDULECODE FROM grade_schedule WHERE SCHEDULECODE = ?" ;
-
+        "SELECT SCHEDULECODE,ACADEMIC_YEAR  FROM grade_schedule WHERE SCHEDULECODE = ? and ACADEMIC_YEAR=?";
 
 
     //__________________________________Course Model_________________________________________
-      
-      public static final String LIST_ALL_COURSES = "SELECT * FROM COURSE";
-      
-      public static final String DELETE_COURSE = "DELETE FROM COURSE WHERE CODE = ? ";
-      
-      public static final String UPDATE_COURSE = 
-          "UPDATE COURSE SET  CODE = ?, NAME = ?, HOUR_PER_WEEK = ? ,UPDATED_BY = ? ,UPDATE_DATE = ? WHERE CODE = ?";
-      
-      public static final String IS_COURSE_EXIST = "SELECT ID FROM COURSE WHERE NAME = ?";
-      
-      public static final String INSERT_NEW_COURSE =
-          "INSERT INTO COURSE (CODE,NAME,HOUR_PER_WEEK,INSERTED_BY ,UPDATED_BY ,INSERTION_DATE ,UPDATE_DATE) VALUES (?,?,?,?,?,?,?)";
-   
-      public static final String SEARCH_COURSES = "SELECT * FROM COURSE WHERE LOWER(CODE) LIKE ? OR LOWER(NAME) LIKE ?";
-    
-      
-      //_________________________________________________________________________________________
-      
-      
-      
-      
-      
-      //________________________________ Department Module __________________________________
-          
-      public static final String LIST_ALL_DEPARTMENT = "SELECT * FROM DEPARTMENT";
-      
-      public static final String DELETE_DEPARTMENT = "DELETE FROM DEPARTMENT WHERE CODE = ? ";
-      
-      public static final String INSERT_NEW_DEPARTMENT =
-          "INSERT INTO DEPARTMENT (CODE,NAME) VALUES (?,?)";
-    
-      public static final String UPDATE_DEPARTMENT =
-          "UPDATE DEPARTMENT SET  NAME = ? WHERE CODE = ?";
-      
-      public static final String IS_DEPARTMENT_EXIST = "SELECT * FROM DEPARTMENT WHERE CODE = ?";
-      
-      public static final String DEPARTMENT_SEARCH = "SELECT * FROM DEPARTMENT WHERE LOWER(CODE) LIKE ? OR  LOWER(NAME) LIKE ?";
-      
-      //_________________________________________________________________________________________
-      
-      
+
+    public static final String LIST_ALL_COURSES = "SELECT * FROM COURSE";
+
+    public static final String DELETE_COURSE = "DELETE FROM COURSE WHERE CODE = ? ";
+
+    public static final String UPDATE_COURSE =
+        "UPDATE COURSE SET  CODE = ?, NAME = ?, HOUR_PER_WEEK = ? ,UPDATED_BY = ? ,UPDATE_DATE = ? WHERE CODE = ?";
+
+    public static final String IS_COURSE_EXIST = "SELECT ID FROM COURSE WHERE CODE = ?";
+
+    public static final String INSERT_NEW_COURSE =
+        "INSERT INTO COURSE (CODE,NAME,HOUR_PER_WEEK,INSERTED_BY ,UPDATED_BY ,INSERTION_DATE ,UPDATE_DATE) VALUES (?,?,?,?,?,?,?)";
+
+    public static final String SEARCH_COURSES = "SELECT * FROM COURSE WHERE LOWER(CODE) LIKE ? OR LOWER(NAME) LIKE ?";
+
+
+    //_________________________________________________________________________________________
+
+
+    //________________________________ Slot  MODULE __________________________________
+
+    public static final String INSER_NEW_SLOT = 
+"INSERT INTO SLOT (DAY , START_TIME,PREFSPACE,TYPESLOT,ID ) VALUES(?,?,?,?,?) " ;
+//"INSERT INTO SLOT ( ID  ) VALUES(?) ";
+
+    //________________________________ Department Module __________________________________
+
+    public static final String LIST_ALL_DEPARTMENT = "SELECT * FROM DEPARTMENT";
+
+    public static final String DELETE_DEPARTMENT = "DELETE FROM DEPARTMENT WHERE CODE = ? ";
+
+    public static final String INSERT_NEW_DEPARTMENT = "INSERT INTO DEPARTMENT (CODE,NAME) VALUES (?,?)";
+
+    public static final String UPDATE_DEPARTMENT = "UPDATE DEPARTMENT SET  NAME = ? WHERE CODE = ?";
+
+    public static final String IS_DEPARTMENT_EXIST = "SELECT * FROM DEPARTMENT WHERE CODE = ?";
+
+    public static final String DEPARTMENT_SEARCH =
+        "SELECT * FROM DEPARTMENT WHERE LOWER(CODE) LIKE ? OR  LOWER(NAME) LIKE ?";
+
+    //_________________________________________________________________________________________
+
 
 }

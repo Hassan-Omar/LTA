@@ -2,7 +2,8 @@ package com.fym.lta.dto;
 
 import java.util.List;
 
-public class EmployeeDto extends UserDto {
+public class EmployeeDto extends UserDto
+{
     public void setLName(String lName) {
         this.lName = lName;
     }

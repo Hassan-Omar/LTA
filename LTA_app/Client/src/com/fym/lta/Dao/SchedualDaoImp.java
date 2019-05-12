@@ -96,15 +96,15 @@ public class SchedualDaoImp implements SchedualDao
 
     }
 
-    public boolean isExist(String SCHEDULECODE ,int acadimcyear)
+    public boolean isExist(String SCHEDULECODE ,String acadimcyear)
  {
         try (JdbcRowSet jdbcRs = RowSetProvider.newFactory().createJdbcRowSet()) {
             jdbcRs.setUrl(ConnectionFactory.getUrl());
             jdbcRs.setUsername(ConnectionFactory.getUsername());
             jdbcRs.setPassword(ConnectionFactory.getPassword());
-            jdbcRs.setCommand(Queries.IS_USER_EXIST);
+            jdbcRs.setCommand(Queries.IS_EXIST_SCHEDULE);
             jdbcRs.setString(1,  SCHEDULECODE );
-            jdbcRs.setInt(2,  acadimcyear );
+            jdbcRs.setString(2,  acadimcyear );
             jdbcRs.execute();
             
             if(jdbcRs.next())

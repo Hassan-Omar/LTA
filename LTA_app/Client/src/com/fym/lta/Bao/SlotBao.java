@@ -8,12 +8,7 @@ public interface SlotBao {
      * otherwise it updates the exis. once
      */
 
-    public boolean saveSlot(SlotDto Slot);
-
-
-    /**
-     * search for Slot 
-     */
+    public boolean saveSlot(SlotDto slot);
 
     public SlotDto SearchSlot(String Day ,String startTime);
 

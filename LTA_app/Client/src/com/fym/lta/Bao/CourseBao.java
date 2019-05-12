@@ -25,7 +25,10 @@ public interface CourseBao {
      * delete a Course 
      */
     public boolean deleteCourse(CourseDto Course);
+    public boolean isexistCourse(String code);
 
   
     public List<CourseDto> listCourses() ;
+    
+    
 }

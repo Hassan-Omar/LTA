@@ -2,7 +2,10 @@
 package com.fym.lta.ui;
 
 import com.fym.lta.bao.BaoFactory;
+import com.fym.lta.bao.CourseBao;
+import com.fym.lta.bao.EmployeeBao;
 import com.fym.lta.bao.SchedualBao;
+import com.fym.lta.bao.SlotBao;
 import com.fym.lta.dto.CourseDto;
 import com.fym.lta.dto.EmployeeDto;
 import com.fym.lta.dto.SchedualDto;
@@ -10,10 +13,19 @@ import com.fym.lta.dto.SlotDto;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
+
+import java.text.DateFormat;
+
+import java.text.SimpleDateFormat;
+
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
+
+import javax.xml.registry.infomodel.Slot;
+
 import org.apache.poi.hssf.usermodel.HSSFRow;
 import org.apache.poi.hssf.usermodel.HSSFSheet;
 import org.apache.poi.hssf.usermodel.HSSFWorkbook;
@@ -31,6 +43,8 @@ public class ScheduleInsert extends javax.swing.JPanel
     
     private transient SchedualBao SchedualBao = new BaoFactory().createSchedualBao();    
     private transient List<SchedualDto> searchSchedual;
+    boolean SchedualAvailabilty = true;
+
 
     /** Creates new form ScheduleInsert */
     public ScheduleInsert() {
@@ -139,6 +153,11 @@ public class ScheduleInsert extends javax.swing.JPanel
                 insertUserBTNMouseClicked(evt);
             }
         });
+        insertUserBTN.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                insertUserBTNActionPerformed(evt);
+            }
+        });
         add(insertUserBTN);
         insertUserBTN.setBounds(129, 102, 239, 54);
 
@@ -173,6 +192,11 @@ public class ScheduleInsert extends javax.swing.JPanel
                 deleteUserBTNMouseClicked(evt);
             }
         });
+        deleteUserBTN.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                deleteUserBTNActionPerformed(evt);
+            }
+        });
         add(deleteUserBTN);
         deleteUserBTN.setBounds(0, 102, 111, 54);
 
@@ -197,24 +221,29 @@ public class ScheduleInsert extends javax.swing.JPanel
         PanelInsert.setLayout(PanelInsertLayout);
         PanelInsertLayout.setHorizontalGroup(
             PanelInsertLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, PanelInsertLayout.createSequentialGroup()
-                .addContainerGap(142, Short.MAX_VALUE)
+            .addGroup(PanelInsertLayout.createSequentialGroup()
                 .addGroup(PanelInsertLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(insert)
                     .addGroup(PanelInsertLayout.createSequentialGroup()
-                        .addGroup(PanelInsertLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(departmentlable, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(academicYearlable))
-                        .addGap(41, 41, 41)
-                        .addGroup(PanelInsertLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(departmentcombox, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(academicYearcombox, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addContainerGap())
+                        .addGap(58, 58, 58)
+                        .addComponent(insert))
+                    .addGroup(PanelInsertLayout.createSequentialGroup()
+                        .addGap(35, 35, 35)
+                        .addGroup(PanelInsertLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(PanelInsertLayout.createSequentialGroup()
+                                .addComponent(academicYearlable)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(academicYearcombox, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(PanelInsertLayout.createSequentialGroup()
+                                .addComponent(departmentlable, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(departmentcombox, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                .addContainerGap(142, Short.MAX_VALUE))
         );
         PanelInsertLayout.setVerticalGroup(
             PanelInsertLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(PanelInsertLayout.createSequentialGroup()
-                .addGap(22, 22, 22)
+                .addComponent(insert)
+                .addGap(5, 5, 5)
                 .addGroup(PanelInsertLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(departmentlable)
                     .addComponent(departmentcombox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -222,9 +251,7 @@ public class ScheduleInsert extends javax.swing.JPanel
                 .addGroup(PanelInsertLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(academicYearlable)
                     .addComponent(academicYearcombox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(insert)
-                .addContainerGap(302, Short.MAX_VALUE))
+                .addContainerGap(325, Short.MAX_VALUE))
         );
 
         add(PanelInsert);
@@ -236,93 +263,129 @@ public class ScheduleInsert extends javax.swing.JPanel
         JFileChooser Chooser = new JFileChooser();
         int Variable = Chooser.showOpenDialog(null);
         //To select items for Combox
-        int selectDpertment =  departmentcombox.getSelectedIndex();
-        int academicYear   =  academicYearcombox.getSelectedIndex();
-
-        if (selectDpertment == 0)  // Choose Computer  Department
+        int selectDpertment = departmentcombox.getSelectedIndex();
+        int academicYear = academicYearcombox.getSelectedIndex();
+        
+        if (selectDpertment == 0) // Choose Computer  Department
         {
-            if(academicYear==0) // Choose Frist academicYear
+            if (academicYear == 0) // Choose Frist academicYear
             {
-                if (Variable == JFileChooser.APPROVE_OPTION)
+                if (Variable == JFileChooser.APPROVE_OPTION) 
                 {
-                    try
-                    {      HSSFWorkbook lta = new HSSFWorkbook (new FileInputStream(Chooser.getSelectedFile()));
+                    try {
+                        
+                        
+                        HSSFWorkbook lta = new HSSFWorkbook(new FileInputStream(Chooser.getSelectedFile()));
                         HSSFSheet Sheet = lta.getSheet("Sheet0");
-                        //For Sunday
-                        HSSFRow CodeDeparment = Sheet.getRow(0);   // Row (1)
-                        HSSFRow Acadimcyear  = Sheet.getRow(1);   // Row (2)
-                        HSSFRow SCHEDULECODE  = Sheet.getRow(2);   // Row (2)
+                        //For 
+                        HSSFRow CodeDeparment = Sheet.getRow(0); // Row (1)
+                        HSSFRow Acadimcyear = Sheet.getRow(1); // Row (2)
+                        HSSFRow SCHEDULECODE = Sheet.getRow(2); // Row (2)
+                        HSSFRow STUDENTNUMBER = Sheet.getRow(1);
 
+          
                         // rows
-                        CourseDto course  = new CourseDto() ;
-                        SlotDto slot = null;
-                        EmployeeDto instructor = new EmployeeDto () ;
+                        CourseDto course = new CourseDto();
+                        SlotDto slot = new SlotDto();
+                        EmployeeDto instructor = new EmployeeDto();
                         SchedualDto schudel = new SchedualDto();
                         List<SlotDto> slots = new ArrayList();
                         List<EmployeeDto> staffList = new ArrayList<>();
-
-                        for (int i=3 ;i<38 ;i+=7)
-                        {
-                            HSSFRow SlotID         = Sheet.getRow(i);
-                            HSSFRow courseName     = Sheet.getRow(i+1);
-                            HSSFRow StaffName1     = Sheet.getRow(i+2);
-                            HSSFRow StaffName2     = Sheet.getRow(i+3);
-                            HSSFRow Lecttime       = Sheet.getRow(i+4);
-                            HSSFRow PrefSpace      = Sheet.getRow(i+5);
-                            HSSFRow LecType        = Sheet.getRow(i+6);
-                            for (int k= 1 ;k<9 ;k+=2)
-                            {
-                                instructor.setEmail(StaffName1.getCell(k+1).toString());
-                                instructor.setFullName(StaffName1.getCell(k).toString());
-                                staffList.add(instructor);
-                                instructor.setEmail(StaffName2.getCell(k+1).toString());
-                                instructor.setFullName(StaffName2.getCell(k).toString());
-                                staffList.add(instructor);
-
-                                course.setInstructors(staffList);
-                                course.setCode(courseName.getCell(k+1).toString());
-                                slot = new SlotDto () ;
-                                slot.setCurrentCourse(course);
-                                slot.setSlot_id((int)Float.parseFloat(SlotID.getCell(k+1).toString()));
-
-                                slots.add(slot) ;
-                            }
-
-                        }
-
+                        SchedualBao SchedualBao = new BaoFactory().createSchedualBao();
+                        EmployeeBao EmployeeBao = new BaoFactory().createemployeeBao();
+                        CourseBao CourseBao = new BaoFactory().createCourseBao();
+                        SlotBao   SlotBao     = new BaoFactory().createSlotBao();
                         schudel.setAcademicYear(Acadimcyear.getCell(1).toString());
                         schudel.setSCHEDULECODE(SCHEDULECODE.getCell(1).toString());
                         schudel.setCodeDeparment(CodeDeparment.getCell(1).toString());
+                            
+                        for (int i = 3; i < 38; i += 7)
+                        {   
+                            HSSFRow SlotID = Sheet.getRow(i);
+                            HSSFRow Starttime = Sheet.getRow(i + 1);
+                            HSSFRow courseName = Sheet.getRow(i+2); 
+                            HSSFRow StaffName1 = Sheet.getRow(i + 3);
+                            HSSFRow StaffName2 = Sheet.getRow(i + 4);
+                            HSSFRow Type = Sheet.getRow(i + 5);
+                            HSSFRow PrefSpace = Sheet.getRow(i + 6);   
+                           
+                            for (int k = 1; k < 9; k += 2)
+                            {
+                                /*********************  Slot Modual ***************/
 
-                        schudel.setSchedual_Slots(slots);
+                                slot.setDay(courseName.getCell(0).toString());
+                                slot.setSlot_id((int) Float.parseFloat(SlotID.getCell(k + 1).toString()));
+                                slot.setDay(courseName.getCell(0).toString());
+                                slot.setPrefSpace(PrefSpace.getCell(k + 1).toString());
+                                slot.setType(Type.getCell(k + 1).toString());
+                                slot.setStartTime((Starttime.getCell(k + 1).toString()));
+                             
 
-                        SchedualBao.insertSchedual(schudel) ;
+                                /*********************  Course Modual ***************/
+                                // Check if course exist or not
+                                if (CourseBao.isexistCourse(courseName.getCell(k + 1).toString()))
+                                    ;
+                                //The course exist  and not equal null
+                                else if (courseName.getCell(k + 1).toString() != "") {
+                                    course.setCode(courseName.getCell(k + 1).toString());
+                                    course.setName(courseName.getCell(k).toString());
+                                    CourseBao.saveCourse(course);
+                                    slot = new SlotDto();
+                                    slot.setCurrentCourse(course);
+                                    // The course is exist meaing it nead to Staff
+                                    /*********************  Staff Modual ***************/
+                                    //Check if Staff exist or not
+                                    if (EmployeeBao.isExist(StaffName1.getCell(k + 1).toString()))
+                                        ;
+                                    // Insert Staff
+                                    else {
+                                        instructor.setEmail(StaffName1.getCell(k + 1).toString());
+                                        instructor.setFullName(StaffName1.getCell(k).toString());
+                                        EmployeeBao.insertEmployee(instructor);
+                                        staffList.add(instructor);
+                                        course.setInstructors(staffList);
 
-                    }
-                    catch (FileNotFoundException e)
-                    {
-                        e.printStackTrace();
-                    }
-                    catch (IOException e)
-                    {
-                        e.printStackTrace();
+                                        // Check if Staff two is Null or not
+                                        if (EmployeeBao.isExist(StaffName2.getCell(k + 1).toString()))
+                                            ;
+                                        // Check if Staff two not exist  and not equal null
+                                        else if (StaffName2.getCell(k + 1).toString() != "") {
+                                            instructor.setEmail(StaffName2.getCell(k + 1).toString());
+                                            instructor.setFullName(StaffName2.getCell(k).toString());
+                                            EmployeeBao.insertEmployee(instructor);
+                                            staffList.add(instructor);
+                                            course.setInstructors(staffList);
+                                        }
+                                    }
+                                } else {
+                                } // The Course Equal Null No thing To Do
+                            
+                                SlotBao.saveSlot(slot);
+
+                            }
+                        }
+                        //slots.add(slot);
+                        //SlotBao.saveSlot(slot);
+                        // schudel.setSchedual_Slots(slots);
+                        //   SchedualBao.insertSchedual(schudel) ;
+
+                    } catch (IOException e) {
                     }
                 }
-
             }
-            else if(academicYear==1)  // Choose Second academicYear
+
+            else if (academicYear == 1) // Choose Second academicYear
             {
 
-            }
-            else if(academicYear==2)  // Choose Thrid academicYear
+            } else if (academicYear == 2) // Choose Thrid academicYear
             {
 
-            }
-            else if(academicYear==3)  // Choose Four academicYear
+            } else if (academicYear == 3) // Choose Four academicYear
             {
 
             }
         }
+
 
         //Choose Power
         else if(selectDpertment==1)
@@ -392,6 +455,14 @@ public class ScheduleInsert extends javax.swing.JPanel
     private void searchUserBTNActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchUserBTNActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_searchUserBTNActionPerformed
+
+    private void deleteUserBTNActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteUserBTNActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_deleteUserBTNActionPerformed
+
+    private void insertUserBTNActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_insertUserBTNActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_insertUserBTNActionPerformed
 
     public void TableReset(List<SchedualDto> Schedual) 
     {

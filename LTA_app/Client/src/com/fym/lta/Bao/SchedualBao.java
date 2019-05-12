@@ -9,9 +9,10 @@ public interface SchedualBao {
      * otherwise it updates the exis. once
      */
 
-    public boolean insertSchedual(SchedualDto Schedual);
+    public boolean insertSchedual(SchedualDto Schedual) ;
     public List<SchedualDto> listAll();
     public List<SchedualDto>  SearchSchedual(String SCHEDULECODE);
     public boolean deleteSchedual(String SCHEDULECODE );
-    public boolean isExists(String SCHEDULECODE , int acadimyear);
+    public boolean isExists(String SCHEDULECODE , String acadimyear);
+
 }

@@ -27,5 +27,5 @@ public interface SchedualDao
     
     // this behavior to check Schedual existance
 
-    public boolean isExist(String SCHEDULECODE ,int acadimcyear);
+    public boolean isExist(String SCHEDULECODE ,String acadimcyear);
 }

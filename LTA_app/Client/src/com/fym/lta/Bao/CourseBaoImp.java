@@ -13,7 +13,7 @@ public class CourseBaoImp implements CourseBao
 
     public boolean saveCourse(CourseDto Course) {
         boolean status = false;
-        if (courseDaoObject.isExist(Course))
+        if (courseDaoObject.isExist(Course.getCode()))
             status = courseDaoObject.Update_Course(Course);
         else
             status = courseDaoObject.insert_Course(Course);
@@ -34,6 +34,12 @@ public class CourseBaoImp implements CourseBao
     public List<CourseDto> listCourses() {
         return courseDaoObject.getAll_Courses();
     }
+    
+    public boolean isexistCourse(String code) {
+        return courseDaoObject.isExist(code);
+
+    }
+
 
 
     
