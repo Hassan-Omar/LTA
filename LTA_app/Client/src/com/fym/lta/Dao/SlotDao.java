@@ -16,7 +16,6 @@ public interface SlotDao {
 
     // this behavior to search for Slot by id
 
-    public boolean insert_Slot(SlotDao slot);
 
 
     // this behavior to update Slot data
@@ -26,4 +25,6 @@ public interface SlotDao {
     // this behavior to check Slot existance
 
     public boolean isExist(SlotDto slot);
+
+    public boolean insert_Slot(SlotDto slot);
 }

@@ -2,9 +2,18 @@ package com.fym.lta.dto;
 
 import java.util.List;
 
-public class EmployeeDto extends UserDto {
+public class EmployeeDto extends UserDto
+{
     public void setLName(String lName) {
         this.lName = lName;
+    }
+
+    public void setFullName(String FullName) {
+        this.FullName = FullName;
+    }
+
+    public String getFullName() {
+        return FullName;
     }
 
     public String getLName() {
@@ -12,7 +21,7 @@ public class EmployeeDto extends UserDto {
     }
     private int emp_id ;
     private boolean empType ; // this true if the type is a staff member 
-    private String fName, sName, lName, familyName, email,careerDgree;
+    private String fName, sName, lName, familyName, email,careerDgree,FullName;
     private List<CourseDto> teachingCoursese ;
     
 

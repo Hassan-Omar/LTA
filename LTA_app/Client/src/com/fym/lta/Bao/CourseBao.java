@@ -18,14 +18,17 @@ public interface CourseBao {
      * search for Course 
      */
 
-    public List<CourseDto> SearchCourse(CourseDto Course);
+    public List<CourseDto> SearchCourse(CourseDto Course) ;
 
 
     /**
      * delete a Course 
      */
     public boolean deleteCourse(CourseDto Course);
+    public boolean isexistCourse(String code);
 
   
     public List<CourseDto> listCourses() ;
+    
+    
 }

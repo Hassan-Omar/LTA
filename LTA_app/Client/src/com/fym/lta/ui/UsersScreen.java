@@ -18,6 +18,7 @@ import javax.swing.JOptionPane;
  * @author h.omar
  */
 public class UsersScreen extends javax.swing.JPanel {
+    
     // bussiness object to save or delete , search  methods
     private UserBao userBaoObj = new BaoFactory().createUserBao();
     // list  to hold the returned data from the search
@@ -538,13 +539,13 @@ public class UsersScreen extends javax.swing.JPanel {
     private javax.swing.JTable usersTable;
     // End of variables declaration//GEN-END:variables
     
-    public void userTableReset(List<UserDto> users) {
+    public void userTableReset(List<UserDto> users) 
+    {
         int userRoleid;
 
         Object[][] usersArr = new Object[users.size()][4];
 
-        for (int i = 0; i < users.size();
-             i++) {
+        for (int i = 0; i < users.size();i++) {
             // View the full name
             usersArr[i][0] =
                                users.get(i).getFName() + " " + users.get(i).getSName() + " " + users.get(i).getLName() +

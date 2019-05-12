@@ -5,6 +5,7 @@ import com.fym.lta.common.ConnectionFactory;
 import com.fym.lta.common.Queries;
 import com.fym.lta.dto.CourseDto;
 
+
 import java.sql.SQLException;
 import java.sql.Types;
 
@@ -125,13 +126,13 @@ public class CourseDaoImp implements CourseDao {
             jdbcRs.setInt(3, Course.getHoursperWeak());
             
            
-            if (Course.getUpdatedBy() != null)
+            if (Course.getInsertedBy()!= null)
                 jdbcRs.setString(4, Course.getUpdatedBy());
             else
                 jdbcRs.setNull(4, Types.VARCHAR);
 
 
-            if (Course.getUpdate_Date() != null)
+            if (Course.getUpdate_Date()!= null)
                 jdbcRs.setDate(5, new java.sql.Date(Course.getUpdate_Date().getTime()));
             else
                 jdbcRs.setNull(5, java.sql.Types.DATE);
@@ -149,15 +150,17 @@ public class CourseDaoImp implements CourseDao {
         return false;
     }
 
-    public boolean isExist(CourseDto Course) {
+    public boolean isExist(String Code)
+    {
         try (JdbcRowSet jdbcRs = RowSetProvider.newFactory().createJdbcRowSet()) {
             jdbcRs.setUrl(ConnectionFactory.getUrl());
             jdbcRs.setUsername(ConnectionFactory.getUsername());
             jdbcRs.setPassword(ConnectionFactory.getPassword());
             jdbcRs.setCommand(Queries.IS_COURSE_EXIST);
-            jdbcRs.setString(1, Course.getName());
+            jdbcRs.setString(1,Code );
             jdbcRs.execute();
-            if (jdbcRs.next()) {
+            if (jdbcRs.next())
+            {
                 return true;
             } else {
                 return false;
@@ -206,5 +209,6 @@ public class CourseDaoImp implements CourseDao {
     }
 
 
+   
 }
 

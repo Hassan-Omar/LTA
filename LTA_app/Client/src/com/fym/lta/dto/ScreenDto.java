@@ -1,7 +1,8 @@
 package com.fym.lta.dto;
 
 
-public class ScreenDto {
+public class ScreenDto
+{
     private int Screen_id;
     private String Description;
     

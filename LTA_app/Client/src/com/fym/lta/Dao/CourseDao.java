@@ -23,7 +23,7 @@ public interface CourseDao {
     public boolean Update_Course(CourseDto Course);
     
     // this behavior to check  Course data existance
-    public boolean isExist (CourseDto Course) ; 
+    public boolean isExist (String Code) ; 
     
     // this behavior to Search for Course data 
     public List<CourseDto> search_Courses(CourseDto Course);

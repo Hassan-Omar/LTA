@@ -17,7 +17,8 @@ public interface EmployeeBao {
      */
 
    public List<EmployeeDto> SearchEmployee(EmployeeDto Employee)  ;
-
+    
+  public boolean isExist(String email);
 
     public List<EmployeeDto> listEmployee()  ; 
 
@@ -25,4 +26,5 @@ public interface EmployeeBao {
      * delete an Employee 
      */
     public boolean deleteEmployee(EmployeeDto Employee);
+    
 }

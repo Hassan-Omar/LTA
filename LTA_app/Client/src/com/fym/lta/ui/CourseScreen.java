@@ -16,7 +16,8 @@ import javax.swing.JOptionPane;
  *
  * @author Mina
  */
-public class CourseScreen extends javax.swing.JPanel {
+public class CourseScreen extends javax.swing.JPanel
+{
 
 private CourseBao courseobjBao = new BaoFactory().createCourseBao();
 

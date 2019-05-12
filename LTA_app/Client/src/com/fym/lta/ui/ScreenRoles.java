@@ -22,6 +22,7 @@ public class ScreenRoles extends javax.swing.JPanel {
     ScreenBao screenBaoObj = new BaoFactory().createScreenBao();
     List<RoleDto> allRoles = new ArrayList();
     String permission = "view  "; //hold permission value
+  
     List<ScreenDto> selectedScreens = new ArrayList(); //hold the values of selected screens
 
     /** Creates new form ScreenRoles */

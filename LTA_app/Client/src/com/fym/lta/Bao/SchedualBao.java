@@ -1,6 +1,7 @@
 package com.fym.lta.bao;
 
 import com.fym.lta.dto.SchedualDto;
+import java.util.List;
 
 public interface SchedualBao {
     /**
@@ -8,18 +9,10 @@ public interface SchedualBao {
      * otherwise it updates the exis. once
      */
 
-    public boolean saveSchedual(SchedualDto Schedual);
+    public boolean insertSchedual(SchedualDto Schedual) ;
+    public List<SchedualDto> listAll();
+    public List<SchedualDto>  SearchSchedual(String SCHEDULECODE);
+    public boolean deleteSchedual(String SCHEDULECODE );
+    public boolean isExists(String SCHEDULECODE , String acadimyear);
 
-
-    /**
-     * Schedual for Course 
-     */
-
-    public SchedualDto SearchSchedual(String code );
-
-
-    /**
-     * delete a Schedual  
-     */
-    public boolean deleteSchedual(SchedualDto Schedual);
 }

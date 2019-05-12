@@ -7,7 +7,8 @@ import com.fym.lta.dto.EmployeeDto;
 
 import java.util.List;
 
-public class EmployeeBaoImp implements EmployeeBao {
+public class EmployeeBaoImp implements EmployeeBao 
+{
     EmployeeDao empDaoObject = new DaoFactory().createEmployeeDao();
 
 
@@ -37,5 +38,11 @@ public class EmployeeBaoImp implements EmployeeBao {
 
     public boolean deleteEmployee(EmployeeDto Employee) {
         return empDaoObject.delete_Employee(Employee);
+    }
+    public boolean isExist(String email )
+    {
+        return empDaoObject.isExist(email);
+
+        
     }
 }

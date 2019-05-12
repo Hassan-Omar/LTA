@@ -1,3 +1,4 @@
+<<<<<<< Updated upstream
 <References xmlns="http://xmlns.oracle.com/adf/jndi">
   <Reference name="LTAconnection" className="oracle.jdeveloper.db.adapter.DatabaseProvider"
              credentialStoreKey="LTAconnection" xmlns="">
@@ -25,6 +26,11 @@
     </RefAddresses>
   </Reference>
 </References>
+=======
+<References xmlns="http://xmlns.oracle.com/adf/jndi"></References>
+
+
+>>>>>>> Stashed changes
 
 
 
