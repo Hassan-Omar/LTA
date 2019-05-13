@@ -21,8 +21,10 @@ public class UserDaoImp implements UserDao {
         super();
     }
 
+
     @Override
-    public List<UserDto> getAll_Users() {
+    public List<UserDto> getAll_Users()
+    {
 
         List<UserDto> users = null;
 
@@ -117,7 +119,8 @@ public class UserDaoImp implements UserDao {
 
 
     @Override
-    public boolean delete_User(String email) {
+    public boolean delete_User(String email)
+    {
         try (JdbcRowSet jdbcRs = RowSetProvider.newFactory().createJdbcRowSet()) {
             jdbcRs.setUrl(ConnectionFactory.getUrl());
             jdbcRs.setUsername(ConnectionFactory.getUsername());
@@ -126,7 +129,8 @@ public class UserDaoImp implements UserDao {
             jdbcRs.setString(1, email);
             jdbcRs.execute();
             return true;
-        } catch (Exception e) {
+        }
+        catch (Exception e) {
             e.printStackTrace();
         }
         return false;

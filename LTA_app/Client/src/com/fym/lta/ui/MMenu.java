@@ -13,7 +13,8 @@ import javax.swing.JPanel;
  *
  * @author h.omar
  */
-public class MMenu extends javax.swing.JFrame {
+public class MMenu extends javax.swing.JFrame
+{
     // create bao object and get all avaialable screens in one steps
     List<ScreenDto> availableScreens = new BaoFactory().createScreenBao().list_Of_AavailableScreens();
 
@@ -49,6 +50,7 @@ public class MMenu extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu5 = new javax.swing.JMenu();
+        jMenuItem2 = new javax.swing.JMenuItem();
         jMenu3 = new javax.swing.JMenu();
         buildingM_Item = new javax.swing.JMenuItem();
         floorM_Item = new javax.swing.JMenuItem();
@@ -105,6 +107,15 @@ public class MMenu extends javax.swing.JFrame {
                 jMenu5MouseClicked(evt);
             }
         });
+
+        jMenuItem2.setText("Insert");
+        jMenuItem2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem2ActionPerformed(evt);
+            }
+        });
+        jMenu5.add(jMenuItem2);
+
         jMenuBar1.add(jMenu5);
 
         jMenu3.setText("Basic Data Management                  ");
@@ -410,6 +421,12 @@ public class MMenu extends javax.swing.JFrame {
     switchtoPanel(new ManualAssignment()) ; 
     }//GEN-LAST:event_locationManualM_ItemActionPerformed
 
+
+    private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
+    switchtoPanel(new ScheduleInsert()) ;
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jMenuItem2ActionPerformed
+
     private void departmentM_ItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_departmentM_ItemActionPerformed
        switchtoPanel(new DepartmentsScreen() );
        
@@ -468,6 +485,7 @@ public class MMenu extends javax.swing.JFrame {
     private javax.swing.JMenu jMenu6;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenuItem jMenuItem1;
+    private javax.swing.JMenuItem jMenuItem2;
     private javax.swing.JMenuItem locationAutoM_Item;
     private javax.swing.JMenuItem locationManualM_Item;
     private javax.swing.JMenuItem locationMasterM_Item;

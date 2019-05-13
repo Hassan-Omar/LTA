@@ -34,7 +34,8 @@ public class ScreenBaoImp implements ScreenBao {
     }
 
     @Override
-    public List<ScreenDto> list_Of_AavailableScreens() {
+    public List<ScreenDto> list_Of_AavailableScreens() 
+    {
 
         // using the current username we can get it's role ID
         int roleID = RoleDaoObj.getCurrenRoleID(LoginEngine.currentUser);

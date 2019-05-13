@@ -6,6 +6,8 @@ import com.fym.lta.common.LTAException;
 import com.fym.lta.common.Queries;
 import com.fym.lta.dto.EmployeeDto;
 
+import com.fym.lta.dto.SlotDto;
+
 import java.sql.SQLException;
 
 import java.util.ArrayList;
@@ -77,23 +79,21 @@ public class EmployeeDaoImp implements EmployeeDao {
     }
 
     @Override
-    public boolean insert_Employee(EmployeeDto Employee) {
-        try (JdbcRowSet jdbcRs = RowSetProvider.newFactory().createJdbcRowSet()) {
+    public boolean insert_Employee(EmployeeDto Employee) 
+    {
+        try (JdbcRowSet jdbcRs = RowSetProvider.newFactory().createJdbcRowSet())
+        {
             jdbcRs.setUrl(ConnectionFactory.getUrl());
             jdbcRs.setUsername(ConnectionFactory.getUsername());
             jdbcRs.setPassword(ConnectionFactory.getPassword());
             jdbcRs.setCommand(Queries.INSER_NEW_EMPLOYEE);
-
-            //jdbcRs.setString(1, Employee.getCareerDgree());
-            // jdbcRs.setString(2, Employee.getEmail());
-            jdbcRs.setString(1, Employee.getFName());
-            jdbcRs.setString(2, Employee.getSName());
-            jdbcRs.setString(3, Employee.getLName());
-            jdbcRs.setString(4, Employee.getFamilyName());
-
+            jdbcRs.setString(1, Employee.getFullName());
+            jdbcRs.setString(2, Employee.getEmail());
             jdbcRs.execute();
             return true;
-        } catch (java.sql.SQLIntegrityConstraintViolationException e) {
+        } 
+        catch (java.sql.SQLIntegrityConstraintViolationException e) 
+        {
             LTAException ex = new LTAException();
             ex.setExactMessage("EMployee Already Exists");
             try {
@@ -152,13 +152,14 @@ public class EmployeeDaoImp implements EmployeeDao {
     }
 
     @Override
-    public boolean isExist(EmployeeDto Employee) {
+    public boolean isExist(String email ) 
+    {
         try (JdbcRowSet jdbcRs = RowSetProvider.newFactory().createJdbcRowSet()) {
             jdbcRs.setUrl(ConnectionFactory.getUrl());
             jdbcRs.setUsername(ConnectionFactory.getUsername());
             jdbcRs.setPassword(ConnectionFactory.getPassword());
             jdbcRs.setCommand(Queries.IS_EMPLOYEE_EXIST);
-            jdbcRs.setString(1, Employee.getFName());
+            jdbcRs.setString(1, email);
             jdbcRs.execute();
             if (jdbcRs.next()) {
                 return true;
@@ -208,4 +209,6 @@ public class EmployeeDaoImp implements EmployeeDao {
         return employees;
         
     }
-}
+
+    }
+

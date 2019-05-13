@@ -1,20 +1,39 @@
 package com.fym.lta.dto;
 
+
 public class SlotDto {
     private int Slot_id;
-    private String startTime, day;
+    private String startTime;
+    private String  day ,PrefSpace,type ;
     private LocationDto CurrentLocation;
     private CourseDto currentCourse;
 
-    public SlotDto(int Slot_id, String startTime, String day,
-                   LocationDto CurrentLocation, CourseDto currentCourse) {
+    public void setPrefSpace(String PrefSpace) {
+        this.PrefSpace = PrefSpace;
+    }
+
+    public String getPrefSpace() {
+        return PrefSpace;
+    }
+
+    public void setType(String type) {
+        this.type = type;
+    }
+
+    public String getType() {
+        return type;
+    }
+
+    public SlotDto(int Slot_id, String day,
+                    CourseDto currentCourse) {
         super();
         this.Slot_id = Slot_id;
-        this.startTime = startTime;
         this.day = day;
-        this.CurrentLocation = CurrentLocation;
         this.currentCourse = currentCourse;
 
+    }
+
+    public SlotDto() {
     }
 
     public void setSlot_id(int Slot_id) {
@@ -56,4 +75,6 @@ public class SlotDto {
     public CourseDto getCurrentCourse() {
         return currentCourse;
     }
+
+ 
 }

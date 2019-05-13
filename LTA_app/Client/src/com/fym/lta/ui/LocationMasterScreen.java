@@ -2,20 +2,40 @@
 package com.fym.lta.ui;
 
 import com.fym.lta.bao.BaoFactory;
+import com.fym.lta.bao.BuildingBao;
 import com.fym.lta.bao.EquipmentBao;
+import com.fym.lta.bao.FloorBao;
 import com.fym.lta.bao.LocationBao;
+import com.fym.lta.bao.LocationTypeBao;
 import com.fym.lta.bao.LoginEngine;
 import com.fym.lta.dto.BuildingDto;
 import com.fym.lta.dto.EquipmentDto;
 import com.fym.lta.dto.FloorDto;
 import com.fym.lta.dto.LocationDto;
+
 import com.fym.lta.dto.LocationTypeDto;
 
+import com.fym.lta.dto.RoleDto;
+
+import com.fym.lta.dto.ScreenDto;
+
+import java.awt.BorderLayout;
+
+import java.awt.Checkbox;
+
+import java.awt.Component;
+
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+
 import javax.swing.DefaultListModel;
+import javax.swing.JCheckBox;
+import javax.swing.JComboBox;
+import javax.swing.JList;
 import javax.swing.JOptionPane;
+import javax.swing.SwingUtilities;
 
 /**
  *
@@ -51,16 +71,18 @@ public class LocationMasterScreen extends javax.swing.JPanel {
     }
     
     void listComboLocationTypes(List<LocationTypeDto> LocationType) {
-          for (int i = 0; i < LocationType.size(); i++) {
+          for (int i = 0; i < LocationType.size(); i++)
+          {
              type_combo.addItem(LocationType.get(i).getCode());
-                    }
+          }
     }
     
     void listEquipments(List<EquipmentDto> Equipment) {
         DefaultListModel list = new DefaultListModel();
-          for (int i = 0; i < Equipment.size(); i++) {
+          for (int i = 0; i < Equipment.size(); i++) 
+          {
                  list.addElement(Equipment.get(i).getCode());  
-                    }
+          }
           EquipmentList.setModel(list);
     }
       
