@@ -6,9 +6,8 @@ import com.fym.lta.common.LTAException;
 import com.fym.lta.common.Queries;
 import com.fym.lta.dto.EmployeeDto;
 
-import com.fym.lta.dto.SlotDto;
-
 import java.sql.SQLException;
+import java.sql.Types;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -86,9 +85,40 @@ public class EmployeeDaoImp implements EmployeeDao {
             jdbcRs.setUrl(ConnectionFactory.getUrl());
             jdbcRs.setUsername(ConnectionFactory.getUsername());
             jdbcRs.setPassword(ConnectionFactory.getPassword());
-            jdbcRs.setCommand(Queries.INSER_NEW_EMPLOYEE);
-            jdbcRs.setString(1, Employee.getFullName());
-            jdbcRs.setString(2, Employee.getEmail());
+            jdbcRs.setCommand(Queries.INSER_NEW_EMPLOYEE); 
+                                                  
+            jdbcRs.setString(1, Employee.getFName());  
+            jdbcRs.setString(2, Employee.getSName()); 
+            jdbcRs.setString(3,Employee.getLName());
+            jdbcRs.setString(4,Employee.getFamilyName());
+           
+            if (Employee.getInsertedBy() != null)
+                 jdbcRs.setString(5, Employee.getInsertedBy());
+             else
+             jdbcRs.setNull(5, Types.VARCHAR);
+            
+            if (Employee.getUpdatedBy() != null)
+                 jdbcRs.setString(6, Employee.getUpdatedBy());
+             else
+             jdbcRs.setNull(6, Types.VARCHAR);
+            
+             // check if the update date is not setted we we will set it 
+             if (Employee.getInertion_Date() != null)
+                 jdbcRs.setDate(7, new java.sql.Date(Employee.getInertion_Date().getTime()));
+             else
+                 jdbcRs.setNull(7, java.sql.Types.DATE);
+
+            
+             // check if the update date is not setted we we will set it 
+             if (Employee.getUpdate_Date() != null)
+                 jdbcRs.setDate(8, new java.sql.Date(Employee.getUpdate_Date().getTime()));
+             else
+                 jdbcRs.setNull(8, java.sql.Types.DATE);
+
+            
+            
+            jdbcRs.setString(9,Employee.getEmail());
+            
             jdbcRs.execute();
             return true;
         } 
@@ -114,31 +144,31 @@ public class EmployeeDaoImp implements EmployeeDao {
                                 jdbcRs.setUsername(ConnectionFactory.getUsername());
                                 jdbcRs.setPassword(ConnectionFactory.getPassword());
                                 jdbcRs.setCommand(Queries.UPDATE_EMPLOYEE);
-                                     
-                                //jdbcRs.setString(1, Employee.get);                                         
+            
+                                // "UPDATE EMPLOYEE SET FNAME =? , SNAME =? , TNAME =?  , FAMILY_NAME =? ,UPDATED_BY=?  ,UPDATED_DATE=?  WHERE EMAIL =?"
+
+                                jdbcRs.setString(7,Employee.getEmail());
+                                                                      
                                 jdbcRs.setString(1, Employee.getFName());  
                                 jdbcRs.setString(2, Employee.getSName()); 
                                 jdbcRs.setString(3,Employee.getLName());
                                 jdbcRs.setString(4,Employee.getFamilyName());
-                                jdbcRs.setInt(5,Employee.getEmp_id());
-                            //    jdbcRs.setInt(3,Employee.getCareerDgree().getEMPLOYEE_TYPE());
-                         
-                          /*
-                               if (Employee.getUPDATED_BY() != null)
-                                    jdbcRs.setString(9, Employee.getUPDATED_BY());
+                            
+                            
+                               if (Employee.getUpdatedBy() != null)
+                                    jdbcRs.setString(5, Employee.getUpdatedBy());
                                 else
-                                jdbcRs.setNull(9, Types.VARCHAR);
+                                jdbcRs.setNull(5, Types.VARCHAR);
                           
                                 // check if the update date is not setted we we will set it 
-                                if (Employee.getUPDATE_DATE() != null)
-                                    jdbcRs.setDate(10, new java.sql.Date(Employee.getUPDATE_DATE().getTime()));
+                                if (Employee.getUpdate_Date() != null)
+                                    jdbcRs.setDate(6, new java.sql.Date(Employee.getUpdate_Date().getTime()));
                                 else
-                                    jdbcRs.setNull(10, java.sql.Types.DATE);
+                                    jdbcRs.setNull(6, java.sql.Types.DATE);
 
-                            */
-                          System.out.println("------------"+Employee.getEmp_id());
+                             
+            
                                 jdbcRs.execute();
-                                System.out.println("---+++-");
                               return true ;
                             }catch(java.sql.SQLIntegrityConstraintViolationException e){
                                 LTAException ex = new LTAException();

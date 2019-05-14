@@ -9,17 +9,12 @@ public interface EmployeeBao {
      * insert new Employee if it doesn't exists
      * otherwise it updates the exis. once
      */
-   public boolean insertEmployee(EmployeeDto Employee);
+   public boolean saveEmployee(EmployeeDto Employee);
 
-    public boolean updateEmployee(EmployeeDto Employee);
-    /**
-     * search for Employee  
-     */
+    
 
    public List<EmployeeDto> SearchEmployee(EmployeeDto Employee)  ;
-    
-  public boolean isExist(String email);
-
+   
     public List<EmployeeDto> listEmployee()  ; 
 
     /**

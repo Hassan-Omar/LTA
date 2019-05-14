@@ -58,7 +58,12 @@ public class LocationBaoImp implements LocationBao{
         
     return daoLocation.save_Equipment(equipment,locat);
     }
+
+    @Override
+    public List<LocationDto> getAvailableLocations(String depName) {
+        // TODO Implement this method
+        return Collections.emptyList();
+    }
 }
 
-   
 

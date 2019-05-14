@@ -50,7 +50,6 @@ public class MMenu extends javax.swing.JFrame
         jLabel1 = new javax.swing.JLabel();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu5 = new javax.swing.JMenu();
-        jMenuItem2 = new javax.swing.JMenuItem();
         jMenu3 = new javax.swing.JMenu();
         buildingM_Item = new javax.swing.JMenuItem();
         floorM_Item = new javax.swing.JMenuItem();
@@ -100,22 +99,13 @@ public class MMenu extends javax.swing.JFrame
                 .addContainerGap(292, Short.MAX_VALUE))
         );
 
-        jMenu5.setText("Open File                  ");
+        jMenu5.setText("Tables                  ");
         jMenu5.setActionCommand("Insert New   ");
         jMenu5.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jMenu5MouseClicked(evt);
             }
         });
-
-        jMenuItem2.setText("Insert");
-        jMenuItem2.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem2ActionPerformed(evt);
-            }
-        });
-        jMenu5.add(jMenuItem2);
-
         jMenuBar1.add(jMenu5);
 
         jMenu3.setText("Basic Data Management                  ");
@@ -206,6 +196,11 @@ public class MMenu extends javax.swing.JFrame
 
         locationAutoM_Item.setText("Location Automatic Assignment");
         locationAutoM_Item.setEnabled(false);
+        locationAutoM_Item.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                locationAutoM_ItemActionPerformed(evt);
+            }
+        });
         jMenu2.add(locationAutoM_Item);
 
         jMenuBar1.add(jMenu2);
@@ -391,8 +386,7 @@ public class MMenu extends javax.swing.JFrame
     }//GEN-LAST:event_locationMasterM_ItemActionPerformed
 
     private void jMenu5MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jMenu5MouseClicked
-
-        // TODO add your handling code here:
+    switchtoPanel(new ScheduleInsert()) ;
     }//GEN-LAST:event_jMenu5MouseClicked
 
     private void locationquicksearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_locationquicksearchActionPerformed
@@ -422,15 +416,15 @@ public class MMenu extends javax.swing.JFrame
     }//GEN-LAST:event_locationManualM_ItemActionPerformed
 
 
-    private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
-    switchtoPanel(new ScheduleInsert()) ;
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jMenuItem2ActionPerformed
-
     private void departmentM_ItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_departmentM_ItemActionPerformed
        switchtoPanel(new DepartmentsScreen() );
        
     }//GEN-LAST:event_departmentM_ItemActionPerformed
+
+    private void locationAutoM_ItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_locationAutoM_ItemActionPerformed
+       switchtoPanel(new AutoAssignment() );
+    
+    }//GEN-LAST:event_locationAutoM_ItemActionPerformed
 
 
     /**
@@ -485,7 +479,6 @@ public class MMenu extends javax.swing.JFrame
     private javax.swing.JMenu jMenu6;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenuItem jMenuItem1;
-    private javax.swing.JMenuItem jMenuItem2;
     private javax.swing.JMenuItem locationAutoM_Item;
     private javax.swing.JMenuItem locationManualM_Item;
     private javax.swing.JMenuItem locationMasterM_Item;

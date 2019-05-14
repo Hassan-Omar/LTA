@@ -11,11 +11,7 @@ public class EmployeeBaoImp implements EmployeeBao
 {
     EmployeeDao empDaoObject = new DaoFactory().createEmployeeDao();
 
-
-    public boolean insertEmployee(EmployeeDto Employee) {
-    
-        return empDaoObject.insert_Employee(Employee);
-     }
+ 
 
     public List<EmployeeDto> SearchEmployee(EmployeeDto Employee) {
 
@@ -23,14 +19,7 @@ public class EmployeeBaoImp implements EmployeeBao
 
     }
 
-    public boolean updateEmployee(EmployeeDto Employee){
-
-        try {
-            return empDaoObject.Update_Employee(Employee);
-        } catch (LTAException e) {
-        }
-   return false; }
-
+   
     public List<EmployeeDto> listEmployee() {
 
         return empDaoObject.getAll_Employees();
@@ -39,10 +28,18 @@ public class EmployeeBaoImp implements EmployeeBao
     public boolean deleteEmployee(EmployeeDto Employee) {
         return empDaoObject.delete_Employee(Employee);
     }
-    public boolean isExist(String email )
-    {
-        return empDaoObject.isExist(email);
 
+    @Override
+    public boolean saveEmployee(EmployeeDto employee) {
         
+        boolean saveStatus  = false ; 
+        
+        if(empDaoObject.isExist(employee.getEmail() ))
+            try {
+               saveStatus  =  empDaoObject.Update_Employee(employee);
+            } catch (LTAException e) {
+            }
+        else saveStatus = empDaoObject.insert_Employee(employee) ;
+        return saveStatus;
     }
 }

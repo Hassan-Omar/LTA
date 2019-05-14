@@ -5,10 +5,15 @@ import com.fym.lta.dao.SlotDao;
 import com.fym.lta.dto.SlotDto;
 
 public class SlotBaoImp implements SlotBao {
-    SlotDao SlotDao = new DaoFactory().createSlotDao(); 
+    SlotDao slotDaoObj = new DaoFactory().createSlotDao();
+
     public boolean saveSlot(SlotDto slot) {
-         
-        return SlotDao.insert_Slot(slot);
+        boolean saveStatus = false;
+        if (slotDaoObj.isExist(slot))
+            saveStatus = slotDaoObj.Update_Slot(slot);
+        else
+            saveStatus = slotDaoObj.insert_Slot(slot);
+        return saveStatus;
     }
 
     public SlotDto SearchSlot(String Day, String startTime) {

@@ -1,30 +1,25 @@
-
 package com.fym.lta.ui;
 
 import com.fym.lta.bao.BaoFactory;
 import com.fym.lta.bao.CourseBao;
 import com.fym.lta.bao.EmployeeBao;
+import com.fym.lta.bao.LoginEngine;
 import com.fym.lta.bao.SchedualBao;
 import com.fym.lta.bao.SlotBao;
 import com.fym.lta.dto.CourseDto;
 import com.fym.lta.dto.EmployeeDto;
 import com.fym.lta.dto.SchedualDto;
 import com.fym.lta.dto.SlotDto;
+
 import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.io.IOException;
-
-import java.text.DateFormat;
-
-import java.text.SimpleDateFormat;
 
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
-
-import javax.xml.registry.infomodel.Slot;
 
 import org.apache.poi.hssf.usermodel.HSSFRow;
 import org.apache.poi.hssf.usermodel.HSSFSheet;
@@ -268,9 +263,7 @@ public class ScheduleInsert extends javax.swing.JPanel
         
         if (selectDpertment == 0) // Choose Computer  Department
         {
-            if (academicYear == 0) // Choose Frist academicYear
-            {
-                if (Variable == JFileChooser.APPROVE_OPTION) 
+              if (Variable == JFileChooser.APPROVE_OPTION) 
                 {
                     try {
                         
@@ -311,79 +304,45 @@ public class ScheduleInsert extends javax.swing.JPanel
                            
                             for (int k = 1; k < 9; k += 2)
                             {
-                                /*********************  Slot Modual ***************/
 
-                                slot.setDay(courseName.getCell(0).toString());
-                                slot.setSlot_id((int) Float.parseFloat(SlotID.getCell(k + 1).toString()));
-                                slot.setDay(courseName.getCell(0).toString());
+                                instructor.setEmail(StaffName1.getCell(k + 1).toString());
+                                // you need to cut the string and set the name as comming 
+                                instructor.setFName("a");
+                                instructor.setSName("b");
+                                instructor.setLName("c");
+                                instructor.setFamilyName("d");
+                                instructor.setInsertedBy(LoginEngine.currentUser);
+                                instructor.setUpdatedBy(LoginEngine.currentUser);
+                                instructor.setInertion_Date(new Date(System.currentTimeMillis()));
+                                instructor.setUpdate_Date(new Date(System.currentTimeMillis()));
+                                if(instructor.getFullName()!="" &&instructor.getEmail()!="")
+                                EmployeeBao.saveEmployee(instructor);
+                                staffList.add(instructor);
+                                // repeat this code for instructor no 2 
+                                 
+                                course.setInstructors(staffList);
+                                course.setCode(courseName.getCell(k + 1).toString());
+                                course.setName(courseName.getCell(k).toString());
+                                //System.out.println("ccode  "+courseName.getCell(k + 1).toString()+"   cname"+courseName.getCell(k).toString());
+                                if(course.getCode()!="" && course.getName()!="");
+                               // CourseBao.saveCourse(course);
+                                slot = new SlotDto();
+                                slot.setCurrentCourse(course);
                                 slot.setPrefSpace(PrefSpace.getCell(k + 1).toString());
-                                slot.setType(Type.getCell(k + 1).toString());
-                                slot.setStartTime((Starttime.getCell(k + 1).toString()));
-                             
+                                slots.add(slot);
+                               // SlotBao.saveSlot(slot); 
 
-                                /*********************  Course Modual ***************/
-                                // Check if course exist or not
-                                if (CourseBao.isexistCourse(courseName.getCell(k + 1).toString()))
-                                    ;
-                                //The course exist  and not equal null
-                                else if (courseName.getCell(k + 1).toString() != "") {
-                                    course.setCode(courseName.getCell(k + 1).toString());
-                                    course.setName(courseName.getCell(k).toString());
-                                    CourseBao.saveCourse(course);
-                                    slot = new SlotDto();
-                                    slot.setCurrentCourse(course);
-                                    // The course is exist meaing it nead to Staff
-                                    /*********************  Staff Modual ***************/
-                                    //Check if Staff exist or not
-                                    if (EmployeeBao.isExist(StaffName1.getCell(k + 1).toString()))
-                                        ;
-                                    // Insert Staff
-                                    else {
-                                        instructor.setEmail(StaffName1.getCell(k + 1).toString());
-                                        instructor.setFullName(StaffName1.getCell(k).toString());
-                                        EmployeeBao.insertEmployee(instructor);
-                                        staffList.add(instructor);
-                                        course.setInstructors(staffList);
-
-                                        // Check if Staff two is Null or not
-                                        if (EmployeeBao.isExist(StaffName2.getCell(k + 1).toString()))
-                                            ;
-                                        // Check if Staff two not exist  and not equal null
-                                        else if (StaffName2.getCell(k + 1).toString() != "") {
-                                            instructor.setEmail(StaffName2.getCell(k + 1).toString());
-                                            instructor.setFullName(StaffName2.getCell(k).toString());
-                                            EmployeeBao.insertEmployee(instructor);
-                                            staffList.add(instructor);
-                                            course.setInstructors(staffList);
-                                        }
-                                    }
-                                } else {
-                                } // The Course Equal Null No thing To Do
-                            
-                                SlotBao.saveSlot(slot);
-
-                            }
-                        }
-                        //slots.add(slot);
-                        //SlotBao.saveSlot(slot);
-                        // schudel.setSchedual_Slots(slots);
-                        //   SchedualBao.insertSchedual(schudel) ;
+                            } // end of inner loop
+                        } // end of outer loop 
+                        
+                         schudel.setSchedual_Slots(slots);
+                          // SchedualBao.saveSchedual(schudel) ;
 
                     } catch (IOException e) {
                     }
                 }
-            }
-
-            else if (academicYear == 1) // Choose Second academicYear
-            {
-
-            } else if (academicYear == 2) // Choose Thrid academicYear
-            {
-
-            } else if (academicYear == 3) // Choose Four academicYear
-            {
-
-            }
+           
+            
         }
 
 

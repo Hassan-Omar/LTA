@@ -3,10 +3,10 @@ package com.fym.lta.dto;
 
 public class SlotDto {
     private int Slot_id;
-    private String startTime;
-    private String  day ,PrefSpace,type ;
+    private String PrefSpace,type ;
     private LocationDto CurrentLocation;
     private CourseDto currentCourse;
+    private EmployeeDto crrentStaffMemb ;  
 
     public void setPrefSpace(String PrefSpace) {
         this.PrefSpace = PrefSpace;
@@ -24,15 +24,14 @@ public class SlotDto {
         return type;
     }
 
-    public SlotDto(int Slot_id, String day,
-                    CourseDto currentCourse) {
-        super();
-        this.Slot_id = Slot_id;
-        this.day = day;
-        this.currentCourse = currentCourse;
-
+    public void setCrrentStaffMemb(EmployeeDto crrentStaffMemb) {
+        this.crrentStaffMemb = crrentStaffMemb;
     }
 
+    public EmployeeDto getCrrentStaffMemb() {
+        return crrentStaffMemb;
+    }
+ 
     public SlotDto() {
     }
 
@@ -43,22 +42,8 @@ public class SlotDto {
     public int getSlot_id() {
         return Slot_id;
     }
-
-    public void setStartTime(String startTime) {
-        this.startTime = startTime;
-    }
-
-    public String getStartTime() {
-        return startTime;
-    }
-
-    public void setDay(String day) {
-        this.day = day;
-    }
-
-    public String getDay() {
-        return day;
-    }
+ 
+ 
 
     public void setCurrentLocation(LocationDto CurrentLocation) {
         this.CurrentLocation = CurrentLocation;

@@ -1,8 +1,7 @@
+
 package com.fym.lta.dao;
 
 import com.fym.lta.dto.SchedualDto;
-
-import com.fym.lta.dto.UserDto;
 
 import java.sql.SQLException;
 
@@ -22,10 +21,13 @@ public interface SchedualDao
 
 
     // this behavior to update Schedual data
-  
+    public boolean update_Schedual (SchedualDto Schedual)throws SQLException;
+
     public List<SchedualDto> SearchSchedual(String SCHEDULECODE);
     
     // this behavior to check Schedual existance
+    public boolean isExist(String code);
+    
+    public List<SchedualDto>  listSchedual_inDeparts(String name);
 
-    public boolean isExist(String SCHEDULECODE ,String acadimcyear);
 }

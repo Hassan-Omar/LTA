@@ -1,18 +1,12 @@
 package com.fym.lta.bao;
 
-import com.fym.lta.common.LTAException;
-import com.fym.lta.dao.CourseDao;
 import com.fym.lta.dao.DaoFactory;
-import com.fym.lta.dao.EmployeeDao;
 import com.fym.lta.dao.SchedualDao;
-import com.fym.lta.dao.UserDao;
-import com.fym.lta.dto.CourseDto;
-import com.fym.lta.dto.EmployeeDto;
 import com.fym.lta.dto.SchedualDto;
-import com.fym.lta.dto.UserDto;
 
 import java.sql.SQLException;
 
+import java.util.Collections;
 import java.util.List;
 
 
@@ -22,15 +16,26 @@ public class SchedualBaoImp implements SchedualBao
     SchedualDao SchedualDao = new DaoFactory().createSchedualDao();
     
     
-    public boolean insertSchedual(SchedualDto Schedual) 
+    public boolean saveSchedual(SchedualDto schedual) 
     {
 
-    boolean  check = false;
-        try {
-            check = SchedualDao.insert_Schedual(Schedual);
-        } catch (SQLException e) {
+    boolean  status = false ; 
+    
+    if(SchedualDao.isExist(schedual.getSCHEDULECODE()))
+    {
+            try {
+                status = SchedualDao.update_Schedual(schedual);
+                
+            } catch (SQLException e) {
+            }
         }
-return check;
+    else
+            try {
+                status = SchedualDao.insert_Schedual(schedual);
+            } catch (SQLException e) {
+            }
+
+        return status;
 }
 
 
@@ -51,9 +56,7 @@ return check;
         return SchedualDao.delete_Schedual(SCHEDULECODE) ;
     }
     
-    public boolean isExists(String SCHEDULECODE , String acadimyear) {
-        return SchedualDao.isExist( SCHEDULECODE ,acadimyear );
-    }
+    
     
     public List<SchedualDto> listAll()
     {
@@ -62,4 +65,9 @@ return check;
 
         }
 
+    @Override
+    public List<SchedualDto> listSchedual_inDeparts(String code) {
+        // TODO Implement this method
+        return Collections.emptyList();
+    }
 }

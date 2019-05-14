@@ -21,10 +21,65 @@ public class SlotDaoImp implements SlotDao {
         return false;
     }
     public boolean Update_Slot(SlotDto slot) {
+        
+        
+        try (JdbcRowSet jdbcR = RowSetProvider.newFactory().createJdbcRowSet()) 
+         {
+             jdbcR.setUrl(ConnectionFactory.getUrl());
+             jdbcR.setUsername(ConnectionFactory.getUsername());
+             jdbcR.setPassword(ConnectionFactory.getPassword());
+             jdbcR.setCommand(Queries.UPDATE_SLOT);
+             
+             if (slot.getCurrentLocation() != null )
+             jdbcR.setInt(1,slot.getCurrentLocation().getLocation_id());   
+             jdbcR.setString(2,slot.getCurrentCourse().getCode());
+             jdbcR.setString(3,slot.getCurrentCourse().getInstructors().get(0).getEmail());   
+             jdbcR.setInt(4,slot.getSlot_id());   
+
+
+
+            jdbcR.execute();             
+               
+            
+             return true;
+         }
+         catch (java.sql.SQLIntegrityConstraintViolationException e) 
+         {
+             e.printStackTrace();
+         } catch (SQLException e)
+        {
+        }
+
+
         return false;
     }
 
     public boolean isExist(SlotDto slot) {
+        try (JdbcRowSet jdbcR = RowSetProvider.newFactory().createJdbcRowSet()) 
+         {
+             jdbcR.setUrl(ConnectionFactory.getUrl());
+             jdbcR.setUsername(ConnectionFactory.getUsername());
+             jdbcR.setPassword(ConnectionFactory.getPassword());
+             jdbcR.setCommand(Queries.IS_SLOT_EXISTE);
+             if (slot.getCurrentLocation() != null )
+             jdbcR.setInt(1,slot.getCurrentLocation().getLocation_id());
+            
+             jdbcR.setString(2,slot.getCurrentCourse().getCode());
+             jdbcR.setString(3,slot.getCurrentCourse().getInstructors().get(0).getEmail());   
+             jdbcR.execute(); 
+            
+               if(jdbcR.next())
+                return true;
+               else return false ; 
+         }
+         catch (java.sql.SQLIntegrityConstraintViolationException e) 
+         {
+             e.printStackTrace();
+         } catch (SQLException e)
+        {
+        }
+
+
         return false;
     }
 
@@ -38,14 +93,11 @@ public class SlotDaoImp implements SlotDao {
              jdbcR.setUsername(ConnectionFactory.getUsername());
              jdbcR.setPassword(ConnectionFactory.getPassword());
              jdbcR.setCommand(Queries.INSER_NEW_SLOT);
-
-            jdbcR.setString(1, slot.getDay());
-            jdbcR.setString(2, slot.getStartTime());
-            jdbcR.setString(3, slot.getPrefSpace());
-            jdbcR.setString(4, slot.getType());
-            jdbcR.setInt(5, slot.getSlot_id());
-         //   jdbcR.setInt(6, slot.getCurrentCourse().getCode());
-
+            
+             if (slot.getCurrentLocation() != null )
+             jdbcR.setInt(1,slot.getCurrentLocation().getLocation_id());   
+             jdbcR.setString(2,slot.getCurrentCourse().getCode());
+             jdbcR.setString(3,slot.getCurrentCourse().getInstructors().get(0).getEmail());   
 
 
             jdbcR.execute();             

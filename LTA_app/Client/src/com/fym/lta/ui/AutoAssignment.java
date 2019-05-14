@@ -1,19 +1,30 @@
 
 package com.fym.lta.ui;
 
-import javax.swing.JFileChooser;
-import javax.swing.JOptionPane;
-import javax.swing.filechooser.FileNameExtensionFilter;
+import com.fym.lta.bao.AllocationAlgorthim;
+import com.fym.lta.bao.BaoFactory;
+import com.fym.lta.bao.SchedualBao;
+import com.fym.lta.dto.DepartmentDto;
+import com.fym.lta.dto.SchedualDto;
+import com.fym.lta.dto.SlotDto;
+
+import java.util.List;
 
 /**
  *
  * @author Nada
  */
 public class AutoAssignment extends javax.swing.JPanel {
+    
+    // all departments stored in our db 
+    List<DepartmentDto> allDepartments  = new BaoFactory().createDepartmentBao().listDepartment();
+
+    SchedualBao SchedualBaoObj ;
 
     /** Creates new form AutoAssignment */
     public AutoAssignment() {
         initComponents();
+        listDepartmentsCombo(allDepartments);
     }
 
     /** This method is called from within the constructor to
@@ -24,19 +35,121 @@ public class AutoAssignment extends javax.swing.JPanel {
     @SuppressWarnings("unchecked")
     private void initComponents() {//GEN-BEGIN:initComponents
 
-        decitionPanel = new javax.swing.JPanel();
+        departmentCombo = new javax.swing.JComboBox();
+        jLabel1 = new javax.swing.JLabel();
+        tableCombo = new javax.swing.JComboBox();
+        assignBtn = new javax.swing.JButton();
+        jLabel2 = new javax.swing.JLabel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        table = new javax.swing.JTable();
 
         setBorder(javax.swing.BorderFactory.createTitledBorder("Location Automatic Assignment"));
         setLayout(null);
 
-        decitionPanel.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        add(decitionPanel);
-        decitionPanel.setBounds(50, 50, 770, 160);
+        departmentCombo.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                departmentComboMouseExited(evt);
+            }
+        });
+        add(departmentCombo);
+        departmentCombo.setBounds(30, 80, 200, 40);
+
+        jLabel1.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        jLabel1.setText("choos a department ");
+        add(jLabel1);
+        jLabel1.setBounds(30, 40, 190, 30);
+
+        tableCombo.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        add(tableCombo);
+        tableCombo.setBounds(410, 80, 200, 40);
+
+        assignBtn.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        assignBtn.setText("Assign");
+        assignBtn.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                assignBtnMouseClicked(evt);
+            }
+        });
+        add(assignBtn);
+        assignBtn.setBounds(260, 190, 120, 80);
+
+        jLabel2.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        jLabel2.setText("Table's Code ");
+        add(jLabel2);
+        jLabel2.setBounds(410, 40, 170, 30);
+
+        table.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Title 1", "Title 2", "Title 3", "Title 4"
+            }
+        ));
+        jScrollPane1.setViewportView(table);
+
+        add(jScrollPane1);
+        jScrollPane1.setBounds(140, 110, 452, 402);
     }//GEN-END:initComponents
+
+    private void departmentComboMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_departmentComboMouseExited
+
+    listTables(SchedualBaoObj.listSchedual_inDeparts(allDepartments.get(departmentCombo.getSelectedIndex()).getName()));
+
+
+    }//GEN-LAST:event_departmentComboMouseExited
+
+    private void assignBtnMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_assignBtnMouseClicked
+//get the department's name 
+String depName = allDepartments.get(departmentCombo.getSelectedIndex()).getName();
+// get the selected table 
+SchedualDto schedual = SchedualBaoObj.SearchSchedual(tableCombo.getSelectedItem().toString()).get(0);
+// create object to allocate 
+AllocationAlgorthim alloBusinees  =  new AllocationAlgorthim () ; 
+
+ resetTableModel(alloBusinees.allocate(schedual , depName));       
+        
+    }//GEN-LAST:event_assignBtnMouseClicked
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JPanel decitionPanel;
+    private javax.swing.JButton assignBtn;
+    private javax.swing.JComboBox departmentCombo;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JTable table;
+    private javax.swing.JComboBox tableCombo;
     // End of variables declaration//GEN-END:variables
 
+void listDepartmentsCombo(List<DepartmentDto> departments)
+{ for (int i=0 ;i<departments.size() ; i++)
+  { departmentCombo.addItem(departments.get(i).getName());
+      }
+    
+    }
+void listTables(List<SchedualDto> scheduals)
+{for (int i=0;i<scheduals.size() ;i++)
+ 
+    tableCombo.addItem(scheduals.get(i).getSCHEDULECODE());
+ 
+ }
+
+void resetTableModel (SchedualDto schedual)
+
+{   List<SlotDto> slots = schedual.getSchedual_Slots();
+    Object[][] tableArr = new Object[5][4];
+    //for (int i =0 ; i<5 ; i++)
+    //{
+        
+    //}
+    
+    table.setModel(new javax.swing.table.DefaultTableModel(tableArr, new String[] {
+    "SLOT 1", "SLOT 2", "SLOT 3", "SLOT 4"
+    }));
+}
+    
 }

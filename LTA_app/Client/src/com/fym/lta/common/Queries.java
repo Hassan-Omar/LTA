@@ -72,20 +72,21 @@ public class Queries {
     //___________________________________________________________________________________
 
 
-    //____________________________ STAFF MEMBERS MODULE _________________________________
-    public static final String INSER_NEW_EMPLOYEE = "INSERT INTO EMPLOYEE (FULLNAME,EMAIL) VALUES (?,?)";
+    //____________________________ EMPLOYEE MODULE _________________________________
+    
+   
+    public static final String INSER_NEW_EMPLOYEE = "INSERT INTO EMPLOYEE (FNAME , SNAME , TNAME ," +
+        "FAMILY_NAME ,INSERTED_BY ,UPDATED_BY ,ISERTED_DATE ,UPDATED_DATE ,EMAIL) VALUES (?,?,?,?,?,?,?,?,?)";
 
-    /*  public static final String INSER_NEW_EMPLOYEE_From_Table =
-          "INSERT INTO EMPLOYEE (FULLNAME,EMAIL) VALUES (?,?)";
-*/
+ 
     public static final String LIST_ALL_EMPLOYEE = "SELECT * FROM EMPLOYEE";
 
-    public static final String DELETE_EMPLOYEE = "DELETE FROM EMPLOYEE WHERE ID = ? ";
+    public static final String DELETE_EMPLOYEE = "DELETE FROM EMPLOYEE WHERE EMAIL = ? ";
 
     public static final String IS_EMPLOYEE_EXIST = "SELECT ID FROM EMPLOYEE WHERE EMAIL = ?";
 
-    public static final String UPDATE_EMPLOYEE =
-        "UPDATE EMPLOYEE SET  FNAME = ?, SNAME = ?, TNAME = ?,FAMILY_NAME = ? WHERE ID = ?";
+    public static final String UPDATE_EMPLOYEE = "UPDATE EMPLOYEE SET FNAME =? , SNAME =? , TNAME =?  , FAMILY_NAME =? " +
+        ",UPDATED_BY=?  ,UPDATED_DATE=?  WHERE EMAIL =?" ;
 
     public static final String EMPLOYEE_SEARCH = "SELECT * FROM EMPLOYEE WHERE LOWER(FNAME) LIKE ?";
 
@@ -148,7 +149,7 @@ public class Queries {
     //________________________________ LOCATION MODULE __________________________________
     public static final String INSER_NEW_LOCATION =
         "INSERT INTO LOCATION (L_ID ,CODE , DESCRIPTION,CAPACITY,STATUS,BUILDING_ID,FLOOR_ID, TYPE_ID ,EQUIPMENT_CODE,INSERTED_BY,INSERTION_DATE) VALUES(?,?,?,?,?,?,?,?,?,?,?)";
-
+   
     public static final String INSER_NEW_OCCUPATION_PURPOSE = "INSERT INTO LOCATION (OCCUPATION_PURPOSE) VALUES(?)";
 
     public static final String LIST_ALL_LOCATION =
@@ -173,6 +174,7 @@ public class Queries {
         "from location , floor ,building ,location_type " +
         "where location.floor_id = floor.id and location.building_id =building.b_id and location.type_id =location_type.t_id  and LOWER(location_type.\"code \") LIKE ? and lower(building.code) like ? ";
     //___________________________________________________________________________________
+    
 
     //________________________________ EQUIPMENT MODULE __________________________________
     public static final String INSER_NEW_Equipment =
@@ -197,7 +199,7 @@ public class Queries {
     //___________________________________________________________________________________
 
 
-    //___________________________________________________________________________________
+     
 
     //________________________________ Schedule MODULE __________________________________
 
@@ -217,8 +219,16 @@ public class Queries {
         "SELECT SCHEDULECODE,ACADEMIC_YEAR,DEPARTMENT_CODE  FROM grade_schedule WHERE LOWER(SCHEDULECODE) LIKE ?  ";
 
     public static final String IS_EXIST_SCHEDULE =
-        "SELECT SCHEDULECODE,ACADEMIC_YEAR  FROM grade_schedule WHERE SCHEDULECODE = ? and ACADEMIC_YEAR=?";
+        "SELECT SCHEDULECODE  FROM grade_schedule WHERE SCHEDULECODE = ? ";
+    
+    public static final String UPDATE_SCHEDULE =
+        "UPDATE grade_schedule SET  ACADEMIC_YEAR =? , DEPARTMENT_CODE =? WHERE  SCHEDULECODE =? ";
 
+    public static final String UPDATE_SLotSCHEDULE =
+        "UPDATE SCHEDULE_CONSISTS_OF_SLOT SET  SLOT_ID =? WHERE SCHEDULE_CODE = ?  ";
+  
+    public static final String LIST_SCHEDULE_INDEPART  =
+        "SELECT * FROM grade_schedule WHERE DEPARTMENT_CODE = ? ";
 
     //__________________________________Course Model_________________________________________
 
@@ -236,16 +246,22 @@ public class Queries {
 
     public static final String SEARCH_COURSES = "SELECT * FROM COURSE WHERE LOWER(CODE) LIKE ? OR LOWER(NAME) LIKE ?";
 
-
     //_________________________________________________________________________________________
 
 
     //________________________________ Slot  MODULE __________________________________
-
+   
+   
     public static final String INSER_NEW_SLOT = 
-"INSERT INTO SLOT (DAY , START_TIME,PREFSPACE,TYPESLOT,ID ) VALUES(?,?,?,?,?) " ;
-//"INSERT INTO SLOT ( ID  ) VALUES(?) ";
-
+    "INSERT INTO SLOT (LOCATION_ID , COURSE_CODE , STAFF_EMAIL ) VALUES(?,?,?) " ;
+    
+    public static final String UPDATE_SLOT = 
+    "UPDATE SLOT SET LOCATION_ID=? , COURSE_CODE = ? , STAFF_EMAIL =? WHERE ID = ? " ;
+    
+    public static final String IS_SLOT_EXISTE = 
+    "SELECT ID FROM SLOT WHERE LOCATION_ID=? AND COURSE_CODE = ? AND STAFF_EMAIL =?  " ;
+    
+    
     //________________________________ Department Module __________________________________
 
     public static final String LIST_ALL_DEPARTMENT = "SELECT * FROM DEPARTMENT";

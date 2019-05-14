@@ -3,8 +3,6 @@ package com.fym.lta.bao;
 import com.fym.lta.dto.EquipmentDto;
 import com.fym.lta.dto.LocationDto;
 
-import com.fym.lta.dto.LocationTypeDto;
-
 import java.util.List;
 
 public interface LocationBao {
@@ -40,5 +38,7 @@ public interface LocationBao {
     
     public boolean saveEquipment(List<EquipmentDto> equipment , LocationDto location);
     
+
+    public List<LocationDto> getAvailableLocations(String depName) ; 
 
 }
