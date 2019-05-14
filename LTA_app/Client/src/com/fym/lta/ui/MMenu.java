@@ -74,7 +74,7 @@ public class MMenu extends javax.swing.JFrame
         assigendrolequicksearch = new javax.swing.JMenuItem();
         tablequicksearch = new javax.swing.JMenuItem();
         jMenu4 = new javax.swing.JMenu();
-        jMenu6 = new javax.swing.JMenu();
+        report = new javax.swing.JMenu();
         logout = new javax.swing.JMenu();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -288,8 +288,13 @@ public class MMenu extends javax.swing.JFrame
         jMenu4.setText("About                  ");
         jMenuBar1.add(jMenu4);
 
-        jMenu6.setText("Report                  ");
-        jMenuBar1.add(jMenu6);
+        report.setText("Report                  ");
+        report.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                reportMouseClicked(evt);
+            }
+        });
+        jMenuBar1.add(report);
 
         logout.setText(" Log Out");
         logout.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -426,6 +431,10 @@ public class MMenu extends javax.swing.JFrame
     
     }//GEN-LAST:event_locationAutoM_ItemActionPerformed
 
+    private void reportMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_reportMouseClicked
+        switchtoPanel(new MailScreen() ) ; 
+    }//GEN-LAST:event_reportMouseClicked
+
 
     /**
      * @param args the command line arguments
@@ -476,7 +485,6 @@ public class MMenu extends javax.swing.JFrame
     private javax.swing.JMenu jMenu3;
     private javax.swing.JMenu jMenu4;
     private javax.swing.JMenu jMenu5;
-    private javax.swing.JMenu jMenu6;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JMenuItem locationAutoM_Item;
@@ -486,6 +494,7 @@ public class MMenu extends javax.swing.JFrame
     private javax.swing.JMenuItem locationquicksearch;
     private javax.swing.JMenu logout;
     private javax.swing.JPanel mainPanel;
+    private javax.swing.JMenu report;
     private javax.swing.JMenuItem roleM_Item;
     private javax.swing.JMenuItem roleScreenM_Item;
     private javax.swing.JMenuItem staffM_Item;

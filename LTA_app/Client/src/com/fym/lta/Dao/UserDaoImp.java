@@ -305,4 +305,27 @@ public class UserDaoImp implements UserDao {
 
         return false;
     }
+
+    @Override
+    public String getCurrentUserEmail(String username) {
+        try (JdbcRowSet jdbcRs = RowSetProvider.newFactory().createJdbcRowSet()) {
+            jdbcRs.setUrl(ConnectionFactory.getUrl());
+            jdbcRs.setUsername(ConnectionFactory.getUsername());
+            jdbcRs.setPassword(ConnectionFactory.getPassword());
+            jdbcRs.setCommand(Queries.GET_USER_EMAIL);
+            jdbcRs.setString(1,username);
+            jdbcRs.execute();
+        
+            if(jdbcRs.next())
+            {  
+               return jdbcRs.getString(1) ;  
+                }
+        
+         
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        return "minaraouf1997@yahoo.com";
+    }
 }

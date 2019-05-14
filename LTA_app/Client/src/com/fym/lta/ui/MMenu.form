@@ -209,10 +209,13 @@
             <Property name="text" type="java.lang.String" value="About                  "/>
           </Properties>
         </Menu>
-        <Menu class="javax.swing.JMenu" name="jMenu6">
+        <Menu class="javax.swing.JMenu" name="report">
           <Properties>
             <Property name="text" type="java.lang.String" value="Report                  "/>
           </Properties>
+          <Events>
+            <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="reportMouseClicked"/>
+          </Events>
         </Menu>
         <Menu class="javax.swing.JMenu" name="logout">
           <Properties>

@@ -34,4 +34,7 @@ public interface UserBao {
     
     // method to check if the entered user and pass is correct
     public  boolean checkLogin(String username , String password) ;
+    
+    public String  getCurrentUserEmail(String username); 
+    
 }

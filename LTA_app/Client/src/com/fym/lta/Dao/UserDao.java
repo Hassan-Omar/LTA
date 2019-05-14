@@ -31,5 +31,9 @@ public interface UserDao {
     
     // this method to check if the username logged is  right exist
     public boolean isUsernameExists(String username );
+    
+    
+    public String getCurrentUserEmail(String username) ;
+
 
 }

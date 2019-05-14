@@ -74,5 +74,15 @@ public class UserBaoImp implements UserBao {
     public boolean isUsernameExists(String username) {
         // delegate to dao method 
         return userDaoObject.isUsernameExists(username);
+        
+        
+        
+        
+        
+    }
+
+    @Override
+    public String getCurrentUserEmail(String username) {
+        return userDaoObject.getCurrentUserEmail(username);
     }
 }

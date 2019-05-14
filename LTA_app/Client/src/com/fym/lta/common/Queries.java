@@ -30,6 +30,8 @@ public class Queries {
     public static final String LOGIN_CHECK = "SELECT USERNAME,PASSWORD FROM USERS WHERE USERNAME = ? AND PASSWORD = ?";
 
     public static final String IS_USER_EXIST = "SELECT EMAIL ,USERNAME FROM USERS WHERE EMAIL = ? OR USERNAME = ?";
+    
+    public static final String GET_USER_EMAIL =  "SELECT EMAIL  FROM USERS WHERE USERNAME = ? ";
     //___________________________________________________________________________________
 
 
