@@ -1,3 +1,4 @@
+
 package com.fym.lta.bao;
 
 import com.fym.lta.dao.DaoFactory;
@@ -14,27 +15,35 @@ public class SchedualBaoImp implements SchedualBao
 { 
 
     SchedualDao SchedualDao = new DaoFactory().createSchedualDao();
-    
+    SlotBao slotBaoObj = new BaoFactory().createSlotBao(); 
     
     public boolean saveSchedual(SchedualDto schedual) 
     {
 
     boolean  status = false ; 
-    
+    System.out.println("current code"+schedual.getSCHEDULECODE());
     if(SchedualDao.isExist(schedual.getSCHEDULECODE()))
     {
             try {
                 status = SchedualDao.update_Schedual(schedual);
+               
+                System.out.println("called from update");
                 
-            } catch (SQLException e) {
+            } catch (SQLException e) { 
             }
         }
     else
             try {
                 status = SchedualDao.insert_Schedual(schedual);
+                System.out.println("called from insert");
             } catch (SQLException e) {
             }
-
+    
+   if(status)
+   {for (int i = 0 ; i<schedual.getSchedual_Slots().size() ; i++)
+     {slotBaoObj.saveSlot(schedual.getSchedual_Slots().get(i));}
+     
+       }
         return status;
 }
 

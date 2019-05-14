@@ -24,7 +24,7 @@ public interface SlotDao {
     
     // this behavior to check Slot existance
 
-    public boolean isExist(SlotDto slot);
+    public int isExist(SlotDto slot);
 
     public boolean insert_Slot(SlotDto slot);
 }

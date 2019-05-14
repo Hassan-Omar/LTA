@@ -1,9 +1,10 @@
+
 package com.fym.lta.dto;
 
 
 public class SlotDto {
     private int Slot_id;
-    private String PrefSpace,type ;
+    private String PrefSpace,type,code ;
     private LocationDto CurrentLocation;
     private CourseDto currentCourse;
     private EmployeeDto crrentStaffMemb ;  
@@ -26,6 +27,14 @@ public class SlotDto {
 
     public void setCrrentStaffMemb(EmployeeDto crrentStaffMemb) {
         this.crrentStaffMemb = crrentStaffMemb;
+    }
+
+    public void setCode(String code) {
+        this.code = code;
+    }
+
+    public String getCode() {
+        return code;
     }
 
     public EmployeeDto getCrrentStaffMemb() {

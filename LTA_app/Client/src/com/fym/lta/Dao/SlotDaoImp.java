@@ -5,6 +5,7 @@ import com.fym.lta.common.Queries;
 import com.fym.lta.dto.SlotDto;
 
 import java.sql.SQLException;
+import java.sql.Types;
 
 import java.util.Collections;
 import java.util.List;
@@ -29,12 +30,15 @@ public class SlotDaoImp implements SlotDao {
              jdbcR.setUsername(ConnectionFactory.getUsername());
              jdbcR.setPassword(ConnectionFactory.getPassword());
              jdbcR.setCommand(Queries.UPDATE_SLOT);
-             
+            
              if (slot.getCurrentLocation() != null )
-             jdbcR.setInt(1,slot.getCurrentLocation().getLocation_id());   
+             jdbcR.setInt(1,slot.getCurrentLocation().getLocation_id());
+            
              jdbcR.setString(2,slot.getCurrentCourse().getCode());
              jdbcR.setString(3,slot.getCurrentCourse().getInstructors().get(0).getEmail());   
-             jdbcR.setInt(4,slot.getSlot_id());   
+             jdbcR.setString(4,slot.getCurrentCourse().getInstructors().get(1).getEmail());   
+
+             jdbcR.setInt(5,slot.getSlot_id());   
 
 
 
@@ -54,7 +58,7 @@ public class SlotDaoImp implements SlotDao {
         return false;
     }
 
-    public boolean isExist(SlotDto slot) {
+    public int isExist(SlotDto slot) {
         try (JdbcRowSet jdbcR = RowSetProvider.newFactory().createJdbcRowSet()) 
          {
              jdbcR.setUrl(ConnectionFactory.getUrl());
@@ -62,15 +66,27 @@ public class SlotDaoImp implements SlotDao {
              jdbcR.setPassword(ConnectionFactory.getPassword());
              jdbcR.setCommand(Queries.IS_SLOT_EXISTE);
              if (slot.getCurrentLocation() != null )
-             jdbcR.setInt(1,slot.getCurrentLocation().getLocation_id());
-            
+ 
+             jdbcR.setString(1,slot.getCode());
              jdbcR.setString(2,slot.getCurrentCourse().getCode());
-             jdbcR.setString(3,slot.getCurrentCourse().getInstructors().get(0).getEmail());   
+             
+             if (slot.getCurrentCourse().getInstructors().get(0).getEmail()!=null)
+                 jdbcR.setString(3,slot.getCurrentCourse().getInstructors().get(0).getEmail()); 
+             else 
+                 jdbcR.setNull(3, Types.VARCHAR);
+            
+            
+             if(slot.getCurrentCourse().getInstructors().get(1).getEmail()!= null)
+                jdbcR.setString(4,slot.getCurrentCourse().getInstructors().get(1).getEmail());
+             else 
+                jdbcR.setNull(4, Types.VARCHAR);
+            
+            
              jdbcR.execute(); 
             
                if(jdbcR.next())
-                return true;
-               else return false ; 
+                return jdbcR.getInt(1);
+               else return -1 ; 
          }
          catch (java.sql.SQLIntegrityConstraintViolationException e) 
          {
@@ -80,7 +96,7 @@ public class SlotDaoImp implements SlotDao {
         }
 
 
-        return false;
+        return -1 ;
     }
 
     @Override
@@ -93,13 +109,25 @@ public class SlotDaoImp implements SlotDao {
              jdbcR.setUsername(ConnectionFactory.getUsername());
              jdbcR.setPassword(ConnectionFactory.getPassword());
              jdbcR.setCommand(Queries.INSER_NEW_SLOT);
-            
+            // LOCATION_ID , COURSE_CODE , STAFF_EMAIL ,STAFF_EMAIL2 , CODE
              if (slot.getCurrentLocation() != null )
-             jdbcR.setInt(1,slot.getCurrentLocation().getLocation_id());   
+             jdbcR.setInt(1,slot.getCurrentLocation().getLocation_id()); 
+            
              jdbcR.setString(2,slot.getCurrentCourse().getCode());
-             jdbcR.setString(3,slot.getCurrentCourse().getInstructors().get(0).getEmail());   
-
-
+            
+             if (slot.getCurrentCourse().getInstructors().get(0).getEmail()!=null)
+                 jdbcR.setString(3,slot.getCurrentCourse().getInstructors().get(0).getEmail()); 
+             else 
+                 jdbcR.setNull(3, Types.VARCHAR);
+             
+             
+             if(slot.getCurrentCourse().getInstructors().get(1).getEmail()!= null)
+                jdbcR.setString(4,slot.getCurrentCourse().getInstructors().get(1).getEmail());
+             else 
+                jdbcR.setNull(4, Types.VARCHAR);
+ 
+             jdbcR.setString(5,slot.getCode());
+             
             jdbcR.execute();             
                
             

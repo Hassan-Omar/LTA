@@ -5,7 +5,6 @@ import com.fym.lta.bao.CourseBao;
 import com.fym.lta.bao.EmployeeBao;
 import com.fym.lta.bao.LoginEngine;
 import com.fym.lta.bao.SchedualBao;
-import com.fym.lta.bao.SlotBao;
 import com.fym.lta.dto.CourseDto;
 import com.fym.lta.dto.EmployeeDto;
 import com.fym.lta.dto.SchedualDto;
@@ -286,15 +285,14 @@ public class ScheduleInsert extends javax.swing.JPanel
                         List<EmployeeDto> staffList = new ArrayList<>();
                         SchedualBao SchedualBao = new BaoFactory().createSchedualBao();
                         EmployeeBao EmployeeBao = new BaoFactory().createemployeeBao();
-                        CourseBao CourseBao = new BaoFactory().createCourseBao();
-                        SlotBao   SlotBao     = new BaoFactory().createSlotBao();
+                        CourseBao CourseBao = new BaoFactory().createCourseBao(); 
                         schudel.setAcademicYear(Acadimcyear.getCell(1).toString());
                         schudel.setSCHEDULECODE(SCHEDULECODE.getCell(1).toString());
                         schudel.setCodeDeparment(CodeDeparment.getCell(1).toString());
                             
                         for (int i = 3; i < 38; i += 7)
                         {   
-                            HSSFRow SlotID = Sheet.getRow(i);
+                            HSSFRow slotCode = Sheet.getRow(i);
                             HSSFRow Starttime = Sheet.getRow(i + 1);
                             HSSFRow courseName = Sheet.getRow(i+2); 
                             HSSFRow StaffName1 = Sheet.getRow(i + 3);
@@ -327,24 +325,29 @@ public class ScheduleInsert extends javax.swing.JPanel
                                 course.setUpdatedBy(LoginEngine.currentUser);
                                 course.setInertion_Date(new Date(System.currentTimeMillis()));
                                 course.setUpdate_Date(new Date(System.currentTimeMillis()));
-                                //System.out.println("ccode  "+courseName.getCell(k + 1).toString()+"   cname"+courseName.getCell(k).toString());
                                 if(course.getCode()!="" && course.getName()!="");
                                 CourseBao.saveCourse(course);
                                
                                
                                 slot = new SlotDto();
+                                slot.setCode(slotCode.getCell(k+1).toString());
                                 slot.setCurrentCourse(course);
                                 slot.setPrefSpace(PrefSpace.getCell(k + 1).toString());
+                                slot.setType(Type.getCell(k + 1).toString());
                                 slots.add(slot);
-                               // SlotBao.saveSlot(slot); 
+                                
 
                             } // end of inner loop
                         } // end of outer loop 
                         
                          schudel.setSchedual_Slots(slots);
-                          // SchedualBao.saveSchedual(schudel) ;
-
+                        if( SchedualBao.saveSchedual(schudel))
+                            JOptionPane.showMessageDialog(this, " saved");
+                            else
+                            JOptionPane.showMessageDialog(this, "don't save");
+                     
                     } catch (IOException e) {
+                        
                     }
                 }
            

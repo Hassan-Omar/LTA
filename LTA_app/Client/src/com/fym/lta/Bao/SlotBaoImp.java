@@ -9,8 +9,11 @@ public class SlotBaoImp implements SlotBao {
 
     public boolean saveSlot(SlotDto slot) {
         boolean saveStatus = false;
-        if (slotDaoObj.isExist(slot))
+        int slotID = slotDaoObj.isExist(slot) ;
+        if ( slotID > 0)
+        {   slot.setSlot_id(slotID);
             saveStatus = slotDaoObj.Update_Slot(slot);
+        }
         else
             saveStatus = slotDaoObj.insert_Slot(slot);
         return saveStatus;

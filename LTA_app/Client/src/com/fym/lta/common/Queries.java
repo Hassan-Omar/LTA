@@ -29,7 +29,7 @@ public class Queries {
 
     public static final String LOGIN_CHECK = "SELECT USERNAME,PASSWORD FROM USERS WHERE USERNAME = ? AND PASSWORD = ?";
 
-    public static final String IS_USER_EXIST = "SELECT EMAIL ,USERNAME FROM USERS WHERE EMAIL = ?";
+    public static final String IS_USER_EXIST = "SELECT EMAIL ,USERNAME FROM USERS WHERE EMAIL = ? OR USERNAME = ?";
     //___________________________________________________________________________________
 
 
@@ -203,7 +203,8 @@ public class Queries {
 
     //________________________________ Schedule MODULE __________________________________
 
-
+    
+    
     public static final String INSER_NEW_SCHEDULE =
         "INSERT INTO grade_schedule (SCHEDULECODE , ACADEMIC_YEAR,DEPARTMENT_CODE ) VALUES(?,?,?)";
 
@@ -219,12 +220,12 @@ public class Queries {
         "SELECT SCHEDULECODE,ACADEMIC_YEAR,DEPARTMENT_CODE  FROM grade_schedule WHERE LOWER(SCHEDULECODE) LIKE ?  ";
 
     public static final String IS_EXIST_SCHEDULE =
-        "SELECT SCHEDULECODE  FROM grade_schedule WHERE SCHEDULECODE = ? ";
+        "SELECT SCHEDULECODE FROM grade_schedule WHERE SCHEDULECODE = ? ";
     
     public static final String UPDATE_SCHEDULE =
         "UPDATE grade_schedule SET  ACADEMIC_YEAR =? , DEPARTMENT_CODE =? WHERE  SCHEDULECODE =? ";
 
-    public static final String UPDATE_SLotSCHEDULE =
+    public static final String UPDATE_SLOTSCHEDULE =
         "UPDATE SCHEDULE_CONSISTS_OF_SLOT SET  SLOT_ID =? WHERE SCHEDULE_CODE = ?  ";
   
     public static final String LIST_SCHEDULE_INDEPART  =
@@ -251,15 +252,20 @@ public class Queries {
 
     //________________________________ Slot  MODULE __________________________________
    
-   
+    /*     LOCATION_ID 
+    COURSE_CODE
+    STAFF_EMAIL
+    STAFF_EMAIL2
+    CODE 
+        */
     public static final String INSER_NEW_SLOT = 
-    "INSERT INTO SLOT (LOCATION_ID , COURSE_CODE , STAFF_EMAIL ) VALUES(?,?,?) " ;
+    "INSERT INTO SLOT (LOCATION_ID , COURSE_CODE , STAFF_EMAIL ,STAFF_EMAIL2 , CODE) VALUES(?,?,?,?,?) " ;
     
     public static final String UPDATE_SLOT = 
-    "UPDATE SLOT SET LOCATION_ID=? , COURSE_CODE = ? , STAFF_EMAIL =? WHERE ID = ? " ;
+    "UPDATE SLOT SET LOCATION_ID=? , COURSE_CODE = ? , STAFF_EMAIL =? , STAFF_EMAIL2 =? WHERE ID = ? " ;
     
     public static final String IS_SLOT_EXISTE = 
-    "SELECT ID FROM SLOT WHERE LOCATION_ID=? AND COURSE_CODE = ? AND STAFF_EMAIL =?  " ;
+    "SELECT ID FROM SLOT WHERE CODE =? AND COURSE_CODE = ? AND STAFF_EMAIL =? AND STAFF_EMAIL2 = ? " ;
     
     
     //________________________________ Department Module __________________________________

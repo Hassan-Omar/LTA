@@ -64,7 +64,7 @@ public class SchedualDaoImp implements SchedualDao
     }
 
 
-    public List<SchedualDto> SearchSchedual(String SCHEDULECODE)
+    public List<SchedualDto> SearchSchedual(String code)
     { List<SchedualDto> Scheduals = null;
 
         try (JdbcRowSet jdbcRs = RowSetProvider.newFactory().createJdbcRowSet()) 
@@ -73,7 +73,7 @@ public class SchedualDaoImp implements SchedualDao
             jdbcRs.setUsername(ConnectionFactory.getUsername());
             jdbcRs.setPassword(ConnectionFactory.getPassword());
             jdbcRs.setCommand(Queries.Search_SCHEDULE);
-            jdbcRs.setString(1, '%' + SCHEDULECODE.toLowerCase().trim() + '%');
+            jdbcRs.setString(1, '%' + code.toLowerCase().trim() + '%');
             jdbcRs.execute();
 
 
@@ -111,9 +111,11 @@ public class SchedualDaoImp implements SchedualDao
             jdbcRs.execute();
             
             if(jdbcRs.next())
-            {
+            {  System.out.println(" hrg3 true ");
                return true ;  
                 }
+            else 
+            { System.out.println(" hrg3 false "); return false  ;}
             
         } catch (Exception e) {
             e.printStackTrace();
@@ -136,7 +138,7 @@ public class SchedualDaoImp implements SchedualDao
             jdbcR.execute();
            
             for (int i=0; i<Schedual.getSchedual_Slots().size(); i++)
-            { 
+            {
             jdbcR.setCommand(Queries.INSER_NEW_SLotSCHEDULE);
             jdbcR.setString(1,Schedual.getSCHEDULECODE());
             jdbcR.setInt (2, Schedual.getSchedual_Slots().get(i).getSlot_id());
@@ -175,9 +177,11 @@ public class SchedualDaoImp implements SchedualDao
             
              for (int i=0; i<Schedual.getSchedual_Slots().size(); i++)
              { 
-             jdbcR.setCommand(Queries.UPDATE_SLotSCHEDULE);
-             jdbcR.setString(1,Schedual.getSCHEDULECODE());
-             jdbcR.setInt (2, Schedual.getSchedual_Slots().get(i).getSlot_id());
+             jdbcR.setCommand(Queries.UPDATE_SLOTSCHEDULE);
+
+             jdbcR.setInt (1, Schedual.getSchedual_Slots().get(i).getSlot_id());
+             jdbcR.setString(2,Schedual.getSCHEDULECODE());
+
              jdbcR.execute();
              
              }    
