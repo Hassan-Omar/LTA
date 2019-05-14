@@ -171,7 +171,7 @@ public class SchedualDaoImp implements SchedualDao
              
              jdbcR.setString(3, Schedual.getSCHEDULECODE());  // SetSCHEDULECODE
              jdbcR.setString(1, Schedual.getAcademicYear()); // Set AcademicYear 
-             jdbcR.setString(2, Schedual.getCodeDeparment()); // Set AcademicYear 
+             jdbcR.setString(2, Schedual.getCodeDeparment()); //  
              
              jdbcR.execute();
             

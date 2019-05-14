@@ -38,7 +38,12 @@ public class SlotDaoImp implements SlotDao {
              jdbcR.setString(3,slot.getCurrentCourse().getInstructors().get(0).getEmail());   
              jdbcR.setString(4,slot.getCurrentCourse().getInstructors().get(1).getEmail());   
 
-             jdbcR.setInt(5,slot.getSlot_id());   
+             
+             jdbcR.setString(5,slot.getType());
+             
+             jdbcR.setString(6,slot.getPrefSpace());
+            
+             jdbcR.setInt(7,slot.getSlot_id());   
 
 
 
@@ -109,9 +114,11 @@ public class SlotDaoImp implements SlotDao {
              jdbcR.setUsername(ConnectionFactory.getUsername());
              jdbcR.setPassword(ConnectionFactory.getPassword());
              jdbcR.setCommand(Queries.INSER_NEW_SLOT);
-            // LOCATION_ID , COURSE_CODE , STAFF_EMAIL ,STAFF_EMAIL2 , CODE
+            
              if (slot.getCurrentLocation() != null )
              jdbcR.setInt(1,slot.getCurrentLocation().getLocation_id()); 
+             else 
+                 jdbcR.setNull(1, Types.VARCHAR);
             
              jdbcR.setString(2,slot.getCurrentCourse().getCode());
             
@@ -127,9 +134,15 @@ public class SlotDaoImp implements SlotDao {
                 jdbcR.setNull(4, Types.VARCHAR);
  
              jdbcR.setString(5,slot.getCode());
+            
+             jdbcR.setString(6,slot.getType());
+            
+             jdbcR.setString(7,slot.getPrefSpace());
+
+
              
             jdbcR.execute();             
-               
+            //System.out.println(slot.getCode() + "  "+slot.getPrefSpace() +"   "+slot.getCurrentCourse().getCode()+"   "+slot.getType()) ;   
             
              return true;
          }

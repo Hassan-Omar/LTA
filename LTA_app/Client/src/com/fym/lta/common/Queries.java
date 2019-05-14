@@ -252,17 +252,12 @@ public class Queries {
 
     //________________________________ Slot  MODULE __________________________________
    
-    /*     LOCATION_ID 
-    COURSE_CODE
-    STAFF_EMAIL
-    STAFF_EMAIL2
-    CODE 
-        */
+   
     public static final String INSER_NEW_SLOT = 
-    "INSERT INTO SLOT (LOCATION_ID , COURSE_CODE , STAFF_EMAIL ,STAFF_EMAIL2 , CODE) VALUES(?,?,?,?,?) " ;
+    "INSERT INTO SLOT (LOCATION_ID , COURSE_CODE , STAFF_EMAIL ,STAFF_EMAIL2 , CODE ,TYPE ,PREFSPACE) VALUES(?,?,?,?,?,?,?) " ;
     
     public static final String UPDATE_SLOT = 
-    "UPDATE SLOT SET LOCATION_ID=? , COURSE_CODE = ? , STAFF_EMAIL =? , STAFF_EMAIL2 =? WHERE ID = ? " ;
+    "UPDATE SLOT SET LOCATION_ID=? , COURSE_CODE = ? , STAFF_EMAIL =? , STAFF_EMAIL2 =? , TYPE = ? , PREFSPACE=? WHERE ID = ? " ;
     
     public static final String IS_SLOT_EXISTE = 
     "SELECT ID FROM SLOT WHERE CODE =? AND COURSE_CODE = ? AND STAFF_EMAIL =? AND STAFF_EMAIL2 = ? " ;
