@@ -5,7 +5,6 @@ import com.fym.lta.common.ConnectionFactory;
 import com.fym.lta.common.Queries;
 import com.fym.lta.dto.CourseDto;
 
-
 import java.sql.SQLException;
 import java.sql.Types;
 
@@ -77,31 +76,30 @@ public class CourseDaoImp implements CourseDao {
 
             jdbcRs.setString(1, Course.getCode());
             jdbcRs.setString(2, Course.getName());
-            jdbcRs.setInt(3, Course.getHoursperWeak());
             
-             // check if the person who imserte  is not setted we we will set it empty
+            // check if the person who imserte  is not setted we we will set it empty
             if (Course.getInsertedBy()!= null)
-                jdbcRs.setString(4, Course.getInsertedBy());
+                jdbcRs.setString(3, Course.getInsertedBy());
             else
-                jdbcRs.setNull(4, Types.VARCHAR);
+                jdbcRs.setNull(3, Types.VARCHAR);
             
 
             if (Course.getUpdatedBy() != null)
-                jdbcRs.setString(5, Course.getUpdatedBy());
+                jdbcRs.setString(4, Course.getUpdatedBy());
             else
-                jdbcRs.setNull(5, Types.VARCHAR);
+                jdbcRs.setNull(4, Types.VARCHAR);
 
 
             // check if the inserted date is not setted we we will set it
             if (Course.getInertion_Date() != null)
-                jdbcRs.setDate(6, new java.sql.Date(Course.getInertion_Date().getTime()));
+                jdbcRs.setDate(5, new java.sql.Date(Course.getInertion_Date().getTime()));
             else
-                jdbcRs.setNull(6, java.sql.Types.DATE);
+                jdbcRs.setNull(5, java.sql.Types.DATE);
 
             if (Course.getUpdate_Date() != null)
-                jdbcRs.setDate(7, new java.sql.Date(Course.getUpdate_Date().getTime()));
+                jdbcRs.setDate(6, new java.sql.Date(Course.getUpdate_Date().getTime()));
             else
-                jdbcRs.setNull(7, java.sql.Types.DATE);
+                jdbcRs.setNull(6, java.sql.Types.DATE);
             
          
             jdbcRs.execute();
@@ -123,22 +121,20 @@ public class CourseDaoImp implements CourseDao {
 
             jdbcRs.setString(1, Course.getCode());
             jdbcRs.setString(2, Course.getName());
-            jdbcRs.setInt(3, Course.getHoursperWeak());
-            
-           
+          
             if (Course.getInsertedBy()!= null)
-                jdbcRs.setString(4, Course.getUpdatedBy());
+                jdbcRs.setString(3, Course.getUpdatedBy());
             else
-                jdbcRs.setNull(4, Types.VARCHAR);
+                jdbcRs.setNull(3, Types.VARCHAR);
 
 
             if (Course.getUpdate_Date()!= null)
-                jdbcRs.setDate(5, new java.sql.Date(Course.getUpdate_Date().getTime()));
+                jdbcRs.setDate(4, new java.sql.Date(Course.getUpdate_Date().getTime()));
             else
-                jdbcRs.setNull(5, java.sql.Types.DATE);
+                jdbcRs.setNull(4, java.sql.Types.DATE);
             
             
-            jdbcRs.setString(6, Course.getCode());
+            jdbcRs.setString(5, Course.getCode());
             jdbcRs.execute();
 
             return true;
@@ -150,14 +146,14 @@ public class CourseDaoImp implements CourseDao {
         return false;
     }
 
-    public boolean isExist(String Code)
+    public boolean isExist(String code)
     {
         try (JdbcRowSet jdbcRs = RowSetProvider.newFactory().createJdbcRowSet()) {
             jdbcRs.setUrl(ConnectionFactory.getUrl());
             jdbcRs.setUsername(ConnectionFactory.getUsername());
             jdbcRs.setPassword(ConnectionFactory.getPassword());
             jdbcRs.setCommand(Queries.IS_COURSE_EXIST);
-            jdbcRs.setString(1,Code );
+            jdbcRs.setString(1,code );
             jdbcRs.execute();
             if (jdbcRs.next())
             {

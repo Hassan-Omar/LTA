@@ -237,12 +237,12 @@ public class Queries {
     public static final String DELETE_COURSE = "DELETE FROM COURSE WHERE CODE = ? ";
 
     public static final String UPDATE_COURSE =
-        "UPDATE COURSE SET  CODE = ?, NAME = ?, HOUR_PER_WEEK = ? ,UPDATED_BY = ? ,UPDATE_DATE = ? WHERE CODE = ?";
+        "UPDATE COURSE SET  CODE = ?, NAME = ? ,UPDATED_BY = ? ,UPDATE_DATE = ? WHERE CODE = ?";
 
     public static final String IS_COURSE_EXIST = "SELECT ID FROM COURSE WHERE CODE = ?";
 
     public static final String INSERT_NEW_COURSE =
-        "INSERT INTO COURSE (CODE,NAME,HOUR_PER_WEEK,INSERTED_BY ,UPDATED_BY ,INSERTION_DATE ,UPDATE_DATE) VALUES (?,?,?,?,?,?,?)";
+        "INSERT INTO COURSE (CODE,NAME,INSERTED_BY ,UPDATED_BY ,INSERTION_DATE ,UPDATE_DATE) VALUES (?,?,?,?,?,?)";
 
     public static final String SEARCH_COURSES = "SELECT * FROM COURSE WHERE LOWER(CODE) LIKE ? OR LOWER(NAME) LIKE ?";
 

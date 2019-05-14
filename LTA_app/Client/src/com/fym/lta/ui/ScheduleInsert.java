@@ -323,9 +323,15 @@ public class ScheduleInsert extends javax.swing.JPanel
                                 course.setInstructors(staffList);
                                 course.setCode(courseName.getCell(k + 1).toString());
                                 course.setName(courseName.getCell(k).toString());
+                                course.setInsertedBy(LoginEngine.currentUser);
+                                course.setUpdatedBy(LoginEngine.currentUser);
+                                course.setInertion_Date(new Date(System.currentTimeMillis()));
+                                course.setUpdate_Date(new Date(System.currentTimeMillis()));
                                 //System.out.println("ccode  "+courseName.getCell(k + 1).toString()+"   cname"+courseName.getCell(k).toString());
                                 if(course.getCode()!="" && course.getName()!="");
-                               // CourseBao.saveCourse(course);
+                                CourseBao.saveCourse(course);
+                               
+                               
                                 slot = new SlotDto();
                                 slot.setCurrentCourse(course);
                                 slot.setPrefSpace(PrefSpace.getCell(k + 1).toString());
