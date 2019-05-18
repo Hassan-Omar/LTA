@@ -5,7 +5,6 @@ import com.fym.lta.bao.BaoFactory;
 import com.fym.lta.bao.LocationBao;
 import com.fym.lta.dto.BuildingDto;
 import com.fym.lta.dto.LocationDto;
-
 import com.fym.lta.dto.LocationTypeDto;
 
 import java.util.List;
@@ -75,10 +74,10 @@ public class ManualAssignment extends javax.swing.JPanel {
             // TODO: Add catch code
             e.printStackTrace();
         }
-        // roleID = 13 
+        // roleID = 9 
         // now one step we will create an object of ScreenBao to know the current permission 
-        //String permissionType = new BaoFactory().createScreenBao().getCurrentPermission(13);
-       // Utilities.mandate(ubdateUserBTN,insertUserBTN , deleteUserBTN ,13,permissionType);
+        ///String permissionType = new BaoFactory().createScreenBao().getCurrentPermission(9);
+       //  Utilities.mandate(null,null , null ,9,permissionType);
    
     }
 

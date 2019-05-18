@@ -32,10 +32,10 @@ public class RoleScreen extends javax.swing.JPanel {
             roleTableReset(role.getAll());
         
 
-        // roleID = 10 
+        // roleID = 12 
         // now one step we will create an object of ScreenBao to know the current permission 
-        String permissionType = new BaoFactory().createScreenBao().getCurrentPermission(10);
-        Utilities.mandate(ubdateRoleBTN,insertRoleBTN , deleteRoleBTN ,10,permissionType);
+        String permissionType = new BaoFactory().createScreenBao().getCurrentPermission(12);
+        Utilities.mandate(ubdateRoleBTN,insertRoleBTN , deleteRoleBTN ,12,permissionType);
     }
 
     /** This method is called from within the constructor to

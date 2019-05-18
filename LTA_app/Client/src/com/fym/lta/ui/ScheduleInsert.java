@@ -44,6 +44,11 @@ public class ScheduleInsert extends javax.swing.JPanel
     public ScheduleInsert() {
         initComponents();
         PanelInsert.setVisible(false);
+
+        // roleID = 14 
+        // now one step we will create an object of ScreenBao to know the current permission 
+          String permissionType = new BaoFactory().createScreenBao().getCurrentPermission(14);
+          Utilities.mandate(null,insertBTN , deleteBTN ,14,permissionType);
     }
     /** This method is called from within the constructor to
      * initialize the form.
@@ -57,11 +62,11 @@ public class ScheduleInsert extends javax.swing.JPanel
         jPanel1 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         table = new javax.swing.JTable();
-        insertUserBTN = new javax.swing.JButton();
-        searchUserBTN = new javax.swing.JButton();
+        insertBTN = new javax.swing.JButton();
+        searchBTN = new javax.swing.JButton();
         ScheduleCode = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
-        deleteUserBTN = new javax.swing.JButton();
+        deleteBTN = new javax.swing.JButton();
         PanelInsert = new javax.swing.JPanel();
         academicYearlable = new javax.swing.JLabel();
         departmentlable = new javax.swing.JLabel();
@@ -140,35 +145,35 @@ public class ScheduleInsert extends javax.swing.JPanel
         add(jPanel1);
         jPanel1.setBounds(0, 234, 462, 243);
 
-        insertUserBTN.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        insertUserBTN.setText("Insert  New Schedule");
-        insertUserBTN.addMouseListener(new java.awt.event.MouseAdapter() {
+        insertBTN.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        insertBTN.setText("Insert  New Schedule");
+        insertBTN.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                insertUserBTNMouseClicked(evt);
+                insertBTNMouseClicked(evt);
             }
         });
-        insertUserBTN.addActionListener(new java.awt.event.ActionListener() {
+        insertBTN.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                insertUserBTNActionPerformed(evt);
+                insertBTNActionPerformed(evt);
             }
         });
-        add(insertUserBTN);
-        insertUserBTN.setBounds(129, 102, 239, 54);
+        add(insertBTN);
+        insertBTN.setBounds(129, 102, 239, 54);
 
-        searchUserBTN.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        searchUserBTN.setText("Search");
-        searchUserBTN.addMouseListener(new java.awt.event.MouseAdapter() {
+        searchBTN.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        searchBTN.setText("Search");
+        searchBTN.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                searchUserBTNMouseClicked(evt);
+                searchBTNMouseClicked(evt);
             }
         });
-        searchUserBTN.addActionListener(new java.awt.event.ActionListener() {
+        searchBTN.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                searchUserBTNActionPerformed(evt);
+                searchBTNActionPerformed(evt);
             }
         });
-        add(searchUserBTN);
-        searchUserBTN.setBounds(380, 110, 97, 45);
+        add(searchBTN);
+        searchBTN.setBounds(380, 110, 97, 45);
 
         ScheduleCode.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         add(ScheduleCode);
@@ -179,20 +184,20 @@ public class ScheduleInsert extends javax.swing.JPanel
         add(jLabel1);
         jLabel1.setBounds(12, 0, 333, 39);
 
-        deleteUserBTN.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        deleteUserBTN.setLabel("Delete");
-        deleteUserBTN.addMouseListener(new java.awt.event.MouseAdapter() {
+        deleteBTN.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        deleteBTN.setLabel("Delete");
+        deleteBTN.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                deleteUserBTNMouseClicked(evt);
+                deleteBTNMouseClicked(evt);
             }
         });
-        deleteUserBTN.addActionListener(new java.awt.event.ActionListener() {
+        deleteBTN.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                deleteUserBTNActionPerformed(evt);
+                deleteBTNActionPerformed(evt);
             }
         });
-        add(deleteUserBTN);
-        deleteUserBTN.setBounds(0, 102, 111, 54);
+        add(deleteBTN);
+        deleteBTN.setBounds(0, 102, 111, 54);
 
         PanelInsert.setBorder(javax.swing.BorderFactory.createTitledBorder("Insert New SCHEDULE"));
 
@@ -371,12 +376,12 @@ public class ScheduleInsert extends javax.swing.JPanel
 
     }//GEN-LAST:event_insertActionPerformed
 
-    private void insertUserBTNMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_insertUserBTNMouseClicked
+    private void insertBTNMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_insertBTNMouseClicked
         PanelInsert.setVisible(true);
 
-    }//GEN-LAST:event_insertUserBTNMouseClicked
+    }//GEN-LAST:event_insertBTNMouseClicked
 
-    private void searchUserBTNMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_searchUserBTNMouseClicked
+    private void searchBTNMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_searchBTNMouseClicked
         PanelInsert.setVisible(false);
         if (ScheduleCode.getText() != null) 
         {searchSchedual = SchedualBao.SearchSchedual(ScheduleCode.getText());  }
@@ -394,9 +399,9 @@ public class ScheduleInsert extends javax.swing.JPanel
         else
         TableReset(searchSchedual);
 
-    }//GEN-LAST:event_searchUserBTNMouseClicked
+    }//GEN-LAST:event_searchBTNMouseClicked
 
-    private void deleteUserBTNMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_deleteUserBTNMouseClicked
+    private void deleteBTNMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_deleteBTNMouseClicked
 
         PanelInsert.setVisible(false);
         if (table.getSelectedRow() >= 0)
@@ -418,19 +423,19 @@ public class ScheduleInsert extends javax.swing.JPanel
         else { // this means that the user no selection on table
             JOptionPane.showMessageDialog(this, "you should select a user first to delete  ");
         }
-    }//GEN-LAST:event_deleteUserBTNMouseClicked
+    }//GEN-LAST:event_deleteBTNMouseClicked
 
-    private void searchUserBTNActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchUserBTNActionPerformed
+    private void searchBTNActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchBTNActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_searchUserBTNActionPerformed
+    }//GEN-LAST:event_searchBTNActionPerformed
 
-    private void deleteUserBTNActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteUserBTNActionPerformed
+    private void deleteBTNActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteBTNActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_deleteUserBTNActionPerformed
+    }//GEN-LAST:event_deleteBTNActionPerformed
 
-    private void insertUserBTNActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_insertUserBTNActionPerformed
+    private void insertBTNActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_insertBTNActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_insertUserBTNActionPerformed
+    }//GEN-LAST:event_insertBTNActionPerformed
 
     public void TableReset(List<SchedualDto> Schedual) 
     {
@@ -452,16 +457,16 @@ public class ScheduleInsert extends javax.swing.JPanel
     private javax.swing.JTextField ScheduleCode;
     private javax.swing.JComboBox academicYearcombox;
     private javax.swing.JLabel academicYearlable;
-    private javax.swing.JButton deleteUserBTN;
+    private javax.swing.JButton deleteBTN;
     private javax.swing.JComboBox departmentcombox;
     private javax.swing.JLabel departmentlable;
     private javax.swing.JButton insert;
-    private javax.swing.JButton insertUserBTN;
+    private javax.swing.JButton insertBTN;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private java.awt.Panel panel1;
-    private javax.swing.JButton searchUserBTN;
+    private javax.swing.JButton searchBTN;
     private javax.swing.JTable table;
     // End of variables declaration//GEN-END:variables
 

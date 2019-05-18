@@ -4,9 +4,7 @@ package com.fym.lta.ui;
 import com.fym.lta.bao.BaoFactory;
 import com.fym.lta.bao.EquipmentBao;
 import com.fym.lta.bao.LoginEngine;
-import com.fym.lta.dto.BuildingDto;
 import com.fym.lta.dto.EquipmentDto;
-import com.fym.lta.dto.FloorDto;
 import com.fym.lta.dto.LocationDto;
 
 import java.util.Date;
@@ -65,6 +63,9 @@ public class EquipmentScreen extends javax.swing.JPanel {
         setTableModel(Equipmentbusiness.ListAll());
         listComboLocations(All_locations);
         DefineEquipment.setVisible(false);
+        String permissionType = new BaoFactory().createScreenBao().getCurrentPermission(7);
+        Utilities.mandate(update ,insert , delete ,7,permissionType); 
+        
         
     }
 

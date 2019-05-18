@@ -6,9 +6,10 @@ import java.util.List;
 
 public class RoleDto {
     private int role_id;
-    private String code, description, insertedBy, updatedBy, permission;
+    private String code, description, insertedBy, updatedBy;
     private List<ScreenDto> role_Screens;
     private Date inertion_Date, update_Date;
+    private List<String> permissions ;
 
     public RoleDto(String code) {
         this.code = code;
@@ -18,13 +19,14 @@ public class RoleDto {
         this.role_id = role_id;
     }
 
-    public void setPermission(String permission) {
-        this.permission = permission;
+    public void setPermissions(List<String> permissions) {
+        this.permissions = permissions;
     }
 
-    public String getPermission() {
-        return permission;
+    public List<String> getPermissions() {
+        return permissions;
     }
+
 
     public int getRole_id() {
         return role_id;

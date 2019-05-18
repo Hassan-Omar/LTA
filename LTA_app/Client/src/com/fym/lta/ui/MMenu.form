@@ -21,7 +21,6 @@
             <MenuItem class="javax.swing.JMenuItem" name="buildingM_Item">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Building"/>
-                <Property name="enabled" type="boolean" value="false"/>
               </Properties>
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="buildingM_ItemActionPerformed"/>
@@ -30,7 +29,6 @@
             <MenuItem class="javax.swing.JMenuItem" name="floorM_Item">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Building Floor"/>
-                <Property name="enabled" type="boolean" value="false"/>
               </Properties>
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="floorM_ItemActionPerformed"/>
@@ -39,7 +37,6 @@
             <MenuItem class="javax.swing.JMenuItem" name="locationTypeM_Item">
               <Properties>
                 <Property name="text" type="java.lang.String" value="location Type"/>
-                <Property name="enabled" type="boolean" value="false"/>
               </Properties>
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="locationTypeM_ItemActionPerformed"/>
@@ -48,7 +45,6 @@
             <MenuItem class="javax.swing.JMenuItem" name="departmentM_Item">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Departments"/>
-                <Property name="enabled" type="boolean" value="false"/>
               </Properties>
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="departmentM_ItemActionPerformed"/>
@@ -57,7 +53,6 @@
             <MenuItem class="javax.swing.JMenuItem" name="courseM_Item">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Course"/>
-                <Property name="enabled" type="boolean" value="false"/>
               </Properties>
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="courseM_ItemActionPerformed"/>
@@ -66,7 +61,6 @@
             <MenuItem class="javax.swing.JMenuItem" name="staffM_Item">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Staff Member "/>
-                <Property name="enabled" type="boolean" value="false"/>
               </Properties>
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="staffM_ItemActionPerformed"/>
@@ -90,7 +84,6 @@
             <MenuItem class="javax.swing.JMenuItem" name="locationMasterM_Item">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Locations master screen"/>
-                <Property name="enabled" type="boolean" value="false"/>
               </Properties>
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="locationMasterM_ItemActionPerformed"/>
@@ -99,7 +92,6 @@
             <MenuItem class="javax.swing.JMenuItem" name="locationManualM_Item">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Location Manual Assignment"/>
-                <Property name="enabled" type="boolean" value="false"/>
               </Properties>
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="locationManualM_ItemActionPerformed"/>
@@ -108,7 +100,6 @@
             <MenuItem class="javax.swing.JMenuItem" name="locationAutoM_Item">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Location Automatic Assignment"/>
-                <Property name="enabled" type="boolean" value="false"/>
               </Properties>
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="locationAutoM_ItemActionPerformed"/>
@@ -127,7 +118,6 @@
             <MenuItem class="javax.swing.JMenuItem" name="userM_Item">
               <Properties>
                 <Property name="text" type="java.lang.String" value="User"/>
-                <Property name="enabled" type="boolean" value="false"/>
                 <Property name="name" type="java.lang.String" value="user" noResource="true"/>
               </Properties>
               <Events>
@@ -137,7 +127,6 @@
             <MenuItem class="javax.swing.JMenuItem" name="roleM_Item">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Role"/>
-                <Property name="enabled" type="boolean" value="false"/>
               </Properties>
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="roleM_ItemActionPerformed"/>
@@ -146,61 +135,10 @@
             <MenuItem class="javax.swing.JMenuItem" name="roleScreenM_Item">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Role Screens"/>
-                <Property name="enabled" type="boolean" value="false"/>
               </Properties>
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="roleScreenM_ItemActionPerformed"/>
               </Events>
-            </MenuItem>
-          </SubComponents>
-        </Menu>
-        <Menu class="javax.swing.JMenu" name="userQuickSearch">
-          <Properties>
-            <Property name="text" type="java.lang.String" value="Quick Search                   "/>
-            <Property name="horizontalTextPosition" type="int" value="4"/>
-          </Properties>
-          <SubComponents>
-            <MenuItem class="javax.swing.JMenuItem" name="userquicksearch">
-              <Properties>
-                <Property name="text" type="java.lang.String" value="for User"/>
-              </Properties>
-              <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="userquicksearchActionPerformed"/>
-              </Events>
-            </MenuItem>
-            <MenuItem class="javax.swing.JMenuItem" name="buildingquicksearch">
-              <Properties>
-                <Property name="text" type="java.lang.String" value="for Home  Building "/>
-              </Properties>
-              <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="buildingquicksearchActionPerformed"/>
-              </Events>
-            </MenuItem>
-            <MenuItem class="javax.swing.JMenuItem" name="locationquicksearch">
-              <Properties>
-                <Property name="text" type="java.lang.String" value="for Location"/>
-              </Properties>
-              <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="locationquicksearchActionPerformed"/>
-              </Events>
-            </MenuItem>
-            <MenuItem class="javax.swing.JMenuItem" name="coursequicksearch">
-              <Properties>
-                <Property name="text" type="java.lang.String" value="for Course"/>
-              </Properties>
-            </MenuItem>
-            <MenuItem class="javax.swing.JMenuItem" name="assigendrolequicksearch">
-              <Properties>
-                <Property name="text" type="java.lang.String" value="for Assigned Role"/>
-              </Properties>
-              <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="assigendrolequicksearchActionPerformed"/>
-              </Events>
-            </MenuItem>
-            <MenuItem class="javax.swing.JMenuItem" name="tablequicksearch">
-              <Properties>
-                <Property name="text" type="java.lang.String" value="for Table "/>
-              </Properties>
             </MenuItem>
           </SubComponents>
         </Menu>
