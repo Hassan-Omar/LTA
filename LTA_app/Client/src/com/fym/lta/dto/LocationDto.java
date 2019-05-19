@@ -9,25 +9,13 @@ public class LocationDto {
     private int Location_id, capacity ;
     private FloorDto floor ;
 
-    public LocationDto(FloorDto floor, BuildingDto building) {
-        super();
-        this.floor = floor;
-        this.building = building;
-    }
-    private BuildingDto building ;
-
-    public void setBuilding(BuildingDto building) {
-        this.building = building;
-    }
+   
 
     public LocationDto(String code) {
         super();
         this.code = code;
     }
 
-    public BuildingDto getBuilding() {
-        return building;
-    }
     
 
     public void setOccupation_purpose(String occupation_purpose) {

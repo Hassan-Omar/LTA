@@ -341,6 +341,15 @@ public class MMenu extends javax.swing.JFrame
     switchtoPanel(new ScheduleInsert()) ;
     }//GEN-LAST:event_jMenu5MouseClicked
 
+
+    private void locationquicksearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_locationquicksearchActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_locationquicksearchActionPerformed
+
+    private void assigendrolequicksearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_assigendrolequicksearchActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_assigendrolequicksearchActionPerformed
+
     private void locationTypeM_ItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_locationTypeM_ItemActionPerformed
     switchtoPanel(new LocationTypeScreen() ) ;
     }//GEN-LAST:event_locationTypeM_ItemActionPerformed

@@ -6,6 +6,7 @@ import java.util.List;
 public class FloorDto {
 
     private int Floor_id;
+
     private String code, Description;
     private List<LocationDto> floor_Location;
 
@@ -13,6 +14,12 @@ public class FloorDto {
 
     public FloorDto(BuildingDto building) {
         super();
+        this.building = building;
+    }
+
+    public FloorDto(String code, BuildingDto building) {
+        super();
+        this.code = code;
         this.building = building;
     }
 

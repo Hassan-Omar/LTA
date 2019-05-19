@@ -75,7 +75,7 @@ public class LocationMasterScreen extends javax.swing.JPanel {
             locationArr[i][2] = location.get(i).getDescription();
             locationArr[i][3] = location.get(i).getCapacity();
             locationArr[i][4] = location.get(i).getStatus();
-            locationArr[i][5] = location.get(i).getBuilding().getCode();
+            locationArr[i][5] = location.get(i).getFloor().getBuilding().getCode();
             locationArr[i][6] = location.get(i).getFloor().getCode();
             locationArr[i][7] = location.get(i).getType().getCode();
             locationArr[i][8] = location.get(i).getInsertedBy();
@@ -377,11 +377,6 @@ public class LocationMasterScreen extends javax.swing.JPanel {
         jLabel7.setText("Location Type ");
 
         type_combo.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        type_combo.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                type_comboActionPerformed(evt);
-            }
-        });
 
         javax.swing.GroupLayout define_locationLayout = new javax.swing.GroupLayout(define_location);
         define_location.setLayout(define_locationLayout);
@@ -419,8 +414,8 @@ public class LocationMasterScreen extends javax.swing.JPanel {
                             .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(98, 98, 98)
                         .addGroup(define_locationLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(type_combo, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 154, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 154, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(type_combo, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(18, 18, 18))
                     .addGroup(define_locationLayout.createSequentialGroup()
                         .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -581,10 +576,11 @@ public class LocationMasterScreen extends javax.swing.JPanel {
            
              //To set id for building ,floor , locationType//
             BuildingObject.setBuilding_id(Allbuildings.get(building_combo.getSelectedIndex()).getBuilding_id());
-            LocationObject.setBuilding(BuildingObject);
+            FloorObject.setBuilding(BuildingObject);
             FloorObject.setFloor_id(Allfloors.get(floor_combo.getSelectedIndex()).getFloor_id());
             LocationObject.setFloor(FloorObject);
             LocationTypeObject.setLocationType_id(AlllocationTypes.get(type_combo.getSelectedIndex()).getLocationType_id());
+            System.out.println(AlllocationTypes.get(type_combo.getSelectedIndex()));
             LocationObject.setType(LocationTypeObject);
          
              //To Check whether to insert or update data// 
@@ -622,10 +618,6 @@ public class LocationMasterScreen extends javax.swing.JPanel {
     private void idActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_idActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_idActionPerformed
-
-    private void type_comboActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_type_comboActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_type_comboActionPerformed
 
     private void building_comboActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_building_comboActionPerformed
         // TODO add your handling code here:

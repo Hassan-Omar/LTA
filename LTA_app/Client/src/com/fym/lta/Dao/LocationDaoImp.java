@@ -21,6 +21,8 @@ import javax.xml.stream.Location;
 
 public class LocationDaoImp implements LocationDao {
     
+    /*this function is to list all locations on the specific building , floor
+     and has a specific type */
     public List<LocationDto> getAll_Locations() {
         List<LocationDto>  locat = null;
               try(JdbcRowSet jdbc = RowSetProvider.newFactory().createJdbcRowSet();) {
@@ -40,8 +42,7 @@ public class LocationDaoImp implements LocationDao {
                      location.setDescription(jdbc.getString(3));
                      location.setCapacity(jdbc.getInt(4));
                      location.setStatus(jdbc.getString(5));
-                     location.setBuilding(new BuildingDto(jdbc.getString("building_code")));
-                      location.setFloor((new FloorDto(jdbc.getString("floor_code")))) ;   
+                     location.setFloor((new FloorDto(jdbc.getString("floor_code"),new BuildingDto(jdbc.getString("building_code")))));   
                       location.setType(new LocationTypeDto(jdbc.getString("type_code"))); 
                      location.setInsertedBy(jdbc.getString(9)); 
                      location.setInertion_Date(jdbc.getDate(10)); 
@@ -56,7 +57,8 @@ public class LocationDaoImp implements LocationDao {
               
               return locat;
     }
-
+ 
+       //this is to delete location using its ID
     public boolean delete_Location(LocationDto Location) {
         try(JdbcRowSet jdbc = RowSetProvider.newFactory().createJdbcRowSet();) {
                         jdbc.setUrl(ConnectionFactory.getUrl());
@@ -73,7 +75,8 @@ public class LocationDaoImp implements LocationDao {
                    
             }
 
-
+      /*this is to insert new location in a specific building and floor
+      with specific location type*/
     public boolean insert_Location(LocationDto Location) {
         
         try(JdbcRowSet jdbc = RowSetProvider.newFactory().createJdbcRowSet();) {
@@ -86,12 +89,10 @@ public class LocationDaoImp implements LocationDao {
                     jdbc.setString(3, Location.getDescription());
                     jdbc.setInt(4, Location.getCapacity());
                     jdbc.setString(5, Location.getStatus());
-                    jdbc.setInt(6, Location.getBuilding().getBuilding_id());
-                    jdbc.setInt(7, Location.getFloor().getFloor_id());
-                    jdbc.setInt(8, Location.getType().getLocationType_id());
-                    jdbc.setObject(9, Location.getLocation_equipments().toString());
-                    jdbc.setString(10, Location.getInsertedBy());
-                    jdbc.setDate(11, new java.sql.Date(Location.getInertion_Date().getTime()));
+                    jdbc.setInt(6, Location.getFloor().getFloor_id());
+                    jdbc.setInt(7, Location.getType().getLocationType_id());
+                    jdbc.setString(8, Location.getInsertedBy());
+                    jdbc.setDate(9, new java.sql.Date(Location.getInertion_Date().getTime()));
                    // jdbc.setString(11, Location.getUpdatedBy());
                   //  jdbc.setDate(12, new java.sql.Date(Location.getUpdate_Date().getTime()));
                     jdbc.execute(); 
@@ -108,7 +109,8 @@ public class LocationDaoImp implements LocationDao {
                 }
         return false;    
     }
-
+      
+      //this is to update location
     public boolean Update_Location(LocationDto Location) {
         try(JdbcRowSet jdbc = RowSetProvider.newFactory().createJdbcRowSet();) {
                     jdbc.setUrl(ConnectionFactory.getUrl());
@@ -120,14 +122,13 @@ public class LocationDaoImp implements LocationDao {
                     jdbc.setString(2, Location.getDescription());
                     jdbc.setInt(3, Location.getCapacity());
                     jdbc.setString(4, Location.getStatus());
-                    jdbc.setInt(5, Location.getBuilding().getBuilding_id());
-                    jdbc.setInt(6, Location.getFloor().getFloor_id());
-                    jdbc.setInt(7, Location.getType().getLocationType_id());
+                    jdbc.setInt(5, Location.getFloor().getFloor_id());
+                    jdbc.setInt(6, Location.getType().getLocationType_id());
                 //    jdbc.setString(8, Location.getInsertedBy());
                //    jdbc.setDate(10, new java.sql.Date(Location.getInertion_Date().getTime()));
-                     jdbc.setString(8, Location.getUpdatedBy());
-                     jdbc.setDate(9, new java.sql.Date(Location.getUpdate_Date().getTime()));
-                    jdbc.setInt(10, Location.getLocation_id());
+                     jdbc.setString(7, Location.getUpdatedBy());
+                     jdbc.setDate(8, new java.sql.Date(Location.getUpdate_Date().getTime()));
+                    jdbc.setInt(9, Location.getLocation_id());
                    
              //System.out.println("-------->"+Location.getLocation_id());
                     jdbc.execute();   
@@ -165,7 +166,8 @@ public class LocationDaoImp implements LocationDao {
         }
         return false;
     }
-
+    
+    //this is to search for location using code letters
     @Override
     public List<LocationDto> searchLocations(String code) {
         List<LocationDto> locations = null;
@@ -186,8 +188,7 @@ public class LocationDaoImp implements LocationDao {
                 lSerch.setDescription(jdbcRs.getString(3));
                 lSerch.setCapacity(jdbcRs.getInt(4));
                 lSerch.setStatus(jdbcRs.getString(5));
-                lSerch.setBuilding(new BuildingDto(jdbcRs.getString("building_code")));
-                lSerch.setFloor((new FloorDto(jdbcRs.getString("floor_code")))) ;   
+                lSerch.setFloor((new FloorDto(jdbcRs.getString("floor_code"),new BuildingDto(jdbcRs.getString("building_code")))));   
                 lSerch.setType(new LocationTypeDto(jdbcRs.getString("type_code"))); 
                 lSerch.setInsertedBy(jdbcRs.getString(9)); 
                 lSerch.setInertion_Date(jdbcRs.getDate(10)); 
@@ -204,6 +205,7 @@ public class LocationDaoImp implements LocationDao {
         return locations;
     }
     
+    //this is to filter locations based on location type and building
     public List<LocationDto> filter(String LocationTypeCode,String BuildingCode){
         List<LocationDto> locations = null;
         
@@ -224,8 +226,7 @@ public class LocationDaoImp implements LocationDao {
                 lFilter.setDescription(jdbcRs.getString(3));
                 lFilter.setCapacity(jdbcRs.getInt(4));
                 lFilter.setStatus(jdbcRs.getString(5));
-                lFilter.setBuilding(new BuildingDto(jdbcRs.getString("building_code")));
-                lFilter.setFloor((new FloorDto(jdbcRs.getString("floor_code")))) ;   
+                lFilter.setFloor((new FloorDto(jdbcRs.getString("floor_code"),new BuildingDto(jdbcRs.getString("building_code")))));   
                 lFilter.setType(new LocationTypeDto(jdbcRs.getString("type_code"))); 
                 lFilter.setInsertedBy(jdbcRs.getString(9)); 
                 lFilter.setInertion_Date(jdbcRs.getDate(10)); 

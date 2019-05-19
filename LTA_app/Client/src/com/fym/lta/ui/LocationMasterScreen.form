@@ -225,8 +225,8 @@
                           </Group>
                           <EmptySpace min="-2" pref="98" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" attributes="0">
-                              <Component id="type_combo" min="-2" pref="113" max="-2" attributes="0"/>
                               <Component id="jLabel7" min="-2" pref="154" max="-2" attributes="0"/>
+                              <Component id="type_combo" min="-2" pref="113" max="-2" attributes="0"/>
                           </Group>
                           <EmptySpace min="-2" pref="18" max="-2" attributes="0"/>
                       </Group>
@@ -446,9 +446,6 @@
               <StringArray count="0"/>
             </Property>
           </Properties>
-          <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="type_comboActionPerformed"/>
-          </Events>
         </Component>
       </SubComponents>
     </Container>
