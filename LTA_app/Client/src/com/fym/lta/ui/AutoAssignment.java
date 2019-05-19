@@ -1,12 +1,9 @@
 
 package com.fym.lta.ui;
 
-import com.fym.lta.bao.AllocationAlgorthim;
 import com.fym.lta.bao.BaoFactory;
 import com.fym.lta.bao.SchedualBao;
 import com.fym.lta.dto.DepartmentDto;
-import com.fym.lta.dto.SchedualDto;
-import com.fym.lta.dto.SlotDto;
 
 import java.util.List;
 
@@ -24,8 +21,7 @@ public class AutoAssignment extends javax.swing.JPanel {
     /** Creates new form AutoAssignment */
     public AutoAssignment() {
         initComponents();
-        listDepartmentsCombo(allDepartments);
-
+ 
         //String permissionType = new BaoFactory().createScreenBao().getCurrentPermission(10);
         //Utilities.mandate(null ,null , null ,10,permissionType);
     }
@@ -100,20 +96,20 @@ public class AutoAssignment extends javax.swing.JPanel {
 
     private void departmentComboMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_departmentComboMouseExited
 
-    listTables(SchedualBaoObj.listSchedual_inDeparts(allDepartments.get(departmentCombo.getSelectedIndex()).getName()));
+   // listTables(SchedualBaoObj.listSchedual_inDeparts(allDepartments.get(departmentCombo.getSelectedIndex()).getName()));
 
 
     }//GEN-LAST:event_departmentComboMouseExited
 
-    private void assignBtnMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_assignBtnMouseClicked
+    private void assignBtnMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_assi
 //get the department's name 
-String depName = allDepartments.get(departmentCombo.getSelectedIndex()).getName();
+//String depName = allDepartments.get(departmentCombo.getSelectedIndex()).getName();
 // get the selected table 
-SchedualDto schedual = SchedualBaoObj.SearchSchedual(tableCombo.getSelectedItem().toString()).get(0);
+//SchedualDto schedual = SchedualBaoObj.SearchSchedual(tableCombo.getSelectedItem().toString()).get(0);
 // create object to allocate 
-AllocationAlgorthim alloBusinees  =  new AllocationAlgorthim () ; 
+//AllocationAlgorthim alloBusinees  =  new AllocationAlgorthim () ; 
 
- resetTableModel(alloBusinees.allocate(schedual , depName));       
+// resetTableModel(alloBusinees.allocate(schedual , depName));       
         
     }//GEN-LAST:event_assignBtnMouseClicked
 
@@ -127,32 +123,4 @@ AllocationAlgorthim alloBusinees  =  new AllocationAlgorthim () ;
     private javax.swing.JTable table;
     private javax.swing.JComboBox tableCombo;
     // End of variables declaration//GEN-END:variables
-
-void listDepartmentsCombo(List<DepartmentDto> departments)
-{ for (int i=0 ;i<departments.size() ; i++)
-  { departmentCombo.addItem(departments.get(i).getName());
-      }
-    
-    }
-void listTables(List<SchedualDto> scheduals)
-{for (int i=0;i<scheduals.size() ;i++)
- 
-    tableCombo.addItem(scheduals.get(i).getSCHEDULECODE());
- 
- }
-
-void resetTableModel (SchedualDto schedual)
-
-{   List<SlotDto> slots = schedual.getSchedual_Slots();
-    Object[][] tableArr = new Object[5][4];
-    //for (int i =0 ; i<5 ; i++)
-    //{
-        
-    //}
-    
-    table.setModel(new javax.swing.table.DefaultTableModel(tableArr, new String[] {
-    "SLOT 1", "SLOT 2", "SLOT 3", "SLOT 4"
-    }));
-}
-    
 }

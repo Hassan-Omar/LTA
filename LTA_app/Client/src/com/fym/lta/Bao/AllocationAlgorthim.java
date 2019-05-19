@@ -1,5 +1,6 @@
 package com.fym.lta.bao;
 
+import com.fym.lta.dto.DepartmentDto;
 import com.fym.lta.dto.LocationDto;
 import com.fym.lta.dto.SchedualDto;
 import com.fym.lta.dto.SlotDto;
@@ -7,61 +8,85 @@ import com.fym.lta.dto.SlotDto;
 import java.util.List;
 
 public class AllocationAlgorthim {
-    
-     SchedualBao schedualBaoObj = new BaoFactory().createSchedualBao();
-     LocationBao locationBaoObj = new BaoFactory().createLocationBao();
 
-    
+    //var to hold the value of saving table after allocation ;
+    boolean saveStatus = false, saveStatus2 = false;
+    String report = " Error in \r\n"; // this to hold the value which we need to told to the user
+    SchedualBao schedualBaoObj = new BaoFactory().createSchedualBao();
+    LocationBao locationBaoObj = new BaoFactory().createLocationBao();
+
+    // list of all departments stored on DB
+    List<DepartmentDto> allDeparts = new BaoFactory().createDepartmentBao().listDepartment();
+
 
     public float calc_UtilizationFactor() {
         return 0;
     }
-    
-    
-    // method to  connect location  and alloce for a certian time
-    public SchedualDto allocate(SchedualDto  currentSchedual ,String depName) {
-         
-        // first we need a list of avaialable rooms 
-        List<LocationDto> availableRooms  = locationBaoObj.getAvailableLocations(depName); 
-        
-        // get the list of slots form this table 
-        List<SlotDto> currentSlots = currentSchedual.getSchedual_Slots(); 
-        
-        // loop on the slots 
-        
-        for(int i= 0; i<currentSlots.size() ; i++)
-        {   // this to hold the value of needed space type  
-            String prefSpace  = currentSlots.get(i).getPrefSpace();
-            
-            for (int k=0 ; k < availableRooms.size() ; k++)
-            {   // check if the prefSpace is proper 
-                if (prefSpace.equals(availableRooms.get(k).getType().getDescription()))
-                // allocate this space 
-                {   // allocate this locatoion 
-                    LocationDto currentLoc = availableRooms.get(k) ; 
-                    currentSlots.get(i).setCurrentLocation(currentLoc);
-                    
-                    // update this location's status to busy  
-                    currentLoc.setStatus("busy");
-                    locationBaoObj.updateLocation(currentLoc); 
-                    
-                    // remove this reserved location from list 
-                    availableRooms.remove(k);
-                    
-                }
-                
-                
-                }
-            
-            // update the table content  
-            currentSchedual.setSchedual_Slots(currentSlots);
-            //  save the table 
-            schedualBaoObj.saveSchedual(currentSchedual) ;
+
+    public String alloc_All() { // loops on all departments
+        for (int i = 0; i < allDeparts.size(); i++) {
+            List<SchedualDto> schedualIn_Depart = schedualBaoObj.listSchedual_inDeparts(allDeparts.get(i).getName());
+            // loops on the department's schedual
+            for (int k = 0; k < schedualIn_Depart.size(); k++) { // calling allocate_Table method to allocate  table no k
+                saveStatus2 = allocate_Table(schedualIn_Depart.get(k), allDeparts.get(i).getName());
+
+                if (!saveStatus2)
+                    report += " table no " + k + " dep name " + allDeparts.get(i).getName();
+
+            }
         }
-        
-        
-    return currentSchedual; }
+
+        return report;
+    }
 
 
-    
+    // method to  connect location  and alloce for a certian time
+    public boolean allocate_Table(SchedualDto currentSchedual, String depName) {
+
+        // get the number of student
+        int studentNum = currentSchedual.getStudent_number();
+
+        // first we need a list of avaialable rooms
+        List<LocationDto> availableRooms = locationBaoObj.getAvailableLocations(depName);
+
+        // get the list of slots form this table
+        List<SlotDto> currentSlots = currentSchedual.getSchedual_Slots();
+
+        // loop on the slots
+
+        for (int i = 0; i < currentSlots.size(); i++) { // this to hold the value of needed space type
+            String prefSpace = currentSlots.get(i).getPrefSpace();
+
+            for (int k = 0; k < availableRooms.size();
+                 k++) { // check if the prefSpace is proper and the capacity is proper
+                if (prefSpace.equals(availableRooms.get(k).getType().getDescription()) &&
+                    (availableRooms.get(k).getCapacity() >= studentNum))
+                // allocate this space
+                { // allocate this locatoion
+                    LocationDto currentLoc = availableRooms.get(k);
+                    currentSlots.get(i).setCurrentLocation(currentLoc);
+
+                    // update this location's status to busy
+                    currentLoc.setStatus("busy");
+                    locationBaoObj.updateLocation(currentLoc);
+
+                    // remove this reserved location from list
+                    availableRooms.remove(k);
+
+                }
+
+
+            }
+
+            // update the table content
+            currentSchedual.setSchedual_Slots(currentSlots);
+            //  save the table "actually will update slot.location_id in db "
+            saveStatus = schedualBaoObj.saveSchedual(currentSchedual);
+        }
+
+
+        return saveStatus;
+    }
+
+
 }

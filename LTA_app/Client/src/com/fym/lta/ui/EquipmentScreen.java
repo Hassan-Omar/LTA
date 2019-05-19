@@ -31,10 +31,11 @@ public class EquipmentScreen extends javax.swing.JPanel {
     /*To add comboBox items
      We get a list of saved items in Database*/  
     void listComboLocations(List<LocationDto> location) {
+        if(location!=null) {
     for (int i = 0; i < location.size(); i++) {
       location_combo.addItem(location.get(i).getCode()); }
     }
-   
+    }
     // To Set the retrieved data from database into the locationTable// 
     private void setTableModel(List<EquipmentDto> equipment){
         Object [][] equipmentArr = new Object [equipment.size()][10];
