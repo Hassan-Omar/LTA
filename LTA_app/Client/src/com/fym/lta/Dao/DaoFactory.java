@@ -1,6 +1,7 @@
 package com.fym.lta.dao;
 
 
+
 public class DaoFactory {
 
     public UserDao createUserDao() {
@@ -54,5 +55,6 @@ public class DaoFactory {
     public EmployeeDao createEmployeeDao() {
         return new EmployeeDaoImp();
     }
-
+    
+   
 }

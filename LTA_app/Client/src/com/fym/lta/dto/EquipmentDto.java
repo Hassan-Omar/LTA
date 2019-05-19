@@ -8,7 +8,12 @@ public class EquipmentDto {
     private String code, type,insertedBy, updatedBy;
     private LocationDto location_equipment ;
     private Date inertion_Date, update_Date, startingTime;
-    
+
+    public EquipmentDto(String code) {
+        super();
+        this.code = code;
+    }
+
 
     public void setInsertedBy(String insertedBy) {
         this.insertedBy = insertedBy;

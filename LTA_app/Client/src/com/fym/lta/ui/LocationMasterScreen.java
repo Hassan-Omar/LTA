@@ -95,7 +95,7 @@ public class LocationMasterScreen extends javax.swing.JPanel {
             locationArr[i][2] = location.get(i).getDescription();
             locationArr[i][3] = location.get(i).getCapacity();
             locationArr[i][4] = location.get(i).getStatus();
-            locationArr[i][5] = location.get(i).getBuilding().getCode();
+            locationArr[i][5] = location.get(i).getFloor().getBuilding().getCode();
             locationArr[i][6] = location.get(i).getFloor().getCode();
             locationArr[i][7] = location.get(i).getType().getCode();
             locationArr[i][8] = location.get(i).getInsertedBy();
@@ -596,7 +596,7 @@ public class LocationMasterScreen extends javax.swing.JPanel {
            
              //To set id for building ,floor , locationType//
             BuildingObject.setBuilding_id(Allbuildings.get(building_combo.getSelectedIndex()).getBuilding_id());
-            LocationObject.setBuilding(BuildingObject);
+            FloorObject.setBuilding(BuildingObject);
             FloorObject.setFloor_id(Allfloors.get(floor_combo.getSelectedIndex()).getFloor_id());
             LocationObject.setFloor(FloorObject);
             LocationTypeObject.setLocationType_id(AlllocationTypes.get(type_combo.getSelectedIndex()).getLocationType_id());

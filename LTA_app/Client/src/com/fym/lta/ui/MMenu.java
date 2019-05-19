@@ -396,7 +396,6 @@ public class MMenu extends javax.swing.JFrame
     }//GEN-LAST:event_jMenu5MouseClicked
 
     private void locationquicksearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_locationquicksearchActionPerformed
-        // TODO add your handling code here:
     }//GEN-LAST:event_locationquicksearchActionPerformed
 
     private void assigendrolequicksearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_assigendrolequicksearchActionPerformed

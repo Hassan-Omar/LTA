@@ -48,7 +48,7 @@ public class ManualAssignment extends javax.swing.JPanel {
             locationArr[i][2] = location.get(i).getDescription();
             locationArr[i][3] = location.get(i).getCapacity();
             locationArr[i][4] = location.get(i).getStatus();
-            locationArr[i][5] = location.get(i).getBuilding().getCode();
+            locationArr[i][5] = location.get(i).getFloor().getBuilding().getCode();
             locationArr[i][6] = location.get(i).getFloor().getCode();
             locationArr[i][7] = location.get(i).getType().getCode();
             locationArr[i][8] = location.get(i).getInsertedBy();

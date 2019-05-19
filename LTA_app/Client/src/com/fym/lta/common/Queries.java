@@ -146,68 +146,29 @@ public class Queries {
 
 
     //________________________________ LOCATION MODULE __________________________________
-<<<<<<< HEAD
-    public static final String INSER_NEW_LOCATION = "INSERT INTO LOCATION (L_ID ,CODE , DESCRIPTION,CAPACITY,STATUS,BUILDING_ID,FLOOR_ID, TYPE_ID ,INSERTED_BY,INSERTION_DATE) VALUES(?,?,?,?,?,?,?,?,?,?)";
-    
-||||||| merged common ancestors
-    public static final String INSER_NEW_LOCATION = "INSERT INTO LOCATION (L_ID ,CODE , DESCRIPTION,CAPACITY,STATUS,BUILDING_ID,FLOOR_ID, TYPE_ID ,EQUIPMENT_CODE,INSERTED_BY,INSERTION_DATE) VALUES(?,?,?,?,?,?,?,?,?,?,?)";
-    
-=======
-    public static final String INSER_NEW_LOCATION =
-        "INSERT INTO LOCATION (L_ID ,CODE , DESCRIPTION,CAPACITY,STATUS,BUILDING_ID,FLOOR_ID, TYPE_ID ,EQUIPMENT_CODE,INSERTED_BY,INSERTION_DATE) VALUES(?,?,?,?,?,?,?,?,?,?,?)";
 
->>>>>>> 311aa679e3f6921f83f53ced3ecdef3739c7c6ff
+    public static final String INSER_NEW_LOCATION = "INSERT INTO LOCATION (L_ID ,CODE , DESCRIPTION,CAPACITY,STATUS,FLOOR_ID, TYPE_ID ,INSERTED_BY,INSERTION_DATE) VALUES(?,?,?,?,?,?,?,?,?)";
+    
     public static final String INSER_NEW_OCCUPATION_PURPOSE = "INSERT INTO LOCATION (OCCUPATION_PURPOSE) VALUES(?)";
 
-<<<<<<< HEAD
     public static final String LIST_ALL_LOCATION = "select location.l_id,location.code ,location.description ,location.capacity,location.status,building.code building_code , floor.code floor_code  ,location_type.code type_code ,location.inserted_by,location.insertion_date,location.updated_by,location.update_date " + 
     "from location , floor ,building ,location_type " + 
-    "where location.floor_id = floor.id and location.building_id =building.b_id and location.type_id =location_type.t_id ";
-||||||| merged common ancestors
-    public static final String LIST_ALL_LOCATION = "select location.l_id,location.code ,location.description ,location.capacity,location.status,building.code building_code , floor.code floor_code  ,location_type.\"code \" type_code ,location.inserted_by,location.insertion_date,location.updated_by,location.update_date " + 
-    "from location , floor ,building ,location_type " + 
-    "where location.floor_id = floor.id and location.building_id =building.b_id and location.type_id =location_type.t_id ";
-=======
-    public static final String LIST_ALL_LOCATION =
-        "select location.l_id,location.code ,location.description ,location.capacity,location.status,building.code building_code , floor.code floor_code  ,location_type.CODE type_code ,location.inserted_by,location.insertion_date,location.updated_by,location.update_date " +
-        "from location , floor ,building ,location_type " +
-        "where location.floor_id = floor.id and location.building_id =building.b_id and location.type_id =location_type.t_id ";
->>>>>>> 311aa679e3f6921f83f53ced3ecdef3739c7c6ff
+    "where location.floor_id = floor.id and floor.id_building = building.b_id and location.type_id =location_type.t_id";
 
     public static final String DELETE_LOCATION = "DELETE FROM LOCATION WHERE L_ID  = ? ";
 
     public static final String IS_LOCATION_EXIST = "SELECT L_ID FROM LOCATION WHERE CODE = ?";
 
     public static final String UPDATE_LOCATION =
-        "UPDATE LOCATION SET   CODE =? , DESCRIPTION = ?, CAPACITY = ? ,STATUS = ?,   BUILDING_ID = ? ,FLOOR_ID = ? ,TYPE_ID = ?,UPDATED_BY = ? , UPDATE_DATE =?   WHERE L_ID =?";
+        "UPDATE LOCATION SET   CODE =? , DESCRIPTION = ?, CAPACITY = ? ,STATUS = ? ,FLOOR_ID = ? ,TYPE_ID = ?,UPDATED_BY = ? , UPDATE_DATE =?   WHERE L_ID =?";
 
-<<<<<<< HEAD
     public static final String LOCATION_SEARCH = "select location.l_id,location.code ,location.description ,location.capacity,location.status,building.code building_code , floor.code floor_code  ,location_type.code  type_code ,location.inserted_by,location.insertion_date,location.updated_by,location.update_date " + 
     "from location , floor ,building ,location_type " + 
-    "where location.floor_id = floor.id and location.building_id =building.b_id and location.type_id =location_type.t_id  and LOWER(location.CODE) LIKE ?";
+    "where location.floor_id = floor.id and floor.id_building = building.b_id and location.type_id =location_type.t_id  and LOWER(location.CODE) LIKE ?";
     
     public static final String LOCATION_FILTER = "select location.l_id,location.code ,location.description ,location.capacity,location.status,building.code building_code , floor.code floor_code  ,location_type.code type_code ,location.inserted_by,location.insertion_date,location.updated_by,location.update_date " + 
      "from location , floor ,building ,location_type " +  
-     "where location.floor_id = floor.id and location.building_id =building.b_id and location.type_id =location_type.t_id  and LOWER(location_type.code) LIKE ? and lower(building.code) like ? " ;
-||||||| merged common ancestors
-    public static final String LOCATION_SEARCH = "select location.l_id,location.code ,location.description ,location.capacity,location.status,building.code building_code , floor.code floor_code  ,location_type.\"code \" type_code ,location.inserted_by,location.insertion_date,location.updated_by,location.update_date " + 
-    "from location , floor ,building ,location_type " + 
-    "where location.floor_id = floor.id and location.building_id =building.b_id and location.type_id =location_type.t_id  and LOWER(location.CODE) LIKE ?";
-    
-    public static final String LOCATION_FILTER = "select location.l_id,location.code ,location.description ,location.capacity,location.status,building.code building_code , floor.code floor_code  ,location_type.\"code \" type_code ,location.inserted_by,location.insertion_date,location.updated_by,location.update_date " + 
-     "from location , floor ,building ,location_type " +  
-     "where location.floor_id = floor.id and location.building_id =building.b_id and location.type_id =location_type.t_id  and LOWER(location_type.\"code \") LIKE ? and lower(building.code) like ? " ;
-=======
-    public static final String LOCATION_SEARCH =
-        "select location.l_id,location.code ,location.description ,location.capacity,location.status,building.code building_code , floor.code floor_code  ,location_type.CODE type_code ,location.inserted_by,location.insertion_date,location.updated_by,location.update_date " +
-        "from location , floor ,building ,location_type " +
-        "where location.floor_id = floor.id and location.building_id =building.b_id and location.type_id =location_type.t_id  and LOWER(location.CODE) LIKE ?";
-
-    public static final String LOCATION_FILTER =
-        "select location.l_id,location.code ,location.description ,location.capacity,location.status,building.code building_code , floor.code floor_code  ,location_type.CODE type_code ,location.inserted_by,location.insertion_date,location.updated_by,location.update_date " +
-        "from location , floor ,building ,location_type " +
-        "where location.floor_id = floor.id and location.building_id =building.b_id and location.type_id =location_type.t_id  and LOWER(location_type.\"code \") LIKE ? and lower(building.code) like ? ";
->>>>>>> 311aa679e3f6921f83f53ced3ecdef3739c7c6ff
+     "where location.floor_id = floor.id and floor.id_building = building.b_id and location.type_id =location_type.t_id  and LOWER(location_type.code) LIKE ? and lower(building.code) like ? " ;
     //___________________________________________________________________________________
 
     //________________________________ EQUIPMENT MODULE __________________________________
@@ -299,5 +260,11 @@ public class Queries {
 
     //_________________________________________________________________________________________
 
+
+    //________________________________ Search Module __________________________________
+   //search in location , building , floor , location type , equipment 
+    public static final String SEARCH_1 = "select building.code \"Building Code\" ,floor.code \"Floor Code\" ,location.code \"Location Code\",location_type.code \"Location Type Code\",equipment.code \"Equipment Code\" " + 
+    "from location join building on building.b_id = location.building_id join floor on floor.id = location.floor_id join location_type on location.type_id = location_type.t_id join equipment on equipment.location_id = location.l_id " + 
+    "where LOWER(location.code) like ? OR LOWER(floor.code) like ? OR LOWER(building.code) like ? OR LOWER(equipment.code) like ? OR LOWER(location_type.code) like ? " ;
 
 }
