@@ -26,14 +26,25 @@ public class ScreenDaoImp implements ScreenDao {
             for (int i = 0; i < screens.size(); i++) {
 
                 if (is_ScreenRole_Exist(screens.get(i) ,role.getRole_id()))
-                { System.out.println("isexist");
+                { 
                  updateScreenRole(screens.get(i) ,role);
                 }
                 else {
                 jdbcRs.setCommand(Queries.ROLE_SCREEN_INSERT);
                 jdbcRs.setInt(1, role.getRole_id());
                 jdbcRs.setInt(2, screens.get(i).getScreen_id());
-                jdbcRs.setString(3, role.getPermission());
+                    
+                if (i<7 && role.getPermissions().get(0)!=null)
+                    jdbcRs.setString(3, role.getPermissions().get(0));
+                if (i>6&&i<9&&(role.getPermissions().get(1)!=null) )
+                    jdbcRs.setString(3, role.getPermissions().get(1));
+                if (i>8&&i<12 &&(role.getPermissions().get(2)!=null))
+                    jdbcRs.setString(3, role.getPermissions().get(2));
+                if (i>11&& role.getPermissions().get(3)!= null)
+                    jdbcRs.setString(3, role.getPermissions().get(3));
+
+                    
+                
                 jdbcRs.execute();
             }
          
@@ -96,29 +107,7 @@ public class ScreenDaoImp implements ScreenDao {
         return screens;
     }
 
-    // check if the role To Screen is existe 
-    public boolean isScreenRole_Exist(ScreenDto Screen, int roleID)
-    {
-            try (JdbcRowSet jdbcRs = RowSetProvider.newFactory().createJdbcRowSet()) {
-                jdbcRs.setUrl(ConnectionFactory.getUrl());
-                jdbcRs.setUsername(ConnectionFactory.getUsername());
-                jdbcRs.setPassword(ConnectionFactory.getPassword());
-                jdbcRs.setCommand(Queries.SCREEN_ROLE_ISEXIST);
-                jdbcRs.setInt(1, roleID);
-                jdbcRs.setInt(2 ,Screen.getScreen_id());
-                jdbcRs.execute();
-                if(jdbcRs.next())
-                {
-                    return true ;
-                 }
-                
-            } catch(Exception e)
-            {
-                e.printStackTrace();
-                }
-        return false ;
-        
-        }
+    
     
     // check if the role To Screen is existe 
     public boolean updateScreenRole(ScreenDto screen, RoleDto role)
@@ -128,8 +117,19 @@ public class ScreenDaoImp implements ScreenDao {
                 jdbcRs.setUsername(ConnectionFactory.getUsername());
                 jdbcRs.setPassword(ConnectionFactory.getPassword());
                 jdbcRs.setCommand(Queries.UPDATESCREEN_ROLE);
-                jdbcRs.setString(1, role.getPermission());
-                jdbcRs.setInt(2, role.getRole_id());
+
+                int id  =  role.getRole_id() ; 
+                if (id<7 && role.getPermissions().get(0)!=null)
+                    jdbcRs.setString(1, role.getPermissions().get(0));
+                if (id>6&&id<9&&(role.getPermissions().get(1)!=null) )
+                    jdbcRs.setString(1, role.getPermissions().get(1));
+                if (id>8&&id<12 &&(role.getPermissions().get(2)!=null))
+                    jdbcRs.setString(1, role.getPermissions().get(2));
+                if (id>11&& role.getPermissions().get(3)!= null)
+                    jdbcRs.setString(1, role.getPermissions().get(3));
+
+
+                jdbcRs.setInt(2,id );
                 jdbcRs.setInt(3,screen.getScreen_id());
                 jdbcRs.execute();
                 if(jdbcRs.next())

@@ -33,8 +33,7 @@ public class MMenu extends javax.swing.JFrame
 
     /** Creates new form MMenu */
     public MMenu() {
-        initComponents();
-        controlOnMenu() ;
+        initComponents(); 
 
     }
 
@@ -50,7 +49,6 @@ public class MMenu extends javax.swing.JFrame
         jLabel1 = new javax.swing.JLabel();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu5 = new javax.swing.JMenu();
-        jMenuItem2 = new javax.swing.JMenuItem();
         jMenu3 = new javax.swing.JMenu();
         buildingM_Item = new javax.swing.JMenuItem();
         floorM_Item = new javax.swing.JMenuItem();
@@ -67,15 +65,8 @@ public class MMenu extends javax.swing.JFrame
         userM_Item = new javax.swing.JMenuItem();
         roleM_Item = new javax.swing.JMenuItem();
         roleScreenM_Item = new javax.swing.JMenuItem();
-        userQuickSearch = new javax.swing.JMenu();
-        userquicksearch = new javax.swing.JMenuItem();
-        buildingquicksearch = new javax.swing.JMenuItem();
-        locationquicksearch = new javax.swing.JMenuItem();
-        coursequicksearch = new javax.swing.JMenuItem();
-        assigendrolequicksearch = new javax.swing.JMenuItem();
-        tablequicksearch = new javax.swing.JMenuItem();
         jMenu4 = new javax.swing.JMenu();
-        jMenu6 = new javax.swing.JMenu();
+        report = new javax.swing.JMenu();
         logout = new javax.swing.JMenu();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -100,78 +91,71 @@ public class MMenu extends javax.swing.JFrame
                 .addContainerGap(292, Short.MAX_VALUE))
         );
 
-        jMenu5.setText("Open File                  ");
+        jMenu5.setText("Tables                  ");
         jMenu5.setActionCommand("Insert New   ");
         jMenu5.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jMenu5MouseClicked(evt);
             }
         });
-
-        jMenuItem2.setText("Insert");
-        jMenuItem2.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem2ActionPerformed(evt);
-            }
-        });
-        jMenu5.add(jMenuItem2);
-
+		
+		if(controlOnMenu(14))
         jMenuBar1.add(jMenu5);
 
         jMenu3.setText("Basic Data Management                  ");
 
         buildingM_Item.setText("Building");
-        buildingM_Item.setEnabled(false);
         buildingM_Item.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 buildingM_ItemActionPerformed(evt);
             }
         });
+		if(controlOnMenu(1))
         jMenu3.add(buildingM_Item);
 
         floorM_Item.setText("Building Floor");
-        floorM_Item.setEnabled(false);
         floorM_Item.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 floorM_ItemActionPerformed(evt);
             }
         });
+		if(controlOnMenu(2))
         jMenu3.add(floorM_Item);
 
         locationTypeM_Item.setText("location Type");
-        locationTypeM_Item.setEnabled(false);
         locationTypeM_Item.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 locationTypeM_ItemActionPerformed(evt);
             }
-        });
+        });		
+		if(controlOnMenu(3))
         jMenu3.add(locationTypeM_Item);
 
         departmentM_Item.setText("Departments");
-        departmentM_Item.setEnabled(false);
         departmentM_Item.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 departmentM_ItemActionPerformed(evt);
             }
         });
+		if(controlOnMenu(4))
         jMenu3.add(departmentM_Item);
 
         courseM_Item.setText("Course");
-        courseM_Item.setEnabled(false);
         courseM_Item.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 courseM_ItemActionPerformed(evt);
             }
         });
+		if(controlOnMenu(5))
         jMenu3.add(courseM_Item);
 
         staffM_Item.setText("Staff Member ");
-        staffM_Item.setEnabled(false);
         staffM_Item.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 staffM_ItemActionPerformed(evt);
             }
         });
+		if(controlOnMenu(6))
         jMenu3.add(staffM_Item);
 
         jMenuItem1.setText("Equipment");
@@ -180,6 +164,8 @@ public class MMenu extends javax.swing.JFrame
                 jMenuItem1ActionPerformed(evt);
             }
         });
+		
+		if(controlOnMenu(7))
         jMenu3.add(jMenuItem1);
 
         jMenuBar1.add(jMenu3);
@@ -187,25 +173,31 @@ public class MMenu extends javax.swing.JFrame
         jMenu2.setText(" Locations’and spaces management                  ");
 
         locationMasterM_Item.setText("Locations master screen");
-        locationMasterM_Item.setEnabled(false);
         locationMasterM_Item.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 locationMasterM_ItemActionPerformed(evt);
             }
         });
+		
+		if(controlOnMenu(8))
         jMenu2.add(locationMasterM_Item);
 
         locationManualM_Item.setText("Location Manual Assignment");
-        locationManualM_Item.setEnabled(false);
         locationManualM_Item.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 locationManualM_ItemActionPerformed(evt);
             }
         });
+		if(controlOnMenu(9))
         jMenu2.add(locationManualM_Item);
 
         locationAutoM_Item.setText("Location Automatic Assignment");
-        locationAutoM_Item.setEnabled(false);
+        locationAutoM_Item.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                locationAutoM_ItemActionPerformed(evt);
+            }
+        });
+		if(controlOnMenu(10))
         jMenu2.add(locationAutoM_Item);
 
         jMenuBar1.add(jMenu2);
@@ -218,83 +210,46 @@ public class MMenu extends javax.swing.JFrame
         });
 
         userM_Item.setText("User");
-        userM_Item.setEnabled(false);
         userM_Item.setName("user"); // NOI18N
         userM_Item.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 userM_ItemActionPerformed(evt);
             }
         });
+		
+		if(controlOnMenu(11))
         jMenu1.add(userM_Item);
 
         roleM_Item.setText("Role");
-        roleM_Item.setEnabled(false);
         roleM_Item.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 roleM_ItemActionPerformed(evt);
             }
         });
+		if(controlOnMenu(12))
         jMenu1.add(roleM_Item);
 
         roleScreenM_Item.setText("Role Screens");
-        roleScreenM_Item.setEnabled(false);
         roleScreenM_Item.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 roleScreenM_ItemActionPerformed(evt);
             }
         });
+		if(controlOnMenu(13))
         jMenu1.add(roleScreenM_Item);
 
         jMenuBar1.add(jMenu1);
 
-        userQuickSearch.setText("Quick Search                   ");
-        userQuickSearch.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
-
-        userquicksearch.setText("for User");
-        userquicksearch.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                userquicksearchActionPerformed(evt);
-            }
-        });
-        userQuickSearch.add(userquicksearch);
-
-        buildingquicksearch.setText("for Home  Building ");
-        buildingquicksearch.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                buildingquicksearchActionPerformed(evt);
-            }
-        });
-        userQuickSearch.add(buildingquicksearch);
-
-        locationquicksearch.setText("for Location");
-        locationquicksearch.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                locationquicksearchActionPerformed(evt);
-            }
-        });
-        userQuickSearch.add(locationquicksearch);
-
-        coursequicksearch.setText("for Course");
-        userQuickSearch.add(coursequicksearch);
-
-        assigendrolequicksearch.setText("for Assigned Role");
-        assigendrolequicksearch.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                assigendrolequicksearchActionPerformed(evt);
-            }
-        });
-        userQuickSearch.add(assigendrolequicksearch);
-
-        tablequicksearch.setText("for Table ");
-        userQuickSearch.add(tablequicksearch);
-
-        jMenuBar1.add(userQuickSearch);
-
         jMenu4.setText("About                  ");
         jMenuBar1.add(jMenu4);
 
-        jMenu6.setText("Report                  ");
-        jMenuBar1.add(jMenu6);
+        report.setText("Report                  ");
+        report.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                reportMouseClicked(evt);
+            }
+        });
+        jMenuBar1.add(report);
 
         logout.setText(" Log Out");
         logout.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -338,10 +293,6 @@ public class MMenu extends javax.swing.JFrame
      
     }//GEN-LAST:event_jMenu1MouseClicked
 
-    private void buildingquicksearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buildingquicksearchActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_buildingquicksearchActionPerformed
-
     private void userM_ItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_userM_ItemActionPerformed
 
         switchtoPanel(new UsersScreen()); 
@@ -363,10 +314,6 @@ public class MMenu extends javax.swing.JFrame
             e.printStackTrace();
         }       
     }//GEN-LAST:event_logoutMouseClicked
-
-    private void userquicksearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_userquicksearchActionPerformed
-
-    }//GEN-LAST:event_userquicksearchActionPerformed
 
     private void roleScreenM_ItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_roleScreenM_ItemActionPerformed
         switchtoPanel(new ScreenRoles()); 
@@ -391,11 +338,12 @@ public class MMenu extends javax.swing.JFrame
     }//GEN-LAST:event_locationMasterM_ItemActionPerformed
 
     private void jMenu5MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jMenu5MouseClicked
-
-        // TODO add your handling code here:
+    switchtoPanel(new ScheduleInsert()) ;
     }//GEN-LAST:event_jMenu5MouseClicked
 
+
     private void locationquicksearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_locationquicksearchActionPerformed
+        // TODO add your handling code here:
     }//GEN-LAST:event_locationquicksearchActionPerformed
 
     private void assigendrolequicksearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_assigendrolequicksearchActionPerformed
@@ -421,15 +369,19 @@ public class MMenu extends javax.swing.JFrame
     }//GEN-LAST:event_locationManualM_ItemActionPerformed
 
 
-    private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
-    switchtoPanel(new ScheduleInsert()) ;
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jMenuItem2ActionPerformed
-
     private void departmentM_ItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_departmentM_ItemActionPerformed
        switchtoPanel(new DepartmentsScreen() );
        
     }//GEN-LAST:event_departmentM_ItemActionPerformed
+
+    private void locationAutoM_ItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_locationAutoM_ItemActionPerformed
+       switchtoPanel(new AutoAssignment() );
+    
+    }//GEN-LAST:event_locationAutoM_ItemActionPerformed
+
+    private void reportMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_reportMouseClicked
+        switchtoPanel(new MailScreen() ) ; 
+    }//GEN-LAST:event_reportMouseClicked
 
 
     /**
@@ -468,11 +420,8 @@ public class MMenu extends javax.swing.JFrame
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JMenuItem assigendrolequicksearch;
     private javax.swing.JMenuItem buildingM_Item;
-    private javax.swing.JMenuItem buildingquicksearch;
     private javax.swing.JMenuItem courseM_Item;
-    private javax.swing.JMenuItem coursequicksearch;
     private javax.swing.JMenuItem departmentM_Item;
     private javax.swing.JMenuItem floorM_Item;
     private javax.swing.JLabel jLabel1;
@@ -481,69 +430,27 @@ public class MMenu extends javax.swing.JFrame
     private javax.swing.JMenu jMenu3;
     private javax.swing.JMenu jMenu4;
     private javax.swing.JMenu jMenu5;
-    private javax.swing.JMenu jMenu6;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenuItem jMenuItem1;
-    private javax.swing.JMenuItem jMenuItem2;
     private javax.swing.JMenuItem locationAutoM_Item;
     private javax.swing.JMenuItem locationManualM_Item;
     private javax.swing.JMenuItem locationMasterM_Item;
     private javax.swing.JMenuItem locationTypeM_Item;
-    private javax.swing.JMenuItem locationquicksearch;
     private javax.swing.JMenu logout;
     private javax.swing.JPanel mainPanel;
+    private javax.swing.JMenu report;
     private javax.swing.JMenuItem roleM_Item;
     private javax.swing.JMenuItem roleScreenM_Item;
     private javax.swing.JMenuItem staffM_Item;
-    private javax.swing.JMenuItem tablequicksearch;
     private javax.swing.JMenuItem userM_Item;
-    private javax.swing.JMenu userQuickSearch;
-    private javax.swing.JMenuItem userquicksearch;
     // End of variables declaration//GEN-END:variables
 
 
-    void controlOnMenu() {
+    boolean controlOnMenu(int id) {
         for (int i = 0; i < availableScreens.size(); i++) {
             int screenID = availableScreens.get(i).getScreen_id();
-
-
-            if (screenID == 1)
-                buildingM_Item.setEnabled(true);
-
-            if (screenID == 2)
-                floorM_Item.setEnabled(true);
-
-            if (screenID == 3)
-                locationTypeM_Item.setEnabled(true);
-
-            if (screenID == 4)
-                departmentM_Item.setEnabled(true);
-
-            if (screenID == 5)
-                courseM_Item.setEnabled(true);
-
-            if (screenID == 6)
-                staffM_Item.setEnabled(true);
-            
-            // 7,8 not added yet will be added when kotb finish it 
-
-            if (screenID == 9)
-                userM_Item.setEnabled(true);
-
-            if (screenID == 10)
-                roleM_Item.setEnabled(true);
-
-            if (screenID == 11)
-                roleScreenM_Item.setEnabled(true);
-
-            if (screenID == 12)
-                locationMasterM_Item.setEnabled(true);
-
-            if (screenID == 13)
-                locationManualM_Item.setEnabled(true);
-
-            if (screenID == 14)
-                locationAutoM_Item.setEnabled(true);
-        }
-    }
+           if (screenID==id)
+             return true;
+                 }
+     return false;   }
 }
