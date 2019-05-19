@@ -1,6 +1,7 @@
 package com.fym.lta.dao;
 
 import com.fym.lta.common.ConnectionFactory;
+import com.fym.lta.common.LTAException;
 import com.fym.lta.common.Queries;
 import com.fym.lta.dto.RoleDto;
 
@@ -59,7 +60,8 @@ public class RoleDaoImp implements RoleDao {
         return false;
     }
 
-    public boolean insert_Role(RoleDto role) {
+    public boolean insert_Role(RoleDto role)throws LTAException
+    {
         try (JdbcRowSet jdbcRs = RowSetProvider.newFactory().createJdbcRowSet()) {
             jdbcRs.setUrl(ConnectionFactory.getUrl());
             jdbcRs.setUsername(ConnectionFactory.getUsername());
@@ -104,7 +106,7 @@ public class RoleDaoImp implements RoleDao {
         return false;
     }
 
-    public boolean Update_Role(RoleDto role) {
+    public boolean Update_Role(RoleDto role) throws LTAException {
 
         try (JdbcRowSet jdbcRs = RowSetProvider.newFactory().createJdbcRowSet()) {
             jdbcRs.setUrl(ConnectionFactory.getUrl());

@@ -1,6 +1,7 @@
 package com.fym.lta.dao;
 
 
+import com.fym.lta.common.LTAException;
 import com.fym.lta.dto.RoleDto;
 
 import java.util.List;
@@ -14,10 +15,10 @@ public interface RoleDao {
     public boolean delete_Role(String code);
     
     // this behavior to search for Role by id
-    public boolean insert_Role(RoleDto role);
+    public boolean insert_Role(RoleDto role)throws LTAException;
     
     // this behavior to update Role data
-    public boolean Update_Role(RoleDto role);
+    public boolean Update_Role(RoleDto role)throws LTAException;
     
     // this behavior to check Role existance
     public boolean isExist(String code);

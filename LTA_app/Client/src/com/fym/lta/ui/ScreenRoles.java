@@ -4,6 +4,7 @@ package com.fym.lta.ui;
 import com.fym.lta.bao.BaoFactory;
 import com.fym.lta.bao.RoleBao;
 import com.fym.lta.bao.ScreenBao;
+import com.fym.lta.common.LTAException;
 import com.fym.lta.dto.RoleDto;
 import com.fym.lta.dto.ScreenDto;
 
@@ -35,8 +36,8 @@ public class ScreenRoles extends javax.swing.JPanel {
 
         // roleID = 13 
         // now one step we will create an object of ScreenBao to know the current permission 
-        // String permissionType = new BaoFactory().createScreenBao().getCurrentPermission(13);
-        //  Utilities.mandate(null,null , null ,13,permissionType);
+         String permissionType = new BaoFactory().createScreenBao().getCurrentPermission(13);
+         Utilities.mandate(null,null , null ,13,permissionType);
     }
 
     /** This method is called from within the constructor to
@@ -699,13 +700,19 @@ public class ScreenRoles extends javax.swing.JPanel {
         
        if(selectedScreens!=null)
        {
-           if(screenBaoObj.saveScreenRoles(selectedScreens, role))
+           try 
+           {          
+            if(screenBaoObj.saveScreenRoles(selectedScreens, role))
            {
            JOptionPane.showMessageDialog(this , "Saved successfully") ;     
            }
            else 
            JOptionPane.showMessageDialog(this , "Can't Save") ;     
     
+           } catch(LTAException e){
+                   JOptionPane.showMessageDialog(this , "Error in Data Base") ;     
+
+               } 
        }
        else 
            JOptionPane.showMessageDialog(this , "you should select a one screen at least ") ;  

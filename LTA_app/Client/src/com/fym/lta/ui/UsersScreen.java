@@ -4,6 +4,7 @@ package com.fym.lta.ui;
 import com.fym.lta.bao.BaoFactory;
 import com.fym.lta.bao.LoginEngine;
 import com.fym.lta.bao.UserBao;
+import com.fym.lta.common.LTAException;
 import com.fym.lta.dto.EmployeeDto;
 import com.fym.lta.dto.RoleDto;
 import com.fym.lta.dto.UserDto;
@@ -478,17 +479,23 @@ public class UsersScreen extends javax.swing.JPanel {
 
         }
         // call bao to save user
-        if (usernameAvailabilty) {
-            if (userBaoObj.saveUser(user)) {
-                JOptionPane.showMessageDialog(this, "User Saved ");
-                insertPanel.setVisible(false);
-                userTableReset(userBaoObj.listAll());
+        if (usernameAvailabilty) { 
+            try {
+            
+                if (userBaoObj.saveUser(user)) {
+                    JOptionPane.showMessageDialog(this, "User Saved ");
+                    insertPanel.setVisible(false);
+                    userTableReset(userBaoObj.listAll());
 
-            } else
-                JOptionPane.showMessageDialog(this,
-                                              "Can not insert or update Ther are a problem please check entered data ");
+                } else
+                    JOptionPane.showMessageDialog(this,
+                                                  "Can not insert or update Ther are a problem please check entered data ");
 
 
+            } catch(LTAException ex)
+            {JOptionPane.showMessageDialog(this, "Error in Data base");}
+ 
+            
         } else
             JOptionPane.showMessageDialog(this, "please Change user name ");
         

@@ -3,6 +3,7 @@ package com.fym.lta.ui;
 import com.fym.lta.bao.BaoFactory;
 import com.fym.lta.bao.LoginEngine;
 import com.fym.lta.bao.RoleBao;
+import com.fym.lta.common.LTAException;
 import com.fym.lta.dto.RoleDto;
 
 import java.sql.Date;
@@ -19,8 +20,8 @@ public class RoleScreen extends javax.swing.JPanel {
     // create role using bussiness factory
     RoleBao role = new BaoFactory().createRoleBao();
     boolean updateFlag = false;
-    
-    RoleDto roleUpdateObject  = null ;
+
+    RoleDto roleUpdateObject = null;
 
     /** Creates new form RoleScreen */
     public RoleScreen() {
@@ -30,12 +31,12 @@ public class RoleScreen extends javax.swing.JPanel {
         // fill table data from DB
         if (role.getAll() != null)
             roleTableReset(role.getAll());
-        
 
-        // roleID = 12 
-        // now one step we will create an object of ScreenBao to know the current permission 
+
+        // roleID = 12
+        // now one step we will create an object of ScreenBao to know the current permission
         String permissionType = new BaoFactory().createScreenBao().getCurrentPermission(12);
-        Utilities.mandate(ubdateRoleBTN,insertRoleBTN , deleteRoleBTN ,12,permissionType);
+        Utilities.mandate(ubdateRoleBTN, insertRoleBTN, deleteRoleBTN, 12, permissionType);
     }
 
     /** This method is called from within the constructor to
@@ -270,17 +271,17 @@ public class RoleScreen extends javax.swing.JPanel {
 
     private void ubdateRoleBTNActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ubdateRoleBTNActionPerformed
         if (rolesTable.getSelectedRow() >= 0) {
-            
+
             // copy data from table to entereddata textfiel
-            roleUpdateObject = new RoleDto( rolesTable.getValueAt(rolesTable.getSelectedRow(), 0).toString());
+            roleUpdateObject = new RoleDto(rolesTable.getValueAt(rolesTable.getSelectedRow(), 0).toString());
             // copy text data from table enteredDescription
             roleUpdateObject.setDescription(rolesTable.getValueAt(rolesTable.getSelectedRow(), 1).toString());
-            
-            enteredCodeBox.setVisible(false) ;
-            codeLabel.setVisible(false) ;
+
+            enteredCodeBox.setVisible(false);
+            codeLabel.setVisible(false);
             enteredDescription.setText(rolesTable.getValueAt(rolesTable.getSelectedRow(), 1).toString());
-            
-           updateFlag = true;
+
+            updateFlag = true;
             insertUpdatePanel.setVisible(true);
         } else
             JOptionPane.showMessageDialog(this, "Please select a role to update");
@@ -289,11 +290,11 @@ public class RoleScreen extends javax.swing.JPanel {
     }//GEN-LAST:event_ubdateRoleBTNActionPerformed
 
     private void deleteRoleBTNMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_deleteRoleBTNMouseClicked
-    insertUpdatePanel.setVisible(false);  
+        insertUpdatePanel.setVisible(false);
         if (rolesTable.getSelectedRow() >= 0) {
             String selectedRoleCode =
                 rolesTable.getValueAt(rolesTable.getSelectedRow(), 0).toString(); // hold the code of role
-            
+
             // call bussiness method
             if (role.deleteRole(selectedRoleCode)) {
                 JOptionPane.showMessageDialog(this, "deleted Successfully  ");
@@ -308,26 +309,26 @@ public class RoleScreen extends javax.swing.JPanel {
     private void insertRoleBTNMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_insertRoleBTNMouseClicked
         insertUpdatePanel.setVisible(true);
         enteredCodeBox.setText(null);
-        enteredCodeBox.setVisible(true) ;
+        enteredCodeBox.setVisible(true);
         enteredDescription.setText(null);
-        codeLabel.setVisible(true) ;
+        codeLabel.setVisible(true);
         updateFlag = false;
     }//GEN-LAST:event_insertRoleBTNMouseClicked
 
     private void searchUserBTNMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_searchUserBTNMouseClicked
-    insertUpdatePanel.setVisible(false);
+        insertUpdatePanel.setVisible(false);
 
         if (roleEnteredCode.getText() == null)
-            roleTableReset(role.getAll()); 
-        else
-        
-        {   if(role.search_forRole(roleEnteredCode.getText().trim())==null) {
-            JOptionPane.showMessageDialog(this, "not found");
             roleTableReset(role.getAll());
-        }
-               else
-              roleTableReset(role.search_forRole(roleEnteredCode.getText().trim())); 
-            }       
+        else
+
+        {
+            if (role.search_forRole(roleEnteredCode.getText().trim()) == null) {
+                JOptionPane.showMessageDialog(this, "not found");
+                roleTableReset(role.getAll());
+            } else
+                roleTableReset(role.search_forRole(roleEnteredCode.getText().trim()));
+        }       
 
      
     }//GEN-LAST:event_searchUserBTNMouseClicked
@@ -352,7 +353,15 @@ public class RoleScreen extends javax.swing.JPanel {
             myrole.setInertion_Date(new Date(System.currentTimeMillis()));
         }
 
-        boolean statuse = role.saveRole(myrole);
+        boolean statuse = false;
+
+        try {
+            statuse = role.saveRole(myrole);
+
+        } catch (LTAException ex) {
+            JOptionPane.showMessageDialog(this, "Error in Data Base");
+        }
+
         if (statuse) {
             JOptionPane.showMessageDialog(this, " Done Successfully ");
             // reset table content

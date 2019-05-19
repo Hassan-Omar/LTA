@@ -1,6 +1,7 @@
 package com.fym.lta.dao;
 
 import com.fym.lta.common.ConnectionFactory;
+import com.fym.lta.common.LTAException;
 import com.fym.lta.common.Queries;
 import com.fym.lta.dto.RoleDto;
 import com.fym.lta.dto.ScreenDto;
@@ -15,7 +16,7 @@ public class ScreenDaoImp implements ScreenDao {
 
 
     @Override
-    public boolean insertScreenRoles(List<ScreenDto> screens, RoleDto role) {
+    public boolean insertScreenRoles(List<ScreenDto> screens, RoleDto role) throws LTAException {
 
         try (JdbcRowSet jdbcRs = RowSetProvider.newFactory().createJdbcRowSet()) {
             jdbcRs.setUrl(ConnectionFactory.getUrl());

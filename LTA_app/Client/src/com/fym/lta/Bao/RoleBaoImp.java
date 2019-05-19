@@ -1,5 +1,6 @@
 package com.fym.lta.bao;
 
+import com.fym.lta.common.LTAException;
 import com.fym.lta.dao.DaoFactory;
 import com.fym.lta.dao.RoleDao;
 import com.fym.lta.dto.RoleDto;
@@ -12,11 +13,13 @@ public class RoleBaoImp implements RoleBao {
     RoleDao roleDaoObj = new DaoFactory().createRoleDao();
 
 
-    public boolean saveRole(RoleDto role) {
+    public boolean saveRole(RoleDto role) throws LTAException {
         boolean saveStatus = false;
         // if this data is exist in our data base only i will update it
         if (roleDaoObj.isExist(role.getCode())) { // if we are here this means we need to upgrade an existed role
-            saveStatus = roleDaoObj.Update_Role(role);
+             
+                saveStatus = roleDaoObj.Update_Role(role);
+            
         } else {
             saveStatus = roleDaoObj.insert_Role(role);
         }
