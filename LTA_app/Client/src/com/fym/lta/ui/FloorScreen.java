@@ -24,7 +24,7 @@ public class FloorScreen extends javax.swing.JPanel
     /**table Structure  */    
     private void setTableModel(List<FloorDto> Floor)
     {
-        Object [][] Column = new Object [Floor.size()][4];
+        Object [][] Column = new Object [Floor.size()][2];
         for(int i =0;i<Floor.size();i++){
             Column[i][0] = Floor.get(i).getCode();
             Column[i][1] = Floor.get(i).getDescription();          

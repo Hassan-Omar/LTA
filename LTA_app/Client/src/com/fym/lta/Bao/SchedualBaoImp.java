@@ -75,8 +75,9 @@ public class SchedualBaoImp implements SchedualBao
         }
 
     @Override
-    public List<SchedualDto> listSchedual_inDeparts(String code) {
-        // TODO Implement this method
+    public List<SchedualDto> listSchedual_inDeparts(String name) {
+        
+        
         return Collections.emptyList();
     }
 }

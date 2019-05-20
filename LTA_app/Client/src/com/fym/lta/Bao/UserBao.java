@@ -1,5 +1,6 @@
 package com.fym.lta.bao;
 
+import com.fym.lta.common.LTAException;
 import com.fym.lta.dto.UserDto;
 
 import java.util.List;
@@ -11,7 +12,7 @@ public interface UserBao {
      * otherwise it updates the exis. once
      * if flag true operation will done on a staff member
      */
-    public boolean saveUser(UserDto user);
+    public boolean saveUser(UserDto user)throws LTAException ;
 
     /**
      * Search for  Users . this return a list of users .

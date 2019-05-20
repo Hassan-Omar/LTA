@@ -15,26 +15,19 @@ public class UserBaoImp implements UserBao {
     }
 
     @Override
-    public boolean saveUser(UserDto user)
+    public boolean saveUser(UserDto user) throws LTAException 
     {
 
         // i will  check if the user is exist so i will update this user else i will insert new user
         boolean status = false;
         if (userDaoObject.isExists(user.getUserName() , user.getEmail())) 
-        {
-            try {
+        { 
                 status = userDaoObject.updateUser(user);
-            } catch (LTAException e) {
-                // not handeled we should move up to user
-                e.printStackTrace();
-            }
+            
         } else {
-            try {
+            
                 status = userDaoObject.insert_User(user);
-            } catch (LTAException e) {
-                // not handeled we should move up to user
-                e.printStackTrace();
-            }
+             
         }
 
         return status;

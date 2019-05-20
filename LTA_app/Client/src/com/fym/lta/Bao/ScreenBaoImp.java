@@ -1,5 +1,6 @@
 package com.fym.lta.bao;
 
+import com.fym.lta.common.LTAException;
 import com.fym.lta.dao.DaoFactory;
 import com.fym.lta.dao.RoleDao;
 import com.fym.lta.dao.ScreenDao;
@@ -20,7 +21,7 @@ public class ScreenBaoImp implements ScreenBao {
     // delgate to screeenDaoObj methods
 
     @Override
-    public boolean saveScreenRoles(List<ScreenDto> screens, RoleDto role) {
+    public boolean saveScreenRoles(List<ScreenDto> screens, RoleDto role) throws LTAException {
         return screeenDaoObj.insertScreenRoles(screens, role);
     }
 
@@ -34,8 +35,7 @@ public class ScreenBaoImp implements ScreenBao {
     }
 
     @Override
-    public List<ScreenDto> list_Of_AavailableScreens() 
-    {
+    public List<ScreenDto> list_Of_AavailableScreens() {
 
         // using the current username we can get it's role ID
         int roleID = RoleDaoObj.getCurrenRoleID(LoginEngine.currentUser);

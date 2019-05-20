@@ -1,9 +1,8 @@
 package com.fym.lta.common;
 
-import java.sql.SQLIntegrityConstraintViolationException;
 
 public class LTAException extends Exception{
-    String exactMessage = "";
+    String exactMessage = "Error in DB";
 
     public String getExactMessage() {
         return exactMessage;

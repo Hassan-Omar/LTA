@@ -57,12 +57,13 @@ public class LocationMasterScreen extends javax.swing.JPanel {
     }
     
     void listEquipments(List<EquipmentDto> Equipment) {
+        if(Equipment!=null) {
         DefaultListModel list = new DefaultListModel();
           for (int i = 0; i < Equipment.size(); i++) 
           {
                  list.addElement(Equipment.get(i).getCode());  
           }
-          EquipmentList.setModel(list);
+          EquipmentList.setModel(list);}
     }
       
     // To Set the retrieved data from database into the locationTable//  

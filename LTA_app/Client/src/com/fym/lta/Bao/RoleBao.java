@@ -1,5 +1,6 @@
 package com.fym.lta.bao;
 
+import com.fym.lta.common.LTAException;
 import com.fym.lta.dto.RoleDto;
 
 import java.util.List;
@@ -11,7 +12,7 @@ public interface RoleBao {
      * insert new Role if it doesn't exists
      * otherwise it updates the exis. once
      */
-    public boolean saveRole(RoleDto role);
+    public boolean saveRole(RoleDto role)throws LTAException;
 
 
     /**

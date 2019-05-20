@@ -1,5 +1,6 @@
 package com.fym.lta.bao;
 
+import com.fym.lta.common.LTAException;
 import com.fym.lta.dto.RoleDto;
 import com.fym.lta.dto.ScreenDto;
 
@@ -11,7 +12,7 @@ public interface ScreenBao {
     /**
      * insert a permission  to an exist role to accesss the screens
      */
-    public boolean saveScreenRoles(List<ScreenDto> screens ,RoleDto role );
+    public boolean saveScreenRoles(List<ScreenDto> screens ,RoleDto role )throws LTAException;
 
 
     /**
