@@ -207,6 +207,9 @@
                 </Property>
                 <Property name="text" type="java.lang.String" value="Basic Data Management"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="mod1CheckboxActionPerformed"/>
+              </Events>
             </Component>
             <Component class="javax.swing.JCheckBox" name="mod2Checkbox">
               <Properties>
@@ -215,6 +218,9 @@
                 </Property>
                 <Property name="text" type="java.lang.String" value="Locations Managnent"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="mod2CheckboxActionPerformed"/>
+              </Events>
             </Component>
             <Component class="javax.swing.JCheckBox" name="mod3Checkbox">
               <Properties>
@@ -223,6 +229,9 @@
                 </Property>
                 <Property name="text" type="java.lang.String" value="Authentication and Authorization"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="mod3CheckboxActionPerformed"/>
+              </Events>
             </Component>
             <Component class="javax.swing.JCheckBox" name="mod4Checkbox">
               <Properties>
@@ -231,6 +240,9 @@
                 </Property>
                 <Property name="text" type="java.lang.String" value="Tables Managment"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="mod4CheckboxActionPerformed"/>
+              </Events>
             </Component>
             <Container class="javax.swing.JPanel" name="jPanel2">
               <Properties>
@@ -280,9 +292,6 @@
                     </Property>
                     <Property name="text" type="java.lang.String" value="view"/>
                   </Properties>
-                  <Events>
-                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="viewCheckbox2ActionPerformed"/>
-                  </Events>
                 </Component>
                 <Component class="javax.swing.JCheckBox" name="insertCheckbox2">
                   <Properties>
@@ -291,9 +300,6 @@
                     </Property>
                     <Property name="text" type="java.lang.String" value="insert"/>
                   </Properties>
-                  <Events>
-                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="insertCheckbox2ActionPerformed"/>
-                  </Events>
                 </Component>
                 <Component class="javax.swing.JCheckBox" name="deleteCheckbox2">
                   <Properties>
@@ -302,9 +308,6 @@
                     </Property>
                     <Property name="text" type="java.lang.String" value="delete"/>
                   </Properties>
-                  <Events>
-                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="deleteCheckbox2ActionPerformed"/>
-                  </Events>
                 </Component>
                 <Component class="javax.swing.JCheckBox" name="updateCheckbox2">
                   <Properties>
@@ -313,9 +316,6 @@
                     </Property>
                     <Property name="text" type="java.lang.String" value="update"/>
                   </Properties>
-                  <Events>
-                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="updateCheckbox2ActionPerformed"/>
-                  </Events>
                 </Component>
               </SubComponents>
             </Container>
@@ -367,9 +367,6 @@
                     </Property>
                     <Property name="text" type="java.lang.String" value="view"/>
                   </Properties>
-                  <Events>
-                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="viewCheckbox1ActionPerformed"/>
-                  </Events>
                 </Component>
                 <Component class="javax.swing.JCheckBox" name="insertCheckbox1">
                   <Properties>
@@ -378,9 +375,6 @@
                     </Property>
                     <Property name="text" type="java.lang.String" value="insert"/>
                   </Properties>
-                  <Events>
-                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="insertCheckbox1ActionPerformed"/>
-                  </Events>
                 </Component>
                 <Component class="javax.swing.JCheckBox" name="deleteCheckbox1">
                   <Properties>
@@ -389,9 +383,6 @@
                     </Property>
                     <Property name="text" type="java.lang.String" value="delete"/>
                   </Properties>
-                  <Events>
-                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="deleteCheckbox1ActionPerformed"/>
-                  </Events>
                 </Component>
                 <Component class="javax.swing.JCheckBox" name="updateCheckbox1">
                   <Properties>
@@ -400,9 +391,6 @@
                     </Property>
                     <Property name="text" type="java.lang.String" value="update"/>
                   </Properties>
-                  <Events>
-                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="updateCheckbox1ActionPerformed"/>
-                  </Events>
                 </Component>
               </SubComponents>
             </Container>
@@ -454,9 +442,6 @@
                     </Property>
                     <Property name="text" type="java.lang.String" value="view"/>
                   </Properties>
-                  <Events>
-                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="viewCheckbox3ActionPerformed"/>
-                  </Events>
                 </Component>
                 <Component class="javax.swing.JCheckBox" name="insertCheckbox3">
                   <Properties>
@@ -465,9 +450,6 @@
                     </Property>
                     <Property name="text" type="java.lang.String" value="insert"/>
                   </Properties>
-                  <Events>
-                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="insertCheckbox3ActionPerformed"/>
-                  </Events>
                 </Component>
                 <Component class="javax.swing.JCheckBox" name="deleteCheckbox3">
                   <Properties>
@@ -476,9 +458,6 @@
                     </Property>
                     <Property name="text" type="java.lang.String" value="delete"/>
                   </Properties>
-                  <Events>
-                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="deleteCheckbox3ActionPerformed"/>
-                  </Events>
                 </Component>
                 <Component class="javax.swing.JCheckBox" name="updateCheckbox3">
                   <Properties>
@@ -487,9 +466,6 @@
                     </Property>
                     <Property name="text" type="java.lang.String" value="update"/>
                   </Properties>
-                  <Events>
-                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="updateCheckbox3ActionPerformed"/>
-                  </Events>
                 </Component>
               </SubComponents>
             </Container>
@@ -541,9 +517,6 @@
                     </Property>
                     <Property name="text" type="java.lang.String" value="view"/>
                   </Properties>
-                  <Events>
-                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="viewCheckbox4ActionPerformed"/>
-                  </Events>
                 </Component>
                 <Component class="javax.swing.JCheckBox" name="insertCheckbox4">
                   <Properties>
@@ -552,9 +525,6 @@
                     </Property>
                     <Property name="text" type="java.lang.String" value="insert"/>
                   </Properties>
-                  <Events>
-                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="insertCheckbox4ActionPerformed"/>
-                  </Events>
                 </Component>
                 <Component class="javax.swing.JCheckBox" name="deleteCheckbox4">
                   <Properties>
@@ -563,9 +533,6 @@
                     </Property>
                     <Property name="text" type="java.lang.String" value="delete"/>
                   </Properties>
-                  <Events>
-                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="deleteCheckbox4ActionPerformed"/>
-                  </Events>
                 </Component>
                 <Component class="javax.swing.JCheckBox" name="updateCheckbox4">
                   <Properties>
@@ -574,9 +541,6 @@
                     </Property>
                     <Property name="text" type="java.lang.String" value="update"/>
                   </Properties>
-                  <Events>
-                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="updateCheckbox4ActionPerformed"/>
-                  </Events>
                 </Component>
               </SubComponents>
             </Container>
@@ -637,7 +601,6 @@
           </Properties>
           <Events>
             <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="doneBtnMouseClicked"/>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="doneBtnActionPerformed"/>
           </Events>
         </Component>
       </SubComponents>

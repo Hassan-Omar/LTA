@@ -22,7 +22,7 @@ public class ScreenRoles extends javax.swing.JPanel {
     RoleBao roleBaoObj = new BaoFactory().createRoleBao();
     ScreenBao screenBaoObj = new BaoFactory().createScreenBao();
     List<RoleDto> allRoles = new ArrayList();
-    String permission1, permission2, permission3, permission4; // hold the values of permission on the module
+    String permission1=" " , permission2=" ", permission3=" ", permission4=" "; // hold the values of permission on the module
     List<ScreenDto> selectedScreens = new ArrayList(); //hold the values of selected screens
 
     /** Creates new form ScreenRoles */
@@ -88,49 +88,49 @@ public class ScreenRoles extends javax.swing.JPanel {
 
         mod1Checkbox.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         mod1Checkbox.setText("Basic Data Management");
+        mod1Checkbox.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                mod1CheckboxActionPerformed(evt);
+            }
+        });
 
         mod2Checkbox.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         mod2Checkbox.setText("Locations Managnent");
+        mod2Checkbox.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                mod2CheckboxActionPerformed(evt);
+            }
+        });
 
         mod3Checkbox.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         mod3Checkbox.setText("Authentication and Authorization");
+        mod3Checkbox.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                mod3CheckboxActionPerformed(evt);
+            }
+        });
 
         mod4Checkbox.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         mod4Checkbox.setText("Tables Managment");
+        mod4Checkbox.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                mod4CheckboxActionPerformed(evt);
+            }
+        });
 
         jPanel2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
         viewCheckbox2.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         viewCheckbox2.setText("view");
-        viewCheckbox2.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                viewCheckbox2ActionPerformed(evt);
-            }
-        });
 
         insertCheckbox2.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         insertCheckbox2.setText("insert");
-        insertCheckbox2.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                insertCheckbox2ActionPerformed(evt);
-            }
-        });
 
         deleteCheckbox2.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         deleteCheckbox2.setText("delete");
-        deleteCheckbox2.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                deleteCheckbox2ActionPerformed(evt);
-            }
-        });
 
         updateCheckbox2.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         updateCheckbox2.setText("update");
-        updateCheckbox2.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                updateCheckbox2ActionPerformed(evt);
-            }
-        });
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -163,35 +163,15 @@ public class ScreenRoles extends javax.swing.JPanel {
 
         viewCheckbox1.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         viewCheckbox1.setText("view");
-        viewCheckbox1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                viewCheckbox1ActionPerformed(evt);
-            }
-        });
 
         insertCheckbox1.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         insertCheckbox1.setText("insert");
-        insertCheckbox1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                insertCheckbox1ActionPerformed(evt);
-            }
-        });
 
         deleteCheckbox1.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         deleteCheckbox1.setText("delete");
-        deleteCheckbox1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                deleteCheckbox1ActionPerformed(evt);
-            }
-        });
 
         updateCheckbox1.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         updateCheckbox1.setText("update");
-        updateCheckbox1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                updateCheckbox1ActionPerformed(evt);
-            }
-        });
 
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
@@ -224,35 +204,15 @@ public class ScreenRoles extends javax.swing.JPanel {
 
         viewCheckbox3.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         viewCheckbox3.setText("view");
-        viewCheckbox3.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                viewCheckbox3ActionPerformed(evt);
-            }
-        });
 
         insertCheckbox3.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         insertCheckbox3.setText("insert");
-        insertCheckbox3.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                insertCheckbox3ActionPerformed(evt);
-            }
-        });
 
         deleteCheckbox3.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         deleteCheckbox3.setText("delete");
-        deleteCheckbox3.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                deleteCheckbox3ActionPerformed(evt);
-            }
-        });
 
         updateCheckbox3.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         updateCheckbox3.setText("update");
-        updateCheckbox3.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                updateCheckbox3ActionPerformed(evt);
-            }
-        });
 
         javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
         jPanel5.setLayout(jPanel5Layout);
@@ -285,35 +245,15 @@ public class ScreenRoles extends javax.swing.JPanel {
 
         viewCheckbox4.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         viewCheckbox4.setText("view");
-        viewCheckbox4.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                viewCheckbox4ActionPerformed(evt);
-            }
-        });
 
         insertCheckbox4.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         insertCheckbox4.setText("insert");
-        insertCheckbox4.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                insertCheckbox4ActionPerformed(evt);
-            }
-        });
 
         deleteCheckbox4.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         deleteCheckbox4.setText("delete");
-        deleteCheckbox4.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                deleteCheckbox4ActionPerformed(evt);
-            }
-        });
 
         updateCheckbox4.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         updateCheckbox4.setText("update");
-        updateCheckbox4.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                updateCheckbox4ActionPerformed(evt);
-            }
-        });
 
         javax.swing.GroupLayout jPanel6Layout = new javax.swing.GroupLayout(jPanel6);
         jPanel6.setLayout(jPanel6Layout);
@@ -441,11 +381,6 @@ public class ScreenRoles extends javax.swing.JPanel {
                 doneBtnMouseClicked(evt);
             }
         });
-        doneBtn.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                doneBtnActionPerformed(evt);
-            }
-        });
 
         javax.swing.GroupLayout jPanel7Layout = new javax.swing.GroupLayout(jPanel7);
         jPanel7.setLayout(jPanel7Layout);
@@ -521,24 +456,27 @@ public class ScreenRoles extends javax.swing.JPanel {
         // now we selectrole selected index is same as
         RoleDto role = allRoles.get(roleCombo.getSelectedIndex());
 
-        if (mod1Checkbox.isSelected())
+        if (mod1Checkbox.isSelected()) {
             selectedScreens.add(new ScreenDto(1));
-        selectedScreens.add(new ScreenDto(2));
-        selectedScreens.add(new ScreenDto(3));
-        selectedScreens.add(new ScreenDto(4));
-        selectedScreens.add(new ScreenDto(5));
-        selectedScreens.add(new ScreenDto(6));
-        selectedScreens.add(new ScreenDto(7));
+            selectedScreens.add(new ScreenDto(2));
+            selectedScreens.add(new ScreenDto(3));
+            selectedScreens.add(new ScreenDto(4));
+            selectedScreens.add(new ScreenDto(5));
+            selectedScreens.add(new ScreenDto(6));
+            selectedScreens.add(new ScreenDto(7));
+        }
 
-        if (mod2Checkbox.isSelected())
+        if (mod2Checkbox.isSelected()) {
             selectedScreens.add(new ScreenDto(8));
-        selectedScreens.add(new ScreenDto(9));
-        selectedScreens.add(new ScreenDto(10));
+            selectedScreens.add(new ScreenDto(9));
+            selectedScreens.add(new ScreenDto(10));
+        }
 
-        if (mod3Checkbox.isSelected())
+        if (mod3Checkbox.isSelected()) {
             selectedScreens.add(new ScreenDto(11));
-        selectedScreens.add(new ScreenDto(12));
-        selectedScreens.add(new ScreenDto(13));
+            selectedScreens.add(new ScreenDto(12));
+            selectedScreens.add(new ScreenDto(13));
+        }
 
         if (mod4Checkbox.isSelected())
             selectedScreens.add(new ScreenDto(14));
@@ -614,74 +552,6 @@ public class ScreenRoles extends javax.swing.JPanel {
        
     }//GEN-LAST:event_doneBtnMouseClicked
 
-    private void doneBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_doneBtnActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_doneBtnActionPerformed
-
-    private void viewCheckbox2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_viewCheckbox2ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_viewCheckbox2ActionPerformed
-
-    private void insertCheckbox2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_insertCheckbox2ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_insertCheckbox2ActionPerformed
-
-    private void deleteCheckbox2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteCheckbox2ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_deleteCheckbox2ActionPerformed
-
-    private void updateCheckbox2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_updateCheckbox2ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_updateCheckbox2ActionPerformed
-
-    private void viewCheckbox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_viewCheckbox1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_viewCheckbox1ActionPerformed
-
-    private void insertCheckbox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_insertCheckbox1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_insertCheckbox1ActionPerformed
-
-    private void deleteCheckbox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteCheckbox1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_deleteCheckbox1ActionPerformed
-
-    private void updateCheckbox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_updateCheckbox1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_updateCheckbox1ActionPerformed
-
-    private void viewCheckbox3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_viewCheckbox3ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_viewCheckbox3ActionPerformed
-
-    private void insertCheckbox3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_insertCheckbox3ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_insertCheckbox3ActionPerformed
-
-    private void deleteCheckbox3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteCheckbox3ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_deleteCheckbox3ActionPerformed
-
-    private void updateCheckbox3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_updateCheckbox3ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_updateCheckbox3ActionPerformed
-
-    private void viewCheckbox4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_viewCheckbox4ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_viewCheckbox4ActionPerformed
-
-    private void insertCheckbox4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_insertCheckbox4ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_insertCheckbox4ActionPerformed
-
-    private void deleteCheckbox4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteCheckbox4ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_deleteCheckbox4ActionPerformed
-
-    private void updateCheckbox4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_updateCheckbox4ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_updateCheckbox4ActionPerformed
-
     private void roleComboActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_roleComboActionPerformed
       
         clear();
@@ -690,6 +560,40 @@ public class ScreenRoles extends javax.swing.JPanel {
         if (screens != null)
             selectScreens(screens); 
     }//GEN-LAST:event_roleComboActionPerformed
+
+    private void mod1CheckboxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mod1CheckboxActionPerformed
+        if (!mod1Checkbox.isSelected()) {
+            // loop to delete data
+            for (int i = 1; i < 8; i++) {
+                delete(i);
+            }
+        }
+    }//GEN-LAST:event_mod1CheckboxActionPerformed
+
+    private void mod2CheckboxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mod2CheckboxActionPerformed
+        if (!mod2Checkbox.isSelected()) {
+            // loop to delete data
+            for (int i = 8; i < 11; i++) {
+                delete(i);
+            }
+        }
+    }//GEN-LAST:event_mod2CheckboxActionPerformed
+
+    private void mod3CheckboxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mod3CheckboxActionPerformed
+        if (!mod3Checkbox.isSelected()) {
+            // loop to delete data
+            for (int i = 11; i < 14; i++) {
+                delete(i);
+            }
+        }
+    }//GEN-LAST:event_mod3CheckboxActionPerformed
+
+    private void mod4CheckboxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mod4CheckboxActionPerformed
+        if (!mod4Checkbox.isSelected()) {
+            delete(14);
+        }
+         
+    }//GEN-LAST:event_mod4CheckboxActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

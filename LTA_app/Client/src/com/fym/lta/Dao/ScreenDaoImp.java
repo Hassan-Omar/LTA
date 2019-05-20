@@ -126,15 +126,13 @@ public class ScreenDaoImp implements ScreenDao {
                     jdbcRs.setString(1, role.getPermission3());
                 if (id>11&& role.getPermission4()!= null)
                     jdbcRs.setString(1, role.getPermission4());
-
+System.out.println(" recived "+role.getPermission1()+"\r\n"+role.getPermission2()+"\r\n"+role.getPermission3()+"\r\n"+ role.getPermission4());
 
                 jdbcRs.setInt(2,id );
                 jdbcRs.setInt(3,screen.getScreen_id());
                 jdbcRs.execute();
-                if(jdbcRs.next())
-                {
-                    return true ;
-                 }
+                  return true ;
+                 
                 
             } catch(Exception e)
             {
@@ -168,5 +166,26 @@ public class ScreenDaoImp implements ScreenDao {
         return false ;
         
         }
-   
+
+    @Override
+    public boolean delete(int screenID, int roleID) {
+        try (JdbcRowSet jdbcRs = RowSetProvider.newFactory().createJdbcRowSet()) {
+            jdbcRs.setUrl(ConnectionFactory.getUrl());
+            jdbcRs.setUsername(ConnectionFactory.getUsername());
+            jdbcRs.setPassword(ConnectionFactory.getPassword());
+            jdbcRs.setCommand(Queries.DELETE_SCREEN_ROLE);
+            jdbcRs.setInt(1, screenID);
+            jdbcRs.setInt(2 ,roleID);
+            jdbcRs.execute();
+          
+              return true ;
+            
+            
+            } catch(Exception e)
+            {
+            e.printStackTrace();
+            }
+        return false ;
+        
+    }
 }

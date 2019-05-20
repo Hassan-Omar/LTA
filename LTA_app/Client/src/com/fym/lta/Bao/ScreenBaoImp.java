@@ -50,7 +50,6 @@ public class ScreenBaoImp implements ScreenBao {
 
     @Override
     public boolean delete(int screenID, int roleID) {
-        // TODO Implement this method
-        return false;
+         return screeenDaoObj.delete(screenID, roleID);
     }
 }

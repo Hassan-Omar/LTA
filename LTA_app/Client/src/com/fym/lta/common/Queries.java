@@ -71,6 +71,8 @@ public class Queries {
 
     public static final String UPDATESCREEN_ROLE =
         "UPDATE ROLE_SCREEN SET PERMISSIONTYPE = ? WHERE ROLEID =? AND  SCREENID =? ";
+    
+    public static final String DELETE_SCREEN_ROLE = "DELETE FROM ROLE_SCREEN WHERE  SCREENID =? AND ROLEID =?";
     //___________________________________________________________________________________
 
 
