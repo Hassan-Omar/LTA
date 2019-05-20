@@ -18,5 +18,5 @@ public interface ScreenDao {
 
     public boolean delete(int screenID, int roleID) ;
 
-     
+ 
 }

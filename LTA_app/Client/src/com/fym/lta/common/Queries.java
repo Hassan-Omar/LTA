@@ -56,7 +56,7 @@ public class Queries {
     //___________________________________________________________________________________
 
 
-    //____________________________ AUTHNTICATION MODULE _________________________________
+    //____________________________ AUTHNTICATION SCREEN MODULE _________________________________
 
     public static final String ROLE_SCREEN_INSERT =
         "INSERT INTO ROLE_SCREEN (ROLEID ,SCREENID ,PERMISSIONTYPE ) VALUES (?,?,?)";
@@ -64,7 +64,7 @@ public class Queries {
     public static final String GET_CURRENT_PERMISSION =
         "SELECT PERMISSIONTYPE FROM ROLE_SCREEN WHERE ROLEID = ? AND SCREENID = ? ";
 
-    public static final String GET_AVAILABLE_SCREENS = "SELECT SCREENID FROM ROLE_SCREEN WHERE ROLEID = ? ";
+    public static final String GET_AVAILABLE_SCREENS = "SELECT SCREENID,PERMISSIONTYPE FROM ROLE_SCREEN WHERE ROLEID = ? ";
 
     public static final String SCREEN_ROLE_ISEXIST =
         "SELECT SCREENID FROM ROLE_SCREEN WHERE ROLEID = ? AND SCREENID = ?";

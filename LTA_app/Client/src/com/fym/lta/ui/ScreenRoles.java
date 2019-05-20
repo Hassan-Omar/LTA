@@ -22,7 +22,6 @@ public class ScreenRoles extends javax.swing.JPanel {
     RoleBao roleBaoObj = new BaoFactory().createRoleBao();
     ScreenBao screenBaoObj = new BaoFactory().createScreenBao();
     List<RoleDto> allRoles = new ArrayList();
-    String permission1=" " , permission2=" ", permission3=" ", permission4=" "; // hold the values of permission on the module
     List<ScreenDto> selectedScreens = new ArrayList(); //hold the values of selected screens
 
     /** Creates new form ScreenRoles */
@@ -464,75 +463,82 @@ public class ScreenRoles extends javax.swing.JPanel {
             selectedScreens.add(new ScreenDto(5));
             selectedScreens.add(new ScreenDto(6));
             selectedScreens.add(new ScreenDto(7));
+
+            // permission on model 1
+            String permission1 = null;
+            if (updateCheckbox1.isSelected())
+                permission1 += " update";
+            if (viewCheckbox1.isSelected())
+                permission1 += " view";
+            if (deleteCheckbox1.isSelected())
+                permission1 += " delete";
+            if (insertCheckbox1.isSelected())
+                permission1 += " insert";
+
+            if (permission1 != null)
+                role.setPermission1(permission1);
         }
 
         if (mod2Checkbox.isSelected()) {
             selectedScreens.add(new ScreenDto(8));
             selectedScreens.add(new ScreenDto(9));
             selectedScreens.add(new ScreenDto(10));
+
+            // permission on model 2
+            String permission2 = null;
+            if (updateCheckbox2.isSelected())
+                permission2 += " update";
+            if (viewCheckbox2.isSelected())
+                permission2 += " view";
+            if (deleteCheckbox2.isSelected())
+                permission2 += " delete";
+            if (insertCheckbox2.isSelected())
+                permission2 += " insert";
+
+            if (permission2 != null)
+                role.setPermission2(permission2);
+
         }
 
         if (mod3Checkbox.isSelected()) {
             selectedScreens.add(new ScreenDto(11));
             selectedScreens.add(new ScreenDto(12));
             selectedScreens.add(new ScreenDto(13));
+
+            // permission on model 3
+            String permission3 = null;
+            if (updateCheckbox3.isSelected())
+                permission3 += " update";
+            if (viewCheckbox3.isSelected())
+                permission3 += " view";
+            if (deleteCheckbox3.isSelected())
+                permission3 += " delete";
+            if (insertCheckbox3.isSelected())
+                permission3 += " insert";
+
+            if (permission3 != null)
+                role.setPermission3(permission3);
+
+
         }
 
-        if (mod4Checkbox.isSelected())
+        if (mod4Checkbox.isSelected()) {
             selectedScreens.add(new ScreenDto(14));
+            // permission on model 4
+            String permission4 = null;
+            if (updateCheckbox4.isSelected())
+                permission4 += " update";
+            if (viewCheckbox4.isSelected())
+                permission4 += " view";
+            if (deleteCheckbox4.isSelected())
+                permission4 += " delete";
+            if (insertCheckbox4.isSelected())
+                permission4 += " insert";
 
+            if (permission4 != null)
+                role.setPermission4(permission4);
+        }
 
-        // permission on model 1
-        if (updateCheckbox1.isSelected())
-            permission1 += " update";
-        if (viewCheckbox1.isSelected())
-            permission1 += " view";
-        if (deleteCheckbox1.isSelected())
-            permission1 += " delete";
-        if (insertCheckbox1.isSelected())
-            permission1 += " insert";
-
-        // permission on model 2
-        if (updateCheckbox2.isSelected())
-            permission2 += " update";
-        if (viewCheckbox2.isSelected())
-            permission2 += " view";
-        if (deleteCheckbox2.isSelected())
-            permission2 += " delete";
-        if (insertCheckbox2.isSelected())
-            permission2 += " insert";
-
-
-        // permission on model 3
-        if (updateCheckbox3.isSelected())
-            permission3 += " update";
-        if (viewCheckbox3.isSelected())
-            permission3 += " view";
-        if (deleteCheckbox3.isSelected())
-            permission3 += " delete";
-        if (insertCheckbox3.isSelected())
-            permission3 += " insert";
-
-        // permission on model 4
-        if (updateCheckbox4.isSelected())
-            permission4 += " update";
-        if (viewCheckbox4.isSelected())
-            permission4 += " view";
-        if (deleteCheckbox4.isSelected())
-            permission4 += " delete";
-        if (insertCheckbox4.isSelected())
-            permission4 += " insert";
-
-        if (permission1 != null)
-            role.setPermission1(permission1);
-        if (permission2 != null)
-            role.setPermission2(permission2);
-
-        if (permission3 != null)
-            role.setPermission3(permission3);
-
-        if (permission4 != null)
-            role.setPermission4(permission4);
 
         // calling bussiness to save
 
@@ -636,12 +642,12 @@ public class ScreenRoles extends javax.swing.JPanel {
     // this function just to list the role data in roleCombo
     void setRolesCombo(List<RoleDto> roles) {
         for (int i = 0; i < roles.size(); i++) {
-            roleCombo.addItem(roles.get(i).getDescription()); // name not desc
+            roleCombo.addItem(roles.get(i).getCode()); // name not desc
         }
 
     }
 
-
+    // just to clear selection
     void clear() {
         mod1Checkbox.setSelected(false);
         mod2Checkbox.setSelected(false);
@@ -666,14 +672,16 @@ public class ScreenRoles extends javax.swing.JPanel {
 
     }
 
+    // method deal with business to delete unchecked screen
     boolean delete(int sId) {
         int roleId = allRoles.get(roleCombo.getSelectedIndex()).getRole_id();
         return screenBaoObj.delete(sId, roleId);
     }
 
-
+    // method to select wich screen is assigned
     void selectScreens(List<ScreenDto> screens) {
-        String permission = null;
+
+        int roleId = allRoles.get(roleCombo.getSelectedIndex()).getRole_id();
         for (int i = 0; i < screens.size(); i++) {
             int id = screens.get(i).getScreen_id();
 
@@ -681,7 +689,7 @@ public class ScreenRoles extends javax.swing.JPanel {
 
                 mod1Checkbox.setSelected(true);
 
-                permission = screenBaoObj.getCurrentPermission(id);
+                String permission = screenBaoObj.getPermissionType(id, roleId);
 
                 if (permission != null) {
                     if (permission.contains("view"))
@@ -700,8 +708,7 @@ public class ScreenRoles extends javax.swing.JPanel {
 
                 mod2Checkbox.setSelected(true);
 
-                permission = screenBaoObj.getCurrentPermission(id);
-
+                String permission = screenBaoObj.getPermissionType(id, roleId);
                 if (permission != null) {
                     if (permission.contains("view"))
                         viewCheckbox2.setSelected(true);
@@ -718,7 +725,8 @@ public class ScreenRoles extends javax.swing.JPanel {
 
                 mod3Checkbox.setSelected(true);
 
-                permission = screenBaoObj.getCurrentPermission(id);
+                String permission = null;
+                permission = screenBaoObj.getPermissionType(id, roleId);
                 if (permission != null) {
 
                     if (permission.contains("view"))
@@ -735,7 +743,7 @@ public class ScreenRoles extends javax.swing.JPanel {
 
                 mod4Checkbox.setSelected(true);
 
-                permission = screenBaoObj.getCurrentPermission(id);
+                String permission = screenBaoObj.getPermissionType(id, roleId);
                 if (permission != null) {
 
                     if (permission.contains("view"))

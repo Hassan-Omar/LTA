@@ -35,13 +35,13 @@ public class ScreenDaoImp implements ScreenDao {
                 jdbcRs.setInt(1, role.getRole_id());
                 jdbcRs.setInt(2, screens.get(i).getScreen_id());
                     
-                if (i<7 && role.getPermission1()!=null)
+                if (i<8 && role.getPermission1()!=null)
                     jdbcRs.setString(3, role.getPermission1());
-                if (i>6&&i<9&&(role.getPermission2()!=null) )
+                if (i>7&&i<11&&(role.getPermission2()!=null) )
                     jdbcRs.setString(3, role.getPermission2());
-                if (i>8&&i<12 &&(role.getPermission3() !=null))
+                if (i>10&&i<14 &&(role.getPermission3() !=null))
                     jdbcRs.setString(3, role.getPermission3());
-                if (i>11&& role.getPermission4()!= null)
+                if (i>13&& role.getPermission4()!= null)
                     jdbcRs.setString(3, role.getPermission4());
 
                 jdbcRs.execute();
@@ -117,19 +117,19 @@ public class ScreenDaoImp implements ScreenDao {
                 jdbcRs.setPassword(ConnectionFactory.getPassword());
                 jdbcRs.setCommand(Queries.UPDATESCREEN_ROLE);
 
-                int id  =  role.getRole_id() ; 
-                if (id<7 && role.getPermission1()!=null)
+                int id  =  screen.getScreen_id() ; 
+                
+                if (id<8 && role.getPermission1()!=null)
                     jdbcRs.setString(1, role.getPermission1());
-                if (id>6&&id<9&&(role.getPermission2()!=null) )
+                if (id>7&&id<11&&(role.getPermission2()!=null) )
                     jdbcRs.setString(1, role.getPermission2());
-                if (id>8&&id<12 &&(role.getPermission3() !=null))
+                if (id>10&&id<14 &&(role.getPermission3() !=null))
                     jdbcRs.setString(1, role.getPermission3());
-                if (id>11&& role.getPermission4()!= null)
+                if (id>13&& role.getPermission4()!= null)
                     jdbcRs.setString(1, role.getPermission4());
-System.out.println(" recived "+role.getPermission1()+"\r\n"+role.getPermission2()+"\r\n"+role.getPermission3()+"\r\n"+ role.getPermission4());
-
-                jdbcRs.setInt(2,id );
-                jdbcRs.setInt(3,screen.getScreen_id());
+                 jdbcRs.setInt(2,role.getRole_id() );
+                jdbcRs.setInt(3,id);
+                System.out.println(role.getRole_id() +" ");
                 jdbcRs.execute();
                   return true ;
                  
@@ -188,4 +188,6 @@ System.out.println(" recived "+role.getPermission1()+"\r\n"+role.getPermission2(
         return false ;
         
     }
+
+   
 }
