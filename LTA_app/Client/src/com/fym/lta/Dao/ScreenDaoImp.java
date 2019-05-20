@@ -35,17 +35,15 @@ public class ScreenDaoImp implements ScreenDao {
                 jdbcRs.setInt(1, role.getRole_id());
                 jdbcRs.setInt(2, screens.get(i).getScreen_id());
                     
-                if (i<7 && role.getPermissions().get(0)!=null)
-                    jdbcRs.setString(3, role.getPermissions().get(0));
-                if (i>6&&i<9&&(role.getPermissions().get(1)!=null) )
-                    jdbcRs.setString(3, role.getPermissions().get(1));
-                if (i>8&&i<12 &&(role.getPermissions().get(2)!=null))
-                    jdbcRs.setString(3, role.getPermissions().get(2));
-                if (i>11&& role.getPermissions().get(3)!= null)
-                    jdbcRs.setString(3, role.getPermissions().get(3));
+                if (i<7 && role.getPermission1()!=null)
+                    jdbcRs.setString(3, role.getPermission1());
+                if (i>6&&i<9&&(role.getPermission2()!=null) )
+                    jdbcRs.setString(3, role.getPermission2());
+                if (i>8&&i<12 &&(role.getPermission3() !=null))
+                    jdbcRs.setString(3, role.getPermission3());
+                if (i>11&& role.getPermission4()!= null)
+                    jdbcRs.setString(3, role.getPermission4());
 
-                    
-                
                 jdbcRs.execute();
             }
          
@@ -120,14 +118,14 @@ public class ScreenDaoImp implements ScreenDao {
                 jdbcRs.setCommand(Queries.UPDATESCREEN_ROLE);
 
                 int id  =  role.getRole_id() ; 
-                if (id<7 && role.getPermissions().get(0)!=null)
-                    jdbcRs.setString(1, role.getPermissions().get(0));
-                if (id>6&&id<9&&(role.getPermissions().get(1)!=null) )
-                    jdbcRs.setString(1, role.getPermissions().get(1));
-                if (id>8&&id<12 &&(role.getPermissions().get(2)!=null))
-                    jdbcRs.setString(1, role.getPermissions().get(2));
-                if (id>11&& role.getPermissions().get(3)!= null)
-                    jdbcRs.setString(1, role.getPermissions().get(3));
+                if (id<7 && role.getPermission1()!=null)
+                    jdbcRs.setString(1, role.getPermission1());
+                if (id>6&&id<9&&(role.getPermission2()!=null) )
+                    jdbcRs.setString(1, role.getPermission2());
+                if (id>8&&id<12 &&(role.getPermission3() !=null))
+                    jdbcRs.setString(1, role.getPermission3());
+                if (id>11&& role.getPermission4()!= null)
+                    jdbcRs.setString(1, role.getPermission4());
 
 
                 jdbcRs.setInt(2,id );

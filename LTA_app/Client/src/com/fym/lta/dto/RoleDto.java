@@ -9,22 +9,46 @@ public class RoleDto {
     private String code, description, insertedBy, updatedBy;
     private List<ScreenDto> role_Screens;
     private Date inertion_Date, update_Date;
-    private List<String> permissions ;
+    private String permission1 ,permission2 , permission3 , permission4 ;
 
     public RoleDto(String code) {
         this.code = code;
     }
 
+    public void setPermission1(String permission1) {
+        this.permission1 = permission1;
+    }
+
+    public String getPermission1() {
+        return permission1;
+    }
+
+    public void setPermission2(String permission2) {
+        this.permission2 = permission2;
+    }
+
+    public String getPermission2() {
+        return permission2;
+    }
+
+    public void setPermission3(String permission3) {
+        this.permission3 = permission3;
+    }
+
+    public String getPermission3() {
+        return permission3;
+    }
+
+    public void setPermission4(String permission4) {
+        this.permission4 = permission4;
+    }
+
+    public String getPermission4() {
+        return permission4;
+    }
+
     public void setRole_id(int role_id) {
         this.role_id = role_id;
-    }
-
-    public void setPermissions(List<String> permissions) {
-        this.permissions = permissions;
-    }
-
-    public List<String> getPermissions() {
-        return permissions;
     }
 
 
