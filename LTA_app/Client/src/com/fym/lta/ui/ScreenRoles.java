@@ -22,7 +22,7 @@ public class ScreenRoles extends javax.swing.JPanel {
     RoleBao roleBaoObj = new BaoFactory().createRoleBao();
     ScreenBao screenBaoObj = new BaoFactory().createScreenBao();
     List<RoleDto> allRoles = new ArrayList();
-    String permission1 , permission2 , permission3 , permission4; // hold the values of permission on the module 
+    String permission1, permission2, permission3, permission4; // hold the values of permission on the module
     List<ScreenDto> selectedScreens = new ArrayList(); //hold the values of selected screens
 
     /** Creates new form ScreenRoles */
@@ -30,13 +30,12 @@ public class ScreenRoles extends javax.swing.JPanel {
         initComponents();
         allRoles = roleBaoObj.getAll();
         setRolesCombo(allRoles);
-         
-        
 
-        // roleID = 13 
-        // now one step we will create an object of ScreenBao to know the current permission 
-         String permissionType = new BaoFactory().createScreenBao().getCurrentPermission(13);
-         Utilities.mandate(null,null , null ,13,permissionType);
+
+        // roleID = 13
+        // now one step we will create an object of ScreenBao to know the current permission
+        String permissionType = new BaoFactory().createScreenBao().getCurrentPermission(13);
+        Utilities.mandate(null, null, null, 13, permissionType);
     }
 
     /** This method is called from within the constructor to
@@ -426,6 +425,11 @@ public class ScreenRoles extends javax.swing.JPanel {
         );
 
         roleCombo.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        roleCombo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                roleComboActionPerformed(evt);
+            }
+        });
 
         label1.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         label1.setText("Role");
@@ -590,8 +594,8 @@ public class ScreenRoles extends javax.swing.JPanel {
             role.setPermission3(permission3);
 
         if (permission4 != null)
-           role.setPermission4(permission4);
-           
+            role.setPermission4(permission4);
+
         // calling bussiness to save
 
         if (selectedScreens != null) {
@@ -678,6 +682,15 @@ public class ScreenRoles extends javax.swing.JPanel {
         // TODO add your handling code here:
     }//GEN-LAST:event_updateCheckbox4ActionPerformed
 
+    private void roleComboActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_roleComboActionPerformed
+      
+        clear();
+        // list of screens based on choosen role from combo box
+        List<ScreenDto> screens = screenBaoObj.list_Screens(allRoles.get(roleCombo.getSelectedIndex()).getRole_id());
+        if (screens != null)
+            selectScreens(screens); 
+    }//GEN-LAST:event_roleComboActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JCheckBox deleteCheckbox1;
@@ -724,4 +737,113 @@ public class ScreenRoles extends javax.swing.JPanel {
 
     }
 
+
+    void clear() {
+        mod1Checkbox.setSelected(false);
+        mod2Checkbox.setSelected(false);
+        mod3Checkbox.setSelected(false);
+        mod4Checkbox.setSelected(false);
+        viewCheckbox1.setSelected(false);
+        insertCheckbox1.setSelected(false);
+        updateCheckbox1.setSelected(false);
+        deleteCheckbox1.setSelected(false);
+        viewCheckbox2.setSelected(false);
+        insertCheckbox2.setSelected(false);
+        updateCheckbox2.setSelected(false);
+        deleteCheckbox2.setSelected(false);
+        viewCheckbox3.setSelected(false);
+        insertCheckbox3.setSelected(false);
+        updateCheckbox3.setSelected(false);
+        deleteCheckbox3.setSelected(false);
+        viewCheckbox4.setSelected(false);
+        insertCheckbox4.setSelected(false);
+        updateCheckbox4.setSelected(false);
+        deleteCheckbox4.setSelected(false);
+
+    }
+
+    boolean delete(int sId) {
+        int roleId = allRoles.get(roleCombo.getSelectedIndex()).getRole_id();
+        return screenBaoObj.delete(sId, roleId);
+    }
+
+
+    void selectScreens(List<ScreenDto> screens) {
+        String permission = null;
+        for (int i = 0; i < screens.size(); i++) {
+            int id = screens.get(i).getScreen_id();
+
+            if (id < 8) {
+
+                mod1Checkbox.setSelected(true);
+
+                permission = screenBaoObj.getCurrentPermission(id);
+
+                if (permission != null) {
+                    if (permission.contains("view"))
+                        viewCheckbox1.setSelected(true);
+                    if (permission.contains("insert"))
+                        insertCheckbox1.setSelected(true);
+                    if (permission.contains("update"))
+                        updateCheckbox1.setSelected(true);
+                    if (permission.contains("delete"))
+                        deleteCheckbox1.setSelected(true);
+                }
+
+            }
+
+            if (id > 7 && id < 11) {
+
+                mod2Checkbox.setSelected(true);
+
+                permission = screenBaoObj.getCurrentPermission(id);
+
+                if (permission != null) {
+                    if (permission.contains("view"))
+                        viewCheckbox2.setSelected(true);
+                    if (permission.contains("insert"))
+                        insertCheckbox2.setSelected(true);
+                    if (permission.contains("update"))
+                        updateCheckbox2.setSelected(true);
+                    if (permission.contains("delete"))
+                        deleteCheckbox2.setSelected(true);
+                }
+            }
+
+            if (id > 10 && id < 14) {
+
+                mod3Checkbox.setSelected(true);
+
+                permission = screenBaoObj.getCurrentPermission(id);
+                if (permission != null) {
+
+                    if (permission.contains("view"))
+                        viewCheckbox3.setSelected(true);
+                    if (permission.contains("insert"))
+                        insertCheckbox3.setSelected(true);
+                    if (permission.contains("update"))
+                        updateCheckbox3.setSelected(true);
+                    if (permission.contains("delete"))
+                        deleteCheckbox3.setSelected(true);
+                }
+            }
+            if (id > 13) {
+
+                mod4Checkbox.setSelected(true);
+
+                permission = screenBaoObj.getCurrentPermission(id);
+                if (permission != null) {
+
+                    if (permission.contains("view"))
+                        viewCheckbox4.setSelected(true);
+                    if (permission.contains("insert"))
+                        insertCheckbox4.setSelected(true);
+                    if (permission.contains("update"))
+                        updateCheckbox4.setSelected(true);
+                    if (permission.contains("delete"))
+                        deleteCheckbox4.setSelected(true);
+                }
+            }
+        }
+    }
 }

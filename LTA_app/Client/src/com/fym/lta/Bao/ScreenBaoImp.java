@@ -42,4 +42,15 @@ public class ScreenBaoImp implements ScreenBao {
         // delegate to dao method
         return screeenDaoObj.list_Of_AavailableScreens(roleID);
     }
+
+    @Override
+    public List<ScreenDto> list_Screens(int id) {
+         return screeenDaoObj.list_Of_AavailableScreens(id);
+    }
+
+    @Override
+    public boolean delete(int screenID, int roleID) {
+        // TODO Implement this method
+        return false;
+    }
 }

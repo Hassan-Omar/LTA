@@ -24,4 +24,12 @@ public interface ScreenBao {
       * this method return the list of screen available screen 
     */
     public List<ScreenDto> list_Of_AavailableScreens () ; 
+    /**
+      * this method return the list of screen for a certain role
+    */
+    public List<ScreenDto> list_Screens (int id) ; 
+    
+    
+    public boolean delete(int screenID , int roleID);
+    
 }
