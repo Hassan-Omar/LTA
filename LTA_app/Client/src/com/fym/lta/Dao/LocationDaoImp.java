@@ -10,6 +10,7 @@ import com.fym.lta.dto.LocationTypeDto;
 
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 import javax.sql.rowset.JdbcRowSet;
@@ -242,23 +243,31 @@ public class LocationDaoImp implements LocationDao {
 
         return locations; 
     }
-    
-    public boolean save_Equipment(List<EquipmentDto> equipment ,LocationDto location){
-     try (JdbcRowSet jdbcRs = RowSetProvider.newFactory().createJdbcRowSet()) {
-         jdbcRs.setUrl(ConnectionFactory.getUrl());
-         jdbcRs.setUsername(ConnectionFactory.getUsername());
-         jdbcRs.setPassword(ConnectionFactory.getPassword());
-         for (int i = 0; i < equipment.size(); i++) {
-             jdbcRs.setCommand("insert into location_equipment (location_id , equipment_id) values(?,?)");
-             jdbcRs.setInt(1, location.getLocation_id());
-             jdbcRs.setInt(2, equipment.get(i).getEquipment_id());
-             jdbcRs.execute();
-         }
-         return true;
-     } catch (Exception e) {
-         e.printStackTrace();
-     }
-
-     return false;
+       
+        //this to return a list of available Rooms at each department
+    public List<LocationDto> getAvailableRoom(String depName){
+        List<LocationDto>  Availablelocat = null;
+              try(JdbcRowSet jdbcRs = RowSetProvider.newFactory().createJdbcRowSet();) {
+        jdbcRs.setUrl(ConnectionFactory.getUrl());
+        jdbcRs.setUsername(ConnectionFactory.getUsername());
+        jdbcRs.setPassword(ConnectionFactory.getPassword());
+        jdbcRs.setCommand(Queries.AVAILABLE_ROOM);
+        jdbcRs.setString(1, depName);          
+        jdbcRs.execute();
+          while (jdbcRs.next()) {
+            if (Availablelocat == null)
+                Availablelocat = new ArrayList<>();
+        LocationDto location = new LocationDto();
+        location.setLocation_id(jdbcRs.getInt(1));           
+        Availablelocat.add(location); 
+        }
+              }
+        
+        catch(Exception e){
+            e.printStackTrace();      
+        }
+        
+        return Availablelocat;
+        }
     }
-}
+
