@@ -35,6 +35,7 @@ public interface LocationDao {
     //this to filter location types 
    public List<LocationDto> filter(String LocationTypeCode,String BuildingCode);
 
-    //this behavior to save list of Equipment in the location
-    public boolean save_Equipment(List<EquipmentDto> equipment,LocationDto location);
+    
+   //this to return list of available Rooms at each department
+    public List<LocationDto> getAvailableRoom(String depName);
 }

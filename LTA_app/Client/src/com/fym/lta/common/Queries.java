@@ -1,5 +1,7 @@
 package com.fym.lta.common;
 
+import javax.persistence.criteria.From;
+
 
 public class Queries {
 
@@ -172,6 +174,11 @@ public class Queries {
     public static final String LOCATION_FILTER = "select location.l_id,location.code ,location.description ,location.capacity,location.status,building.code building_code , floor.code floor_code  ,location_type.code type_code ,location.inserted_by,location.insertion_date,location.updated_by,location.update_date " + 
      "from location , floor ,building ,location_type " +  
      "where location.floor_id = floor.id and floor.id_building = building.b_id and location.type_id =location_type.t_id  and LOWER(location_type.code) LIKE ? and lower(building.code) like ? " ;
+   
+    public static final String AVAILABLE_ROOM = "Select L_Id " + 
+    "From Location , Department " + 
+    "where Status = 'free' and Lower(Department.Name) Like ? ";
+
     //___________________________________________________________________________________
     
 

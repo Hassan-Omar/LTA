@@ -32,12 +32,7 @@ public interface LocationBao {
      */
       public List<LocationDto> filterLocations(String LocationTypeCode,String BuildingCode);
     
-    /**
-     * save List of Equipments in specific location
-     */
-    
-    public boolean saveEquipment(List<EquipmentDto> equipment , LocationDto location);
-    
+  
 
     public List<LocationDto> getAvailableLocations(String depName) ; 
 
