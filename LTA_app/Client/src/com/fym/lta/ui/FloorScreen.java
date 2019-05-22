@@ -4,6 +4,7 @@ package com.fym.lta.ui;
 import com.fym.lta.bao.BaoFactory;
 import com.fym.lta.bao.FloorBao;
 import com.fym.lta.bao.LoginEngine;
+import com.fym.lta.dto.BuildingDto;
 import com.fym.lta.dto.FloorDto;
 
 import java.util.Date;
@@ -20,6 +21,7 @@ public class FloorScreen extends javax.swing.JPanel
 {
     FloorBao FloorListInDatabase = new BaoFactory().createFloorBao();
   boolean updateFlag ;
+  List<BuildingDto> allBuilding = new BaoFactory().createBuildingBao().listBuilding();
 
     /**table Structure  */    
     private void setTableModel(List<FloorDto> Floor)
@@ -47,6 +49,9 @@ public class FloorScreen extends javax.swing.JPanel
         // now one step we will create an object of ScreenBao to know the current permission
         String permissionType = new BaoFactory().createScreenBao().getCurrentPermission(2);
         Utilities.mandate(updateFloorBTN, insertFloorBTN, deleteFloorBTN, 2, permissionType);
+        
+        if(allBuilding!=null)
+            listCombo(allBuilding);
     }
 
 
@@ -70,13 +75,11 @@ public class FloorScreen extends javax.swing.JPanel
         insertPanel = new javax.swing.JPanel();
         code = new javax.swing.JTextField();
         codeLabel = new javax.swing.JLabel();
-        jLabel4 = new javax.swing.JLabel();
         desc = new javax.swing.JTextField();
         save = new javax.swing.JButton();
-        jComboBox1 = new javax.swing.JComboBox();
         jLabel6 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
-        jComboBox2 = new javax.swing.JComboBox();
+        buildingComboBox = new javax.swing.JComboBox();
 
         jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Building Floor", 0, 0, new java.awt.Font("Yu Gothic UI", 1, 24))); // NOI18N
 
@@ -176,10 +179,6 @@ public class FloorScreen extends javax.swing.JPanel
         codeLabel.setForeground(new java.awt.Color(51, 0, 153));
         codeLabel.setText("Code:");
 
-        jLabel4.setFont(new java.awt.Font("Yu Gothic UI", 0, 18)); // NOI18N
-        jLabel4.setForeground(new java.awt.Color(50, 4, 148));
-        jLabel4.setText("Choose Department ");
-
         desc.setText(" ");
         desc.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -224,10 +223,8 @@ public class FloorScreen extends javax.swing.JPanel
                                 .addComponent(code, javax.swing.GroupLayout.PREFERRED_SIZE, 334, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addComponent(desc, javax.swing.GroupLayout.PREFERRED_SIZE, 334, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addGroup(insertPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                            .addComponent(jLabel4, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 211, Short.MAX_VALUE)
-                            .addComponent(jComboBox1, javax.swing.GroupLayout.Alignment.LEADING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jLabel7, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jComboBox2, javax.swing.GroupLayout.Alignment.LEADING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                            .addComponent(jLabel7, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 211, Short.MAX_VALUE)
+                            .addComponent(buildingComboBox, javax.swing.GroupLayout.Alignment.LEADING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
                 .addContainerGap(64, Short.MAX_VALUE))
             .addGroup(insertPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(insertPanelLayout.createSequentialGroup()
@@ -244,15 +241,11 @@ public class FloorScreen extends javax.swing.JPanel
                     .addComponent(codeLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addComponent(desc, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(39, 39, 39)
-                .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(39, 39, 39)
+                .addGap(161, 161, 161)
                 .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(buildingComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 52, Short.MAX_VALUE)
                 .addComponent(save, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(52, 52, 52))
             .addGroup(insertPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -348,8 +341,8 @@ public class FloorScreen extends javax.swing.JPanel
     private void insertFloorBTNActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_insertFloorBTNActionPerformed
     insertPanel.setVisible(true);
      updateFlag = false  ; 
-    codeLabel.setVisible(false) ; 
-    code.setVisible(false);
+    codeLabel.setVisible(true) ; 
+    code.setVisible(true);
     code.setText(null);
     desc.setText(null);
     }//GEN-LAST:event_insertFloorBTNActionPerformed
@@ -375,24 +368,26 @@ public class FloorScreen extends javax.swing.JPanel
     }//GEN-LAST:event_descActionPerformed
 
     private void saveMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_saveMouseClicked
-        FloorDto Floor = new FloorDto();
+        FloorDto floor = new FloorDto();
       
-        Floor.setDescription(desc.getText());
+        floor.setDescription(desc.getText());
 
         if(updateFlag)
-        {   Floor.setUpdate_Date(new Date(System.currentTimeMillis()));
-            Floor.setUpdatedBy(LoginEngine.currentUser);
-            Floor.setCode(floorTable.getValueAt(floorTable.getSelectedRow(), 0).toString());
+        {   floor.setUpdate_Date(new Date(System.currentTimeMillis()));
+            floor.setUpdatedBy(LoginEngine.currentUser);
+            floor.setCode(floorTable.getValueAt(floorTable.getSelectedRow(), 0).toString());
         }
         else{
-            Floor.setUpdatedBy(LoginEngine.currentUser);
-            Floor.setInsertedBy(LoginEngine.currentUser);
-            Floor.setUpdate_Date(new Date(System.currentTimeMillis()));
-            Floor.setInertion_Date(new Date(System.currentTimeMillis()));
-            Floor.setCode(code.getText());
+            floor.setUpdatedBy(LoginEngine.currentUser);
+            floor.setInsertedBy(LoginEngine.currentUser);
+            floor.setUpdate_Date(new Date(System.currentTimeMillis()));
+            floor.setInertion_Date(new Date(System.currentTimeMillis()));
+            floor.setCode(code.getText());
         }
+       
+        floor.setBuilding(allBuilding.get(buildingComboBox.getSelectedIndex())) ;
 
-        if (FloorListInDatabase.save(Floor))
+        if (FloorListInDatabase.save(floor))
         { JOptionPane.showMessageDialog(this , " saved ");
             setTableModel(FloorListInDatabase.listFloor());
             insertPanel.setVisible(false);
@@ -407,6 +402,7 @@ public class FloorScreen extends javax.swing.JPanel
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextField FloorEnteredCode;
+    private javax.swing.JComboBox buildingComboBox;
     private javax.swing.JTextField code;
     private javax.swing.JLabel codeLabel;
     private javax.swing.JButton deleteFloorBTN;
@@ -414,10 +410,7 @@ public class FloorScreen extends javax.swing.JPanel
     private javax.swing.JTable floorTable;
     private javax.swing.JButton insertFloorBTN;
     private javax.swing.JPanel insertPanel;
-    private javax.swing.JComboBox jComboBox1;
-    private javax.swing.JComboBox jComboBox2;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JPanel jPanel1;
@@ -426,5 +419,12 @@ public class FloorScreen extends javax.swing.JPanel
     private javax.swing.JButton searchFloorBTN;
     private javax.swing.JButton updateFloorBTN;
     // End of variables declaration//GEN-END:variables
+
+
+    void listCombo(List<BuildingDto> buildings) {
+        for (int i = 0; i < buildings.size(); i++) {
+            buildingComboBox.addItem(buildings.get(i).getCode());
+        }
+    }
 }
 

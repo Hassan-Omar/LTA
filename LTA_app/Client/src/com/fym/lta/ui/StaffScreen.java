@@ -3,8 +3,12 @@ package com.fym.lta.ui;
 
 import com.fym.lta.bao.BaoFactory;
 import com.fym.lta.bao.EmployeeBao;
+import com.fym.lta.bao.LoginEngine;
+import com.fym.lta.common.LTAException;
+import com.fym.lta.dto.DepartmentDto;
 import com.fym.lta.dto.EmployeeDto;
 
+import java.util.Date;
 import java.util.List;
 
 import javax.swing.JOptionPane;
@@ -14,17 +18,33 @@ import javax.swing.JOptionPane;
  * @author Mina
  */
 public class StaffScreen extends javax.swing.JPanel {
-    private EmployeeBao business = new BaoFactory().createemployeeBao();
-    /** Creates new form StaffSearch */
+    
+    
+    boolean updateFlag = false;
+    
+    private EmployeeBao EmployeeBaoObj = new BaoFactory().createemployeeBao();
+    
+    List <EmployeeDto> searchReturnedEmployee ;
+    List<DepartmentDto> allDepartments = new BaoFactory().createDepartmentBao().listDepartment();
+    /** Creates new form StaffScreen */
     public StaffScreen() {
         initComponents();
-        if(business.listEmployee()!=null)
-        employeeTableReset(business.listEmployee());
-        // roleID = 5 
+        
+        //fill the department combobox
+        listComboDepartment(allDepartments);
+        // make the insert panel visible 
+        InsertPanel.setVisible(false);
+        
+        if (EmployeeBaoObj.listEmployee()!=null){
+                employeeTableReset(EmployeeBaoObj.listEmployee());
+               
+            }
+        // screenID = 5 
         // now one step we will create an object of ScreenBao to know the current permission 
         String permissionType = new BaoFactory().createScreenBao().getCurrentPermission(5);
-        Utilities.mandate(updateStaffBtn,insertStaffBtn , deleteStaffBtn ,5,permissionType);
-
+        Utilities.mandate(btnUpdate,btnInsert , btnDelete ,5,permissionType);
+        
+        
     }
 
     /** This method is called from within the constructor to
@@ -35,17 +55,35 @@ public class StaffScreen extends javax.swing.JPanel {
     @SuppressWarnings("unchecked")
     private void initComponents() {//GEN-BEGIN:initComponents
 
-        btnSearch = new javax.swing.JButton();
-        fName_TextField = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
-        deleteStaffBtn = new javax.swing.JButton();
-        updateStaffBtn = new javax.swing.JButton();
-        jScrollPane1 = new javax.swing.JScrollPane();
+        name_TextField = new javax.swing.JTextField();
+        btnSearch = new javax.swing.JButton();
+        btnUpdate = new javax.swing.JButton();
+        btnDelete = new javax.swing.JButton();
+        btnInsert = new javax.swing.JButton();
+        jScrollPane2 = new javax.swing.JScrollPane();
         staffTable = new javax.swing.JTable();
-        insertStaffBtn = new javax.swing.JButton();
+        InsertPanel = new javax.swing.JPanel();
+        jLabel3 = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
+        jLabel5 = new javax.swing.JLabel();
+        jLabel6 = new javax.swing.JLabel();
+        jLabel7 = new javax.swing.JLabel();
+        jLabel8 = new javax.swing.JLabel();
+        fname_TextField = new javax.swing.JTextField();
+        sname_TextField = new javax.swing.JTextField();
+        lname_TextField = new javax.swing.JTextField();
+        familyName_TextField = new javax.swing.JTextField();
+        jLabel9 = new javax.swing.JLabel();
+        jLabel10 = new javax.swing.JLabel();
+        department_ComboBox = new javax.swing.JComboBox();
+        position_ComboBox = new javax.swing.JComboBox();
+        btnSave = new javax.swing.JButton();
 
-        setLayout(null);
+        jLabel1.setText(" Staff Member Screen");
+
+        jLabel2.setText("Search Staff Member Screen");
 
         btnSearch.setText("Search");
         btnSearch.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -53,45 +91,46 @@ public class StaffScreen extends javax.swing.JPanel {
                 btnSearchMouseClicked(evt);
             }
         });
-        add(btnSearch);
-        btnSearch.setBounds(700, 50, 140, 50);
 
-        fName_TextField.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                fName_TextFieldActionPerformed(evt);
+        btnUpdate.setText("Update ");
+        btnUpdate.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnUpdateMouseClicked(evt);
             }
         });
-        add(fName_TextField);
-        fName_TextField.setBounds(380, 60, 230, 34);
 
-        jLabel1.setText("Staff Name ");
-        add(jLabel1);
-        jLabel1.setBounds(230, 60, 143, 30);
-
-        jLabel2.setText("Search for Staff member");
-        add(jLabel2);
-        jLabel2.setBounds(430, 0, 178, 41);
-
-        deleteStaffBtn.setText("Delete");
-        deleteStaffBtn.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                deleteStaffBtnActionPerformed(evt);
+        btnDelete.setText("Delete");
+        btnDelete.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnDeleteMouseClicked(evt);
             }
         });
-        add(deleteStaffBtn);
-        deleteStaffBtn.setBounds(580, 120, 90, 50);
 
-        updateStaffBtn.setText("Update");
-        updateStaffBtn.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                updateStaffBtnActionPerformed(evt);
+        btnInsert.setText("Insert New Staff Member");
+        btnInsert.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnInsertMouseClicked(evt);
             }
         });
-        add(updateStaffBtn);
-        updateStaffBtn.setBounds(360, 120, 80, 50);
 
         staffTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
                 {null, null, null, null},
                 {null, null, null, null},
                 {null, null, null, null},
@@ -101,100 +140,309 @@ public class StaffScreen extends javax.swing.JPanel {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
-        jScrollPane1.setViewportView(staffTable);
+        jScrollPane2.setViewportView(staffTable);
+        staffTable.getColumnModel().getColumn(0).setHeaderValue("Title 1");
+        staffTable.getColumnModel().getColumn(1).setHeaderValue("Title 2");
+        staffTable.getColumnModel().getColumn(2).setHeaderValue("Title 3");
+        staffTable.getColumnModel().getColumn(3).setHeaderValue("Title 4");
 
-        add(jScrollPane1);
-        jScrollPane1.setBounds(230, 210, 620, 270);
+        jLabel3.setText("Insert new Staff Member");
 
-        insertStaffBtn.setText("insert new");
-        insertStaffBtn.addMouseListener(new java.awt.event.MouseAdapter() {
+        jLabel4.setText("Name ");
+
+        jLabel5.setText("First Name ");
+
+        jLabel6.setText("Second Name ");
+
+        jLabel7.setText("Last Name");
+
+        jLabel8.setText("Family Name");
+
+        jLabel9.setText("Department ");
+
+        jLabel10.setText("Posistion ");
+
+        department_ComboBox.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+
+        position_ComboBox.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Employee", "Professor", "Associate Professor", "Assistant Professor","Assistant lecturer","Demonstrator" }));
+
+        btnSave.setText("Save");
+        btnSave.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                insertStaffBtnMouseClicked(evt);
+                btnSaveMouseClicked(evt);
             }
         });
-        add(insertStaffBtn);
-        insertStaffBtn.setBounds(730, 120, 100, 50);
+
+        javax.swing.GroupLayout InsertPanelLayout = new javax.swing.GroupLayout(InsertPanel);
+        InsertPanel.setLayout(InsertPanelLayout);
+        InsertPanelLayout.setHorizontalGroup(
+            InsertPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(InsertPanelLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(InsertPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(InsertPanelLayout.createSequentialGroup()
+                        .addGroup(InsertPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(InsertPanelLayout.createSequentialGroup()
+                                .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(39, 39, 39)
+                                .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(36, 36, 36)
+                                .addGroup(InsertPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addGroup(InsertPanelLayout.createSequentialGroup()
+                                        .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(40, 40, 40)
+                                        .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addGroup(InsertPanelLayout.createSequentialGroup()
+                                        .addComponent(sname_TextField, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(36, 36, 36)
+                                        .addComponent(lname_TextField)))
+                                .addGroup(InsertPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(InsertPanelLayout.createSequentialGroup()
+                                        .addGap(44, 44, 44)
+                                        .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addGroup(InsertPanelLayout.createSequentialGroup()
+                                        .addGap(35, 35, 35)
+                                        .addComponent(familyName_TextField, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                            .addGroup(InsertPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                .addGroup(InsertPanelLayout.createSequentialGroup()
+                                    .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(department_ComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 204, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGroup(InsertPanelLayout.createSequentialGroup()
+                                    .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGap(17, 17, 17)
+                                    .addGroup(InsertPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addGroup(InsertPanelLayout.createSequentialGroup()
+                                            .addGap(22, 22, 22)
+                                            .addComponent(fname_TextField, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                        .addGroup(InsertPanelLayout.createSequentialGroup()
+                                            .addGap(48, 48, 48)
+                                            .addComponent(position_ComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 204, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                .addComponent(btnSave, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(0, 49, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, InsertPanelLayout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(185, 185, 185))))
+        );
+        InsertPanelLayout.setVerticalGroup(
+            InsertPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(InsertPanelLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(51, 51, 51)
+                .addGroup(InsertPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(17, 17, 17)
+                .addGroup(InsertPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(sname_TextField)
+                    .addGroup(InsertPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(fname_TextField, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(familyName_TextField)
+                    .addComponent(lname_TextField, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(64, 64, 64)
+                .addGroup(InsertPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(department_ComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(50, 50, 50)
+                .addGroup(InsertPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(position_ComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(btnSave, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(111, 111, 111))
+        );
+
+        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
+        this.setLayout(layout);
+        layout.setHorizontalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(layout.createSequentialGroup()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addGroup(layout.createSequentialGroup()
+                            .addGap(85, 85, 85)
+                            .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 153, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGap(108, 108, 108)
+                            .addComponent(name_TextField, javax.swing.GroupLayout.PREFERRED_SIZE, 183, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGap(73, 73, 73)
+                            .addComponent(btnSearch))
+                        .addGroup(layout.createSequentialGroup()
+                            .addGap(94, 94, 94)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(jScrollPane2)
+                                .addGroup(layout.createSequentialGroup()
+                                    .addComponent(btnUpdate)
+                                    .addGap(68, 68, 68)
+                                    .addComponent(btnDelete)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(btnInsert, javax.swing.GroupLayout.PREFERRED_SIZE, 156, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(275, 275, 275)
+                        .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 153, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(40, 40, 40)
+                .addComponent(InsertPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(24, Short.MAX_VALUE))
+        );
+        layout.setVerticalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(InsertPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(31, 31, 31)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(name_TextField, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(btnSearch, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(18, 18, 18)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(btnUpdate, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(btnDelete, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(btnInsert, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 32, Short.MAX_VALUE)
+                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 384, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(36, 36, 36))
+        );
     }//GEN-END:initComponents
-    
-    private void updateStaffBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_updateStaffBtnActionPerformed
-       
-    /*    if (staffTable.getSelectedRow() >= 0) {
-            StaffInsert sIScreen = new StaffInsert();
-            sIScreen.setStaffUpdateId(Integer.parseInt(staffTable.getValueAt(staffTable.getSelectedRow(),
-                                                                            0).toString())); //Passa ID
-        
-            //UsersScreen.createPopupMenu(sIScreen);
-        } else {
-            JOptionPane.showOptionDialog(null, "You Should Select A user to Update ", "User Updaete ",
-                                         JOptionPane.DEFAULT_OPTION, JOptionPane.INFORMATION_MESSAGE, null, null, null);
-        } */
-       
-    }//GEN-LAST:event_updateStaffBtnActionPerformed
-
-    private void fName_TextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_fName_TextFieldActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_fName_TextFieldActionPerformed
-    
-    
-    EmployeeDto s =null;    
-        
-    
-    //  private StaffBao business = new BaoFactory().CreateNewStaffMember();
-    // StaffMemberDto S = new  StaffMemberDto();
-    private void deleteStaffBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteStaffBtnActionPerformed
-       
-    int selectedEmployeeid = Integer.parseInt(staffTable.getValueAt(staffTable.getSelectedRow(), 0).toString());
-       EmployeeDto selectedEmployee_Delete = new EmployeeDto(); // this user i want to delete
-       selectedEmployee_Delete.setEmp_id(selectedEmployeeid);
-       
-       if (business.deleteEmployee(selectedEmployee_Delete)) {
-           int msgRes =
-               JOptionPane.showOptionDialog(null, "Deleted Successfully ", "Staff Deleting ",
-                                            JOptionPane.DEFAULT_OPTION, JOptionPane.INFORMATION_MESSAGE, null, null,
-                                            null);
-
-           if (msgRes == JOptionPane.OK_OPTION) {
-            employeeTableReset(business. listEmployee() );
-               staffTable.repaint();
-           }
-       } else {
-           JOptionPane.showMessageDialog(this, "Can not delete may be deleted using another Employee ");
-       } 
-       
-    }//GEN-LAST:event_deleteStaffBtnActionPerformed
-
-    private void insertStaffBtnMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_insertStaffBtnMouseClicked
-       // UsersScreen.createPopupMenu(new StaffInsert());
-  
-    }//GEN-LAST:event_insertStaffBtnMouseClicked
 
     private void btnSearchMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnSearchMouseClicked
+        InsertPanel.setVisible(false);
+        if (name_TextField.getText() != null) {
+            EmployeeDto E = new EmployeeDto();
+            E.setFName(name_TextField.getText());
+            if (EmployeeBaoObj.SearchEmployee(E) != null)
+                employeeTableReset(EmployeeBaoObj.SearchEmployee(E));
+            else
+                JOptionPane.showMessageDialog(null, "not found");
 
-            if (fName_TextField.getText()!= null)
-            {  EmployeeDto e = new EmployeeDto() ;
-               e.setFName(fName_TextField.getText());
-                employeeTableReset(business.SearchEmployee(e) ); } 
-                else
-            employeeTableReset(business.listEmployee());   
-        
+        }
 
-
-
+        else {
+            // no input will return all Employess
+            searchReturnedEmployee = EmployeeBaoObj.listEmployee();
+        }
     }//GEN-LAST:event_btnSearchMouseClicked
+
+    private void btnUpdateMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnUpdateMouseClicked
+        if (staffTable.getSelectedRow() >= 0) {
+
+            fname_TextField.setText(staffTable.getValueAt(staffTable.getSelectedRow(), 0).toString());
+            fname_TextField.setEnabled(false);
+         
+            InsertPanel.setVisible(true);
+            updateFlag = true;
+
+
+        } else {
+            JOptionPane.showMessageDialog(this, "select an Employee to update ");
+        }
+    }//GEN-LAST:event_btnUpdateMouseClicked
+
+    private void btnDeleteMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnDeleteMouseClicked
+    InsertPanel.setVisible(false);
+
+        int selectedEmployeeid = Integer.parseInt(staffTable.getValueAt(staffTable.getSelectedRow(), 0).toString());
+           EmployeeDto selectedEmployee_Delete = new EmployeeDto(); // this user i want to delete
+           selectedEmployee_Delete.setEmp_id(selectedEmployeeid);
+           
+           if (EmployeeBaoObj.deleteEmployee(selectedEmployee_Delete)) {
+               int msgRes =
+                   JOptionPane.showOptionDialog(null, "Deleted Successfully ", "Staff Deleting ",
+                                                JOptionPane.DEFAULT_OPTION, JOptionPane.INFORMATION_MESSAGE, null, null,
+                                                null);
+
+               if (msgRes == JOptionPane.OK_OPTION) {
+                employeeTableReset(EmployeeBaoObj.listEmployee() );
+                   staffTable.repaint();
+               }
+           } else {
+               JOptionPane.showMessageDialog(this, "Can not delete may be deleted using another Employee ");
+           } 
+           
+    }//GEN-LAST:event_btnDeleteMouseClicked
+
+    private void btnInsertMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnInsertMouseClicked
+        InsertPanel.setVisible(true);
+        fname_TextField.setEnabled(true);
+        updateFlag = false;
+    }//GEN-LAST:event_btnInsertMouseClicked
+
+    private void btnSaveMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnSaveMouseClicked
+    EmployeeDto employee = new EmployeeDto();
+    DepartmentDto department = new DepartmentDto();
+    String positionSelectedvType = position_ComboBox.getSelectedItem().toString();
+    department.setDepartment_id(allDepartments.get(department_ComboBox.getSelectedIndex()).getDepartment_id());
+
+    employee.setFName(fname_TextField.getText());
+    employee.setFName(sname_TextField.getText());
+    employee.setFName(lname_TextField.getText());
+    employee.setFName(familyName_TextField.getText());
+        /* we need to add a section in database for employee's  department
+         * */
+        //  employee.setDepetment(department);
+    employee.setCareerDgree(positionSelectedvType);
+    
+  
+    if (updateFlag) { 
+        employee.setUpdate_Date(new Date(System.currentTimeMillis()));
+        employee.setUpdatedBy(LoginEngine.currentUser);
+    } else {
+        employee.setUpdate_Date(new Date(System.currentTimeMillis()));
+        employee.setUpdatedBy(LoginEngine.currentUser);
+        employee.setInertion_Date(new Date(System.currentTimeMillis()));
+        employee.setInsertedBy(LoginEngine.currentUser);
+      
+    }
+
+        try {
+            ;
+           if (EmployeeBaoObj.saveEmployee(employee)) {
+                JOptionPane.showMessageDialog(this, "saved ");
+                employeeTableReset(EmployeeBaoObj.listEmployee());
+            } else
+                JOptionPane.showMessageDialog(this, "can not save ");
+        } catch (LTAException ltae) {
+            JOptionPane.showMessageDialog(this, "can not save ");
+        } 
+    }//GEN-LAST:event_btnSaveMouseClicked
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JPanel InsertPanel;
+    private javax.swing.JButton btnDelete;
+    private javax.swing.JButton btnInsert;
+    private javax.swing.JButton btnSave;
     private javax.swing.JButton btnSearch;
-    private javax.swing.JButton deleteStaffBtn;
-    private javax.swing.JTextField fName_TextField;
-    private javax.swing.JButton insertStaffBtn;
+    private javax.swing.JButton btnUpdate;
+    private javax.swing.JComboBox department_ComboBox;
+    private javax.swing.JTextField familyName_TextField;
+    private javax.swing.JTextField fname_TextField;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel9;
+    private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JTextField lname_TextField;
+    private javax.swing.JTextField name_TextField;
+    private javax.swing.JComboBox position_ComboBox;
+    private javax.swing.JTextField sname_TextField;
     private javax.swing.JTable staffTable;
-    private javax.swing.JButton updateStaffBtn;
     // End of variables declaration//GEN-END:variables
-
+    
+    
     public void employeeTableReset(List<EmployeeDto> employees) {
        
         Object[][] employeesArr = new Object[employees.size()][5];
@@ -207,7 +455,6 @@ public class StaffScreen extends javax.swing.JPanel {
             employeesArr[i][3] = employees.get(i).getLName();
             employeesArr[i][4] = employees.get(i).getFamilyName();
 
-            //employeesArr[i][5] = employees.get(i).getEmail();
 
         }
         staffTable.setModel(new javax.swing.table.DefaultTableModel(employeesArr, new String[] {
@@ -215,4 +462,10 @@ public class StaffScreen extends javax.swing.JPanel {
                                                                     "Family Name"
             }));
     }
+    
+    void listComboDepartment(List<DepartmentDto> Departments) {
+        for (int i = 0; i < Departments.size(); i++) {
+            department_ComboBox.addItem(Departments.get(i).getName());
+        }
+}
 }

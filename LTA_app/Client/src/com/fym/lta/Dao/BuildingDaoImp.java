@@ -50,7 +50,7 @@ public class BuildingDaoImp implements BuildingDao {
             jdbcRs.setUsername(ConnectionFactory.getUsername());
             jdbcRs.setPassword(ConnectionFactory.getPassword());
             jdbcRs.setCommand(Queries.DELETE_BUILDING);
-            jdbcRs.setInt(1, building.getBuilding_id());
+            jdbcRs.setString(1, building.getCode());
             jdbcRs.execute();
             return true;
         } catch (Exception e) {

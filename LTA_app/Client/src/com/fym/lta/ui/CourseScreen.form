@@ -347,9 +347,6 @@
               <StringArray count="0"/>
             </Property>
           </Properties>
-          <AuxValues>
-            <AuxValue name="JavaCodeGenerator_InitCodePost" type="java.lang.String" value="Department_ComboBox.addItem(&quot;One period&quot;);&#xa;        Department_ComboBox.addItem(&quot;Two period&quot;);"/>
-          </AuxValues>
         </Component>
         <Component class="javax.swing.JLabel" name="Departmentlapel">
           <Properties>
@@ -387,9 +384,6 @@
               </StringArray>
             </Property>
           </Properties>
-          <AuxValues>
-            <AuxValue name="JavaCodeGenerator_InitCodePost" type="java.lang.String" value="Department_ComboBox.addItem(&quot;One period&quot;);&#xa;        Department_ComboBox.addItem(&quot;Two period&quot;);"/>
-          </AuxValues>
         </Component>
         <Component class="javax.swing.JLabel" name="Departmentlapel1">
           <Properties>

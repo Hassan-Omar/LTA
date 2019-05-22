@@ -5,7 +5,6 @@ import com.fym.lta.common.LTAException;
 import com.fym.lta.common.Queries;
 import com.fym.lta.dto.FloorDto;
 
-
 import java.sql.Types;
 
 import java.util.ArrayList;
@@ -13,8 +12,6 @@ import java.util.List;
 
 import javax.sql.rowset.JdbcRowSet;
 import javax.sql.rowset.RowSetProvider;
-
-import javax.swing.JOptionPane;
 
 public class FloorDaoImp implements FloorDao {
     /**get all floors in building */
@@ -94,6 +91,9 @@ public class FloorDaoImp implements FloorDao {
             else
                 jdbcRs.setNull(6, Types.VARCHAR);
 
+            jdbcRs.setInt(7, Floor.getBuilding().getBuilding_id());
+
+
             jdbcRs.execute();
 
             return true;
@@ -129,7 +129,10 @@ public class FloorDaoImp implements FloorDao {
         else
             jdbcRs.setNull(3, java.sql.Types.DATE);
         
-        jdbcRs.setString(4, Floor.getCode());
+        jdbcRs.setInt(4, Floor.getBuilding().getBuilding_id());
+
+        
+        jdbcRs.setString(5, Floor.getCode());
 
         jdbcRs.execute();
         return true;

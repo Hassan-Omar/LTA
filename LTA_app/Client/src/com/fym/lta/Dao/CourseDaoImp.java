@@ -37,7 +37,7 @@ public class CourseDaoImp implements CourseDao {
                 Course.setCode(jdbcRs.getString(2));
                 Course.setName(jdbcRs.getString(3));
                 //Course.setDescription(jdbcRs.getString(4));
-                Course.setHoursperWeak(jdbcRs.getInt(5));
+                //Course.setHoursperWeak(jdbcRs.getInt(5));
 
                 Courses.add(Course);
 
@@ -191,7 +191,7 @@ public class CourseDaoImp implements CourseDao {
                 Course.setCode(jdbcRs.getString(2));
                 Course.setName(jdbcRs.getString(3));
                 //Course.setDescription(jdbcRs.getString(4));
-                Course.setHoursperWeak(jdbcRs.getInt(5));
+                //Course.setHoursperWeak(jdbcRs.getInt(5));
 
                 Courses.add(Course);
 

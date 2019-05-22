@@ -2,9 +2,11 @@ package com.fym.lta.dao;
 
 import com.fym.lta.common.ConnectionFactory;
 import com.fym.lta.common.Queries;
+import com.fym.lta.dto.BuildingDto;
 import com.fym.lta.dto.DepartmentDto;
 
 import java.sql.SQLException;
+import java.sql.Types;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -36,8 +38,20 @@ public class DepartmentDaoImp implements DepartmentDao {
                 Department = new DepartmentDto();
 
                 Department.setDepartment_id(jdbcRs.getInt(1));
-                Department.setCode(jdbcRs.getString(2));
-                Department.setName(jdbcRs.getString(3));
+                Department.setName(jdbcRs.getString(2));
+                Department.setCode(jdbcRs.getString(3));
+                
+                BuildingDto building  = new BuildingDto(jdbcRs.getInt(4));
+                building.setCode(jdbcRs.getString(5));
+                Department.setHomebuilding(building);
+                
+                Department.setInsertedBy(jdbcRs.getString(6));                
+                Department.setUpdatedBy(jdbcRs.getString(7));
+                
+                Department.setInertion_Date(jdbcRs.getDate(8));
+                Department.setUpdate_Date(jdbcRs.getDate(9));
+
+                
                 Departments.add(Department);
 
             }
@@ -58,28 +72,14 @@ public class DepartmentDaoImp implements DepartmentDao {
             jdbcRs.setString(1, Department.getCode());
 
             jdbcRs.execute();
-            return true;
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-
-        return false;
-    }
-
-    public boolean insert_Department(DepartmentDto Department) {
-        try (JdbcRowSet jdbcRs = RowSetProvider.newFactory().createJdbcRowSet()) {
-            jdbcRs.setUrl(ConnectionFactory.getUrl());
-            jdbcRs.setUsername(ConnectionFactory.getUsername());
-            jdbcRs.setPassword(ConnectionFactory.getPassword());
-            jdbcRs.setCommand(Queries.INSERT_NEW_DEPARTMENT);
-
+            
+            jdbcRs.setCommand(Queries.DELETE_BUILDING_TO_DEPARTMENT);
 
             jdbcRs.setString(1, Department.getCode());
-            jdbcRs.setString(2, Department.getName());
-            //jdbcRs.setString(4, Department.getHomebuilding());
-
 
             jdbcRs.execute();
+            
+            
             return true;
         } catch (Exception e) {
             e.printStackTrace();
@@ -88,17 +88,86 @@ public class DepartmentDaoImp implements DepartmentDao {
         return false;
     }
 
-    public boolean Update_Department(DepartmentDto Department) {
+    public boolean insert_Department(DepartmentDto department) {
         try (JdbcRowSet jdbcRs = RowSetProvider.newFactory().createJdbcRowSet()) {
             jdbcRs.setUrl(ConnectionFactory.getUrl());
             jdbcRs.setUsername(ConnectionFactory.getUsername());
             jdbcRs.setPassword(ConnectionFactory.getPassword());
-            jdbcRs.setCommand(Queries.UPDATE_DEPARTMENT);
 
-            jdbcRs.setString(2, Department.getCode());
-            jdbcRs.setString(1, Department.getName());
+            jdbcRs.setCommand(Queries.INSERT_NEW_DEPARTMENT);
+            jdbcRs.setAutoCommit(false);
+            jdbcRs.setString(1, department.getCode());
+            jdbcRs.setString(2, department.getName());
+
+            // check if the inserted date is not setted we we will set it
+            if (department.getInertion_Date() != null)
+                jdbcRs.setDate(3, new java.sql.Date(department.getInertion_Date().getTime()));
+            else
+                jdbcRs.setNull(3, java.sql.Types.DATE);
+
+            // check if the update date is not setted we we will set it
+            if (department.getUpdate_Date() != null)
+                jdbcRs.setDate(4, new java.sql.Date(department.getUpdate_Date().getTime()));
+            else
+                jdbcRs.setNull(4, java.sql.Types.DATE);
+
+            // check if the person who imserte  is not setted we we will set it empty
+            if (department.getInsertedBy() != null)
+                jdbcRs.setString(5, department.getInsertedBy());
+            else
+                jdbcRs.setNull(5, Types.VARCHAR);
+
+
+            if (department.getUpdatedBy() != null)
+                jdbcRs.setString(6, department.getUpdatedBy());
+            else
+                jdbcRs.setNull(6, Types.VARCHAR);
 
             jdbcRs.execute();
+            jdbcRs.setCommand(Queries.INSERT_BUILDING_TO_DEPARTMENT);
+            jdbcRs.setString(2, department.getCode());
+            jdbcRs.setInt(1, department.getHomebuilding().getBuilding_id());
+            jdbcRs.execute();
+            jdbcRs.commit();
+
+            return true;
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        return false;
+    }
+
+    public boolean Update_Department(DepartmentDto department) {
+        try (JdbcRowSet jdbcRs = RowSetProvider.newFactory().createJdbcRowSet()) {
+            jdbcRs.setUrl(ConnectionFactory.getUrl());
+            jdbcRs.setUsername(ConnectionFactory.getUsername());
+            jdbcRs.setPassword(ConnectionFactory.getPassword());
+            jdbcRs.setAutoCommit(false);
+
+            jdbcRs.setCommand(Queries.UPDATE_DEPARTMENT);
+            
+            jdbcRs.setString(1, department.getName());
+            jdbcRs.setString(4, department.getCode()); 
+ 
+             // check if the update date is not setted we we will set it
+            if (department.getUpdate_Date() != null)
+                jdbcRs.setDate(2, new java.sql.Date(department.getUpdate_Date().getTime()));
+            else
+                jdbcRs.setNull(2, java.sql.Types.DATE);
+
+            if (department.getUpdatedBy() != null)
+                jdbcRs.setString(3, department.getUpdatedBy());
+            else
+                jdbcRs.setNull(3, Types.VARCHAR);
+
+            jdbcRs.execute();
+            jdbcRs.setCommand(Queries.UPDATE_BUILDING_TO_DEPARTMENT);
+
+            jdbcRs.setString(2, department.getCode());
+            jdbcRs.setInt(1, department.getHomebuilding().getBuilding_id());
+            jdbcRs.execute();
+            jdbcRs.commit();
             return true;
         } catch (Exception e) {
             e.printStackTrace();
@@ -139,17 +208,28 @@ public class DepartmentDaoImp implements DepartmentDao {
 
             jdbcRs.execute();
 
-
+            DepartmentDto dep = new DepartmentDto();
             while (jdbcRs.next()) {
                 if (departments == null)
                     departments = new ArrayList<>();
 
-                DepartmentDto lSerch = new DepartmentDto();
-                lSerch.setDepartment_id(jdbcRs.getInt(1));
-                lSerch.setName(jdbcRs.getString(3));
-                lSerch.setCode(jdbcRs.getString(2));
+                departments = new ArrayList<>();
+                Department = new DepartmentDto();
 
-                departments.add(lSerch);
+                dep.setDepartment_id(jdbcRs.getInt(1));
+                dep.setName(jdbcRs.getString(2));
+                dep.setCode(jdbcRs.getString(3));
+                
+                BuildingDto building  = new BuildingDto(jdbcRs.getInt(4));
+                building.setCode(jdbcRs.getString(5));
+                dep.setHomebuilding(building);
+                
+                Department.setInsertedBy(jdbcRs.getString(6));                
+                Department.setUpdatedBy(jdbcRs.getString(7));
+                Department.setInertion_Date(jdbcRs.getDate(8));
+                Department.setUpdate_Date(jdbcRs.getDate(9));
+
+                departments.add(dep);
 
             }
         } catch (Exception e) {

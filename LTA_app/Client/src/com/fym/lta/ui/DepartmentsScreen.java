@@ -370,15 +370,15 @@ public class DepartmentsScreen extends javax.swing.JPanel {
     
     
     public void departmentTableReset(List<DepartmentDto> Department) {
-        Object[][] DepartmentArr = new Object[Department.size()][2];
+        Object[][] DepartmentArr = new Object[Department.size()][3];
 
         for (int i = 0; i < Department.size(); i++) {
             DepartmentArr[i][0] = Department.get(i).getCode();
             DepartmentArr[i][1] = Department.get(i).getName();
-            // DepartmentArr[i][3] = Department.get(i).getHomebuilding();
+             DepartmentArr[i][2] = Department.get(i).getHomebuilding().getCode();
         }
         DepartmentTable.setModel(new javax.swing.table.DefaultTableModel(DepartmentArr, new String[] {
-                                                                         "Code", "Name" }));
+                                                                         "Code", "Name","Code Of Home Building" }));
     }
 
     void listComboBuildings(List<BuildingDto> Buildings) {

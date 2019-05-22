@@ -5,6 +5,7 @@ import com.fym.lta.bao.CourseBao;
 import com.fym.lta.bao.EmployeeBao;
 import com.fym.lta.bao.LoginEngine;
 import com.fym.lta.bao.SchedualBao;
+import com.fym.lta.common.LTAException;
 import com.fym.lta.dto.CourseDto;
 import com.fym.lta.dto.EmployeeDto;
 import com.fym.lta.dto.SchedualDto;
@@ -319,9 +320,14 @@ public class ScheduleInsert extends javax.swing.JPanel
                                 instructor.setInertion_Date(new Date(System.currentTimeMillis()));
                                 instructor.setUpdate_Date(new Date(System.currentTimeMillis()));
                                 if(instructor.getFullName()!="" &&instructor.getEmail()!="")
-                                EmployeeBao.saveEmployee(instructor);
+                                try {
+                                    EmployeeBao.saveEmployee(instructor);
+                                } catch (LTAException ltae) {
+                                    // TODO: Add catch code
+                                    ltae.printStackTrace();
+                                }
                                 staffList.add(instructor);
-                                // repeat this code for instructor no 2 
+                                // repeat this code for instructor  no 2 
                                  
                                 course.setInstructors(staffList);
                                 course.setCode(courseName.getCell(k + 1).toString());

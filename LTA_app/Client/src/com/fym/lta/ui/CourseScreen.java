@@ -37,6 +37,7 @@ private CourseBao courseobjBao = new BaoFactory().createCourseBao();
 
 {
         initComponents();
+        listComboDepartment(allDepartments);
         if (courseobjBao.listCourses()!= null)
             courseTableReset(courseobjBao.listCourses());
         
@@ -182,8 +183,6 @@ private CourseBao courseobjBao = new BaoFactory().createCourseBao();
         namelapel.setText("Name");
 
         Department_ComboBox.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        Department_ComboBox.addItem("One period");
-        Department_ComboBox.addItem("Two period");
 
         Departmentlapel.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         Departmentlapel.setText("Department ");
@@ -198,8 +197,6 @@ private CourseBao courseobjBao = new BaoFactory().createCourseBao();
 
         prefered_ComboBox.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         prefered_ComboBox.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Hall", "Lab", "Small Room" }));
-        Department_ComboBox.addItem("One period");
-        Department_ComboBox.addItem("Two period");
 
         Departmentlapel1.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         Departmentlapel1.setText("pref_Space");
@@ -353,9 +350,22 @@ private CourseBao courseobjBao = new BaoFactory().createCourseBao();
     }//GEN-LAST:event_insertCourseBtnMouseClicked
 
     private void btnSaveMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnSaveMouseClicked
-    CourseDto course = new CourseDto();
+     String preferedSelectedvType = prefered_ComboBox.getSelectedItem().toString();
+    
+     DepartmentDto department = new DepartmentDto();
+     department.setDepartment_id(allDepartments.get(Department_ComboBox.getSelectedIndex()).getDepartment_id());
+
+
+     CourseDto course = new CourseDto();
     course.setName(name_textField.getText());
+    course.setCode(code_textField.getText());
     course.setHoursperWeak(Integer.parseInt(hours_perWeak.getText()));
+    /*we need to add a section in course's table to department
+   // course.setNeededLocType(preferedSelectedvType);
+   // course.setDepetment(department);
+    */
+    
+    
     
    
     if(updateFlag)

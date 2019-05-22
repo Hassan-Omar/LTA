@@ -7,11 +7,22 @@ import com.fym.lta.dto.EmployeeDto;
 
 import java.util.List;
 
-public class EmployeeBaoImp implements EmployeeBao 
-{
+public class EmployeeBaoImp implements EmployeeBao {
     EmployeeDao empDaoObject = new DaoFactory().createEmployeeDao();
+    
+    
+    public boolean saveEmployee(EmployeeDto Employee) throws LTAException {
+            boolean status  = false ;
+            if (empDaoObject.isExist(Employee.getEmail()))
+             status =  empDaoObject.Update_Employee(Employee);
+             else 
+              status = empDaoObject.insert_Employee(Employee);
+             return status;
+             
+        
+        }
 
- 
+
 
     public List<EmployeeDto> SearchEmployee(EmployeeDto Employee) {
 
@@ -19,7 +30,7 @@ public class EmployeeBaoImp implements EmployeeBao
 
     }
 
-   
+
     public List<EmployeeDto> listEmployee() {
 
         return empDaoObject.getAll_Employees();
@@ -28,18 +39,9 @@ public class EmployeeBaoImp implements EmployeeBao
     public boolean deleteEmployee(EmployeeDto Employee) {
         return empDaoObject.delete_Employee(Employee);
     }
-
-    @Override
-    public boolean saveEmployee(EmployeeDto employee) {
-        
-        boolean saveStatus  = false ; 
-        
-        if(empDaoObject.isExist(employee.getEmail() ))
-            try {
-               saveStatus  =  empDaoObject.Update_Employee(employee);
-            } catch (LTAException e) {
-            }
-        else saveStatus = empDaoObject.insert_Employee(employee) ;
-        return saveStatus;
+    public boolean isExist(String email )
+    {
+        return empDaoObject.isExist(email);
+    
     }
 }
