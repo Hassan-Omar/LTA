@@ -77,7 +77,6 @@ public class EquipmentScreen extends javax.swing.JPanel {
      */
     @SuppressWarnings("unchecked")
     private void initComponents() {//GEN-BEGIN:initComponents
-        java.awt.GridBagConstraints gridBagConstraints;
 
         master = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
@@ -101,45 +100,14 @@ public class EquipmentScreen extends javax.swing.JPanel {
         save = new javax.swing.JButton();
         jLabel8 = new javax.swing.JLabel();
 
-        setLayout(new java.awt.GridBagLayout());
+        setLayout(null);
 
         master.setBorder(javax.swing.BorderFactory.createTitledBorder("Equipments"));
         master.setPreferredSize(new java.awt.Dimension(400, 400));
 
         EquipmentTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null}
+
             },
             new String [] {
                 "Title 1", "Title 2", "Title 3", "Title 4", "Title 5", "Title 6", "Title 7", "Title 8", "Title 9", "Title 10", "Title 11", "Title 12"
@@ -154,82 +122,53 @@ public class EquipmentScreen extends javax.swing.JPanel {
         master.setLayout(masterLayout);
         masterLayout.setHorizontalGroup(
             masterLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 1139, Short.MAX_VALUE)
+            .addGroup(masterLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 586, Short.MAX_VALUE)
+                .addContainerGap())
         );
         masterLayout.setVerticalGroup(
             masterLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 303, Short.MAX_VALUE)
+            .addGroup(masterLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 279, Short.MAX_VALUE)
+                .addContainerGap())
         );
 
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 4;
-        gridBagConstraints.gridwidth = 7;
-        gridBagConstraints.ipadx = 1120;
-        gridBagConstraints.ipady = 280;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(29, 133, 49, 0);
-        add(master, gridBagConstraints);
+        add(master);
+        master.setBounds(133, 263, 620, 324);
 
         insert.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        insert.setText("Insert New Equipment");
+        insert.setText("Insert New ");
         insert.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 insertActionPerformed(evt);
             }
         });
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 4;
-        gridBagConstraints.gridy = 3;
-        gridBagConstraints.gridwidth = 2;
-        gridBagConstraints.ipadx = 2;
-        gridBagConstraints.ipady = 30;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(67, 74, 0, 0);
-        add(insert, gridBagConstraints);
+        add(insert);
+        insert.setBounds(590, 180, 160, 59);
 
         delete.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        delete.setText("Delete Equipment");
+        delete.setText("Delete ");
         delete.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 deleteActionPerformed(evt);
             }
         });
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 2;
-        gridBagConstraints.gridy = 3;
-        gridBagConstraints.ipadx = 19;
-        gridBagConstraints.ipady = 30;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(67, 154, 0, 0);
-        add(delete, gridBagConstraints);
+        add(delete);
+        delete.setBounds(370, 180, 110, 59);
 
         update.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        update.setText("Update Equipment");
+        update.setText("Update ");
         update.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 updateActionPerformed(evt);
             }
         });
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 3;
-        gridBagConstraints.gridwidth = 2;
-        gridBagConstraints.ipadx = 23;
-        gridBagConstraints.ipady = 30;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(67, 182, 0, 0);
-        add(update, gridBagConstraints);
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 1;
-        gridBagConstraints.gridy = 0;
-        gridBagConstraints.gridwidth = 3;
-        gridBagConstraints.gridheight = 2;
-        gridBagConstraints.ipadx = 385;
-        gridBagConstraints.ipady = 26;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(62, 61, 0, 0);
-        add(jTextField1, gridBagConstraints);
+        add(update);
+        update.setBounds(150, 180, 130, 59);
+        add(jTextField1);
+        jTextField1.setBounds(170, 70, 389, 45);
 
         search.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         search.setText("Search");
@@ -238,15 +177,8 @@ public class EquipmentScreen extends javax.swing.JPanel {
                 searchActionPerformed(evt);
             }
         });
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 4;
-        gridBagConstraints.gridy = 0;
-        gridBagConstraints.gridheight = 3;
-        gridBagConstraints.ipadx = 21;
-        gridBagConstraints.ipady = 24;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(55, 131, 0, 0);
-        add(search, gridBagConstraints);
+        add(search);
+        search.setBounds(630, 70, 107, 53);
 
         DefineEquipment.setBorder(javax.swing.BorderFactory.createTitledBorder("Define Equipment"));
 
@@ -349,26 +281,13 @@ public class EquipmentScreen extends javax.swing.JPanel {
                 .addContainerGap(32, Short.MAX_VALUE))
         );
 
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 7;
-        gridBagConstraints.gridy = 0;
-        gridBagConstraints.gridheight = 5;
-        gridBagConstraints.ipadx = 107;
-        gridBagConstraints.ipady = 21;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(42, 42, 49, 22);
-        add(DefineEquipment, gridBagConstraints);
+        add(DefineEquipment);
+        DefineEquipment.setBounds(830, 50, 492, 545);
 
         jLabel8.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        jLabel8.setText("Enter Equipment Code");
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 0;
-        gridBagConstraints.ipadx = 13;
-        gridBagConstraints.ipady = 23;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(59, 133, 0, 0);
-        add(jLabel8, gridBagConstraints);
+        jLabel8.setText("Search");
+        add(jLabel8);
+        jLabel8.setBounds(170, 20, 190, 45);
     }//GEN-END:initComponents
 
     private void insertActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_insertActionPerformed
