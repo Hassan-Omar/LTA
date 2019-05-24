@@ -243,14 +243,22 @@ public class Queries {
     public static final String LIST_ALL_COURSES = "SELECT * FROM COURSE";
 
     public static final String DELETE_COURSE = "DELETE FROM COURSE WHERE CODE = ? ";
+    public static final String DELETE_DEPARTMENT_COURSE = "DELETE FROM COURSE_DEPARTMENT WHERE COURSE_CODE = ? ";
 
     public static final String UPDATE_COURSE =
-        "UPDATE COURSE SET  CODE = ?, NAME = ? ,UPDATED_BY = ? ,UPDATE_DATE = ? WHERE CODE = ?";
+        "UPDATE COURSE SET  CODE = ?, NAME = ? ,UPDATED_BY = ?" +
+        ",UPDATE_DATE = ? ,HOURS_PER_WEEK =? ,LOCATIONTYPE_ID =? ,DESCRIPTION = ? WHERE CODE = ?";
+    public static final String UPDATE_DEPARTMENT_COURSE =
+        "UPDATE  COURSE_DEPARTMENT SET DEPARTMENT_ID = ? WHERE COURSE_CODE = ?";
 
     public static final String IS_COURSE_EXIST = "SELECT ID FROM COURSE WHERE CODE = ?";
 
     public static final String INSERT_NEW_COURSE =
-        "INSERT INTO COURSE (CODE,NAME,INSERTED_BY ,UPDATED_BY ,INSERTION_DATE ,UPDATE_DATE) VALUES (?,?,?,?,?,?)";
+        "INSERT INTO COURSE (CODE,NAME,INSERTED_BY ,UPDATED_BY ,INSERTION_DATE" +
+        ",UPDATE_DATE , HOURS_PER_WEEK ,LOCATIONTYPE_ID ,DESCRIPTION) VALUES (?,?,?,?,?,?,?,?,?)";
+    public static final String INSERT_DEPARTMENT_COURSE =
+        "INSERT INTO COURSE_DEPARTMENT (COURSE_CODE ,DEPARTMENT_ID) VALUES(?,?)";
+
 
     public static final String SEARCH_COURSES = "SELECT * FROM COURSE WHERE LOWER(CODE) LIKE ? OR LOWER(NAME) LIKE ?";
 
@@ -271,28 +279,33 @@ public class Queries {
 
     //________________________________ Department Module __________________________________
 
-    public static final String LIST_ALL_DEPARTMENT = "SELECT X.D_ID, X.NAME , x.code , Y.B_ID  ,y.code ," +
-        "X.INSERTED_BY , X.UPDATED_BY , X.INSERTION_DATE , X.UPDATE_DATE " + 
-    "FROM DEPARTMENT X , BUILDING Y , DEPARTMENT_BUILDING " + 
-    "WHERE DEPARTMENT_BUILDING.ID_BUILDING =Y.B_ID AND DEPARTMENT_BUILDING.CODE_DEPARTMENT = X.CODE " ; 
-    
-    public static final String DELETE_DEPARTMENT = "DELETE FROM DEPARTMENT WHERE CODE = ? ";
-    public static final String DELETE_BUILDING_TO_DEPARTMENT = "DELETE FROM DEPARTMENT_BUILDING WHERE CODE_DEPARTMENT = ? " ;
+    public static final String LIST_ALL_DEPARTMENT =
+        "SELECT X.D_ID, X.NAME , x.code , Y.B_ID  ,y.code ," +
+        "X.INSERTED_BY , X.UPDATED_BY , X.INSERTION_DATE , X.UPDATE_DATE " +
+        "FROM DEPARTMENT X , BUILDING Y , DEPARTMENT_BUILDING " +
+        "WHERE DEPARTMENT_BUILDING.ID_BUILDING =Y.B_ID AND DEPARTMENT_BUILDING.CODE_DEPARTMENT = X.CODE ";
 
-    public static final String INSERT_NEW_DEPARTMENT = "INSERT INTO DEPARTMENT (CODE,NAME,INSERTION_DATE,UPDATE_DATE" +
+    public static final String DELETE_DEPARTMENT = "DELETE FROM DEPARTMENT WHERE CODE = ? ";
+    public static final String DELETE_BUILDING_TO_DEPARTMENT =
+        "DELETE FROM DEPARTMENT_BUILDING WHERE CODE_DEPARTMENT = ? ";
+
+    public static final String INSERT_NEW_DEPARTMENT =
+        "INSERT INTO DEPARTMENT (CODE,NAME,INSERTION_DATE,UPDATE_DATE" +
         ",INSERTED_BY,UPDATED_BY) VALUES (?,?,?,?,?,?) ";
     public static final String INSERT_BUILDING_TO_DEPARTMENT =
         "INSERT INTO DEPARTMENT_BUILDING (ID_BUILDING , CODE_DEPARTMENT) VALUES(?,?) ";
-    public static final String UPDATE_DEPARTMENT = "UPDATE DEPARTMENT SET  NAME = ? , UPDATE_DATE=? ,UPDATED_BY = ? WHERE CODE = ?";
+    public static final String UPDATE_DEPARTMENT =
+        "UPDATE DEPARTMENT SET  NAME = ? , UPDATE_DATE=? ,UPDATED_BY = ? WHERE CODE = ?";
     public static final String UPDATE_BUILDING_TO_DEPARTMENT =
         "UPDATE DEPARTMENT_BUILDING SET ID_BUILDING = ?  WHERE CODE_DEPARTMENT = ? ";
     public static final String IS_DEPARTMENT_EXIST = "SELECT * FROM DEPARTMENT WHERE CODE = ?";
 
-    public static final String DEPARTMENT_SEARCH ="SELECT X.D_ID, X.NAME , x.code , Y.B_ID  ,y.code , " + 
-    "        X.INSERTED_BY , X.UPDATED_BY , X.INSERTION_DATE , X.UPDATE_DATE " + 
-    "    FROM DEPARTMENT X , BUILDING Y , DEPARTMENT_BUILDING " + 
-    "    WHERE DEPARTMENT_BUILDING.ID_BUILDING =Y.B_ID AND DEPARTMENT_BUILDING.CODE_DEPARTMENT = X.CODE " + 
-    "        AND LOWER(X.CODE) LIKE ? OR  LOWER(X.NAME) LIKE ? " ; 
+    public static final String DEPARTMENT_SEARCH =
+        "SELECT X.D_ID, X.NAME , x.code , Y.B_ID  ,y.code , " +
+        "        X.INSERTED_BY , X.UPDATED_BY , X.INSERTION_DATE , X.UPDATE_DATE " +
+        "    FROM DEPARTMENT X , BUILDING Y , DEPARTMENT_BUILDING " +
+        "    WHERE DEPARTMENT_BUILDING.ID_BUILDING =Y.B_ID AND DEPARTMENT_BUILDING.CODE_DEPARTMENT = X.CODE " +
+        "        AND LOWER(X.CODE) LIKE ? OR  LOWER(X.NAME) LIKE ? ";
 
     //_________________________________________________________________________________________
 

@@ -6,6 +6,7 @@ import com.fym.lta.bao.CourseBao;
 import com.fym.lta.bao.LoginEngine;
 import com.fym.lta.dto.CourseDto;
 import com.fym.lta.dto.DepartmentDto;
+import com.fym.lta.dto.LocationTypeDto;
 
 import java.util.Date;
 import java.util.List;
@@ -28,7 +29,7 @@ private CourseBao courseobjBao = new BaoFactory().createCourseBao();
     List<DepartmentDto> allDepartments = new BaoFactory().createDepartmentBao().listDepartment();
     
     // how to get location types in combo box 
-  //  List<LocationTypeDto> allLocationType = new BaoFactory().createLocationTypeBao().
+    List<LocationTypeDto> allLocationType = new BaoFactory().createLocationTypeBao().listLocationType();
 
 
     
@@ -37,10 +38,12 @@ private CourseBao courseobjBao = new BaoFactory().createCourseBao();
 
 {
         initComponents();
+        if(allDepartments!=null)
         listComboDepartment(allDepartments);
         if (courseobjBao.listCourses()!= null)
             courseTableReset(courseobjBao.listCourses());
-        
+        if(allLocationType!=null)
+            listComboLocation(allLocationType) ; 
         insertPanel.setVisible(false);
         String permissionType = new BaoFactory().createScreenBao().getCurrentPermission(6);
         Utilities.mandate(updateCourseBtn,insertCourseBtn , deleteCourseBtn ,6,permissionType); 
@@ -77,6 +80,9 @@ private CourseBao courseobjBao = new BaoFactory().createCourseBao();
         Departmentlapel1 = new javax.swing.JLabel();
         hours_perWeak = new javax.swing.JTextField();
         namelapel1 = new javax.swing.JLabel();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        descrption = new javax.swing.JTextArea();
+        Departmentlapel2 = new javax.swing.JLabel();
 
         btnSearch.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         btnSearch.setText("Search");
@@ -130,10 +136,10 @@ private CourseBao courseobjBao = new BaoFactory().createCourseBao();
             }
         ));
         courseTable.addHierarchyBoundsListener(new java.awt.event.HierarchyBoundsListener() {
+            public void ancestorMoved(java.awt.event.HierarchyEvent evt) {
+            }
             public void ancestorResized(java.awt.event.HierarchyEvent evt) {
                 courseTableAncestorResized(evt);
-            }
-            public void ancestorMoved(java.awt.event.HierarchyEvent evt) {
             }
         });
         jScrollPane1.setViewportView(courseTable);
@@ -169,9 +175,11 @@ private CourseBao courseobjBao = new BaoFactory().createCourseBao();
                     .addComponent(deleteCourseBtn)
                     .addComponent(insertCourseBtn))
                 .addGap(18, 18, 18)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 642, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 818, Short.MAX_VALUE)
                 .addContainerGap())
         );
+
+        insertPanel.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
         jLabel3.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jLabel3.setText("Course Insert");
@@ -196,7 +204,6 @@ private CourseBao courseobjBao = new BaoFactory().createCourseBao();
         });
 
         prefered_ComboBox.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        prefered_ComboBox.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Hall", "Lab", "Small Room" }));
 
         Departmentlapel1.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         Departmentlapel1.setText("pref_Space");
@@ -204,42 +211,53 @@ private CourseBao courseobjBao = new BaoFactory().createCourseBao();
         namelapel1.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         namelapel1.setText("Hours per Week");
 
+        descrption.setColumns(20);
+        descrption.setRows(5);
+        jScrollPane2.setViewportView(descrption);
+
+        Departmentlapel2.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        Departmentlapel2.setText("Description");
+
         javax.swing.GroupLayout insertPanelLayout = new javax.swing.GroupLayout(insertPanel);
         insertPanel.setLayout(insertPanelLayout);
         insertPanelLayout.setHorizontalGroup(
             insertPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(insertPanelLayout.createSequentialGroup()
                 .addGap(44, 44, 44)
-                .addGroup(insertPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, insertPanelLayout.createSequentialGroup()
+                .addGroup(insertPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(insertPanelLayout.createSequentialGroup()
                         .addGap(193, 193, 193)
                         .addComponent(jLabel3)
                         .addGap(0, 0, Short.MAX_VALUE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, insertPanelLayout.createSequentialGroup()
-                        .addGroup(insertPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                    .addGroup(insertPanelLayout.createSequentialGroup()
+                        .addGroup(insertPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(insertPanelLayout.createSequentialGroup()
+                                .addComponent(Departmentlapel2)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 83, Short.MAX_VALUE)
+                                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 245, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(insertPanelLayout.createSequentialGroup()
+                                .addComponent(Departmentlapel1)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(prefered_ComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 187, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(insertPanelLayout.createSequentialGroup()
                                 .addGroup(insertPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(codelapel, javax.swing.GroupLayout.PREFERRED_SIZE, 61, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(namelapel, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(namelapel1, javax.swing.GroupLayout.PREFERRED_SIZE, 159, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGap(26, 26, 26)
-                                .addGroup(insertPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(code_textField)
-                                    .addComponent(name_textField)
-                                    .addComponent(hours_perWeak)))
-                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, insertPanelLayout.createSequentialGroup()
-                                .addGroup(insertPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(Departmentlapel1)
-                                    .addComponent(Departmentlapel))
-                                .addGap(130, 130, 130)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addGroup(insertPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(Department_ComboBox, 0, 187, Short.MAX_VALUE)
-                                    .addComponent(prefered_ComboBox, 0, 187, Short.MAX_VALUE))))
-                        .addContainerGap(24, Short.MAX_VALUE))))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, insertPanelLayout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(code_textField, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 245, Short.MAX_VALUE)
+                                    .addComponent(name_textField, javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(hours_perWeak)))
+                            .addGroup(insertPanelLayout.createSequentialGroup()
+                                .addComponent(Departmentlapel)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(Department_ComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 187, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addContainerGap())))
+            .addGroup(insertPanelLayout.createSequentialGroup()
+                .addGap(175, 175, 175)
                 .addComponent(btnSave, javax.swing.GroupLayout.PREFERRED_SIZE, 129, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(176, 176, 176))
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         insertPanelLayout.setVerticalGroup(
             insertPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -258,17 +276,24 @@ private CourseBao courseobjBao = new BaoFactory().createCourseBao();
                 .addGroup(insertPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(hours_perWeak, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(namelapel1, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(66, 66, 66)
+                .addGap(36, 36, 36)
                 .addGroup(insertPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(Departmentlapel)
-                    .addComponent(Department_ComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(48, 48, 48)
+                    .addComponent(Department_ComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(Departmentlapel))
+                .addGap(34, 34, 34)
                 .addGroup(insertPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(prefered_ComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(Departmentlapel1))
-                .addGap(79, 79, 79)
+                .addGroup(insertPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(insertPanelLayout.createSequentialGroup()
+                        .addGap(35, 35, 35)
+                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(insertPanelLayout.createSequentialGroup()
+                        .addGap(60, 60, 60)
+                        .addComponent(Departmentlapel2)))
+                .addGap(57, 57, 57)
                 .addComponent(btnSave, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(196, 196, 196))
+                .addGap(37, 37, 37))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
@@ -276,7 +301,7 @@ private CourseBao courseobjBao = new BaoFactory().createCourseBao();
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap(22, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 163, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -289,27 +314,28 @@ private CourseBao courseobjBao = new BaoFactory().createCourseBao();
                         .addComponent(btnSearch)))
                 .addGap(18, 18, 18)
                 .addComponent(insertPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(81, 81, 81))
+                .addGap(69, 69, 69))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(29, 29, 29)
-                        .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnSearch, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(search_textField, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(30, 30, 30)
-                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(29, 29, 29)
+                                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(btnSearch, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(search_textField, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(30, 30, 30)
+                        .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(insertPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 332, Short.MAX_VALUE)))
                 .addContainerGap())
-            .addGroup(layout.createSequentialGroup()
-                .addGap(29, 29, 29)
-                .addComponent(insertPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(29, Short.MAX_VALUE))
         );
     }//GEN-END:initComponents
 
@@ -356,16 +382,20 @@ private CourseBao courseobjBao = new BaoFactory().createCourseBao();
      department.setDepartment_id(allDepartments.get(Department_ComboBox.getSelectedIndex()).getDepartment_id());
 
 
-     CourseDto course = new CourseDto();
+    CourseDto course = new CourseDto();
     course.setName(name_textField.getText());
     course.setCode(code_textField.getText());
     course.setHoursperWeak(Integer.parseInt(hours_perWeak.getText()));
-    /*we need to add a section in course's table to department
-   // course.setNeededLocType(preferedSelectedvType);
-   // course.setDepetment(department);
-    */
+    course.setDescription(descrption.getText());
+
+    try {
+            course.setHoursperWeak(Integer.parseInt(hours_perWeak.getText()));
+
+        } catch (NumberFormatException nfe) {
+           JOptionPane.showMessageDialog(this, "hours per weak should be a number");
+        }
     
-    
+    course.setNeededLocType(allLocationType.get(prefered_ComboBox.getSelectedIndex()));
     
    
     if(updateFlag)
@@ -381,7 +411,7 @@ private CourseBao courseobjBao = new BaoFactory().createCourseBao();
       course.setCode(code_textField.getText());
      }
   
-  
+    course.setDepartment(allDepartments.get(Department_ComboBox.getSelectedIndex()));
   
   
   
@@ -443,12 +473,14 @@ private CourseBao courseobjBao = new BaoFactory().createCourseBao();
     private javax.swing.JComboBox Department_ComboBox;
     private javax.swing.JLabel Departmentlapel;
     private javax.swing.JLabel Departmentlapel1;
+    private javax.swing.JLabel Departmentlapel2;
     private javax.swing.JButton btnSave;
     private javax.swing.JButton btnSearch;
     private javax.swing.JTextField code_textField;
     private javax.swing.JLabel codelapel;
     private javax.swing.JTable courseTable;
     private javax.swing.JButton deleteCourseBtn;
+    private javax.swing.JTextArea descrption;
     private javax.swing.JTextField hours_perWeak;
     private javax.swing.JButton insertCourseBtn;
     private javax.swing.JPanel insertPanel;
@@ -457,6 +489,7 @@ private CourseBao courseobjBao = new BaoFactory().createCourseBao();
     private javax.swing.JLabel jLabel3;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTextField name_textField;
     private javax.swing.JLabel namelapel;
     private javax.swing.JLabel namelapel1;
@@ -468,21 +501,21 @@ private CourseBao courseobjBao = new BaoFactory().createCourseBao();
     
     public void courseTableReset(List<CourseDto> courses) {
        
-        Object[][] coursesArr = new Object[courses.size()][3];
+        Object[][] coursesArr = new Object[courses.size()][4];
 
         for (int i = 0; i < courses.size(); i++) {
 
             coursesArr[i][0] = courses.get(i).getName();
             coursesArr[i][1] = courses.get(i).getCode();
             coursesArr[i][2] = courses.get(i).getHoursperWeak();
-           // coursesArr[i][3] = courses.get(i).getNeededLocType();
+            coursesArr[i][3] = courses.get(i).getDescription();
 
            
 
         }
       courseTable.setModel(new javax.swing.table.DefaultTableModel(coursesArr, new String[] {
                                                                      "Name", "code" ,
-                                                                    "Hours per Weak "
+                                                                    "Hours per Weak ","Description"
             }
                                                                    ));
     }
@@ -491,6 +524,12 @@ private CourseBao courseobjBao = new BaoFactory().createCourseBao();
     void listComboDepartment(List<DepartmentDto> dep) {
         for (int i = 0; i < dep.size(); i++) {
             Department_ComboBox.addItem(dep.get(i).getName());
+           }
+        }
+    
+    void listComboLocation(List<LocationTypeDto> locs) {
+        for (int i = 0; i < locs.size(); i++) {
+            prefered_ComboBox.addItem(locs.get(i).getCode());
            }
         }
 }
