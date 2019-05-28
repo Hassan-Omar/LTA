@@ -79,13 +79,16 @@ public class Queries {
 
     //____________________________ EMPLOYEE MODULE _________________________________
 
-
+ 
     public static final String INSER_NEW_EMPLOYEE =
         "INSERT INTO EMPLOYEE (FNAME , SNAME , TNAME ," +
-        "FAMILY_NAME ,INSERTED_BY ,UPDATED_BY ,ISERTED_DATE ,UPDATED_DATE ,EMAIL) VALUES (?,?,?,?,?,?,?,?,?)";
+        "FAMILY_NAME ,INSERTED_BY ,UPDATED_BY ,ISERTED_DATE ,UPDATED_DATE ,EMAIL ,POSITION ,DEP_ID) VALUES (?,?,?,?,?,?,?,?,?,?,?)";
 
 
-    public static final String LIST_ALL_EMPLOYEE = "SELECT * FROM EMPLOYEE";
+    public static final String LIST_ALL_EMPLOYEE = "SELECT X.FNAME , X.SNAME , X.TNAME , X.FAMILY_NAME " +
+        ",X.INSERTED_BY ,X.UPDATED_BY ,X.ISERTED_DATE ,X.UPDATED_DATE ,X.EMAIL ,X.POSITION ,X.ID ,Y.NAME " + 
+    "FROM EMPLOYEE X , DEPARTMENT Y " + 
+    "WHERE X.DEP_ID = Y.D_ID ";
 
     public static final String DELETE_EMPLOYEE = "DELETE FROM EMPLOYEE WHERE EMAIL = ? ";
 
@@ -93,9 +96,12 @@ public class Queries {
 
     public static final String UPDATE_EMPLOYEE =
         "UPDATE EMPLOYEE SET FNAME =? , SNAME =? , TNAME =?  , FAMILY_NAME =? " +
-        ",UPDATED_BY=?  ,UPDATED_DATE=?  WHERE EMAIL =?";
+        ",UPDATED_BY=?  ,UPDATED_DATE=?  ,POSITION=? ,DEP_ID=?  WHERE EMAIL =?";
 
-    public static final String EMPLOYEE_SEARCH = "SELECT * FROM EMPLOYEE WHERE LOWER(FNAME) LIKE ?";
+    public static final String EMPLOYEE_SEARCH = "SELECT X.FNAME , X.SNAME , X.TNAME" +
+        ", X.FAMILY_NAME,X.INSERTED_BY ,X.UPDATED_BY ,X.ISERTED_DATE ,X.UPDATED_DATE ,X.EMAIL ,X.POSITION ,X.ID ,Y.NAME " + 
+    "FROM EMPLOYEE X , DEPARTMENT Y " + 
+    "WHERE X.DEP_ID = Y.D_ID AND ( LOWER(FNAME) LIKE ? OR  LOWER(SNAME) LIKE ? OR  LOWER(TNAME) LIKE ? ) ";
 
     //___________________________________________________________________________________
 
@@ -117,7 +123,7 @@ public class Queries {
     public static final String BUILDINGS_SEARCH = "SELECT * FROM BUILDING WHERE LOWER(CODE) LIKE ?";
     //___________________________________________________________________________________
 
-    //________________________________ BUILDING_FLOOR MODULE __________________________________
+    //________________________________ FLOOR MODULE __________________________________
     public static final String INSER_NEW_FLOOR =
         "INSERT INTO FLOOR (CODE,DESCRIPTON,INSERTION_DATE,UPDATE_DATE,INSERTED_BY,UPDATED_BY,ID_BUILDING)" +
         "VALUES (?,?,?,?,?,?,?)";

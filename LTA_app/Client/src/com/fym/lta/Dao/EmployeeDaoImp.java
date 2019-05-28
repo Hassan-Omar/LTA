@@ -4,6 +4,7 @@ package com.fym.lta.dao;
 import com.fym.lta.common.ConnectionFactory;
 import com.fym.lta.common.LTAException;
 import com.fym.lta.common.Queries;
+import com.fym.lta.dto.DepartmentDto;
 import com.fym.lta.dto.EmployeeDto;
 
 import java.sql.SQLException;
@@ -40,14 +41,24 @@ public class EmployeeDaoImp implements EmployeeDao {
                     Employees = new ArrayList<>();
                 Employee = new EmployeeDto();
 
-                Employee.setEmp_id(jdbcRs.getInt(6));
-                //  Employee.setEmail(jdbcRs.getString(1));
-                Employee.setCareerDgree(jdbcRs.getString(1)); // need for edite
-                Employee.setFName(jdbcRs.getString(2));
-                Employee.setSName(jdbcRs.getString(3));
-                Employee.setLName(jdbcRs.getString(4));
-                Employee.setFamilyName(jdbcRs.getString(5));
+ 
+                Employee.setFName(jdbcRs.getString(1));
+                Employee.setSName(jdbcRs.getString(2));
+                Employee.setLName(jdbcRs.getString(3));
+                Employee.setFamilyName(jdbcRs.getString(4));
+                
+                Employee.setInsertedBy(jdbcRs.getString(5));
+                Employee.setUpdatedBy(jdbcRs.getString(6));
+                Employee.setInertion_Date(jdbcRs.getDate(7));
+                Employee.setUpdate_Date(jdbcRs.getDate(8));
 
+                Employee.setEmail(jdbcRs.getString(9));
+                Employee.setCareerDgree(jdbcRs.getString(10));
+                Employee.setEmp_id(jdbcRs.getInt(11));
+
+                DepartmentDto dep = new DepartmentDto() ; 
+                dep.setName(jdbcRs.getString(12));
+                Employee.setDepartment(dep);
 
                 Employees.add(Employee);
 
@@ -66,8 +77,7 @@ public class EmployeeDaoImp implements EmployeeDao {
             jdbcRs.setPassword(ConnectionFactory.getPassword());
             jdbcRs.setCommand(Queries.DELETE_EMPLOYEE);
             
-            jdbcRs.setInt(1, Employee.getEmp_id());
-            System.out.println(Employee.getEmp_id());
+            jdbcRs.setString(1, Employee.getEmail());
             jdbcRs.execute();
             return true;
         } catch (Exception e) {
@@ -86,7 +96,7 @@ public class EmployeeDaoImp implements EmployeeDao {
             jdbcRs.setUsername(ConnectionFactory.getUsername());
             jdbcRs.setPassword(ConnectionFactory.getPassword());
             jdbcRs.setCommand(Queries.INSER_NEW_EMPLOYEE); 
-                                                  
+            
             jdbcRs.setString(1, Employee.getFName());  
             jdbcRs.setString(2, Employee.getSName()); 
             jdbcRs.setString(3,Employee.getLName());
@@ -118,6 +128,14 @@ public class EmployeeDaoImp implements EmployeeDao {
             
             
             jdbcRs.setString(9,Employee.getEmail());
+            
+            
+            jdbcRs.setString(10,Employee.getCareerDgree());
+            
+            
+            jdbcRs.setInt(11,Employee.getDepartment().getDepartment_id());
+            
+            
             
             jdbcRs.execute();
             return true;
@@ -166,8 +184,14 @@ public class EmployeeDaoImp implements EmployeeDao {
                                 else
                                     jdbcRs.setNull(6, java.sql.Types.DATE);
 
+                                jdbcRs.setString(7,Employee.getCareerDgree());
+                                
+                                
+                                jdbcRs.setInt(8,Employee.getDepartment().getDepartment_id());
+                                
                              
-            
+                                jdbcRs.setString(9,Employee.getEmail());
+
                                 jdbcRs.execute();
                               return true ;
                             }catch(java.sql.SQLIntegrityConstraintViolationException e){
@@ -213,6 +237,8 @@ public class EmployeeDaoImp implements EmployeeDao {
             jdbcRs.setPassword(ConnectionFactory.getPassword());
             jdbcRs.setCommand(Queries.EMPLOYEE_SEARCH);
             jdbcRs.setString(1, '%' + Employee.getFName().toLowerCase().trim() + '%');
+            jdbcRs.setString(2, '%' + Employee.getFName().toLowerCase().trim() + '%');
+            jdbcRs.setString(3, '%' + Employee.getFName().toLowerCase().trim() + '%');
 
             jdbcRs.execute();
 
@@ -221,14 +247,24 @@ public class EmployeeDaoImp implements EmployeeDao {
                 if (employees == null)
                     employees = new ArrayList<>();
 
-               EmployeeDto lSerch = new EmployeeDto();
-                lSerch.setFName(jdbcRs.getString(2));
-                lSerch.setSName(jdbcRs.getString(3));
-                lSerch.setLName(jdbcRs.getString(4));
-                lSerch.setFamilyName(jdbcRs.getString(5));
-                lSerch.setuser_Id(jdbcRs.getInt(6));
-               
-                 
+                EmployeeDto lSerch = new EmployeeDto () ;
+                lSerch.setFName(jdbcRs.getString(1));
+                lSerch.setSName(jdbcRs.getString(2));
+                Employee.setLName(jdbcRs.getString(3));
+                lSerch.setFamilyName(jdbcRs.getString(4));
+                
+                lSerch.setInsertedBy(jdbcRs.getString(5));
+                lSerch.setUpdatedBy(jdbcRs.getString(6));
+                lSerch.setInertion_Date(jdbcRs.getDate(7));
+                lSerch.setUpdate_Date(jdbcRs.getDate(8));
+
+                lSerch.setEmail(jdbcRs.getString(9));
+                lSerch.setCareerDgree(jdbcRs.getString(10));
+                lSerch.setEmp_id(jdbcRs.getInt(11));
+
+                DepartmentDto dep = new DepartmentDto() ; 
+                dep.setName(jdbcRs.getString(12));
+                lSerch.setDepartment(dep);
                 employees.add(lSerch);
 
             }

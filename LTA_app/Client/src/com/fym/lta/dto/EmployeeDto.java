@@ -22,7 +22,16 @@ public class EmployeeDto extends UserDto
     private int emp_id ;
     private boolean empType ; // this true if the type is a staff member 
     private String fName, sName, lName, familyName, email,careerDgree,FullName;
+
+    public void setDepartment(DepartmentDto department) {
+        this.department = department;
+    }
+
+    public DepartmentDto getDepartment() {
+        return department;
+    }
     private List<CourseDto> teachingCoursese ;
+    private DepartmentDto department ;
     
 
 
