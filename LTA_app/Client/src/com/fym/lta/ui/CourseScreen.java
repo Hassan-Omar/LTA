@@ -100,7 +100,7 @@ private CourseBao courseobjBao = new BaoFactory().createCourseBao();
         search_textField.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         search_textField.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
-        jLabel1.setFont(new java.awt.Font("Times New Roman", 1, 36)); // NOI18N
+        jLabel1.setFont(new java.awt.Font("Times New Roman", 1, 24)); // NOI18N
         jLabel1.setText("Course Screen ");
 
         jLabel2.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
