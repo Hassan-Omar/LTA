@@ -12,10 +12,7 @@ import java.util.List;
 
 import javax.swing.JOptionPane;
 
-/**
- *
- * @author Mina
- */
+
 public class DepartmentsScreen extends javax.swing.JPanel {
     boolean updateFlag = false;
     private DepartmentBao departmentBaoObj = new BaoFactory().createDepartmentBao();
@@ -230,16 +227,12 @@ public class DepartmentsScreen extends javax.swing.JPanel {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(departmentCode_TextField, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(btnSearch, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(48, 48, 48)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                    .addComponent(departmrntUpdateBtn)
-                                    .addComponent(departmrntDeleteBtn)))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(53, 53, 53)
-                                .addComponent(departmrntInsertBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(18, 18, 18)
+                        .addGap(47, 47, 47)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(departmrntUpdateBtn)
+                            .addComponent(departmrntDeleteBtn)
+                            .addComponent(departmrntInsertBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(24, 24, 24)
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 198, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(0, 51, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
@@ -279,13 +272,12 @@ public class DepartmentsScreen extends javax.swing.JPanel {
     }//GEN-LAST:event_departmrntDeleteBtnActionPerformed
 
     private void departmrntInsertBtnMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_departmrntInsertBtnMouseClicked
-        insertPanel.setVisible(true);
+      insertPanel.setVisible(true);
         code_TextField.setEnabled(true);
-        updateFlag = false;
+        updateFlag = false; 
     }//GEN-LAST:event_departmrntInsertBtnMouseClicked
 
     private void btnSearchMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnSearchMouseClicked
-        insertPanel.setVisible(false);
 
         if (departmentCode_TextField.getText() != null) {
             DepartmentDto D = new DepartmentDto();
@@ -306,12 +298,13 @@ public class DepartmentsScreen extends javax.swing.JPanel {
     }//GEN-LAST:event_btnSearchMouseClicked
 
     private void departmrntDeleteBtnMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_departmrntDeleteBtnMouseClicked
-        insertPanel.setVisible(false);
-
-        String code = DepartmentTable.getValueAt(DepartmentTable.getSelectedRow(), 0).toString();
+if(DepartmentTable.getSelectedRow() >= 0)
+{        String code = DepartmentTable.getValueAt(DepartmentTable.getSelectedRow(), 0).toString();
         DepartmentDto selectedDepartment_Delete = new DepartmentDto(); // this department i want to delete
         selectedDepartment_Delete.setCode(code);
-
+            int msg=  JOptionPane.showConfirmDialog(this, "are you sure you need to delete ");
+                        if (msg == JOptionPane.OK_OPTION)
+                        {
         if (departmentBaoObj.deleteDepartment(selectedDepartment_Delete)) {
             JOptionPane.showMessageDialog(this, "deleted");
             departmentTableReset(departmentBaoObj.listDepartment());
@@ -319,6 +312,10 @@ public class DepartmentsScreen extends javax.swing.JPanel {
         } else {
             JOptionPane.showMessageDialog(this, "Can not delete may be deleted using another Employee ");
         } 
+        }
+        }
+else JOptionPane.showMessageDialog(null,"select a Department to delete");
+      
     }//GEN-LAST:event_departmrntDeleteBtnMouseClicked
 
     private void btnSaveMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnSaveMouseClicked
@@ -343,6 +340,7 @@ public class DepartmentsScreen extends javax.swing.JPanel {
         if (departmentBaoObj.saveDepartment(department)) {
             JOptionPane.showMessageDialog(this, "saved ");
             departmentTableReset(departmentBaoObj.listDepartment());
+            insertPanel.setVisible(false);
         } else
             JOptionPane.showMessageDialog(this, "can not save "); 
     }//GEN-LAST:event_btnSaveMouseClicked
@@ -370,15 +368,21 @@ public class DepartmentsScreen extends javax.swing.JPanel {
     
     
     public void departmentTableReset(List<DepartmentDto> Department) {
-        Object[][] DepartmentArr = new Object[Department.size()][3];
+        Object[][] DepartmentArr = new Object[Department.size()][7];
 
         for (int i = 0; i < Department.size(); i++) {
             DepartmentArr[i][0] = Department.get(i).getCode();
             DepartmentArr[i][1] = Department.get(i).getName();
-             DepartmentArr[i][2] = Department.get(i).getHomebuilding().getCode();
+            DepartmentArr[i][2] = Department.get(i).getHomebuilding().getCode();
+            DepartmentArr[i][3] = Department.get(i).getInsertedBy();
+            DepartmentArr[i][4] = Department.get(i).getInertion_Date();
+            DepartmentArr[i][5] = Department.get(i).getUpdatedBy();
+            DepartmentArr[i][6] = Department.get(i).getUpdate_Date();
+
         }
         DepartmentTable.setModel(new javax.swing.table.DefaultTableModel(DepartmentArr, new String[] {
-                                                                         "Code", "Name","Code Of Home Building" }));
+                                                                         "Code", "Name","Code Of Home Building","Inserted By",
+ "  Insertion Date", "Updated By", "Update Date" }));
     }
 
     void listComboBuildings(List<BuildingDto> Buildings) {
