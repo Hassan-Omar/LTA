@@ -58,27 +58,10 @@ public class BuildingScreeen extends javax.swing.JPanel {
 
         jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Building", 0, 0, new java.awt.Font("Adobe Arabic", 1, 24))); // NOI18N
 
+        buildingTable.setFont(new java.awt.Font("Tekton Pro Cond", 0, 18)); // NOI18N
         buildingTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null},
-                {null, null},
-                {null, null},
-                {null, null},
-                {null, null},
-                {null, null},
-                {null, null},
-                {null, null},
-                {null, null},
-                {null, null},
-                {null, null},
-                {null, null},
-                {null, null},
-                {null, null},
-                {null, null},
-                {null, null},
-                {null, null},
-                {null, null},
-                {null, null}
+
             },
             new String [] {
                 "Code", "Description"
@@ -128,11 +111,11 @@ public class BuildingScreeen extends javax.swing.JPanel {
             }
         });
 
-        BuildingEnteredCode.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        BuildingEnteredCode.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         BuildingEnteredCode.setText(" ");
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        jLabel1.setText("Enter Building Code ");
+        jLabel1.setText("Search");
 
         insertBuildingBTN.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         insertBuildingBTN.setText("Insert  New Building");
@@ -161,8 +144,9 @@ public class BuildingScreeen extends javax.swing.JPanel {
         jLabel3.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jLabel3.setText("Code");
 
-        code.setText(" ");
+        code.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
 
+        desc.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         desc.setText(" ");
         desc.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -248,7 +232,7 @@ public class BuildingScreeen extends javax.swing.JPanel {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(BuildingEnteredCode, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(searchBuildingBTN, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 9, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(ubdateBuildingBTN, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -277,9 +261,13 @@ public class BuildingScreeen extends javax.swing.JPanel {
 
         if (buildingBaoObject.deleteBuilding(selectedBuilding_Delete)) {
             {
-                JOptionPane.showMessageDialog(this, "deleted");
+               int msg=  JOptionPane.showConfirmDialog(this, "are you sure you need to delete ");
+                if (msg == JOptionPane.OK_OPTION)
+                {JOptionPane.showMessageDialog(this, "deleted");
                 buildingTableReset(buildingBaoObject.listBuilding());
             }
+                
+                }
         } else {
             JOptionPane.showMessageDialog(this, "Can not delete may be deleted using another user ");
         }
@@ -311,10 +299,6 @@ public class BuildingScreeen extends javax.swing.JPanel {
         
     }//GEN-LAST:event_insertBuildingBTNActionPerformed
 
-    private void descActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_descActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_descActionPerformed
-
     private void jButton1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MouseClicked
 
         BuildingBao business = new BaoFactory().createBuildingBao();
@@ -335,9 +319,14 @@ public class BuildingScreeen extends javax.swing.JPanel {
         if (business.saveBuilding(b)) {
             JOptionPane.showMessageDialog(this, "Saved");
             buildingTableReset(business.listBuilding());
+            insertPanel.setVisible(false);
         } else
             JOptionPane.showMessageDialog(this, "Can't Save");
     }//GEN-LAST:event_jButton1MouseClicked
+
+    private void descActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_descActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_descActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -364,15 +353,19 @@ public class BuildingScreeen extends javax.swing.JPanel {
 
     public void buildingTableReset(List<BuildingDto> buildings) {
 
-        Object[][] usersArr = new Object[buildings.size()][2];
+        Object[][] bArray = new Object[buildings.size()][6];
 
         for (int i = 0; i < buildings.size(); i++) {
-            usersArr[i][0] = buildings.get(i).getCode();
-            usersArr[i][1] = buildings.get(i).getDescription();
+            bArray[i][0] = buildings.get(i).getCode();
+            bArray[i][1] = buildings.get(i).getDescription();
+            bArray[i][2]= buildings.get(i).getINSERTED_BY();
+            bArray[i][3]= buildings.get(i).getUPDATED_BY();
+            bArray[i][4]= buildings.get(i).getINSERTION_DATE();
+            bArray[i][5]= buildings.get(i).getUPDATE_DATE();
 
         }
-        buildingTable.setModel(new javax.swing.table.DefaultTableModel(usersArr, new String[] {
-                                                                       "CODE", "DESCRIPTION" }));
+        buildingTable.setModel(new javax.swing.table.DefaultTableModel(bArray, new String[] {
+                                                                       "Code", "Description" ,"Inserted By" ,"Updated BY" ,"Inserted Date" ,"Updated Date" }));
     }
 
 

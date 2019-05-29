@@ -102,7 +102,6 @@ public class Queries {
         ", X.FAMILY_NAME,X.INSERTED_BY ,X.UPDATED_BY ,X.ISERTED_DATE ,X.UPDATED_DATE ,X.EMAIL ,X.POSITION ,X.ID ,Y.NAME " + 
     "FROM EMPLOYEE X , DEPARTMENT Y " + 
     "WHERE X.DEP_ID = Y.D_ID AND ( LOWER(FNAME) LIKE ? OR  LOWER(SNAME) LIKE ? OR  LOWER(TNAME) LIKE ? ) ";
-
     //___________________________________________________________________________________
 
 

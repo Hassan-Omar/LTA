@@ -33,9 +33,12 @@ public class BuildingDaoImp implements BuildingDao {
                 Building.setBuilding_id(jdbcRs.getInt(1));
                 Building.setCode(jdbcRs.getString(2));
                 Building.setDescription(jdbcRs.getString(3));
-                // there are others still not added
-
-                Buildings.add(Building);
+                Building.setINSERTED_BY(jdbcRs.getString(4));
+                Building.setUPDATED_BY(jdbcRs.getString(5));
+                Building.setINSERTION_DATE(jdbcRs.getDate(6));
+                Building.setUPDATE_DATE(jdbcRs.getDate(7));
+                
+                   Buildings.add(Building);
 
             }
         } catch (Exception e) {
@@ -180,7 +183,11 @@ public class BuildingDaoImp implements BuildingDao {
                     lSerch.setCode(jdbcRs.getString(2));
                     lSerch.setBuilding_id(jdbcRs.getInt(1));
                     lSerch.setDescription(jdbcRs.getString(3));
-                   
+                    lSerch.setINSERTED_BY(jdbcRs.getString(4));
+                    lSerch.setUPDATED_BY(jdbcRs.getString(5));
+                    lSerch.setINSERTION_DATE(jdbcRs.getDate(6));
+                    lSerch.setUPDATE_DATE(jdbcRs.getDate(7));
+                    
                      
                     buildings.add(lSerch);
 
