@@ -19,14 +19,19 @@ public class LocationTypeScreen extends javax.swing.JPanel {
     /**table Structure  */
     private void setTableModel(List<LocationTypeDto> LocationType)
     {
-       Object [][] Column = new Object [LocationType.size()][3];
+       Object [][] Column = new Object [LocationType.size()][6];
        for(int i =0;i<LocationType.size();i++){
            Column[i][0] = LocationType.get(i).getCode();
            Column[i][1] = LocationType.get(i).getDescription();
-       
+           Column[i][2] = LocationType.get(i).getInsertedBy();
+           Column[i][3] = LocationType.get(i).getInertion_Date();
+           Column[i][4] = LocationType.get(i).getUpdatedBy();
+           Column[i][5] = LocationType.get(i).getUpdate_Date();
+
            
        }
-       Table.setModel(new javax.swing.table.DefaultTableModel(Column,new String [] {" Location Type Code " , " Description"}));  
+       Table.setModel(new javax.swing.table.DefaultTableModel(Column,new String [] {" Location Type Code " , " Description","Inserted By",
+ "  Insertion Date", "Updated By", "Update Date"}));  
     }
     /** Creates new form LocationTypeScreen */
     public LocationTypeScreen() {
@@ -68,6 +73,7 @@ public class LocationTypeScreen extends javax.swing.JPanel {
 
         jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Location Type", 0, 0, new java.awt.Font("Yu Gothic Light", 1, 24))); // NOI18N
 
+        Table.setFont(new java.awt.Font("Tekton Pro Cond", 1, 18)); // NOI18N
         Table.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
@@ -84,7 +90,7 @@ public class LocationTypeScreen extends javax.swing.JPanel {
                 return types [columnIndex];
             }
         });
-        Table.setRowHeight(20);
+        Table.setRowHeight(30);
         jScrollPane1.setViewportView(Table);
         Table.getColumnModel().getColumn(0).setHeaderValue("Location Type Code");
         Table.getColumnModel().getColumn(1).setHeaderValue("Description");
@@ -105,7 +111,7 @@ public class LocationTypeScreen extends javax.swing.JPanel {
                 .addContainerGap())
         );
 
-        updateLocationTypeBTN.setFont(new java.awt.Font("Yu Gothic UI", 1, 18)); // NOI18N
+        updateLocationTypeBTN.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         updateLocationTypeBTN.setText("Update");
         updateLocationTypeBTN.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -113,7 +119,7 @@ public class LocationTypeScreen extends javax.swing.JPanel {
             }
         });
 
-        deleteLocationTypeBTN.setFont(new java.awt.Font("Yu Gothic", 1, 18)); // NOI18N
+        deleteLocationTypeBTN.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         deleteLocationTypeBTN.setLabel("Delete");
         deleteLocationTypeBTN.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -121,15 +127,15 @@ public class LocationTypeScreen extends javax.swing.JPanel {
             }
         });
 
-        LocationTypeEnteredCode.setFont(new java.awt.Font("Yu Gothic UI", 1, 18)); // NOI18N
+        LocationTypeEnteredCode.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         LocationTypeEnteredCode.setText(" ");
         LocationTypeEnteredCode.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
         jLabel1.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(51, 0, 153));
-        jLabel1.setText("Enter Location Type Code :");
+        jLabel1.setText("Search");
 
-        insertLocationTypeBTN.setFont(new java.awt.Font("Yu Gothic UI", 1, 18)); // NOI18N
+        insertLocationTypeBTN.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         insertLocationTypeBTN.setText("Insert  New ");
         insertLocationTypeBTN.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -137,7 +143,7 @@ public class LocationTypeScreen extends javax.swing.JPanel {
             }
         });
 
-        searchLocationTypeBTN.setFont(new java.awt.Font("Yu Gothic UI Semilight", 1, 18)); // NOI18N
+        searchLocationTypeBTN.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         searchLocationTypeBTN.setText("       Search       ");
         searchLocationTypeBTN.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -173,9 +179,7 @@ public class LocationTypeScreen extends javax.swing.JPanel {
 
         jLabel3.setFont(new java.awt.Font("Yu Gothic UI", 0, 18)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(51, 0, 153));
-        jLabel3.setText("Location Type Code:");
-
-        code1.setText(" ");
+        jLabel3.setText("Code");
 
         javax.swing.GroupLayout insertPanelLayout = new javax.swing.GroupLayout(insertPanel);
         insertPanel.setLayout(insertPanelLayout);
@@ -186,23 +190,25 @@ public class LocationTypeScreen extends javax.swing.JPanel {
                 .addGroup(insertPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(insertPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(save1, javax.swing.GroupLayout.PREFERRED_SIZE, 147, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(insertPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                        .addComponent(code1, javax.swing.GroupLayout.DEFAULT_SIZE, 277, Short.MAX_VALUE)
-                        .addComponent(desc)))
-                .addContainerGap(13, Short.MAX_VALUE))
+                    .addGroup(insertPanelLayout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(insertPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(save1, javax.swing.GroupLayout.PREFERRED_SIZE, 147, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(desc, javax.swing.GroupLayout.PREFERRED_SIZE, 277, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addContainerGap(24, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, insertPanelLayout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(code1, javax.swing.GroupLayout.PREFERRED_SIZE, 164, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(125, 125, 125))))
         );
         insertPanelLayout.setVerticalGroup(
             insertPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(insertPanelLayout.createSequentialGroup()
                 .addGap(82, 82, 82)
-                .addGroup(insertPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(insertPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, insertPanelLayout.createSequentialGroup()
-                        .addGap(21, 21, 21)
-                        .addComponent(code1, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addComponent(code1, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(25, 25, 25)
                 .addGroup(insertPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(desc, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -217,86 +223,85 @@ public class LocationTypeScreen extends javax.swing.JPanel {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(22, 22, 22)
-                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 333, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGroup(layout.createSequentialGroup()
+                                    .addComponent(LocationTypeEnteredCode, javax.swing.GroupLayout.PREFERRED_SIZE, 266, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGap(47, 47, 47)
+                                    .addComponent(searchLocationTypeBTN)))
                             .addGroup(layout.createSequentialGroup()
-                                .addGap(41, 41, 41)
-                                .addComponent(LocationTypeEnteredCode, javax.swing.GroupLayout.PREFERRED_SIZE, 266, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
-                                .addComponent(searchLocationTypeBTN))
-                            .addGroup(layout.createSequentialGroup()
-                                .addContainerGap()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addComponent(deleteLocationTypeBTN, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGap(41, 41, 41)
-                                        .addComponent(updateLocationTypeBTN, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGap(68, 68, 68)
-                                        .addComponent(insertLocationTypeBTN))
-                                    .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                .addComponent(updateLocationTypeBTN, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(76, 76, 76)
+                                .addComponent(deleteLocationTypeBTN, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(insertLocationTypeBTN)))
                         .addGap(18, 18, 18)
-                        .addComponent(insertPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(13, Short.MAX_VALUE))
+                        .addComponent(insertPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(69, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(17, 17, 17)
-                                .addComponent(LocationTypeEnteredCode, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(15, 15, 15)
-                                .addComponent(searchLocationTypeBTN, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(insertLocationTypeBTN, javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                .addComponent(deleteLocationTypeBTN, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(updateLocationTypeBTN)))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap())
+                        .addContainerGap()
+                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(LocationTypeEnteredCode, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(15, 15, 15)
-                        .addComponent(insertPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap(34, Short.MAX_VALUE))))
+                        .addGap(57, 57, 57)
+                        .addComponent(searchLocationTypeBTN, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(insertLocationTypeBTN)
+                    .addComponent(updateLocationTypeBTN)
+                    .addComponent(deleteLocationTypeBTN, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
+            .addGroup(layout.createSequentialGroup()
+                .addGap(57, 57, 57)
+                .addComponent(insertPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(34, Short.MAX_VALUE))
         );
     }//GEN-END:initComponents
 
     private void updateLocationTypeBTNActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_updateLocationTypeBTNActionPerformed
+    if(Table.getSelectedRow()>=0)
+    {
     updateFlag = true ;
     jLabel3.setVisible(false);
     code1.setVisible(false);
-    
-    
+    }
+    else JOptionPane.showMessageDialog(this, "select a Location Type to delete");     
     }//GEN-LAST:event_updateLocationTypeBTNActionPerformed
 
     private void deleteLocationTypeBTNMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_deleteLocationTypeBTNMouseClicked
     insertPanel.setVisible(false);
-         try{
-    String Code = Table.getValueAt(Table.getSelectedRow(), 0).toString(); // get the LocationType code
-    LocationTypeDto SelectedLocationType = new LocationTypeDto(); // selected LocationType you wanna delete
-    SelectedLocationType.setCode(Code);
-         //the result would be "remove the selected row and check the returned value to tell the user if the delete is done or not"
-           if(LocationTypeListInDatabase.deleteLocationType(SelectedLocationType)){
-             JOptionPane.showMessageDialog(this, "the selected LocationType is deleted Successfully  ");
-             //refresh the table data..
-                 setTableModel(LocationTypeListInDatabase.listLocationType());
-                 
-             } else
-                 JOptionPane.showMessageDialog(this, " this LocationType can't be deleteted ");
-         }catch(Exception e){
-             e.printStackTrace();
-             }
+   if(Table.getSelectedRow()>=0)
+   {
+        
+        String Code = Table.getValueAt(Table.getSelectedRow(), 0).toString(); // get the LocationType code
+        LocationTypeDto SelectedLocationType = new LocationTypeDto(); // selected LocationType you wanna delete
+        SelectedLocationType.setCode(Code);
+                 int msg=  JOptionPane.showConfirmDialog(this, "are you sure you need to delete ");
+                                if (msg == JOptionPane.OK_OPTION)
+                                { //the result would be "remove the selected row and check the returned value to tell the user if the delete is done or not"
+               if(LocationTypeListInDatabase.deleteLocationType(SelectedLocationType)){
+                 JOptionPane.showMessageDialog(this, "the selected LocationType is deleted Successfully  ");
+                 //refresh the table data..
+                     setTableModel(LocationTypeListInDatabase.listLocationType());
+                     
+                 } else
+                     JOptionPane.showMessageDialog(this, " this LocationType can't be deleteted ");
+                                }
+    }
+    else JOptionPane.showMessageDialog(this, "select a Location Type to delete");     
     }//GEN-LAST:event_deleteLocationTypeBTNMouseClicked
 
     private void insertLocationTypeBTNMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_insertLocationTypeBTNMouseClicked
@@ -370,7 +375,6 @@ public class LocationTypeScreen extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel3;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JButton save;
     private javax.swing.JButton save1;
     private javax.swing.JButton searchLocationTypeBTN;
     private javax.swing.JButton updateLocationTypeBTN;

@@ -247,32 +247,35 @@ public class BuildingScreeen extends javax.swing.JPanel {
     }//GEN-END:initComponents
     //Update Buttom
     private void ubdateBuildingBTNActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ubdateBuildingBTNActionPerformed
+    if (buildingTable.getSelectedRow() >= 0) {
+
         code.setText(buildingTable.getValueAt(buildingTable.getSelectedRow(), 0).toString());
         insertPanel.setVisible(true);
         code.setEnabled(false);
-        updateFlag = true;
+        updateFlag = true;        } else
+            JOptionPane.showMessageDialog(this, "select a Building to updaet");
     }//GEN-LAST:event_ubdateBuildingBTNActionPerformed
 
     private void deleteBuildingBTNMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_deleteBuildingBTNMouseClicked
-     if(buildingTable.getSelectedRow() >= 0 )
-     {        String code = buildingTable.getValueAt(buildingTable.getSelectedRow(), 0).toString();
-        BuildingDto selectedBuilding_Delete = new BuildingDto(); // this Building i want to delete
-        selectedBuilding_Delete.setCode(code);
+        if (buildingTable.getSelectedRow() >= 0) {
+            String code = buildingTable.getValueAt(buildingTable.getSelectedRow(), 0).toString();
+            BuildingDto selectedBuilding_Delete = new BuildingDto(); // this Building i want to delete
+            selectedBuilding_Delete.setCode(code);
 
-        if (buildingBaoObject.deleteBuilding(selectedBuilding_Delete)) {
-            {
-               int msg=  JOptionPane.showConfirmDialog(this, "are you sure you need to delete ");
-                if (msg == JOptionPane.OK_OPTION)
-                {JOptionPane.showMessageDialog(this, "deleted");
-                buildingTableReset(buildingBaoObject.listBuilding());
-            }
-                
+            if (buildingBaoObject.deleteBuilding(selectedBuilding_Delete)) {
+                {
+                    int msg = JOptionPane.showConfirmDialog(this, "are you sure you need to delete ");
+                    if (msg == JOptionPane.OK_OPTION) {
+                        JOptionPane.showMessageDialog(this, "deleted");
+                        buildingTableReset(buildingBaoObject.listBuilding());
+                    }
+
                 }
-        } else {
-            JOptionPane.showMessageDialog(this, "Can not delete may be deleted using another user ");
-        }}
-     else
-     JOptionPane.showMessageDialog(this, "select a Building to Delete");
+            } else {
+                JOptionPane.showMessageDialog(this, "Can not delete may be deleted using another user ");
+            }
+        } else
+            JOptionPane.showMessageDialog(this, "select a Building to Delete");
      
       
 
@@ -362,14 +365,16 @@ public class BuildingScreeen extends javax.swing.JPanel {
         for (int i = 0; i < buildings.size(); i++) {
             bArray[i][0] = buildings.get(i).getCode();
             bArray[i][1] = buildings.get(i).getDescription();
-            bArray[i][2]= buildings.get(i).getINSERTED_BY();
-            bArray[i][4]= buildings.get(i).getUPDATED_BY();
-            bArray[i][3]= buildings.get(i).getINSERTION_DATE();
-            bArray[i][5]= buildings.get(i).getUPDATE_DATE();
+            bArray[i][2] = buildings.get(i).getINSERTED_BY();
+            bArray[i][4] = buildings.get(i).getUPDATED_BY();
+            bArray[i][3] = buildings.get(i).getINSERTION_DATE();
+            bArray[i][5] = buildings.get(i).getUPDATE_DATE();
 
         }
         buildingTable.setModel(new javax.swing.table.DefaultTableModel(bArray, new String[] {
-                                                                       "Code", "Description" ,"Inserted By" ,"  Insertion Date" ,"Updated" ,"Update Date" }));
+                                                                       "Code", "Description", "Inserted By",
+                                                                       "  Insertion Date", "Updated By", "Update Date"
+            }));
     }
 
 

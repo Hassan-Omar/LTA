@@ -17,33 +17,31 @@ import javax.swing.JOptionPane;
  *
  * @author
  */
-public class FloorScreen extends javax.swing.JPanel 
-{
+public class FloorScreen extends javax.swing.JPanel {
     FloorBao FloorListInDatabase = new BaoFactory().createFloorBao();
-  boolean updateFlag ;
-  List<BuildingDto> allBuilding = new BaoFactory().createBuildingBao().listBuilding();
+    boolean updateFlag;
+    List<BuildingDto> allBuilding = new BaoFactory().createBuildingBao().listBuilding();
 
-    /**table Structure  */    
-    private void setTableModel(List<FloorDto> Floor)
-    {
-        Object [][] Column = new Object [Floor.size()][3];
-        for(int i =0;i<Floor.size();i++){
+    /**table Structure  */
+    private void setTableModel(List<FloorDto> Floor) {
+        Object[][] Column = new Object[Floor.size()][3];
+        for (int i = 0; i < Floor.size(); i++) {
             Column[i][0] = Floor.get(i).getCode();
-            Column[i][1] = Floor.get(i).getDescription();          
-            Column[i][2] =Floor.get(i).getBuilding().getCode() ;            
-                   
-              
+            Column[i][1] = Floor.get(i).getDescription();
+            Column[i][2] = Floor.get(i).getBuilding().getCode();
+
+
         }
-        floorTable.setModel(new javax.swing.table.DefaultTableModel(Column,new String [] {
-                " Code " , " Description ","Building Code" }));  
+        floorTable.setModel(new javax.swing.table.DefaultTableModel(Column, new String[] {
+                                                                    " Code ", " Description ", "Building Code" }));
     }
-    
+
 
     /** Creates new form FloorScreen */
-    public  FloorScreen(){
+    public FloorScreen() {
         initComponents();
         //get all Floors data from database...
-        if (FloorListInDatabase.listFloor() != null) 
+        if (FloorListInDatabase.listFloor() != null)
             setTableModel(FloorListInDatabase.listFloor());
 
         insertPanel.setVisible(false);
@@ -51,8 +49,8 @@ public class FloorScreen extends javax.swing.JPanel
         // now one step we will create an object of ScreenBao to know the current permission
         String permissionType = new BaoFactory().createScreenBao().getCurrentPermission(2);
         Utilities.mandate(updateFloorBTN, insertFloorBTN, deleteFloorBTN, 2, permissionType);
-        
-        if(allBuilding!=null)
+
+        if (allBuilding != null)
             listCombo(allBuilding);
     }
 
@@ -161,6 +159,7 @@ public class FloorScreen extends javax.swing.JPanel
         );
 
         FloorEnteredCode.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        FloorEnteredCode.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jLabel1.setText("Search");
@@ -255,8 +254,8 @@ public class FloorScreen extends javax.swing.JPanel
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(FloorEnteredCode, javax.swing.GroupLayout.PREFERRED_SIZE, 249, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(85, 85, 85)
+                                .addComponent(FloorEnteredCode, javax.swing.GroupLayout.PREFERRED_SIZE, 278, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(56, 56, 56)
                                 .addComponent(searchFloorBTN, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 35, Short.MAX_VALUE)
                         .addComponent(insertPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -289,69 +288,69 @@ public class FloorScreen extends javax.swing.JPanel
 
 
     private void updateFloorBTNActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_updateFloorBTNActionPerformed
-    codeLabel.setVisible(false) ; 
-    code.setVisible(false);
-    
-    if(floorTable.getSelectedRow()>=0)
-    {
-     try{
-         
-        insertPanel.setVisible(true);
-         updateFlag = true  ; 
-    
-    }catch(Exception e){
-        e.printStackTrace();
-    }}else
-    JOptionPane.showMessageDialog(this, " you may forgot to select the floor you wanna update ");
+   
+        if (floorTable.getSelectedRow() >= 0) {
+            codeLabel.setVisible(false);
+            code.setVisible(false);
+
+            try {
+
+                insertPanel.setVisible(true);
+                updateFlag = true;
+
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        } else
+            JOptionPane.showMessageDialog(this, " you may forgot to select the floor you wanna update ");
     
     }//GEN-LAST:event_updateFloorBTNActionPerformed
 
     private void deleteFloorBTNMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_deleteFloorBTNMouseClicked
  
-    if(floorTable.getSelectedRow() >=0)
-    {        String code = floorTable.getValueAt(floorTable.getSelectedRow(), 0).toString(); // get the building code
-    FloorDto SelectedFloor = new FloorDto(); // selected building you wanna delete
-    SelectedFloor.setCode(code);   
-             int msg=  JOptionPane.showConfirmDialog(this, "are you sure you need to delete ");
-                            if (msg == JOptionPane.OK_OPTION)
-                            {                                    
-         //the result would be "remove the selected row and check the returned value to tell the user if the delete is done or not"
-           if(FloorListInDatabase.deleteFloor(SelectedFloor)){
-             JOptionPane.showMessageDialog(this, "deleted Successfully  ");
-             //refresh the table data..
-             setTableModel(FloorListInDatabase.listFloor());
-           }
-             } else
-                 JOptionPane.showMessageDialog(this, " this floor can't be deleteted ");
-                            }
-             else JOptionPane.showMessageDialog(this, "Select a floor to delete");
+        if (floorTable.getSelectedRow() >= 0) {
+            String code = floorTable.getValueAt(floorTable.getSelectedRow(), 0).toString(); // get the building code
+            FloorDto SelectedFloor = new FloorDto(); // selected building you wanna delete
+            SelectedFloor.setCode(code);
+            int msg = JOptionPane.showConfirmDialog(this, "are you sure you need to delete ");
+            if (msg == JOptionPane.OK_OPTION) {
+                //the result would be "remove the selected row and check the returned value to tell the user if the delete is done or not"
+                if (FloorListInDatabase.deleteFloor(SelectedFloor)) {
+                    JOptionPane.showMessageDialog(this, "deleted Successfully  ");
+                    //refresh the table data..
+                    setTableModel(FloorListInDatabase.listFloor());
+                }
+            } else
+                JOptionPane.showMessageDialog(this, " this floor can't be deleteted ");
+        } else
+            JOptionPane.showMessageDialog(this, "Select a floor to delete");
        
         
     
     }//GEN-LAST:event_deleteFloorBTNMouseClicked
 
     private void insertFloorBTNActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_insertFloorBTNActionPerformed
-    insertPanel.setVisible(true);
-     updateFlag = false  ; 
-    codeLabel.setVisible(true) ; 
-    code.setVisible(true);
-    code.setText(null);
-    desc.setText(null);
+        insertPanel.setVisible(true);
+        updateFlag = false;
+        codeLabel.setVisible(true);
+        code.setVisible(true);
+        code.setText(null);
+        desc.setText(null);
     }//GEN-LAST:event_insertFloorBTNActionPerformed
 
     private void searchFloorBTNMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_searchFloorBTNMouseClicked
 
-    try{
-        insertPanel.setVisible(false);
-    String code = null; // hold entered data
-    if (FloorEnteredCode.getText()!= null )
-        
-    setTableModel(FloorListInDatabase.SearchFloor(FloorEnteredCode.getText())) ;
-    else
-    setTableModel( FloorListInDatabase.listFloor()) ;
-    }catch (Exception e) {
-    e.printStackTrace();
-    }
+        try {
+            insertPanel.setVisible(false);
+            String code = null; // hold entered data
+            if (FloorEnteredCode.getText() != null)
+
+                setTableModel(FloorListInDatabase.SearchFloor(FloorEnteredCode.getText()));
+            else
+                setTableModel(FloorListInDatabase.listFloor());
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
       
     }//GEN-LAST:event_searchFloorBTNMouseClicked
 
@@ -361,30 +360,29 @@ public class FloorScreen extends javax.swing.JPanel
 
     private void saveMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_saveMouseClicked
         FloorDto floor = new FloorDto();
-      
+
         floor.setDescription(desc.getText());
 
-        if(updateFlag)
-        {   floor.setUpdate_Date(new Date(System.currentTimeMillis()));
+        if (updateFlag) {
+            floor.setUpdate_Date(new Date(System.currentTimeMillis()));
             floor.setUpdatedBy(LoginEngine.currentUser);
             floor.setCode(floorTable.getValueAt(floorTable.getSelectedRow(), 0).toString());
-        }
-        else{
+        } else {
             floor.setUpdatedBy(LoginEngine.currentUser);
             floor.setInsertedBy(LoginEngine.currentUser);
             floor.setUpdate_Date(new Date(System.currentTimeMillis()));
             floor.setInertion_Date(new Date(System.currentTimeMillis()));
             floor.setCode(code.getText());
         }
-       
-        floor.setBuilding(allBuilding.get(buildingComboBox.getSelectedIndex())) ;
 
-        if (FloorListInDatabase.save(floor))
-        { JOptionPane.showMessageDialog(this , " saved ");
+        floor.setBuilding(allBuilding.get(buildingComboBox.getSelectedIndex()));
+
+        if (FloorListInDatabase.save(floor)) {
+            JOptionPane.showMessageDialog(this, " saved ");
             setTableModel(FloorListInDatabase.listFloor());
             insertPanel.setVisible(false);
-        }
-        else JOptionPane.showMessageDialog(this , "error can't save ");
+        } else
+            JOptionPane.showMessageDialog(this, "error can't save ");
     }//GEN-LAST:event_saveMouseClicked
 
     private void saveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_saveActionPerformed
