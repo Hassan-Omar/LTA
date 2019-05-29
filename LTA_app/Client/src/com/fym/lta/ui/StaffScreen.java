@@ -79,6 +79,7 @@ public class StaffScreen extends javax.swing.JPanel {
         mail_TextField = new javax.swing.JTextField();
         fname_TextField = new javax.swing.JTextField();
         jLabel11 = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jLabel1.setText("Search");
@@ -115,6 +116,7 @@ public class StaffScreen extends javax.swing.JPanel {
             }
         });
 
+        staffTable.setFont(new java.awt.Font("Tekton Pro Cond", 1, 18)); // NOI18N
         staffTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
@@ -123,7 +125,10 @@ public class StaffScreen extends javax.swing.JPanel {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
+        staffTable.setRowHeight(30);
         jScrollPane2.setViewportView(staffTable);
+
+        InsertPanel.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
         jLabel5.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jLabel5.setText("First Name ");
@@ -181,11 +186,9 @@ public class StaffScreen extends javax.swing.JPanel {
                             .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(InsertPanelLayout.createSequentialGroup()
                         .addGroup(InsertPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(InsertPanelLayout.createSequentialGroup()
-                                .addGap(10, 10, 10)
-                                .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel11, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jLabel11, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(InsertPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(pos_TextField, javax.swing.GroupLayout.PREFERRED_SIZE, 186, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -231,8 +234,11 @@ public class StaffScreen extends javax.swing.JPanel {
                     .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(27, 27, 27)
                 .addComponent(btnSave, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(181, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
+
+        jLabel4.setFont(new java.awt.Font("Times New Roman", 1, 24)); // NOI18N
+        jLabel4.setText("Employees Screen ");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -240,43 +246,52 @@ public class StaffScreen extends javax.swing.JPanel {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(94, 94, 94)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 575, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(btnUpdate)
-                        .addGap(68, 68, 68)
-                        .addComponent(btnDelete)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(btnInsert, javax.swing.GroupLayout.PREFERRED_SIZE, 156, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 575, Short.MAX_VALUE)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                    .addComponent(name_TextField)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(btnUpdate)
+                                        .addGap(105, 105, 105)
+                                        .addComponent(btnDelete)))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(btnInsert, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 156, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(btnSearch, javax.swing.GroupLayout.Alignment.TRAILING))))
+                        .addGap(34, 34, 34)
+                        .addComponent(InsertPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(name_TextField, javax.swing.GroupLayout.PREFERRED_SIZE, 328, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(btnSearch)
-                        .addGap(42, 42, 42)))
-                .addGap(40, 40, 40)
-                .addComponent(InsertPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(63, Short.MAX_VALUE))
+                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(332, 332, 332)
+                        .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 298, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(67, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(InsertPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
+                        .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(32, 32, 32))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(name_TextField, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(btnSearch, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(40, 40, 40)
+                        .addGap(22, 22, 22)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(btnUpdate, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(btnDelete, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(btnInsert, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 29, Short.MAX_VALUE)
-                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 384, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 384, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(InsertPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(36, 36, 36))
         );
     }//GEN-END:initComponents
@@ -316,24 +331,26 @@ public class StaffScreen extends javax.swing.JPanel {
 
     private void btnDeleteMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnDeleteMouseClicked
     InsertPanel.setVisible(false);
-
+        if (staffTable.getSelectedRow() >= 0) {
         String selectedEmployee = staffTable.getValueAt(staffTable.getSelectedRow(), 0).toString();
            EmployeeDto selectedEmployee_Delete = new EmployeeDto(); // this user i want to delete
            selectedEmployee_Delete.setEmail(selectedEmployee);
-           
+               
+               int msg=  JOptionPane.showConfirmDialog(this, "are you sure you need to delete ");
+          if (msg == JOptionPane.OK_OPTION)
+                            { 
            if (EmployeeBaoObj.deleteEmployee(selectedEmployee_Delete)) {
-               int msgRes =
-                   JOptionPane.showOptionDialog(null, "Deleted Successfully ", "Staff Deleting ",
-                                                JOptionPane.DEFAULT_OPTION, JOptionPane.INFORMATION_MESSAGE, null, null,
-                                                null);
-
-               if (msgRes == JOptionPane.OK_OPTION) {
-                employeeTableReset(EmployeeBaoObj.listEmployee() );
-                   staffTable.repaint();
+                  JOptionPane.showMessageDialog(null, "Deleted");
+                  employeeTableReset(EmployeeBaoObj.listEmployee() );
                }
-           } else {
+               else {
                JOptionPane.showMessageDialog(this, "Can not delete may be deleted using another Employee ");
+                    } 
            } 
+             }
+        else {
+                       JOptionPane.showMessageDialog(this, "Select an Employee to Delete");
+                   } 
            
     }//GEN-LAST:event_btnDeleteMouseClicked
 
@@ -392,6 +409,7 @@ public class StaffScreen extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
+    private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
@@ -409,21 +427,25 @@ public class StaffScreen extends javax.swing.JPanel {
     
     public void employeeTableReset(List<EmployeeDto> employees) {
        
-        Object[][] employeesArr = new Object[employees.size()][5];
+        Object[][] employeesArr = new Object[employees.size()][7];
 
         for (int i = 0; i < employees.size(); i++) {
 
             employeesArr[i][0] = employees.get(i).getEmail();
-            employeesArr[i][1] = employees.get(i).getFName();
-            employeesArr[i][2] = employees.get(i).getSName();
-            employeesArr[i][3] = employees.get(i).getLName();
-            employeesArr[i][4] = employees.get(i).getFamilyName();
+            employeesArr[i][1] = employees.get(i).getFName() +" " +employees.get(i).getSName() +" "
+            +employees.get(i).getLName()+" "  +employees.get(i).getFamilyName();
+            employeesArr[i][2] = employees.get(i).getDepartment().getName();
+            employeesArr[i][3] = employees.get(i).getInsertedBy();
+            employeesArr[i][4] = employees.get(i).getInertion_Date();
+            employeesArr[i][5] = employees.get(i).getUpdatedBy();
+            employeesArr[i][6] = employees.get(i).getUpdate_Date();
+
 
 
         }
         staffTable.setModel(new javax.swing.table.DefaultTableModel(employeesArr, new String[] {
-                                                                    "Email", "First Name", "second Name", "last Name",
-                                                                    "Family Name"
+                                                                    "Email", "Name","Department Name","Inserted By",
+ "  Insertion Date", "Updated By", "Update Date" 
             }));
     }
     

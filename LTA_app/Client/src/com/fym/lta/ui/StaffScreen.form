@@ -18,51 +18,68 @@
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" attributes="0">
               <EmptySpace min="-2" pref="94" max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                  <Component id="jLabel1" min="-2" pref="66" max="-2" attributes="0"/>
-                  <Component id="jScrollPane2" pref="575" max="32767" attributes="0"/>
-                  <Group type="102" attributes="0">
-                      <Component id="btnUpdate" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace min="-2" pref="68" max="-2" attributes="0"/>
-                      <Component id="btnDelete" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace max="32767" attributes="0"/>
-                      <Component id="btnInsert" min="-2" pref="156" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Group type="102" alignment="0" attributes="0">
+                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                          <Component id="jScrollPane2" pref="575" max="32767" attributes="0"/>
+                          <Group type="102" attributes="0">
+                              <Group type="103" groupAlignment="1" max="-2" attributes="0">
+                                  <Component id="name_TextField" max="32767" attributes="0"/>
+                                  <Group type="102" attributes="0">
+                                      <Component id="btnUpdate" min="-2" max="-2" attributes="0"/>
+                                      <EmptySpace min="-2" pref="105" max="-2" attributes="0"/>
+                                      <Component id="btnDelete" min="-2" max="-2" attributes="0"/>
+                                  </Group>
+                              </Group>
+                              <EmptySpace max="32767" attributes="0"/>
+                              <Group type="103" groupAlignment="0" attributes="0">
+                                  <Component id="btnInsert" alignment="1" min="-2" pref="156" max="-2" attributes="0"/>
+                                  <Component id="btnSearch" alignment="1" min="-2" max="-2" attributes="0"/>
+                              </Group>
+                          </Group>
+                      </Group>
+                      <EmptySpace min="-2" pref="34" max="-2" attributes="0"/>
+                      <Component id="InsertPanel" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <Group type="102" alignment="0" attributes="0">
-                      <Component id="name_TextField" min="-2" pref="328" max="-2" attributes="0"/>
-                      <EmptySpace max="32767" attributes="0"/>
-                      <Component id="btnSearch" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace min="-2" pref="42" max="-2" attributes="0"/>
+                      <Component id="jLabel1" min="-2" pref="66" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="332" max="-2" attributes="0"/>
+                      <Component id="jLabel4" min="-2" pref="298" max="-2" attributes="0"/>
                   </Group>
               </Group>
-              <EmptySpace min="-2" pref="40" max="-2" attributes="0"/>
-              <Component id="InsertPanel" min="-2" max="-2" attributes="0"/>
-              <EmptySpace pref="63" max="32767" attributes="0"/>
+              <EmptySpace pref="67" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
     <DimensionLayout dim="1">
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" alignment="1" attributes="0">
-              <EmptySpace max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="1" attributes="0">
-                  <Component id="InsertPanel" max="32767" attributes="0"/>
+              <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" attributes="0">
+                      <Component id="jLabel4" min="-2" pref="54" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="32" max="-2" attributes="0"/>
+                  </Group>
+                  <Group type="102" alignment="1" attributes="0">
                       <Component id="jLabel1" min="-2" pref="38" max="-2" attributes="0"/>
-                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
+                  </Group>
+              </Group>
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Group type="102" attributes="0">
                       <Group type="103" groupAlignment="3" attributes="0">
                           <Component id="name_TextField" alignment="3" min="-2" pref="35" max="-2" attributes="0"/>
                           <Component id="btnSearch" alignment="3" min="-2" pref="42" max="-2" attributes="0"/>
                       </Group>
-                      <EmptySpace min="-2" pref="40" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="22" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
                           <Component id="btnUpdate" alignment="3" min="-2" pref="40" max="-2" attributes="0"/>
                           <Component id="btnDelete" alignment="3" min="-2" pref="40" max="-2" attributes="0"/>
                           <Component id="btnInsert" alignment="3" min="-2" pref="40" max="-2" attributes="0"/>
                       </Group>
-                      <EmptySpace pref="29" max="32767" attributes="0"/>
+                      <EmptySpace type="unrelated" max="32767" attributes="0"/>
                       <Component id="jScrollPane2" min="-2" pref="384" max="-2" attributes="0"/>
                   </Group>
+                  <Component id="InsertPanel" max="32767" attributes="0"/>
               </Group>
               <EmptySpace min="-2" pref="36" max="-2" attributes="0"/>
           </Group>
@@ -133,6 +150,9 @@
       <SubComponents>
         <Component class="javax.swing.JTable" name="staffTable">
           <Properties>
+            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+              <Font name="Tekton Pro Cond" size="18" style="1"/>
+            </Property>
             <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
               <Table columnCount="4" rowCount="0">
                 <Column editable="true" title="Title 1" type="java.lang.Object"/>
@@ -165,6 +185,7 @@
                 </Column>
               </TableColumnModel>
             </Property>
+            <Property name="rowHeight" type="int" value="30"/>
             <Property name="tableHeader" type="javax.swing.table.JTableHeader" editor="org.netbeans.modules.form.editors2.JTableHeaderEditor">
               <TableHeader reorderingAllowed="true" resizingAllowed="true"/>
             </Property>
@@ -173,6 +194,13 @@
       </SubComponents>
     </Container>
     <Container class="javax.swing.JPanel" name="InsertPanel">
+      <Properties>
+        <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
+          <Border info="org.netbeans.modules.form.compat2.border.LineBorderInfo">
+            <LineBorder/>
+          </Border>
+        </Property>
+      </Properties>
 
       <Layout>
         <DimensionLayout dim="0">
@@ -206,12 +234,9 @@
                       </Group>
                       <Group type="102" attributes="0">
                           <Group type="103" groupAlignment="0" attributes="0">
-                              <Group type="102" attributes="0">
-                                  <EmptySpace min="-2" pref="10" max="-2" attributes="0"/>
-                                  <Component id="jLabel10" min="-2" pref="95" max="-2" attributes="0"/>
-                              </Group>
                               <Component id="jLabel9" alignment="0" min="-2" pref="143" max="-2" attributes="0"/>
                               <Component id="jLabel11" alignment="0" min="-2" pref="95" max="-2" attributes="0"/>
+                              <Component id="jLabel10" alignment="0" min="-2" pref="95" max="-2" attributes="0"/>
                           </Group>
                           <EmptySpace max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" attributes="0">
@@ -272,7 +297,7 @@
                   </Group>
                   <EmptySpace min="-2" pref="27" max="-2" attributes="0"/>
                   <Component id="btnSave" min="-2" pref="39" max="-2" attributes="0"/>
-                  <EmptySpace pref="181" max="32767" attributes="0"/>
+                  <EmptySpace max="32767" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -366,5 +391,13 @@
         </Component>
       </SubComponents>
     </Container>
+    <Component class="javax.swing.JLabel" name="jLabel4">
+      <Properties>
+        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+          <Font name="Times New Roman" size="24" style="1"/>
+        </Property>
+        <Property name="text" type="java.lang.String" value="Employees Screen "/>
+      </Properties>
+    </Component>
   </SubComponents>
 </Form>
