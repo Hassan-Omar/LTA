@@ -39,7 +39,7 @@ public class Queries {
     public static final String INSER_NEW_ROLE =
         "INSERT INTO ROLE (CODE ,DESCRIPTION ,INSERTED_BY ,UPDATED_BY ,INSERTION_DATE ,UPDATE_DATE ) VALUES(?,?,?,?,?,?)";
 
-    public static final String LIST_ALL_ROLES = "SELECT CODE , DESCRIPTION ,ROLEID  FROM ROLE";
+    public static final String LIST_ALL_ROLES = "SELECT *  FROM ROLE";
 
     public static final String DELETE_ROLE = " DELETE FROM ROLE WHERE CODE = ?";
 

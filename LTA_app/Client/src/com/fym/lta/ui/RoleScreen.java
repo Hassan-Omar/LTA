@@ -64,9 +64,11 @@ public class RoleScreen extends javax.swing.JPanel {
         SaveBtn = new javax.swing.JButton();
         codeLabel = new javax.swing.JLabel();
         label1 = new java.awt.Label();
+        jLabel4 = new javax.swing.JLabel();
 
-        jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Roles", 0, 0, new java.awt.Font("Adobe Arabic", 1, 24))); // NOI18N
+        jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Roles", 0, 0, new java.awt.Font("Tekton Pro Cond", 1, 36))); // NOI18N
 
+        rolesTable.setFont(new java.awt.Font("Tekton Pro Cond", 1, 18)); // NOI18N
         rolesTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
@@ -90,7 +92,7 @@ public class RoleScreen extends javax.swing.JPanel {
                 return canEdit [columnIndex];
             }
         });
-        rolesTable.setRowHeight(20);
+        rolesTable.setRowHeight(30);
         jScrollPane1.setViewportView(rolesTable);
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
@@ -99,7 +101,7 @@ public class RoleScreen extends javax.swing.JPanel {
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 795, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 796, Short.MAX_VALUE)
                 .addContainerGap())
         );
         jPanel2Layout.setVerticalGroup(
@@ -127,7 +129,7 @@ public class RoleScreen extends javax.swing.JPanel {
         });
 
         insertRoleBTN.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        insertRoleBTN.setText("Insert  New Role");
+        insertRoleBTN.setText("Insert  New ");
         insertRoleBTN.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 insertRoleBTNMouseClicked(evt);
@@ -141,14 +143,14 @@ public class RoleScreen extends javax.swing.JPanel {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(ubdateRoleBTN, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(138, 138, 138)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 227, Short.MAX_VALUE)
                         .addComponent(deleteRoleBTN, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(141, 141, 141)
-                        .addComponent(insertRoleBTN, javax.swing.GroupLayout.PREFERRED_SIZE, 213, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap())
+                        .addGap(168, 168, 168)
+                        .addComponent(insertRoleBTN, javax.swing.GroupLayout.PREFERRED_SIZE, 213, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(32, 32, 32))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -159,15 +161,16 @@ public class RoleScreen extends javax.swing.JPanel {
                     .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(deleteRoleBTN, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(insertRoleBTN, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+                .addGap(25, 25, 25))
         );
 
-        roleEnteredCode.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        roleEnteredCode.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        roleEnteredCode.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        jLabel1.setText("Enter Role Code");
+        jLabel1.setText("Search");
 
         searchUserBTN.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         searchUserBTN.setText("Search");
@@ -179,7 +182,10 @@ public class RoleScreen extends javax.swing.JPanel {
 
         insertUpdatePanel.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
+        enteredCodeBox.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+
         enteredDescription.setColumns(20);
+        enteredDescription.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         enteredDescription.setRows(5);
         jScrollPane2.setViewportView(enteredDescription);
 
@@ -230,42 +236,50 @@ public class RoleScreen extends javax.swing.JPanel {
                 .addGap(67, 67, 67))
         );
 
+        jLabel4.setFont(new java.awt.Font("Times New Roman", 1, 24)); // NOI18N
+        jLabel4.setText("Roles Screen ");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                    .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                        .addGap(19, 19, 19)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(roleEnteredCode, javax.swing.GroupLayout.PREFERRED_SIZE, 484, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(searchUserBTN)
-                                .addGap(224, 224, 224))
-                            .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 333, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addGap(60, 60, 60)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, 333, Short.MAX_VALUE)
+                            .addComponent(roleEnteredCode))
+                        .addGap(52, 52, 52)
+                        .addComponent(searchUserBTN)
+                        .addGap(433, 433, 433))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 53, Short.MAX_VALUE)))
                 .addComponent(insertUpdatePanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(162, 162, 162))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(589, 589, 589)
+                .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 231, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(10, 10, 10)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(insertUpdatePanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(24, 24, 24)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(insertUpdatePanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap(24, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(roleEnteredCode, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(searchUserBTN, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(25, 25, 25)
-                        .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 387, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(87, Short.MAX_VALUE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 65, Short.MAX_VALUE)
+                        .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 387, javax.swing.GroupLayout.PREFERRED_SIZE))))
         );
     }//GEN-END:initComponents
 
@@ -295,13 +309,15 @@ public class RoleScreen extends javax.swing.JPanel {
             String selectedRoleCode =
                 rolesTable.getValueAt(rolesTable.getSelectedRow(), 0).toString(); // hold the code of role
 
-            // call bussiness method
+                int msg=  JOptionPane.showConfirmDialog(this, "are you sure you need to delete ");
+                               if (msg == JOptionPane.OK_OPTION)
+                               { // call bussiness method
             if (role.deleteRole(selectedRoleCode)) {
                 JOptionPane.showMessageDialog(this, "deleted Successfully  ");
                 // reset table's content
                 roleTableReset(role.getAll());
             } else
-                JOptionPane.showMessageDialog(this, "can't delete ");
+                JOptionPane.showMessageDialog(this, "can't delete ");}
         } else
             JOptionPane.showMessageDialog(this, "You should select a role to delete ");
     }//GEN-LAST:event_deleteRoleBTNMouseClicked
@@ -387,6 +403,7 @@ public class RoleScreen extends javax.swing.JPanel {
     private javax.swing.JButton insertRoleBTN;
     private javax.swing.JPanel insertUpdatePanel;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel4;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
@@ -401,14 +418,20 @@ public class RoleScreen extends javax.swing.JPanel {
 
     // this function put roles data in the table
     void roleTableReset(List<RoleDto> roles) {
-        Object[][] rolesArr = new Object[roles.size()][2];
+        Object[][] rolesArr = new Object[roles.size()][6];
 
         for (int i = 0; i < roles.size(); i++) {
             rolesArr[i][0] = roles.get(i).getCode();
             rolesArr[i][1] = roles.get(i).getDescription();
+            rolesArr[i][2] = roles.get(i).getInsertedBy();
+            rolesArr[i][3] = roles.get(i).getInertion_Date();
+            rolesArr[i][4] = roles.get(i).getUpdatedBy();
+            rolesArr[i][5] = roles.get(i).getUpdate_Date();
+
 
         }
-        rolesTable.setModel(new javax.swing.table.DefaultTableModel(rolesArr, new String[] { "Code", "Description" }));
+        rolesTable.setModel(new javax.swing.table.DefaultTableModel(rolesArr, new String[] { "Code", "Description" ,"Inserted By",
+ "  Insertion Date", "Updated By", "Update Date"}));
 
     }
 
