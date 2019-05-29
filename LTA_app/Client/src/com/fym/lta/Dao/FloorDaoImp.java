@@ -3,6 +3,7 @@ package com.fym.lta.dao;
 import com.fym.lta.common.ConnectionFactory;
 import com.fym.lta.common.LTAException;
 import com.fym.lta.common.Queries;
+import com.fym.lta.dto.BuildingDto;
 import com.fym.lta.dto.FloorDto;
 
 import java.sql.Types;
@@ -33,6 +34,11 @@ public class FloorDaoImp implements FloorDao {
                 Floor.setFloor_id(jdbcRs.getInt(1));
                 Floor.setCode(jdbcRs.getString(2));
                 Floor.setDescription(jdbcRs.getString(3));
+                BuildingDto building = new BuildingDto();
+                building.setCode(jdbcRs.getString(4));
+                Floor.setBuilding(building);
+                
+                
                 Floors.add(Floor);
 
             }
@@ -186,10 +192,13 @@ public class FloorDaoImp implements FloorDao {
                     Floors = new ArrayList<>();
 
                 FloorDto lSerch = new FloorDto();
-                lSerch.setCode(jdbcRs.getString(2));
                 lSerch.setFloor_id(jdbcRs.getInt(1));
+                lSerch.setCode(jdbcRs.getString(2));
                 lSerch.setDescription(jdbcRs.getString(3));
-
+                BuildingDto building = new BuildingDto();
+                building.setCode(jdbcRs.getString(4));
+                lSerch.setBuilding(building);
+                
             Floors.add(lSerch);
 
             }

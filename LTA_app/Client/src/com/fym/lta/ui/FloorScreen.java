@@ -26,14 +26,16 @@ public class FloorScreen extends javax.swing.JPanel
     /**table Structure  */    
     private void setTableModel(List<FloorDto> Floor)
     {
-        Object [][] Column = new Object [Floor.size()][2];
+        Object [][] Column = new Object [Floor.size()][3];
         for(int i =0;i<Floor.size();i++){
             Column[i][0] = Floor.get(i).getCode();
             Column[i][1] = Floor.get(i).getDescription();          
+            Column[i][2] =Floor.get(i).getBuilding().getCode() ;            
+                   
               
         }
         floorTable.setModel(new javax.swing.table.DefaultTableModel(Column,new String [] {
-                " Code " , " Description " }));  
+                " Code " , " Description ","Building Code" }));  
     }
     
 
@@ -67,8 +69,8 @@ public class FloorScreen extends javax.swing.JPanel
         jScrollPane1 = new javax.swing.JScrollPane();
         floorTable = new javax.swing.JTable();
         insertFloorBTN = new javax.swing.JButton();
-        updateFloorBTN = new javax.swing.JButton();
         deleteFloorBTN = new javax.swing.JButton();
+        updateFloorBTN = new javax.swing.JButton();
         FloorEnteredCode = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
         searchFloorBTN = new javax.swing.JButton();
@@ -81,8 +83,9 @@ public class FloorScreen extends javax.swing.JPanel
         jLabel7 = new javax.swing.JLabel();
         buildingComboBox = new javax.swing.JComboBox();
 
-        jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Building Floor", 0, 0, new java.awt.Font("Yu Gothic UI", 1, 24))); // NOI18N
+        jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Building Floors", 0, 0, new java.awt.Font("Yu Gothic UI", 1, 24))); // NOI18N
 
+        floorTable.setFont(new java.awt.Font("Tekton Pro Cond", 0, 18)); // NOI18N
         floorTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
@@ -99,7 +102,7 @@ public class FloorScreen extends javax.swing.JPanel
                 return types [columnIndex];
             }
         });
-        floorTable.setRowHeight(20);
+        floorTable.setRowHeight(30);
         jScrollPane1.setViewportView(floorTable);
         floorTable.getColumnModel().getColumn(0).setHeaderValue("Code");
         floorTable.getColumnModel().getColumn(1).setHeaderValue("Description");
@@ -112,19 +115,19 @@ public class FloorScreen extends javax.swing.JPanel
             }
         });
 
-        updateFloorBTN.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        updateFloorBTN.setText("Update");
-        updateFloorBTN.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                updateFloorBTNActionPerformed(evt);
-            }
-        });
-
         deleteFloorBTN.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         deleteFloorBTN.setLabel("Delete");
         deleteFloorBTN.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 deleteFloorBTNMouseClicked(evt);
+            }
+        });
+
+        updateFloorBTN.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        updateFloorBTN.setText("Update");
+        updateFloorBTN.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                updateFloorBTNActionPerformed(evt);
             }
         });
 
@@ -134,13 +137,13 @@ public class FloorScreen extends javax.swing.JPanel
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 563, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(deleteFloorBTN, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(90, 90, 90)
                         .addComponent(updateFloorBTN, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(56, 56, 56)
+                        .addGap(76, 76, 76)
+                        .addComponent(deleteFloorBTN, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(insertFloorBTN, javax.swing.GroupLayout.PREFERRED_SIZE, 184, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(18, Short.MAX_VALUE))
         );
@@ -150,20 +153,19 @@ public class FloorScreen extends javax.swing.JPanel
                 .addGap(22, 22, 22)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(deleteFloorBTN, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(updateFloorBTN, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(insertFloorBTN, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(insertFloorBTN, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(updateFloorBTN, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(41, 41, 41)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 279, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(89, Short.MAX_VALUE))
         );
 
-        FloorEnteredCode.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        FloorEnteredCode.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
 
-        jLabel1.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
-        jLabel1.setForeground(new java.awt.Color(51, 0, 153));
-        jLabel1.setText("Enter Floor Code :");
+        jLabel1.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        jLabel1.setText("Search");
 
-        searchFloorBTN.setFont(new java.awt.Font("Yu Gothic UI", 0, 18)); // NOI18N
+        searchFloorBTN.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         searchFloorBTN.setText("Search");
         searchFloorBTN.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -173,20 +175,19 @@ public class FloorScreen extends javax.swing.JPanel
 
         insertPanel.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
-        code.setText(" ");
+        code.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
 
-        codeLabel.setFont(new java.awt.Font("Yu Gothic UI", 0, 18)); // NOI18N
-        codeLabel.setForeground(new java.awt.Color(51, 0, 153));
-        codeLabel.setText("Code:");
+        codeLabel.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        codeLabel.setText("Code");
 
-        desc.setText(" ");
+        desc.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         desc.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 descActionPerformed(evt);
             }
         });
 
-        save.setFont(new java.awt.Font("Yu Gothic UI", 0, 18)); // NOI18N
+        save.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         save.setText("Save");
         save.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -199,12 +200,10 @@ public class FloorScreen extends javax.swing.JPanel
             }
         });
 
-        jLabel6.setFont(new java.awt.Font("Yu Gothic UI", 0, 18)); // NOI18N
-        jLabel6.setForeground(new java.awt.Color(50, 4, 148));
+        jLabel6.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jLabel6.setText("Description:");
 
-        jLabel7.setFont(new java.awt.Font("Yu Gothic UI", 0, 18)); // NOI18N
-        jLabel7.setForeground(new java.awt.Color(50, 4, 148));
+        jLabel7.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jLabel7.setText("Choose Building");
 
         javax.swing.GroupLayout insertPanelLayout = new javax.swing.GroupLayout(insertPanel);
@@ -212,47 +211,37 @@ public class FloorScreen extends javax.swing.JPanel
         insertPanelLayout.setHorizontalGroup(
             insertPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(insertPanelLayout.createSequentialGroup()
-                .addGap(103, 103, 103)
-                .addGroup(insertPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                .addGap(44, 44, 44)
+                .addGroup(insertPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(codeLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 206, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 211, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(39, 39, 39)
+                .addGroup(insertPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(save, javax.swing.GroupLayout.PREFERRED_SIZE, 147, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(insertPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(insertPanelLayout.createSequentialGroup()
-                            .addComponent(codeLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGap(51, 51, 51)
-                            .addGroup(insertPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                .addComponent(code, javax.swing.GroupLayout.PREFERRED_SIZE, 334, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(desc, javax.swing.GroupLayout.PREFERRED_SIZE, 334, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGroup(insertPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                            .addComponent(jLabel7, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 211, Short.MAX_VALUE)
-                            .addComponent(buildingComboBox, javax.swing.GroupLayout.Alignment.LEADING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                    .addComponent(code, javax.swing.GroupLayout.PREFERRED_SIZE, 152, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(desc, javax.swing.GroupLayout.PREFERRED_SIZE, 334, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(buildingComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 211, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(64, Short.MAX_VALUE))
-            .addGroup(insertPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(insertPanelLayout.createSequentialGroup()
-                    .addGap(113, 113, 113)
-                    .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addContainerGap(439, Short.MAX_VALUE)))
         );
         insertPanelLayout.setVerticalGroup(
             insertPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(insertPanelLayout.createSequentialGroup()
                 .addGap(99, 99, 99)
                 .addGroup(insertPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(code, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(code, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(codeLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
-                .addComponent(desc, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(161, 161, 161)
-                .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(buildingComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 52, Short.MAX_VALUE)
+                .addGroup(insertPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(desc, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(57, 57, 57)
+                .addGroup(insertPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(buildingComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(71, 71, 71)
                 .addComponent(save, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(52, 52, 52))
-            .addGroup(insertPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(insertPanelLayout.createSequentialGroup()
-                    .addGap(193, 193, 193)
-                    .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addContainerGap(405, Short.MAX_VALUE)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
@@ -260,37 +249,38 @@ public class FloorScreen extends javax.swing.JPanel
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(52, 52, 52)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 333, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(FloorEnteredCode, javax.swing.GroupLayout.PREFERRED_SIZE, 249, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(96, 96, 96)
-                                .addComponent(searchFloorBTN, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                .addGap(85, 85, 85)
+                                .addComponent(searchFloorBTN, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 35, Short.MAX_VALUE)
+                        .addComponent(insertPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(174, 174, 174))
                     .addGroup(layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 12, Short.MAX_VALUE)
-                .addComponent(insertPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(174, 174, 174))
+                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(21, 21, 21)
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(FloorEnteredCode, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(searchFloorBTN, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(32, 32, 32)
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(30, Short.MAX_VALUE))
-            .addGroup(layout.createSequentialGroup()
-                .addGap(39, 39, 39)
-                .addComponent(insertPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(FloorEnteredCode, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(searchFloorBTN, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(34, 34, 34)
+                        .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 37, Short.MAX_VALUE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(39, 39, 39)
+                        .addComponent(insertPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                 .addContainerGap())
         );
     }//GEN-END:initComponents
@@ -317,24 +307,26 @@ public class FloorScreen extends javax.swing.JPanel
     }//GEN-LAST:event_updateFloorBTNActionPerformed
 
     private void deleteFloorBTNMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_deleteFloorBTNMouseClicked
-    /*to delete selected row  */  
-         try{
-
-             insertPanel.setVisible(false);
-    String code = floorTable.getValueAt(floorTable.getSelectedRow(), 0).toString(); // get the building code
+ 
+    if(floorTable.getSelectedRow() >=0)
+    {        String code = floorTable.getValueAt(floorTable.getSelectedRow(), 0).toString(); // get the building code
     FloorDto SelectedFloor = new FloorDto(); // selected building you wanna delete
-    SelectedFloor.setCode(code);
+    SelectedFloor.setCode(code);   
+             int msg=  JOptionPane.showConfirmDialog(this, "are you sure you need to delete ");
+                            if (msg == JOptionPane.OK_OPTION)
+                            {                                    
          //the result would be "remove the selected row and check the returned value to tell the user if the delete is done or not"
            if(FloorListInDatabase.deleteFloor(SelectedFloor)){
-             JOptionPane.showMessageDialog(this, "the selected building is deleted Successfully  ");
+             JOptionPane.showMessageDialog(this, "deleted Successfully  ");
              //refresh the table data..
-                 setTableModel(FloorListInDatabase.listFloor());
-
+             setTableModel(FloorListInDatabase.listFloor());
+           }
              } else
                  JOptionPane.showMessageDialog(this, " this floor can't be deleteted ");
-         }catch(Exception e){
-             e.printStackTrace();
-             }
+                            }
+             else JOptionPane.showMessageDialog(this, "Select a floor to delete");
+       
+        
     
     }//GEN-LAST:event_deleteFloorBTNMouseClicked
 

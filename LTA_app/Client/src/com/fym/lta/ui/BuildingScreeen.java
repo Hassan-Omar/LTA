@@ -75,7 +75,7 @@ public class BuildingScreeen extends javax.swing.JPanel {
                 return types [columnIndex];
             }
         });
-        buildingTable.setRowHeight(20);
+        buildingTable.setRowHeight(30);
         jScrollPane1.setViewportView(buildingTable);
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
@@ -189,7 +189,7 @@ public class BuildingScreeen extends javax.swing.JPanel {
                 .addGroup(insertPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(desc, javax.swing.GroupLayout.PREFERRED_SIZE, 169, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
@@ -200,39 +200,39 @@ public class BuildingScreeen extends javax.swing.JPanel {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(40, 40, 40)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(ubdateBuildingBTN, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(138, 138, 138)
                         .addComponent(deleteBuildingBTN, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(141, 141, 141)
-                        .addComponent(insertBuildingBTN, javax.swing.GroupLayout.PREFERRED_SIZE, 253, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(insertBuildingBTN, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(1, 1, 1)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 333, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(BuildingEnteredCode, javax.swing.GroupLayout.PREFERRED_SIZE, 484, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(67, 67, 67)
+                                .addComponent(BuildingEnteredCode, javax.swing.GroupLayout.PREFERRED_SIZE, 296, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(38, 38, 38)
                                 .addComponent(searchBuildingBTN)))))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 12, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 25, Short.MAX_VALUE)
                 .addComponent(insertPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(37, 37, 37)
+                .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(insertPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(21, 21, 21)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(BuildingEnteredCode, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(searchBuildingBTN, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(searchBuildingBTN, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 40, Short.MAX_VALUE)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(ubdateBuildingBTN, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -254,8 +254,8 @@ public class BuildingScreeen extends javax.swing.JPanel {
     }//GEN-LAST:event_ubdateBuildingBTNActionPerformed
 
     private void deleteBuildingBTNMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_deleteBuildingBTNMouseClicked
-     
-        String code = buildingTable.getValueAt(buildingTable.getSelectedRow(), 0).toString();
+     if(buildingTable.getSelectedRow() >= 0 )
+     {        String code = buildingTable.getValueAt(buildingTable.getSelectedRow(), 0).toString();
         BuildingDto selectedBuilding_Delete = new BuildingDto(); // this Building i want to delete
         selectedBuilding_Delete.setCode(code);
 
@@ -270,7 +270,11 @@ public class BuildingScreeen extends javax.swing.JPanel {
                 }
         } else {
             JOptionPane.showMessageDialog(this, "Can not delete may be deleted using another user ");
-        }
+        }}
+     else
+     JOptionPane.showMessageDialog(this, "select a Building to Delete");
+     
+      
 
     }//GEN-LAST:event_deleteBuildingBTNMouseClicked
 
@@ -359,13 +363,13 @@ public class BuildingScreeen extends javax.swing.JPanel {
             bArray[i][0] = buildings.get(i).getCode();
             bArray[i][1] = buildings.get(i).getDescription();
             bArray[i][2]= buildings.get(i).getINSERTED_BY();
-            bArray[i][3]= buildings.get(i).getUPDATED_BY();
-            bArray[i][4]= buildings.get(i).getINSERTION_DATE();
+            bArray[i][4]= buildings.get(i).getUPDATED_BY();
+            bArray[i][3]= buildings.get(i).getINSERTION_DATE();
             bArray[i][5]= buildings.get(i).getUPDATE_DATE();
 
         }
         buildingTable.setModel(new javax.swing.table.DefaultTableModel(bArray, new String[] {
-                                                                       "Code", "Description" ,"Inserted By" ,"Updated BY" ,"Inserted Date" ,"Updated Date" }));
+                                                                       "Code", "Description" ,"Inserted By" ,"  Insertion Date" ,"Updated" ,"Update Date" }));
     }
 
 

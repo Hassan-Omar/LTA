@@ -134,9 +134,13 @@ public class Queries {
     public static final String UPDATE_FLOOR =
         "UPDATE FLOOR SET  DESCRIPTON = ? , UPDATED_BY = ? ,UPDATE_DATE = ? ,ID_BUILDING = ? WHERE CODE = ?";
 
-    public static final String LIST_ALL_FLOORS = "SELECT * FROM FLOOR ";
+    public static final String LIST_ALL_FLOORS = "SELECT X.ID, X.CODE ,X.DESCRIPTON , Y.CODE " + 
+    "FROM FLOOR X , BUILDING Y " + 
+    "WHERE X.ID_BUILDING =Y.B_ID ";
 
-    public static final String FLOORS_SEARCH = "SELECT * FROM FLOOR WHERE LOWER(CODE) LIKE ?";
+    public static final String FLOORS_SEARCH = "SELECT X.ID, X.CODE ,X.DESCRIPTON , Y.CODE " + 
+    "FROM FLOOR X , BUILDING Y " + 
+    "WHERE X.ID_BUILDING =Y.B_ID AND LOWER(X.CODE) LIKE ?";
     //___________________________________________________________________________________
 
 

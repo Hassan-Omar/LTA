@@ -17,46 +17,49 @@
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" attributes="0">
+              <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" attributes="0">
-                      <EmptySpace min="-2" pref="52" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="jLabel1" min="-2" pref="333" max="-2" attributes="0"/>
+                          <Component id="jPanel1" alignment="0" min="-2" max="-2" attributes="0"/>
                           <Group type="102" alignment="0" attributes="0">
                               <Component id="FloorEnteredCode" min="-2" pref="249" max="-2" attributes="0"/>
-                              <EmptySpace min="-2" pref="96" max="-2" attributes="0"/>
-                              <Component id="searchFloorBTN" min="-2" pref="96" max="-2" attributes="0"/>
+                              <EmptySpace min="-2" pref="85" max="-2" attributes="0"/>
+                              <Component id="searchFloorBTN" min="-2" pref="135" max="-2" attributes="0"/>
                           </Group>
                       </Group>
+                      <EmptySpace pref="35" max="32767" attributes="0"/>
+                      <Component id="insertPanel" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="174" max="-2" attributes="0"/>
                   </Group>
                   <Group type="102" alignment="0" attributes="0">
-                      <EmptySpace max="-2" attributes="0"/>
-                      <Component id="jPanel1" min="-2" max="-2" attributes="0"/>
+                      <Component id="jLabel1" min="-2" pref="105" max="-2" attributes="0"/>
+                      <EmptySpace max="32767" attributes="0"/>
                   </Group>
               </Group>
-              <EmptySpace pref="12" max="32767" attributes="0"/>
-              <Component id="insertPanel" min="-2" max="-2" attributes="0"/>
-              <EmptySpace min="-2" pref="174" max="-2" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
     <DimensionLayout dim="1">
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" attributes="0">
-              <EmptySpace min="-2" pref="21" max="-2" attributes="0"/>
-              <Component id="jLabel1" min="-2" pref="39" max="-2" attributes="0"/>
-              <EmptySpace max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="FloorEnteredCode" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="searchFloorBTN" alignment="3" min="-2" pref="54" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Group type="102" attributes="0">
+                      <Component id="jLabel1" min="-2" pref="39" max="-2" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="FloorEnteredCode" alignment="3" min="-2" pref="41" max="-2" attributes="0"/>
+                          <Component id="searchFloorBTN" alignment="3" min="-2" pref="54" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace min="-2" pref="34" max="-2" attributes="0"/>
+                      <Component id="jPanel1" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace min="0" pref="37" max="32767" attributes="0"/>
+                  </Group>
+                  <Group type="102" attributes="0">
+                      <EmptySpace min="-2" pref="39" max="-2" attributes="0"/>
+                      <Component id="insertPanel" max="32767" attributes="0"/>
+                  </Group>
               </Group>
-              <EmptySpace min="-2" pref="32" max="-2" attributes="0"/>
-              <Component id="jPanel1" min="-2" max="-2" attributes="0"/>
-              <EmptySpace pref="30" max="32767" attributes="0"/>
-          </Group>
-          <Group type="102" attributes="0">
-              <EmptySpace min="-2" pref="39" max="-2" attributes="0"/>
-              <Component id="insertPanel" max="32767" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
           </Group>
       </Group>
@@ -67,7 +70,7 @@
       <Properties>
         <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
           <Border info="org.netbeans.modules.form.compat2.border.TitledBorderInfo">
-            <TitledBorder title="Building Floor">
+            <TitledBorder title="Building Floors">
               <Font PropertyName="font" name="Yu Gothic UI" size="24" style="1"/>
             </TitledBorder>
           </Border>
@@ -79,13 +82,13 @@
           <Group type="103" groupAlignment="0" attributes="0">
               <Group type="102" alignment="0" attributes="0">
                   <EmptySpace max="-2" attributes="0"/>
-                  <Group type="103" groupAlignment="1" attributes="0">
+                  <Group type="103" groupAlignment="1" max="-2" attributes="0">
                       <Component id="jScrollPane1" alignment="1" min="-2" pref="563" max="-2" attributes="0"/>
                       <Group type="102" attributes="0">
-                          <Component id="deleteFloorBTN" min="-2" pref="108" max="-2" attributes="0"/>
-                          <EmptySpace min="-2" pref="90" max="-2" attributes="0"/>
                           <Component id="updateFloorBTN" min="-2" pref="117" max="-2" attributes="0"/>
-                          <EmptySpace min="-2" pref="56" max="-2" attributes="0"/>
+                          <EmptySpace min="-2" pref="76" max="-2" attributes="0"/>
+                          <Component id="deleteFloorBTN" min="-2" pref="108" max="-2" attributes="0"/>
+                          <EmptySpace max="32767" attributes="0"/>
                           <Component id="insertFloorBTN" min="-2" pref="184" max="-2" attributes="0"/>
                       </Group>
                   </Group>
@@ -99,8 +102,8 @@
                   <EmptySpace min="-2" pref="22" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="deleteFloorBTN" alignment="3" min="-2" pref="41" max="-2" attributes="0"/>
-                      <Component id="updateFloorBTN" alignment="3" min="-2" pref="41" max="-2" attributes="0"/>
                       <Component id="insertFloorBTN" alignment="3" min="-2" pref="41" max="-2" attributes="0"/>
+                      <Component id="updateFloorBTN" alignment="3" min="-2" pref="41" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace min="-2" pref="41" max="-2" attributes="0"/>
                   <Component id="jScrollPane1" min="-2" pref="279" max="-2" attributes="0"/>
@@ -119,6 +122,9 @@
           <SubComponents>
             <Component class="javax.swing.JTable" name="floorTable">
               <Properties>
+                <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                  <Font name="Tekton Pro Cond" size="18" style="0"/>
+                </Property>
                 <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
                   <Table columnCount="2" rowCount="0">
                     <Column editable="true" title="Code" type="java.lang.String"/>
@@ -139,7 +145,7 @@
                     </Column>
                   </TableColumnModel>
                 </Property>
-                <Property name="rowHeight" type="int" value="20"/>
+                <Property name="rowHeight" type="int" value="30"/>
                 <Property name="tableHeader" type="javax.swing.table.JTableHeader" editor="org.netbeans.modules.form.editors2.JTableHeaderEditor">
                   <TableHeader reorderingAllowed="true" resizingAllowed="true"/>
                 </Property>
@@ -158,17 +164,6 @@
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="insertFloorBTNActionPerformed"/>
           </Events>
         </Component>
-        <Component class="javax.swing.JButton" name="updateFloorBTN">
-          <Properties>
-            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-              <Font name="Tahoma" size="18" style="1"/>
-            </Property>
-            <Property name="text" type="java.lang.String" value="Update"/>
-          </Properties>
-          <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="updateFloorBTNActionPerformed"/>
-          </Events>
-        </Component>
         <Component class="javax.swing.JButton" name="deleteFloorBTN">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
@@ -180,30 +175,38 @@
             <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="deleteFloorBTNMouseClicked"/>
           </Events>
         </Component>
+        <Component class="javax.swing.JButton" name="updateFloorBTN">
+          <Properties>
+            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+              <Font name="Tahoma" size="18" style="1"/>
+            </Property>
+            <Property name="text" type="java.lang.String" value="Update"/>
+          </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="updateFloorBTNActionPerformed"/>
+          </Events>
+        </Component>
       </SubComponents>
     </Container>
     <Component class="javax.swing.JTextField" name="FloorEnteredCode">
       <Properties>
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-          <Font name="Tahoma" size="18" style="0"/>
+          <Font name="Tahoma" size="14" style="0"/>
         </Property>
       </Properties>
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel1">
       <Properties>
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-          <Font name="Times New Roman" size="18" style="1"/>
+          <Font name="Tahoma" size="18" style="1"/>
         </Property>
-        <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-          <Color blue="99" green="0" red="33" type="rgb"/>
-        </Property>
-        <Property name="text" type="java.lang.String" value="Enter Floor Code :"/>
+        <Property name="text" type="java.lang.String" value="Search"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JButton" name="searchFloorBTN">
       <Properties>
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-          <Font name="Yu Gothic UI" size="18" style="0"/>
+          <Font name="Tahoma" size="18" style="1"/>
         </Property>
         <Property name="text" type="java.lang.String" value="Search"/>
       </Properties>
@@ -223,33 +226,21 @@
       <Layout>
         <DimensionLayout dim="0">
           <Group type="103" groupAlignment="0" attributes="0">
-              <Group type="102" attributes="0">
-                  <EmptySpace min="103" pref="103" max="-2" attributes="0"/>
-                  <Group type="103" groupAlignment="1" attributes="0">
+              <Group type="102" alignment="0" attributes="0">
+                  <EmptySpace min="-2" pref="44" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="0" attributes="0">
+                      <Component id="codeLabel" min="-2" pref="108" max="-2" attributes="0"/>
+                      <Component id="jLabel6" min="-2" pref="206" max="-2" attributes="0"/>
+                      <Component id="jLabel7" alignment="0" min="-2" pref="211" max="-2" attributes="0"/>
+                  </Group>
+                  <EmptySpace min="-2" pref="39" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="0" attributes="0">
                       <Component id="save" min="-2" pref="147" max="-2" attributes="0"/>
-                      <Group type="103" alignment="1" groupAlignment="0" attributes="0">
-                          <Group type="102" attributes="0">
-                              <Component id="codeLabel" min="-2" pref="108" max="-2" attributes="0"/>
-                              <EmptySpace min="-2" pref="51" max="-2" attributes="0"/>
-                              <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                                  <Component id="code" alignment="0" min="-2" pref="334" max="-2" attributes="0"/>
-                                  <Component id="desc" alignment="0" min="-2" pref="334" max="-2" attributes="0"/>
-                              </Group>
-                          </Group>
-                          <Group type="103" alignment="0" groupAlignment="1" max="-2" attributes="0">
-                              <Component id="jLabel7" alignment="0" pref="211" max="32767" attributes="0"/>
-                              <Component id="buildingComboBox" alignment="0" max="32767" attributes="0"/>
-                          </Group>
-                      </Group>
+                      <Component id="code" min="-2" pref="152" max="-2" attributes="0"/>
+                      <Component id="desc" min="-2" pref="334" max="-2" attributes="0"/>
+                      <Component id="buildingComboBox" min="-2" pref="211" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace pref="64" max="32767" attributes="0"/>
-              </Group>
-              <Group type="103" rootIndex="1" groupAlignment="0" attributes="0">
-                  <Group type="102" alignment="0" attributes="0">
-                      <EmptySpace min="-2" pref="113" max="-2" attributes="0"/>
-                      <Component id="jLabel6" min="-2" pref="108" max="-2" attributes="0"/>
-                      <EmptySpace pref="439" max="32767" attributes="0"/>
-                  </Group>
               </Group>
           </Group>
         </DimensionLayout>
@@ -258,25 +249,22 @@
               <Group type="102" alignment="0" attributes="0">
                   <EmptySpace min="-2" pref="99" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="code" alignment="3" min="-2" pref="28" max="-2" attributes="0"/>
+                      <Component id="code" alignment="3" min="-2" pref="54" max="-2" attributes="0"/>
                       <Component id="codeLabel" alignment="3" min="-2" pref="54" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace type="separate" max="-2" attributes="0"/>
-                  <Component id="desc" min="-2" pref="75" max="-2" attributes="0"/>
-                  <EmptySpace min="-2" pref="161" max="-2" attributes="0"/>
-                  <Component id="jLabel7" min="-2" pref="42" max="-2" attributes="0"/>
-                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                  <Component id="buildingComboBox" min="-2" pref="29" max="-2" attributes="0"/>
-                  <EmptySpace pref="52" max="32767" attributes="0"/>
-                  <Component id="save" min="-2" pref="46" max="-2" attributes="0"/>
-                  <EmptySpace min="-2" pref="52" max="-2" attributes="0"/>
-              </Group>
-              <Group type="103" rootIndex="1" groupAlignment="0" attributes="0">
-                  <Group type="102" alignment="0" attributes="0">
-                      <EmptySpace min="-2" pref="193" max="-2" attributes="0"/>
-                      <Component id="jLabel6" min="-2" pref="42" max="-2" attributes="0"/>
-                      <EmptySpace pref="405" max="32767" attributes="0"/>
+                  <Group type="103" groupAlignment="3" attributes="0">
+                      <Component id="desc" alignment="3" min="-2" pref="75" max="-2" attributes="0"/>
+                      <Component id="jLabel6" alignment="3" min="-2" pref="42" max="-2" attributes="0"/>
                   </Group>
+                  <EmptySpace min="-2" pref="57" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="3" attributes="0">
+                      <Component id="jLabel7" alignment="3" min="-2" pref="42" max="-2" attributes="0"/>
+                      <Component id="buildingComboBox" alignment="3" min="-2" pref="29" max="-2" attributes="0"/>
+                  </Group>
+                  <EmptySpace min="-2" pref="71" max="-2" attributes="0"/>
+                  <Component id="save" min="-2" pref="46" max="-2" attributes="0"/>
+                  <EmptySpace max="32767" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -284,23 +272,24 @@
       <SubComponents>
         <Component class="javax.swing.JTextField" name="code">
           <Properties>
-            <Property name="text" type="java.lang.String" value=" "/>
+            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+              <Font name="Tahoma" size="14" style="0"/>
+            </Property>
           </Properties>
         </Component>
         <Component class="javax.swing.JLabel" name="codeLabel">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-              <Font name="Yu Gothic UI" size="18" style="0"/>
+              <Font name="Tahoma" size="18" style="1"/>
             </Property>
-            <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-              <Color blue="99" green="0" red="33" type="rgb"/>
-            </Property>
-            <Property name="text" type="java.lang.String" value="Code:"/>
+            <Property name="text" type="java.lang.String" value="Code"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JTextField" name="desc">
           <Properties>
-            <Property name="text" type="java.lang.String" value=" "/>
+            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+              <Font name="Tahoma" size="14" style="0"/>
+            </Property>
           </Properties>
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="descActionPerformed"/>
@@ -309,7 +298,7 @@
         <Component class="javax.swing.JButton" name="save">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-              <Font name="Yu Gothic UI" size="18" style="0"/>
+              <Font name="Tahoma" size="18" style="1"/>
             </Property>
             <Property name="text" type="java.lang.String" value="Save"/>
           </Properties>
@@ -321,10 +310,7 @@
         <Component class="javax.swing.JLabel" name="jLabel6">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-              <Font name="Yu Gothic UI" size="18" style="0"/>
-            </Property>
-            <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-              <Color blue="94" green="4" red="32" type="rgb"/>
+              <Font name="Tahoma" size="18" style="1"/>
             </Property>
             <Property name="text" type="java.lang.String" value="Description:"/>
           </Properties>
@@ -332,10 +318,7 @@
         <Component class="javax.swing.JLabel" name="jLabel7">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-              <Font name="Yu Gothic UI" size="18" style="0"/>
-            </Property>
-            <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-              <Color blue="94" green="4" red="32" type="rgb"/>
+              <Font name="Tahoma" size="18" style="1"/>
             </Property>
             <Property name="text" type="java.lang.String" value="Choose Building"/>
           </Properties>

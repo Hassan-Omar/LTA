@@ -370,8 +370,7 @@ public class UsersScreen extends javax.swing.JPanel {
     }//GEN-LAST:event_searchUserBTNMouseClicked
 
     private void deleteUserBTNMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_deleteUserBTNMouseClicked
-        
-        insertPanel.setVisible(false);
+         
         if (usersTable.getSelectedRow() >= 0) {
             String selectedEmaill = usersTable.getValueAt(usersTable.getSelectedRow(), 1).toString();
             // call business to delete
