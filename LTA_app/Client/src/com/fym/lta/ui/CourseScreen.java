@@ -6,6 +6,7 @@ import com.fym.lta.bao.CourseBao;
 import com.fym.lta.bao.LoginEngine;
 import com.fym.lta.dto.CourseDto;
 import com.fym.lta.dto.DepartmentDto;
+import com.fym.lta.dto.LocationTypeDto;
 
 import java.util.Date;
 import java.util.List;
@@ -28,7 +29,7 @@ private CourseBao courseobjBao = new BaoFactory().createCourseBao();
     List<DepartmentDto> allDepartments = new BaoFactory().createDepartmentBao().listDepartment();
     
     // how to get location types in combo box 
-  //  List<LocationTypeDto> allLocationType = new BaoFactory().createLocationTypeBao().
+    List<LocationTypeDto> allLocationType = new BaoFactory().createLocationTypeBao().listLocationType();
 
 
     
@@ -37,9 +38,12 @@ private CourseBao courseobjBao = new BaoFactory().createCourseBao();
 
 {
         initComponents();
+        if(allDepartments!=null)
+        listComboDepartment(allDepartments);
         if (courseobjBao.listCourses()!= null)
             courseTableReset(courseobjBao.listCourses());
-        
+        if(allLocationType!=null)
+            listComboLocation(allLocationType) ; 
         insertPanel.setVisible(false);
         String permissionType = new BaoFactory().createScreenBao().getCurrentPermission(6);
         Utilities.mandate(updateCourseBtn,insertCourseBtn , deleteCourseBtn ,6,permissionType); 
@@ -76,6 +80,9 @@ private CourseBao courseobjBao = new BaoFactory().createCourseBao();
         Departmentlapel1 = new javax.swing.JLabel();
         hours_perWeak = new javax.swing.JTextField();
         namelapel1 = new javax.swing.JLabel();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        descrption = new javax.swing.JTextArea();
+        Departmentlapel2 = new javax.swing.JLabel();
 
         btnSearch.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         btnSearch.setText("Search");
@@ -90,11 +97,16 @@ private CourseBao courseobjBao = new BaoFactory().createCourseBao();
             }
         });
 
-        jLabel1.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        search_textField.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        search_textField.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+
+        jLabel1.setFont(new java.awt.Font("Times New Roman", 1, 24)); // NOI18N
         jLabel1.setText("Course Screen ");
 
         jLabel2.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        jLabel2.setText("Course Name");
+        jLabel2.setText("Search");
+
+        jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Courses", 0, 0, new java.awt.Font("Tekton Pro Cond", 1, 36))); // NOI18N
 
         updateCourseBtn.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         updateCourseBtn.setText("Update");
@@ -113,13 +125,14 @@ private CourseBao courseobjBao = new BaoFactory().createCourseBao();
         });
 
         insertCourseBtn.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        insertCourseBtn.setText("Insert New Course");
+        insertCourseBtn.setText("Insert New ");
         insertCourseBtn.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 insertCourseBtnMouseClicked(evt);
             }
         });
 
+        courseTable.setFont(new java.awt.Font("Tekton Pro Cond", 1, 18)); // NOI18N
         courseTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
@@ -128,11 +141,12 @@ private CourseBao courseobjBao = new BaoFactory().createCourseBao();
                 "Name", "Code", "Lecture Time ", "Department", "preferred location type"
             }
         ));
+        courseTable.setRowHeight(30);
         courseTable.addHierarchyBoundsListener(new java.awt.event.HierarchyBoundsListener() {
+            public void ancestorMoved(java.awt.event.HierarchyEvent evt) {
+            }
             public void ancestorResized(java.awt.event.HierarchyEvent evt) {
                 courseTableAncestorResized(evt);
-            }
-            public void ancestorMoved(java.awt.event.HierarchyEvent evt) {
             }
         });
         jScrollPane1.setViewportView(courseTable);
@@ -146,18 +160,16 @@ private CourseBao courseobjBao = new BaoFactory().createCourseBao();
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addGap(52, 52, 52)
-                .addComponent(updateCourseBtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGap(39, 39, 39)
-                .addComponent(deleteCourseBtn)
-                .addGap(44, 44, 44)
-                .addComponent(insertCourseBtn)
-                .addGap(103, 103, 103))
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane1)
-                .addContainerGap())
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                        .addComponent(updateCourseBtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGap(103, 103, 103)
+                        .addComponent(deleteCourseBtn)
+                        .addGap(112, 112, 112)
+                        .addComponent(insertCourseBtn))
+                    .addComponent(jScrollPane1)))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -168,9 +180,11 @@ private CourseBao courseobjBao = new BaoFactory().createCourseBao();
                     .addComponent(deleteCourseBtn)
                     .addComponent(insertCourseBtn))
                 .addGap(18, 18, 18)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 642, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 802, Short.MAX_VALUE)
                 .addContainerGap())
         );
+
+        insertPanel.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
         jLabel3.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jLabel3.setText("Course Insert");
@@ -182,8 +196,6 @@ private CourseBao courseobjBao = new BaoFactory().createCourseBao();
         namelapel.setText("Name");
 
         Department_ComboBox.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        Department_ComboBox.addItem("One period");
-        Department_ComboBox.addItem("Two period");
 
         Departmentlapel.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         Departmentlapel.setText("Department ");
@@ -196,16 +208,27 @@ private CourseBao courseobjBao = new BaoFactory().createCourseBao();
             }
         });
 
+        code_textField.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+
+        name_textField.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+
         prefered_ComboBox.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        prefered_ComboBox.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Hall", "Lab", "Small Room" }));
-        Department_ComboBox.addItem("One period");
-        Department_ComboBox.addItem("Two period");
 
         Departmentlapel1.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         Departmentlapel1.setText("pref_Space");
 
+        hours_perWeak.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+
         namelapel1.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         namelapel1.setText("Hours per Week");
+
+        descrption.setColumns(20);
+        descrption.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        descrption.setRows(5);
+        jScrollPane2.setViewportView(descrption);
+
+        Departmentlapel2.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        Departmentlapel2.setText("Description");
 
         javax.swing.GroupLayout insertPanelLayout = new javax.swing.GroupLayout(insertPanel);
         insertPanel.setLayout(insertPanelLayout);
@@ -213,36 +236,40 @@ private CourseBao courseobjBao = new BaoFactory().createCourseBao();
             insertPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(insertPanelLayout.createSequentialGroup()
                 .addGap(44, 44, 44)
-                .addGroup(insertPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, insertPanelLayout.createSequentialGroup()
+                .addGroup(insertPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(insertPanelLayout.createSequentialGroup()
                         .addGap(193, 193, 193)
                         .addComponent(jLabel3)
                         .addGap(0, 0, Short.MAX_VALUE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, insertPanelLayout.createSequentialGroup()
-                        .addGroup(insertPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                    .addGroup(insertPanelLayout.createSequentialGroup()
+                        .addGroup(insertPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(insertPanelLayout.createSequentialGroup()
+                                .addComponent(Departmentlapel2)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 83, Short.MAX_VALUE)
+                                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 245, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(insertPanelLayout.createSequentialGroup()
+                                .addComponent(Departmentlapel1)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(prefered_ComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 187, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(insertPanelLayout.createSequentialGroup()
                                 .addGroup(insertPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(codelapel, javax.swing.GroupLayout.PREFERRED_SIZE, 61, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(namelapel, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(namelapel1, javax.swing.GroupLayout.PREFERRED_SIZE, 159, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGap(26, 26, 26)
-                                .addGroup(insertPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(code_textField)
-                                    .addComponent(name_textField)
-                                    .addComponent(hours_perWeak)))
-                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, insertPanelLayout.createSequentialGroup()
-                                .addGroup(insertPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(Departmentlapel1)
-                                    .addComponent(Departmentlapel))
-                                .addGap(130, 130, 130)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addGroup(insertPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(Department_ComboBox, 0, 187, Short.MAX_VALUE)
-                                    .addComponent(prefered_ComboBox, 0, 187, Short.MAX_VALUE))))
-                        .addContainerGap(24, Short.MAX_VALUE))))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, insertPanelLayout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(code_textField, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 245, Short.MAX_VALUE)
+                                    .addComponent(name_textField, javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(hours_perWeak)))
+                            .addGroup(insertPanelLayout.createSequentialGroup()
+                                .addComponent(Departmentlapel)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(Department_ComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 187, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addContainerGap())))
+            .addGroup(insertPanelLayout.createSequentialGroup()
+                .addGap(175, 175, 175)
                 .addComponent(btnSave, javax.swing.GroupLayout.PREFERRED_SIZE, 129, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(176, 176, 176))
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         insertPanelLayout.setVerticalGroup(
             insertPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -253,25 +280,35 @@ private CourseBao courseobjBao = new BaoFactory().createCourseBao();
                 .addGroup(insertPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(codelapel, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(code_textField, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(26, 26, 26)
-                .addGroup(insertPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(name_textField, javax.swing.GroupLayout.DEFAULT_SIZE, 32, Short.MAX_VALUE)
-                    .addComponent(namelapel, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(33, 33, 33)
+                .addGroup(insertPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(insertPanelLayout.createSequentialGroup()
+                        .addGap(26, 26, 26)
+                        .addComponent(namelapel, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(insertPanelLayout.createSequentialGroup()
+                        .addGap(18, 18, 18)
+                        .addComponent(name_textField, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(28, 28, 28)
                 .addGroup(insertPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(hours_perWeak, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(namelapel1, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(66, 66, 66)
+                .addGap(36, 36, 36)
                 .addGroup(insertPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(Departmentlapel)
-                    .addComponent(Department_ComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(48, 48, 48)
+                    .addComponent(Department_ComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(Departmentlapel))
+                .addGap(34, 34, 34)
                 .addGroup(insertPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(prefered_ComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(Departmentlapel1))
-                .addGap(79, 79, 79)
+                .addGroup(insertPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(insertPanelLayout.createSequentialGroup()
+                        .addGap(35, 35, 35)
+                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(insertPanelLayout.createSequentialGroup()
+                        .addGap(60, 60, 60)
+                        .addComponent(Departmentlapel2)))
+                .addGap(57, 57, 57)
                 .addComponent(btnSave, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(196, 196, 196))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
@@ -279,40 +316,43 @@ private CourseBao courseobjBao = new BaoFactory().createCourseBao();
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addContainerGap()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 163, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(70, 70, 70)
-                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 211, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 319, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(468, 468, 468))
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(search_textField, javax.swing.GroupLayout.PREFERRED_SIZE, 229, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(224, 224, 224)
-                        .addComponent(btnSearch)))
-                .addGap(18, 18, 18)
-                .addComponent(insertPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(81, 81, 81))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(search_textField, javax.swing.GroupLayout.PREFERRED_SIZE, 229, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(54, 54, 54)
+                                .addComponent(btnSearch))
+                            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(30, 30, 30)
+                        .addComponent(insertPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(69, 69, 69))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(29, 29, 29)
-                        .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnSearch, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(search_textField, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(30, 30, 30)
-                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addContainerGap())
-            .addGroup(layout.createSequentialGroup()
-                .addGap(29, 29, 29)
-                .addComponent(insertPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(29, Short.MAX_VALUE))
+                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(24, 24, 24))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(search_textField, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(btnSearch, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(18, 18, 18)
+                        .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(insertPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(14, Short.MAX_VALUE))
         );
     }//GEN-END:initComponents
 
@@ -327,9 +367,6 @@ private CourseBao courseobjBao = new BaoFactory().createCourseBao();
 
     private void btnSearchMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnSearchMouseClicked
     insertPanel.setVisible(false);
-        
-        code_textField.setEnabled(true);
-        
     if (search_textField != null){
         
         CourseDto course = new CourseDto();
@@ -347,15 +384,35 @@ private CourseBao courseobjBao = new BaoFactory().createCourseBao();
     private void insertCourseBtnMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_insertCourseBtnMouseClicked
         insertPanel.setVisible(true);
         updateFlag = false ;
-        // clear data 
+        code_textField.setEnabled(true);
  
         
     }//GEN-LAST:event_insertCourseBtnMouseClicked
 
     private void btnSaveMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnSaveMouseClicked
+    
+     DepartmentDto department = new DepartmentDto();
+     department.setDepartment_id(allDepartments.get(Department_ComboBox.getSelectedIndex()).getDepartment_id());
+
+
     CourseDto course = new CourseDto();
     course.setName(name_textField.getText());
-    course.setHoursperWeak(Integer.parseInt(hours_perWeak.getText()));
+    course.setCode(code_textField.getText());
+        try {
+            course.setHoursperWeak(Integer.parseInt(hours_perWeak.getText()));
+        } catch (NumberFormatException nfe) {
+            JOptionPane.showMessageDialog(this, "Hours should intered as a numeric value");
+        }
+    course.setDescription(descrption.getText());
+
+    try {
+            course.setHoursperWeak(Integer.parseInt(hours_perWeak.getText()));
+
+        } catch (NumberFormatException nfe) {
+           JOptionPane.showMessageDialog(this, "hours per weak should be a number");
+        }
+    
+    course.setNeededLocType(allLocationType.get(prefered_ComboBox.getSelectedIndex()));
     
    
     if(updateFlag)
@@ -371,7 +428,7 @@ private CourseBao courseobjBao = new BaoFactory().createCourseBao();
       course.setCode(code_textField.getText());
      }
   
-  
+    course.setDepartment(allDepartments.get(Department_ComboBox.getSelectedIndex()));
   
   
   
@@ -394,18 +451,24 @@ private CourseBao courseobjBao = new BaoFactory().createCourseBao();
     private void deleteCourseBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteCourseBtnActionPerformed
          code_textField.setEnabled(true);
     
-        // get the id value of the selected row 
-        String selectedCourse=  courseTable.getValueAt(courseTable.getSelectedRow(), 1).toString() ;
-       CourseDto selectedCourse_Delete = new CourseDto(); // this course i want to delete
-       selectedCourse_Delete.setCode(selectedCourse);
-       
-       if (courseobjBao.deleteCourse(selectedCourse_Delete)) {
-            JOptionPane.showMessageDialog(this , "deleted successfully");
-            courseTableReset(courseobjBao.listCourses() );
+        if(courseTable.getSelectedRow() >=0)
+        {
+            // get the id value of the selected row 
+            String selectedCourse=  courseTable.getValueAt(courseTable.getSelectedRow(), 1).toString() ;
+            CourseDto selectedCourse_Delete = new CourseDto(); // this course i want to delete
+            selectedCourse_Delete.setCode(selectedCourse);
+            int msg=  JOptionPane.showConfirmDialog(this, "are you sure you need to delete ");
+                         if (msg == JOptionPane.OK_OPTION)
+                         {
+            if (courseobjBao.deleteCourse(selectedCourse_Delete)) {
+                JOptionPane.showMessageDialog(this , "deleted successfully");
+                courseTableReset(courseobjBao.listCourses() );
+            }
+            
+            else
+               JOptionPane.showMessageDialog(this, "Can not delete may be deleted using another Course "); }   
         }
-       
-    else
-           JOptionPane.showMessageDialog(this, "Can not delete may be deleted using another Course ");
+        else JOptionPane.showMessageDialog(this, "Select a Course to Delete");
       
     }//GEN-LAST:event_deleteCourseBtnActionPerformed
 
@@ -433,12 +496,14 @@ private CourseBao courseobjBao = new BaoFactory().createCourseBao();
     private javax.swing.JComboBox Department_ComboBox;
     private javax.swing.JLabel Departmentlapel;
     private javax.swing.JLabel Departmentlapel1;
+    private javax.swing.JLabel Departmentlapel2;
     private javax.swing.JButton btnSave;
     private javax.swing.JButton btnSearch;
     private javax.swing.JTextField code_textField;
     private javax.swing.JLabel codelapel;
     private javax.swing.JTable courseTable;
     private javax.swing.JButton deleteCourseBtn;
+    private javax.swing.JTextArea descrption;
     private javax.swing.JTextField hours_perWeak;
     private javax.swing.JButton insertCourseBtn;
     private javax.swing.JPanel insertPanel;
@@ -447,6 +512,7 @@ private CourseBao courseobjBao = new BaoFactory().createCourseBao();
     private javax.swing.JLabel jLabel3;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTextField name_textField;
     private javax.swing.JLabel namelapel;
     private javax.swing.JLabel namelapel1;
@@ -458,21 +524,26 @@ private CourseBao courseobjBao = new BaoFactory().createCourseBao();
     
     public void courseTableReset(List<CourseDto> courses) {
        
-        Object[][] coursesArr = new Object[courses.size()][3];
+        Object[][] coursesArr = new Object[courses.size()][8];
 
         for (int i = 0; i < courses.size(); i++) {
 
             coursesArr[i][0] = courses.get(i).getName();
             coursesArr[i][1] = courses.get(i).getCode();
             coursesArr[i][2] = courses.get(i).getHoursperWeak();
-           // coursesArr[i][3] = courses.get(i).getNeededLocType();
+            coursesArr[i][3] = courses.get(i).getDescription();
+            coursesArr[i][4] = courses.get(i).getInsertedBy();
+            coursesArr[i][5] = courses.get(i).getInertion_Date();
+            coursesArr[i][6] = courses.get(i).getUpdatedBy();
+            coursesArr[i][7] = courses.get(i).getUpdate_Date();
 
            
 
         }
       courseTable.setModel(new javax.swing.table.DefaultTableModel(coursesArr, new String[] {
                                                                      "Name", "code" ,
-                                                                    "Hours per Weak "
+                                                                    "Hours per Weak ","Description","Inserted By",
+ "  Insertion Date", "Updated By", "Update Date"
             }
                                                                    ));
     }
@@ -481,6 +552,12 @@ private CourseBao courseobjBao = new BaoFactory().createCourseBao();
     void listComboDepartment(List<DepartmentDto> dep) {
         for (int i = 0; i < dep.size(); i++) {
             Department_ComboBox.addItem(dep.get(i).getName());
+           }
+        }
+    
+    void listComboLocation(List<LocationTypeDto> locs) {
+        for (int i = 0; i < locs.size(); i++) {
+            prefered_ComboBox.addItem(locs.get(i).getCode());
            }
         }
 }

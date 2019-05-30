@@ -35,17 +35,15 @@ public class ScreenDaoImp implements ScreenDao {
                 jdbcRs.setInt(1, role.getRole_id());
                 jdbcRs.setInt(2, screens.get(i).getScreen_id());
                     
-                if (i<7 && role.getPermissions().get(0)!=null)
-                    jdbcRs.setString(3, role.getPermissions().get(0));
-                if (i>6&&i<9&&(role.getPermissions().get(1)!=null) )
-                    jdbcRs.setString(3, role.getPermissions().get(1));
-                if (i>8&&i<12 &&(role.getPermissions().get(2)!=null))
-                    jdbcRs.setString(3, role.getPermissions().get(2));
-                if (i>11&& role.getPermissions().get(3)!= null)
-                    jdbcRs.setString(3, role.getPermissions().get(3));
+                if (i<8 && role.getPermission1()!=null)
+                    jdbcRs.setString(3, role.getPermission1());
+                if (i>7&&i<11&&(role.getPermission2()!=null) )
+                    jdbcRs.setString(3, role.getPermission2());
+                if (i>10&&i<14 &&(role.getPermission3() !=null))
+                    jdbcRs.setString(3, role.getPermission3());
+                if (i>13&& role.getPermission4()!= null)
+                    jdbcRs.setString(3, role.getPermission4());
 
-                    
-                
                 jdbcRs.execute();
             }
          
@@ -119,24 +117,22 @@ public class ScreenDaoImp implements ScreenDao {
                 jdbcRs.setPassword(ConnectionFactory.getPassword());
                 jdbcRs.setCommand(Queries.UPDATESCREEN_ROLE);
 
-                int id  =  role.getRole_id() ; 
-                if (id<7 && role.getPermissions().get(0)!=null)
-                    jdbcRs.setString(1, role.getPermissions().get(0));
-                if (id>6&&id<9&&(role.getPermissions().get(1)!=null) )
-                    jdbcRs.setString(1, role.getPermissions().get(1));
-                if (id>8&&id<12 &&(role.getPermissions().get(2)!=null))
-                    jdbcRs.setString(1, role.getPermissions().get(2));
-                if (id>11&& role.getPermissions().get(3)!= null)
-                    jdbcRs.setString(1, role.getPermissions().get(3));
-
-
-                jdbcRs.setInt(2,id );
-                jdbcRs.setInt(3,screen.getScreen_id());
+                int id  =  screen.getScreen_id() ; 
+                
+                if (id<8 && role.getPermission1()!=null)
+                    jdbcRs.setString(1, role.getPermission1());
+                if (id>7&&id<11&&(role.getPermission2()!=null) )
+                    jdbcRs.setString(1, role.getPermission2());
+                if (id>10&&id<14 &&(role.getPermission3() !=null))
+                    jdbcRs.setString(1, role.getPermission3());
+                if (id>13&& role.getPermission4()!= null)
+                    jdbcRs.setString(1, role.getPermission4());
+                 jdbcRs.setInt(2,role.getRole_id() );
+                jdbcRs.setInt(3,id);
+                System.out.println(role.getRole_id() +" ");
                 jdbcRs.execute();
-                if(jdbcRs.next())
-                {
-                    return true ;
-                 }
+                  return true ;
+                 
                 
             } catch(Exception e)
             {
@@ -170,5 +166,28 @@ public class ScreenDaoImp implements ScreenDao {
         return false ;
         
         }
+
+    @Override
+    public boolean delete(int screenID, int roleID) {
+        try (JdbcRowSet jdbcRs = RowSetProvider.newFactory().createJdbcRowSet()) {
+            jdbcRs.setUrl(ConnectionFactory.getUrl());
+            jdbcRs.setUsername(ConnectionFactory.getUsername());
+            jdbcRs.setPassword(ConnectionFactory.getPassword());
+            jdbcRs.setCommand(Queries.DELETE_SCREEN_ROLE);
+            jdbcRs.setInt(1, screenID);
+            jdbcRs.setInt(2 ,roleID);
+            jdbcRs.execute();
+          
+              return true ;
+            
+            
+            } catch(Exception e)
+            {
+            e.printStackTrace();
+            }
+        return false ;
+        
+    }
+
    
 }

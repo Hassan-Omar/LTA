@@ -16,6 +16,7 @@ public interface ScreenDao {
     // this method return the list of screen available screen 
     public List<ScreenDto> list_Of_AavailableScreens (int roleID) ; 
 
-    
-     
+    public boolean delete(int screenID, int roleID) ;
+
+ 
 }

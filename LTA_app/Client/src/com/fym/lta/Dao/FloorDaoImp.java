@@ -3,8 +3,8 @@ package com.fym.lta.dao;
 import com.fym.lta.common.ConnectionFactory;
 import com.fym.lta.common.LTAException;
 import com.fym.lta.common.Queries;
+import com.fym.lta.dto.BuildingDto;
 import com.fym.lta.dto.FloorDto;
-
 
 import java.sql.Types;
 
@@ -13,8 +13,6 @@ import java.util.List;
 
 import javax.sql.rowset.JdbcRowSet;
 import javax.sql.rowset.RowSetProvider;
-
-import javax.swing.JOptionPane;
 
 public class FloorDaoImp implements FloorDao {
     /**get all floors in building */
@@ -36,6 +34,11 @@ public class FloorDaoImp implements FloorDao {
                 Floor.setFloor_id(jdbcRs.getInt(1));
                 Floor.setCode(jdbcRs.getString(2));
                 Floor.setDescription(jdbcRs.getString(3));
+                BuildingDto building = new BuildingDto();
+                building.setCode(jdbcRs.getString(4));
+                Floor.setBuilding(building);
+                
+                
                 Floors.add(Floor);
 
             }
@@ -94,6 +97,9 @@ public class FloorDaoImp implements FloorDao {
             else
                 jdbcRs.setNull(6, Types.VARCHAR);
 
+            jdbcRs.setInt(7, Floor.getBuilding().getBuilding_id());
+
+
             jdbcRs.execute();
 
             return true;
@@ -129,7 +135,10 @@ public class FloorDaoImp implements FloorDao {
         else
             jdbcRs.setNull(3, java.sql.Types.DATE);
         
-        jdbcRs.setString(4, Floor.getCode());
+        jdbcRs.setInt(4, Floor.getBuilding().getBuilding_id());
+
+        
+        jdbcRs.setString(5, Floor.getCode());
 
         jdbcRs.execute();
         return true;
@@ -183,10 +192,13 @@ public class FloorDaoImp implements FloorDao {
                     Floors = new ArrayList<>();
 
                 FloorDto lSerch = new FloorDto();
-                lSerch.setCode(jdbcRs.getString(2));
                 lSerch.setFloor_id(jdbcRs.getInt(1));
+                lSerch.setCode(jdbcRs.getString(2));
                 lSerch.setDescription(jdbcRs.getString(3));
-
+                BuildingDto building = new BuildingDto();
+                building.setCode(jdbcRs.getString(4));
+                lSerch.setBuilding(building);
+                
             Floors.add(lSerch);
 
             }

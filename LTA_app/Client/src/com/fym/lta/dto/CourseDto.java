@@ -5,16 +5,23 @@ import java.util.List;
 
 
 public class CourseDto {
-    private int Course_id, hoursperWeak,enteredNeededSlots;
-    private String code, Description, name ,insertedBy, updatedBy;
+    private int Course_id, hoursperWeak, enteredNeededSlots;
+    private String code, Description, name, insertedBy, updatedBy;
     private Date inertion_Date, update_Date;
     private List<EmployeeDto> Instructors; // max 2 Instructors
     private List<SlotDto> periods; // max 2 Slot
-    private List<LocationTypeDto> neededLocType ; // this to know what type is needed lab or room  
-    
+    private LocationTypeDto neededLocType; // this to know what type is needed lab or room
+    private DepartmentDto department;
 
-    public CourseDto(int Course_id, int hoursperWeak, String code,
-                     String Description, String name) {
+    public void setDepartment(DepartmentDto department) {
+        this.department = department;
+    }
+
+    public DepartmentDto getDepartment() {
+        return department;
+    }
+
+    public CourseDto(int Course_id, int hoursperWeak, String code, String Description, String name) {
         super();
         this.Course_id = Course_id;
         this.hoursperWeak = hoursperWeak;
@@ -107,7 +114,7 @@ public class CourseDto {
         return name;
     }
 
-    public void setInstructors(List<EmployeeDto>Instructors) {
+    public void setInstructors(List<EmployeeDto> Instructors) {
         this.Instructors = Instructors;
     }
 
@@ -115,19 +122,21 @@ public class CourseDto {
         return Instructors;
     }
 
-    public void setPeriods(List<SlotDto>periods) {
+    public void setPeriods(List<SlotDto> periods) {
         this.periods = periods;
+    }
+
+    public void setNeededLocType(LocationTypeDto neededLocType) {
+        this.neededLocType = neededLocType;
+    }
+
+    public LocationTypeDto getNeededLocType() {
+        return neededLocType;
     }
 
     public List<SlotDto> getPeriods() {
         return periods;
     }
 
-    public void setNeededLocType(List<LocationTypeDto> neededLocType) {
-        this.neededLocType = neededLocType;
-    }
 
-    public List<LocationTypeDto> getNeededLocType() {
-        return neededLocType;
-    }
 }

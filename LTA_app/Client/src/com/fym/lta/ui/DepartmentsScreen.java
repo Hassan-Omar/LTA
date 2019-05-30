@@ -12,10 +12,7 @@ import java.util.List;
 
 import javax.swing.JOptionPane;
 
-/**
- *
- * @author Mina
- */
+
 public class DepartmentsScreen extends javax.swing.JPanel {
     boolean updateFlag = false;
     private DepartmentBao departmentBaoObj = new BaoFactory().createDepartmentBao();
@@ -65,7 +62,7 @@ public class DepartmentsScreen extends javax.swing.JPanel {
         name_TextField = new javax.swing.JTextField();
         homeBuilding_ComboBox = new javax.swing.JComboBox();
 
-        jLabel1.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        jLabel1.setFont(new java.awt.Font("Times New Roman", 1, 24)); // NOI18N
         jLabel1.setText("Department Screen");
 
         btnSearch.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
@@ -83,6 +80,8 @@ public class DepartmentsScreen extends javax.swing.JPanel {
 
         jLabel3.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jLabel3.setText("Code");
+
+        departmentCode_TextField.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
         departmrntDeleteBtn.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         departmrntDeleteBtn.setText("Delete ");
@@ -122,6 +121,8 @@ public class DepartmentsScreen extends javax.swing.JPanel {
                 departmrntInsertBtnMouseClicked(evt);
             }
         });
+
+        insertPanel.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
         btnSave.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         btnSave.setText("Save");
@@ -178,7 +179,7 @@ public class DepartmentsScreen extends javax.swing.JPanel {
                 .addGroup(insertPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel7)
                     .addComponent(homeBuilding_ComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 13, Short.MAX_VALUE)
                 .addComponent(btnSave, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(47, 47, 47))
         );
@@ -188,64 +189,55 @@ public class DepartmentsScreen extends javax.swing.JPanel {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                        .addGap(193, 193, 193)
-                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 206, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
                         .addGap(67, 67, 67)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGap(0, 0, Short.MAX_VALUE))
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                                     .addGroup(layout.createSequentialGroup()
                                         .addComponent(departmrntUpdateBtn)
                                         .addGap(44, 44, 44)
                                         .addComponent(departmrntDeleteBtn)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 55, Short.MAX_VALUE)
+                                        .addGap(55, 55, 55)
                                         .addComponent(departmrntInsertBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE))
                                     .addGroup(layout.createSequentialGroup()
                                         .addComponent(departmentCode_TextField, javax.swing.GroupLayout.PREFERRED_SIZE, 233, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addGap(103, 103, 103)
                                         .addComponent(btnSearch)))
-                                .addGap(85, 85, 85)))))
-                .addGap(49, 49, 49)
-                .addComponent(insertPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(14, 14, 14)))
+                        .addGap(120, 120, 120)
+                        .addComponent(insertPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(467, 467, 467)
+                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 206, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(19, 19, 19)
+                .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(19, 19, 19)
-                        .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(departmentCode_TextField, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(btnSearch, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(48, 48, 48)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                    .addComponent(departmrntUpdateBtn)
-                                    .addComponent(departmrntDeleteBtn)))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(53, 53, 53)
-                                .addComponent(departmrntInsertBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(18, 18, 18)
+                        .addGap(47, 47, 47)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(departmrntUpdateBtn)
+                            .addComponent(departmrntDeleteBtn)
+                            .addComponent(departmrntInsertBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(24, 24, 24)
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 198, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 51, Short.MAX_VALUE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(28, 28, 28)
-                        .addComponent(insertPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                .addContainerGap())
+                        .addContainerGap(63, Short.MAX_VALUE))
+                    .addComponent(insertPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
         );
     }//GEN-END:initComponents
     
@@ -279,13 +271,12 @@ public class DepartmentsScreen extends javax.swing.JPanel {
     }//GEN-LAST:event_departmrntDeleteBtnActionPerformed
 
     private void departmrntInsertBtnMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_departmrntInsertBtnMouseClicked
-        insertPanel.setVisible(true);
+      insertPanel.setVisible(true);
         code_TextField.setEnabled(true);
-        updateFlag = false;
+        updateFlag = false; 
     }//GEN-LAST:event_departmrntInsertBtnMouseClicked
 
     private void btnSearchMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnSearchMouseClicked
-        insertPanel.setVisible(false);
 
         if (departmentCode_TextField.getText() != null) {
             DepartmentDto D = new DepartmentDto();
@@ -306,12 +297,13 @@ public class DepartmentsScreen extends javax.swing.JPanel {
     }//GEN-LAST:event_btnSearchMouseClicked
 
     private void departmrntDeleteBtnMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_departmrntDeleteBtnMouseClicked
-        insertPanel.setVisible(false);
-
-        String code = DepartmentTable.getValueAt(DepartmentTable.getSelectedRow(), 0).toString();
+if(DepartmentTable.getSelectedRow() >= 0)
+{        String code = DepartmentTable.getValueAt(DepartmentTable.getSelectedRow(), 0).toString();
         DepartmentDto selectedDepartment_Delete = new DepartmentDto(); // this department i want to delete
         selectedDepartment_Delete.setCode(code);
-
+            int msg=  JOptionPane.showConfirmDialog(this, "are you sure you need to delete ");
+                        if (msg == JOptionPane.OK_OPTION)
+                        {
         if (departmentBaoObj.deleteDepartment(selectedDepartment_Delete)) {
             JOptionPane.showMessageDialog(this, "deleted");
             departmentTableReset(departmentBaoObj.listDepartment());
@@ -319,6 +311,10 @@ public class DepartmentsScreen extends javax.swing.JPanel {
         } else {
             JOptionPane.showMessageDialog(this, "Can not delete may be deleted using another Employee ");
         } 
+        }
+        }
+else JOptionPane.showMessageDialog(null,"select a Department to delete");
+      
     }//GEN-LAST:event_departmrntDeleteBtnMouseClicked
 
     private void btnSaveMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnSaveMouseClicked
@@ -343,6 +339,7 @@ public class DepartmentsScreen extends javax.swing.JPanel {
         if (departmentBaoObj.saveDepartment(department)) {
             JOptionPane.showMessageDialog(this, "saved ");
             departmentTableReset(departmentBaoObj.listDepartment());
+            insertPanel.setVisible(false);
         } else
             JOptionPane.showMessageDialog(this, "can not save "); 
     }//GEN-LAST:event_btnSaveMouseClicked
@@ -370,15 +367,21 @@ public class DepartmentsScreen extends javax.swing.JPanel {
     
     
     public void departmentTableReset(List<DepartmentDto> Department) {
-        Object[][] DepartmentArr = new Object[Department.size()][2];
+        Object[][] DepartmentArr = new Object[Department.size()][7];
 
         for (int i = 0; i < Department.size(); i++) {
             DepartmentArr[i][0] = Department.get(i).getCode();
             DepartmentArr[i][1] = Department.get(i).getName();
-            // DepartmentArr[i][3] = Department.get(i).getHomebuilding();
+            DepartmentArr[i][2] = Department.get(i).getHomebuilding().getCode();
+            DepartmentArr[i][3] = Department.get(i).getInsertedBy();
+            DepartmentArr[i][4] = Department.get(i).getInertion_Date();
+            DepartmentArr[i][5] = Department.get(i).getUpdatedBy();
+            DepartmentArr[i][6] = Department.get(i).getUpdate_Date();
+
         }
         DepartmentTable.setModel(new javax.swing.table.DefaultTableModel(DepartmentArr, new String[] {
-                                                                         "Code", "Name" }));
+                                                                         "Code", "Name","Code Of Home Building","Inserted By",
+ "  Insertion Date", "Updated By", "Update Date" }));
     }
 
     void listComboBuildings(List<BuildingDto> Buildings) {

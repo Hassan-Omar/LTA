@@ -27,10 +27,14 @@ public class RoleDaoImp implements RoleDao {
             RoleDto role = null;
             while (jdbcRs.next()) {
 
-                role = new RoleDto(jdbcRs.getString(1));
-                role.setDescription(jdbcRs.getString(2));
-                role.setRole_id(jdbcRs.getInt(3));
+                role = new RoleDto(jdbcRs.getString(2));
+                role.setDescription(jdbcRs.getString(3));
+                role.setRole_id(jdbcRs.getInt(1));
 
+                role.setInsertedBy(jdbcRs.getString(4));
+                role.setUpdatedBy(jdbcRs.getString(7));
+                role.setInertion_Date(jdbcRs.getDate(5));
+                role.setUpdate_Date(jdbcRs.getDate(6));
                 roles.add(role);
             }
 

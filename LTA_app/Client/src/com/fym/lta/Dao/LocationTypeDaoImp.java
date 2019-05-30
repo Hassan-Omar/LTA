@@ -5,7 +5,6 @@ import com.fym.lta.common.LTAException;
 import com.fym.lta.common.Queries;
 import com.fym.lta.dto.LocationTypeDto;
 
-
 import java.sql.Types;
 
 import java.util.ArrayList;
@@ -13,8 +12,6 @@ import java.util.List;
 
 import javax.sql.rowset.JdbcRowSet;
 import javax.sql.rowset.RowSetProvider;
-
-import javax.swing.JOptionPane;
 
 public class LocationTypeDaoImp implements LocationTypeDao {
 /** get all location types  */
@@ -32,10 +29,15 @@ public class LocationTypeDaoImp implements LocationTypeDao {
             while (jdbcRs.next()) {
                 if (LocationTypes == null)
                     LocationTypes = new ArrayList<>();
+                
                 LocationType = new LocationTypeDto();
                 LocationType.setLocationType_id(jdbcRs.getInt(1));
-                LocationType.setCode(jdbcRs.getString(8));
-                LocationType.setDescription(jdbcRs.getString(3));
+                LocationType.setCode(jdbcRs.getString(7));
+                LocationType.setDescription(jdbcRs.getString(2));
+                LocationType.setInsertedBy(jdbcRs.getString(3));
+                LocationType.setUpdatedBy(jdbcRs.getString(4));
+                LocationType.setInertion_Date(jdbcRs.getDate(5));
+                LocationType.setUpdate_Date(jdbcRs.getDate(6));
                 
                 
                 LocationTypes.add(LocationType);

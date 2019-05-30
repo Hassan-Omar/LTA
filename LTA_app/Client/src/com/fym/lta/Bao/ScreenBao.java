@@ -16,12 +16,23 @@ public interface ScreenBao {
 
 
     /**
-     * this method to give us the current permission on  a certain screen 
+     * this method to give us the current permission on  a certain screen for the current user 
      */
-    public String getCurrentPermission(int screenID) ;
+    public String getCurrentPermission(int screenID ) ;
     
     /**
       * this method return the list of screen available screen 
     */
     public List<ScreenDto> list_Of_AavailableScreens () ; 
+    /**
+      * this method return the list of screen for a certain role
+    */
+    public List<ScreenDto> list_Screens (int id) ; 
+    
+    
+    public boolean delete(int screenID , int roleID);
+    /**
+     * this method to give us the  permission type  on  a certain screen determined by roleID , sreenID 
+     */
+    public String getPermissionType(int screenID , int roleID ) ;
 }
