@@ -69,7 +69,7 @@ public class SlotDaoImp implements SlotDao {
              jdbcR.setUrl(ConnectionFactory.getUrl());
              jdbcR.setUsername(ConnectionFactory.getUsername());
              jdbcR.setPassword(ConnectionFactory.getPassword());
-             jdbcR.setCommand(Queries.IS_SLOT_EXISTE);
+             jdbcR.setCommand(Queries.IS_SLOT_EXIST);
              if (slot.getCurrentLocation() != null )
  
              jdbcR.setString(1,slot.getCode());

@@ -3,8 +3,10 @@ package com.fym.lta.dao;
 import com.fym.lta.common.ConnectionFactory;
 import com.fym.lta.common.Queries;
 import com.fym.lta.dto.SchedualDto;
+import com.fym.lta.dto.SlotDto;
 
 import java.sql.SQLException;
+import java.sql.Types;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -122,31 +124,64 @@ public class SchedualDaoImp implements SchedualDao
         }
         return false;
     }
-    public boolean insert_Schedual (SchedualDto Schedual) throws SQLException
+    public boolean insert_Schedual (SchedualDto schedual) throws SQLException
     {   
        try (JdbcRowSet jdbcR = RowSetProvider.newFactory().createJdbcRowSet()) 
         {
             jdbcR.setUrl(ConnectionFactory.getUrl());
             jdbcR.setUsername(ConnectionFactory.getUsername());
             jdbcR.setPassword(ConnectionFactory.getPassword());
+            jdbcR.setAutoCommit(false);
+           
+             List<SlotDto> slots = schedual.getSchedual_Slots() ; 
+               
+               for (int i=0 ; i<slots.size() ; i++)
+               {                   
+                   SlotDto slot = slots.get(i);
+// System.out.println("slot recived     "  + slot.getCurrentCourse().getName());
+                   jdbcR.setCommand(Queries.INSER_NEW_SLOT);
+                   
+                   
+                   if (slot.getCurrentLocation() != null )
+                   jdbcR.setInt(1,slot.getCurrentLocation().getLocation_id()); 
+                   else 
+                       jdbcR.setNull(1, Types.VARCHAR);
+                   
+                   jdbcR.setString(2,slot.getCurrentCourse().getCode());
+                   
+                   if (slot.getCurrentCourse().getInstructors().get(0).getEmail()!=null)
+                       jdbcR.setString(3,slot.getCurrentCourse().getInstructors().get(0).getEmail()); 
+                   else 
+                       jdbcR.setNull(3, Types.VARCHAR);
+                   
+                   
+                   if(slot.getCurrentCourse().getInstructors().get(1).getEmail()!= null)
+                      jdbcR.setString(4,slot.getCurrentCourse().getInstructors().get(1).getEmail());
+                   else 
+                      jdbcR.setNull(4, Types.VARCHAR);
+                   
+                   jdbcR.setString(5,slot.getCode());
+                   
+                   jdbcR.setString(6,slot.getType());
+                   
+                   jdbcR.setString(7,slot.getPrefSpace());
+                   
+                   jdbcR.setString(8,schedual.getSCHEDULECODE());
+
+                   
+                   jdbcR.execute();
+               }
+           
+           
+           
             jdbcR.setCommand(Queries.INSER_NEW_SCHEDULE);
             
-            jdbcR.setString(1, Schedual.getSCHEDULECODE());  // SetSCHEDULECODE
-            jdbcR.setString(2, Schedual.getAcademicYear()); // Set AcademicYear 
-            jdbcR.setString(3, Schedual.getCodeDeparment()); // Set AcademicYear 
-            
+            jdbcR.setString(1, schedual.getSCHEDULECODE());  // SetSCHEDULECODE
+            jdbcR.setString(2, schedual.getAcademicYear());  // Set AcademicYear 
+            jdbcR.setString(3, schedual.getCodeDeparment()); // Set AcademicYear 
             jdbcR.execute();
-           
-            for (int i=0; i<Schedual.getSchedual_Slots().size(); i++)
-            {
-            jdbcR.setCommand(Queries.INSER_NEW_SLotSCHEDULE);
-            jdbcR.setString(1,Schedual.getSCHEDULECODE());
-            jdbcR.setInt (2, Schedual.getSchedual_Slots().get(i).getSlot_id());
-                
-            jdbcR.execute();
-            
-            }    
-           
+        
+            jdbcR.commit();
             return true;
         }
         catch (java.sql.SQLIntegrityConstraintViolationException e) 

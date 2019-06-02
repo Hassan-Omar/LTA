@@ -59,7 +59,6 @@ public class ScheduleInsert extends javax.swing.JPanel
     @SuppressWarnings("unchecked")
     private void initComponents() {//GEN-BEGIN:initComponents
 
-        panel1 = new java.awt.Panel();
         jPanel1 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         table = new javax.swing.JTable();
@@ -77,23 +76,9 @@ public class ScheduleInsert extends javax.swing.JPanel
 
         setLayout(null);
 
-        javax.swing.GroupLayout panel1Layout = new javax.swing.GroupLayout(panel1);
-        panel1.setLayout(panel1Layout);
-        panel1Layout.setHorizontalGroup(
-            panel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 339, Short.MAX_VALUE)
-        );
-        panel1Layout.setVerticalGroup(
-            panel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 269, Short.MAX_VALUE)
-        );
+        jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Schedules", 0, 0, new java.awt.Font("Tekton Pro Cond", 1, 36))); // NOI18N
 
-        add(panel1);
-        panel1.setBounds(961, 26, 339, 269);
-
-        jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Tables", 0, 0, new java.awt.Font("Adobe Arabic", 1, 24))); // NOI18N
-
-        table.setFont(new java.awt.Font("Perpetua", 1, 18)); // NOI18N
+        table.setFont(new java.awt.Font("Tekton Pro Cond", 1, 24)); // NOI18N
         table.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
@@ -130,24 +115,21 @@ public class ScheduleInsert extends javax.swing.JPanel
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 428, Short.MAX_VALUE)
-                .addContainerGap())
+            .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING)
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 249, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 186, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(75, 75, 75))
         );
 
         add(jPanel1);
-        jPanel1.setBounds(0, 234, 462, 243);
+        jPanel1.setBounds(10, 230, 462, 240);
 
         insertBTN.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        insertBTN.setText("Insert  New Schedule");
+        insertBTN.setText("Insert  New ");
         insertBTN.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 insertBTNMouseClicked(evt);
@@ -159,7 +141,7 @@ public class ScheduleInsert extends javax.swing.JPanel
             }
         });
         add(insertBTN);
-        insertBTN.setBounds(129, 102, 239, 54);
+        insertBTN.setBounds(310, 150, 160, 54);
 
         searchBTN.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         searchBTN.setText("Search");
@@ -174,16 +156,21 @@ public class ScheduleInsert extends javax.swing.JPanel
             }
         });
         add(searchBTN);
-        searchBTN.setBounds(380, 110, 97, 45);
+        searchBTN.setBounds(370, 50, 97, 50);
 
         ScheduleCode.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        ScheduleCode.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ScheduleCodeActionPerformed(evt);
+            }
+        });
         add(ScheduleCode);
-        ScheduleCode.setBounds(0, 45, 484, 45);
+        ScheduleCode.setBounds(10, 50, 250, 40);
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        jLabel1.setText("Enter Schedule Code");
+        jLabel1.setText("Search");
         add(jLabel1);
-        jLabel1.setBounds(12, 0, 333, 39);
+        jLabel1.setBounds(12, 9, 110, 30);
 
         deleteBTN.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         deleteBTN.setLabel("Delete");
@@ -198,15 +185,18 @@ public class ScheduleInsert extends javax.swing.JPanel
             }
         });
         add(deleteBTN);
-        deleteBTN.setBounds(0, 102, 111, 54);
+        deleteBTN.setBounds(120, 150, 111, 50);
 
-        PanelInsert.setBorder(javax.swing.BorderFactory.createTitledBorder("Insert New SCHEDULE"));
+        PanelInsert.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
-        academicYearlable.setText("Select Academic Year ");
+        academicYearlable.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        academicYearlable.setText("Academic Year ");
 
-        departmentlable.setText("Select Department");
+        departmentlable.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        departmentlable.setText("Department");
 
-        insert.setText("Insert ");
+        insert.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        insert.setText("Open");
         insert.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 insertActionPerformed(evt);
@@ -215,47 +205,49 @@ public class ScheduleInsert extends javax.swing.JPanel
 
         academicYearcombox.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "First Year    ", "Second Year    ", "Third Year    ", "Fourth Year " }));
 
-        departmentcombox.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Electrical - Computer   ", "Electrical - Power   ", "Electrical - Communication    ", "Civil  ", "Architecture   ", "Mechanical" }));
+        departmentcombox.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "sduguv", "dawjcbuoJ", "SDJCBJkx ;" }));
+        departmentcombox.setToolTipText("");
 
         javax.swing.GroupLayout PanelInsertLayout = new javax.swing.GroupLayout(PanelInsert);
         PanelInsert.setLayout(PanelInsertLayout);
         PanelInsertLayout.setHorizontalGroup(
             PanelInsertLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(PanelInsertLayout.createSequentialGroup()
+                .addGap(35, 35, 35)
                 .addGroup(PanelInsertLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(PanelInsertLayout.createSequentialGroup()
-                        .addGap(58, 58, 58)
-                        .addComponent(insert))
+                        .addComponent(departmentlable, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(departmentcombox, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(PanelInsertLayout.createSequentialGroup()
-                        .addGap(35, 35, 35)
-                        .addGroup(PanelInsertLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(PanelInsertLayout.createSequentialGroup()
-                                .addComponent(academicYearlable)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(academicYearcombox, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(PanelInsertLayout.createSequentialGroup()
-                                .addComponent(departmentlable, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(departmentcombox, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE)))))
-                .addContainerGap(142, Short.MAX_VALUE))
+                        .addComponent(academicYearlable)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 82, Short.MAX_VALUE)
+                        .addComponent(academicYearcombox, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(52, 52, 52))
+            .addGroup(PanelInsertLayout.createSequentialGroup()
+                .addGap(146, 146, 146)
+                .addComponent(insert, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         PanelInsertLayout.setVerticalGroup(
             PanelInsertLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(PanelInsertLayout.createSequentialGroup()
-                .addComponent(insert)
-                .addGap(5, 5, 5)
-                .addGroup(PanelInsertLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(departmentlable)
-                    .addComponent(departmentcombox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(PanelInsertLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(academicYearlable)
-                    .addComponent(academicYearcombox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(325, Short.MAX_VALUE))
+                .addGap(26, 26, 26)
+                .addGroup(PanelInsertLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(academicYearcombox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(PanelInsertLayout.createSequentialGroup()
+                        .addGroup(PanelInsertLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(departmentlable)
+                            .addComponent(departmentcombox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(90, 90, 90)
+                        .addComponent(academicYearlable)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 71, Short.MAX_VALUE)
+                .addComponent(insert, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(136, 136, 136))
         );
 
         add(PanelInsert);
-        PanelInsert.setBounds(510, 45, 445, 432);
+        PanelInsert.setBounds(510, 45, 445, 420);
     }//GEN-END:initComponents
 
     private void insertActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_insertActionPerformed
@@ -284,10 +276,9 @@ public class ScheduleInsert extends javax.swing.JPanel
           
                         // rows
                         CourseDto course = new CourseDto();
-                        SlotDto slot = new SlotDto();
                         EmployeeDto instructor = new EmployeeDto();
                         SchedualDto schudel = new SchedualDto();
-                        List<SlotDto> slots = new ArrayList();
+                        List<SlotDto> slots =  new ArrayList<>();
                         List<EmployeeDto> staffList = new ArrayList<>();
                         SchedualBao SchedualBao = new BaoFactory().createSchedualBao();
                         EmployeeBao EmployeeBao = new BaoFactory().createemployeeBao();
@@ -323,12 +314,10 @@ public class ScheduleInsert extends javax.swing.JPanel
                                 try {
                                     EmployeeBao.saveEmployee(instructor);
                                 } catch (LTAException ltae) {
-                                    // TODO: Add catch code
-                                    ltae.printStackTrace();
+                                     ltae.printStackTrace();
                                 }
                                 staffList.add(instructor);
-                                // repeat this code for instructor  no 2 
-                                 
+                                  
                                 course.setInstructors(staffList);
                                 course.setCode(courseName.getCell(k + 1).toString());
                                 course.setName(courseName.getCell(k).toString());
@@ -340,25 +329,32 @@ public class ScheduleInsert extends javax.swing.JPanel
                                 CourseBao.saveCourse(course);
                                
                                
-                                slot = new SlotDto();
+                                SlotDto slot = new SlotDto();
                                 slot.setCode(slotCode.getCell(k+1).toString());
                                 slot.setCurrentCourse(course);
                                 slot.setPrefSpace(PrefSpace.getCell(k + 1).toString());
                                 slot.setType(Type.getCell(k + 1).toString());
                                 slots.add(slot);
-                                
+                                int counter = 0 ; 
+                                System.out.println("index counter  " + counter +"   "+ slot.getCurrentCourse().getName());
 
                             } // end of inner loop
                         } // end of outer loop 
                         
                          schudel.setSchedual_Slots(slots);
-                        if( SchedualBao.saveSchedual(schudel))
+                        
+                        for (int i=0; i<slots.size() ; i++)
+                        {
+                                System.out.println("index i" +i+"   "+ slots.get(i).getCurrentCourse().getName());
+                            }
+                                               
+                         /*  if( SchedualBao.saveSchedual(schudel))
                             JOptionPane.showMessageDialog(this, " saved");
                             else
-                            JOptionPane.showMessageDialog(this, "don't save");
-                     
+                            JOptionPane.showMessageDialog(this, "don't save"); 
+                       */
                     } catch (IOException e) {
-                        
+                        e.printStackTrace();
                     }
                 }
            
@@ -366,20 +362,7 @@ public class ScheduleInsert extends javax.swing.JPanel
         }
 
 
-        //Choose Power
-        else if(selectDpertment==1)
-        {
-            System.out.println("kotb");
-        }
-        else if(selectDpertment==2)
-        {
-            System.out.println("kotsbk");
-        }
-        else if(selectDpertment==3)
-        {
-            System.out.println("kotb12");
-        }
-
+         
     }//GEN-LAST:event_insertActionPerformed
 
     private void insertBTNMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_insertBTNMouseClicked
@@ -443,6 +426,10 @@ public class ScheduleInsert extends javax.swing.JPanel
         // TODO add your handling code here:
     }//GEN-LAST:event_insertBTNActionPerformed
 
+    private void ScheduleCodeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ScheduleCodeActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_ScheduleCodeActionPerformed
+
     public void TableReset(List<SchedualDto> Schedual) 
     {
 
@@ -471,7 +458,6 @@ public class ScheduleInsert extends javax.swing.JPanel
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
-    private java.awt.Panel panel1;
     private javax.swing.JButton searchBTN;
     private javax.swing.JTable table;
     // End of variables declaration//GEN-END:variables
