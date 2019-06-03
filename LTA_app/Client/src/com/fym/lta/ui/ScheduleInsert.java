@@ -7,6 +7,7 @@ import com.fym.lta.bao.LoginEngine;
 import com.fym.lta.bao.SchedualBao;
 import com.fym.lta.common.LTAException;
 import com.fym.lta.dto.CourseDto;
+import com.fym.lta.dto.DepartmentDto;
 import com.fym.lta.dto.EmployeeDto;
 import com.fym.lta.dto.SchedualDto;
 import com.fym.lta.dto.SlotDto;
@@ -261,36 +262,36 @@ public class ScheduleInsert extends javax.swing.JPanel
         if (selectDpertment == 0) // Choose Computer  Department
         {
               if (Variable == JFileChooser.APPROVE_OPTION) 
-                {
+                {                     
+
                     try {
                         
                         
                         HSSFWorkbook lta = new HSSFWorkbook(new FileInputStream(Chooser.getSelectedFile()));
                         HSSFSheet Sheet = lta.getSheet("Sheet0");
-                        //For 
                         HSSFRow CodeDeparment = Sheet.getRow(0); // Row (1)
                         HSSFRow Acadimcyear = Sheet.getRow(1); // Row (2)
                         HSSFRow SCHEDULECODE = Sheet.getRow(2); // Row (2)
-                        HSSFRow STUDENTNUMBER = Sheet.getRow(1);
-
+ 
           
                         // rows
-                        CourseDto course = new CourseDto();
-                        EmployeeDto instructor = new EmployeeDto();
                         SchedualDto schudel = new SchedualDto();
+
                         List<SlotDto> slots =  new ArrayList<>();
-                        List<EmployeeDto> staffList = new ArrayList<>();
                         SchedualBao SchedualBao = new BaoFactory().createSchedualBao();
                         EmployeeBao EmployeeBao = new BaoFactory().createemployeeBao();
                         CourseBao CourseBao = new BaoFactory().createCourseBao(); 
                         schudel.setAcademicYear(Acadimcyear.getCell(1).toString());
                         schudel.setSCHEDULECODE(SCHEDULECODE.getCell(1).toString());
                         schudel.setCodeDeparment(CodeDeparment.getCell(1).toString());
-                            
+                        float temp = Float.parseFloat(Acadimcyear.getCell(3).toString()) ;
+                        int num = (int) temp;
+                        schudel.setStudent_number(num );
+ 
                         for (int i = 3; i < 38; i += 7)
                         {   
                             HSSFRow slotCode = Sheet.getRow(i);
-                            HSSFRow Starttime = Sheet.getRow(i + 1);
+                           // HSSFRow Starttime = Sheet.getRow(i + 1);
                             HSSFRow courseName = Sheet.getRow(i+2); 
                             HSSFRow StaffName1 = Sheet.getRow(i + 3);
                             HSSFRow StaffName2 = Sheet.getRow(i + 4);
@@ -298,35 +299,47 @@ public class ScheduleInsert extends javax.swing.JPanel
                             HSSFRow PrefSpace = Sheet.getRow(i + 6);   
                            
                             for (int k = 1; k < 9; k += 2)
-                            {
+                            {                        
+                                EmployeeDto instructor = new EmployeeDto();
+                                CourseDto course = new CourseDto();
+                                List<EmployeeDto> instructors = new ArrayList<>();
+
 
                                 instructor.setEmail(StaffName1.getCell(k + 1).toString());
-                                // you need to cut the string and set the name as comming 
+                                // you need to cut the string and set the name as comming +++++++++
+                                // use string cut or any format
+                                //+++++++++++++++++++++++++++++++++++++++
                                 instructor.setFName("a");
                                 instructor.setSName("b");
                                 instructor.setLName("c");
                                 instructor.setFamilyName("d");
+                                instructor.setCareerDgree("PROF");
+                                //+++++++++++++++++++++++++++++++++++++++
                                 instructor.setInsertedBy(LoginEngine.currentUser);
                                 instructor.setUpdatedBy(LoginEngine.currentUser);
                                 instructor.setInertion_Date(new Date(System.currentTimeMillis()));
                                 instructor.setUpdate_Date(new Date(System.currentTimeMillis()));
+                                DepartmentDto department = new DepartmentDto(); 
+                                department.setCode(schudel.getCodeDeparment());
+                                instructor.setDepartment(department);
+                                
                                 if(instructor.getFullName()!="" &&instructor.getEmail()!="")
                                 try {
                                     EmployeeBao.saveEmployee(instructor);
-                                } catch (LTAException ltae) {
+                                     } catch (LTAException ltae) {
                                      ltae.printStackTrace();
                                 }
-                                staffList.add(instructor);
+                                 instructors.add(instructor);
                                   
-                                course.setInstructors(staffList);
+                                course.setInstructors(instructors);
                                 course.setCode(courseName.getCell(k + 1).toString());
                                 course.setName(courseName.getCell(k).toString());
                                 course.setInsertedBy(LoginEngine.currentUser);
                                 course.setUpdatedBy(LoginEngine.currentUser);
                                 course.setInertion_Date(new Date(System.currentTimeMillis()));
                                 course.setUpdate_Date(new Date(System.currentTimeMillis()));
-                                if(course.getCode()!="" && course.getName()!="");
-                                CourseBao.saveCourse(course);
+                                //if(course.getCode()!="" && course.getName()!="");
+                                //CourseBao.saveCourse(course);
                                
                                
                                 SlotDto slot = new SlotDto();
@@ -335,24 +348,20 @@ public class ScheduleInsert extends javax.swing.JPanel
                                 slot.setPrefSpace(PrefSpace.getCell(k + 1).toString());
                                 slot.setType(Type.getCell(k + 1).toString());
                                 slots.add(slot);
-                                int counter = 0 ; 
-                                System.out.println("index counter  " + counter +"   "+ slot.getCurrentCourse().getName());
-
+                              
                             } // end of inner loop
+
                         } // end of outer loop 
                         
                          schudel.setSchedual_Slots(slots);
                         
-                        for (int i=0; i<slots.size() ; i++)
-                        {
-                                System.out.println("index i" +i+"   "+ slots.get(i).getCurrentCourse().getName());
-                            }
+                         
                                                
-                         /*  if( SchedualBao.saveSchedual(schudel))
+                          if( SchedualBao.saveSchedual(schudel))
                             JOptionPane.showMessageDialog(this, " saved");
                             else
                             JOptionPane.showMessageDialog(this, "don't save"); 
-                       */
+                    
                     } catch (IOException e) {
                         e.printStackTrace();
                     }

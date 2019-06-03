@@ -82,13 +82,13 @@ public class Queries {
  
     public static final String INSER_NEW_EMPLOYEE =
         "INSERT INTO EMPLOYEE (FNAME , SNAME , TNAME ," +
-        "FAMILY_NAME ,INSERTED_BY ,UPDATED_BY ,ISERTED_DATE ,UPDATED_DATE ,EMAIL ,POSITION ,DEP_ID) VALUES (?,?,?,?,?,?,?,?,?,?,?)";
+        "FAMILY_NAME ,INSERTED_BY  ,ISERTED_DATE  ,EMAIL ,POSITION ,DEP_CODE) VALUES (?,?,?,?,?,?,?,?,?)";
 
 
     public static final String LIST_ALL_EMPLOYEE = "SELECT X.FNAME , X.SNAME , X.TNAME , X.FAMILY_NAME " +
         ",X.INSERTED_BY ,X.UPDATED_BY ,X.ISERTED_DATE ,X.UPDATED_DATE ,X.EMAIL ,X.POSITION ,X.ID ,Y.NAME " + 
     "FROM EMPLOYEE X , DEPARTMENT Y " + 
-    "WHERE X.DEP_ID = Y.D_ID ";
+    "WHERE X.DEP_CODE = Y.CODE ";
 
     public static final String DELETE_EMPLOYEE = "DELETE FROM EMPLOYEE WHERE EMAIL = ? ";
 
@@ -96,12 +96,12 @@ public class Queries {
 
     public static final String UPDATE_EMPLOYEE =
         "UPDATE EMPLOYEE SET FNAME =? , SNAME =? , TNAME =?  , FAMILY_NAME =? " +
-        ",UPDATED_BY=?  ,UPDATED_DATE=?  ,POSITION=? ,DEP_ID=?  WHERE EMAIL =?";
+        ",UPDATED_BY=?  ,UPDATED_DATE=?  ,POSITION=? ,DEP_CODE=?  WHERE EMAIL =?";
 
     public static final String EMPLOYEE_SEARCH = "SELECT X.FNAME , X.SNAME , X.TNAME" +
         ", X.FAMILY_NAME,X.INSERTED_BY ,X.UPDATED_BY ,X.ISERTED_DATE ,X.UPDATED_DATE ,X.EMAIL ,X.POSITION ,X.ID ,Y.NAME " + 
     "FROM EMPLOYEE X , DEPARTMENT Y " + 
-    "WHERE X.DEP_ID = Y.D_ID AND ( LOWER(FNAME) LIKE ? OR  LOWER(SNAME) LIKE ? OR  LOWER(TNAME) LIKE ? ) ";
+    "WHERE X.DEP_CODE = Y.CODE AND ( LOWER(FNAME) LIKE ? OR  LOWER(SNAME) LIKE ? OR  LOWER(TNAME) LIKE ? ) ";
     //___________________________________________________________________________________
 
 
@@ -224,7 +224,7 @@ public class Queries {
 
 
     public static final String INSER_NEW_SCHEDULE =
-        "INSERT INTO grade_schedule (SCHEDULECODE , ACADEMIC_YEAR,DEPARTMENT_CODE ) VALUES(?,?,?)";
+        "INSERT INTO grade_schedule (SCHEDULECODE , ACADEMIC_YEAR,DEPARTMENT_CODE ,STUDENTS_NUMBER) VALUES(?,?,?,?)";
 
     public static final String INSER_NEW_SLotSCHEDULE =
         "INSERT INTO SCHEDULE_CONSISTS_OF_SLOT (SCHEDULE_CODE , SLOT_ID ) VALUES(?,?) ";
@@ -277,7 +277,7 @@ public class Queries {
     //________________________________ Slot  MODULE __________________________________
 
     public static final String INSER_NEW_SLOT =
-        "INSERT INTO SLOT (LOCATION_ID , COURSE_CODE , STAFF_EMAIL ,STAFF_EMAIL2 , CODE ,TYPE ,PREFSPACE ,S_CODE) VALUES(?,?,?,?,?,?,?,?) ";
+        "INSERT INTO SLOT ( COURSE_CODE , STAFF_EMAIL ,STAFF_EMAIL2 , CODE ,TYPE ,PREFSPACE ,S_CODE) VALUES(?,?,?,?,?,?,?) ";
 
     public static final String UPDATE_SLOT =
         "UPDATE SLOT SET LOCATION_ID=? , COURSE_CODE = ? , STAFF_EMAIL =? , STAFF_EMAIL2 =? , TYPE = ? S_CODE = ? , PREFSPACE=? WHERE ID = ? ";

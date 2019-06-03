@@ -8,7 +8,6 @@ import com.fym.lta.dto.DepartmentDto;
 import com.fym.lta.dto.EmployeeDto;
 
 import java.sql.SQLException;
-import java.sql.Types;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -104,36 +103,22 @@ public class EmployeeDaoImp implements EmployeeDao {
            
             if (Employee.getInsertedBy() != null)
                  jdbcRs.setString(5, Employee.getInsertedBy());
-             else
-             jdbcRs.setNull(5, Types.VARCHAR);
-            
-            if (Employee.getUpdatedBy() != null)
-                 jdbcRs.setString(6, Employee.getUpdatedBy());
-             else
-             jdbcRs.setNull(6, Types.VARCHAR);
             
              // check if the update date is not setted we we will set it 
              if (Employee.getInertion_Date() != null)
-                 jdbcRs.setDate(7, new java.sql.Date(Employee.getInertion_Date().getTime()));
+                 jdbcRs.setDate(6, new java.sql.Date(Employee.getInertion_Date().getTime()));
              else
-                 jdbcRs.setNull(7, java.sql.Types.DATE);
+                 jdbcRs.setNull(6, java.sql.Types.DATE);
 
+        
             
-             // check if the update date is not setted we we will set it 
-             if (Employee.getUpdate_Date() != null)
-                 jdbcRs.setDate(8, new java.sql.Date(Employee.getUpdate_Date().getTime()));
-             else
-                 jdbcRs.setNull(8, java.sql.Types.DATE);
-
+            jdbcRs.setString(7,Employee.getEmail());
             
             
-            jdbcRs.setString(9,Employee.getEmail());
+            jdbcRs.setString(8,Employee.getCareerDgree());
             
             
-            jdbcRs.setString(10,Employee.getCareerDgree());
-            
-            
-            jdbcRs.setInt(11,Employee.getDepartment().getDepartment_id());
+            jdbcRs.setString(9,Employee.getDepartment().getCode());
             
             
             
@@ -162,11 +147,7 @@ public class EmployeeDaoImp implements EmployeeDao {
                                 jdbcRs.setUsername(ConnectionFactory.getUsername());
                                 jdbcRs.setPassword(ConnectionFactory.getPassword());
                                 jdbcRs.setCommand(Queries.UPDATE_EMPLOYEE);
-            
-                                // "UPDATE EMPLOYEE SET FNAME =? , SNAME =? , TNAME =?  , FAMILY_NAME =? ,UPDATED_BY=?  ,UPDATED_DATE=?  WHERE EMAIL =?"
-
-                                jdbcRs.setString(7,Employee.getEmail());
-                                                                      
+                                                                                                      
                                 jdbcRs.setString(1, Employee.getFName());  
                                 jdbcRs.setString(2, Employee.getSName()); 
                                 jdbcRs.setString(3,Employee.getLName());
@@ -175,9 +156,7 @@ public class EmployeeDaoImp implements EmployeeDao {
                             
                                if (Employee.getUpdatedBy() != null)
                                     jdbcRs.setString(5, Employee.getUpdatedBy());
-                                else
-                                jdbcRs.setNull(5, Types.VARCHAR);
-                          
+                                
                                 // check if the update date is not setted we we will set it 
                                 if (Employee.getUpdate_Date() != null)
                                     jdbcRs.setDate(6, new java.sql.Date(Employee.getUpdate_Date().getTime()));
@@ -187,9 +166,8 @@ public class EmployeeDaoImp implements EmployeeDao {
                                 jdbcRs.setString(7,Employee.getCareerDgree());
                                 
                                 
-                                jdbcRs.setInt(8,Employee.getDepartment().getDepartment_id());
+                                jdbcRs.setString(8,Employee.getDepartment().getCode());
                                 
-                             
                                 jdbcRs.setString(9,Employee.getEmail());
 
                                 jdbcRs.execute();

@@ -138,35 +138,30 @@ public class SchedualDaoImp implements SchedualDao
                for (int i=0 ; i<slots.size() ; i++)
                {                   
                    SlotDto slot = slots.get(i);
-// System.out.println("slot recived     "  + slot.getCurrentCourse().getName());
-                   jdbcR.setCommand(Queries.INSER_NEW_SLOT);
+                    jdbcR.setCommand(Queries.INSER_NEW_SLOT);
                    
+                  
                    
-                   if (slot.getCurrentLocation() != null )
-                   jdbcR.setInt(1,slot.getCurrentLocation().getLocation_id()); 
+                   jdbcR.setString(1,slot.getCurrentCourse().getCode());
+                   
+                   if (slot.getCurrentCourse().getInstructors()!=null)
+                       jdbcR.setString(2,slot.getCurrentCourse().getInstructors().get(0).getEmail()); 
                    else 
-                       jdbcR.setNull(1, Types.VARCHAR);
+                       jdbcR.setNull(2, Types.VARCHAR);
                    
-                   jdbcR.setString(2,slot.getCurrentCourse().getCode());
                    
-                   if (slot.getCurrentCourse().getInstructors().get(0).getEmail()!=null)
-                       jdbcR.setString(3,slot.getCurrentCourse().getInstructors().get(0).getEmail()); 
+                   if(slot.getCurrentCourse().getInstructors().size()>1)
+                      jdbcR.setString(3,slot.getCurrentCourse().getInstructors().get(1).getEmail());
                    else 
-                       jdbcR.setNull(3, Types.VARCHAR);
+                      jdbcR.setNull(3, Types.VARCHAR);
                    
+                   jdbcR.setString(4,slot.getCode());
                    
-                   if(slot.getCurrentCourse().getInstructors().get(1).getEmail()!= null)
-                      jdbcR.setString(4,slot.getCurrentCourse().getInstructors().get(1).getEmail());
-                   else 
-                      jdbcR.setNull(4, Types.VARCHAR);
+                   jdbcR.setString(5,slot.getType());
                    
-                   jdbcR.setString(5,slot.getCode());
+                   jdbcR.setString(6,slot.getPrefSpace());
                    
-                   jdbcR.setString(6,slot.getType());
-                   
-                   jdbcR.setString(7,slot.getPrefSpace());
-                   
-                   jdbcR.setString(8,schedual.getSCHEDULECODE());
+                   jdbcR.setString(7,schedual.getSCHEDULECODE());
 
                    
                    jdbcR.execute();
@@ -179,6 +174,7 @@ public class SchedualDaoImp implements SchedualDao
             jdbcR.setString(1, schedual.getSCHEDULECODE());  // SetSCHEDULECODE
             jdbcR.setString(2, schedual.getAcademicYear());  // Set AcademicYear 
             jdbcR.setString(3, schedual.getCodeDeparment()); // Set AcademicYear 
+            jdbcR.setInt(4, schedual.getStudent_number());
             jdbcR.execute();
         
             jdbcR.commit();
