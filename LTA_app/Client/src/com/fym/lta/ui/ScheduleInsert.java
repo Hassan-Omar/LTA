@@ -456,8 +456,7 @@ public class ScheduleInsert extends javax.swing.JPanel
             schedualArr[i][1] = scheduals.get(i).getAcademicYear();
             schedualArr[i][2] = scheduals.get(i).getStudent_number();
             schedualArr[i][3] = scheduals.get(i).getCodeDeparment();
-System.out.println(scheduals.get(i).getStudent_number()) ; 
-            
+             
         }
         table.setModel(new javax.swing.table.DefaultTableModel(schedualArr, new String[]
         {"Scheduale Code", "Academic Year","Student Numbers" ," Deparment Codec" }));
