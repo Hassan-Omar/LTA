@@ -28,18 +28,13 @@ import org.apache.poi.hssf.usermodel.HSSFSheet;
 import org.apache.poi.hssf.usermodel.HSSFWorkbook;
 
 
-/**
- *
- * @author Abdallah Kotb
- */
-
 public class ScheduleInsert extends javax.swing.JPanel 
 {
     @SuppressWarnings("oracle.jdeveloper.java.serialversionuid-stale")
     private static final long serialVersionUID = 1L;
     
-    private transient SchedualBao SchedualBao = new BaoFactory().createSchedualBao();    
-    private transient List<SchedualDto> searchSchedual;
+    private  SchedualBao schedualBao = new BaoFactory().createSchedualBao();    
+    private  List<SchedualDto> searchSchedual;
     boolean SchedualAvailabilty = true;
 
 
@@ -47,7 +42,8 @@ public class ScheduleInsert extends javax.swing.JPanel
     public ScheduleInsert() {
         initComponents();
         PanelInsert.setVisible(false);
-
+        if(schedualBao.listAll()!=null)
+            TableReset(schedualBao.listAll());
         // roleID = 14 
         // now one step we will create an object of ScreenBao to know the current permission 
           String permissionType = new BaoFactory().createScreenBao().getCurrentPermission(14);
@@ -391,10 +387,10 @@ public class ScheduleInsert extends javax.swing.JPanel
     private void searchBTNMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_searchBTNMouseClicked
         PanelInsert.setVisible(false);
         if (ScheduleCode.getText() != null) 
-        {searchSchedual = SchedualBao.SearchSchedual(ScheduleCode.getText());  }
+        {searchSchedual = schedualBao.SearchSchedual(ScheduleCode.getText());  }
      else {
             // no input will return all users
-            searchSchedual = SchedualBao.listAll();
+            searchSchedual = schedualBao.listAll();
         }
 
         if (searchSchedual == null) {
@@ -417,10 +413,10 @@ public class ScheduleInsert extends javax.swing.JPanel
             // call business to delete
             // don't forget you need to update the users table and remove this record
             // and check the returned value to tell the user if the delete is done or not
-            if (SchedualBao.deleteSchedual(selectedCode)) {
+            if (schedualBao.deleteSchedual(selectedCode)) {
                 JOptionPane.showMessageDialog(this, "Deleted successfully"); // tell the user that we done it
                 // reset the table's content
-                TableReset(SchedualBao.listAll());
+                TableReset(schedualBao.listAll());
 
             } else {
                 JOptionPane.showMessageDialog(this, "Can not delete may be deleted using another user ");
@@ -448,19 +444,23 @@ public class ScheduleInsert extends javax.swing.JPanel
         // TODO add your handling code here:
     }//GEN-LAST:event_ScheduleCodeActionPerformed
 
-    public void TableReset(List<SchedualDto> Schedual) 
+    public void TableReset(List<SchedualDto> scheduals) 
     {
 
-        Object[][] SchedualArr = new Object[Schedual.size()][3];
-        for (int i = 0; i<Schedual.size();i++)
+        Object[][] schedualArr = new Object[scheduals.size()][4];
+        
+        for (int i = 0; i<scheduals.size();i++)
         {
 
-            SchedualArr[i][0] = Schedual.get(i).getSCHEDULECODE();
-            SchedualArr[i][1] = Schedual.get(i).getAcademicYear();
-            SchedualArr[i][2] = Schedual.get(i).getCodeDeparment();
+            schedualArr[i][0] = scheduals.get(i).getSCHEDULECODE();
+            schedualArr[i][1] = scheduals.get(i).getAcademicYear();
+            schedualArr[i][2] = scheduals.get(i).getStudent_number();
+            schedualArr[i][3] = scheduals.get(i).getCodeDeparment();
+System.out.println(scheduals.get(i).getStudent_number()) ; 
+            
         }
-        table.setModel(new javax.swing.table.DefaultTableModel(SchedualArr, new String[]
-        {"SCHEDULECODE", "AcademicYear", " CodeDeparment" }));
+        table.setModel(new javax.swing.table.DefaultTableModel(schedualArr, new String[]
+        {"Scheduale Code", "Academic Year","Student Numbers" ," Deparment Codec" }));
     }
     
     // Variables declaration - do not modify//GEN-BEGIN:variables

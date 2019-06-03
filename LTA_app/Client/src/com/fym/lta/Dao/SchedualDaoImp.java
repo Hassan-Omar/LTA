@@ -19,7 +19,7 @@ public class SchedualDaoImp implements SchedualDao
     public List<SchedualDto> getAll_Scheduals()
     {
         
-        List<SchedualDto> Scheduals = null;
+        List<SchedualDto> scheduals = null;
 
         try (JdbcRowSet jdbcRs = RowSetProvider.newFactory().createJdbcRowSet()) {
             jdbcRs.setUrl(ConnectionFactory.getUrl());
@@ -31,20 +31,26 @@ public class SchedualDaoImp implements SchedualDao
             SchedualDto Schedual = null;
 
             while (jdbcRs.next()) {
-                if (Scheduals == null)
-                    Scheduals = new ArrayList<>();
-                Schedual = new SchedualDto();
-                Schedual.setSCHEDULECODE(jdbcRs.getString(1));
-                Schedual.setAcademicYear(jdbcRs.getString(2));
-                Schedual.setCodeDeparment(jdbcRs.getString(3));
+                if (scheduals == null)
 
-                Scheduals.add(Schedual);
+                scheduals = new ArrayList<>();
+                SchedualDto table = new SchedualDto();
+                table.setSCHEDULECODE(jdbcRs.getString(1));
+                table.setAcademicYear(jdbcRs.getString(2));
+                table.setStudent_number(jdbcRs.getInt(3));
+                // table.setId(jdbcRs.getInt(4)); // no id i don't need it 
+                table.setCodeDeparment(jdbcRs.getString(5));
+                
+                // also you need to add the data inserted by , ...... etc  
+                
+                
+                scheduals.add(table);
 
             }
         } catch (Exception e) {
             e.printStackTrace();
         }
-        return Scheduals;
+        return scheduals;
     }
 
     public boolean delete_Schedual (String SCHEDULECODE )
@@ -53,9 +59,16 @@ public class SchedualDaoImp implements SchedualDao
             jdbcRs.setUrl(ConnectionFactory.getUrl());
             jdbcRs.setUsername(ConnectionFactory.getUsername());
             jdbcRs.setPassword(ConnectionFactory.getPassword());
+            jdbcRs.setAutoCommit(false);
             jdbcRs.setCommand(Queries.DELETE_SCHEDULE);
             jdbcRs.setString(1, SCHEDULECODE);
             jdbcRs.execute();
+            
+            jdbcRs.setCommand(Queries.DELETE_SLOT);
+            jdbcRs.setString(1, SCHEDULECODE);
+            jdbcRs.execute();    
+            jdbcRs.commit();
+                
             return true;
         }
         catch (Exception e) {
@@ -113,11 +126,11 @@ public class SchedualDaoImp implements SchedualDao
             jdbcRs.execute();
             
             if(jdbcRs.next())
-            {  System.out.println(" hrg3 true ");
+            {  
                return true ;  
                 }
             else 
-            { System.out.println(" hrg3 false "); return false  ;}
+            {  return false  ;}
             
         } catch (Exception e) {
             e.printStackTrace();
@@ -191,46 +204,77 @@ public class SchedualDaoImp implements SchedualDao
 
 
     @Override
-    public boolean update_Schedual(SchedualDto Schedual) throws SQLException {
+    public boolean update_Schedual(SchedualDto schedual) throws SQLException {
         
         try (JdbcRowSet jdbcR = RowSetProvider.newFactory().createJdbcRowSet()) 
          {
              jdbcR.setUrl(ConnectionFactory.getUrl());
              jdbcR.setUsername(ConnectionFactory.getUsername());
              jdbcR.setPassword(ConnectionFactory.getPassword());
-             jdbcR.setCommand(Queries.UPDATE_SCHEDULE);
-             
-             jdbcR.setString(3, Schedual.getSCHEDULECODE());  // SetSCHEDULECODE
-             jdbcR.setString(1, Schedual.getAcademicYear()); // Set AcademicYear 
-             jdbcR.setString(2, Schedual.getCodeDeparment()); //  
-             
-             jdbcR.execute();
-            
-             for (int i=0; i<Schedual.getSchedual_Slots().size(); i++)
-             { 
-             jdbcR.setCommand(Queries.UPDATE_SLOTSCHEDULE);
+             jdbcR.setAutoCommit(false);
+                 
+             List<SlotDto> slots = schedual.getSchedual_Slots() ; 
+                    
+              for (int i=0 ; i<slots.size() ; i++)
+                    {                   
+                        SlotDto slot = slots.get(i);
+                         jdbcR.setCommand(Queries.UPDATE_SLOT);
+                       
+                        if(slot.getCurrentLocation()!=null)
+                        jdbcR.setString(1,slot.getCurrentCourse().getCode());
+                        else 
+                            jdbcR.setNull(1, Types.INTEGER);
 
-             jdbcR.setInt (1, Schedual.getSchedual_Slots().get(i).getSlot_id());
-             jdbcR.setString(2,Schedual.getSCHEDULECODE());
+                        
+                        jdbcR.setString(2,slot.getCurrentCourse().getCode());
+                        
+                        if (slot.getCurrentCourse().getInstructors()!=null)
+                            jdbcR.setString(3,slot.getCurrentCourse().getInstructors().get(0).getEmail()); 
+                        else 
+                            jdbcR.setNull(3, Types.VARCHAR);
+                        
+                        
+                        if(slot.getCurrentCourse().getInstructors().size()>1)
+                           jdbcR.setString(4,slot.getCurrentCourse().getInstructors().get(1).getEmail());
+                        else 
+                           jdbcR.setNull(4, Types.VARCHAR);
+                        
+                        
+                        jdbcR.setString(5,slot.getType());
+                        jdbcR.setString(6,slot.getCode());
 
-             jdbcR.execute();
-             
-             }    
-            
+                        
+                        jdbcR.setString(7,slot.getPrefSpace());
+                        
+                        jdbcR.setString(8,schedual.getSCHEDULECODE());
+
+                        
+                        jdbcR.execute();
+                    }
+                
+                 jdbcR.setCommand(Queries.UPDATE_SCHEDULE);
+                 
+                 jdbcR.setString(1, schedual.getAcademicYear());  // Set AcademicYear 
+                 jdbcR.setString(2, schedual.getCodeDeparment()); // Set AcademicYear 
+                 jdbcR.setInt(3, schedual.getStudent_number());
+                 jdbcR.setString(4, schedual.getSCHEDULECODE());  // SetSCHEDULECODE
+
+                 jdbcR.execute();
+                 jdbcR.commit();
+              
              return true;
          }
          catch (java.sql.SQLIntegrityConstraintViolationException e) 
          {
              e.printStackTrace();
          } 
-         
-        
+     
          return false;  
     }
 
     @Override
     public List<SchedualDto> listSchedual_inDeparts(String code) {
-        List<SchedualDto> Scheduals = null;
+        List<SchedualDto> scheduals = null;
 
                 try (JdbcRowSet jdbcRs = RowSetProvider.newFactory().createJdbcRowSet()) 
                 {
@@ -243,23 +287,27 @@ public class SchedualDaoImp implements SchedualDao
 
 
                     while (jdbcRs.next()) {
-                        if (Scheduals == null)
+                        if (scheduals == null)
                             
-                        Scheduals = new ArrayList<>();
-                        SchedualDto SerchForTable = new SchedualDto();
-                        SerchForTable.setSCHEDULECODE(jdbcRs.getString(1));
-                        SerchForTable.setAcademicYear(jdbcRs.getString(2));
-                        SerchForTable.setCodeDeparment(jdbcRs.getString(3));
-           
-           
-                        Scheduals.add(SerchForTable);
+                        scheduals = new ArrayList<>();
+                        SchedualDto table = new SchedualDto();
+         
+         
+         
+         
+                       // not implmented 
+         
+         
+         
+         
+                        scheduals.add(table);
 
                     }
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
 
-                return Scheduals;
+                return scheduals;
          
     }
 }

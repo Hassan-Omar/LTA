@@ -226,28 +226,45 @@ public class Queries {
     public static final String INSER_NEW_SCHEDULE =
         "INSERT INTO grade_schedule (SCHEDULECODE , ACADEMIC_YEAR,DEPARTMENT_CODE ,STUDENTS_NUMBER) VALUES(?,?,?,?)";
 
-    public static final String INSER_NEW_SLotSCHEDULE =
-        "INSERT INTO SCHEDULE_CONSISTS_OF_SLOT (SCHEDULE_CODE , SLOT_ID ) VALUES(?,?) ";
+    public static final String DELETE_SCHEDULE = "DELETE FROM GRADE_SCHEDULE WHERE SCHEDULECODE =? ";
 
-    public static final String DELETE_SCHEDULE = "DELETE FROM grade_schedule WHERE SCHEDULECODE =? ";
-
-    public static final String LIST_ALL_SCHEDULE =
-        "SELECT SCHEDULECODE,ACADEMIC_YEAR,DEPARTMENT_CODE FROM grade_schedule ";
+    public static final String LIST_ALL_SCHEDULE = "SELECT * FROM GRADE_SCHEDULE" ;
 
     public static final String Search_SCHEDULE =
-        "SELECT SCHEDULECODE,ACADEMIC_YEAR,DEPARTMENT_CODE  FROM grade_schedule WHERE LOWER(SCHEDULECODE) LIKE ?  ";
+        "SELECT *  FROM GRADE_SCHEDULE WHERE LOWER(SCHEDULECODE) LIKE ?  ";
 
-    public static final String IS_EXIST_SCHEDULE = "SELECT SCHEDULECODE FROM grade_schedule WHERE SCHEDULECODE = ? ";
+    public static final String IS_EXIST_SCHEDULE = "SELECT SCHEDULECODE FROM GRADE_SCHEDULE WHERE SCHEDULECODE = ? ";
 
     public static final String UPDATE_SCHEDULE =
-        "UPDATE grade_schedule SET  ACADEMIC_YEAR =? , DEPARTMENT_CODE =? WHERE  SCHEDULECODE =? ";
+        "UPDATE GRADE_SCHEDULE SET  ACADEMIC_YEAR =? , DEPARTMENT_CODE =? ,STUDENTS_NUMBER = ?  WHERE  SCHEDULECODE =? ";
 
-    public static final String UPDATE_SLOTSCHEDULE =
-        "UPDATE SCHEDULE_CONSISTS_OF_SLOT SET  SLOT_ID =? WHERE SCHEDULE_CODE = ?  ";
 
-    public static final String LIST_SCHEDULE_INDEPART = "SELECT * FROM grade_schedule WHERE DEPARTMENT_CODE = ? ";
+    public static final String LIST_SCHEDULE_INDEPART = "SELECT * FROM GRADE_SCHEDULE WHERE DEPARTMENT_CODE = ? ";
+    //________________________________________________________________________________
+    
+    
 
-    //__________________________________Course Model_________________________________________
+    //________________________________ Slot  MODULE __________________________________
+
+    public static final String INSER_NEW_SLOT =
+        "INSERT INTO SLOT ( COURSE_CODE , STAFF_EMAIL ,STAFF_EMAIL2 , CODE ,TYPE ,PREFSPACE ,S_CODE) VALUES(?,?,?,?,?,?,?) ";
+
+    public static final String UPDATE_SLOT =
+        "UPDATE SLOT SET LOCATION_ID=? , COURSE_CODE = ? , STAFF_EMAIL =? , STAFF_EMAIL2 =? , TYPE = ? , PREFSPACE=? WHERE S_CODE = ? ";
+
+    public static final String IS_SLOT_EXIST =
+        "SELECT ID FROM SLOT WHERE CODE =? AND COURSE_CODE = ? AND STAFF_EMAIL =? AND STAFF_EMAIL2 = ? AND S_CODE = ? ";
+    
+
+    public static final String DELETE_SLOT ="DELETE FROM SLOT WHER S_CODE = ?";
+    
+    
+    
+    //_________________________________________________________________________________ 
+
+
+    
+    //__________________________________Course Model___________________________________ 
 
     public static final String LIST_ALL_COURSES = "SELECT * FROM COURSE";
 
@@ -271,22 +288,11 @@ public class Queries {
 
     public static final String SEARCH_COURSES = "SELECT * FROM COURSE WHERE LOWER(CODE) LIKE ? OR LOWER(NAME) LIKE ?";
 
-    //_________________________________________________________________________________________
+    //_________________________________________________________________________________
+    
+    
 
-
-    //________________________________ Slot  MODULE __________________________________
-
-    public static final String INSER_NEW_SLOT =
-        "INSERT INTO SLOT ( COURSE_CODE , STAFF_EMAIL ,STAFF_EMAIL2 , CODE ,TYPE ,PREFSPACE ,S_CODE) VALUES(?,?,?,?,?,?,?) ";
-
-    public static final String UPDATE_SLOT =
-        "UPDATE SLOT SET LOCATION_ID=? , COURSE_CODE = ? , STAFF_EMAIL =? , STAFF_EMAIL2 =? , TYPE = ? S_CODE = ? , PREFSPACE=? WHERE ID = ? ";
-
-    public static final String IS_SLOT_EXIST =
-        "SELECT ID FROM SLOT WHERE CODE =? AND COURSE_CODE = ? AND STAFF_EMAIL =? AND STAFF_EMAIL2 = ? AND S_CODE = ? ";
-
-
-    //________________________________ Department Module __________________________________
+   //________________________________ Department Module _______________________________
 
     public static final String LIST_ALL_DEPARTMENT =
         "SELECT X.D_ID, X.NAME , x.code , Y.B_ID  ,y.code ," +
