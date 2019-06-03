@@ -524,25 +524,23 @@ private CourseBao courseobjBao = new BaoFactory().createCourseBao();
     
     public void courseTableReset(List<CourseDto> courses) {
        
-        Object[][] coursesArr = new Object[courses.size()][8];
+        Object[][] coursesArr = new Object[courses.size()][7];
 
         for (int i = 0; i < courses.size(); i++) {
 
             coursesArr[i][0] = courses.get(i).getName();
             coursesArr[i][1] = courses.get(i).getCode();
-            coursesArr[i][2] = courses.get(i).getHoursperWeak();
-            coursesArr[i][3] = courses.get(i).getDescription();
-            coursesArr[i][4] = courses.get(i).getInsertedBy();
-            coursesArr[i][5] = courses.get(i).getInertion_Date();
-            coursesArr[i][6] = courses.get(i).getUpdatedBy();
-            coursesArr[i][7] = courses.get(i).getUpdate_Date();
+            coursesArr[i][2] = courses.get(i).getDescription();
+            coursesArr[i][3] = courses.get(i).getInsertedBy();
+            coursesArr[i][4] = courses.get(i).getInertion_Date();
+            coursesArr[i][5] = courses.get(i).getUpdatedBy();
+            coursesArr[i][6] = courses.get(i).getUpdate_Date();
 
            
 
         }
       courseTable.setModel(new javax.swing.table.DefaultTableModel(coursesArr, new String[] {
-                                                                     "Name", "code" ,
-                                                                    "Hours per Weak ","Description","Inserted By",
+                                                                     "Name", "code" ,"s per Description","Inserted By",
  "  Insertion Date", "Updated By", "Update Date"
             }
                                                                    ));

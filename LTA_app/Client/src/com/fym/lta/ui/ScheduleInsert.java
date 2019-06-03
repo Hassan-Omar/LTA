@@ -9,6 +9,7 @@ import com.fym.lta.common.LTAException;
 import com.fym.lta.dto.CourseDto;
 import com.fym.lta.dto.DepartmentDto;
 import com.fym.lta.dto.EmployeeDto;
+import com.fym.lta.dto.LocationTypeDto;
 import com.fym.lta.dto.SchedualDto;
 import com.fym.lta.dto.SlotDto;
 
@@ -330,7 +331,7 @@ public class ScheduleInsert extends javax.swing.JPanel
                                      ltae.printStackTrace();
                                 }
                                  instructors.add(instructor);
-                                  
+                               
                                 course.setInstructors(instructors);
                                 course.setCode(courseName.getCell(k + 1).toString());
                                 course.setName(courseName.getCell(k).toString());
@@ -338,8 +339,16 @@ public class ScheduleInsert extends javax.swing.JPanel
                                 course.setUpdatedBy(LoginEngine.currentUser);
                                 course.setInertion_Date(new Date(System.currentTimeMillis()));
                                 course.setUpdate_Date(new Date(System.currentTimeMillis()));
-                                //if(course.getCode()!="" && course.getName()!="");
-                                //CourseBao.saveCourse(course);
+                               
+                                DepartmentDto department_course = new DepartmentDto(); 
+                                department_course.setCode(schudel.getCodeDeparment());
+                                course.setDepartment(department_course);
+                               
+                                LocationTypeDto loc = new LocationTypeDto() ;
+                                loc.setCode(PrefSpace.getCell(k+1).toString());
+                                course.setNeededLocType(loc);
+                                if(course.getCode()!="" && course.getName()!="");
+                                CourseBao.saveCourse(course);
                                
                                
                                 SlotDto slot = new SlotDto();
