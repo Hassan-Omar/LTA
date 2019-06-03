@@ -229,7 +229,7 @@ public class Queries {
 
     public static final String LIST_ALL_SCHEDULE = "SELECT * FROM GRADE_SCHEDULE";
 
-    public static final String Search_SCHEDULE = "SELECT *  FROM GRADE_SCHEDULE WHERE LOWER(SCHEDULECODE) LIKE ?  ";
+    public static final String SCHEDULE_SEARCH = "SELECT *  FROM GRADE_SCHEDULE WHERE LOWER(SCHEDULECODE) LIKE ?  ";
 
     public static final String IS_EXIST_SCHEDULE = "SELECT SCHEDULECODE FROM GRADE_SCHEDULE WHERE SCHEDULECODE = ? ";
 

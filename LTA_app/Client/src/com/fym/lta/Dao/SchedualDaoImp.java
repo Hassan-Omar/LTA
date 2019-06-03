@@ -82,7 +82,7 @@ public class SchedualDaoImp implements SchedualDao {
             jdbcRs.setUrl(ConnectionFactory.getUrl());
             jdbcRs.setUsername(ConnectionFactory.getUsername());
             jdbcRs.setPassword(ConnectionFactory.getPassword());
-            jdbcRs.setCommand(Queries.Search_SCHEDULE);
+            jdbcRs.setCommand(Queries.SCHEDULE_SEARCH);
             jdbcRs.setString(1, '%' + code.toLowerCase().trim() + '%');
             jdbcRs.execute();
 
@@ -91,14 +91,15 @@ public class SchedualDaoImp implements SchedualDao {
                 if (Scheduals == null)
 
                     Scheduals = new ArrayList<>();
-                SchedualDto SerchForTable = new SchedualDto();
+                SchedualDto table = new SchedualDto();
+                table.setSCHEDULECODE(jdbcRs.getString(1));
+                table.setAcademicYear(jdbcRs.getString(2));
+                table.setStudent_number(jdbcRs.getInt(3));
+                // table.setId(jdbcRs.getInt(4)); // no id i don't need it
+                table.setCodeDeparment(jdbcRs.getString(5));
 
-                SerchForTable.setSCHEDULECODE(jdbcRs.getString(1));
-                SerchForTable.setAcademicYear(jdbcRs.getString(2));
-                SerchForTable.setCodeDeparment(jdbcRs.getString(3));
-
-
-                Scheduals.add(SerchForTable);
+                // also you need to add the data inserted by , ...... etc
+                Scheduals.add(table);
 
             }
         } catch (Exception e) {
