@@ -389,7 +389,6 @@ public class ScheduleInsert extends javax.swing.JPanel
         if (ScheduleCode.getText() != null) 
         {searchSchedual = schedualBao.SearchSchedual(ScheduleCode.getText());  }
      else {
-            // no input will return all users
             searchSchedual = schedualBao.listAll();
         }
 
@@ -413,14 +412,17 @@ public class ScheduleInsert extends javax.swing.JPanel
             // call business to delete
             // don't forget you need to update the users table and remove this record
             // and check the returned value to tell the user if the delete is done or not
-            if (schedualBao.deleteSchedual(selectedCode)) {
+            int msg=  JOptionPane.showConfirmDialog(this, "are you sure you need to delete ");
+                           if (msg == JOptionPane.OK_OPTION)
+                           {    if (schedualBao.deleteSchedual(selectedCode)) {
                 JOptionPane.showMessageDialog(this, "Deleted successfully"); // tell the user that we done it
                 // reset the table's content
+                
                 TableReset(schedualBao.listAll());
 
             } else {
                 JOptionPane.showMessageDialog(this, "Can not delete may be deleted using another user ");
-            }
+            }}
         }
 
         else { // this means that the user no selection on table

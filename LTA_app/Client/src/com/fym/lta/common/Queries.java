@@ -222,7 +222,6 @@ public class Queries {
 
     //________________________________ Schedule MODULE __________________________________
 
-
     public static final String INSER_NEW_SCHEDULE =
         "INSERT INTO grade_schedule (SCHEDULECODE , ACADEMIC_YEAR,DEPARTMENT_CODE ,STUDENTS_NUMBER) VALUES(?,?,?,?)";
 
@@ -237,26 +236,23 @@ public class Queries {
     public static final String UPDATE_SCHEDULE =
         "UPDATE GRADE_SCHEDULE SET  ACADEMIC_YEAR =? , DEPARTMENT_CODE =? ,STUDENTS_NUMBER = ?  WHERE  SCHEDULECODE =? ";
 
-
     public static final String LIST_SCHEDULE_INDEPART = "SELECT * FROM GRADE_SCHEDULE WHERE DEPARTMENT_CODE = ? ";
     //________________________________________________________________________________
 
 
-    //________________________________ Slot  MODULE __________________________________
+    //________________________________ SLOT  MODULE __________________________________
 
     public static final String INSER_NEW_SLOT =
         "INSERT INTO SLOT ( COURSE_CODE , STAFF_EMAIL ,STAFF_EMAIL2 , CODE ,TYPE ,PREFSPACE ,S_CODE) VALUES(?,?,?,?,?,?,?) ";
 
     public static final String UPDATE_SLOT =
-        "UPDATE SLOT SET LOCATION_ID=? , COURSE_CODE = ? , STAFF_EMAIL =? , STAFF_EMAIL2 =? , TYPE = ? CODE = ? , PREFSPACE=? WHERE S_CODE = ? ";
+        "UPDATE SLOT SET LOCATION_ID=? , COURSE_CODE = ? , STAFF_EMAIL =? , STAFF_EMAIL2 =? , TYPE = ? ,CODE = ? , PREFSPACE=? WHERE S_CODE = ? ";
 
     public static final String IS_SLOT_EXIST =
         "SELECT ID FROM SLOT WHERE CODE =? AND COURSE_CODE = ? AND STAFF_EMAIL =? AND STAFF_EMAIL2 = ? AND S_CODE = ? ";
 
 
-    public static final String DELETE_SLOT = "DELETE FROM SLOT WHER S_CODE = ?";
-
-
+    public static final String DELETE_SLOT = "DELETE FROM SLOT WHERE S_CODE = ?";
     //_________________________________________________________________________________
 
 
