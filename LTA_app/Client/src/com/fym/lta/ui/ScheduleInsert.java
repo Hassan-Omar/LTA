@@ -320,7 +320,7 @@ public class ScheduleInsert extends javax.swing.JPanel
                                 department.setCode(schudel.getCodeDeparment());
                                 instructor.setDepartment(department);
                                 
-                                if(instructor.getFullName()!="" &&instructor.getEmail()!="")
+                                if(instructor.getFullName()!="" &&instructor.getEmail()!=""&&instructor.getEmail()!=null)
                                 try {
                                     EmployeeBao.saveEmployee(instructor);
                                      } catch (LTAException ltae) {
@@ -343,7 +343,7 @@ public class ScheduleInsert extends javax.swing.JPanel
                                 LocationTypeDto loc = new LocationTypeDto() ;
                                 loc.setCode(PrefSpace.getCell(k+1).toString());
                                 course.setNeededLocType(loc);
-                                if(course.getCode()!="" && course.getName()!="");
+                                if(course.getCode()!="" && course.getName()!=""&&course.getCode()!=null);
                                 CourseBao.saveCourse(course);
                                
                                
@@ -352,6 +352,7 @@ public class ScheduleInsert extends javax.swing.JPanel
                                 slot.setCurrentCourse(course);
                                 slot.setPrefSpace(PrefSpace.getCell(k + 1).toString());
                                 slot.setType(Type.getCell(k + 1).toString());
+                                if(slot.getCurrentCourse().getCode()!=null)
                                 slots.add(slot);
                               
                             } // end of inner loop

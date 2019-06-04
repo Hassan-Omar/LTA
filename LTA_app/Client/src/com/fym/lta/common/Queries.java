@@ -5,8 +5,8 @@ public class Queries {
 
     //_____________________________ USER MODULE _______________________________________
     public static final String INSER_NEW_USER =
-        "INSERT INTO USERS (USERNAME,PASSWORD,ROLE_ID,INSERTION_DATE,UPDATE_DATE" +
-        ",INSERTED_BY,UPDATED_BY,EMAIL,EMP_ID) " + "VALUES (?,?,?,?,?,?,?,?,?)";
+        "INSERT INTO USERS (USERNAME,PASSWORD,ROLE_ID,INSERTION_DATE" +
+        ",INSERTED_BY,EMAIL,EMP_ID) " + "VALUES (?,?,?,?,?,?,?)";
 
     public static final String LIST_ALL_USER =
         "SELECT EMPLOYEE.FNAME , EMPLOYEE.SNAME , EMPLOYEE.TNAME , EMPLOYEE.FAMILY_NAME " +
@@ -37,7 +37,7 @@ public class Queries {
 
     //____________________________ ROLES MODULE _________________________________
     public static final String INSER_NEW_ROLE =
-        "INSERT INTO ROLE (CODE ,DESCRIPTION ,INSERTED_BY ,UPDATED_BY ,INSERTION_DATE ,UPDATE_DATE ) VALUES(?,?,?,?,?,?)";
+        "INSERT INTO ROLE (CODE ,DESCRIPTION ,INSERTED_BY  ,INSERTION_DATE  ) VALUES(?,?,?,?)";
 
     public static final String LIST_ALL_ROLES = "SELECT *  FROM ROLE";
 
@@ -108,8 +108,8 @@ public class Queries {
 
     //________________________________ BUILDING MODULE __________________________________
     public static final String INSER_NEW_BUILDING =
-        "INSERT INTO BUILDING (CODE,DESCRIPTION,INSERTION_DATE,UPDATE_DATE,INSERTED_BY,UPDATED_BY )" +
-        "VALUES (?,?,?,?,?,?)";
+        "INSERT INTO BUILDING (CODE,DESCRIPTION,INSERTION_DATE,INSERTED_BY )" +
+        "VALUES (?,?,?,?)";
 
     public static final String DELETE_BUILDING = "DELETE FROM BUILDING WHERE CODE = ? ";
 
@@ -125,8 +125,8 @@ public class Queries {
 
     //________________________________ FLOOR MODULE __________________________________
     public static final String INSER_NEW_FLOOR =
-        "INSERT INTO FLOOR (CODE,DESCRIPTON,INSERTION_DATE,UPDATE_DATE,INSERTED_BY,UPDATED_BY,ID_BUILDING)" +
-        "VALUES (?,?,?,?,?,?,?)";
+        "INSERT INTO FLOOR (CODE,DESCRIPTON,INSERTION_DATE,INSERTED_BY,ID_BUILDING)" +
+        "VALUES (?,?,?,?,?)";
 
     public static final String DELETE_FLOOR = "DELETE FROM FLOOR WHERE CODE = ? ";
 
@@ -146,8 +146,8 @@ public class Queries {
 
     //________________________________ LOCATION_TYPE MODULE __________________________________
     public static final String INSER_NEW_LOCATION_TYPE =
-        "INSERT INTO LOCATION_TYPE (CODE,DESCRIPTION,INSERTED_BY,UPDATED_BY,INSERTION_DATE,UPDATE_DATE)" +
-        "VALUES (?,?,?,?,?,?)";
+        "INSERT INTO LOCATION_TYPE (CODE,DESCRIPTION,INSERTED_BY,INSERTION_DATE)" +
+        "VALUES (?,?,?,?)";
 
     public static final String DELETE_LOCATION_TYPE = "DELETE FROM LOCATION_TYPE WHERE CODE = ? ";
 
@@ -296,8 +296,7 @@ public class Queries {
         "DELETE FROM DEPARTMENT_BUILDING WHERE CODE_DEPARTMENT = ? ";
 
     public static final String INSERT_NEW_DEPARTMENT =
-        "INSERT INTO DEPARTMENT (CODE,NAME,INSERTION_DATE,UPDATE_DATE" +
-        ",INSERTED_BY,UPDATED_BY) VALUES (?,?,?,?,?,?) ";
+        "INSERT INTO DEPARTMENT (CODE,NAME,INSERTION_DATE ,INSERTED_BY) VALUES (?,?,?,?) ";
     public static final String INSERT_BUILDING_TO_DEPARTMENT =
         "INSERT INTO DEPARTMENT_BUILDING (ID_BUILDING , CODE_DEPARTMENT) VALUES(?,?) ";
     public static final String UPDATE_DEPARTMENT =

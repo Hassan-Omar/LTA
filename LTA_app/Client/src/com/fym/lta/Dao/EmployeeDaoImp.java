@@ -101,8 +101,7 @@ public class EmployeeDaoImp implements EmployeeDao {
             jdbcRs.setString(3,Employee.getLName());
             jdbcRs.setString(4,Employee.getFamilyName());
            
-            if (Employee.getInsertedBy() != null)
-                 jdbcRs.setString(5, Employee.getInsertedBy());
+            jdbcRs.setString(5, Employee.getInsertedBy());
             
              // check if the update date is not setted we we will set it 
              if (Employee.getInertion_Date() != null)

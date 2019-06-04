@@ -75,29 +75,15 @@ public class RoleDaoImp implements RoleDao {
             jdbcRs.setString(2, role.getDescription());
 
 
-            // check if the person who inserte  is not setted we we will set it empty
-            if (role.getInsertedBy() != null)
-                jdbcRs.setString(3, role.getInsertedBy());
-            else
-                jdbcRs.setNull(3, Types.VARCHAR);
-
-            if (role.getUpdatedBy() != null)
-                jdbcRs.setString(4, role.getUpdatedBy());
-            else
-                jdbcRs.setNull(4, Types.VARCHAR);
-
+            jdbcRs.setString(3, role.getInsertedBy());
+            
             // check if the inserted date is not setted we we will set it
             if (role.getInertion_Date() != null)
-                jdbcRs.setDate(5, new java.sql.Date(role.getInertion_Date().getTime()));
+                jdbcRs.setDate(4, new java.sql.Date(role.getInertion_Date().getTime()));
             else
-                jdbcRs.setNull(5, java.sql.Types.DATE);
+                jdbcRs.setNull(4, java.sql.Types.DATE);
 
-            // check if the update date is not setted we we will set it
-            if (role.getUpdate_Date() != null)
-                jdbcRs.setDate(6, new java.sql.Date(role.getUpdate_Date().getTime()));
-            else
-                jdbcRs.setNull(6, java.sql.Types.DATE);
-
+            
 
             jdbcRs.execute();
             return true;
