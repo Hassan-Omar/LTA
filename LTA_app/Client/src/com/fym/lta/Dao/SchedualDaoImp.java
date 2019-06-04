@@ -26,8 +26,6 @@ public class SchedualDaoImp implements SchedualDao {
             jdbcRs.setCommand(Queries.LIST_ALL_SCHEDULE);
             jdbcRs.execute();
 
-            SchedualDto Schedual = null;
-
             while (jdbcRs.next()) {
                 if (scheduals == null)
 

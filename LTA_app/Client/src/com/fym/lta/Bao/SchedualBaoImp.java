@@ -17,7 +17,7 @@ import java.util.List;
 public class SchedualBaoImp implements SchedualBao {
 
     SchedualDao SchedualDao = new DaoFactory().createSchedualDao();
-    SlotBao slotBaoObj = new BaoFactory().createSlotBao();
+
 
     public boolean saveSchedual(SchedualDto schedual) {
 
