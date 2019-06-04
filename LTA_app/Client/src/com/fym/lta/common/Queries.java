@@ -236,7 +236,9 @@ public class Queries {
     public static final String UPDATE_SCHEDULE =
         "UPDATE GRADE_SCHEDULE SET  ACADEMIC_YEAR =? , DEPARTMENT_CODE =? ,STUDENTS_NUMBER = ?  WHERE  SCHEDULECODE =? ";
 
-    public static final String LIST_SCHEDULE_INDEPART = "SELECT * FROM GRADE_SCHEDULE WHERE DEPARTMENT_CODE = ? ";
+    public static final String LIST_SCHEDULE_INDEPART = "SELECT * FROM GRADE_SCHEDULE " + 
+    "WHERE GRADE_SCHEDULE.DEPARTMENT_CODE = ? ";
+    
     //________________________________________________________________________________
 
 
@@ -253,6 +255,8 @@ public class Queries {
 
 
     public static final String DELETE_SLOT = "DELETE FROM SLOT WHERE S_CODE = ?";
+    
+    public static final String LIST_SLOTS = "SELECT * FROM SLOT WHERE SLOT.S_CODE = ?" ;
     //_________________________________________________________________________________
 
 

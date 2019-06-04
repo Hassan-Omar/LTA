@@ -2,6 +2,7 @@ package com.fym.lta.dao;
 
 import com.fym.lta.common.ConnectionFactory;
 import com.fym.lta.common.Queries;
+import com.fym.lta.dto.LocationDto;
 import com.fym.lta.dto.SchedualDto;
 import com.fym.lta.dto.SlotDto;
 
@@ -262,6 +263,8 @@ public class SchedualDaoImp implements SchedualDao {
             jdbcRs.setUrl(ConnectionFactory.getUrl());
             jdbcRs.setUsername(ConnectionFactory.getUsername());
             jdbcRs.setPassword(ConnectionFactory.getPassword());
+            
+            jdbcRs.setAutoCommit(false);
             jdbcRs.setCommand(Queries.LIST_SCHEDULE_INDEPART);
             jdbcRs.setString(1, code);
             jdbcRs.execute();
@@ -270,16 +273,48 @@ public class SchedualDaoImp implements SchedualDao {
             while (jdbcRs.next()) {
                 if (scheduals == null)
 
-                    scheduals = new ArrayList<>();
+                scheduals = new ArrayList<>();
                 SchedualDto table = new SchedualDto();
+                table.setSCHEDULECODE(jdbcRs.getString(1));
+                table.setAcademicYear(jdbcRs.getString(2));
+                table.setStudent_number(jdbcRs.getInt(3));
+                // table.setId(jdbcRs.getInt(4)); // no id i don't need it
+                table.setCodeDeparment(jdbcRs.getString(5));
 
-
-                // not implmented
+                // also you need to add the data inserted by , ...... etc
 
 
                 scheduals.add(table);
 
             }
+            
+            for(int i=0 ;i<scheduals.size() ; i++)
+            {
+            
+            jdbcRs.setCommand(Queries.LIST_SLOTS);
+            jdbcRs.setString(1, scheduals.get(i).getSCHEDULECODE());
+            jdbcRs.execute();
+
+            List<SlotDto> slots = new ArrayList<>(); 
+            while (jdbcRs.next()) 
+            { 
+                SlotDto slot = new SlotDto() ;
+                
+                slot.setSlot_id(jdbcRs.getInt(1));
+                
+                LocationDto loc = new LocationDto() ;
+                loc.setLocation_id(jdbcRs.getInt(2));
+                slot.setCurrentLocation(loc);
+                
+                slot.setType(jdbcRs.getString(7));
+                slot.setPrefSpace(jdbcRs.getString(8));
+                
+                
+                slots.add(slot);
+            }
+                scheduals.get(i).setSchedual_Slots(slots);
+            }
+            
         } catch (Exception e) {
             e.printStackTrace();
         }

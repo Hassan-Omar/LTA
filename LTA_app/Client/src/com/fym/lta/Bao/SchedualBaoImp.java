@@ -16,23 +16,23 @@ import java.util.List;
 
 public class SchedualBaoImp implements SchedualBao {
 
-    SchedualDao SchedualDao = new DaoFactory().createSchedualDao();
+    SchedualDao schedualDao = new DaoFactory().createSchedualDao();
 
 
     public boolean saveSchedual(SchedualDto schedual) {
 
         boolean status = false;
 
-        if (SchedualDao.isExist(schedual.getSCHEDULECODE())) {
+        if (schedualDao.isExist(schedual.getSCHEDULECODE())) {
             try {
-                status = SchedualDao.update_Schedual(schedual);
+                status = schedualDao.update_Schedual(schedual);
 
             } catch (SQLException e) {
                 e.printStackTrace();
             }
         } else
             try {
-                status = SchedualDao.insert_Schedual(schedual);
+                status = schedualDao.insert_Schedual(schedual);
             } catch (SQLException e) {
                 e.printStackTrace();
 
@@ -46,34 +46,36 @@ public class SchedualBaoImp implements SchedualBao {
     public List<SchedualDto> SearchSchedual(String SCHEDULECODE) {
 
         if (SCHEDULECODE == null)
-            return SchedualDao.getAll_Scheduals();
+            return schedualDao.getAll_Scheduals();
 
-        return SchedualDao.SearchSchedual(SCHEDULECODE);
+        return schedualDao.SearchSchedual(SCHEDULECODE);
 
     }
 
     public boolean deleteSchedual(String SCHEDULECODE)
 
     {
-        return SchedualDao.delete_Schedual(SCHEDULECODE);
+        return schedualDao.delete_Schedual(SCHEDULECODE);
     }
 
 
     public List<SchedualDto> listAll() {
 
-        return SchedualDao.getAll_Scheduals();
+        return schedualDao.getAll_Scheduals();
 
     }
 
     @Override
-    public List<SchedualDto> listSchedual_inDeparts(String name) {
-        List<SchedualDto> tables = new ArrayList();
+    public List<SchedualDto> listSchedual_inDeparts(String code) {
+        /*  List<SchedualDto> tables = new ArrayList();
         for (int k = 1; k < 5; k++) {
             SchedualDto sch = new SchedualDto();
             sch = createSch(20 * k, 10 * k, k);
             tables.add(sch);
         }
-        return tables;
+        return tables; */
+
+        return schedualDao.listSchedual_inDeparts(code);
     }
 
     public SchedualDto createSch(int statrt, int sNum, int var) {
