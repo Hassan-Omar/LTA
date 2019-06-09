@@ -199,26 +199,27 @@ public class Queries {
 
     //________________________________ EQUIPMENT MODULE __________________________________
     public static final String INSER_NEW_Equipment =
-        "INSERT INTO Equipment (ID ,CODE , TYPE ,LIFE_SPAN ,USING_START_TIME ,inserted_by ,insertion_date,Location_id) VALUES(?,?,?,?,?,?,?,?)";
-
+        "INSERT INTO Equipment (CODE , TYPE ,LIFE_SPAN  ,INERTED_BY ,INSERTION_DATE ,Location_id) VALUES(?,?,?,?,?,?)";
+    
+    
     public static final String LIST_ALL_EQUIPMENTS =
         "SELECT equipment.id , equipment.code ,equipment.type, equipment.life_span, equipment.using_start_time ,location.code Location, equipment.INERTED_BY ,equipment.updated_by ,equipment.insertion_date, equipment.update_date " +
         "FROM Equipment , location  where equipment.location_id = location.l_id ";
 
 
-    public static final String DELETE_Equipment = "DELETE FROM Equipment WHERE ID  = ? ";
+    public static final String DELETE_Equipment = "DELETE FROM Equipment WHERE CODE  = ? ";
 
     public static final String IS_Equipment_EXIST = "SELECT ID FROM Equipment WHERE CODE = ?";
 
     public static final String UPDATE_Equipment =
-        "UPDATE Equipment SET   CODE =? , TYPE = ?, LIFE_SPAN = ? ,  updated_by = ? , update_date=? , location_id = ? WHERE ID =?";
+        "UPDATE Equipment SET   TYPE = ?, LIFE_SPAN = ? ,  updated_by = ? , update_date=? , location_id = ? WHERE CODE =?";
 
     public static final String Equipment_SEARCH =
-        "SELECT equipment.id , equipment.code ,equipment.type, location.code Location, equipment.life_span , equipment.using_start_time ,equipment.inserted_by ,equipment.updated_by ,equipment.insertion_date, equipment.update_date " +
+        "SELECT equipment.id , equipment.code ,equipment.type, location.code Location, equipment.life_span , equipment.using_start_time ,equipment.INERTED_BY ,equipment.updated_by ,equipment.INSERTION_DATE, equipment.update_date " +
         "FROM Equipment , location where equipment.location_id = location.l_id and LOWER(equipment.code) LIKE ?";
 
     //___________________________________________________________________________________
-
+    
 
     //________________________________ Schedule MODULE __________________________________
 
