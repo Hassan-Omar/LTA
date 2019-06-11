@@ -191,8 +191,14 @@ public class Queries {
         "from location , floor ,building ,location_type " +
         "where location.floor_id = floor.id and floor.id_building = building.b_id and location.type_id =location_type.t_id  and LOWER(location_type.code) LIKE ? and lower(building.code) like ? ";
 
-    public static final String AVAILABLE_ROOM =
-        "Select L_Id " + "From Location , Department " + "where Status = 'free' and Lower(Department.Name) Like ? ";
+    public static final String AVAILABLE_ROOM = "SELECT X.L_ID " + 
+    "FROM LOCATION X ,FLOOR Y , BUILDING Z , DEPARTMENT W , DEPARTMENT_BUILDING S " + 
+    "WHERE X.FLOOR_ID = Y.ID AND  Y.ID_BUILDING = Z.B_ID AND  W.CODE = S.CODE_DEPARTMENT AND Z.B_ID = S.ID_BUILDING AND W.CODE = ?";
+    
+    public static final String AVAILABLE_ROOM_SLOT ="SELECT SLOT_CODE , SLOT_ID FROM LOCATION_SLOT WHERE LOCATION_ID = ? ";
+    
+   public static final String  UPDATE_LOCATION_SLOT = 
+        "UPDATE LOCATION_SLOT SET  LOCATION_ID =? , SLOT_CODE =?  WHERE SLOT_ID  = ? " ;
 
     //___________________________________________________________________________________
 
@@ -249,7 +255,7 @@ public class Queries {
         "INSERT INTO SLOT ( COURSE_CODE , STAFF_EMAIL ,STAFF_EMAIL2 , CODE ,TYPE ,PREFSPACE ,S_CODE) VALUES(?,?,?,?,?,?,?) ";
 
     public static final String UPDATE_SLOT =
-        "UPDATE SLOT SET LOCATION_ID=? , COURSE_CODE = ? , STAFF_EMAIL =? , STAFF_EMAIL2 =? , TYPE = ? ,CODE = ? , PREFSPACE=? WHERE S_CODE = ? ";
+        "UPDATE SLOT SET COURSE_CODE = ? , STAFF_EMAIL =? , STAFF_EMAIL2 =? , TYPE = ? ,CODE = ? , PREFSPACE=? WHERE S_CODE = ? ";
 
     public static final String IS_SLOT_EXIST =
         "SELECT ID FROM SLOT WHERE CODE =? AND COURSE_CODE = ? AND STAFF_EMAIL =? AND STAFF_EMAIL2 = ? AND S_CODE = ? ";

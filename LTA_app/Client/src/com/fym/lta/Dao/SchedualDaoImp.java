@@ -2,7 +2,7 @@ package com.fym.lta.dao;
 
 import com.fym.lta.common.ConnectionFactory;
 import com.fym.lta.common.Queries;
-import com.fym.lta.dto.LocationDto;
+import com.fym.lta.dto.CourseDto;
 import com.fym.lta.dto.SchedualDto;
 import com.fym.lta.dto.SlotDto;
 
@@ -205,33 +205,27 @@ public class SchedualDaoImp implements SchedualDao {
                 SlotDto slot = slots.get(i);
                 jdbcR.setCommand(Queries.UPDATE_SLOT);
 
-                if (slot.getCurrentLocation() != null)
-                    jdbcR.setInt(1, slot.getCurrentLocation().getLocation_id());
-                else
-                    jdbcR.setNull(1, Types.INTEGER);
-
-
-                jdbcR.setString(2, slot.getCurrentCourse().getCode());
+                jdbcR.setString(1, slot.getCurrentCourse().getCode());
 
                 if (slot.getCurrentCourse().getInstructors() != null)
-                    jdbcR.setString(3, slot.getCurrentCourse().getInstructors().get(0).getEmail());
+                    jdbcR.setString(2, slot.getCurrentCourse().getInstructors().get(0).getEmail());
+                else
+                    jdbcR.setNull(2, Types.VARCHAR);
+
+
+                if (slot.getCurrentCourse().getInstructors().size() > 1)
+                    jdbcR.setString(3, slot.getCurrentCourse().getInstructors().get(1).getEmail());
                 else
                     jdbcR.setNull(3, Types.VARCHAR);
 
 
-                if (slot.getCurrentCourse().getInstructors().size() > 1)
-                    jdbcR.setString(4, slot.getCurrentCourse().getInstructors().get(1).getEmail());
-                else
-                    jdbcR.setNull(4, Types.VARCHAR);
+                jdbcR.setString(4, slot.getType());
+                jdbcR.setString(5, slot.getCode());
 
 
-                jdbcR.setString(5, slot.getType());
-                jdbcR.setString(6, slot.getCode());
+                jdbcR.setString(6, slot.getPrefSpace());
 
-
-                jdbcR.setString(7, slot.getPrefSpace());
-
-                jdbcR.setString(8, schedual.getSCHEDULECODE());
+                jdbcR.setString(7, schedual.getSCHEDULECODE());
 
 
                 jdbcR.execute();
@@ -301,11 +295,12 @@ public class SchedualDaoImp implements SchedualDao {
                 SlotDto slot = new SlotDto() ;
                 
                 slot.setSlot_id(jdbcRs.getInt(1));
+                CourseDto currentCourse = new CourseDto();
+                currentCourse.setCode(jdbcRs.getString(2));
+                slot.setCurrentCourse(currentCourse);
+                slot.setCode(code);
                 
-                LocationDto loc = new LocationDto() ;
-                loc.setLocation_id(jdbcRs.getInt(2));
-                slot.setCurrentLocation(loc);
-                
+                slot.setCode(jdbcRs.getString(6));
                 slot.setType(jdbcRs.getString(7));
                 slot.setPrefSpace(jdbcRs.getString(8));
                 

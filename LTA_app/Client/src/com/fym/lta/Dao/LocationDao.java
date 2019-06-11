@@ -1,9 +1,6 @@
 package com.fym.lta.dao;
 
-import com.fym.lta.dto.EquipmentDto;
 import com.fym.lta.dto.LocationDto;
-
-import com.fym.lta.dto.LocationTypeDto;
 
 import java.util.List;
 
@@ -38,4 +35,13 @@ public interface LocationDao {
     
    //this to return list of available Rooms at each department
     public List<LocationDto> getAvailableRoom(String depName);
+    
+    
+    public boolean updateLocationSlot(LocationDto loc) ;
+    
+    
+    
+    
+    
+    
 }

@@ -2,10 +2,8 @@ package com.fym.lta.bao;
 
 import com.fym.lta.dao.DaoFactory;
 import com.fym.lta.dao.LocationDao;
-import com.fym.lta.dto.EquipmentDto;
 import com.fym.lta.dto.LocationDto;
 
-import java.util.Collections;
 import java.util.List;
 
 public class LocationBaoImp implements LocationBao{
@@ -58,8 +56,13 @@ public class LocationBaoImp implements LocationBao{
 
     @Override
     public List<LocationDto> getAvailableLocations(String depName) {
-        // TODO Implement this method
-        return Collections.emptyList();
+        return daoLocation.getAvailableRoom(depName);
+    }
+
+    @Override
+    public boolean updateLocationSlot(LocationDto loc) {
+
+        return daoLocation.updateLocationSlot(loc);
     }
 }
 

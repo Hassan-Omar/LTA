@@ -1,6 +1,5 @@
 package com.fym.lta.bao;
 
-import com.fym.lta.dto.EquipmentDto;
 import com.fym.lta.dto.LocationDto;
 
 import java.util.List;
@@ -35,5 +34,9 @@ public interface LocationBao {
   
 
     public List<LocationDto> getAvailableLocations(String depName) ; 
+
+
+    public boolean updateLocationSlot(LocationDto loc ); 
+
 
 }

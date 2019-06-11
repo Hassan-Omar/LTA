@@ -25,7 +25,7 @@ public class AllocationAlgorthim {
 
     public String alloc_All() { // loops on all departments
         for (int i = 0; i < allDeparts.size(); i++) {
-            List<SchedualDto> schedualIn_Depart = schedualBaoObj.listSchedual_inDeparts(allDeparts.get(i).getName());
+            List<SchedualDto> schedualIn_Depart = schedualBaoObj.listSchedual_inDeparts(allDeparts.get(i).getCode());
             // loops on the department's schedual
             for (int k = 0; k < schedualIn_Depart.size(); k++) { // calling allocate_Table method to allocate  table no k
                 saveStatus2 = allocate_Table(schedualIn_Depart.get(k), allDeparts.get(i).getName());
@@ -56,37 +56,58 @@ public class AllocationAlgorthim {
 
         for (int i = 0; i < currentSlots.size(); i++) { // this to hold the value of needed space type
             String prefSpace = currentSlots.get(i).getPrefSpace();
-
+            String sCode =   currentSlots.get(i).getCode();
+  
             for (int k = 0; k < availableRooms.size();
                  k++) { // check if the prefSpace is proper and the capacity is proper
                 if (prefSpace.equals(availableRooms.get(k).getType().getDescription()) &&
                     (availableRooms.get(k).getCapacity() >= studentNum))
+                       
+                {
+               
+               if(testLocStatus(availableRooms.get(k),sCode))    
+                
                 // allocate this space
                 { // allocate this locatoion
-                    LocationDto currentLoc = availableRooms.get(k);
-                    currentSlots.get(i).setCurrentLocation(currentLoc);
+                        LocationDto currentLoc = availableRooms.get(k);
+                        SlotDto slot = new SlotDto();
+                        slot.setCode(sCode);
 
-                    // update this location's status to busy
-                    currentLoc.setStatus("busy");
-                    locationBaoObj.updateLocation(currentLoc);
+                        List<SlotDto> slots = availableRooms.get(k).getAssignedSlots();
+                        slots.add(slot);
+                        currentLoc.setAssignedSlots(slots);
+                        // update this location's status to busy
+                       saveStatus = locationBaoObj.updateLocationSlot(currentLoc);
 
-                    // remove this reserved location from list
-                    availableRooms.remove(k);
+                        // remove this reserved location from list
+                        availableRooms.remove(k);
 
-                }
+                    }
 
+                 }
 
             }
 
             // update the table content
-            currentSchedual.setSchedual_Slots(currentSlots);
+           // currentSchedual.setSchedual_Slots(currentSlots);
             //  save the table "actually will update slot.location_id in db "
-            saveStatus = schedualBaoObj.saveSchedual(currentSchedual);
+            //saveStatus = schedualBaoObj.saveSchedual(currentSchedual);
         }
 
 
         return saveStatus;
     }
 
+    public boolean testLocStatus (LocationDto loc ,String sCode) {
 
+     boolean status =false ;
+     for(int i=0 ; i<loc.getAssignedSlots().size() ; i++)
+     {
+     if(sCode.equals(loc.getAssignedSlots().get(i)))  
+        status = true ; 
+     }
+
+     return status ; 
+
+    } 
 }

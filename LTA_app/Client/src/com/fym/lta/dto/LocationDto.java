@@ -8,12 +8,20 @@ public class LocationDto {
 
     private int Location_id, capacity ;
     private FloorDto floor ;
+    private List<SlotDto> assignedSlots ;
 
-   
+    public void setAssignedSlots(List<SlotDto> assignedSlots) {
+        this.assignedSlots = assignedSlots;
+    }
+
+    public List<SlotDto> getAssignedSlots() {
+        return assignedSlots;
+    }
 
     public LocationDto(String code) {
         super();
-        this.code = code;
+        this.
+            code = code;
     }
 
     

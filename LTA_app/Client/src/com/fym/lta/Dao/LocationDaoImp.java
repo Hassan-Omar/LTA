@@ -3,22 +3,20 @@ package com.fym.lta.dao;
 import com.fym.lta.common.ConnectionFactory;
 import com.fym.lta.common.Queries;
 import com.fym.lta.dto.BuildingDto;
-import com.fym.lta.dto.EquipmentDto;
 import com.fym.lta.dto.FloorDto;
 import com.fym.lta.dto.LocationDto;
 import com.fym.lta.dto.LocationTypeDto;
+import com.fym.lta.dto.SlotDto;
 
+import java.sql.SQLException;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 
 import javax.sql.rowset.JdbcRowSet;
 import javax.sql.rowset.RowSetProvider;
 
 import javax.swing.JOptionPane;
-
-import javax.xml.stream.Location;
 
 public class LocationDaoImp implements LocationDao {
     
@@ -251,16 +249,38 @@ public class LocationDaoImp implements LocationDao {
         jdbcRs.setUrl(ConnectionFactory.getUrl());
         jdbcRs.setUsername(ConnectionFactory.getUsername());
         jdbcRs.setPassword(ConnectionFactory.getPassword());
+        jdbcRs.setAutoCommit(false);
         jdbcRs.setCommand(Queries.AVAILABLE_ROOM);
         jdbcRs.setString(1, depName);          
         jdbcRs.execute();
-          while (jdbcRs.next()) {
+        while (jdbcRs.next()) {
             if (Availablelocat == null)
                 Availablelocat = new ArrayList<>();
         LocationDto location = new LocationDto();
         location.setLocation_id(jdbcRs.getInt(1));           
         Availablelocat.add(location); 
         }
+             for(int i=0 ; i<Availablelocat.size() ; i++)
+             {        
+        jdbcRs.setUrl(ConnectionFactory.getUrl());
+        jdbcRs.setUsername(ConnectionFactory.getUsername());
+        jdbcRs.setPassword(ConnectionFactory.getPassword());
+        jdbcRs.setAutoCommit(false);
+        jdbcRs.setCommand(Queries.AVAILABLE_ROOM_SLOT);
+        List<SlotDto> slots = null ; 
+        jdbcRs.setInt(1, Availablelocat.get(i).getLocation_id());
+                     while (jdbcRs.next()) 
+                     {
+                         slots = new ArrayList<>();
+                         SlotDto slot = new SlotDto () ; 
+                         slot.setCode(jdbcRs.getString(1));
+                         slot.setSlot_id(jdbcRs.getInt(2));
+                         slots.add(slot);
+                     }
+                     Availablelocat.get(i).setAssignedSlots(slots);
+                 
+                 }
+             
               }
         
         catch(Exception e){
@@ -269,5 +289,30 @@ public class LocationDaoImp implements LocationDao {
         
         return Availablelocat;
         }
+
+    @Override
+    public boolean updateLocationSlot(LocationDto loc) {
+       
+        try(JdbcRowSet jdbcRs = RowSetProvider.newFactory().createJdbcRowSet();) {
+        jdbcRs.setUrl(ConnectionFactory.getUrl());
+        jdbcRs.setUsername(ConnectionFactory.getUsername());
+        jdbcRs.setPassword(ConnectionFactory.getPassword());
+        jdbcRs.setAutoCommit(false);
+        List<SlotDto> slots  = loc.getAssignedSlots() ; 
+        for(int i=0 ; i<slots.size() ; i++) {
+            jdbcRs.setCommand(Queries.UPDATE_LOCATION_SLOT);
+            jdbcRs.setInt(1, loc.getLocation_id());    
+            jdbcRs.setString(2,loc.getAssignedSlots().get(i).getCode()) ; 
+            jdbcRs.setInt(3, loc.getAssignedSlots().get(i).getSlot_id());    
+            jdbcRs.execute();
+        }
+            jdbcRs.commit();
+            
+        }  catch (SQLException e) {
+        }
+
+
+        return false;
     }
+}
 
