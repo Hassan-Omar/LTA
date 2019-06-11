@@ -268,16 +268,16 @@ public class LocationDaoImp implements LocationDao {
         jdbcRs.setCommand(Queries.AVAILABLE_ROOM_SLOT);
         List<SlotDto> slots = null ; 
         jdbcRs.setInt(1, Availablelocat.get(i).getLocation_id());
-
-        
-        while (jdbcRs.next()) 
-         {
-            slots = new ArrayList<>();
-            SlotDto slot = new SlotDto () ; 
-            slot.setCode(jdbcRs.getString(1));
-            slot.setSlot_id(jdbcRs.getInt(2));
-            slots.add(slot);
-         } 
+ 
+         while (jdbcRs.next()) {
+                        slots = new ArrayList<>();
+                        SlotDto slot = new SlotDto();
+                        slot.setCode(jdbcRs.getString(1));
+                        slot.setSlot_id(jdbcRs.getInt(2));
+                        slots.add(slot);
+                    }
+              
+              
           Availablelocat.get(i).setAssignedSlots(slots);
                  
                  }
