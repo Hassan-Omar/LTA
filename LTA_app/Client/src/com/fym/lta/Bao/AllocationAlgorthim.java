@@ -5,6 +5,7 @@ import com.fym.lta.dto.LocationDto;
 import com.fym.lta.dto.SchedualDto;
 import com.fym.lta.dto.SlotDto;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class AllocationAlgorthim {
@@ -57,29 +58,35 @@ public class AllocationAlgorthim {
         for (int i = 0; i < currentSlots.size(); i++) { // this to hold the value of needed space type
             String prefSpace = currentSlots.get(i).getPrefSpace();
             String sCode =   currentSlots.get(i).getCode();
-            System.out.println( studentNum+  "           " +availableRooms.get(0).getType().getDescription()+"     " +i +"   " );
-
-            for (int k = 0; k < availableRooms.size();
+           
+           for (int k = 0; k < availableRooms.size();
                  k++) { // check if the prefSpace is proper and the capacity is proper
                 if (prefSpace.equals(availableRooms.get(k).getType().getDescription()) &&
                     (availableRooms.get(k).getCapacity() >= studentNum))
                        
                 {
 
-               if(testLocStatus(availableRooms.get(k),sCode))    
+               if(!testLocStatus(availableRooms.get(k),sCode))    
                 
                 // allocate this space
                 { // allocate this locatoion
                         LocationDto currentLoc = availableRooms.get(k);
                         SlotDto slot = new SlotDto();
                         slot.setCode(sCode);
-                        List<SlotDto> slots = availableRooms.get(k).getAssignedSlots();
+                        List<SlotDto> slots = null;
+                       
+                      
+                        if(availableRooms.get(k).getAssignedSlots()!=null)
+                         slots = availableRooms.get(k).getAssignedSlots();
+                        else slots = new ArrayList() ; 
+                       
+                      
                         slots.add(slot);
                         currentLoc.setAssignedSlots(slots);
                         // update this location's status to busy
                        saveStatus = locationBaoObj.updateLocationSlot(currentLoc);
 
-                        // remove this reserved location from list
+                         // remove this reserved location from list
                         availableRooms.remove(k);
 
                     }
@@ -88,10 +95,7 @@ public class AllocationAlgorthim {
 
             }
 
-            // update the table content
-           // currentSchedual.setSchedual_Slots(currentSlots);
-            //  save the table "actually will update slot.location_id in db "
-            //saveStatus = schedualBaoObj.saveSchedual(currentSchedual);
+           
         }
 
 
@@ -101,11 +105,14 @@ public class AllocationAlgorthim {
     public boolean testLocStatus (LocationDto loc ,String sCode) {
 
      boolean status =false ;
-     for(int i=0 ; i<loc.getAssignedSlots().size() ; i++)
-     {
-     if(sCode.equals(loc.getAssignedSlots().get(i)))  
-        status = true ; 
-     }
+     if(loc.getAssignedSlots()==null)
+         return false ; 
+    else {
+            for (int i = 0; i < loc.getAssignedSlots().size(); i++) {
+                if (sCode.equals(loc.getAssignedSlots().get(i)))
+                    status = true;
+            }
+        }
 
      return status ; 
 
