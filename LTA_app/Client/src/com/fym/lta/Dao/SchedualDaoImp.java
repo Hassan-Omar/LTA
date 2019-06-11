@@ -2,7 +2,6 @@ package com.fym.lta.dao;
 
 import com.fym.lta.common.ConnectionFactory;
 import com.fym.lta.common.Queries;
-import com.fym.lta.dto.CourseDto;
 import com.fym.lta.dto.SchedualDto;
 import com.fym.lta.dto.SlotDto;
 
@@ -295,14 +294,11 @@ public class SchedualDaoImp implements SchedualDao {
                 SlotDto slot = new SlotDto() ;
                 
                 slot.setSlot_id(jdbcRs.getInt(1));
-                CourseDto currentCourse = new CourseDto();
-                currentCourse.setCode(jdbcRs.getString(2));
-                slot.setCurrentCourse(currentCourse);
-                slot.setCode(code);
+               
                 
-                slot.setCode(jdbcRs.getString(6));
-                slot.setType(jdbcRs.getString(7));
-                slot.setPrefSpace(jdbcRs.getString(8));
+                slot.setCode(jdbcRs.getString(5));
+                slot.setType(jdbcRs.getString(6));
+                slot.setPrefSpace(jdbcRs.getString(7));
                 
                 
                 slots.add(slot);

@@ -165,21 +165,21 @@ public class Queries {
     //________________________________ LOCATION MODULE __________________________________
 
     public static final String INSER_NEW_LOCATION =
-        "INSERT INTO LOCATION (CODE , DESCRIPTION,CAPACITY,STATUS,FLOOR_ID, TYPE_ID ,INSERTED_BY,INSERTION_DATE) VALUES(?,?,?,?,?,?,?,?)";
+        "INSERT INTO LOCATION (CODE , DESCRIPTION,CAPACITY,FLOOR_ID, TYPE_ID ,INSERTED_BY,INSERTION_DATE) VALUES(?,?,?,?,?,?,?)";
 
     public static final String INSER_NEW_OCCUPATION_PURPOSE = "INSERT INTO LOCATION (OCCUPATION_PURPOSE) VALUES(?)";
 
-    public static final String LIST_ALL_LOCATION =
-        "select location.l_id,location.code ,location.description ,location.capacity,location.status,building.code building_code , floor.code floor_code  ,location_type.code type_code ,location.inserted_by,location.insertion_date,location.updated_by,location.update_date " +
-        "from location , floor ,building ,location_type " +
-        "where location.floor_id = floor.id and floor.id_building = building.b_id and location.type_id =location_type.t_id";
+    public static final String LIST_ALL_LOCATION = 
+    "select location.l_id,location.code ,location.description ,location.capacity , location_type.DESCRIPTION,building.code building_code , floor.code floor_code  ,location_type.code type_code ,location.inserted_by,location.insertion_date,location.updated_by,location.update_date \n" + 
+    "from location , floor ,building ,location_type " + 
+    "where location.floor_id = floor.id and floor.id_building = building.b_id and location.type_id =location_type.t_id " ;
 
-    public static final String DELETE_LOCATION = "DELETE FROM LOCATION WHERE L_ID  = ? ";
+    public static final String DELETE_LOCATION = "DELETE FROM LOCATION WHERE CODE  = ? ";
 
     public static final String IS_LOCATION_EXIST = "SELECT L_ID FROM LOCATION WHERE CODE = ?";
 
     public static final String UPDATE_LOCATION =
-        "UPDATE LOCATION SET   CODE =? , DESCRIPTION = ?, CAPACITY = ? ,STATUS = ? ,FLOOR_ID = ? ,TYPE_ID = ?,UPDATED_BY = ? , UPDATE_DATE =?   WHERE L_ID =?";
+        "UPDATE LOCATION SET  DESCRIPTION = ?, CAPACITY = ? ,FLOOR_ID = ? ,TYPE_ID = ?,UPDATED_BY = ? , UPDATE_DATE =?   WHERE CODE =? ";
 
     public static final String LOCATION_SEARCH =
         "select location.l_id,location.code ,location.description ,location.capacity,location.status,building.code building_code , floor.code floor_code  ,location_type.code  type_code ,location.inserted_by,location.insertion_date,location.updated_by,location.update_date " +
@@ -191,9 +191,10 @@ public class Queries {
         "from location , floor ,building ,location_type " +
         "where location.floor_id = floor.id and floor.id_building = building.b_id and location.type_id =location_type.t_id  and LOWER(location_type.code) LIKE ? and lower(building.code) like ? ";
 
-    public static final String AVAILABLE_ROOM = "SELECT X.L_ID " + 
-    "FROM LOCATION X ,FLOOR Y , BUILDING Z , DEPARTMENT W , DEPARTMENT_BUILDING S " + 
-    "WHERE X.FLOOR_ID = Y.ID AND  Y.ID_BUILDING = Z.B_ID AND  W.CODE = S.CODE_DEPARTMENT AND Z.B_ID = S.ID_BUILDING AND W.CODE = ?";
+    public static final String AVAILABLE_ROOM ="SELECT X.L_ID ,X.CAPACITY , O.DESCRIPTION " +
+        "FROM LOCATION X ,FLOOR Y , BUILDING Z , DEPARTMENT W , DEPARTMENT_BUILDING S , LOCATION_TYPE O " +
+        "WHERE X.FLOOR_ID = Y.ID AND  Y.ID_BUILDING = Z.B_ID AND  W.CODE = S.CODE_DEPARTMENT " +
+        "AND Z.B_ID = S.ID_BUILDING AND O.T_ID = X.TYPE_ID  AND W.CODE = ? ";
     
     public static final String AVAILABLE_ROOM_SLOT ="SELECT SLOT_CODE , SLOT_ID FROM LOCATION_SLOT WHERE LOCATION_ID = ? ";
     

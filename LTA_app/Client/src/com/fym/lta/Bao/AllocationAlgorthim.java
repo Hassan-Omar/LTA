@@ -31,7 +31,7 @@ public class AllocationAlgorthim {
                 saveStatus2 = allocate_Table(schedualIn_Depart.get(k), allDeparts.get(i).getCode()) ;
 
                 if (!saveStatus2)
-                    report += " table no " + k + " dep name " + allDeparts.get(i).getName();
+                    report += " table no " + k + " dep name " + allDeparts.get(i).getCode();
 
             }
         }
@@ -41,14 +41,14 @@ public class AllocationAlgorthim {
 
 
     // method to  connect location  and alloce for a certian time
-    public boolean allocate_Table(SchedualDto currentSchedual, String depName) {
+    public boolean allocate_Table(SchedualDto currentSchedual, String depCode) {
 
         // get the number of student
         int studentNum = currentSchedual.getStudent_number();
 
         // first we need a list of avaialable rooms
-        List<LocationDto> availableRooms = locationBaoObj.getAvailableLocations(depName);
-
+        List<LocationDto> availableRooms = locationBaoObj.getAvailableLocations(depCode);
+        System.out.println(depCode);
         // get the list of slots form this table
         List<SlotDto> currentSlots = currentSchedual.getSchedual_Slots();
 
@@ -57,14 +57,15 @@ public class AllocationAlgorthim {
         for (int i = 0; i < currentSlots.size(); i++) { // this to hold the value of needed space type
             String prefSpace = currentSlots.get(i).getPrefSpace();
             String sCode =   currentSlots.get(i).getCode();
-  
+            System.out.println( studentNum+  "           " +availableRooms.get(0).getType().getDescription()+"     " +i +"   " );
+
             for (int k = 0; k < availableRooms.size();
                  k++) { // check if the prefSpace is proper and the capacity is proper
                 if (prefSpace.equals(availableRooms.get(k).getType().getDescription()) &&
                     (availableRooms.get(k).getCapacity() >= studentNum))
                        
                 {
-               
+
                if(testLocStatus(availableRooms.get(k),sCode))    
                 
                 // allocate this space
@@ -72,7 +73,6 @@ public class AllocationAlgorthim {
                         LocationDto currentLoc = availableRooms.get(k);
                         SlotDto slot = new SlotDto();
                         slot.setCode(sCode);
-
                         List<SlotDto> slots = availableRooms.get(k).getAssignedSlots();
                         slots.add(slot);
                         currentLoc.setAssignedSlots(slots);

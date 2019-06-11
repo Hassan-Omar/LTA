@@ -10,6 +10,27 @@ public class LocationDto {
     private FloorDto floor ;
     private List<SlotDto> assignedSlots ;
 
+    private String code, description  ,insertedBy, updatedBy;;
+    private LocationTypeDto type;
+    private List<EquipmentDto> Location_equipments;
+    private String occupation_purpose ; 
+    private Date inertion_Date, update_Date;
+
+    public LocationDto(int Location_id, int capacity, String code,
+                       String description,  LocationTypeDto type,
+                       List<EquipmentDto> Location_equipments) {
+        super();
+        this.Location_id = Location_id;
+        this.capacity = capacity;
+        this.code = code;
+        this.description = description;
+        this.type = type;
+        this.Location_equipments = Location_equipments;
+    }
+
+
+
+
     public void setAssignedSlots(List<SlotDto> assignedSlots) {
         this.assignedSlots = assignedSlots;
     }
@@ -42,33 +63,7 @@ public class LocationDto {
         return floor;
     }
 
-    public void setStatus(String status) {
-        this.status = status;
-    }
-
-    public String getStatus() {
-        return status;
-    }
-
-
-    private String code, description , status ,insertedBy, updatedBy;;
-    private LocationTypeDto type;
-    private List<EquipmentDto> Location_equipments;
-    private String occupation_purpose ; 
-    private Date inertion_Date, update_Date;
-
-    public LocationDto(int Location_id, int capacity, String code,
-                       String description,  LocationTypeDto type,
-                       List<EquipmentDto> Location_equipments) {
-        super();
-        this.Location_id = Location_id;
-        this.capacity = capacity;
-        this.code = code;
-        this.description = description;
-        this.type = type;
-        this.Location_equipments = Location_equipments;
-    }
-
+    
     public void setInsertedBy(String insertedBy) {
         this.insertedBy = insertedBy;
     }

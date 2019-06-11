@@ -40,24 +40,24 @@ public class ManualAssignment extends javax.swing.JPanel {
     
     // To Set the retrieved data from database into the locationTable// 
     private void setTableModel(List<LocationDto> location  ){
-        Object [][] locationArr = new Object [location.size()][12];
+        Object [][] locationArr = new Object [location.size()][11];
         for(int i =0;i<location.size();i++){
             locationArr[i][0] = location.get(i).getLocation_id();
             locationArr[i][1] = location.get(i).getCode();
             locationArr[i][2] = location.get(i).getDescription();
             locationArr[i][3] = location.get(i).getCapacity();
-            locationArr[i][4] = location.get(i).getStatus();
-            locationArr[i][5] = location.get(i).getFloor().getBuilding().getCode();
-            locationArr[i][6] = location.get(i).getFloor().getCode();
-            locationArr[i][7] = location.get(i).getType().getCode();
-            locationArr[i][8] = location.get(i).getInsertedBy();
-            locationArr[i][9] = location.get(i).getInertion_Date();
-            locationArr[i][10] = location.get(i).getUpdatedBy();
-            locationArr[i][11] = location.get(i).getUpdate_Date();  }    
+            //locationArr[i][4] = location.get(i).getStatus();
+            locationArr[i][4] = location.get(i).getFloor().getBuilding().getCode();
+            locationArr[i][5] = location.get(i).getFloor().getCode();
+            locationArr[i][6] = location.get(i).getType().getCode();
+            locationArr[i][7] = location.get(i).getInsertedBy();
+            locationArr[i][8] = location.get(i).getInertion_Date();
+            locationArr[i][9] = location.get(i).getUpdatedBy();
+            locationArr[i][10] = location.get(i).getUpdate_Date();  }    
         
         LocationTable.setModel(new javax.swing.table.DefaultTableModel(locationArr,
             new String [] {
-                "Location Id", "Location Code" , "Description", "capacity" ,"Location Status","Building", "Floor","Location Type" , "Inserted By","Insertion Date","Updated By","Update Date"
+                "Location Id", "Location Code" , "Description", "capacity" ,"Building", "Floor","Location Type" , "Inserted By","Insertion Date","Updated By","Update Date"
             }
         ));   }
 

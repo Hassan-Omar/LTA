@@ -69,24 +69,24 @@ public class LocationMasterScreen extends javax.swing.JPanel {
       
     // To Set the retrieved data from database into the locationTable//  
     private void setTableModel(List<LocationDto> location  ){
-        Object [][] locationArr = new Object [location.size()][11];
+        Object [][] locationArr = new Object [location.size()][10];
         for(int i =0;i<location.size();i++){
           //  locationArr[i][0] = location.get(i).getLocation_id();
             locationArr[i][0] = location.get(i).getCode();
             locationArr[i][1] = location.get(i).getDescription();
             locationArr[i][2] = location.get(i).getCapacity();
-            locationArr[i][3] = location.get(i).getStatus();
-            locationArr[i][4] = location.get(i).getFloor().getBuilding().getCode();
-            locationArr[i][5] = location.get(i).getFloor().getCode();
-            locationArr[i][6] = location.get(i).getType().getCode();
-            locationArr[i][7] = location.get(i).getInsertedBy();
-            locationArr[i][8] = location.get(i).getInertion_Date();
-            locationArr[i][9] = location.get(i).getUpdatedBy();
-            locationArr[i][10] = location.get(i).getUpdate_Date();  }    
+           
+            locationArr[i][3] = location.get(i).getFloor().getBuilding().getCode();
+            locationArr[i][4] = location.get(i).getFloor().getCode();
+            locationArr[i][5] = location.get(i).getType().getCode();
+            locationArr[i][6] = location.get(i).getInsertedBy();
+            locationArr[i][7] = location.get(i).getInertion_Date();
+            locationArr[i][8] = location.get(i).getUpdatedBy();
+            locationArr[i][9] = location.get(i).getUpdate_Date();  }    
         
         LocationTable.setModel(new javax.swing.table.DefaultTableModel(locationArr,
             new String [] {
-             "Location Code" , "Description", "capacity" ,"Location Status","Building", "Floor","Location Type" , "Inserted By","Insertion Date","Updated By","Update Date"
+             "Location Code" , "Description", "capacity" ,"Building", "Floor","Location Type" , "Inserted By","Insertion Date","Updated By","Update Date"
             }
         ));   }  
     
@@ -383,9 +383,9 @@ public class LocationMasterScreen extends javax.swing.JPanel {
     if (LocationTable.getSelectedRow() >= 0) {
           try{ 
                define_location.setVisible(false);
-               int LocationIndex = Integer.parseInt(LocationTable.getValueAt(LocationTable.getSelectedRow(), 0).toString());
+              String LocationIndex = LocationTable.getValueAt(LocationTable.getSelectedRow(), 0).toString();
                LocationDto selected_Location = new LocationDto(); // selected Location, To delete.
-               selected_Location.setLocation_id(LocationIndex); 
+               selected_Location.setCode(LocationIndex); 
                if (Locationbusiness.deleteLocation(selected_Location)) {  //if returned true, location will be deleted
                       JOptionPane.showMessageDialog(this, "Location is Deleted Successfully");
                       setTableModel(Locationbusiness.ListAll()); 
@@ -407,12 +407,13 @@ public class LocationMasterScreen extends javax.swing.JPanel {
          // No need to update Id, so we hide it//
             
            try{
-             code.setText(LocationTable.getValueAt(LocationTable.getSelectedRow(), 1).toString());
-             desc.setText(LocationTable.getValueAt(LocationTable.getSelectedRow(), 2).toString());
-             capacity.setText(LocationTable.getValueAt(LocationTable.getSelectedRow(), 3).toString());
+             code.setText(LocationTable.getValueAt(LocationTable.getSelectedRow(), 0).toString());
+             desc.setText(LocationTable.getValueAt(LocationTable.getSelectedRow(), 1).toString());
+             capacity.setText(LocationTable.getValueAt(LocationTable.getSelectedRow(), 2).toString());
              define_location.setVisible(true);
                // flag , if it equals 1 we update, if zero we insert  
              Location_idUpdate = 1; 
+               code.setEnabled(false);
            }catch(Exception e){
                e.printStackTrace();
       }
@@ -433,8 +434,7 @@ public class LocationMasterScreen extends javax.swing.JPanel {
             LocationObject.setCode(code.getText());
             LocationObject.setCapacity(Integer.parseInt(capacity.getText()));
             LocationObject.setDescription(desc.getText());
-            LocationObject.setStatus("Not assigned");
-         
+          
           //  LocationObject.setLocation_equipments(EquipmentList.getSelectedValuesList());
            
            
@@ -455,7 +455,7 @@ public class LocationMasterScreen extends javax.swing.JPanel {
                 if(Locationbusiness.updateLocation(LocationObject)) {//&&Equipmentbuisness.saveEquipment(SelectedEquipments, LocationObject)
                     JOptionPane.showMessageDialog(this, "Location Updated Successfully");
                     setTableModel(Locationbusiness.ListAll());
-                    LocationTable.repaint();  }
+                      }
                 else
                 JOptionPane.showMessageDialog(this, "Error occured in update");}
             
@@ -466,7 +466,7 @@ public class LocationMasterScreen extends javax.swing.JPanel {
                 if( Locationbusiness.insertLocation(LocationObject)){
                 JOptionPane.showMessageDialog(this, "Location Saved Successfully");
                 setTableModel(Locationbusiness.ListAll());
-                LocationTable.repaint();
+                code.setEnabled(true);
             }else
             JOptionPane.showMessageDialog(this, "Error occured in insertion");
         }
