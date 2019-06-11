@@ -165,7 +165,7 @@ public class Queries {
     //________________________________ LOCATION MODULE __________________________________
 
     public static final String INSER_NEW_LOCATION =
-        "INSERT INTO LOCATION (L_ID ,CODE , DESCRIPTION,CAPACITY,STATUS,FLOOR_ID, TYPE_ID ,INSERTED_BY,INSERTION_DATE) VALUES(?,?,?,?,?,?,?,?,?)";
+        "INSERT INTO LOCATION (CODE , DESCRIPTION,CAPACITY,STATUS,FLOOR_ID, TYPE_ID ,INSERTED_BY,INSERTION_DATE) VALUES(?,?,?,?,?,?,?,?)";
 
     public static final String INSER_NEW_OCCUPATION_PURPOSE = "INSERT INTO LOCATION (OCCUPATION_PURPOSE) VALUES(?)";
 

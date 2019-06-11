@@ -16,8 +16,6 @@ import java.util.List;
 import javax.sql.rowset.JdbcRowSet;
 import javax.sql.rowset.RowSetProvider;
 
-import javax.swing.JOptionPane;
-
 public class LocationDaoImp implements LocationDao {
     
     /*this function is to list all locations on the specific building , floor
@@ -83,22 +81,22 @@ public class LocationDaoImp implements LocationDao {
                     jdbc.setUsername(ConnectionFactory.getUsername());
                     jdbc.setPassword(ConnectionFactory.getPassword());
                     jdbc.setCommand(Queries.INSER_NEW_LOCATION);
-                    jdbc.setInt(1, Location.getLocation_id());
-                    jdbc.setString(2, Location.getCode());
-                    jdbc.setString(3, Location.getDescription());
-                    jdbc.setInt(4, Location.getCapacity());
-                    jdbc.setString(5, Location.getStatus());
-                    jdbc.setInt(6, Location.getFloor().getFloor_id());
-                    jdbc.setInt(7, Location.getType().getLocationType_id());
-                    jdbc.setString(8, Location.getInsertedBy());
-                    jdbc.setDate(9, new java.sql.Date(Location.getInertion_Date().getTime()));
+
+                    jdbc.setString(1, Location.getCode());
+                    jdbc.setString(2, Location.getDescription());
+                    jdbc.setInt(3, Location.getCapacity());
+                    jdbc.setString(4, Location.getStatus());
+                    jdbc.setInt(5, Location.getFloor().getFloor_id());
+                    jdbc.setInt(6, Location.getType().getLocationType_id());
+                    jdbc.setString(7, Location.getInsertedBy());
+                    jdbc.setDate(8, new java.sql.Date(Location.getInertion_Date().getTime()));
                    // jdbc.setString(11, Location.getUpdatedBy());
                   //  jdbc.setDate(12, new java.sql.Date(Location.getUpdate_Date().getTime()));
                     jdbc.execute(); 
                     return true;
                 }
                 catch(java.sql.SQLIntegrityConstraintViolationException e ){
-                JOptionPane.showMessageDialog( null, "Unique Constrain Violated, please insert unique ID");
+               e.printStackTrace(); 
                         }
             //     catch(java.sql.SQLException e){
               //     JOptionPane.showMessageDialog( null , "Database Failed");
@@ -117,24 +115,24 @@ public class LocationDaoImp implements LocationDao {
                     jdbc.setPassword(ConnectionFactory.getPassword());
                     
                     jdbc.setCommand(Queries.UPDATE_LOCATION);
-                    jdbc.setString(1, Location.getCode());
-                    jdbc.setString(2, Location.getDescription());
-                    jdbc.setInt(3, Location.getCapacity());
-                    jdbc.setString(4, Location.getStatus());
-                    jdbc.setInt(5, Location.getFloor().getFloor_id());
-                    jdbc.setInt(6, Location.getType().getLocationType_id());
+
+                    jdbc.setString(1, Location.getDescription());
+                    jdbc.setInt(2, Location.getCapacity());
+                    jdbc.setString(3, Location.getStatus());
+                    jdbc.setInt(4, Location.getFloor().getFloor_id());
+                    jdbc.setInt(5, Location.getType().getLocationType_id());
                 //    jdbc.setString(8, Location.getInsertedBy());
                //    jdbc.setDate(10, new java.sql.Date(Location.getInertion_Date().getTime()));
-                     jdbc.setString(7, Location.getUpdatedBy());
-                     jdbc.setDate(8, new java.sql.Date(Location.getUpdate_Date().getTime()));
-                    jdbc.setInt(9, Location.getLocation_id());
+                     jdbc.setString(6, Location.getUpdatedBy());
+                     jdbc.setDate(7, new java.sql.Date(Location.getUpdate_Date().getTime()));
+                    jdbc.setInt(8, Location.getLocation_id());
                    
              //System.out.println("-------->"+Location.getLocation_id());
                     jdbc.execute();   
                     return true;  
                 }
                 catch(java.sql.SQLIntegrityConstraintViolationException e ){
-                 JOptionPane.showMessageDialog( null ,"Unique Constrain Violated, please insert unique ID");
+                e.printStackTrace();
                   return false;
                         }
             //     catch(java.sql.SQLException e){
