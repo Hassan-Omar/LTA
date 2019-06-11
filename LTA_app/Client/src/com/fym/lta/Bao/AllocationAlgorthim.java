@@ -28,7 +28,7 @@ public class AllocationAlgorthim {
             List<SchedualDto> schedualIn_Depart = schedualBaoObj.listSchedual_inDeparts(allDeparts.get(i).getCode());
             // loops on the department's schedual
             for (int k = 0; k < schedualIn_Depart.size(); k++) { // calling allocate_Table method to allocate  table no k
-                saveStatus2 = allocate_Table(schedualIn_Depart.get(k), allDeparts.get(i).getName());
+                saveStatus2 = allocate_Table(schedualIn_Depart.get(k), allDeparts.get(i).getCode()) ;
 
                 if (!saveStatus2)
                     report += " table no " + k + " dep name " + allDeparts.get(i).getName();

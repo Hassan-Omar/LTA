@@ -90,8 +90,7 @@ public class LocationDaoImp implements LocationDao {
                     jdbc.setInt(6, Location.getType().getLocationType_id());
                     jdbc.setString(7, Location.getInsertedBy());
                     jdbc.setDate(8, new java.sql.Date(Location.getInertion_Date().getTime()));
-                   // jdbc.setString(11, Location.getUpdatedBy());
-                  //  jdbc.setDate(12, new java.sql.Date(Location.getUpdate_Date().getTime()));
+                 
                     jdbc.execute(); 
                     return true;
                 }
@@ -241,21 +240,24 @@ public class LocationDaoImp implements LocationDao {
     }
        
         //this to return a list of available Rooms at each department
-    public List<LocationDto> getAvailableRoom(String depName){
+    public List<LocationDto> getAvailableRoom(String code){
         List<LocationDto>  Availablelocat = null;
               try(JdbcRowSet jdbcRs = RowSetProvider.newFactory().createJdbcRowSet();) {
         jdbcRs.setUrl(ConnectionFactory.getUrl());
         jdbcRs.setUsername(ConnectionFactory.getUsername());
         jdbcRs.setPassword(ConnectionFactory.getPassword());
-        jdbcRs.setAutoCommit(false);
         jdbcRs.setCommand(Queries.AVAILABLE_ROOM);
-        jdbcRs.setString(1, depName);          
+                  System.out.println("       "+code) ;
+        jdbcRs.setString(1, code);          
         jdbcRs.execute();
         while (jdbcRs.next()) {
             if (Availablelocat == null)
                 Availablelocat = new ArrayList<>();
         LocationDto location = new LocationDto();
-        location.setLocation_id(jdbcRs.getInt(1));           
+        location.setLocation_id(jdbcRs.getInt(1)); 
+        // don't forget pref space  ,  ,, in slot    
+            
+            
         Availablelocat.add(location); 
         }
              for(int i=0 ; i<Availablelocat.size() ; i++)
@@ -263,19 +265,20 @@ public class LocationDaoImp implements LocationDao {
         jdbcRs.setUrl(ConnectionFactory.getUrl());
         jdbcRs.setUsername(ConnectionFactory.getUsername());
         jdbcRs.setPassword(ConnectionFactory.getPassword());
-        jdbcRs.setAutoCommit(false);
         jdbcRs.setCommand(Queries.AVAILABLE_ROOM_SLOT);
         List<SlotDto> slots = null ; 
         jdbcRs.setInt(1, Availablelocat.get(i).getLocation_id());
-                     while (jdbcRs.next()) 
-                     {
-                         slots = new ArrayList<>();
-                         SlotDto slot = new SlotDto () ; 
-                         slot.setCode(jdbcRs.getString(1));
-                         slot.setSlot_id(jdbcRs.getInt(2));
-                         slots.add(slot);
-                     }
-                     Availablelocat.get(i).setAssignedSlots(slots);
+
+        
+        while (jdbcRs.next()) 
+         {
+            slots = new ArrayList<>();
+            SlotDto slot = new SlotDto () ; 
+            slot.setCode(jdbcRs.getString(1));
+            slot.setSlot_id(jdbcRs.getInt(2));
+            slots.add(slot);
+         } 
+          Availablelocat.get(i).setAssignedSlots(slots);
                  
                  }
              
