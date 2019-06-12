@@ -38,5 +38,7 @@ public interface LocationBao {
 
     public boolean saveLocationSlot(LocationDto loc ); 
 
-
+    // this only can used for algorithm 
+    public boolean isSlotAssigned(LocationDto loc) ;
+    
 }

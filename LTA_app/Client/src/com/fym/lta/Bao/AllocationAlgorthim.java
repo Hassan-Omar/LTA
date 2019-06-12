@@ -1,10 +1,11 @@
-package com.fym.lta.bao;
+ package com.fym.lta.bao;
 
 import com.fym.lta.dto.DepartmentDto;
 import com.fym.lta.dto.LocationDto;
 import com.fym.lta.dto.SchedualDto;
 import com.fym.lta.dto.SlotDto;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class AllocationAlgorthim {
@@ -40,30 +41,37 @@ public class AllocationAlgorthim {
     }
 
 
-    // method to  connect location  and alloce for a certian time
+    // method to  connect location  and alloce for a certian one table 
     public boolean allocate_Table(SchedualDto currentSchedual, String depCode) {
 
         // get the number of student
         int studentNum = currentSchedual.getStudent_number();
 
         // first we need a list of avaialable rooms
-        List<LocationDto> availableRooms = locationBaoObj.getAvailableLocations(depCode);
+        List<LocationDto> rooms_inDep = locationBaoObj.getAvailableLocations(depCode);
 
         // get the list of slots form this table
         List<SlotDto> currentSlots = currentSchedual.getSchedual_Slots();
 
+         List<SlotDto> assigSlots= new ArrayList<>();
         // loop on the slots      
         for (int i = 0; i < currentSlots.size(); i++) 
         {
         
-           List<LocationDto> filterdRooms = filterLocation(availableRooms ,currentSlots.get(i).getCode());
+           List<LocationDto> filterdRooms = filterLocation(rooms_inDep ,currentSlots.get(i).getCode());
            LocationDto chosenRoom = decitionMake(filterdRooms , studentNum , currentSlots.get(i).getPrefSpace() ) ; 
            
            // update this location 
            chosenRoom.setAssignedSlot(currentSlots.get(i));
            locationBaoObj.saveLocationSlot(chosenRoom); 
             // update availableRooms list  
-            availableRooms = locationBaoObj.getAvailableLocations(depCode);
+            /* rooms_inDep.remove(chosenRoom);
+            assigSlots.add(currentSlots.get(i));
+            chosenRoom.setAssignedSlots(assigSlots);
+            rooms_inDep.add(chosenRoom); */
+            
+            rooms_inDep = locationBaoObj.getAvailableLocations(depCode);            
+            
         }
 
         return saveStatus;

@@ -318,5 +318,49 @@ public class LocationDaoImp implements LocationDao {
 
         return false;
     }
+
+    @Override
+    public boolean updateLocationSlot(LocationDto loc) {
+        try (JdbcRowSet jdbcRs = RowSetProvider.newFactory().createJdbcRowSet()) {
+            jdbcRs.setUrl(ConnectionFactory.getUrl());
+            jdbcRs.setUsername(ConnectionFactory.getUsername());
+            jdbcRs.setPassword(ConnectionFactory.getPassword());
+            
+            jdbcRs.setCommand(Queries.UPDATE_LOCATION_SLOT); 
+            jdbcRs.setString(1, loc.getAssignedSlot().getCode());
+            jdbcRs.setInt(2, loc.getLocation_id());
+            jdbcRs.setInt(3, loc.getAssignedSlot().getSlot_id());
+            jdbcRs.execute();
+            return true  ; 
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+
+        return false;
+        }
+    
+
+    @Override
+    public boolean isSlotAssigned(LocationDto loc) {
+        try (JdbcRowSet jdbcRs = RowSetProvider.newFactory().createJdbcRowSet()) {
+            jdbcRs.setUrl(ConnectionFactory.getUrl());
+            jdbcRs.setUsername(ConnectionFactory.getUsername());
+            jdbcRs.setPassword(ConnectionFactory.getPassword());
+
+            jdbcRs.setCommand(Queries.IS_SLOT_ASSIGNED);          
+            jdbcRs.setInt(1, loc.getLocation_id());
+            jdbcRs.setInt(2, loc.getAssignedSlot().getSlot_id());
+            jdbcRs.execute();
+            if(jdbcRs.next())
+            return true;
+            else return false  ; 
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+
+        return false;
+    }
 }
 

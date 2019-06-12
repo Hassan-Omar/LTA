@@ -39,6 +39,9 @@ public interface LocationDao {
     
     public boolean insertLocationSlot(LocationDto loc) ;
     
+    public boolean updateLocationSlot(LocationDto loc) ;
+    
+    public boolean isSlotAssigned(LocationDto loc) ;
     
     
     
