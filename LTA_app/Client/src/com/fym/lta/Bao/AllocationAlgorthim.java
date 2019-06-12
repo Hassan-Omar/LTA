@@ -5,7 +5,6 @@ import com.fym.lta.dto.LocationDto;
 import com.fym.lta.dto.SchedualDto;
 import com.fym.lta.dto.SlotDto;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class AllocationAlgorthim {
@@ -29,7 +28,7 @@ public class AllocationAlgorthim {
             List<SchedualDto> schedualIn_Depart = schedualBaoObj.listSchedual_inDeparts(allDeparts.get(i).getCode());
             // loops on the department's schedual
             for (int k = 0; k < schedualIn_Depart.size(); k++) { // calling allocate_Table method to allocate  table no k
-                saveStatus2 = allocate_Table(schedualIn_Depart.get(k), allDeparts.get(i).getCode()) ;
+                saveStatus2 = allocate_Table(schedualIn_Depart.get(k), allDeparts.get(i).getCode());
 
                 if (!saveStatus2)
                     report += " table no " + k + " dep name " + allDeparts.get(i).getCode();
@@ -49,72 +48,106 @@ public class AllocationAlgorthim {
 
         // first we need a list of avaialable rooms
         List<LocationDto> availableRooms = locationBaoObj.getAvailableLocations(depCode);
-        System.out.println(depCode);
+
         // get the list of slots form this table
         List<SlotDto> currentSlots = currentSchedual.getSchedual_Slots();
 
         // loop on the slots
 
-        for (int i = 0; i < currentSlots.size(); i++) { // this to hold the value of needed space type
-            String prefSpace = currentSlots.get(i).getPrefSpace();
-            String sCode =   currentSlots.get(i).getCode();
-           
-           for (int k = 0; k < availableRooms.size();
-                 k++) { // check if the prefSpace is proper and the capacity is proper
-                if (prefSpace.equals(availableRooms.get(k).getType().getDescription()) &&
-                    (availableRooms.get(k).getCapacity() >= studentNum))
-                       
-                {
+       LocationDto lov = decitionMake(availableRooms, 14 , "HALL") ; 
+       System.out.println("test by capapcit" + lov.getCapacity());
 
-               if(!testLocStatus(availableRooms.get(k),sCode))    
-                
-                // allocate this space
-                { // allocate this locatoion
-                        LocationDto currentLoc = availableRooms.get(k);
-                        SlotDto slot = new SlotDto();
-                        slot.setCode(sCode);
-                        List<SlotDto> slots = null;
-                       
-                      
-                        if(availableRooms.get(k).getAssignedSlots()!=null)
-                         slots = availableRooms.get(k).getAssignedSlots();
-                        else slots = new ArrayList() ; 
-                       
-                      
-                        slots.add(slot);
-                        currentLoc.setAssignedSlots(slots);
-                        // update this location's status to busy
-                       saveStatus = locationBaoObj.updateLocationSlot(currentLoc);
+        for (int i = 0; i < currentSlots.size(); i++) {
 
-                         // remove this reserved location from list
-                        availableRooms.remove(k);
+            // this to hold the value of needed space type
 
-                    }
-
-                 }
-
-            }
-
-           
         }
-
 
         return saveStatus;
     }
 
-    public boolean testLocStatus (LocationDto loc ,String sCode) {
+    public boolean testLocStatus(LocationDto loc, String sCode) {
 
-     boolean status =false ;
-     if(loc.getAssignedSlots()==null)
-         return false ; 
-    else {
+        boolean status = false;
+        if (loc.getAssignedSlots() == null)
+            return false;
+        else {
             for (int i = 0; i < loc.getAssignedSlots().size(); i++) {
                 if (sCode.equals(loc.getAssignedSlots().get(i)))
                     status = true;
             }
         }
 
-     return status ; 
+        return status;
 
-    } 
+    }
+
+    // method to calculate the distance between the student's number , capacity
+    // and return the location which have the min distance 
+    LocationDto cal_Min_Distance(List<LocationDto> locations, int student_Num) {
+        // this to hold all distances
+        int[] distances = new int[locations.size()];
+        // loop to calculate all distances
+        for (int i = 0; i < locations.size(); i++) { // actually this is the free places if we reserved for +ve only
+            // as -ve means this not proper room
+            distances[i] = locations.get(i).getCapacity() - student_Num;
+        } 
+        
+        // this to hold the index of the minmum distance
+        int min_index =0 ; 
+        // loop to get minmum distance 
+        for(int i=0; i<distances.length ; i++)
+        {
+            // check if distance is positive 
+            if(i>0 && distances[i]>0)
+            {   
+                if (distances[i]<distances[i-1])
+                    min_index = i ; 
+            }
+
+        }
+        return locations.get(min_index);
+    }
+
+    // method to check if the room is proper 
+    boolean checkProper(LocationDto location, String prefSpace) {
+         
+            if (prefSpace.equals((location.getType().getDescription())))
+               return true;
+            else
+               
+        return false;
+    }
+
+    // method to choose the best location (( this to drive the tow method calculateProper,calculateDistance ))
+    @SuppressWarnings("oracle.jdeveloper.java.trivial-assignment")
+    LocationDto decitionMake(List<LocationDto> locations, int student_Num, String prefSpace) {
+        LocationDto resultLocation = null ; 
+        
+        for (int i=0; i<locations.size(); i++)
+        {
+            LocationDto minLocation = cal_Min_Distance(locations ,student_Num) ;
+            if( checkProper(minLocation ,prefSpace))
+            {
+                // now this is proper 
+                // i can't trust if this will success or not 
+                resultLocation = minLocation ; 
+                i = locations.size() ; 
+            }
+            
+            else 
+            {
+                // if we come here  this means the minLocation faild to proper 
+                // so we need to remove this from our list 
+                locations.remove(minLocation) ; 
+
+            }
+            
+        }
+    
+
+        return resultLocation;
+    }
+
+
 }

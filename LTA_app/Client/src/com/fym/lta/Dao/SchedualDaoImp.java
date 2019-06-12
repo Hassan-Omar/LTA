@@ -261,6 +261,7 @@ public class SchedualDaoImp implements SchedualDao {
             jdbcRs.setCommand(Queries.LIST_SCHEDULE_INDEPART);
             jdbcRs.setString(1, code);
             jdbcRs.execute();
+           // System.out.println("     code aho"+code); 
 
 
             while (jdbcRs.next()) {
@@ -275,7 +276,6 @@ public class SchedualDaoImp implements SchedualDao {
                 table.setCodeDeparment(jdbcRs.getString(5));
 
                 // also you need to add the data inserted by , ...... etc
-
 
                 scheduals.add(table);
 

@@ -304,6 +304,8 @@ public class LocationDaoImp implements LocationDao {
             jdbcRs.setUsername(ConnectionFactory.getUsername());
             jdbcRs.setPassword(ConnectionFactory.getPassword());
             List<SlotDto> slots = loc.getAssignedSlots();
+                
+            jdbcRs.setAutoCommit(false);       
             for (int i = 0; i < slots.size(); i++) {
                 //UPDATE LOCATION_SLOT SET  LOCATION_ID =? , SLOT_CODE =?  WHERE SLOT_ID  = ?
                 jdbcRs.setCommand(Queries.UPDATE_LOCATION_SLOT);
@@ -313,6 +315,7 @@ public class LocationDaoImp implements LocationDao {
                 jdbcRs.execute();
                 System.out.println("loc dao imp  slot no i " + i);
             }
+            jdbcRs.commit();
             return true;
         } catch (SQLException e) {
             e.printStackTrace();
