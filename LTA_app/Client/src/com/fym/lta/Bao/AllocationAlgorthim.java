@@ -53,9 +53,8 @@ public class AllocationAlgorthim {
         List<SlotDto> currentSlots = currentSchedual.getSchedual_Slots();
 
         // loop on the slots
-
-       LocationDto lov = decitionMake(availableRooms, 14 , "HALL") ; 
-       System.out.println("test by capapcit" + lov.getCapacity());
+      
+       System.out.println("test by size" + filterLocation(availableRooms , "4").size() );
 
         for (int i = 0; i < currentSlots.size(); i++) {
 
@@ -66,20 +65,30 @@ public class AllocationAlgorthim {
         return saveStatus;
     }
 
-    public boolean testLocStatus(LocationDto loc, String sCode) {
-
-        boolean status = false;
-        if (loc.getAssignedSlots() == null)
-            return false;
-        else {
-            for (int i = 0; i < loc.getAssignedSlots().size(); i++) {
-                if (sCode.equals(loc.getAssignedSlots().get(i)))
-                    status = true;
-            }
-        }
-
-        return status;
-
+  // method to filter the rooms based on slotCode 
+ // actually it will return all rooms which are free at the time of slot which has code=slotCode
+   List<LocationDto> filterLocation(List<LocationDto> locations, String slotCode) {
+      
+      for(int i=0; i<locations.size(); i++)
+      {
+          List<SlotDto> assignedSlots = locations.get(i).getAssignedSlots();
+         // if assignedSlots is null that means it available along the day 
+         if(assignedSlots!=null)
+         {
+              
+              for(int k=0; k<assignedSlots.size(); k++)
+              {
+                 if(assignedSlots.get(k).getCode().equals(slotCode))
+                 { // this means room no i is busy at this time 
+                   locations.remove(i);
+                  }
+              }
+          }
+          
+          
+      }
+       
+     return locations ;  
     }
 
     // method to calculate the distance between the student's number , capacity
