@@ -37,7 +37,7 @@ public interface LocationDao {
     public List<LocationDto> getAvailableRoom(String depName);
     
     
-    public boolean updateLocationSlot(LocationDto loc) ;
+    public boolean insertLocationSlot(LocationDto loc) ;
     
     
     

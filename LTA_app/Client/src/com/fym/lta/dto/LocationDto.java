@@ -8,8 +8,8 @@ public class LocationDto {
 
     private int Location_id, capacity ;
     private FloorDto floor ;
-    private List<SlotDto> assignedSlots ;
-
+    private SlotDto assignedSlot;
+    private List<SlotDto> assignedSlots;
     private String code, description  ,insertedBy, updatedBy;;
     private LocationTypeDto type;
     private List<EquipmentDto> Location_equipments;
@@ -28,8 +28,9 @@ public class LocationDto {
         this.Location_equipments = Location_equipments;
     }
 
-
-
+    public void setAssignedSlot(SlotDto assignedSlot) {
+        this.assignedSlot = assignedSlot;
+    }
 
     public void setAssignedSlots(List<SlotDto> assignedSlots) {
         this.assignedSlots = assignedSlots;
@@ -39,13 +40,16 @@ public class LocationDto {
         return assignedSlots;
     }
 
+    public SlotDto getAssignedSlot() {
+        return assignedSlot;
+    }
+
+
     public LocationDto(String code) {
         super();
         this.
             code = code;
     }
-
-    
 
     public void setOccupation_purpose(String occupation_purpose) {
         this.occupation_purpose = occupation_purpose;

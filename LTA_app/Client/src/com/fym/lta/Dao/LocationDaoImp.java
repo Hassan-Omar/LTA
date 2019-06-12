@@ -297,25 +297,19 @@ public class LocationDaoImp implements LocationDao {
     }
 
     @Override
-    public boolean updateLocationSlot(LocationDto loc) {
+    public boolean insertLocationSlot(LocationDto loc) {
 
         try (JdbcRowSet jdbcRs = RowSetProvider.newFactory().createJdbcRowSet()) {
             jdbcRs.setUrl(ConnectionFactory.getUrl());
             jdbcRs.setUsername(ConnectionFactory.getUsername());
             jdbcRs.setPassword(ConnectionFactory.getPassword());
-            List<SlotDto> slots = loc.getAssignedSlots();
-                
-            jdbcRs.setAutoCommit(false);       
-            for (int i = 0; i < slots.size(); i++) {
-                //UPDATE LOCATION_SLOT SET  LOCATION_ID =? , SLOT_CODE =?  WHERE SLOT_ID  = ?
-                jdbcRs.setCommand(Queries.UPDATE_LOCATION_SLOT);
-                jdbcRs.setInt(1, loc.getLocation_id());
-                jdbcRs.setString(2, loc.getAssignedSlots().get(i).getCode());
-                jdbcRs.setInt(3, loc.getAssignedSlots().get(i).getSlot_id());
-                jdbcRs.execute();
-                System.out.println("loc dao imp  slot no i " + i);
-            }
-            jdbcRs.commit();
+
+            jdbcRs.setCommand(Queries.INSERT_LOCATION_SLOT);
+            jdbcRs.setInt(1, loc.getLocation_id());
+            jdbcRs.setString(2, loc.getAssignedSlot().getCode());
+            jdbcRs.setInt(3, loc.getAssignedSlot().getSlot_id());
+            jdbcRs.execute();
+
             return true;
         } catch (SQLException e) {
             e.printStackTrace();

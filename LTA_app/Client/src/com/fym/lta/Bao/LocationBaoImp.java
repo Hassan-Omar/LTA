@@ -60,9 +60,9 @@ public class LocationBaoImp implements LocationBao{
     }
 
     @Override
-    public boolean updateLocationSlot(LocationDto loc) {
+    public boolean saveLocationSlot(LocationDto loc) {
 
-        return daoLocation.updateLocationSlot(loc);
+        return daoLocation.insertLocationSlot(loc);
     }
 }
 

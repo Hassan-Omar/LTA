@@ -52,14 +52,18 @@ public class AllocationAlgorthim {
         // get the list of slots form this table
         List<SlotDto> currentSlots = currentSchedual.getSchedual_Slots();
 
-        // loop on the slots
-      
-       System.out.println("test by size" + filterLocation(availableRooms , "4").size() );
-
-        for (int i = 0; i < currentSlots.size(); i++) {
-
-            // this to hold the value of needed space type
-
+        // loop on the slots      
+        for (int i = 0; i < currentSlots.size(); i++) 
+        {
+        
+           List<LocationDto> filterdRooms = filterLocation(availableRooms ,currentSlots.get(i).getCode());
+           LocationDto chosenRoom = decitionMake(filterdRooms , studentNum , currentSlots.get(i).getPrefSpace() ) ; 
+           
+           // update this location 
+           chosenRoom.setAssignedSlot(currentSlots.get(i));
+           locationBaoObj.saveLocationSlot(chosenRoom); 
+            // update availableRooms list  
+            availableRooms = locationBaoObj.getAvailableLocations(depCode);
         }
 
         return saveStatus;

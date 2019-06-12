@@ -36,7 +36,7 @@ public interface LocationBao {
     public List<LocationDto> getAvailableLocations(String depName) ; 
 
 
-    public boolean updateLocationSlot(LocationDto loc ); 
+    public boolean saveLocationSlot(LocationDto loc ); 
 
 
 }

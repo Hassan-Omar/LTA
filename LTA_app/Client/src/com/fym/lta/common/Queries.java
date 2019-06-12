@@ -198,8 +198,8 @@ public class Queries {
     
     public static final String AVAILABLE_ROOM_SLOT ="SELECT SLOT_CODE , SLOT_ID FROM LOCATION_SLOT WHERE LOCATION_ID = ? ";
     
-   public static final String  UPDATE_LOCATION_SLOT = 
-        "UPDATE LOCATION_SLOT SET  LOCATION_ID =? , SLOT_CODE =?  WHERE SLOT_ID  = ? " ;
+   public static final String  INSERT_LOCATION_SLOT = 
+        "INSERT INTO LOCATION_SLOT (LOCATION_ID , SLOT_CODE , SLOT_ID  ) VALUES(?,?,?)" ;
 
     //___________________________________________________________________________________
 
