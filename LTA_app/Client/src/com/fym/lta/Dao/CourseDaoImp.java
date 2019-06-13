@@ -6,7 +6,6 @@ import com.fym.lta.common.Queries;
 import com.fym.lta.dto.CourseDto;
 
 import java.sql.SQLException;
-import java.sql.Types;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -42,9 +41,7 @@ public class CourseDaoImp implements CourseDao {
                 Course.setUpdatedBy(jdbcRs.getString(6));
                 Course.setInertion_Date(jdbcRs.getDate(7));
                 Course.setUpdate_Date(jdbcRs.getDate(8));
-                Course.setHoursperWeak(jdbcRs.getInt(10));
-
-
+                 
                 Courses.add(Course);
 
             }
@@ -88,47 +85,40 @@ public class CourseDaoImp implements CourseDao {
             jdbcRs.setPassword(ConnectionFactory.getPassword());
             jdbcRs.setAutoCommit(false);
             jdbcRs.setCommand(Queries.INSERT_NEW_COURSE);
-
+            
+             
             jdbcRs.setString(1, Course.getCode());
+            
             jdbcRs.setString(2, Course.getName());
 
-            // check if the person who imserte  is not setted we we will set it empty
-            if (Course.getInsertedBy() != null)
-                jdbcRs.setString(3, Course.getInsertedBy());
-            else
-                jdbcRs.setNull(3, Types.VARCHAR);
-
-
-            if (Course.getUpdatedBy() != null)
-                jdbcRs.setString(4, Course.getUpdatedBy());
-            else
-                jdbcRs.setNull(4, Types.VARCHAR);
-
+            jdbcRs.setString(3, Course.getInsertedBy());
+             
 
             // check if the inserted date is not setted we we will set it
             if (Course.getInertion_Date() != null)
-                jdbcRs.setDate(5, new java.sql.Date(Course.getInertion_Date().getTime()));
+                jdbcRs.setDate(4, new java.sql.Date(Course.getInertion_Date().getTime()));
             else
-                jdbcRs.setNull(5, java.sql.Types.DATE);
-
-            if (Course.getUpdate_Date() != null)
-                jdbcRs.setDate(6, new java.sql.Date(Course.getUpdate_Date().getTime()));
+                jdbcRs.setNull(4, java.sql.Types.DATE);
+           
+           
+            if(Course.getHoursperWeak()!=0)
+            jdbcRs.setInt(5, Course.getHoursperWeak());
             else
-                jdbcRs.setNull(6, java.sql.Types.DATE);
-
-            jdbcRs.setInt(7, Course.getHoursperWeak());
-
-            jdbcRs.setInt(8, Course.getNeededLocType().getLocationType_id());
-
-
-            jdbcRs.setString(9, Course.getDescription());
-
+                jdbcRs.setNull(5, java.sql.Types.INTEGER);
+            
+            jdbcRs.setString(6, Course.getNeededLocType().getCode());
+            
+            if(Course.getDescription() !=null)
+            jdbcRs.setString(7, Course.getDescription());
+            else
+            jdbcRs.setNull(7, java.sql.Types.VARCHAR);
+            
             jdbcRs.execute();
 
             jdbcRs.setCommand(Queries.INSERT_DEPARTMENT_COURSE);
 
             jdbcRs.setString(1, Course.getCode());
-            jdbcRs.setInt(2, Course.getDepartment().getDepartment_id());
+            jdbcRs.setString(2, Course.getDepartment().getCode());
 
             jdbcRs.execute();
             jdbcRs.commit();
@@ -154,30 +144,33 @@ public class CourseDaoImp implements CourseDao {
             jdbcRs.setString(1, Course.getCode());
             jdbcRs.setString(2, Course.getName());
 
-            if (Course.getUpdatedBy() != null)
-                jdbcRs.setString(3, Course.getUpdatedBy());
-            else
-                jdbcRs.setNull(3, Types.VARCHAR);
-
-
-            if (Course.getUpdate_Date() != null)
+            jdbcRs.setString(3, Course.getUpdatedBy());
+           
+             if (Course.getUpdate_Date() != null)
                 jdbcRs.setDate(4, new java.sql.Date(Course.getUpdate_Date().getTime()));
             else
                 jdbcRs.setNull(4, java.sql.Types.DATE);
 
+            if(Course.getHoursperWeak()!=0)
             jdbcRs.setInt(5, Course.getHoursperWeak());
-
+            else
+                jdbcRs.setNull(5, java.sql.Types.INTEGER);
+            
             jdbcRs.setInt(6, Course.getNeededLocType().getLocationType_id());
 
+            if(Course.getDescription() !=null)
             jdbcRs.setString(7, Course.getDescription());
-
+            else
+            jdbcRs.setNull(7, java.sql.Types.VARCHAR);
+            
+ 
             jdbcRs.setString(8, Course.getCode());
             jdbcRs.execute();
 
             jdbcRs.setCommand(Queries.UPDATE_DEPARTMENT_COURSE);
 
             jdbcRs.setString(2, Course.getCode());
-            jdbcRs.setInt(1, Course.getDepartment().getDepartment_id());
+            jdbcRs.setString(1, Course.getDepartment().getCode());
 
             jdbcRs.execute();
             jdbcRs.commit();

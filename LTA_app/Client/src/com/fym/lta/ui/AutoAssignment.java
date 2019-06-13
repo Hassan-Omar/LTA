@@ -54,7 +54,9 @@ public class AutoAssignment extends javax.swing.JPanel {
     private void assignBtnMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_assi
 
    AllocationAlgorthim allocBusinees  =  new AllocationAlgorthim () ; 
-        allocBusinees.alloc_All() ;
+       String report =  allocBusinees.alloc_All() ;
+       System.out.println(report);
+
     }//GEN-LAST:event_assignBtnMouseClicked
 
 

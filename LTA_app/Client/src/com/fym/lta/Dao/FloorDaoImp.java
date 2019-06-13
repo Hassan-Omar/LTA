@@ -75,29 +75,17 @@ public class FloorDaoImp implements FloorDao {
             jdbcRs.setString(1, Floor.getCode());
             jdbcRs.setString(2, Floor.getDescription());
 
-            if (Floor.getUpdate_Date() != null)
-                jdbcRs.setDate(4, new java.sql.Date(Floor.getUpdate_Date().getTime()));
-            else
-                jdbcRs.setNull(4, java.sql.Types.DATE);
-
+           
             if (Floor.getInertion_Date() != null)
                 jdbcRs.setDate(3, new java.sql.Date(Floor.getInertion_Date().getTime()));
             else
                 jdbcRs.setNull(3, java.sql.Types.DATE);
 
 
-            if (Floor.getInsertedBy() != null)
-                jdbcRs.setString(5, Floor.getInsertedBy());
-            else
-                jdbcRs.setNull(5, Types.VARCHAR);
-
-
-            if (Floor.getUpdatedBy() != null)
-                jdbcRs.setString(6, Floor.getUpdatedBy());
-            else
-                jdbcRs.setNull(6, Types.VARCHAR);
-
-            jdbcRs.setInt(7, Floor.getBuilding().getBuilding_id());
+            jdbcRs.setString(4, Floor.getInsertedBy());
+             
+             
+            jdbcRs.setInt(5, Floor.getBuilding().getBuilding_id());
 
 
             jdbcRs.execute();

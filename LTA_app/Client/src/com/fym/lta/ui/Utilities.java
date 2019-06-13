@@ -22,11 +22,7 @@ public class Utilities {
                     insertBTN.setVisible(false);
                 if (!(permissionType.contains("delete")))
                     deleteBTN.setVisible(false);
-                String str =
-                    "Your current  permission on this screen is { " + permissionType +
-                    " }  ask the admin to upgrade if you need ";
-                JOptionPane.showMessageDialog(null, str);
-
+              
             } else {
                 updateBTN.setVisible(false);
                 insertBTN.setVisible(false);

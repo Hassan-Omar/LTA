@@ -2,16 +2,10 @@ package com.fym.lta.dao;
 
 import com.fym.lta.common.ConnectionFactory;
 import com.fym.lta.common.Queries;
-import com.fym.lta.dto.BuildingDto;
 import com.fym.lta.dto.EquipmentDto;
-
 import com.fym.lta.dto.LocationDto;
 
-
-import com.fym.lta.ui.EquipmentScreen;
-
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 
 import javax.sql.rowset.JdbcRowSet;
@@ -62,7 +56,7 @@ public class EquipmentDaoImp implements EquipmentDao {
                         jdbc.setUsername(ConnectionFactory.getUsername());
                         jdbc.setPassword(ConnectionFactory.getPassword());
                     jdbc.setCommand(Queries.DELETE_Equipment);   
-                    jdbc.setInt(1, Equipment.getEquipment_id());
+                    jdbc.setString(1, Equipment.getCode());
                     jdbc.execute();
                     return true;
                     }catch(Exception e){
@@ -77,14 +71,15 @@ public class EquipmentDaoImp implements EquipmentDao {
                     jdbc.setUsername(ConnectionFactory.getUsername());
                     jdbc.setPassword(ConnectionFactory.getPassword());
                     jdbc.setCommand(Queries.INSER_NEW_Equipment);
-                    jdbc.setInt(1, Equipment.getEquipment_id());
-                    jdbc.setString(2, Equipment.getCode());
-                    jdbc.setString(3, Equipment.getType());
-                    jdbc.setInt(4, Equipment.getLifSpan());
-                    jdbc.setDate(5, new java.sql.Date(Equipment.getStartingTime().getTime()));
-                    jdbc.setString(6, Equipment.getInsertedBy());
-                    jdbc.setDate(7, new java.sql.Date(Equipment.getInertion_Date().getTime()));
-                    jdbc.setInt(8, Equipment.getLocation_equipment().getLocation_id());
+ 
+                    jdbc.setString(1, Equipment.getCode());
+                    jdbc.setString(2, Equipment.getType());
+                    jdbc.setInt(3, Equipment.getLifSpan());
+ 
+                  //  jdbc.setDate(4, new java.sql.Date(Equipment.getStartingTime().getTime()));
+                    jdbc.setString(4, Equipment.getInsertedBy());
+                    jdbc.setDate(5, new java.sql.Date(Equipment.getInertion_Date().getTime()));
+                    jdbc.setInt(6, Equipment.getLocation_equipment().getLocation_id());
                     jdbc.execute(); 
                     return true;
                 }
@@ -107,15 +102,17 @@ public class EquipmentDaoImp implements EquipmentDao {
                     jdbc.setUsername(ConnectionFactory.getUsername());
                     jdbc.setPassword(ConnectionFactory.getPassword());
                     jdbc.setCommand(Queries.UPDATE_Equipment);
-                    jdbc.setString(1, Equipment.getCode());
-                    jdbc.setString(2, Equipment.getType());
-                    jdbc.setInt(3,Equipment.getLifSpan());
+            
+                    jdbc.setString(6, Equipment.getCode());
+                    jdbc.setString(1, Equipment.getType());
+                    jdbc.setInt(2,Equipment.getLifSpan());
                       //no need to update starting Time!   
                    // jdbc.setDate(4, new java.sql.Date(Equipment.getStartingTime().getTime()));
-                    jdbc.setString(4, Equipment.getUpdatedBy());
-                    jdbc.setDate(5, new java.sql.Date(Equipment.getUpdate_Date().getTime()));
-                    jdbc.setInt(6,Equipment.getLocation_equipment().getLocation_id());
-                    jdbc.setInt(7, Equipment.getEquipment_id());
+                    jdbc.setString(3, Equipment.getUpdatedBy());
+                    jdbc.setDate(4, new java.sql.Date(Equipment.getUpdate_Date().getTime()));
+                    jdbc.setInt(5,Equipment.getLocation_equipment().getLocation_id());
+
+
                     jdbc.execute();   
                     return true;  
                 }

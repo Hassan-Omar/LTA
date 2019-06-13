@@ -181,29 +181,15 @@ public class UserDaoImp implements UserDao {
             else
                 jdbcRs.setNull(4, java.sql.Types.DATE);
 
-            // check if the update date is not setted we we will set it
-            if (user.getUpdate_Date() != null)
-                jdbcRs.setDate(5, new java.sql.Date(user.getUpdate_Date().getTime()));
-            else
-                jdbcRs.setNull(5, java.sql.Types.DATE);
 
-            // check if the person who imserte  is not setted we we will set it empty
-            if (user.getInsertedBy()!= null)
-                jdbcRs.setString(6, user.getInsertedBy());
-            else
-                jdbcRs.setNull(6, Types.VARCHAR);
-
-
-            if (user.getUpdatedBy() != null)
-                jdbcRs.setString(7, user.getUpdatedBy());
-            else
-                jdbcRs.setNull(7, Types.VARCHAR);
+            jdbcRs.setString(5, user.getInsertedBy());
+          
 
             // setting email
-            jdbcRs.setString(8, user.getEmail());
+            jdbcRs.setString(6, user.getEmail());
            
             // setting EMP_ID
-            jdbcRs.setInt(9, user.getUser_Employee().getEmp_id() );
+            jdbcRs.setInt(7, user.getUser_Employee().getEmp_id() );
 
             jdbcRs.execute();
             return true;

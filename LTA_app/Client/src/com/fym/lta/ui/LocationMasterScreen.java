@@ -64,29 +64,30 @@ public class LocationMasterScreen extends javax.swing.JPanel {
           {
                  list.addElement(Equipment.get(i).getCode());  
           }
-          EquipmentList.setModel(list);}
+         // EquipmentList.setModel(list);
+         }
     }
       
     // To Set the retrieved data from database into the locationTable//  
     private void setTableModel(List<LocationDto> location  ){
-        Object [][] locationArr = new Object [location.size()][12];
+        Object [][] locationArr = new Object [location.size()][10];
         for(int i =0;i<location.size();i++){
-            locationArr[i][0] = location.get(i).getLocation_id();
-            locationArr[i][1] = location.get(i).getCode();
-            locationArr[i][2] = location.get(i).getDescription();
-            locationArr[i][3] = location.get(i).getCapacity();
-            locationArr[i][4] = location.get(i).getStatus();
-            locationArr[i][5] = location.get(i).getFloor().getBuilding().getCode();
-            locationArr[i][6] = location.get(i).getFloor().getCode();
-            locationArr[i][7] = location.get(i).getType().getCode();
-            locationArr[i][8] = location.get(i).getInsertedBy();
-            locationArr[i][9] = location.get(i).getInertion_Date();
-            locationArr[i][10] = location.get(i).getUpdatedBy();
-            locationArr[i][11] = location.get(i).getUpdate_Date();  }    
+          //  locationArr[i][0] = location.get(i).getLocation_id();
+            locationArr[i][0] = location.get(i).getCode();
+            locationArr[i][1] = location.get(i).getDescription();
+            locationArr[i][2] = location.get(i).getCapacity();
+           
+            locationArr[i][3] = location.get(i).getFloor().getBuilding().getCode();
+            locationArr[i][4] = location.get(i).getFloor().getCode();
+            locationArr[i][5] = location.get(i).getType().getCode();
+            locationArr[i][6] = location.get(i).getInsertedBy();
+            locationArr[i][7] = location.get(i).getInertion_Date();
+            locationArr[i][8] = location.get(i).getUpdatedBy();
+            locationArr[i][9] = location.get(i).getUpdate_Date();  }    
         
         LocationTable.setModel(new javax.swing.table.DefaultTableModel(locationArr,
             new String [] {
-                "Location Id", "Location Code" , "Description", "capacity" ,"Location Status","Building", "Floor","Location Type" , "Inserted By","Insertion Date","Updated By","Update Date"
+             "Location Code" , "Description", "capacity" ,"Building", "Floor","Location Type" , "Inserted By","Insertion Date","Updated By","Update Date"
             }
         ));   }  
     
@@ -127,9 +128,6 @@ public class LocationMasterScreen extends javax.swing.JPanel {
         jTextField1 = new javax.swing.JTextField();
         search = new javax.swing.JButton();
         define_location = new javax.swing.JPanel();
-        jPanel2 = new javax.swing.JPanel();
-        jScrollPane2 = new javax.swing.JScrollPane();
-        EquipmentList = new javax.swing.JList();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         save = new javax.swing.JButton();
@@ -144,14 +142,15 @@ public class LocationMasterScreen extends javax.swing.JPanel {
         jLabel7 = new javax.swing.JLabel();
         type_combo = new javax.swing.JComboBox();
         jLabel8 = new javax.swing.JLabel();
+        jLabel9 = new javax.swing.JLabel();
 
-        setBorder(javax.swing.BorderFactory.createTitledBorder("Location Master Screen"));
         setPreferredSize(new java.awt.Dimension(400, 400));
         setLayout(null);
 
-        master.setBorder(javax.swing.BorderFactory.createTitledBorder("Locations "));
+        master.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Locations ", 0, 0, new java.awt.Font("Tekton Pro Cond", 1, 36))); // NOI18N
         master.setPreferredSize(new java.awt.Dimension(400, 400));
 
+        LocationTable.setFont(new java.awt.Font("Tekton Pro", 0, 24)); // NOI18N
         LocationTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
@@ -160,6 +159,7 @@ public class LocationMasterScreen extends javax.swing.JPanel {
                 "Title 1", "Title 2", "Title 3", "Title 4", "Title 5", "Title 6", "Title 7", "Title 8", "Title 9", "Title 10", "Title 11", "Title 12"
             }
         ));
+        LocationTable.setRowHeight(30);
         jScrollPane1.setViewportView(LocationTable);
 
         javax.swing.GroupLayout masterLayout = new javax.swing.GroupLayout(master);
@@ -172,13 +172,15 @@ public class LocationMasterScreen extends javax.swing.JPanel {
         );
         masterLayout.setVerticalGroup(
             masterLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 441, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, masterLayout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 379, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
         add(master);
-        master.setBounds(80, 270, 690, 462);
+        master.setBounds(80, 332, 690, 400);
 
-        insertLocationBtn.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        insertLocationBtn.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         insertLocationBtn.setText("Insert New ");
         insertLocationBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -186,9 +188,9 @@ public class LocationMasterScreen extends javax.swing.JPanel {
             }
         });
         add(insertLocationBtn);
-        insertLocationBtn.setBounds(570, 190, 190, 60);
+        insertLocationBtn.setBounds(560, 240, 190, 60);
 
-        deleteLocationBtn.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        deleteLocationBtn.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         deleteLocationBtn.setText("Delete ");
         deleteLocationBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -196,9 +198,9 @@ public class LocationMasterScreen extends javax.swing.JPanel {
             }
         });
         add(deleteLocationBtn);
-        deleteLocationBtn.setBounds(340, 190, 100, 60);
+        deleteLocationBtn.setBounds(330, 240, 100, 60);
 
-        updateLocationBtn.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        updateLocationBtn.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         updateLocationBtn.setText("Update  ");
         updateLocationBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -206,7 +208,7 @@ public class LocationMasterScreen extends javax.swing.JPanel {
             }
         });
         add(updateLocationBtn);
-        updateLocationBtn.setBounds(80, 190, 120, 60);
+        updateLocationBtn.setBounds(80, 240, 120, 60);
 
         jTextField1.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jTextField1.addActionListener(new java.awt.event.ActionListener() {
@@ -215,9 +217,9 @@ public class LocationMasterScreen extends javax.swing.JPanel {
             }
         });
         add(jTextField1);
-        jTextField1.setBounds(90, 80, 389, 40);
+        jTextField1.setBounds(70, 150, 389, 40);
 
-        search.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        search.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         search.setText("Search");
         search.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -225,36 +227,15 @@ public class LocationMasterScreen extends javax.swing.JPanel {
             }
         });
         add(search);
-        search.setBounds(570, 70, 107, 60);
+        search.setBounds(560, 140, 107, 60);
 
         define_location.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         define_location.setToolTipText("");
 
-        jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder("Location Contains:"));
-
-        EquipmentList.setModel(new javax.swing.AbstractListModel() {
-            String[] strings = { " " };
-            public int getSize() { return strings.length; }
-            public Object getElementAt(int i) { return strings[i]; }
-        });
-        EquipmentList.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        jScrollPane2.setViewportView(EquipmentList);
-
-        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
-        jPanel2.setLayout(jPanel2Layout);
-        jPanel2Layout.setHorizontalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 328, Short.MAX_VALUE)
-        );
-        jPanel2Layout.setVerticalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 198, Short.MAX_VALUE)
-        );
-
-        jLabel2.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jLabel2.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jLabel2.setText("Code");
 
-        jLabel3.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jLabel3.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jLabel3.setText("Description");
 
         save.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
@@ -265,7 +246,7 @@ public class LocationMasterScreen extends javax.swing.JPanel {
             }
         });
 
-        jLabel4.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jLabel4.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jLabel4.setText("Capacity");
 
         building_combo.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
@@ -300,12 +281,11 @@ public class LocationMasterScreen extends javax.swing.JPanel {
                             .addGroup(define_locationLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                                 .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                            .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(define_locationLayout.createSequentialGroup()
                         .addGap(41, 41, 41)
                         .addComponent(building_combo, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGap(236, 236, 236)
                 .addGroup(define_locationLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(code, javax.swing.GroupLayout.PREFERRED_SIZE, 156, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(capacity, javax.swing.GroupLayout.PREFERRED_SIZE, 156, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -316,20 +296,22 @@ public class LocationMasterScreen extends javax.swing.JPanel {
                 .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 158, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(define_locationLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(floor_combo, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(floor_combo, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(98, 98, 98)
                 .addGroup(define_locationLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 154, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(define_locationLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                        .addComponent(save, javax.swing.GroupLayout.PREFERRED_SIZE, 78, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(type_combo, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addComponent(type_combo, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18))
+            .addGroup(define_locationLayout.createSequentialGroup()
+                .addGap(235, 235, 235)
+                .addComponent(save, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         define_locationLayout.setVerticalGroup(
             define_locationLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(define_locationLayout.createSequentialGroup()
-                .addContainerGap(56, Short.MAX_VALUE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(define_locationLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel6)
                     .addComponent(jLabel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -351,23 +333,23 @@ public class LocationMasterScreen extends javax.swing.JPanel {
                 .addGroup(define_locationLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(capacity, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGroup(define_locationLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(define_locationLayout.createSequentialGroup()
-                        .addGap(239, 239, 239)
-                        .addComponent(save, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(define_locationLayout.createSequentialGroup()
-                        .addGap(41, 41, 41)
-                        .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(40, 40, 40))
+                .addGap(106, 106, 106)
+                .addComponent(save, javax.swing.GroupLayout.PREFERRED_SIZE, 68, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(146, 146, 146))
         );
 
         add(define_location);
-        define_location.setBounds(810, 10, 570, 677);
+        define_location.setBounds(810, 190, 570, 540);
 
         jLabel8.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jLabel8.setText("Search");
         add(jLabel8);
-        jLabel8.setBounds(90, 20, 196, 48);
+        jLabel8.setBounds(70, 90, 196, 48);
+
+        jLabel9.setFont(new java.awt.Font("Times New Roman", 1, 24)); // NOI18N
+        jLabel9.setText("Locations Screen ");
+        add(jLabel9);
+        jLabel9.setBounds(590, 10, 190, 28);
     }//GEN-END:initComponents
 
 
@@ -402,9 +384,9 @@ public class LocationMasterScreen extends javax.swing.JPanel {
     if (LocationTable.getSelectedRow() >= 0) {
           try{ 
                define_location.setVisible(false);
-               int LocationIndex = Integer.parseInt(LocationTable.getValueAt(LocationTable.getSelectedRow(), 0).toString());
+              String LocationIndex = LocationTable.getValueAt(LocationTable.getSelectedRow(), 0).toString();
                LocationDto selected_Location = new LocationDto(); // selected Location, To delete.
-               selected_Location.setLocation_id(LocationIndex); 
+               selected_Location.setCode(LocationIndex); 
                if (Locationbusiness.deleteLocation(selected_Location)) {  //if returned true, location will be deleted
                       JOptionPane.showMessageDialog(this, "Location is Deleted Successfully");
                       setTableModel(Locationbusiness.ListAll()); 
@@ -426,12 +408,13 @@ public class LocationMasterScreen extends javax.swing.JPanel {
          // No need to update Id, so we hide it//
             
            try{
-             code.setText(LocationTable.getValueAt(LocationTable.getSelectedRow(), 1).toString());
-             desc.setText(LocationTable.getValueAt(LocationTable.getSelectedRow(), 2).toString());
-             capacity.setText(LocationTable.getValueAt(LocationTable.getSelectedRow(), 3).toString());
+             code.setText(LocationTable.getValueAt(LocationTable.getSelectedRow(), 0).toString());
+             desc.setText(LocationTable.getValueAt(LocationTable.getSelectedRow(), 1).toString());
+             capacity.setText(LocationTable.getValueAt(LocationTable.getSelectedRow(), 2).toString());
              define_location.setVisible(true);
                // flag , if it equals 1 we update, if zero we insert  
              Location_idUpdate = 1; 
+               code.setEnabled(false);
            }catch(Exception e){
                e.printStackTrace();
       }
@@ -452,8 +435,7 @@ public class LocationMasterScreen extends javax.swing.JPanel {
             LocationObject.setCode(code.getText());
             LocationObject.setCapacity(Integer.parseInt(capacity.getText()));
             LocationObject.setDescription(desc.getText());
-            LocationObject.setStatus("Not assigned");
-         
+          
           //  LocationObject.setLocation_equipments(EquipmentList.getSelectedValuesList());
            
            
@@ -474,7 +456,7 @@ public class LocationMasterScreen extends javax.swing.JPanel {
                     try{   if(Locationbusiness.updateLocation(LocationObject)) {
                     JOptionPane.showMessageDialog(this, "Location Updated Successfully");
                     setTableModel(Locationbusiness.ListAll());
-                    LocationTable.repaint();  }
+                      }
                 else
                 JOptionPane.showMessageDialog(this, "Error occured in update");}
                     catch(LTAException ex){
@@ -488,7 +470,7 @@ public class LocationMasterScreen extends javax.swing.JPanel {
                 try {   if( Locationbusiness.insertLocation(LocationObject)){
                 JOptionPane.showMessageDialog(this, "Location Saved Successfully");
                 setTableModel(Locationbusiness.ListAll());
-                LocationTable.repaint();
+                code.setEnabled(true);
             }else
             JOptionPane.showMessageDialog(this, "Error occured in insertion");}
                 catch(LTAException ex){
@@ -512,7 +494,6 @@ public class LocationMasterScreen extends javax.swing.JPanel {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JList EquipmentList;
     private javax.swing.JTable LocationTable;
     private javax.swing.JComboBox building_combo;
     private javax.swing.JTextField capacity;
@@ -529,9 +510,8 @@ public class LocationMasterScreen extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
-    private javax.swing.JPanel jPanel2;
+    private javax.swing.JLabel jLabel9;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTextField jTextField1;
     private javax.swing.JPanel master;
     private javax.swing.JButton save;

@@ -8,42 +8,9 @@ public class LocationDto {
 
     private int Location_id, capacity ;
     private FloorDto floor ;
-
-   
-
-    public LocationDto(String code) {
-        super();
-        this.code = code;
-    }
-
-    
-
-    public void setOccupation_purpose(String occupation_purpose) {
-        this.occupation_purpose = occupation_purpose;
-    }
-
-    public String getOccupation_purpose() {
-        return occupation_purpose;
-    }
-
-    public void setFloor(FloorDto floor) {
-        this.floor = floor;
-    }
-
-    public FloorDto getFloor() {
-        return floor;
-    }
-
-    public void setStatus(String status) {
-        this.status = status;
-    }
-
-    public String getStatus() {
-        return status;
-    }
-
-
-    private String code, description , status ,insertedBy, updatedBy;;
+    private SlotDto assignedSlot;
+    private List<SlotDto> assignedSlots;
+    private String code, description  ,insertedBy, updatedBy;;
     private LocationTypeDto type;
     private List<EquipmentDto> Location_equipments;
     private String occupation_purpose ; 
@@ -61,6 +28,46 @@ public class LocationDto {
         this.Location_equipments = Location_equipments;
     }
 
+    public void setAssignedSlot(SlotDto assignedSlot) {
+        this.assignedSlot = assignedSlot;
+    }
+
+    public void setAssignedSlots(List<SlotDto> assignedSlots) {
+        this.assignedSlots = assignedSlots;
+    }
+
+    public List<SlotDto> getAssignedSlots() {
+        return assignedSlots;
+    }
+
+    public SlotDto getAssignedSlot() {
+        return assignedSlot;
+    }
+
+
+    public LocationDto(String code) {
+        super();
+        this.
+            code = code;
+    }
+
+    public void setOccupation_purpose(String occupation_purpose) {
+        this.occupation_purpose = occupation_purpose;
+    }
+
+    public String getOccupation_purpose() {
+        return occupation_purpose;
+    }
+
+    public void setFloor(FloorDto floor) {
+        this.floor = floor;
+    }
+
+    public FloorDto getFloor() {
+        return floor;
+    }
+
+    
     public void setInsertedBy(String insertedBy) {
         this.insertedBy = insertedBy;
     }

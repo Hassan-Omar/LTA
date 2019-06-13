@@ -73,30 +73,17 @@ public class BuildingDaoImp implements BuildingDao {
             jdbcRs.setString(1, building.getCode());
             jdbcRs.setString(2, building.getDescription());
 
-            if (building.getUPDATE_DATE() != null)
-                jdbcRs.setDate(3, new java.sql.Date(building.getUPDATE_DATE().getTime()));
+            
+            if (building.getINSERTION_DATE() != null)
+                jdbcRs.setDate(3, new java.sql.Date(building.getINSERTION_DATE().getTime()));
             else
                 jdbcRs.setNull(3, java.sql.Types.DATE);
 
-            if (building.getINSERTION_DATE() != null)
-                jdbcRs.setDate(4, new java.sql.Date(building.getINSERTION_DATE().getTime()));
-            else
-                jdbcRs.setNull(4, java.sql.Types.DATE);
 
+            jdbcRs.setString(4, building.getINSERTED_BY());
+            
 
-            // check if the person who imserte  is not setted we we will set it empty
-            if (building.getINSERTED_BY() != null)
-                jdbcRs.setString(5, building.getINSERTED_BY());
-            else
-                jdbcRs.setNull(5, Types.VARCHAR);
-
-
-            if (building.getUPDATED_BY() != null)
-                jdbcRs.setString(6, building.getUPDATED_BY());
-            else
-                jdbcRs.setNull(6, Types.VARCHAR);
-
-
+           
             jdbcRs.execute();
 
             return true;

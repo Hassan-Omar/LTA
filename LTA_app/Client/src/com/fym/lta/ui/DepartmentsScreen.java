@@ -104,6 +104,7 @@ public class DepartmentsScreen extends javax.swing.JPanel {
             }
         });
 
+        DepartmentTable.setFont(new java.awt.Font("Tekton Pro Cond", 1, 24)); // NOI18N
         DepartmentTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
@@ -112,6 +113,7 @@ public class DepartmentsScreen extends javax.swing.JPanel {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
+        DepartmentTable.setRowHeight(30);
         jScrollPane1.setViewportView(DepartmentTable);
 
         departmrntInsertBtn.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
@@ -193,9 +195,8 @@ public class DepartmentsScreen extends javax.swing.JPanel {
                     .addGroup(layout.createSequentialGroup()
                         .addGap(67, 67, 67)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                                     .addGroup(layout.createSequentialGroup()

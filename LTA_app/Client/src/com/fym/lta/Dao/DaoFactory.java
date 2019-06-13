@@ -1,7 +1,6 @@
 package com.fym.lta.dao;
 
 
-
 public class DaoFactory {
 
     public UserDao createUserDao() {
@@ -28,9 +27,6 @@ public class DaoFactory {
         return new SchedualDaoImp();
     }
 
-    public SlotDao createSlotDao() {
-        return new SlotDaoImp();
-    }
 
     public DepartmentDao createDepartmentDao() {
         return new DepartmentDaoImp();
@@ -55,6 +51,6 @@ public class DaoFactory {
     public EmployeeDao createEmployeeDao() {
         return new EmployeeDaoImp();
     }
-    
-   
+
+
 }

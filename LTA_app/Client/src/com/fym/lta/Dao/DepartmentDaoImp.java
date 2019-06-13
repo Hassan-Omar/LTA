@@ -105,24 +105,10 @@ public class DepartmentDaoImp implements DepartmentDao {
             else
                 jdbcRs.setNull(3, java.sql.Types.DATE);
 
-            // check if the update date is not setted we we will set it
-            if (department.getUpdate_Date() != null)
-                jdbcRs.setDate(4, new java.sql.Date(department.getUpdate_Date().getTime()));
-            else
-                jdbcRs.setNull(4, java.sql.Types.DATE);
-
-            // check if the person who imserte  is not setted we we will set it empty
-            if (department.getInsertedBy() != null)
-                jdbcRs.setString(5, department.getInsertedBy());
-            else
-                jdbcRs.setNull(5, Types.VARCHAR);
-
-
-            if (department.getUpdatedBy() != null)
-                jdbcRs.setString(6, department.getUpdatedBy());
-            else
-                jdbcRs.setNull(6, Types.VARCHAR);
-
+             
+             jdbcRs.setString(4, department.getInsertedBy());
+           
+            
             jdbcRs.execute();
             jdbcRs.setCommand(Queries.INSERT_BUILDING_TO_DEPARTMENT);
             jdbcRs.setString(2, department.getCode());

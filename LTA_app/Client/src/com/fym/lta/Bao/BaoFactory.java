@@ -2,7 +2,6 @@
 package com.fym.lta.bao;
 
 
-
 public class BaoFactory {
 
     public UserBao createUserBao() {
@@ -28,10 +27,6 @@ public class BaoFactory {
 
     public SchedualBao createSchedualBao() {
         return new SchedualBaoImp();
-    }
-
-    public SlotBao createSlotBao() {
-        return new SlotBaoImp();
     }
 
     public DepartmentBao createDepartmentBao() {
@@ -61,9 +56,6 @@ public class BaoFactory {
     public LoginEngine createLoginEngine() {
         return new LoginEngine();
     }
-    
- 
-  
-    
+
 
 }

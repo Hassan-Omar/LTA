@@ -60,30 +60,15 @@ public class LocationTypeDaoImp implements LocationTypeDao {
             jdbcRs.setString(1, LocationType.getCode());
             jdbcRs.setString(2, LocationType.getDescription());
             
-            if (LocationType.getUpdate_Date()!= null)
-                jdbcRs.setDate(6, new java.sql.Date(LocationType.getUpdate_Date().getTime()));
-            else
-                jdbcRs.setNull(6, java.sql.Types.DATE);
+            jdbcRs.setString(3, LocationType.getInsertedBy());
 
             if (LocationType.getInertion_Date() != null)
-                jdbcRs.setDate(5, new java.sql.Date(LocationType.getInertion_Date().getTime()));
+                jdbcRs.setDate(4, new java.sql.Date(LocationType.getInertion_Date().getTime()));
             else
-                jdbcRs.setNull(5, java.sql.Types.DATE);
+                jdbcRs.setNull(4, java.sql.Types.DATE);
 
-
-            // check if the person who imserte  is not setted we we will set it empty
-            if (LocationType.getInsertedBy() != null)
-                jdbcRs.setString(3, LocationType.getInsertedBy());
-            else
-                jdbcRs.setNull(3, Types.VARCHAR);
-
-
-            if (LocationType.getUpdatedBy() != null)
-                jdbcRs.setString(4, LocationType.getUpdatedBy());
-            else
-                jdbcRs.setNull(4, Types.VARCHAR);
-
-
+           
+          
             jdbcRs.execute();
 
             return true;

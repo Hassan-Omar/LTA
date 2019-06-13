@@ -1,4 +1,4 @@
-package com.fym.lta.bao;
+ package com.fym.lta.bao;
 
 import com.fym.lta.common.LTAException;
 import com.fym.lta.dto.DepartmentDto;
@@ -6,6 +6,7 @@ import com.fym.lta.dto.LocationDto;
 import com.fym.lta.dto.SchedualDto;
 import com.fym.lta.dto.SlotDto;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.swing.JOptionPane;
@@ -28,13 +29,13 @@ public class AllocationAlgorthim {
 
     public String alloc_All() { // loops on all departments
         for (int i = 0; i < allDeparts.size(); i++) {
-            List<SchedualDto> schedualIn_Depart = schedualBaoObj.listSchedual_inDeparts(allDeparts.get(i).getName());
+            List<SchedualDto> schedualIn_Depart = schedualBaoObj.listSchedual_inDeparts(allDeparts.get(i).getCode());
             // loops on the department's schedual
             for (int k = 0; k < schedualIn_Depart.size(); k++) { // calling allocate_Table method to allocate  table no k
-                saveStatus2 = allocate_Table(schedualIn_Depart.get(k), allDeparts.get(i).getName());
+                saveStatus2 = allocate_Table(schedualIn_Depart.get(k), allDeparts.get(i).getCode());
 
                 if (!saveStatus2)
-                    report += " table no " + k + " dep name " + allDeparts.get(i).getName();
+                    report += " table no " + k + " dep name " + allDeparts.get(i).getCode();
 
             }
         }
@@ -43,36 +44,77 @@ public class AllocationAlgorthim {
     }
 
 
-    // method to  connect location  and alloce for a certian time
-    public boolean allocate_Table(SchedualDto currentSchedual, String depName) {
+    // method to  connect location  and alloce for a certian one table 
+    public boolean allocate_Table(SchedualDto currentSchedual, String depCode) {
 
         // get the number of student
         int studentNum = currentSchedual.getStudent_number();
 
         // first we need a list of avaialable rooms
-        List<LocationDto> availableRooms = locationBaoObj.getAvailableLocations(depName);
+        List<LocationDto> rooms_inDep = locationBaoObj.getAvailableLocations(depCode);
 
         // get the list of slots form this table
         List<SlotDto> currentSlots = currentSchedual.getSchedual_Slots();
 
-        // loop on the slots
+         List<SlotDto> assigSlots= new ArrayList<>();
+        // loop on the slots      
+        for (int i = 0; i < currentSlots.size(); i++) 
+        {
+        
+           List<LocationDto> filterdRooms = filterLocation(rooms_inDep ,currentSlots.get(i).getCode());
+           LocationDto chosenRoom = decitionMake(filterdRooms , studentNum , currentSlots.get(i).getPrefSpace() ) ; 
+           
+           // update this location 
+           chosenRoom.setAssignedSlot(currentSlots.get(i));
+           locationBaoObj.saveLocationSlot(chosenRoom); 
+            // update availableRooms list  
+            /* rooms_inDep.remove(chosenRoom);
+            assigSlots.add(currentSlots.get(i));
+            chosenRoom.setAssignedSlots(assigSlots);
+            rooms_inDep.add(chosenRoom); */
+            
+            rooms_inDep = locationBaoObj.getAvailableLocations(depCode);            
+            
+        }
 
-        for (int i = 0; i < currentSlots.size(); i++) { // this to hold the value of needed space type
-            String prefSpace = currentSlots.get(i).getPrefSpace();
+        return saveStatus;
+    }
 
-            for (int k = 0; k < availableRooms.size();
-                 k++) { // check if the prefSpace is proper and the capacity is proper
-                if (prefSpace.equals(availableRooms.get(k).getType().getDescription()) &&
-                    (availableRooms.get(k).getCapacity() >= studentNum))
-                // allocate this space
-                { // allocate this locatoion
-                    LocationDto currentLoc = availableRooms.get(k);
-                    currentSlots.get(i).setCurrentLocation(currentLoc);
 
                     // update this location's status to busy
                     currentLoc.setStatus("busy");
                     try{
                     locationBaoObj.updateLocation(currentLoc);
+
+                    // update this location's status to busy
+                    currentLoc.setStatus("busy");
+                    locationBaoObj.updateLocation(currentLoc);
+
+  // method to filter the rooms based on slotCode 
+ // actually it will return all rooms which are free at the time of slot which has code=slotCode
+   List<LocationDto> filterLocation(List<LocationDto> locations, int slotCode) {
+      
+      for(int i=0; i<locations.size(); i++)
+      {
+          List<SlotDto> assignedSlots = locations.get(i).getAssignedSlots();
+         // if assignedSlots is null that means it available along the day 
+         if(assignedSlots!=null)
+         {
+              
+              for(int k=0; k<assignedSlots.size(); k++)
+              {
+                 if(assignedSlots.get(k).getCode()== slotCode )
+                 { // this means room no i is busy at this time 
+                   locations.remove(i);
+                  }
+              }
+          }
+          
+          
+      }
+       
+     return locations ;  
+    }
 
                     // remove this reserved location from list
                     availableRooms.remove(k);
@@ -82,17 +124,77 @@ public class AllocationAlgorthim {
                     }
                 }
 
+                    // remove this reserved location from list
+                    availableRooms.remove(k);
 
+                }
+
+    // method to calculate the distance between the student's number , capacity
+    // and return the location which have the min distance 
+    LocationDto cal_Min_Distance(List<LocationDto> locations, int student_Num) {
+        // this to hold all distances
+        int[] distances = new int[locations.size()];
+        // loop to calculate all distances
+        for (int i = 0; i < locations.size(); i++) { // actually this is the free places if we reserved for +ve only
+            // as -ve means this not proper room
+            distances[i] = locations.get(i).getCapacity() - student_Num;
+        } 
+        
+        // this to hold the index of the minmum distance
+        int min_index =0 ; 
+        // loop to get minmum distance 
+        for(int i=0; i<distances.length ; i++)
+        {
+            // check if distance is positive 
+            if(i>0 && distances[i]>0)
+            {   
+                if (distances[i]<distances[i-1])
+                    min_index = i ; 
             }
 
-            // update the table content
-            currentSchedual.setSchedual_Slots(currentSlots);
-            //  save the table "actually will update slot.location_id in db "
-            saveStatus = schedualBaoObj.saveSchedual(currentSchedual);
         }
+        return locations.get(min_index);
+    }
 
 
-        return saveStatus;
+    // method to check if the room is proper 
+    boolean checkProper(LocationDto location, String prefSpace) {
+         
+            if (prefSpace.equals((location.getType().getDescription())))
+               return true;
+            else
+               
+        return false;
+    }
+
+    // method to choose the best location (( this to drive the tow method calculateProper,calculateDistance ))
+    @SuppressWarnings("oracle.jdeveloper.java.trivial-assignment")
+    LocationDto decitionMake(List<LocationDto> locations, int student_Num, String prefSpace) {
+        LocationDto resultLocation = null ; 
+        
+        for (int i=0; i<locations.size(); i++)
+        {
+            LocationDto minLocation = cal_Min_Distance(locations ,student_Num) ;
+            if( checkProper(minLocation ,prefSpace))
+            {
+                // now this is proper 
+                // i can't trust if this will success or not 
+                resultLocation = minLocation ; 
+                i = locations.size() ; 
+            }
+            
+            else 
+            {
+                // if we come here  this means the minLocation faild to proper 
+                // so we need to remove this from our list 
+                locations.remove(minLocation) ; 
+
+            }
+            
+        }
+    
+
+        return resultLocation;
     }
 
 
