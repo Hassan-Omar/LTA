@@ -264,24 +264,28 @@ public class MailScreen extends javax.swing.JPanel {
     }//GEN-END:initComponents
    
    
-   /*we use flag To check whether the file was selected when the user clicked attachment button or not
+   /*we use flag To check whether the file was selected when the user clicked attachment button or cancelled
     so that we could determine whether we send just a message or a message and attachement*/
-    boolean flag = true;
+    boolean flag = false;
+    String Filepath;
     String Filename;
     private void addAttachMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_addAttachMouseClicked
     //To choose an attachement 
     JFileChooser Chooser = new JFileChooser();
-    Chooser.showDialog(addAttach, "Choose File");
     int returnVal = Chooser.showOpenDialog(this);
     //To determine whether the user chose file or cancelled
     if(returnVal == JFileChooser.APPROVE_OPTION){  
+    // To get the selected file & its name & path    
         File chosenFile = Chooser.getSelectedFile();
+        Filepath = chosenFile.getAbsolutePath();
         Filename = chosenFile.getName();
-        System.out.println(Filename);
-        flag = true; }
+        System.out.println(Filepath);
+        flag = true; // user succeessfully selected a file
+                     }
     else {
         System.out.println("File Choosing cancelled by user ");
-        flag = false; }
+        flag = false; //user cancelled the selection of file
+                      }
                
     }//GEN-LAST:event_addAttachMouseClicked
 
@@ -327,8 +331,8 @@ public class MailScreen extends javax.swing.JPanel {
 
     private void btnSend1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnSend1MouseClicked
     
-    if (userTable.getSelectedRow()<0)
-      JOptionPane.showMessageDialog(this, "There is no user have been selected/n please Select a user");
+   // if (userTable.getSelectedRow()<0)
+    //  JOptionPane.showMessageDialog(this, "There is no user have been selected/n please Select a user");
         // this will give you current user's mail 
         String currentUserEmail =  userBaoObj.getCurrentUserEmail(LoginEngine.currentUser); 
     
@@ -345,19 +349,23 @@ public class MailScreen extends javax.swing.JPanel {
        
         Properties prop = new Properties();
     if(currentUserEmail.contains("yahoo")){
-        prop.put("mail.smtp.host", "smtp.mail.yahoo.com"); }
+        prop.put("mail.smtp.host", "smtp.yahoo.com"); }
     else if(currentUserEmail.contains("gmail")){
-        prop.put("mail.smtp.host", "smtp.mail.gmail.com"); }
+        prop.put("mail.smtp.host",  "smtp.gmail.com"); }
     else if(currentUserEmail.contains("fayoum")){
-        prop.put("mail.smtp.host", "smtp.mail.gmail.com"); }
+        prop.put("mail.smtp.host", "smtp.gmail.com"); }
     else if(currentUserEmail.contains("hotmail")){
-        prop.put("mail.smtp.host", "smtp.mail.hotmail.com"); }
-        prop.put("mail.smtp.port", "587");
+        prop.put("mail.smtp.host", "smtp.hotmail.com"); }
+        prop.put("mail.smtp.port", "465");
         prop.put("mail.smtp.auth", "true");
-        prop.put("mail.smtp.socketFactory.port", "587");
+        prop.put("mail.smtp.socketFactory.port", "465");
         prop.put("mail.smtp.socketFactory.class", "javax.net.ssl.SSLSocketFactory");
         prop.put("mail.smtp.starttls.enable","true");
-       
+        prop.put("mail.smtp.socketFactory.fallback", "false");
+        // to pass through the proxy if it is exist
+        prop.put("proxySet","true");
+        prop.put("socksProxyHost","192.168.155.1");
+        prop.put("socksProxyPort","1080");
         Session session = Session.getDefaultInstance(prop,
                 new javax.mail.Authenticator() {
                     protected PasswordAuthentication getPasswordAuthentication() {
@@ -366,8 +374,8 @@ public class MailScreen extends javax.swing.JPanel {
                 });
 
         try {
-        
-            if(addAttach.isSelected()&&(flag)){
+            
+            if(flag) {  //to send a message with an attachement
                 
                 Message message = new MimeMessage(session);
                 message.setFrom(new InternetAddress( currentUserEmail ));
@@ -382,23 +390,23 @@ public class MailScreen extends javax.swing.JPanel {
                               
               // creating the attachement part 
                 BodyPart messageBodyPart2 = new MimeBodyPart();  
-                DataSource source = new FileDataSource(Filename);   
+                DataSource source = new FileDataSource(Filepath);   
                 messageBodyPart2.setDataHandler(new DataHandler(source));   
                 messageBodyPart2.setFileName(Filename);   
                               
-            // creating MultiPart object 
+            // creating MultiPart object and set the message & attachement
                 Multipart multipartObject = new MimeMultipart();   
                 multipartObject.addBodyPart(messageBodyPart1);   
                 multipartObject.addBodyPart(messageBodyPart2); 
                       
-           // set body of the email. 
+           // set body of the email 
                 message.setContent(multipartObject); 
                 
-          // Send email. 
+          // Send email  
                Transport.send(message); 
             }
             
-            else{
+            else{  //to send a message withou attachement
                 Message message = new MimeMessage(session);
                 message.setFrom(new InternetAddress( currentUserEmail ));
                 message.setRecipients(
@@ -411,7 +419,13 @@ public class MailScreen extends javax.swing.JPanel {
 
             JOptionPane.showMessageDialog(this, "Email sent successfully");
 
-     } catch (MessagingException e) {
+     } 
+        catch(javax.mail.SendFailedException ex){
+            JOptionPane.showMessageDialog(this, "No user has been selected\n" +"   please select a user"); 
+        }
+        
+        
+        catch (MessagingException e) {
             e.printStackTrace();
         }
     

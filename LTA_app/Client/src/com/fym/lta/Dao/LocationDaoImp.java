@@ -77,69 +77,9 @@ public class LocationDaoImp implements LocationDao {
     }
 
     /*this is to insert new location in a specific building and floor
-      with specific location type*/
+      with specific location type*/    
 
-    public boolean insert_Location(LocationDto Location)throws LTAException {
-        
-        try(JdbcRowSet jdbc = RowSetProvider.newFactory().createJdbcRowSet();) {
-                    jdbc.setUrl(ConnectionFactory.getUrl());
-                    jdbc.setUsername(ConnectionFactory.getUsername());
-                    jdbc.setPassword(ConnectionFactory.getPassword());
-                    jdbc.setCommand(Queries.INSER_NEW_LOCATION);
-                    jdbc.setInt(1, Location.getLocation_id());
-                    jdbc.setString(2, Location.getCode());
-                    jdbc.setString(3, Location.getDescription());
-                    jdbc.setInt(4, Location.getCapacity());
-                    jdbc.setString(5, Location.getStatus());
-                    jdbc.setInt(6, Location.getFloor().getFloor_id());
-                    jdbc.setInt(7, Location.getType().getLocationType_id());
-                    jdbc.setString(8, Location.getInsertedBy());
-                    jdbc.setDate(9, new java.sql.Date(Location.getInertion_Date().getTime()));
-                   // jdbc.setString(11, Location.getUpdatedBy());
-                  //  jdbc.setDate(12, new java.sql.Date(Location.getUpdate_Date().getTime()));
-                    jdbc.execute(); 
-                    return true;
-                }
-                
-              
-                catch(Exception e){
-                    e.printStackTrace();      
-                }
-        return false;    
-
-    public boolean insert_Location(LocationDto Location) {
-        
-        try(JdbcRowSet jdbc = RowSetProvider.newFactory().createJdbcRowSet();) {
-                    jdbc.setUrl(ConnectionFactory.getUrl());
-                    jdbc.setUsername(ConnectionFactory.getUsername());
-                    jdbc.setPassword(ConnectionFactory.getPassword());
-                    jdbc.setCommand(Queries.INSER_NEW_LOCATION);
-                    jdbc.setInt(1, Location.getLocation_id());
-                    jdbc.setString(2, Location.getCode());
-                    jdbc.setString(3, Location.getDescription());
-                    jdbc.setInt(4, Location.getCapacity());
-                    jdbc.setString(5, Location.getStatus());
-                    jdbc.setInt(6, Location.getFloor().getFloor_id());
-                    jdbc.setInt(7, Location.getType().getLocationType_id());
-                    jdbc.setString(8, Location.getInsertedBy());
-                    jdbc.setDate(9, new java.sql.Date(Location.getInertion_Date().getTime()));
-                   // jdbc.setString(11, Location.getUpdatedBy());
-                  //  jdbc.setDate(12, new java.sql.Date(Location.getUpdate_Date().getTime()));
-                    jdbc.execute(); 
-                    return true;
-                }
-                catch(java.sql.SQLIntegrityConstraintViolationException e ){
-                JOptionPane.showMessageDialog( null, "Unique Constrain Violated, please insert unique ID");
-                        }
-            //     catch(java.sql.SQLException e){
-              //     JOptionPane.showMessageDialog( null , "Database Failed");
-           //     }
-                catch(Exception e){
-                    e.printStackTrace();      
-                }
-        return false;    
-
-    public boolean insert_Location(LocationDto Location) {
+    public boolean insert_Location(LocationDto Location) throws LTAException {
 
         try (JdbcRowSet jdbc = RowSetProvider.newFactory().createJdbcRowSet()) {
             jdbc.setUrl(ConnectionFactory.getUrl());
@@ -171,77 +111,8 @@ public class LocationDaoImp implements LocationDao {
 
     }
 
-      
-      //this is to update location
-    public boolean Update_Location(LocationDto Location)throws LTAException{
-        try(JdbcRowSet jdbc = RowSetProvider.newFactory().createJdbcRowSet();) {
-                    jdbc.setUrl(ConnectionFactory.getUrl());
-                    jdbc.setUsername(ConnectionFactory.getUsername());
-                    jdbc.setPassword(ConnectionFactory.getPassword());
-                    
-                    jdbc.setCommand(Queries.UPDATE_LOCATION);
-                    jdbc.setString(1, Location.getCode());
-                    jdbc.setString(2, Location.getDescription());
-                    jdbc.setInt(3, Location.getCapacity());
-                    jdbc.setString(4, Location.getStatus());
-                    jdbc.setInt(5, Location.getFloor().getFloor_id());
-                    jdbc.setInt(6, Location.getType().getLocationType_id());
-                //    jdbc.setString(8, Location.getInsertedBy());
-               //    jdbc.setDate(10, new java.sql.Date(Location.getInertion_Date().getTime()));
-                     jdbc.setString(7, Location.getUpdatedBy());
-                     jdbc.setDate(8, new java.sql.Date(Location.getUpdate_Date().getTime()));
-                    jdbc.setInt(9, Location.getLocation_id());
-                   
-             //System.out.println("-------->"+Location.getLocation_id());
-                    jdbc.execute();   
-                    return true;  
-                }
-               
-                catch(Exception e){
-                   e.printStackTrace();   
-                   return false;
-               }
-
-      
-      //this is to update location
-    public boolean Update_Location(LocationDto Location) {
-        try(JdbcRowSet jdbc = RowSetProvider.newFactory().createJdbcRowSet();) {
-                    jdbc.setUrl(ConnectionFactory.getUrl());
-                    jdbc.setUsername(ConnectionFactory.getUsername());
-                    jdbc.setPassword(ConnectionFactory.getPassword());
-                    
-                    jdbc.setCommand(Queries.UPDATE_LOCATION);
-                    jdbc.setString(1, Location.getCode());
-                    jdbc.setString(2, Location.getDescription());
-                    jdbc.setInt(3, Location.getCapacity());
-                    jdbc.setString(4, Location.getStatus());
-                    jdbc.setInt(5, Location.getFloor().getFloor_id());
-                    jdbc.setInt(6, Location.getType().getLocationType_id());
-                //    jdbc.setString(8, Location.getInsertedBy());
-               //    jdbc.setDate(10, new java.sql.Date(Location.getInertion_Date().getTime()));
-                     jdbc.setString(7, Location.getUpdatedBy());
-                     jdbc.setDate(8, new java.sql.Date(Location.getUpdate_Date().getTime()));
-                    jdbc.setInt(9, Location.getLocation_id());
-                   
-             //System.out.println("-------->"+Location.getLocation_id());
-                    jdbc.execute();   
-                    return true;  
-                }
-                catch(java.sql.SQLIntegrityConstraintViolationException e ){
-                 JOptionPane.showMessageDialog( null ,"Unique Constrain Violated, please insert unique ID");
-                  return false;
-                        }
-            //     catch(java.sql.SQLException e){
-              //     JOptionPane.showMessageDialog( null , "Database Failed");
-           //     }
-                catch(Exception e){
-                   e.printStackTrace();   
-                   return false;
-               }
-
-
     //this is to update location
-    public boolean Update_Location(LocationDto Location) {
+    public boolean Update_Location(LocationDto Location)throws LTAException {
         try (JdbcRowSet jdbc = RowSetProvider.newFactory().createJdbcRowSet()) {
             jdbc.setUrl(ConnectionFactory.getUrl());
             jdbc.setUsername(ConnectionFactory.getUsername());

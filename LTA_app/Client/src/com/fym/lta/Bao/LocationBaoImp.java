@@ -23,31 +23,6 @@ public class LocationBaoImp implements LocationBao {
           }
 
 
-      
-    public boolean insertLocation(LocationDto Location) {
-              boolean saveFlage = true;
-              try{
-                      saveFlage = daoLocation.insert_Location(Location);
-              }catch(Exception e){
-                  e.printStackTrace();
-                  return false;
-              }
-              return saveFlage;
-          }
-
-
-    public boolean insertLocation(LocationDto Location) {
-        boolean saveFlage = true;
-        try {
-            saveFlage = daoLocation.insert_Location(Location);
-        } catch (Exception e) {
-            e.printStackTrace();
-            return false;
-        }
-        return saveFlage;
-    }
-
-
     @Override
 
 
@@ -56,16 +31,7 @@ public class LocationBaoImp implements LocationBao {
     { return daoLocation.Update_Location(Location);
                    }
 
-    public boolean updateLocation(LocationDto Location)
-    
-    { return daoLocation.Update_Location(Location);
-                   }
-
-    public boolean updateLocation(LocationDto Location)
-
-    {
-        return daoLocation.Update_Location(Location);
-    }
+   
 
 
     @Override

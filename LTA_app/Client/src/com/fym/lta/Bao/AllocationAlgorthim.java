@@ -1,6 +1,5 @@
- package com.fym.lta.bao;
+package com.fym.lta.bao;
 
-import com.fym.lta.common.LTAException;
 import com.fym.lta.dto.DepartmentDto;
 import com.fym.lta.dto.LocationDto;
 import com.fym.lta.dto.SchedualDto;
@@ -8,8 +7,6 @@ import com.fym.lta.dto.SlotDto;
 
 import java.util.ArrayList;
 import java.util.List;
-
-import javax.swing.JOptionPane;
 
 public class AllocationAlgorthim {
 
@@ -80,16 +77,6 @@ public class AllocationAlgorthim {
         return saveStatus;
     }
 
-
-                    // update this location's status to busy
-                    currentLoc.setStatus("busy");
-                    try{
-                    locationBaoObj.updateLocation(currentLoc);
-
-                    // update this location's status to busy
-                    currentLoc.setStatus("busy");
-                    locationBaoObj.updateLocation(currentLoc);
-
   // method to filter the rooms based on slotCode 
  // actually it will return all rooms which are free at the time of slot which has code=slotCode
    List<LocationDto> filterLocation(List<LocationDto> locations, int slotCode) {
@@ -115,19 +102,6 @@ public class AllocationAlgorthim {
        
      return locations ;  
     }
-
-                    // remove this reserved location from list
-                    availableRooms.remove(k);
-                    }
-                    catch(LTAException ex){
-                   // JOptionPane.showMessageDialog(this, "Error in Data base");}
-                    }
-                }
-
-                    // remove this reserved location from list
-                    availableRooms.remove(k);
-
-                }
 
     // method to calculate the distance between the student's number , capacity
     // and return the location which have the min distance 
@@ -155,7 +129,6 @@ public class AllocationAlgorthim {
         }
         return locations.get(min_index);
     }
-
 
     // method to check if the room is proper 
     boolean checkProper(LocationDto location, String prefSpace) {
