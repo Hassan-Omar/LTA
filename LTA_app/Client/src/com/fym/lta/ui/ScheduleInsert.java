@@ -1,3 +1,4 @@
+
 package com.fym.lta.ui;
 
 import com.fym.lta.bao.BaoFactory;
@@ -66,11 +67,8 @@ public class ScheduleInsert extends javax.swing.JPanel
         jLabel1 = new javax.swing.JLabel();
         deleteBTN = new javax.swing.JButton();
         PanelInsert = new javax.swing.JPanel();
-        academicYearlable = new javax.swing.JLabel();
-        departmentlable = new javax.swing.JLabel();
         insert = new javax.swing.JButton();
-        academicYearcombox = new javax.swing.JComboBox();
-        departmentcombox = new javax.swing.JComboBox();
+        jLabel2 = new javax.swing.JLabel();
 
         setLayout(null);
 
@@ -117,14 +115,11 @@ public class ScheduleInsert extends javax.swing.JPanel
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 186, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(75, 75, 75))
+            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 206, Short.MAX_VALUE)
         );
 
         add(jPanel1);
-        jPanel1.setBounds(10, 230, 462, 240);
+        jPanel1.setBounds(10, 260, 462, 250);
 
         insertBTN.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         insertBTN.setText("Insert  New ");
@@ -139,7 +134,7 @@ public class ScheduleInsert extends javax.swing.JPanel
             }
         });
         add(insertBTN);
-        insertBTN.setBounds(310, 150, 160, 54);
+        insertBTN.setBounds(310, 190, 160, 54);
 
         searchBTN.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         searchBTN.setText("Search");
@@ -154,7 +149,7 @@ public class ScheduleInsert extends javax.swing.JPanel
             }
         });
         add(searchBTN);
-        searchBTN.setBounds(370, 50, 97, 50);
+        searchBTN.setBounds(370, 100, 97, 50);
 
         ScheduleCode.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         ScheduleCode.addActionListener(new java.awt.event.ActionListener() {
@@ -163,12 +158,12 @@ public class ScheduleInsert extends javax.swing.JPanel
             }
         });
         add(ScheduleCode);
-        ScheduleCode.setBounds(10, 50, 250, 40);
+        ScheduleCode.setBounds(10, 100, 250, 40);
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jLabel1.setText("Search");
         add(jLabel1);
-        jLabel1.setBounds(12, 9, 110, 30);
+        jLabel1.setBounds(10, 60, 110, 30);
 
         deleteBTN.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         deleteBTN.setLabel("Delete");
@@ -183,15 +178,9 @@ public class ScheduleInsert extends javax.swing.JPanel
             }
         });
         add(deleteBTN);
-        deleteBTN.setBounds(120, 150, 111, 50);
+        deleteBTN.setBounds(120, 190, 111, 50);
 
         PanelInsert.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-
-        academicYearlable.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        academicYearlable.setText("Academic Year ");
-
-        departmentlable.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        departmentlable.setText("Department");
 
         insert.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         insert.setText("Open");
@@ -201,63 +190,38 @@ public class ScheduleInsert extends javax.swing.JPanel
             }
         });
 
-        academicYearcombox.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "First Year    ", "Second Year    ", "Third Year    ", "Fourth Year " }));
-
-        departmentcombox.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "sduguv", "dawjcbuoJ", "SDJCBJkx ;" }));
-        departmentcombox.setToolTipText("");
-
         javax.swing.GroupLayout PanelInsertLayout = new javax.swing.GroupLayout(PanelInsert);
         PanelInsert.setLayout(PanelInsertLayout);
         PanelInsertLayout.setHorizontalGroup(
             PanelInsertLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(PanelInsertLayout.createSequentialGroup()
-                .addGap(35, 35, 35)
-                .addGroup(PanelInsertLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(PanelInsertLayout.createSequentialGroup()
-                        .addComponent(departmentlable, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(departmentcombox, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(PanelInsertLayout.createSequentialGroup()
-                        .addComponent(academicYearlable)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 82, Short.MAX_VALUE)
-                        .addComponent(academicYearcombox, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(52, 52, 52))
-            .addGroup(PanelInsertLayout.createSequentialGroup()
                 .addGap(146, 146, 146)
                 .addComponent(insert, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(154, Short.MAX_VALUE))
         );
         PanelInsertLayout.setVerticalGroup(
             PanelInsertLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(PanelInsertLayout.createSequentialGroup()
-                .addGap(26, 26, 26)
-                .addGroup(PanelInsertLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(academicYearcombox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(PanelInsertLayout.createSequentialGroup()
-                        .addGroup(PanelInsertLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(departmentlable)
-                            .addComponent(departmentcombox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(90, 90, 90)
-                        .addComponent(academicYearlable)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 71, Short.MAX_VALUE)
+                .addContainerGap(101, Short.MAX_VALUE)
                 .addComponent(insert, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(136, 136, 136))
         );
 
         add(PanelInsert);
-        PanelInsert.setBounds(510, 45, 445, 420);
+        PanelInsert.setBounds(510, 225, 445, 290);
+
+        jLabel2.setFont(new java.awt.Font("Times New Roman", 1, 24)); // NOI18N
+        jLabel2.setText("Scheduels Screen");
+        add(jLabel2);
+        jLabel2.setBounds(420, 10, 177, 28);
     }//GEN-END:initComponents
 
     private void insertActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_insertActionPerformed
         //Choose XLS FILE
         JFileChooser Chooser = new JFileChooser();
         int Variable = Chooser.showOpenDialog(null);
-        //To select items for Combox
-        int selectDpertment = departmentcombox.getSelectedIndex();
-        int academicYear = academicYearcombox.getSelectedIndex();
-        
-        if (selectDpertment == 0) // Choose Computer  Department
-        {
+    
+    
               if (Variable == JFileChooser.APPROVE_OPTION) 
                 {                     
 
@@ -277,30 +241,32 @@ public class ScheduleInsert extends javax.swing.JPanel
                         List<SlotDto> slots =  new ArrayList<>();
                         SchedualBao SchedualBao = new BaoFactory().createSchedualBao();
                         EmployeeBao EmployeeBao = new BaoFactory().createemployeeBao();
-                        CourseBao CourseBao = new BaoFactory().createCourseBao(); 
-                        schudel.setAcademicYear(Acadimcyear.getCell(1).toString());
+                        CourseBao CourseBao = new BaoFactory().createCourseBao();
+                        
+                        float temp = Float.parseFloat(Acadimcyear.getCell(1).toString());
+                        int acadYear = (int)temp ; 
+                        schudel.setAcademicYear(acadYear);
                         schudel.setSCHEDULECODE(SCHEDULECODE.getCell(1).toString());
                         schudel.setCodeDeparment(CodeDeparment.getCell(1).toString());
-                        float temp = Float.parseFloat(Acadimcyear.getCell(3).toString()) ;
-                        int num = (int) temp;
+                        float temp1 = Float.parseFloat(Acadimcyear.getCell(3).toString()) ;
+                        int num = (int) temp1;
                         schudel.setStudent_number(num );
- 
-                        for (int i = 3; i < 38; i += 7)
+                        int slotCode = 1;
+                        for (int i = 5; i < 30; i += 5)
                         {   
-                            HSSFRow slotCode = Sheet.getRow(i);
-                           // HSSFRow Starttime = Sheet.getRow(i + 1);
-                            HSSFRow courseName = Sheet.getRow(i+2); 
-                            HSSFRow StaffName1 = Sheet.getRow(i + 3);
-                            HSSFRow StaffName2 = Sheet.getRow(i + 4);
-                            HSSFRow Type = Sheet.getRow(i + 5);
-                            HSSFRow PrefSpace = Sheet.getRow(i + 6);   
+                            
+                            HSSFRow courseName = Sheet.getRow(i); 
+                            HSSFRow StaffName1 = Sheet.getRow(i + 1);
+                            HSSFRow StaffName2 = Sheet.getRow(i + 2);
+                            HSSFRow Type = Sheet.getRow(i + 3);
+                            HSSFRow PrefSpace = Sheet.getRow(i + 4);   
                            
                             for (int k = 1; k < 9; k += 2)
                             {                        
                                 EmployeeDto instructor = new EmployeeDto();
                                 CourseDto course = new CourseDto();
                                 List<EmployeeDto> instructors = new ArrayList<>();
-
+                               // System.out.println("     i"+i+"   k="+k);
 
                                 instructor.setEmail(StaffName1.getCell(k + 1).toString());
                                 // you need to cut the string and set the name as comming +++++++++
@@ -340,29 +306,27 @@ public class ScheduleInsert extends javax.swing.JPanel
                                 department_course.setCode(schudel.getCodeDeparment());
                                 course.setDepartment(department_course);
                                
-                                LocationTypeDto loc = new LocationTypeDto() ;
-                                loc.setCode(PrefSpace.getCell(k+1).toString());
-                                course.setNeededLocType(loc);
+                                LocationTypeDto locType = new LocationTypeDto() ;
+                                locType.setCode(PrefSpace.getCell(k+1).toString());
+                                course.setNeededLocType(locType);
                                 if(course.getCode()!="" && course.getName()!=""&&course.getCode()!=null);
                                 CourseBao.saveCourse(course);
                                
                                
                                 SlotDto slot = new SlotDto();
-                                slot.setCode(slotCode.getCell(k+1).toString());
+                                slot.setCode(slotCode);
                                 slot.setCurrentCourse(course);
                                 slot.setPrefSpace(PrefSpace.getCell(k + 1).toString());
                                 slot.setType(Type.getCell(k + 1).toString());
                                 if(slot.getCurrentCourse().getCode()!=null)
                                 slots.add(slot);
-                              
+                                slotCode++;
                             } // end of inner loop
 
                         } // end of outer loop 
                         
                          schudel.setSchedual_Slots(slots);
-                        
-                         
-                                               
+                    
                           if( SchedualBao.saveSchedual(schudel))
                             JOptionPane.showMessageDialog(this, " saved");
                             else
@@ -374,7 +338,7 @@ public class ScheduleInsert extends javax.swing.JPanel
                 }
            
             
-        }
+      
 
 
          
@@ -468,14 +432,11 @@ public class ScheduleInsert extends javax.swing.JPanel
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel PanelInsert;
     private javax.swing.JTextField ScheduleCode;
-    private javax.swing.JComboBox academicYearcombox;
-    private javax.swing.JLabel academicYearlable;
     private javax.swing.JButton deleteBTN;
-    private javax.swing.JComboBox departmentcombox;
-    private javax.swing.JLabel departmentlable;
     private javax.swing.JButton insert;
     private javax.swing.JButton insertBTN;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JButton searchBTN;

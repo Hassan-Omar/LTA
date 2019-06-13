@@ -277,7 +277,7 @@ public class LocationDaoImp implements LocationDao {
                 while (jdbcRs.next()) {
                     slots = new ArrayList<>();
                     SlotDto slot = new SlotDto();
-                    slot.setCode(jdbcRs.getString(1));
+                    slot.setCode(jdbcRs.getInt(1));
                     slot.setSlot_id(jdbcRs.getInt(2));
                     slots.add(slot);
                 }
@@ -306,7 +306,7 @@ public class LocationDaoImp implements LocationDao {
 
             jdbcRs.setCommand(Queries.INSERT_LOCATION_SLOT);
             jdbcRs.setInt(1, loc.getLocation_id());
-            jdbcRs.setString(2, loc.getAssignedSlot().getCode());
+            jdbcRs.setInt(2, loc.getAssignedSlot().getCode());
             jdbcRs.setInt(3, loc.getAssignedSlot().getSlot_id());
             jdbcRs.execute();
 
@@ -327,7 +327,7 @@ public class LocationDaoImp implements LocationDao {
             jdbcRs.setPassword(ConnectionFactory.getPassword());
             
             jdbcRs.setCommand(Queries.UPDATE_LOCATION_SLOT); 
-            jdbcRs.setString(1, loc.getAssignedSlot().getCode());
+            jdbcRs.setInt(1, loc.getAssignedSlot().getCode());
             jdbcRs.setInt(2, loc.getLocation_id());
             jdbcRs.setInt(3, loc.getAssignedSlot().getSlot_id());
             jdbcRs.execute();

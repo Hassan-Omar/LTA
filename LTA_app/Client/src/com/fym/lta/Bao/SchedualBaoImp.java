@@ -80,7 +80,7 @@ public class SchedualBaoImp implements SchedualBao {
 
     public SchedualDto createSch(int statrt, int sNum, int var) {
         SchedualDto sch1 = new SchedualDto();
-        sch1.setAcademicYear("2019");
+        sch1.setAcademicYear(2019);
         sch1.setCodeDeparment("cse");
         sch1.setSCHEDULECODE("sce3rd" + var);
         sch1.setStudent_number(sNum);
@@ -88,7 +88,7 @@ public class SchedualBaoImp implements SchedualBao {
         List<SlotDto> slots = new ArrayList();
         for (int i = statrt; i < statrt + 20; i++) {
             SlotDto slot = new SlotDto();
-            slot.setCode("slot" + i);
+            slot.setCode(i);
             slot.setPrefSpace("lab");
             slot.setType("section");
             slot.setSlot_id(i);

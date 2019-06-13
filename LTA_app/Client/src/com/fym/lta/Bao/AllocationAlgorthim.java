@@ -79,7 +79,7 @@ public class AllocationAlgorthim {
 
   // method to filter the rooms based on slotCode 
  // actually it will return all rooms which are free at the time of slot which has code=slotCode
-   List<LocationDto> filterLocation(List<LocationDto> locations, String slotCode) {
+   List<LocationDto> filterLocation(List<LocationDto> locations, int slotCode) {
       
       for(int i=0; i<locations.size(); i++)
       {
@@ -90,7 +90,7 @@ public class AllocationAlgorthim {
               
               for(int k=0; k<assignedSlots.size(); k++)
               {
-                 if(assignedSlots.get(k).getCode().equals(slotCode))
+                 if(assignedSlots.get(k).getCode()== slotCode )
                  { // this means room no i is busy at this time 
                    locations.remove(i);
                   }

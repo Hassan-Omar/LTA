@@ -32,7 +32,7 @@ public class SchedualDaoImp implements SchedualDao {
                     scheduals = new ArrayList<>();
                 SchedualDto table = new SchedualDto();
                 table.setSCHEDULECODE(jdbcRs.getString(1));
-                table.setAcademicYear(jdbcRs.getString(2));
+                table.setAcademicYear(jdbcRs.getInt(2));
                 table.setStudent_number(jdbcRs.getInt(3));
                 // table.setId(jdbcRs.getInt(4)); // no id i don't need it
                 table.setCodeDeparment(jdbcRs.getString(5));
@@ -91,7 +91,7 @@ public class SchedualDaoImp implements SchedualDao {
                     Scheduals = new ArrayList<>();
                 SchedualDto table = new SchedualDto();
                 table.setSCHEDULECODE(jdbcRs.getString(1));
-                table.setAcademicYear(jdbcRs.getString(2));
+                table.setAcademicYear(jdbcRs.getInt(2));
                 table.setStudent_number(jdbcRs.getInt(3));
                 // table.setId(jdbcRs.getInt(4)); // no id i don't need it
                 table.setCodeDeparment(jdbcRs.getString(5));
@@ -157,7 +157,7 @@ public class SchedualDaoImp implements SchedualDao {
                 else
                     jdbcR.setNull(3, Types.VARCHAR);
 
-                jdbcR.setString(4, slot.getCode());
+                jdbcR.setInt(4, slot.getCode());
 
                 jdbcR.setString(5, slot.getType());
 
@@ -173,7 +173,7 @@ public class SchedualDaoImp implements SchedualDao {
             jdbcR.setCommand(Queries.INSER_NEW_SCHEDULE);
 
             jdbcR.setString(1, schedual.getSCHEDULECODE()); // SetSCHEDULECODE
-            jdbcR.setString(2, schedual.getAcademicYear()); // Set AcademicYear
+            jdbcR.setInt(2, schedual.getAcademicYear()); // Set AcademicYear
             jdbcR.setString(3, schedual.getCodeDeparment()); // Set AcademicYear
             jdbcR.setInt(4, schedual.getStudent_number());
             jdbcR.execute();
@@ -219,7 +219,7 @@ public class SchedualDaoImp implements SchedualDao {
 
 
                 jdbcR.setString(4, slot.getType());
-                jdbcR.setString(5, slot.getCode());
+                jdbcR.setInt(5, slot.getCode());
 
 
                 jdbcR.setString(6, slot.getPrefSpace());
@@ -232,7 +232,7 @@ public class SchedualDaoImp implements SchedualDao {
 
             jdbcR.setCommand(Queries.UPDATE_SCHEDULE);
 
-            jdbcR.setString(1, schedual.getAcademicYear()); // Set AcademicYear
+            jdbcR.setInt(1, schedual.getAcademicYear()); // Set AcademicYear
             jdbcR.setString(2, schedual.getCodeDeparment()); // Set AcademicYear
             jdbcR.setInt(3, schedual.getStudent_number());
             jdbcR.setString(4, schedual.getSCHEDULECODE()); // SetSCHEDULECODE
@@ -270,7 +270,7 @@ public class SchedualDaoImp implements SchedualDao {
                 scheduals = new ArrayList<>();
                 SchedualDto table = new SchedualDto();
                 table.setSCHEDULECODE(jdbcRs.getString(1));
-                table.setAcademicYear(jdbcRs.getString(2));
+                table.setAcademicYear(jdbcRs.getInt(2));
                 table.setStudent_number(jdbcRs.getInt(3));
                 // table.setId(jdbcRs.getInt(4)); // no id i don't need it
                 table.setCodeDeparment(jdbcRs.getString(5));
@@ -296,7 +296,7 @@ public class SchedualDaoImp implements SchedualDao {
                 slot.setSlot_id(jdbcRs.getInt(1));
                
                 
-                slot.setCode(jdbcRs.getString(5));
+                slot.setCode(jdbcRs.getInt(5));
                 slot.setType(jdbcRs.getString(6));
                 slot.setPrefSpace(jdbcRs.getString(7));
                 
