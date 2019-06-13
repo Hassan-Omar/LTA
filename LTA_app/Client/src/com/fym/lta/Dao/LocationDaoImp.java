@@ -1,6 +1,7 @@
 package com.fym.lta.dao;
 
 import com.fym.lta.common.ConnectionFactory;
+import com.fym.lta.common.LTAException;
 import com.fym.lta.common.Queries;
 import com.fym.lta.dto.BuildingDto;
 import com.fym.lta.dto.EquipmentDto;
@@ -78,7 +79,7 @@ public class LocationDaoImp implements LocationDao {
 
       /*this is to insert new location in a specific building and floor
       with specific location type*/
-    public boolean insert_Location(LocationDto Location) {
+    public boolean insert_Location(LocationDto Location)throws LTAException {
         
         try(JdbcRowSet jdbc = RowSetProvider.newFactory().createJdbcRowSet();) {
                     jdbc.setUrl(ConnectionFactory.getUrl());
@@ -99,12 +100,8 @@ public class LocationDaoImp implements LocationDao {
                     jdbc.execute(); 
                     return true;
                 }
-                catch(java.sql.SQLIntegrityConstraintViolationException e ){
-                JOptionPane.showMessageDialog( null, "Unique Constrain Violated, please insert unique ID");
-                        }
-            //     catch(java.sql.SQLException e){
-              //     JOptionPane.showMessageDialog( null , "Database Failed");
-           //     }
+                
+              
                 catch(Exception e){
                     e.printStackTrace();      
                 }
@@ -112,7 +109,7 @@ public class LocationDaoImp implements LocationDao {
     }
       
       //this is to update location
-    public boolean Update_Location(LocationDto Location) {
+    public boolean Update_Location(LocationDto Location)throws LTAException{
         try(JdbcRowSet jdbc = RowSetProvider.newFactory().createJdbcRowSet();) {
                     jdbc.setUrl(ConnectionFactory.getUrl());
                     jdbc.setUsername(ConnectionFactory.getUsername());
@@ -135,13 +132,7 @@ public class LocationDaoImp implements LocationDao {
                     jdbc.execute();   
                     return true;  
                 }
-                catch(java.sql.SQLIntegrityConstraintViolationException e ){
-                 JOptionPane.showMessageDialog( null ,"Unique Constrain Violated, please insert unique ID");
-                  return false;
-                        }
-            //     catch(java.sql.SQLException e){
-              //     JOptionPane.showMessageDialog( null , "Database Failed");
-           //     }
+               
                 catch(Exception e){
                    e.printStackTrace();   
                    return false;

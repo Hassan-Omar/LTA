@@ -1,5 +1,6 @@
 package com.fym.lta.bao;
 
+import com.fym.lta.common.LTAException;
 import com.fym.lta.dao.DaoFactory;
 import com.fym.lta.dao.LocationDao;
 import com.fym.lta.dto.EquipmentDto;
@@ -11,7 +12,7 @@ import java.util.List;
 public class LocationBaoImp implements LocationBao{
     private LocationDao daoLocation = new DaoFactory().createLocationDao();
       
-    public boolean insertLocation(LocationDto Location) {
+    public boolean insertLocation(LocationDto Location)throws LTAException {
               boolean saveFlage = true;
               try{
                       saveFlage = daoLocation.insert_Location(Location);
@@ -27,7 +28,7 @@ public class LocationBaoImp implements LocationBao{
 
     @Override
 
-    public boolean updateLocation(LocationDto Location)
+    public boolean updateLocation(LocationDto Location)throws LTAException
     
     { return daoLocation.Update_Location(Location);
                    }

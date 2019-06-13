@@ -1,11 +1,14 @@
 package com.fym.lta.bao;
 
+import com.fym.lta.common.LTAException;
 import com.fym.lta.dto.DepartmentDto;
 import com.fym.lta.dto.LocationDto;
 import com.fym.lta.dto.SchedualDto;
 import com.fym.lta.dto.SlotDto;
 
 import java.util.List;
+
+import javax.swing.JOptionPane;
 
 public class AllocationAlgorthim {
 
@@ -68,11 +71,15 @@ public class AllocationAlgorthim {
 
                     // update this location's status to busy
                     currentLoc.setStatus("busy");
+                    try{
                     locationBaoObj.updateLocation(currentLoc);
 
                     // remove this reserved location from list
                     availableRooms.remove(k);
-
+                    }
+                    catch(LTAException ex){
+                   // JOptionPane.showMessageDialog(this, "Error in Data base");}
+                    }
                 }
 
 

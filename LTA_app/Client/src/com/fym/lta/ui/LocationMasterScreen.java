@@ -4,6 +4,7 @@ package com.fym.lta.ui;
 import com.fym.lta.bao.BaoFactory;
 import com.fym.lta.bao.LocationBao;
 import com.fym.lta.bao.LoginEngine;
+import com.fym.lta.common.LTAException;
 import com.fym.lta.dto.BuildingDto;
 import com.fym.lta.dto.EquipmentDto;
 import com.fym.lta.dto.FloorDto;
@@ -470,23 +471,28 @@ public class LocationMasterScreen extends javax.swing.JPanel {
             {     
                     LocationObject.setUpdatedBy(LoginEngine.currentUser);
                     LocationObject.setUpdate_Date(new Date(System.currentTimeMillis()));
-                if(Locationbusiness.updateLocation(LocationObject)) {//&&Equipmentbuisness.saveEquipment(SelectedEquipments, LocationObject)
+                    try{   if(Locationbusiness.updateLocation(LocationObject)) {
                     JOptionPane.showMessageDialog(this, "Location Updated Successfully");
                     setTableModel(Locationbusiness.ListAll());
                     LocationTable.repaint();  }
                 else
                 JOptionPane.showMessageDialog(this, "Error occured in update");}
+                    catch(LTAException ex){
+                    JOptionPane.showMessageDialog(this, "Error in Data base");}
+                    }
             
             else
             {    
             LocationObject.setInsertedBy(LoginEngine.currentUser);
             LocationObject.setInertion_Date(new Date(System.currentTimeMillis()));
-                if( Locationbusiness.insertLocation(LocationObject)){
+                try {   if( Locationbusiness.insertLocation(LocationObject)){
                 JOptionPane.showMessageDialog(this, "Location Saved Successfully");
                 setTableModel(Locationbusiness.ListAll());
                 LocationTable.repaint();
             }else
-            JOptionPane.showMessageDialog(this, "Error occured in insertion");
+            JOptionPane.showMessageDialog(this, "Error occured in insertion");}
+                catch(LTAException ex){
+                    JOptionPane.showMessageDialog(this, "Error in Data base");}
         }
 
         } catch(java.lang.NumberFormatException e){

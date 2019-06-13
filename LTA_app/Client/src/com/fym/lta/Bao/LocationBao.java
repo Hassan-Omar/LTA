@@ -1,5 +1,6 @@
 package com.fym.lta.bao;
 
+import com.fym.lta.common.LTAException;
 import com.fym.lta.dto.EquipmentDto;
 import com.fym.lta.dto.LocationDto;
 
@@ -10,9 +11,9 @@ public interface LocationBao {
        * insert new Location if it doesn't exists
        * otherwise it updates the exis. once
        */
-      public boolean insertLocation(LocationDto Location);
+      public boolean insertLocation(LocationDto Location)throws LTAException;
 
-    public boolean updateLocation(LocationDto Location);
+    public boolean updateLocation(LocationDto Location)throws LTAException;
    
 
     public   List<LocationDto> searchLocation (String code);
