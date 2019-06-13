@@ -18,5 +18,7 @@ public interface ScreenDao {
 
     public boolean delete(int screenID, int roleID) ;
 
+    // list all screen stored on db 
+    public List<ScreenDto> getAll_Screen(String roleCode) ;
  
 }

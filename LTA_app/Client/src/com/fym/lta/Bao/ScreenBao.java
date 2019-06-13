@@ -35,4 +35,8 @@ public interface ScreenBao {
      * this method to give us the  permission type  on  a certain screen determined by roleID , sreenID 
      */
     public String getPermissionType(int screenID , int roleID ) ;
+    
+    
+    public List<ScreenDto> getAll_Screen(String roleCode) ; 
+    
 }

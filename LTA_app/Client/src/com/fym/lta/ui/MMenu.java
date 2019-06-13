@@ -86,7 +86,7 @@ public class MMenu extends javax.swing.JFrame
         mainPanelLayout.setVerticalGroup(
             mainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(mainPanelLayout.createSequentialGroup()
-                .addGap(222, 222, 222)
+                .addGap(219, 219, 219)
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 244, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(292, Short.MAX_VALUE))
         );
@@ -98,8 +98,6 @@ public class MMenu extends javax.swing.JFrame
                 jMenu5MouseClicked(evt);
             }
         });
-		
-		if(controlOnMenu(14))
         jMenuBar1.add(jMenu5);
 
         jMenu3.setText("Basic Data Management                  ");
@@ -110,7 +108,6 @@ public class MMenu extends javax.swing.JFrame
                 buildingM_ItemActionPerformed(evt);
             }
         });
-		if(controlOnMenu(1))
         jMenu3.add(buildingM_Item);
 
         floorM_Item.setText("Building Floor");
@@ -119,7 +116,6 @@ public class MMenu extends javax.swing.JFrame
                 floorM_ItemActionPerformed(evt);
             }
         });
-		if(controlOnMenu(2))
         jMenu3.add(floorM_Item);
 
         locationTypeM_Item.setText("location Type");
@@ -127,8 +123,7 @@ public class MMenu extends javax.swing.JFrame
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 locationTypeM_ItemActionPerformed(evt);
             }
-        });		
-		if(controlOnMenu(3))
+        });
         jMenu3.add(locationTypeM_Item);
 
         departmentM_Item.setText("Departments");
@@ -137,7 +132,6 @@ public class MMenu extends javax.swing.JFrame
                 departmentM_ItemActionPerformed(evt);
             }
         });
-		if(controlOnMenu(4))
         jMenu3.add(departmentM_Item);
 
         courseM_Item.setText("Course");
@@ -146,7 +140,6 @@ public class MMenu extends javax.swing.JFrame
                 courseM_ItemActionPerformed(evt);
             }
         });
-		if(controlOnMenu(5))
         jMenu3.add(courseM_Item);
 
         staffM_Item.setText("Staff Member ");
@@ -155,7 +148,6 @@ public class MMenu extends javax.swing.JFrame
                 staffM_ItemActionPerformed(evt);
             }
         });
-		if(controlOnMenu(6))
         jMenu3.add(staffM_Item);
 
         jMenuItem1.setText("Equipment");
@@ -164,8 +156,6 @@ public class MMenu extends javax.swing.JFrame
                 jMenuItem1ActionPerformed(evt);
             }
         });
-		
-		if(controlOnMenu(7))
         jMenu3.add(jMenuItem1);
 
         jMenuBar1.add(jMenu3);
@@ -178,8 +168,6 @@ public class MMenu extends javax.swing.JFrame
                 locationMasterM_ItemActionPerformed(evt);
             }
         });
-		
-		if(controlOnMenu(8))
         jMenu2.add(locationMasterM_Item);
 
         locationManualM_Item.setText("Location Manual Assignment");
@@ -188,7 +176,6 @@ public class MMenu extends javax.swing.JFrame
                 locationManualM_ItemActionPerformed(evt);
             }
         });
-		if(controlOnMenu(9))
         jMenu2.add(locationManualM_Item);
 
         locationAutoM_Item.setText("Location Automatic Assignment");
@@ -197,7 +184,6 @@ public class MMenu extends javax.swing.JFrame
                 locationAutoM_ItemActionPerformed(evt);
             }
         });
-		if(controlOnMenu(10))
         jMenu2.add(locationAutoM_Item);
 
         jMenuBar1.add(jMenu2);
@@ -216,8 +202,6 @@ public class MMenu extends javax.swing.JFrame
                 userM_ItemActionPerformed(evt);
             }
         });
-		
-		if(controlOnMenu(11))
         jMenu1.add(userM_Item);
 
         roleM_Item.setText("Role");
@@ -226,7 +210,6 @@ public class MMenu extends javax.swing.JFrame
                 roleM_ItemActionPerformed(evt);
             }
         });
-		if(controlOnMenu(12))
         jMenu1.add(roleM_Item);
 
         roleScreenM_Item.setText("Role Screens");
@@ -235,7 +218,6 @@ public class MMenu extends javax.swing.JFrame
                 roleScreenM_ItemActionPerformed(evt);
             }
         });
-		if(controlOnMenu(13))
         jMenu1.add(roleScreenM_Item);
 
         jMenuBar1.add(jMenu1);
@@ -273,7 +255,7 @@ public class MMenu extends javax.swing.JFrame
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(23, Short.MAX_VALUE)
+                .addContainerGap(26, Short.MAX_VALUE)
                 .addComponent(mainPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );

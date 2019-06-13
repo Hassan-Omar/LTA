@@ -57,4 +57,9 @@ public class ScreenBaoImp implements ScreenBao {
     public String getPermissionType(int screenID, int roleID) {
          return screeenDaoObj.getCurrentPermission(roleID, screenID);
     }
+
+    @Override
+    public List<ScreenDto> getAll_Screen(String roleCode) {
+         return screeenDaoObj.getAll_Screen(roleCode);
+    }
 }

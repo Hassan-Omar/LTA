@@ -4,14 +4,11 @@ package com.fym.lta.ui;
 import com.fym.lta.bao.BaoFactory;
 import com.fym.lta.bao.RoleBao;
 import com.fym.lta.bao.ScreenBao;
-import com.fym.lta.common.LTAException;
 import com.fym.lta.dto.RoleDto;
 import com.fym.lta.dto.ScreenDto;
 
 import java.util.ArrayList;
 import java.util.List;
-
-import javax.swing.JOptionPane;
 
 /**
  *
@@ -30,7 +27,7 @@ public class ScreenRoles extends javax.swing.JPanel {
         allRoles = roleBaoObj.getAll();
         setRolesCombo(allRoles);
 
-
+        resetTableMod(screenBaoObj.getAll_Screen(allRoles.get(0).getCode()));
         // roleID = 13
         // now one step we will create an object of ScreenBao to know the current permission
         String permissionType = new BaoFactory().createScreenBao().getCurrentPermission(13);
@@ -46,321 +43,61 @@ public class ScreenRoles extends javax.swing.JPanel {
     private void initComponents() {//GEN-BEGIN:initComponents
 
         jPanel1 = new javax.swing.JPanel();
-        jPanel3 = new javax.swing.JPanel();
-        label3 = new java.awt.Label();
-        mod1Checkbox = new javax.swing.JCheckBox();
-        mod2Checkbox = new javax.swing.JCheckBox();
-        mod3Checkbox = new javax.swing.JCheckBox();
-        mod4Checkbox = new javax.swing.JCheckBox();
-        jPanel2 = new javax.swing.JPanel();
-        viewCheckbox2 = new javax.swing.JCheckBox();
-        insertCheckbox2 = new javax.swing.JCheckBox();
-        deleteCheckbox2 = new javax.swing.JCheckBox();
-        updateCheckbox2 = new javax.swing.JCheckBox();
-        jPanel4 = new javax.swing.JPanel();
-        viewCheckbox1 = new javax.swing.JCheckBox();
-        insertCheckbox1 = new javax.swing.JCheckBox();
-        deleteCheckbox1 = new javax.swing.JCheckBox();
-        updateCheckbox1 = new javax.swing.JCheckBox();
-        jPanel5 = new javax.swing.JPanel();
-        viewCheckbox3 = new javax.swing.JCheckBox();
-        insertCheckbox3 = new javax.swing.JCheckBox();
-        deleteCheckbox3 = new javax.swing.JCheckBox();
-        updateCheckbox3 = new javax.swing.JCheckBox();
-        jPanel6 = new javax.swing.JPanel();
-        viewCheckbox4 = new javax.swing.JCheckBox();
-        insertCheckbox4 = new javax.swing.JCheckBox();
-        deleteCheckbox4 = new javax.swing.JCheckBox();
-        updateCheckbox4 = new javax.swing.JCheckBox();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        usersTable = new javax.swing.JTable();
         roleCombo = new javax.swing.JComboBox();
         label1 = new java.awt.Label();
         jPanel7 = new javax.swing.JPanel();
         doneBtn = new javax.swing.JButton();
         jPanel8 = new javax.swing.JPanel();
+        jLabel4 = new javax.swing.JLabel();
+        label2 = new java.awt.Label();
 
-        jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Screens", 0, 0, new java.awt.Font("Adobe Arabic", 1, 24))); // NOI18N
+        jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Screens", 0, 0, new java.awt.Font("Tekton Pro", 1, 36))); // NOI18N
         jPanel1.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
 
-        jPanel3.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 2));
+        usersTable.setFont(new java.awt.Font("Tekton Pro Cond", 1, 18)); // NOI18N
+        usersTable.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
 
-        label3.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+            },
+            new String [] {
+                "Screen", "Description"
+            }
+        ) {
+            Class[] types = new Class [] {
+                java.lang.String.class, java.lang.String.class
+            };
+            boolean[] canEdit = new boolean [] {
+                false, false
+            };
 
-        mod1Checkbox.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        mod1Checkbox.setText("Basic Data Management");
-        mod1Checkbox.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                mod1CheckboxActionPerformed(evt);
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
             }
         });
-
-        mod2Checkbox.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        mod2Checkbox.setText("Locations Managnent");
-        mod2Checkbox.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                mod2CheckboxActionPerformed(evt);
-            }
-        });
-
-        mod3Checkbox.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        mod3Checkbox.setText("Authentication and Authorization");
-        mod3Checkbox.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                mod3CheckboxActionPerformed(evt);
-            }
-        });
-
-        mod4Checkbox.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        mod4Checkbox.setText("Tables Managment");
-        mod4Checkbox.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                mod4CheckboxActionPerformed(evt);
-            }
-        });
-
-        jPanel2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-
-        viewCheckbox2.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        viewCheckbox2.setText("view");
-
-        insertCheckbox2.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        insertCheckbox2.setText("insert");
-
-        deleteCheckbox2.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        deleteCheckbox2.setText("delete");
-
-        updateCheckbox2.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        updateCheckbox2.setText("update");
-
-        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
-        jPanel2.setLayout(jPanel2Layout);
-        jPanel2Layout.setHorizontalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(28, 28, 28)
-                .addComponent(viewCheckbox2)
-                .addGap(77, 77, 77)
-                .addComponent(insertCheckbox2)
-                .addGap(76, 76, 76)
-                .addComponent(deleteCheckbox2)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 102, Short.MAX_VALUE)
-                .addComponent(updateCheckbox2)
-                .addGap(60, 60, 60))
-        );
-        jPanel2Layout.setVerticalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(17, 17, 17)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(viewCheckbox2)
-                    .addComponent(insertCheckbox2)
-                    .addComponent(deleteCheckbox2)
-                    .addComponent(updateCheckbox2))
-                .addContainerGap(24, Short.MAX_VALUE))
-        );
-
-        jPanel4.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-
-        viewCheckbox1.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        viewCheckbox1.setText("view");
-
-        insertCheckbox1.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        insertCheckbox1.setText("insert");
-
-        deleteCheckbox1.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        deleteCheckbox1.setText("delete");
-
-        updateCheckbox1.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        updateCheckbox1.setText("update");
-
-        javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
-        jPanel4.setLayout(jPanel4Layout);
-        jPanel4Layout.setHorizontalGroup(
-            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel4Layout.createSequentialGroup()
-                .addGap(28, 28, 28)
-                .addComponent(viewCheckbox1)
-                .addGap(77, 77, 77)
-                .addComponent(insertCheckbox1)
-                .addGap(76, 76, 76)
-                .addComponent(deleteCheckbox1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 102, Short.MAX_VALUE)
-                .addComponent(updateCheckbox1)
-                .addGap(60, 60, 60))
-        );
-        jPanel4Layout.setVerticalGroup(
-            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel4Layout.createSequentialGroup()
-                .addGap(17, 17, 17)
-                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(viewCheckbox1)
-                    .addComponent(insertCheckbox1)
-                    .addComponent(deleteCheckbox1)
-                    .addComponent(updateCheckbox1))
-                .addContainerGap(24, Short.MAX_VALUE))
-        );
-
-        jPanel5.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-
-        viewCheckbox3.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        viewCheckbox3.setText("view");
-
-        insertCheckbox3.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        insertCheckbox3.setText("insert");
-
-        deleteCheckbox3.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        deleteCheckbox3.setText("delete");
-
-        updateCheckbox3.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        updateCheckbox3.setText("update");
-
-        javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
-        jPanel5.setLayout(jPanel5Layout);
-        jPanel5Layout.setHorizontalGroup(
-            jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel5Layout.createSequentialGroup()
-                .addGap(28, 28, 28)
-                .addComponent(viewCheckbox3)
-                .addGap(77, 77, 77)
-                .addComponent(insertCheckbox3)
-                .addGap(76, 76, 76)
-                .addComponent(deleteCheckbox3)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 102, Short.MAX_VALUE)
-                .addComponent(updateCheckbox3)
-                .addGap(60, 60, 60))
-        );
-        jPanel5Layout.setVerticalGroup(
-            jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel5Layout.createSequentialGroup()
-                .addGap(17, 17, 17)
-                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(viewCheckbox3)
-                    .addComponent(insertCheckbox3)
-                    .addComponent(deleteCheckbox3)
-                    .addComponent(updateCheckbox3))
-                .addContainerGap(24, Short.MAX_VALUE))
-        );
-
-        jPanel6.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-
-        viewCheckbox4.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        viewCheckbox4.setText("view");
-
-        insertCheckbox4.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        insertCheckbox4.setText("insert");
-
-        deleteCheckbox4.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        deleteCheckbox4.setText("delete");
-
-        updateCheckbox4.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        updateCheckbox4.setText("update");
-
-        javax.swing.GroupLayout jPanel6Layout = new javax.swing.GroupLayout(jPanel6);
-        jPanel6.setLayout(jPanel6Layout);
-        jPanel6Layout.setHorizontalGroup(
-            jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel6Layout.createSequentialGroup()
-                .addGap(28, 28, 28)
-                .addComponent(viewCheckbox4)
-                .addGap(77, 77, 77)
-                .addComponent(insertCheckbox4)
-                .addGap(76, 76, 76)
-                .addComponent(deleteCheckbox4)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 102, Short.MAX_VALUE)
-                .addComponent(updateCheckbox4)
-                .addGap(60, 60, 60))
-        );
-        jPanel6Layout.setVerticalGroup(
-            jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel6Layout.createSequentialGroup()
-                .addGap(17, 17, 17)
-                .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(viewCheckbox4)
-                    .addComponent(insertCheckbox4)
-                    .addComponent(deleteCheckbox4)
-                    .addComponent(updateCheckbox4))
-                .addContainerGap(24, Short.MAX_VALUE))
-        );
-
-        javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
-        jPanel3.setLayout(jPanel3Layout);
-        jPanel3Layout.setHorizontalGroup(
-            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(label3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addGroup(jPanel3Layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(mod2Checkbox)
-                            .addComponent(mod3Checkbox)
-                            .addComponent(mod4Checkbox))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 24, Short.MAX_VALUE)
-                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jPanel6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(20, 20, 20))
-                    .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addComponent(mod1Checkbox)
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
-            .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
-                    .addContainerGap(282, Short.MAX_VALUE)
-                    .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGap(22, 22, 22)))
-        );
-        jPanel3Layout.setVerticalGroup(
-            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel3Layout.createSequentialGroup()
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addGap(68, 68, 68)
-                        .addComponent(mod1Checkbox)
-                        .addGap(18, 18, 18)
-                        .addComponent(label3, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(52, 52, 52)
-                        .addComponent(mod2Checkbox))
-                    .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addGap(166, 166, 166)
-                        .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addGap(91, 91, 91)
-                        .addComponent(mod3Checkbox)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 21, Short.MAX_VALUE)))
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addGap(114, 114, 114)
-                        .addComponent(mod4Checkbox)
-                        .addGap(66, 66, 66))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jPanel6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(43, 43, 43))))
-            .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(jPanel3Layout.createSequentialGroup()
-                    .addGap(47, 47, 47)
-                    .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addContainerGap(453, Short.MAX_VALUE)))
-        );
+        usersTable.setRowHeight(60);
+        jScrollPane1.setViewportView(usersTable);
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 886, Short.MAX_VALUE)
                 .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
+                .addContainerGap()
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 782, Short.MAX_VALUE)
+                .addContainerGap())
         );
 
         roleCombo.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
@@ -370,8 +107,8 @@ public class ScreenRoles extends javax.swing.JPanel {
             }
         });
 
-        label1.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        label1.setText("Role");
+        label1.setFont(new java.awt.Font("Times New Roman", 1, 24)); // NOI18N
+        label1.setText("Screen_Role Assignment Screen");
 
         doneBtn.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         doneBtn.setText("Done");
@@ -388,14 +125,14 @@ public class ScreenRoles extends javax.swing.JPanel {
             .addGroup(jPanel7Layout.createSequentialGroup()
                 .addGap(24, 24, 24)
                 .addComponent(doneBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 162, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(31, Short.MAX_VALUE))
+                .addContainerGap(290, Short.MAX_VALUE))
         );
         jPanel7Layout.setVerticalGroup(
             jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel7Layout.createSequentialGroup()
-                .addContainerGap(150, Short.MAX_VALUE)
+                .addContainerGap(165, Short.MAX_VALUE)
                 .addComponent(doneBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(211, 211, 211))
+                .addGap(667, 667, 667))
         );
 
         javax.swing.GroupLayout jPanel8Layout = new javax.swing.GroupLayout(jPanel8);
@@ -409,49 +146,78 @@ public class ScreenRoles extends javax.swing.JPanel {
             .addGap(0, 93, Short.MAX_VALUE)
         );
 
+        jLabel4.setFont(new java.awt.Font("Times New Roman", 1, 24)); // NOI18N
+        jLabel4.setText("Employees Screen ");
+
+        label2.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        label2.setText("Role");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(roleCombo, javax.swing.GroupLayout.PREFERRED_SIZE, 147, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(label1, javax.swing.GroupLayout.PREFERRED_SIZE, 141, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(roleCombo, javax.swing.GroupLayout.PREFERRED_SIZE, 147, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(174, 174, 174))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(0, 1270, Short.MAX_VALUE)
+                .addGap(0, 1547, Short.MAX_VALUE)
                 .addComponent(jPanel8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(20, 20, 20))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(457, 457, 457)
+                .addComponent(label1, javax.swing.GroupLayout.PREFERRED_SIZE, 383, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                    .addContainerGap(786, Short.MAX_VALUE)
+                    .addComponent(jLabel4)
+                    .addContainerGap(787, Short.MAX_VALUE)))
+            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(layout.createSequentialGroup()
+                    .addGap(22, 22, 22)
+                    .addComponent(label2, javax.swing.GroupLayout.PREFERRED_SIZE, 141, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addContainerGap(1602, Short.MAX_VALUE)))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(198, 198, 198)
-                        .addComponent(label1, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
+                        .addGap(243, 243, 243)
                         .addComponent(roleCombo, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(160, 160, 160))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addContainerGap()
+                        .addComponent(label1, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jPanel7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(28, 28, 28)))
                 .addComponent(jPanel8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                    .addContainerGap(540, Short.MAX_VALUE)
+                    .addComponent(jLabel4)
+                    .addContainerGap(541, Short.MAX_VALUE)))
+            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(layout.createSequentialGroup()
+                    .addGap(208, 208, 208)
+                    .addComponent(label2, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addContainerGap(874, Short.MAX_VALUE)))
         );
     }//GEN-END:initComponents
 
     private void doneBtnMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_doneBtnMouseClicked
        
        
+        /* 
         // now we selectrole selected index is same as
         RoleDto role = allRoles.get(roleCombo.getSelectedIndex());
 
@@ -555,86 +321,31 @@ public class ScreenRoles extends javax.swing.JPanel {
             }
         } else
             JOptionPane.showMessageDialog(this, "you should select a one screen at least ");  
-       
+        */
     }//GEN-LAST:event_doneBtnMouseClicked
 
     private void roleComboActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_roleComboActionPerformed
       
+        /* 
         clear();
         // list of screens based on choosen role from combo box
         List<ScreenDto> screens = screenBaoObj.list_Screens(allRoles.get(roleCombo.getSelectedIndex()).getRole_id());
         if (screens != null)
-            selectScreens(screens); 
+            selectScreens(screens);  */
     }//GEN-LAST:event_roleComboActionPerformed
-
-    private void mod1CheckboxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mod1CheckboxActionPerformed
-        if (!mod1Checkbox.isSelected()) {
-            // loop to delete data
-            for (int i = 1; i < 8; i++) {
-                delete(i);
-            }
-        }
-    }//GEN-LAST:event_mod1CheckboxActionPerformed
-
-    private void mod2CheckboxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mod2CheckboxActionPerformed
-        if (!mod2Checkbox.isSelected()) {
-            // loop to delete data
-            for (int i = 8; i < 11; i++) {
-                delete(i);
-            }
-        }
-    }//GEN-LAST:event_mod2CheckboxActionPerformed
-
-    private void mod3CheckboxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mod3CheckboxActionPerformed
-        if (!mod3Checkbox.isSelected()) {
-            // loop to delete data
-            for (int i = 11; i < 14; i++) {
-                delete(i);
-            }
-        }
-    }//GEN-LAST:event_mod3CheckboxActionPerformed
-
-    private void mod4CheckboxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mod4CheckboxActionPerformed
-        if (!mod4Checkbox.isSelected()) {
-            delete(14);
-        }
-         
-    }//GEN-LAST:event_mod4CheckboxActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JCheckBox deleteCheckbox1;
-    private javax.swing.JCheckBox deleteCheckbox2;
-    private javax.swing.JCheckBox deleteCheckbox3;
-    private javax.swing.JCheckBox deleteCheckbox4;
     private javax.swing.JButton doneBtn;
-    private javax.swing.JCheckBox insertCheckbox1;
-    private javax.swing.JCheckBox insertCheckbox2;
-    private javax.swing.JCheckBox insertCheckbox3;
-    private javax.swing.JCheckBox insertCheckbox4;
+    private javax.swing.JLabel jLabel4;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JPanel jPanel2;
-    private javax.swing.JPanel jPanel3;
-    private javax.swing.JPanel jPanel4;
-    private javax.swing.JPanel jPanel5;
-    private javax.swing.JPanel jPanel6;
     private javax.swing.JPanel jPanel7;
     private javax.swing.JPanel jPanel8;
+    private javax.swing.JScrollPane jScrollPane1;
     private java.awt.Label label1;
-    private java.awt.Label label3;
-    private javax.swing.JCheckBox mod1Checkbox;
-    private javax.swing.JCheckBox mod2Checkbox;
-    private javax.swing.JCheckBox mod3Checkbox;
-    private javax.swing.JCheckBox mod4Checkbox;
+    private java.awt.Label label2;
     private javax.swing.JComboBox roleCombo;
-    private javax.swing.JCheckBox updateCheckbox1;
-    private javax.swing.JCheckBox updateCheckbox2;
-    private javax.swing.JCheckBox updateCheckbox3;
-    private javax.swing.JCheckBox updateCheckbox4;
-    private javax.swing.JCheckBox viewCheckbox1;
-    private javax.swing.JCheckBox viewCheckbox2;
-    private javax.swing.JCheckBox viewCheckbox3;
-    private javax.swing.JCheckBox viewCheckbox4;
+    private javax.swing.JTable usersTable;
     // End of variables declaration//GEN-END:variables
 
 
@@ -647,115 +358,20 @@ public class ScreenRoles extends javax.swing.JPanel {
 
     }
 
-    // just to clear selection
-    void clear() {
-        mod1Checkbox.setSelected(false);
-        mod2Checkbox.setSelected(false);
-        mod3Checkbox.setSelected(false);
-        mod4Checkbox.setSelected(false);
-        viewCheckbox1.setSelected(false);
-        insertCheckbox1.setSelected(false);
-        updateCheckbox1.setSelected(false);
-        deleteCheckbox1.setSelected(false);
-        viewCheckbox2.setSelected(false);
-        insertCheckbox2.setSelected(false);
-        updateCheckbox2.setSelected(false);
-        deleteCheckbox2.setSelected(false);
-        viewCheckbox3.setSelected(false);
-        insertCheckbox3.setSelected(false);
-        updateCheckbox3.setSelected(false);
-        deleteCheckbox3.setSelected(false);
-        viewCheckbox4.setSelected(false);
-        insertCheckbox4.setSelected(false);
-        updateCheckbox4.setSelected(false);
-        deleteCheckbox4.setSelected(false);
+    public void resetTableMod(List<ScreenDto> screens) 
+    {
+        Object[][] screenArr = new Object[screens.size()][2];
 
-    }
+        for (int i = 0; i < screens.size();i++) {
+            // View the full name
+            screenArr[i][0] =screens.get(i).getDescription(); 
+            screenArr[i][1] = true ; 
+           
 
-    // method deal with business to delete unchecked screen
-    boolean delete(int sId) {
-        int roleId = allRoles.get(roleCombo.getSelectedIndex()).getRole_id();
-        return screenBaoObj.delete(sId, roleId);
-    }
-
-    // method to select wich screen is assigned
-    void selectScreens(List<ScreenDto> screens) {
-
-        int roleId = allRoles.get(roleCombo.getSelectedIndex()).getRole_id();
-        for (int i = 0; i < screens.size(); i++) {
-            int id = screens.get(i).getScreen_id();
-
-            if (id < 8) {
-
-                mod1Checkbox.setSelected(true);
-
-                String permission = screenBaoObj.getPermissionType(id, roleId);
-
-                if (permission != null) {
-                    if (permission.contains("view"))
-                        viewCheckbox1.setSelected(true);
-                    if (permission.contains("insert"))
-                        insertCheckbox1.setSelected(true);
-                    if (permission.contains("update"))
-                        updateCheckbox1.setSelected(true);
-                    if (permission.contains("delete"))
-                        deleteCheckbox1.setSelected(true);
-                }
-
-            }
-
-            if (id > 7 && id < 11) {
-
-                mod2Checkbox.setSelected(true);
-
-                String permission = screenBaoObj.getPermissionType(id, roleId);
-                if (permission != null) {
-                    if (permission.contains("view"))
-                        viewCheckbox2.setSelected(true);
-                    if (permission.contains("insert"))
-                        insertCheckbox2.setSelected(true);
-                    if (permission.contains("update"))
-                        updateCheckbox2.setSelected(true);
-                    if (permission.contains("delete"))
-                        deleteCheckbox2.setSelected(true);
-                }
-            }
-
-            if (id > 10 && id < 14) {
-
-                mod3Checkbox.setSelected(true);
-
-                String permission = null;
-                permission = screenBaoObj.getPermissionType(id, roleId);
-                if (permission != null) {
-
-                    if (permission.contains("view"))
-                        viewCheckbox3.setSelected(true);
-                    if (permission.contains("insert"))
-                        insertCheckbox3.setSelected(true);
-                    if (permission.contains("update"))
-                        updateCheckbox3.setSelected(true);
-                    if (permission.contains("delete"))
-                        deleteCheckbox3.setSelected(true);
-                }
-            }
-            if (id > 13) {
-
-                mod4Checkbox.setSelected(true);
-
-                String permission = screenBaoObj.getPermissionType(id, roleId);
-                if (permission != null) {
-
-                    if (permission.contains("view"))
-                        viewCheckbox4.setSelected(true);
-                    if (permission.contains("insert"))
-                        insertCheckbox4.setSelected(true);
-                    if (permission.contains("update"))
-                        updateCheckbox4.setSelected(true);
-                    if (permission.contains("delete"))
-                        deleteCheckbox4.setSelected(true);
-                }
-            }
         }
+        usersTable.setModel(new javax.swing.table.DefaultTableModel(screenArr, new String[] {
+                                                                    "Screen", "Permision"
+            }));
     }
+  
 }
