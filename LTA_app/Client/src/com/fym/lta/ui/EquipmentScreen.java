@@ -63,8 +63,8 @@ public class EquipmentScreen extends javax.swing.JPanel {
         setTableModel(Equipmentbusiness.ListAll());
         listComboLocations(All_locations);
         DefineEquipment.setVisible(false);
-        String permissionType = new BaoFactory().createScreenBao().getCurrentPermission(7);
-        Utilities.mandate(update ,insert , delete ,7,permissionType); 
+        int permissionType = new BaoFactory().createScreenBao().getCurrentPermission(7);
+        Utilities.mandate(update ,insert , delete ,7, Utilities.convertTOBase2(permissionType)); 
         
         
     }

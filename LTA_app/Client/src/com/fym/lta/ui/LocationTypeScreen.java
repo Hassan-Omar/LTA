@@ -39,8 +39,8 @@ public class LocationTypeScreen extends javax.swing.JPanel {
             insertPanel.setVisible(false);
             // screenID = 3
             // now one step we will create an object of ScreenBao to know the current permission
-            String permissionType = new BaoFactory().createScreenBao().getCurrentPermission(3);
-            Utilities.mandate(updateLocationTypeBTN, insertLocationTypeBTN, deleteLocationTypeBTN, 3, permissionType);
+            int permissionType = new BaoFactory().createScreenBao().getCurrentPermission(3);
+            Utilities.mandate(updateLocationTypeBTN, insertLocationTypeBTN, deleteLocationTypeBTN, 3,  Utilities.convertTOBase2(permissionType));
             
         if (LocationTypeListInDatabase.listLocationType()!=null)
             setTableModel(LocationTypeListInDatabase.listLocationType());

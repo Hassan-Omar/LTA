@@ -27,7 +27,7 @@ public class ScreenBaoImp implements ScreenBao {
 
 
     @Override
-    public String getCurrentPermission(int screenID ) {
+    public int getCurrentPermission(int screenID ) {
         // using the current username we can get it's role ID
         int roleID = RoleDaoObj.getCurrenRoleID(LoginEngine.currentUser);
         // delegate to dao method
@@ -54,7 +54,7 @@ public class ScreenBaoImp implements ScreenBao {
     }
 
     @Override
-    public String getPermissionType(int screenID, int roleID) {
+    public int getPermissionType(int screenID, int roleID) {
          return screeenDaoObj.getCurrentPermission(roleID, screenID);
     }
 

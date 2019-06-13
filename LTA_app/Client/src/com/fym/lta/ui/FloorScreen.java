@@ -47,8 +47,8 @@ public class FloorScreen extends javax.swing.JPanel {
         insertPanel.setVisible(false);
         // screenID = 2
         // now one step we will create an object of ScreenBao to know the current permission
-        String permissionType = new BaoFactory().createScreenBao().getCurrentPermission(2);
-        Utilities.mandate(updateFloorBTN, insertFloorBTN, deleteFloorBTN, 2, permissionType);
+        int permissionType = new BaoFactory().createScreenBao().getCurrentPermission(2);
+        Utilities.mandate(updateFloorBTN, insertFloorBTN, deleteFloorBTN, 2,  Utilities.convertTOBase2(permissionType));
 
         if (allBuilding != null)
             listCombo(allBuilding);

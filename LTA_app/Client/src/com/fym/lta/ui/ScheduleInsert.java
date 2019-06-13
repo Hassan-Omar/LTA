@@ -1,4 +1,5 @@
 
+
 package com.fym.lta.ui;
 
 import com.fym.lta.bao.BaoFactory;
@@ -47,8 +48,8 @@ public class ScheduleInsert extends javax.swing.JPanel
             TableReset(schedualBao.listAll());
         // roleID = 14 
         // now one step we will create an object of ScreenBao to know the current permission 
-          String permissionType = new BaoFactory().createScreenBao().getCurrentPermission(14);
-          Utilities.mandate(null,insertBTN , deleteBTN ,14,permissionType);
+          int permissionType = new BaoFactory().createScreenBao().getCurrentPermission(14);
+          Utilities.mandate(null,insertBTN , deleteBTN ,14, Utilities.convertTOBase2(permissionType));
     }
     /** This method is called from within the constructor to
      * initialize the form.

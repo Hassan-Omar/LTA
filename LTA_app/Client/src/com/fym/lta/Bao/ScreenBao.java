@@ -18,7 +18,7 @@ public interface ScreenBao {
     /**
      * this method to give us the current permission on  a certain screen for the current user 
      */
-    public String getCurrentPermission(int screenID ) ;
+    public int getCurrentPermission(int screenID ) ;
     
     /**
       * this method return the list of screen available screen 
@@ -34,7 +34,7 @@ public interface ScreenBao {
     /**
      * this method to give us the  permission type  on  a certain screen determined by roleID , sreenID 
      */
-    public String getPermissionType(int screenID , int roleID ) ;
+    public int getPermissionType(int screenID , int roleID ) ;
     
     
     public List<ScreenDto> getAll_Screen(String roleCode) ; 

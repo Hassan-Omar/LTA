@@ -35,6 +35,7 @@ public class ScreenDaoImp implements ScreenDao {
                 jdbcRs.setInt(1, role.getRole_id());
                 jdbcRs.setInt(2, screens.get(i).getScreen_id());
                     
+                /*       
                 if (i<8 && role.getPermission1()!=null)
                     jdbcRs.setString(3, role.getPermission1());
                 if (i>7&&i<11&&(role.getPermission2()!=null) )
@@ -42,7 +43,7 @@ public class ScreenDaoImp implements ScreenDao {
                 if (i>10&&i<14 &&(role.getPermission3() !=null))
                     jdbcRs.setString(3, role.getPermission3());
                 if (i>13&& role.getPermission4()!= null)
-                    jdbcRs.setString(3, role.getPermission4());
+                    jdbcRs.setString(3, role.getPermission4()); */
 
                 jdbcRs.execute();
             }
@@ -57,8 +58,8 @@ public class ScreenDaoImp implements ScreenDao {
 
 
     @Override
-    public String getCurrentPermission(int roleID, int screenID) {
-        String resultPermission = null;
+    public int getCurrentPermission(int roleID, int screenID) {
+        int resultPermission = 0;
         try (JdbcRowSet jdbcRs = RowSetProvider.newFactory().createJdbcRowSet()) {
             jdbcRs.setUrl(ConnectionFactory.getUrl());
             jdbcRs.setUsername(ConnectionFactory.getUsername());
@@ -69,7 +70,7 @@ public class ScreenDaoImp implements ScreenDao {
             jdbcRs.execute();
 
             while (jdbcRs.next()) {
-                resultPermission = jdbcRs.getString(1);
+                resultPermission = jdbcRs.getInt(1);
             }
 
         } catch (Exception e) {
@@ -119,6 +120,7 @@ public class ScreenDaoImp implements ScreenDao {
 
                 int id  =  screen.getScreen_id() ; 
                 
+                /* 
                 if (id<8 && role.getPermission1()!=null)
                     jdbcRs.setString(1, role.getPermission1());
                 if (id>7&&id<11&&(role.getPermission2()!=null) )
@@ -132,7 +134,7 @@ public class ScreenDaoImp implements ScreenDao {
                 System.out.println(role.getRole_id() +" ");
                 jdbcRs.execute();
                   return true ;
-                 
+                  */
                 
             } catch(Exception e)
             {
@@ -207,7 +209,7 @@ public class ScreenDaoImp implements ScreenDao {
                 ScreenDto screen = new ScreenDto(jdbcRs.getInt(1));
                 screen.setDescription(jdbcRs.getString(2));
                 RoleDto role = new RoleDto(roleCode) ; 
-                role.setPermission1(jdbcRs.getString(3));
+                role.setPermissionType(jdbcRs.getInt(3));
                 if(screens==null)
                     screens= new ArrayList<>() ; 
                 screens.add(screen);

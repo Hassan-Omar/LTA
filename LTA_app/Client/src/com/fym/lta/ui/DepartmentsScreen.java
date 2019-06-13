@@ -31,8 +31,8 @@ public class DepartmentsScreen extends javax.swing.JPanel {
             departmentTableReset(departmentBaoObj.listDepartment());
         }
         
-        String permissionType = new BaoFactory().createScreenBao().getCurrentPermission(4);
-        Utilities.mandate(departmrntUpdateBtn, departmrntInsertBtn, departmrntDeleteBtn, 4, permissionType);
+        int permissionType = new BaoFactory().createScreenBao().getCurrentPermission(4);
+        Utilities.mandate(departmrntUpdateBtn, departmrntInsertBtn, departmrntDeleteBtn, 4,  Utilities.convertTOBase2(permissionType));
 
     }
 

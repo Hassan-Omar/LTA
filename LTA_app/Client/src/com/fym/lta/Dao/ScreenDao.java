@@ -11,7 +11,7 @@ public interface ScreenDao {
     public boolean insertScreenRoles(List<ScreenDto> Screens, RoleDto role)throws LTAException;
     
     // this will return a string "permissoin type " on current role , current screen  
-    public String getCurrentPermission(int roleID ,int screenID);
+    public int getCurrentPermission(int roleID ,int screenID);
 
     // this method return the list of screen available screen 
     public List<ScreenDto> list_Of_AavailableScreens (int roleID) ; 

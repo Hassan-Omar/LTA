@@ -41,8 +41,8 @@ public class StaffScreen extends javax.swing.JPanel {
             }
         // screenID = 5 
         // now one step we will create an object of ScreenBao to know the current permission 
-        String permissionType = new BaoFactory().createScreenBao().getCurrentPermission(5);
-        Utilities.mandate(btnUpdate,btnInsert , btnDelete ,5,permissionType);
+        int permissionType = new BaoFactory().createScreenBao().getCurrentPermission(5);
+        Utilities.mandate(btnUpdate,btnInsert , btnDelete ,5, Utilities.convertTOBase2(permissionType));
         
         
     }

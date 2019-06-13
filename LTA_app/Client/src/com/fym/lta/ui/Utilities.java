@@ -13,14 +13,14 @@ public class Utilities {
    
 
     // this method to achieve authorization opertion and block the user from going out of it's permission type
-       public static void mandate(JButton updateBTN ,JButton insertBTN , JButton deleteBTN ,int screenID ,String permissionType) {
-          
-            if (permissionType != null) { // now we will hide the buttons wich the user can't access
-                if (!(permissionType.contains("update")))
+       public static void mandate(JButton updateBTN ,JButton insertBTN , JButton deleteBTN ,int screenID ,boolean[] base2) {
+          // view delete insert update 
+            if (base2 != null) { // now we will hide the buttons wich the user can't access
+                if (base2[3])
                     updateBTN.setVisible(false);
-                if (!(permissionType.contains("insert")))
+                if (base2[2])
                     insertBTN.setVisible(false);
-                if (!(permissionType.contains("delete")))
+                if (base2[1])
                     deleteBTN.setVisible(false);
               
             } else {
@@ -55,11 +55,56 @@ public class Utilities {
                     hashtext = "0" + hashtext; 
                 } 
                 return hashtext; 
-            }  
-      
-            // For specifying wrong message digest algorithms 
-            catch (NoSuchAlgorithmException e) { 
+            }
+        // For specifying wrong message digest algorithms
+        catch (NoSuchAlgorithmException e) { 
                 throw new RuntimeException(e); 
             } 
-        } 
-}
+        }
+        
+        // this method created to screen_role to convert the boolean value of selected 
+        public static int convertTOBase10 (boolean[] base2)
+        {   // base10 = d0*1 + d1*2 + d2*4 + ... +di*2^i
+            int base10 = 0 ; // hold the result 
+            int k=0 ;
+            // loop to get the sum 
+            for (int i=base2.length-1; i>=0; i--)
+            {   
+                // true  --> 1
+                // false --> 0
+                int di = 0 ; 
+                if(base2[i])
+                    di = 1 ;
+               
+                // the relation
+                base10+=di*Math.pow(2,k);
+                k++ ;
+            }
+       return base10; }
+        
+    // this method invert to the method called convertTOBase10
+    public static boolean[]  convertTOBase2 (int base10)
+    {     
+    int container[] = new int[100];
+    boolean base2[] = new boolean[100];
+    int i = 0;
+    while (base10 > 0){
+        container[i] = base10%2;
+        i++;
+        base10 = base10/2;
+    }
+    for (int j = i -1 ; j >= 0 ; j--){
+        if(container[j]==1)
+        base2[i] = true ; 
+        else 
+        base2[i] = false ;
+        
+        System.out.println(base2[i]);
+    }
+    return base2;
+    }
+    
+    
+    
+    }
+

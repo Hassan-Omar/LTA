@@ -45,8 +45,8 @@ private CourseBao courseobjBao = new BaoFactory().createCourseBao();
         if(allLocationType!=null)
             listComboLocation(allLocationType) ; 
         insertPanel.setVisible(false);
-        String permissionType = new BaoFactory().createScreenBao().getCurrentPermission(6);
-        Utilities.mandate(updateCourseBtn,insertCourseBtn , deleteCourseBtn ,6,permissionType); 
+        int permissionType = new BaoFactory().createScreenBao().getCurrentPermission(6);
+        Utilities.mandate(updateCourseBtn,insertCourseBtn , deleteCourseBtn ,6, Utilities.convertTOBase2(permissionType)); 
     }
 
     /** This method is called from within the constructor to

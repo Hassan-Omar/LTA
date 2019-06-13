@@ -24,14 +24,16 @@ public class ScreenRoles extends javax.swing.JPanel {
     /** Creates new form ScreenRoles */
     public ScreenRoles() {
         initComponents();
+      
+        
         allRoles = roleBaoObj.getAll();
         setRolesCombo(allRoles);
 
         resetTableMod(screenBaoObj.getAll_Screen(allRoles.get(0).getCode()));
         // roleID = 13
         // now one step we will create an object of ScreenBao to know the current permission
-        String permissionType = new BaoFactory().createScreenBao().getCurrentPermission(13);
-        Utilities.mandate(null, null, null, 13, permissionType);
+        int permissionType = new BaoFactory().createScreenBao().getCurrentPermission(13);
+        Utilities.mandate(null, null, null, 13,  Utilities.convertTOBase2(permissionType));
     }
 
     /** This method is called from within the constructor to
@@ -59,17 +61,20 @@ public class ScreenRoles extends javax.swing.JPanel {
         usersTable.setFont(new java.awt.Font("Tekton Pro Cond", 1, 18)); // NOI18N
         usersTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null}
             },
             new String [] {
-                "Screen", "Description"
+                "Screen", "View", "Delete", "Insert", "Update"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.String.class, java.lang.String.class
+                java.lang.String.class, java.lang.Boolean.class, java.lang.Boolean.class, java.lang.Boolean.class, java.lang.Boolean.class
             };
             boolean[] canEdit = new boolean [] {
-                false, false
+                false, true, true, true, true
             };
 
             public Class getColumnClass(int columnIndex) {
@@ -215,123 +220,13 @@ public class ScreenRoles extends javax.swing.JPanel {
     }//GEN-END:initComponents
 
     private void doneBtnMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_doneBtnMouseClicked
-       
-       
-        /* 
-        // now we selectrole selected index is same as
-        RoleDto role = allRoles.get(roleCombo.getSelectedIndex());
-
-        if (mod1Checkbox.isSelected()) {
-            selectedScreens.add(new ScreenDto(1));
-            selectedScreens.add(new ScreenDto(2));
-            selectedScreens.add(new ScreenDto(3));
-            selectedScreens.add(new ScreenDto(4));
-            selectedScreens.add(new ScreenDto(5));
-            selectedScreens.add(new ScreenDto(6));
-            selectedScreens.add(new ScreenDto(7));
-
-            // permission on model 1
-            String permission1 = null;
-            if (updateCheckbox1.isSelected())
-                permission1 += " update";
-            if (viewCheckbox1.isSelected())
-                permission1 += " view";
-            if (deleteCheckbox1.isSelected())
-                permission1 += " delete";
-            if (insertCheckbox1.isSelected())
-                permission1 += " insert";
-
-            if (permission1 != null)
-                role.setPermission1(permission1);
-        }
-
-        if (mod2Checkbox.isSelected()) {
-            selectedScreens.add(new ScreenDto(8));
-            selectedScreens.add(new ScreenDto(9));
-            selectedScreens.add(new ScreenDto(10));
-
-            // permission on model 2
-            String permission2 = null;
-            if (updateCheckbox2.isSelected())
-                permission2 += " update";
-            if (viewCheckbox2.isSelected())
-                permission2 += " view";
-            if (deleteCheckbox2.isSelected())
-                permission2 += " delete";
-            if (insertCheckbox2.isSelected())
-                permission2 += " insert";
-
-            if (permission2 != null)
-                role.setPermission2(permission2);
-
-        }
-
-        if (mod3Checkbox.isSelected()) {
-            selectedScreens.add(new ScreenDto(11));
-            selectedScreens.add(new ScreenDto(12));
-            selectedScreens.add(new ScreenDto(13));
-
-            // permission on model 3
-            String permission3 = null;
-            if (updateCheckbox3.isSelected())
-                permission3 += " update";
-            if (viewCheckbox3.isSelected())
-                permission3 += " view";
-            if (deleteCheckbox3.isSelected())
-                permission3 += " delete";
-            if (insertCheckbox3.isSelected())
-                permission3 += " insert";
-
-            if (permission3 != null)
-                role.setPermission3(permission3);
-
-
-        }
-
-        if (mod4Checkbox.isSelected()) {
-            selectedScreens.add(new ScreenDto(14));
-            // permission on model 4
-            String permission4 = null;
-            if (updateCheckbox4.isSelected())
-                permission4 += " update";
-            if (viewCheckbox4.isSelected())
-                permission4 += " view";
-            if (deleteCheckbox4.isSelected())
-                permission4 += " delete";
-            if (insertCheckbox4.isSelected())
-                permission4 += " insert";
-
-            if (permission4 != null)
-                role.setPermission4(permission4);
-        }
-
-
-        // calling bussiness to save
-
-        if (selectedScreens != null) {
-            try {
-                if (screenBaoObj.saveScreenRoles(selectedScreens, role)) {
-                    JOptionPane.showMessageDialog(this, "Saved successfully");
-                } else
-                    JOptionPane.showMessageDialog(this, "Can't Save");
-
-            } catch (LTAException e) {
-                JOptionPane.showMessageDialog(this, "Error in Data Base");
-
-            }
-        } else
-            JOptionPane.showMessageDialog(this, "you should select a one screen at least ");  
-        */
+     
     }//GEN-LAST:event_doneBtnMouseClicked
 
     private void roleComboActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_roleComboActionPerformed
       
-        /* 
-        clear();
-        // list of screens based on choosen role from combo box
-        List<ScreenDto> screens = screenBaoObj.list_Screens(allRoles.get(roleCombo.getSelectedIndex()).getRole_id());
-        if (screens != null)
-            selectScreens(screens);  */
+     
+     
     }//GEN-LAST:event_roleComboActionPerformed
 
 
@@ -369,9 +264,26 @@ public class ScreenRoles extends javax.swing.JPanel {
            
 
         }
-        usersTable.setModel(new javax.swing.table.DefaultTableModel(screenArr, new String[] {
-                                                                    "Screen", "Permision"
-            }));
+      
+        usersTable.setModel(new javax.swing.table.DefaultTableModel( screenArr,
+            new String [] {"Screen", "View","Delete","Insert","Update"} ) {
+            Class[] types = new Class [] {
+            java.lang.String.class, java.lang.Boolean.class, java.lang.Boolean.class, java.lang.Boolean.class, java.lang.Boolean.class
+            };
+            boolean[] canEdit = new boolean [] {
+                false, true, true, true, true
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        
+        
     }
   
 }

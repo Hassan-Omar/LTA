@@ -28,8 +28,8 @@ public class BuildingScreeen extends javax.swing.JPanel {
         insertPanel.setVisible(false);
         // screenID = 1
         // now one step we will create an object of ScreenBao to know the current permission
-        String permissionType = new BaoFactory().createScreenBao().getCurrentPermission(1);
-        Utilities.mandate(ubdateBuildingBTN, insertBuildingBTN, deleteBuildingBTN, 1, permissionType);
+        int permissionType = new BaoFactory().createScreenBao().getCurrentPermission(1);
+        Utilities.mandate(ubdateBuildingBTN, insertBuildingBTN, deleteBuildingBTN, 1,  Utilities.convertTOBase2(permissionType));
     }
 
     /** This method is called from within the constructor to
