@@ -1,4 +1,4 @@
- package com.fym.lta.bao;
+package com.fym.lta.bao;
 
 import com.fym.lta.dto.DepartmentDto;
 import com.fym.lta.dto.LocationDto;

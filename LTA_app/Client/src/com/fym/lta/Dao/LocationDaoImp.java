@@ -1,6 +1,7 @@
 package com.fym.lta.dao;
 
 import com.fym.lta.common.ConnectionFactory;
+import com.fym.lta.common.LTAException;
 import com.fym.lta.common.Queries;
 import com.fym.lta.dto.BuildingDto;
 import com.fym.lta.dto.FloorDto;
@@ -76,8 +77,9 @@ public class LocationDaoImp implements LocationDao {
     }
 
     /*this is to insert new location in a specific building and floor
-      with specific location type*/
-    public boolean insert_Location(LocationDto Location) {
+      with specific location type*/    
+
+    public boolean insert_Location(LocationDto Location) throws LTAException {
 
         try (JdbcRowSet jdbc = RowSetProvider.newFactory().createJdbcRowSet()) {
             jdbc.setUrl(ConnectionFactory.getUrl());
@@ -106,10 +108,11 @@ public class LocationDaoImp implements LocationDao {
             e.printStackTrace();
         }
         return false;
+
     }
 
     //this is to update location
-    public boolean Update_Location(LocationDto Location) {
+    public boolean Update_Location(LocationDto Location)throws LTAException {
         try (JdbcRowSet jdbc = RowSetProvider.newFactory().createJdbcRowSet()) {
             jdbc.setUrl(ConnectionFactory.getUrl());
             jdbc.setUsername(ConnectionFactory.getUsername());
@@ -141,6 +144,7 @@ public class LocationDaoImp implements LocationDao {
             e.printStackTrace();
             return false;
         }
+
 
     }
 

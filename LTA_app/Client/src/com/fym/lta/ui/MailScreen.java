@@ -6,17 +6,32 @@ import com.fym.lta.bao.LoginEngine;
 import com.fym.lta.bao.UserBao;
 import com.fym.lta.dto.UserDto;
 
+import java.io.File;
+
+import java.io.IOException;
+
 import java.util.List;
 import java.util.Properties;
 
+import javax.activation.DataHandler;
+import javax.activation.DataSource;
+
+import javax.activation.FileDataSource;
+
+import javax.mail.BodyPart;
 import javax.mail.Message;
 import javax.mail.MessagingException;
+import javax.mail.Multipart;
 import javax.mail.PasswordAuthentication;
 import javax.mail.Session;
 import javax.mail.Transport;
 import javax.mail.internet.InternetAddress;
+import javax.mail.internet.MimeBodyPart;
 import javax.mail.internet.MimeMessage;
 
+import javax.mail.internet.MimeMultipart;
+
+import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 
 
@@ -56,10 +71,11 @@ public class MailScreen extends javax.swing.JPanel {
         msgTopic = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
         jScrollPane2 = new javax.swing.JScrollPane();
-        emailTopic_TextField = new javax.swing.JTextArea();
-        btnSend = new javax.swing.JButton();
+        emailBody_TextField = new javax.swing.JTextArea();
+        addAttach = new javax.swing.JButton();
         remotePass = new javax.swing.JPasswordField();
         jLabel1 = new javax.swing.JLabel();
+        btnSend1 = new javax.swing.JButton();
 
         userTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -82,6 +98,10 @@ public class MailScreen extends javax.swing.JPanel {
             }
         });
         jScrollPane1.setViewportView(userTable);
+        userTable.getColumnModel().getColumn(0).setHeaderValue("Title 1");
+        userTable.getColumnModel().getColumn(1).setHeaderValue("Title 2");
+        userTable.getColumnModel().getColumn(2).setHeaderValue("Title 3");
+        userTable.getColumnModel().getColumn(3).setHeaderValue("Title 4");
 
         jLabel2.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jLabel2.setText("E-mail ");
@@ -108,15 +128,20 @@ public class MailScreen extends javax.swing.JPanel {
         jLabel4.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jLabel4.setText("Email topic ");
 
-        emailTopic_TextField.setColumns(20);
-        emailTopic_TextField.setRows(5);
-        jScrollPane2.setViewportView(emailTopic_TextField);
+        emailBody_TextField.setColumns(20);
+        emailBody_TextField.setRows(5);
+        jScrollPane2.setViewportView(emailBody_TextField);
 
-        btnSend.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        btnSend.setText("Send");
-        btnSend.addMouseListener(new java.awt.event.MouseAdapter() {
+        addAttach.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        addAttach.setText("Add attachement");
+        addAttach.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                btnSendMouseClicked(evt);
+                addAttachMouseClicked(evt);
+            }
+        });
+        addAttach.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                addAttachActionPerformed(evt);
             }
         });
 
@@ -129,6 +154,19 @@ public class MailScreen extends javax.swing.JPanel {
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jLabel1.setText("password");
 
+        btnSend1.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        btnSend1.setText("Send");
+        btnSend1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnSend1MouseClicked(evt);
+            }
+        });
+        btnSend1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSend1ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -136,47 +174,56 @@ public class MailScreen extends javax.swing.JPanel {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(125, 125, 125)
-                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 332, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(24, 24, 24)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jLabel4)
-                            .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(34, 34, 34)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(msgTopic, javax.swing.GroupLayout.PREFERRED_SIZE, 233, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(emailTo_TextField, javax.swing.GroupLayout.PREFERRED_SIZE, 233, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, 122, Short.MAX_VALUE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(remotePass, javax.swing.GroupLayout.PREFERRED_SIZE, 260, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(42, 42, 42)
-                .addComponent(btnSend, javax.swing.GroupLayout.PREFERRED_SIZE, 151, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(20, 20, 20))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGap(125, 125, 125)
+                                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 332, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGap(24, 24, 24)
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(jLabel4)
+                                    .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(34, 34, 34)
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(msgTopic, javax.swing.GroupLayout.PREFERRED_SIZE, 233, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(emailTo_TextField, javax.swing.GroupLayout.PREFERRED_SIZE, 233, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 35, Short.MAX_VALUE)
+                        .addComponent(addAttach))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(remotePass, javax.swing.GroupLayout.PREFERRED_SIZE, 260, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(100, 100, 100)
+                        .addComponent(btnSend1, javax.swing.GroupLayout.PREFERRED_SIZE, 151, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(10, 10, 10)))
+                .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(emailTo_TextField, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(msgTopic, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 211, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(remotePass, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(2, 2, 2)
-                        .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, 51, Short.MAX_VALUE))
-                    .addComponent(btnSend, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(remotePass))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(emailTo_TextField, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGap(18, 18, 18)
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(msgTopic, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(18, 18, 18)
+                                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 211, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                                .addGap(54, 54, 54)
+                                .addComponent(addAttach, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(46, 46, 46)
+                        .addComponent(btnSend1, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(29, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
@@ -195,83 +242,52 @@ public class MailScreen extends javax.swing.JPanel {
                         .addComponent(btnSearch)))
                 .addGap(55, 55, 55)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(101, Short.MAX_VALUE))
+                .addContainerGap(34, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(74, 74, 74)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(email_TextField, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnSearch, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 259, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(37, 37, 37))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(0, 17, Short.MAX_VALUE)
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(62, 62, 62))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(74, 74, 74)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(email_TextField, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(btnSearch, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 259, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(37, 37, 37))
         );
     }//GEN-END:initComponents
-
-    private void btnSendMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnSendMouseClicked
-      
-        if (userTable.getSelectedRow()<0)
-          JOptionPane.showMessageDialog(this, "There is no user have been selected/n please Select a user");
-            // this will give you current user's mail 
-            String currentUserEmail =  userBaoObj.getCurrentUserEmail(LoginEngine.currentUser); 
-           
-            // this only to test and you need to delete in future 
-            currentUserEmail = "minaraouf1997@yahoo.com" ; 
-        
- 
-           final String username = currentUserEmail ;
-           final String password = new String (remotePass.getPassword());
-           
-           // start from here you need to detect the user's mail if "gmail" or "yahoo" 
-           // you can use if statment with currentUserEmail.contains(".yahoo") , same for gmail 
-           // then you will set prop based on the user's mail 
-
-            Properties prop = new Properties();
-            prop.put("mail.smtp.host", "smtp.mail.yahoo.com");
-            prop.put("mail.smtp.port", "587");
-            prop.put("mail.smtp.auth", "true");
-            prop.put("mail.smtp.socketFactory.port", "587");
-            prop.put("mail.smtp.socketFactory.class", "javax.net.ssl.SSLSocketFactory");
-            prop.put("mail.smtp.starttls.enable","true");
-            
-            
-            Session session = Session.getInstance(prop,
-                    new javax.mail.Authenticator() {
-                        protected PasswordAuthentication getPasswordAuthentication() {
-                            return new PasswordAuthentication(username, password);
-                        }
-                    });
-
-            try {
-
-                Message message = new MimeMessage(session);
-                message.setFrom(new InternetAddress( currentUserEmail ));
-                message.setRecipients(
-                        Message.RecipientType.TO,
-                        InternetAddress.parse(emailTo_TextField.getText())
-                );
-                message.setSubject("LTA  " +msgTopic.getText());
-                message.setText(emailTopic_TextField.getText());
-
-                Transport.send(message);
-
-                JOptionPane.showMessageDialog(this, "Email sent successfully");
-
-            } catch (MessagingException e) {
-                e.printStackTrace();
-            }
-        
-
-    
-        
-    }//GEN-LAST:event_btnSendMouseClicked
+   
+   
+   /*we use flag To check whether the file was selected when the user clicked attachment button or cancelled
+    so that we could determine whether we send just a message or a message and attachement*/
+    boolean flag = false;
+    String Filepath;
+    String Filename;
+    private void addAttachMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_addAttachMouseClicked
+    //To choose an attachement 
+    JFileChooser Chooser = new JFileChooser();
+    int returnVal = Chooser.showOpenDialog(this);
+    //To determine whether the user chose file or cancelled
+    if(returnVal == JFileChooser.APPROVE_OPTION){  
+    // To get the selected file & its name & path    
+        File chosenFile = Chooser.getSelectedFile();
+        Filepath = chosenFile.getAbsolutePath();
+        Filename = chosenFile.getName();
+        System.out.println(Filepath);
+        flag = true; // user succeessfully selected a file
+                     }
+    else {
+        System.out.println("File Choosing cancelled by user ");
+        flag = false; //user cancelled the selection of file
+                      }
+               
+    }//GEN-LAST:event_addAttachMouseClicked
 
     private void btnSearchMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnSearchMouseClicked
     if (email_TextField.getText() != null) {
@@ -313,12 +329,125 @@ public class MailScreen extends javax.swing.JPanel {
         // TODO add your handling code here:
     }//GEN-LAST:event_remotePassActionPerformed
 
+    private void btnSend1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnSend1MouseClicked
+    
+   // if (userTable.getSelectedRow()<0)
+    //  JOptionPane.showMessageDialog(this, "There is no user have been selected/n please Select a user");
+        // this will give you current user's mail 
+        String currentUserEmail =  userBaoObj.getCurrentUserEmail(LoginEngine.currentUser); 
+    
+        // this only to test and you need to delete in future 
+        currentUserEmail = "nadaelrayse@gmail.com" ; 
+    
+    
+       final String username = currentUserEmail ;
+       final String password = new String (remotePass.getPassword());
+       
+       // start from here you need to detect the user's mail if "gmail" or "yahoo" 
+       // you can use if statment with currentUserEmail.contains(".yahoo") , same for gmail 
+       // then you will set prop based on the user's mail 
+       
+        Properties prop = new Properties();
+    if(currentUserEmail.contains("yahoo")){
+        prop.put("mail.smtp.host", "smtp.yahoo.com"); }
+    else if(currentUserEmail.contains("gmail")){
+        prop.put("mail.smtp.host",  "smtp.gmail.com"); }
+    else if(currentUserEmail.contains("fayoum")){
+        prop.put("mail.smtp.host", "smtp.gmail.com"); }
+    else if(currentUserEmail.contains("hotmail")){
+        prop.put("mail.smtp.host", "smtp.hotmail.com"); }
+        prop.put("mail.smtp.port", "465");
+        prop.put("mail.smtp.auth", "true");
+        prop.put("mail.smtp.socketFactory.port", "465");
+        prop.put("mail.smtp.socketFactory.class", "javax.net.ssl.SSLSocketFactory");
+        prop.put("mail.smtp.starttls.enable","true");
+        prop.put("mail.smtp.socketFactory.fallback", "false");
+        // to pass through the proxy if it is exist
+        prop.put("proxySet","true");
+        prop.put("socksProxyHost","192.168.155.1");
+        prop.put("socksProxyPort","1080");
+        Session session = Session.getDefaultInstance(prop,
+                new javax.mail.Authenticator() {
+                    protected PasswordAuthentication getPasswordAuthentication() {
+                        return new PasswordAuthentication(username, password);
+                    }
+                });
+
+        try {
+            
+            if(flag) {  //to send a message with an attachement
+                
+                Message message = new MimeMessage(session);
+                message.setFrom(new InternetAddress( currentUserEmail ));
+                message.setRecipients(
+                        Message.RecipientType.TO,
+                        InternetAddress.parse(emailTo_TextField.getText())
+                );
+                message.setSubject("LTA  " +msgTopic.getText());
+             // creating the message part
+                BodyPart messageBodyPart1 = new MimeBodyPart();  
+                messageBodyPart1.setContent(emailBody_TextField.getText(),"text/html; charset=utf-8"); 
+                              
+              // creating the attachement part 
+                BodyPart messageBodyPart2 = new MimeBodyPart();  
+                DataSource source = new FileDataSource(Filepath);   
+                messageBodyPart2.setDataHandler(new DataHandler(source));   
+                messageBodyPart2.setFileName(Filename);   
+                              
+            // creating MultiPart object and set the message & attachement
+                Multipart multipartObject = new MimeMultipart();   
+                multipartObject.addBodyPart(messageBodyPart1);   
+                multipartObject.addBodyPart(messageBodyPart2); 
+                      
+           // set body of the email 
+                message.setContent(multipartObject); 
+                
+          // Send email  
+               Transport.send(message); 
+            }
+            
+            else{  //to send a message withou attachement
+                Message message = new MimeMessage(session);
+                message.setFrom(new InternetAddress( currentUserEmail ));
+                message.setRecipients(
+                        Message.RecipientType.TO,
+                        InternetAddress.parse(emailTo_TextField.getText())
+                );
+                message.setSubject("LTA  " +msgTopic.getText());
+                message.setContent(emailBody_TextField.getText(),"text/html; charset=utf-8");
+                Transport.send(message);  }
+
+            JOptionPane.showMessageDialog(this, "Email sent successfully");
+
+     } 
+        catch(javax.mail.SendFailedException ex){
+            JOptionPane.showMessageDialog(this, "No user has been selected\n" +"   please select a user"); 
+        }
+        
+        
+        catch (MessagingException e) {
+            e.printStackTrace();
+        }
+    
+
+    
+    }//GEN-LAST:event_btnSend1MouseClicked
+
+    private void addAttachActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addAttachActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_addAttachActionPerformed
+
+    private void btnSend1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSend1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnSend1ActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton addAttach;
     private javax.swing.JButton btnSearch;
-    private javax.swing.JButton btnSend;
+    private javax.swing.JButton btnSend1;
+    private javax.swing.JTextArea emailBody_TextField;
     private javax.swing.JTextField emailTo_TextField;
-    private javax.swing.JTextArea emailTopic_TextField;
     private javax.swing.JTextField email_TextField;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;

@@ -216,7 +216,7 @@ public class Queries {
 
 
     public static final String LIST_ALL_EQUIPMENTS =
-        "SELECT equipment.id , equipment.code ,equipment.type, equipment.life_span, equipment.using_start_time ,location.code Location, equipment.INERTED_BY ,equipment.updated_by ,equipment.insertion_date, equipment.update_date " +
+        "SELECT equipment.id , equipment.code ,equipment.type, equipment.life_span, equipment.using_start_time ,location.code Location, equipment.INSERTED_BY ,equipment.updated_by ,equipment.insertion_date, equipment.update_date " +
         "FROM Equipment , location  where equipment.location_id = location.l_id ";
 
 
