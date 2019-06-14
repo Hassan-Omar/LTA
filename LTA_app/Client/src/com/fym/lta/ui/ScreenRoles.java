@@ -272,9 +272,12 @@ public class ScreenRoles extends javax.swing.JPanel {
             // View the full name
             screenArr[i][0] = screens.get(i).getScreen_id();
             screenArr[i][1] = screens.get(i).getDescription();
+            
+            boolean [] permArray = null;
             // convert permission to array of boolean
-            boolean permArray[] = Utilities.convertTOBase2(screens.get(i).getRole_Screen().getPermissionType());
-            System.out.println(screens.get(i).getRole_Screen().getPermissionType()); 
+            int perm_base10 = screens.get(i).getRole_Screen().getPermissionType();
+            permArray = Utilities.convertTOBase2(perm_base10);
+            
             // set values
             if (permArray[0])
                 screenArr[i][2] = Boolean.TRUE;
@@ -295,6 +298,7 @@ public class ScreenRoles extends javax.swing.JPanel {
                 screenArr[i][5] = Boolean.TRUE;
             else
                 screenArr[i][5] = Boolean.FALSE;
+           
 
         }
 

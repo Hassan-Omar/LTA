@@ -16,11 +16,11 @@ public class Utilities {
        public static void mandate(JButton updateBTN ,JButton insertBTN , JButton deleteBTN ,int screenID ,boolean[] base2) {
           // view delete insert update 
             if (base2 != null) { // now we will hide the buttons wich the user can't access
-                if (base2[3])
+                if (base2[3]&&updateBTN!=null)
                     updateBTN.setVisible(false);
-                if (base2[2])
+                if (base2[2]&&insertBTN!=null)
                     insertBTN.setVisible(false);
-                if (base2[1])
+                if (base2[1]&&deleteBTN!=null)
                     deleteBTN.setVisible(false);
               
             } else {
@@ -85,20 +85,21 @@ public class Utilities {
     // this method invert to the method called convertTOBase10
     public static boolean[]  convertTOBase2 (int base10)
     {     
-    int container[] = new int[100];
-    boolean base2[] = new boolean[100];
+    int container[] = new int[4];
+    boolean base2[] = new boolean[4];
     int i = 0;
     while (base10 > 0){
         container[i] = base10%2;
         i++;
         base10 = base10/2;
+      
     }
     for (int j = i -1 ; j >= 0 ; j--){
         if(container[j]==1)
-        base2[i] = true ; 
+        base2[j] = true ; 
         else 
-        base2[i] = false ;
-         
+        base2[j] = false ;
+       //  System.out.print(base2[i]);
     }
     return base2;
     }
