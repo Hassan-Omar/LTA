@@ -98,8 +98,7 @@ public class Utilities {
         base2[i] = true ; 
         else 
         base2[i] = false ;
-        
-        System.out.println(base2[i]);
+         
     }
     return base2;
     }

@@ -4,11 +4,15 @@ package com.fym.lta.ui;
 import com.fym.lta.bao.BaoFactory;
 import com.fym.lta.bao.RoleBao;
 import com.fym.lta.bao.ScreenBao;
+import com.fym.lta.common.LTAException;
 import com.fym.lta.dto.RoleDto;
 import com.fym.lta.dto.ScreenDto;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import javax.swing.JOptionPane;
+import javax.swing.JTable;
 
 /**
  *
@@ -24,8 +28,8 @@ public class ScreenRoles extends javax.swing.JPanel {
     /** Creates new form ScreenRoles */
     public ScreenRoles() {
         initComponents();
-      
-        
+
+
         allRoles = roleBaoObj.getAll();
         setRolesCombo(allRoles);
 
@@ -33,7 +37,7 @@ public class ScreenRoles extends javax.swing.JPanel {
         // roleID = 13
         // now one step we will create an object of ScreenBao to know the current permission
         int permissionType = new BaoFactory().createScreenBao().getCurrentPermission(13);
-        Utilities.mandate(null, null, null, 13,  Utilities.convertTOBase2(permissionType));
+        Utilities.mandate(null, null, null, 13, Utilities.convertTOBase2(permissionType));
     }
 
     /** This method is called from within the constructor to
@@ -61,20 +65,17 @@ public class ScreenRoles extends javax.swing.JPanel {
         usersTable.setFont(new java.awt.Font("Tekton Pro Cond", 1, 18)); // NOI18N
         usersTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null}
+
             },
             new String [] {
-                "Screen", "View", "Delete", "Insert", "Update"
+                "ID", "Screen", "View", "Delete", "Insert", "Update"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.String.class, java.lang.Boolean.class, java.lang.Boolean.class, java.lang.Boolean.class, java.lang.Boolean.class
+                java.lang.Integer.class, java.lang.String.class, java.lang.Boolean.class, java.lang.Boolean.class, java.lang.Boolean.class, java.lang.Boolean.class
             };
             boolean[] canEdit = new boolean [] {
-                false, true, true, true, true
+                false, false, true, true, true, true
             };
 
             public Class getColumnClass(int columnIndex) {
@@ -85,7 +86,7 @@ public class ScreenRoles extends javax.swing.JPanel {
                 return canEdit [columnIndex];
             }
         });
-        usersTable.setRowHeight(60);
+        usersTable.setRowHeight(30);
         jScrollPane1.setViewportView(usersTable);
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
@@ -220,12 +221,23 @@ public class ScreenRoles extends javax.swing.JPanel {
     }//GEN-END:initComponents
 
     private void doneBtnMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_doneBtnMouseClicked
-     
+        try {
+            boolean status =
+                screenBaoObj.saveScreenRoles(readTableData(usersTable), allRoles.get(roleCombo.getSelectedIndex()));
+            if (status)
+                JOptionPane.showMessageDialog(this, "Saved ");
+            else
+                JOptionPane.showMessageDialog(this, "not Saved ");
+
+        } catch (LTAException e) {
+            JOptionPane.showMessageDialog(this, "not Saved ");
+
+        }
     }//GEN-LAST:event_doneBtnMouseClicked
 
     private void roleComboActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_roleComboActionPerformed
       
-     
+    resetTableMod(screenBaoObj.getAll_Screen(allRoles.get(roleCombo.getSelectedIndex()).getCode()));
      
     }//GEN-LAST:event_roleComboActionPerformed
 
@@ -253,37 +265,88 @@ public class ScreenRoles extends javax.swing.JPanel {
 
     }
 
-    public void resetTableMod(List<ScreenDto> screens) 
-    {
-        Object[][] screenArr = new Object[screens.size()][2];
+    public void resetTableMod(List<ScreenDto> screens) {
+        Object[][] screenArr = new Object[screens.size()][6];
 
-        for (int i = 0; i < screens.size();i++) {
+        for (int i = 0; i < screens.size(); i++) {
             // View the full name
-            screenArr[i][0] =screens.get(i).getDescription(); 
-            screenArr[i][1] = true ; 
-           
+            screenArr[i][0] = screens.get(i).getScreen_id();
+            screenArr[i][1] = screens.get(i).getDescription();
+            // convert permission to array of boolean
+            boolean permArray[] = Utilities.convertTOBase2(screens.get(i).getRole_Screen().getPermissionType());
+            System.out.println(screens.get(i).getRole_Screen().getPermissionType()); 
+            // set values
+            if (permArray[0])
+                screenArr[i][2] = Boolean.TRUE;
+            else
+                screenArr[i][2] = Boolean.FALSE;
+
+            if (permArray[1])
+                screenArr[i][3] = Boolean.TRUE;
+            else
+                screenArr[i][3] = Boolean.FALSE;
+
+            if (permArray[2])
+                screenArr[i][4] = Boolean.TRUE;
+            else
+                screenArr[i][4] = Boolean.FALSE;
+
+            if (permArray[3])
+                screenArr[i][5] = Boolean.TRUE;
+            else
+                screenArr[i][5] = Boolean.FALSE;
 
         }
-      
-        usersTable.setModel(new javax.swing.table.DefaultTableModel( screenArr,
-            new String [] {"Screen", "View","Delete","Insert","Update"} ) {
-            Class[] types = new Class [] {
-            java.lang.String.class, java.lang.Boolean.class, java.lang.Boolean.class, java.lang.Boolean.class, java.lang.Boolean.class
-            };
-            boolean[] canEdit = new boolean [] {
-                false, true, true, true, true
-            };
 
-            public Class getColumnClass(int columnIndex) {
-                return types [columnIndex];
-            }
+        usersTable.setModel(new javax.swing.table.DefaultTableModel(screenArr, new String[] {
+                                                                    "ID", "Screen", "View", "Delete", "Insert", "Update"
+            }) {
+                Class[] types = new Class[] {
+                    java.lang.Integer.class, java.lang.String.class, java.lang.Boolean.class, java.lang.Boolean.class,
+                    java.lang.Boolean.class, java.lang.Boolean.class
+                };
+                boolean[] canEdit = new boolean[] { false, false, true, true, true, true };
 
-            public boolean isCellEditable(int rowIndex, int columnIndex) {
-                return canEdit [columnIndex];
-            }
-        });
-        
-        
+                public Class getColumnClass(int columnIndex) {
+                    return types[columnIndex];
+                }
+
+                public boolean isCellEditable(int rowIndex, int columnIndex) {
+                    return canEdit[columnIndex];
+                }
+            });
+
     }
-  
+
+    List<ScreenDto> readTableData(JTable usersTable) {
+        List<ScreenDto> screens = new ArrayList<>();
+
+        for (int i = 0; i < usersTable.getRowCount(); i++) {
+            boolean[] permission_i = { false, false, false, false };
+
+            // view status
+            if (usersTable.getValueAt(i, 2) != null)
+                permission_i[0] = Boolean.valueOf(usersTable.getValueAt(i, 2).toString());
+            // delete status
+            if (usersTable.getValueAt(i, 3) != null)
+                permission_i[1] = Boolean.valueOf(usersTable.getValueAt(i, 3).toString());
+            // insert status
+            if (usersTable.getValueAt(i, 4) != null)
+                permission_i[2] = Boolean.valueOf(usersTable.getValueAt(i, 4).toString());
+            // update status
+            if (usersTable.getValueAt(i, 5) != null)
+                permission_i[3] = Boolean.valueOf(usersTable.getValueAt(i, 5).toString());
+
+            // get the selected role and set the current
+            RoleDto role = new RoleDto(allRoles.get(roleCombo.getSelectedIndex()).getCode());
+            role.setRole_id(allRoles.get(roleCombo.getSelectedIndex()).getRole_id());
+            role.setPermissionType(Utilities.convertTOBase10(permission_i));
+            // each row is a screen
+            ScreenDto screen = new ScreenDto(Integer.parseInt(usersTable.getValueAt(i, 0).toString()));
+            screen.setRole_Screen(role);
+            screens.add(screen);
+
+        }
+        return screens;
+    }
 }
