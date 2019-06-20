@@ -253,6 +253,9 @@ public class ScheduleInsert extends javax.swing.JPanel
                         int num = (int) temp1;
                         schudel.setStudent_number(num );
                         int slotCode = 1;
+                        
+                        List<CourseDto> courses = new ArrayList<>();
+                        List<CourseDto> employees = new ArrayList<>();
                         for (int i = 5; i < 30; i += 5)
                         {   
                             
@@ -261,7 +264,7 @@ public class ScheduleInsert extends javax.swing.JPanel
                             HSSFRow StaffName2 = Sheet.getRow(i + 2);
                             HSSFRow Type = Sheet.getRow(i + 3);
                             HSSFRow PrefSpace = Sheet.getRow(i + 4);   
-                           
+                            
                             for (int k = 1; k < 9; k += 2)
                             {                        
                                 EmployeeDto instructor = new EmployeeDto();
@@ -311,7 +314,7 @@ public class ScheduleInsert extends javax.swing.JPanel
                                 locType.setCode(PrefSpace.getCell(k+1).toString());
                                 course.setNeededLocType(locType);
                                 if(course.getCode()!="" && course.getName()!=""&&course.getCode()!=null);
-                                CourseBao.saveCourse(course);
+                                courses.add(course);
                                
                                
                                 SlotDto slot = new SlotDto();
@@ -325,6 +328,8 @@ public class ScheduleInsert extends javax.swing.JPanel
                             } // end of inner loop
 
                         } // end of outer loop 
+                        
+                        CourseBao.saveCourses(courses);
                         
                          schudel.setSchedual_Slots(slots);
                     

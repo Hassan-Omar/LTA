@@ -11,23 +11,22 @@ public interface CourseBao {
      * otherwise it updates the exis. once
      */
 
-    public boolean saveCourse(CourseDto Course);
+    public boolean saveCourses(List<CourseDto> courses);
 
 
     /**
      * search for Course 
      */
 
-    public List<CourseDto> SearchCourse(CourseDto Course) ;
+    public List<CourseDto> SearchCourse(CourseDto course) ;
 
 
     /**
      * delete a Course 
      */
     public boolean deleteCourse(CourseDto Course);
-    public boolean isexistCourse(String code);
-
-  
+    
+    
     public List<CourseDto> listCourses() ;
     
     

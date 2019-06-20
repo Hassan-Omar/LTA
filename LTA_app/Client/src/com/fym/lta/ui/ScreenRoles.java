@@ -33,11 +33,11 @@ public class ScreenRoles extends javax.swing.JPanel {
         allRoles = roleBaoObj.getAll();
         setRolesCombo(allRoles);
 
-        resetTableMod(screenBaoObj.getAll_Screen(allRoles.get(0).getCode()));
-        // roleID = 13
+        resetTableMod(screenBaoObj.getAll_Screen(allRoles.get(0)));
+     
         // now one step we will create an object of ScreenBao to know the current permission
-        int permissionType = new BaoFactory().createScreenBao().getCurrentPermission(13);
-        Utilities.mandate(null, null, null, 13, Utilities.convertTOBase2(permissionType));
+        int permissionType = new BaoFactory().createScreenBao().getCurrentPermission(10);
+        Utilities.mandate(null, null, null, 10, Utilities.convertTOBase2(permissionType));
     }
 
     /** This method is called from within the constructor to
@@ -237,7 +237,7 @@ public class ScreenRoles extends javax.swing.JPanel {
 
     private void roleComboActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_roleComboActionPerformed
       
-    resetTableMod(screenBaoObj.getAll_Screen(allRoles.get(roleCombo.getSelectedIndex()).getCode()));
+    resetTableMod(screenBaoObj.getAll_Screen(allRoles.get(roleCombo.getSelectedIndex())));
      
     }//GEN-LAST:event_roleComboActionPerformed
 
@@ -269,11 +269,11 @@ public class ScreenRoles extends javax.swing.JPanel {
         Object[][] screenArr = new Object[screens.size()][6];
 
         for (int i = 0; i < screens.size(); i++) {
-            // View the full name
+            // View the screen description
             screenArr[i][0] = screens.get(i).getScreen_id();
             screenArr[i][1] = screens.get(i).getDescription();
             
-            boolean [] permArray = null;
+            boolean [] permArray = null; // hold the value of permission as a boolean
             // convert permission to array of boolean
             int perm_base10 = screens.get(i).getRole_Screen().getPermissionType();
             permArray = Utilities.convertTOBase2(perm_base10);

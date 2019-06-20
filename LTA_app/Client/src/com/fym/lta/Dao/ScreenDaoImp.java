@@ -175,21 +175,21 @@ public class ScreenDaoImp implements ScreenDao {
 
 
     @Override
-    public List<ScreenDto> getAll_Screen(String roleCode) {
+    public List<ScreenDto> getAll_Screen(RoleDto role) {
         List<ScreenDto> screens = null;
         try (JdbcRowSet jdbcRs = RowSetProvider.newFactory().createJdbcRowSet()) {
             jdbcRs.setUrl(ConnectionFactory.getUrl());
             jdbcRs.setUsername(ConnectionFactory.getUsername());
             jdbcRs.setPassword(ConnectionFactory.getPassword());
             jdbcRs.setCommand(Queries.LIST_SCREEN);
-            jdbcRs.setString(1, roleCode);
             jdbcRs.execute();
             while (jdbcRs.next()) {
                 ScreenDto screen = new ScreenDto(jdbcRs.getInt(1));
                 screen.setDescription(jdbcRs.getString(2));
-                RoleDto role = new RoleDto(roleCode);
-                role.setPermissionType(jdbcRs.getInt(3));
-                screen.setRole_Screen(role);
+                int permission = getCurrentPermission(role.getRole_id() , screen.getScreen_id());
+                RoleDto sRole = new RoleDto(role.getCode()); 
+                sRole.setPermissionType(permission);
+                screen.setRole_Screen(sRole);
                 if (screens == null)
                     screens = new ArrayList<>();
                 screens.add(screen);

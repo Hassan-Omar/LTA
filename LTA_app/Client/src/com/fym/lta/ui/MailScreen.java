@@ -8,14 +8,11 @@ import com.fym.lta.dto.UserDto;
 
 import java.io.File;
 
-import java.io.IOException;
-
 import java.util.List;
 import java.util.Properties;
 
 import javax.activation.DataHandler;
 import javax.activation.DataSource;
-
 import javax.activation.FileDataSource;
 
 import javax.mail.BodyPart;
@@ -28,7 +25,6 @@ import javax.mail.Transport;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeBodyPart;
 import javax.mail.internet.MimeMessage;
-
 import javax.mail.internet.MimeMultipart;
 
 import javax.swing.JFileChooser;
@@ -49,6 +45,10 @@ public class MailScreen extends javax.swing.JPanel {
         initComponents();
         if(userBaoObj.listAll() != null )
         userTableReset(userBaoObj.listAll()) ;
+        // now one step we will create an object of ScreenBao to know the current permission 
+       // int permissionType = new BaoFactory().createScreenBao().getCurrentPermission(15);
+      //  Utilities.mandate(null,null , null ,15, Utilities.convertTOBase2(permissionType));
+        
         
     }
 

@@ -1,3 +1,4 @@
+
 package com.fym.lta.ui;
 
 import com.fym.lta.bao.BaoFactory;
@@ -35,8 +36,8 @@ public class RoleScreen extends javax.swing.JPanel {
 
         // roleID = 12
         // now one step we will create an object of ScreenBao to know the current permission
-        int permissionType = new BaoFactory().createScreenBao().getCurrentPermission(12);
-        Utilities.mandate(ubdateRoleBTN, insertRoleBTN, deleteRoleBTN, 12, Utilities.convertTOBase2(permissionType));
+        int permissionType = new BaoFactory().createScreenBao().getCurrentPermission(9);
+        Utilities.mandate(ubdateRoleBTN, insertRoleBTN, deleteRoleBTN, 9, Utilities.convertTOBase2(permissionType));
     }
 
     /** This method is called from within the constructor to

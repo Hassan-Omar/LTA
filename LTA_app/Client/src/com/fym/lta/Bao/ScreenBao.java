@@ -37,6 +37,5 @@ public interface ScreenBao {
     public int getPermissionType(int screenID , int roleID ) ;
     
     
-    public List<ScreenDto> getAll_Screen(String roleCode) ; 
-    
+    public List<ScreenDto> getAll_Screen(RoleDto role) ;    
 }

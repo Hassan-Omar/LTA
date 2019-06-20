@@ -50,10 +50,10 @@ public class UsersScreen extends javax.swing.JPanel {
         listComboEmployee(allEmployees);
 
         insertPanel.setVisible(false);
-        // roleID = 11 
+        
         // now one step we will create an object of ScreenBao to know the current permission 
-        int permissionType = new BaoFactory().createScreenBao().getCurrentPermission(11);
-        Utilities.mandate(ubdateUserBTN,insertUserBTN , deleteUserBTN ,11, Utilities.convertTOBase2(permissionType));
+        int permissionType = new BaoFactory().createScreenBao().getCurrentPermission(8);
+        Utilities.mandate(ubdateUserBTN,insertUserBTN , deleteUserBTN ,8, Utilities.convertTOBase2(permissionType));
     }
 
     /** This method is called from within the constructor to

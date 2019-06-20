@@ -59,7 +59,7 @@ public class ScreenBaoImp implements ScreenBao {
     }
 
     @Override
-    public List<ScreenDto> getAll_Screen(String roleCode) {
-         return screeenDaoObj.getAll_Screen(roleCode);
+    public List<ScreenDto> getAll_Screen(RoleDto role) {
+         return screeenDaoObj.getAll_Screen(role);
     }
 }

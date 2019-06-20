@@ -2,8 +2,6 @@ package com.fym.lta.dao;
 
 import com.fym.lta.dto.CourseDto;
 
-import com.fym.lta.dto.EmployeeDto;
-
 import java.util.List;
 
 public interface CourseDao {
@@ -16,12 +14,8 @@ public interface CourseDao {
 
     // this behavior to search for Course by id
 
-    public boolean insert_Course(CourseDto Course);
-
-    // this behavior to update Course data
-
-    public boolean Update_Course(CourseDto Course);
-    
+    public boolean save_Courses(List<CourseDto>  Courses);
+ 
     // this behavior to check  Course data existance
     public boolean isExist (String Code) ; 
     

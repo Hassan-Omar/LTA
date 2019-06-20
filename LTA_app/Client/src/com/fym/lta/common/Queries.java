@@ -75,9 +75,8 @@ public class Queries {
 
     public static final String DELETE_SCREEN_ROLE = "DELETE FROM ROLE_SCREEN WHERE  SCREENID =? AND ROLEID =?";
     
-    public static final String LIST_SCREEN ="SELECT X.SCREENID , X.DESCRIPTION  , Z.PERMISSIONTYPE FROM SCREEN X , ROLE Y ," +
-        "ROLE_SCREEN Z WHERE X.SCREENID = Z.SCREENID AND Y.ROLEID = Z.ROLEID AND Y.CODE = ?";
-    
+    public static final String LIST_SCREEN ="SELECT X.SCREENID , X.DESCRIPTION  FROM SCREEN X " ;
+        
     //___________________________________________________________________________________
 
 

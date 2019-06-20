@@ -8,6 +8,7 @@ import com.fym.lta.dto.CourseDto;
 import com.fym.lta.dto.DepartmentDto;
 import com.fym.lta.dto.LocationTypeDto;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -429,10 +430,12 @@ private CourseBao courseobjBao = new BaoFactory().createCourseBao();
      }
   
     course.setDepartment(allDepartments.get(Department_ComboBox.getSelectedIndex()));
+    
+    // we used array list to avoid the driver problems when we reading from xlx sheet 
+    List<CourseDto> courses = new ArrayList<>();
+       courses.add(course);
   
-  
-  
-                 if (courseobjBao.saveCourse(course)) {
+                 if (courseobjBao.saveCourses(courses)) {
                           JOptionPane.showMessageDialog(this, "Course Saved ");
                           insertPanel.setVisible(false);
                           courseTableReset(courseobjBao.listCourses());

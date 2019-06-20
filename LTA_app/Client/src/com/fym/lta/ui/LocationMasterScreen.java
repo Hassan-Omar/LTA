@@ -106,8 +106,8 @@ public class LocationMasterScreen extends javax.swing.JPanel {
         
         // roleID = 8
         // now one step we will create an object of ScreenBao to know the current permission 
-        int permissionType = new BaoFactory().createScreenBao().getCurrentPermission(8);
-        Utilities.mandate(updateLocationBtn, insertLocationBtn , deleteLocationBtn ,8, Utilities.convertTOBase2(permissionType));
+        int permissionType = new BaoFactory().createScreenBao().getCurrentPermission(11);
+        Utilities.mandate(updateLocationBtn, insertLocationBtn , deleteLocationBtn ,11, Utilities.convertTOBase2(permissionType));
 
     }
   

@@ -23,8 +23,8 @@ public class AutoAssignment extends javax.swing.JPanel {
     public AutoAssignment() {
         initComponents();
  
-        //String permissionType = new BaoFactory().createScreenBao().getCurrentPermission(10);
-        //Utilities.mandate(null ,null , null ,10,permissionType);
+        //String permissionType = new BaoFactory().createScreenBao().getCurrentPermission(13);
+        //Utilities.mandate(null ,null , null ,13,permissionType);
     }
 
     /** This method is called from within the constructor to
