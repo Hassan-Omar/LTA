@@ -17,7 +17,7 @@ public interface UserBao {
     /**
      * Search for  Users . this return a list of users .
      */
-    public List<UserDto> seachForUsers ( String email );
+    public List<UserDto> seachForUsers (String userName);
     
     /**
      *  this return a list of users .
@@ -27,11 +27,11 @@ public interface UserBao {
     /**
      * delete a User using id
      */
-    public boolean deleteUser(String email);
+    public boolean deleteUser(String userName);
     
    
     // this method to check if the username logged is  right exist
-    public boolean isUsernameExists(String username );
+    public boolean isExists(String username );
     
     // method to check if the entered user and pass is correct
     public  boolean checkLogin(String username , String password) ;

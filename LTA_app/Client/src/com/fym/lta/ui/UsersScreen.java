@@ -78,8 +78,6 @@ public class UsersScreen extends javax.swing.JPanel {
         jLabel2 = new javax.swing.JLabel();
         userPassword = new javax.swing.JPasswordField();
         jLabel4 = new javax.swing.JLabel();
-        userEmail = new javax.swing.JTextField();
-        emailLabel = new javax.swing.JLabel();
         mailLabel = new javax.swing.JLabel();
         label1 = new java.awt.Label();
         doneBTN = new javax.swing.JButton();
@@ -96,7 +94,7 @@ public class UsersScreen extends javax.swing.JPanel {
 
             },
             new String [] {
-                "Name", "Email", "Login Username", "Role"
+                "Name", "null", "Login Username", "Role"
             }
         ) {
             Class[] types = new Class [] {
@@ -116,10 +114,6 @@ public class UsersScreen extends javax.swing.JPanel {
         });
         usersTable.setRowHeight(30);
         jScrollPane1.setViewportView(usersTable);
-        usersTable.getColumnModel().getColumn(0).setHeaderValue("Name");
-        usersTable.getColumnModel().getColumn(1).setHeaderValue("Email");
-        usersTable.getColumnModel().getColumn(2).setHeaderValue("Login Username");
-        usersTable.getColumnModel().getColumn(3).setHeaderValue("Role");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -193,16 +187,6 @@ public class UsersScreen extends javax.swing.JPanel {
         jLabel4.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel4.setText("Passwor");
 
-        userEmail.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        userEmail.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyTyped(java.awt.event.KeyEvent evt) {
-                userEmailKeyTyped(evt);
-            }
-        });
-
-        emailLabel.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        emailLabel.setText("Email");
-
         mailLabel.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         mailLabel.setForeground(new java.awt.Color(255, 0, 0));
 
@@ -243,28 +227,26 @@ public class UsersScreen extends javax.swing.JPanel {
                 .addGroup(insertPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(insertPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                         .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, 86, Short.MAX_VALUE)
-                        .addComponent(emailLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, 86, Short.MAX_VALUE))
                     .addComponent(employeesLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(label1, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(35, 35, 35)
                 .addGroup(insertPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(insertPanelLayout.createSequentialGroup()
-                        .addComponent(userEmail, javax.swing.GroupLayout.PREFERRED_SIZE, 373, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(employeesCombo, javax.swing.GroupLayout.PREFERRED_SIZE, 350, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(35, 35, 35)
                         .addComponent(mailLabel, javax.swing.GroupLayout.DEFAULT_SIZE, 8, Short.MAX_VALUE))
                     .addGroup(insertPanelLayout.createSequentialGroup()
                         .addGroup(insertPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(employeesCombo, javax.swing.GroupLayout.PREFERRED_SIZE, 350, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(usernameBox, javax.swing.GroupLayout.PREFERRED_SIZE, 373, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(userPassword, javax.swing.GroupLayout.PREFERRED_SIZE, 373, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(userRoleCombo, javax.swing.GroupLayout.PREFERRED_SIZE, 134, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
-            .addGroup(insertPanelLayout.createSequentialGroup()
-                .addGap(171, 171, 171)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, insertPanelLayout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(doneBTN, javax.swing.GroupLayout.PREFERRED_SIZE, 179, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(157, 157, 157))
         );
         insertPanelLayout.setVerticalGroup(
             insertPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -277,21 +259,25 @@ public class UsersScreen extends javax.swing.JPanel {
                 .addGroup(insertPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(userPassword, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(52, 52, 52)
-                .addGroup(insertPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(emailLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(userEmail, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(mailLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(70, 70, 70)
-                .addGroup(insertPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(employeesLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(employeesCombo, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(61, 61, 61)
-                .addGroup(insertPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(label1, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(userRoleCombo, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(113, 113, 113)
-                .addComponent(doneBTN, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(insertPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(insertPanelLayout.createSequentialGroup()
+                        .addGap(65, 65, 65)
+                        .addGroup(insertPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(employeesLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(employeesCombo, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(insertPanelLayout.createSequentialGroup()
+                        .addGap(52, 52, 52)
+                        .addComponent(mailLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGroup(insertPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(insertPanelLayout.createSequentialGroup()
+                        .addGap(119, 119, 119)
+                        .addComponent(label1, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(insertPanelLayout.createSequentialGroup()
+                        .addGap(109, 109, 109)
+                        .addComponent(userRoleCombo, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(50, 50, 50)
+                .addComponent(doneBTN, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(106, 106, 106))
         );
 
         jLabel5.setFont(new java.awt.Font("Times New Roman", 1, 24)); // NOI18N
@@ -318,7 +304,7 @@ public class UsersScreen extends javax.swing.JPanel {
                             .addComponent(deleteUserBTN, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGap(132, 132, 132)
                             .addComponent(insertUserBTN, javax.swing.GroupLayout.PREFERRED_SIZE, 213, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 48, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(insertPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(221, 221, 221))
         );
@@ -343,8 +329,8 @@ public class UsersScreen extends javax.swing.JPanel {
                         .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(61, 61, 61)
-                        .addComponent(insertPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addComponent(insertPanel, javax.swing.GroupLayout.PREFERRED_SIZE, 607, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(109, Short.MAX_VALUE))
         );
     }//GEN-END:initComponents
 
@@ -409,8 +395,7 @@ public class UsersScreen extends javax.swing.JPanel {
             // hide fixed data component
             employeesCombo.setVisible(false);
             employeesLabel.setVisible(false);
-            emailLabel.setVisible(false);
-            userEmail.setVisible(false);
+           
             // copy data from table to the insertPanel
             usernameBox.setText(usersTable.getValueAt(usersTable.getSelectedRow(), 1).toString());
             updateFlage = true;
@@ -421,15 +406,6 @@ public class UsersScreen extends javax.swing.JPanel {
    
    
     }//GEN-LAST:event_ubdateUserBTNMouseClicked
-
-    private void userEmailKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_userEmailKeyTyped
-
-        String mail = userEmail.getText();
-        if (!(mail.contains("@"))) {
-            mailLabel.setText("mail format example@fayoum.edu.eg");
-        } else
-            mailLabel.setText("  ");
-    }//GEN-LAST:event_userEmailKeyTyped
 
     private void doneBTNMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_doneBTNMouseClicked
         boolean flag = true; // holding the value of the upate or insert the user , falg to control on
@@ -463,9 +439,7 @@ public class UsersScreen extends javax.swing.JPanel {
 
         if (!updateFlage) {
 
-            if (userEmail.getText().length() < 45)
-                user.setEmail(userEmail.getText());
-
+             
             user.setUpdatedBy(LoginEngine.currentUser); // we need a method return this value and this only to test db connection
             user.setInsertedBy(LoginEngine.currentUser);
             user.setUpdate_Date(new Date(System.currentTimeMillis()));
@@ -473,10 +447,7 @@ public class UsersScreen extends javax.swing.JPanel {
         }
 
         else {
-
-            if (userEmail.getText().length() < 45)
-                user.setEmail(usersTable.getValueAt(usersTable.getSelectedRow(), 1).toString());
-
+ 
             user.setUpdate_Date(new Date(System.currentTimeMillis()));
             user.setUpdatedBy(LoginEngine.currentUser); // we need a method return this value and this only to test db connection
 
@@ -505,7 +476,7 @@ public class UsersScreen extends javax.swing.JPanel {
     }//GEN-LAST:event_doneBTNMouseClicked
 
     private void usernameBoxMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_usernameBoxMouseExited
-        if (userBaoObj.isUsernameExists(usernameBox.getText()) && !(updateFlage)) {
+        if (userBaoObj.isExists(usernameBox.getText()) && !(updateFlage)) {
             JOptionPane.showMessageDialog(this, "This Username is already exist ");
             // assigne false to block the save method
             usernameAvailabilty = false;
@@ -527,7 +498,6 @@ public class UsersScreen extends javax.swing.JPanel {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton deleteUserBTN;
     private javax.swing.JButton doneBTN;
-    private javax.swing.JLabel emailLabel;
     private javax.swing.JComboBox employeesCombo;
     private java.awt.Label employeesLabel;
     private javax.swing.JPanel insertPanel;
@@ -542,7 +512,6 @@ public class UsersScreen extends javax.swing.JPanel {
     private javax.swing.JLabel mailLabel;
     private javax.swing.JButton searchUserBTN;
     private javax.swing.JButton ubdateUserBTN;
-    private javax.swing.JTextField userEmail;
     private javax.swing.JTextField userEnteredName;
     private javax.swing.JPasswordField userPassword;
     private javax.swing.JComboBox userRoleCombo;
@@ -554,25 +523,24 @@ public class UsersScreen extends javax.swing.JPanel {
     {
         int userRoleid;
 
-        Object[][] usersArr = new Object[users.size()][8];
+        Object[][] usersArr = new Object[users.size()][7];
 
         for (int i = 0; i < users.size();i++) {
             // View the full name
             usersArr[i][0] =
                                users.get(i).getFName() + " " + users.get(i).getSName() + " " + users.get(i).getLName() +
                                " " + users.get(i).getFamilyName();
-
-            usersArr[i][1] = users.get(i).getEmail();
-            usersArr[i][2] = users.get(i).getUserName();
-            usersArr[i][3] = users.get(i).getUserRole().getCode();
-            usersArr[i][4] = users.get(i).getInsertedBy();
-            usersArr[i][5] = users.get(i).getInertion_Date();
-            usersArr[i][6] = users.get(i).getUpdatedBy();
-            usersArr[i][7] = users.get(i).getUpdate_Date();
+ 
+            usersArr[i][1] = users.get(i).getUserName();
+            usersArr[i][2] = users.get(i).getUserRole().getCode();
+            usersArr[i][3] = users.get(i).getInsertedBy();
+            usersArr[i][4] = users.get(i).getInertion_Date();
+            usersArr[i][5] = users.get(i).getUpdatedBy();
+            usersArr[i][6] = users.get(i).getUpdate_Date();
 
         }
         usersTable.setModel(new javax.swing.table.DefaultTableModel(usersArr, new String[] {
-                                                                    "Name", "Email", "Login Username", "Role code " ,"Inserted By",
+                                                                    "Name", "Login Username", "Role code " ,"Inserted By",
  "  Insertion Date", "Updated By", "Update Date"
             }));
     }
@@ -598,15 +566,14 @@ public class UsersScreen extends javax.swing.JPanel {
     void clearData() { // clear prvious data
         usernameBox.setText(null);
         userPassword.setText(null);
-        userEmail.setText(null);
+       
         employeesCombo.setSelectedIndex(0);
         userRoleCombo.setSelectedIndex(0);
 
         // show hiden components again
         employeesCombo.setVisible(true);
         employeesLabel.setVisible(true);
-        emailLabel.setVisible(true);
-        userEmail.setVisible(true);
+        
     }
 
 

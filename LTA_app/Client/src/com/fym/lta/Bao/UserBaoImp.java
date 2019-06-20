@@ -20,7 +20,7 @@ public class UserBaoImp implements UserBao {
 
         // i will  check if the user is exist so i will update this user else i will insert new user
         boolean status = false;
-        if (userDaoObject.isExists(user.getUserName() , user.getEmail())) 
+        if (userDaoObject.isExists(user.getUserName())) 
         { 
                 status = userDaoObject.updateUser(user);
             
@@ -64,9 +64,9 @@ public class UserBaoImp implements UserBao {
 
 
     @Override
-    public boolean isUsernameExists(String username) {
+    public boolean isExists(String username) {
         // delegate to dao method 
-        return userDaoObject.isUsernameExists(username);
+        return userDaoObject.isExists(username);
         
         
         

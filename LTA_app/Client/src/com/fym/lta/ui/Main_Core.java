@@ -59,7 +59,7 @@ public class Main_Core {
                 e.printStackTrace();
             }
 
-            if (userBaoObj.isUsernameExists(usernameDe)) {
+            if (userBaoObj.isExists(usernameDe)) {
                 // now we know that login  done successfully so we can pass this user to our system
                 LoginEngine.currentUser = usernameDe;
                 MMenu mu = new MMenu();

@@ -12,13 +12,13 @@ public interface UserDao {
     public List<UserDto> getAll_Users();
 
     // this behavior to search for Users
-    public List<UserDto> search_Users(String email);
+    public List<UserDto> search_Users(String userName);
 
     // this behavior to delete User data
-    public boolean delete_User(String email);
+    public boolean delete_User(String userName);
 
     // this method to check if the user exist or not
-    public boolean isExists(String username ,String email);
+    public boolean isExists(String username);
 
     // this to  insert  User data
     public boolean insert_User(UserDto user) throws LTAException;
@@ -29,8 +29,6 @@ public interface UserDao {
     // method to check if the entered user and pass is correct
     public boolean loginCheck(String password, String username);
     
-    // this method to check if the username logged is  right exist
-    public boolean isUsernameExists(String username );
     
     
     public String getCurrentUserEmail(String username) ;

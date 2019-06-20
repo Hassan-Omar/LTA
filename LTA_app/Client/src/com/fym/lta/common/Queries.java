@@ -5,33 +5,34 @@ public class Queries {
 
     //_____________________________ USER MODULE _______________________________________
     public static final String INSER_NEW_USER =
-        "INSERT INTO USERS (USERNAME,PASSWORD,ROLE_ID,INSERTION_DATE" + ",INSERTED_BY,EMAIL,EMP_ID) " +
-        "VALUES (?,?,?,?,?,?,?)";
+        "INSERT INTO USERS (USERNAME,PASSWORD,ROLE_ID,INSERTION_DATE" + ",INSERTED_BY,EMP_ID) " +
+        "VALUES (?,?,?,?,?,?)";
 
     public static final String LIST_ALL_USER =
         "SELECT EMPLOYEE.FNAME , EMPLOYEE.SNAME , EMPLOYEE.TNAME , EMPLOYEE.FAMILY_NAME " +
         ",USERS.USERNAME ,USERS.INSERTION_DATE ,USERS.UPDATE_DATE ,USERS.INSERTED_BY ,USERS.UPDATED_BY ,USERS.EMAIL,ROLE.CODE " +
         "FROM EMPLOYEE , USERS , ROLE " + "WHERE EMPLOYEE.ID = USERS.EMP_ID AND ROLE.ROLEID = USERS.ROLE_ID  ";
 
-    public static final String DELETE_USER = "DELETE FROM USERS WHERE EMAIL = ? ";
+    public static final String DELETE_USER = "DELETE FROM USERS WHERE USERNAME = ? ";
 
     public static final String UPDATE_USER =
-        "UPDATE USERS SET USERNAME = ?, PASSWORD = ?, ROLE_ID = ? " +
-        ",UPDATED_BY = ? ,UPDATE_DATE = ? WHERE EMAIL = ? ";
+        "UPDATE USERS SET PASSWORD = ?, ROLE_ID = ? " +
+        ",UPDATED_BY = ? ,UPDATE_DATE = ? WHERE USERNAME = ? ";
 
-    public static final String IS_USERNAME_EXIST = "SELECT USERNAME FROM USERS WHERE USERNAME = ?";
 
     public static final String USER_SEARCH =
         "SELECT EMPLOYEE.FNAME , EMPLOYEE.SNAME , EMPLOYEE.TNAME , EMPLOYEE.FAMILY_NAME " +
-        ",USERS.USERNAME ,USERS.INSERTION_DATE ,USERS.UPDATE_DATE ,USERS.INSERTED_BY ,USERS.UPDATED_BY ,USERS.EMAIL,ROLE.CODE " +
+        ",USERS.USERNAME ,USERS.INSERTION_DATE ,USERS.UPDATE_DATE ,USERS.INSERTED_BY ,USERS.UPDATED_BY ,EMPLOYEE.EMAIL,ROLE.CODE " +
         "FROM EMPLOYEE , USERS , ROLE " +
-        "WHERE EMPLOYEE.ID = USERS.EMP_ID AND ROLE.ROLEID = USERS.ROLE_ID AND LOWER(USERS.EMAIL) LIKE ? ";
+        "WHERE EMPLOYEE.ID = USERS.EMP_ID AND ROLE.ROLEID = USERS.ROLE_ID AND LOWER(USERS.USERNAME) LIKE ? ";
 
     public static final String LOGIN_CHECK = "SELECT USERNAME,PASSWORD FROM USERS WHERE USERNAME = ? AND PASSWORD = ?";
 
-    public static final String IS_USER_EXIST = "SELECT EMAIL ,USERNAME FROM USERS WHERE EMAIL = ? OR USERNAME = ?";
-
-    public static final String GET_USER_EMAIL = "SELECT EMAIL  FROM USERS WHERE USERNAME = ? ";
+    public static final String IS_USER_EXIST = "SELECT USERNAME FROM USERS WHERE  USERNAME = ?";
+    // need for edited
+    public static final String GET_USER_EMAIL = "SELECT EMPLOYEE.EMAIL  " + 
+    "FROM EMPLOYEE JOIN USERS " + 
+    "ON EMPLOYEE.ID = USERS.EMP_ID  WHERE  USERNAME = ? ";
     //___________________________________________________________________________________
 
 
@@ -215,7 +216,7 @@ public class Queries {
 
 
     public static final String LIST_ALL_EQUIPMENTS =
-        "SELECT equipment.id , equipment.code ,equipment.type, equipment.life_span, equipment.using_start_time ,location.code Location, equipment.INSERTED_BY ,equipment.updated_by ,equipment.insertion_date, equipment.update_date " +
+        "SELECT equipment.id , equipment.code ,equipment.type, equipment.life_span, equipment.using_start_time ,location.code Location, equipment.INERTED_BY ,equipment.updated_by ,equipment.insertion_date, equipment.update_date " +
         "FROM Equipment , location  where equipment.location_id = location.l_id ";
 
 

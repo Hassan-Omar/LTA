@@ -119,14 +119,14 @@ public class UserDaoImp implements UserDao {
 
 
     @Override
-    public boolean delete_User(String email)
+    public boolean delete_User(String userName)
     {
         try (JdbcRowSet jdbcRs = RowSetProvider.newFactory().createJdbcRowSet()) {
             jdbcRs.setUrl(ConnectionFactory.getUrl());
             jdbcRs.setUsername(ConnectionFactory.getUsername());
             jdbcRs.setPassword(ConnectionFactory.getPassword());
             jdbcRs.setCommand(Queries.DELETE_USER);
-            jdbcRs.setString(1, email);
+            jdbcRs.setString(1, userName);
             jdbcRs.execute();
             return true;
         }
@@ -137,15 +137,15 @@ public class UserDaoImp implements UserDao {
     }
 
     @Override
-    public boolean isExists(String username , String  email)
+    public boolean isExists(String username)
     {
         try (JdbcRowSet jdbcRs = RowSetProvider.newFactory().createJdbcRowSet()) {
             jdbcRs.setUrl(ConnectionFactory.getUrl());
             jdbcRs.setUsername(ConnectionFactory.getUsername());
             jdbcRs.setPassword(ConnectionFactory.getPassword());
             jdbcRs.setCommand(Queries.IS_USER_EXIST);
-            jdbcRs.setString(1,  email );
-            jdbcRs.setString(2,  username );
+           
+            jdbcRs.setString(1,  username);
             jdbcRs.execute();
             
             if(jdbcRs.next())
@@ -185,11 +185,8 @@ public class UserDaoImp implements UserDao {
             jdbcRs.setString(5, user.getInsertedBy());
           
 
-            // setting email
-            jdbcRs.setString(6, user.getEmail());
-           
-            // setting EMP_ID
-            jdbcRs.setInt(7, user.getUser_Employee().getEmp_id() );
+            // setting EMP_ID id of employee who own htis account 
+            jdbcRs.setInt(6, user.getUser_Employee().getEmp_id() );
 
             jdbcRs.execute();
             return true;
@@ -213,24 +210,24 @@ public class UserDaoImp implements UserDao {
             jdbcRs.setCommand(Queries.UPDATE_USER);
 
 
-            jdbcRs.setString(1, user.getUserName()); //put username to update it
-            jdbcRs.setString(2, user.getPassword()); //put password to update it
-            jdbcRs.setInt(3,user.getUserRole().getRole_id());
+          
+            jdbcRs.setString(1, user.getPassword()); //put password to update it
+            jdbcRs.setInt(2,user.getUserRole().getRole_id());
             // putting the full name to update it
             // by logic i can not understantd  why i  need to update the name but i assumed that
             // one of names entered with error
             if (user.getUpdatedBy() != null)
-                jdbcRs.setString(4, user.getUpdatedBy());
+                jdbcRs.setString(3, user.getUpdatedBy());
             else
-                jdbcRs.setNull(4, Types.VARCHAR);
+                jdbcRs.setNull(3, Types.VARCHAR);
 
             // check if the update date is not setted we we will set it
             if (user.getUpdate_Date() != null)
-                jdbcRs.setDate(5, new java.sql.Date(user.getUpdate_Date().getTime()));
+                jdbcRs.setDate(4, new java.sql.Date(user.getUpdate_Date().getTime()));
             else
-                jdbcRs.setNull(5, java.sql.Types.DATE);
+                jdbcRs.setNull(4, java.sql.Types.DATE);
 
-            jdbcRs.setString(6, user.getEmail()); // this is a key we will use it to update
+            jdbcRs.setString(5, user.getUserName()); // this is a key we will use it to update
 
             jdbcRs.execute();
             return true;
@@ -269,29 +266,7 @@ public class UserDaoImp implements UserDao {
         return false;
     }
 
-    @Override
-    public boolean isUsernameExists(String username) {
-        try (JdbcRowSet jdbcRs = RowSetProvider.newFactory().createJdbcRowSet()) {
-            jdbcRs.setUrl(ConnectionFactory.getUrl());
-            jdbcRs.setUsername(ConnectionFactory.getUsername());
-            jdbcRs.setPassword(ConnectionFactory.getPassword());
-            jdbcRs.setCommand(Queries.IS_USERNAME_EXIST);
-            jdbcRs.setString(1,username);
-            jdbcRs.execute();
-        
-            if(jdbcRs.next())
-            {  
-               return true ;  
-                }
-        
-         
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-
-        return false;
-    }
-
+ 
     @Override
     public String getCurrentUserEmail(String username) {
         try (JdbcRowSet jdbcRs = RowSetProvider.newFactory().createJdbcRowSet()) {

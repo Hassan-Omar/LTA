@@ -17,11 +17,11 @@ public class Utilities {
           // view delete insert update 
             if (base2 != null) { // now we will hide the buttons wich the user can't access
                 if (base2[3]&&updateBTN!=null)
-                    updateBTN.setVisible(false);
+                    updateBTN.setVisible(true);
                 if (base2[2]&&insertBTN!=null)
-                    insertBTN.setVisible(false);
+                    insertBTN.setVisible(true);
                 if (base2[1]&&deleteBTN!=null)
-                    deleteBTN.setVisible(false);
+                    deleteBTN.setVisible(true);
               
             } else {
                 updateBTN.setVisible(false);
