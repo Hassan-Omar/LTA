@@ -11,14 +11,8 @@ public class EmployeeBaoImp implements EmployeeBao {
     EmployeeDao empDaoObject = new DaoFactory().createEmployeeDao();
     
     
-    public boolean saveEmployee(EmployeeDto Employee) throws LTAException {
-            boolean status  = false ;
-            if (empDaoObject.isExist(Employee.getEmail()))
-             status =  empDaoObject.Update_Employee(Employee);
-             else 
-              status = empDaoObject.insert_Employee(Employee);
-             return status;
-             
+    public boolean saveEmployees(List<EmployeeDto> employees) throws LTAException {
+          return empDaoObject.save_Employees(employees);
         
         }
 
@@ -44,4 +38,6 @@ public class EmployeeBaoImp implements EmployeeBao {
         return empDaoObject.isExist(email);
     
     }
+
+     
 }

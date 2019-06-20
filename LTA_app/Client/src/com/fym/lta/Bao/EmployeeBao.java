@@ -9,7 +9,7 @@ public interface EmployeeBao {
     
     
     
-    public boolean saveEmployee(EmployeeDto Employee)throws LTAException;
+    public boolean saveEmployees(List<EmployeeDto> employees)throws LTAException;
  
 
     /**

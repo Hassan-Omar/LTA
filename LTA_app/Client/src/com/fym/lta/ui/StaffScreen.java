@@ -8,6 +8,7 @@ import com.fym.lta.common.LTAException;
 import com.fym.lta.dto.DepartmentDto;
 import com.fym.lta.dto.EmployeeDto;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -382,10 +383,11 @@ public class StaffScreen extends javax.swing.JPanel {
         employee.setInsertedBy(LoginEngine.currentUser);
       
     }
-
+          List<EmployeeDto> employees = new ArrayList<>(); 
+          employees.add(employee);
         try {
             ;
-           if (EmployeeBaoObj.saveEmployee(employee)) {
+           if (EmployeeBaoObj.saveEmployees(employees)) {
                 JOptionPane.showMessageDialog(this, "saved ");
                 employeeTableReset(EmployeeBaoObj.listEmployee());
                 insertPanel.setVisible(false);

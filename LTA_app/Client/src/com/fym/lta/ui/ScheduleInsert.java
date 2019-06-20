@@ -255,7 +255,7 @@ public class ScheduleInsert extends javax.swing.JPanel
                         int slotCode = 1;
                         
                         List<CourseDto> courses = new ArrayList<>();
-                        List<CourseDto> employees = new ArrayList<>();
+                        List<EmployeeDto> employees = new ArrayList<>();
                         for (int i = 5; i < 30; i += 5)
                         {   
                             
@@ -270,8 +270,7 @@ public class ScheduleInsert extends javax.swing.JPanel
                                 EmployeeDto instructor = new EmployeeDto();
                                 CourseDto course = new CourseDto();
                                 List<EmployeeDto> instructors = new ArrayList<>();
-                               // System.out.println("     i"+i+"   k="+k);
-
+                                
                                 instructor.setEmail(StaffName1.getCell(k + 1).toString());
                                 // you need to cut the string and set the name as comming +++++++++
                                 // use string cut or any format
@@ -290,14 +289,9 @@ public class ScheduleInsert extends javax.swing.JPanel
                                 department.setCode(schudel.getCodeDeparment());
                                 instructor.setDepartment(department);
                                 
-                                if(instructor.getFullName()!="" &&instructor.getEmail()!=""&&instructor.getEmail()!=null)
-                                try {
-                                    EmployeeBao.saveEmployee(instructor);
-                                     } catch (LTAException ltae) {
-                                     ltae.printStackTrace();
-                                }
-                                 instructors.add(instructor);
-                               
+                              
+                                instructors.add(instructor);
+                                employees.add(instructor);
                                 course.setInstructors(instructors);
                                 course.setCode(courseName.getCell(k + 1).toString());
                                 course.setName(courseName.getCell(k).toString());
@@ -330,7 +324,11 @@ public class ScheduleInsert extends javax.swing.JPanel
                         } // end of outer loop 
                         
                         CourseBao.saveCourses(courses);
-                        
+                         try {
+                            EmployeeBao.saveEmployees(employees);
+                             } catch (LTAException ltae) {
+                             ltae.printStackTrace();
+                        }
                          schudel.setSchedual_Slots(slots);
                     
                           if( SchedualBao.saveSchedual(schudel))
