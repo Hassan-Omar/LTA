@@ -123,6 +123,7 @@ public class CourseDaoImp implements CourseDao {
                    jdbcRs.setString(1, course.getDepartment().getCode());
 
                    jdbcRs.execute();  
+                   jdbcRs.commit();
                }
                else
                {
@@ -163,10 +164,11 @@ public class CourseDaoImp implements CourseDao {
                    jdbcRs.setString(2, course.getDepartment().getCode());
 
                    jdbcRs.execute();
+                   jdbcRs.commit();
                        
                }
            }
-            jdbcRs.commit();
+           
             return true;
         } catch (Exception e) {
             e.printStackTrace();
