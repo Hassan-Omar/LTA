@@ -273,7 +273,7 @@ public class Queries {
     public static final String LIST_SLOTS = "SELECT * FROM SLOT WHERE SLOT.S_CODE = ?";
 
     public static final String IS_SLOT_ASSIGNED =
-        "SELECT LOCATION_ID FROM LOCATION_SLOT WHERE LOCATION_ID = ? AND SLOT_ID = ? ";
+        "SELECT LOCATION_ID FROM LOCATION_SLOT WHERE SLOT_ID = ? ";
     //_________________________________________________________________________________
 
 

@@ -353,8 +353,8 @@ public class LocationDaoImp implements LocationDao {
             jdbcRs.setPassword(ConnectionFactory.getPassword());
 
             jdbcRs.setCommand(Queries.IS_SLOT_ASSIGNED);          
-            jdbcRs.setInt(1, loc.getLocation_id());
-            jdbcRs.setInt(2, loc.getAssignedSlot().getSlot_id());
+            //jdbcRs.setInt(1, loc.getLocation_id());
+            jdbcRs.setInt(1, loc.getAssignedSlot().getSlot_id());
             jdbcRs.execute();
             if(jdbcRs.next())
             return true;

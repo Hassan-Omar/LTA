@@ -9,6 +9,8 @@ import com.fym.lta.ui.AutoAssignment;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.swing.JOptionPane;
+
 public class AllocationAlgorthim {
 
     //var to hold the value of saving table after allocation ;
@@ -63,11 +65,15 @@ public class AllocationAlgorthim {
           // System.out.println("i"+i + "size"+currentSlots.get(i).getSlot_id());
            List<LocationDto> filterdRooms = filterLocation(rooms_inDep ,currentSlots.get(i).getCode());
            LocationDto chosenRoom = decitionMake(filterdRooms , studentNum , currentSlots.get(i).getPrefSpace() ) ; 
-           
+           if(chosenRoom==null)
+           {JOptionPane.showMessageDialog(null, "i can't find a proper location ");}
+            else
+           {
            // update this location 
            chosenRoom.setAssignedSlot(currentSlots.get(i));
+            System.out.println(chosenRoom.getLocation_id());
            locationBaoObj.saveLocationSlot(chosenRoom); 
-           
+           }
             // update availableRooms list  
             /* rooms_inDep.remove(chosenRoom);
             assigSlots.add(currentSlots.get(i));

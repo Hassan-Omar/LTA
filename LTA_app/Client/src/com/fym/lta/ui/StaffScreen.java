@@ -43,7 +43,7 @@ public class StaffScreen extends javax.swing.JPanel {
         // screenID = 5 
         // now one step we will create an object of ScreenBao to know the current permission 
         int permissionType = new BaoFactory().createScreenBao().getCurrentPermission(5);
-        Utilities.mandate(btnUpdate,btnInsert , btnDelete ,5, Utilities.convertTOBase2(permissionType));
+        Utilities.mandate(btnUpdate , btnInsert , btnDelete ,5, Utilities.convertTOBase2(permissionType));
         
         
     }
@@ -371,7 +371,8 @@ public class StaffScreen extends javax.swing.JPanel {
     employee.setFamilyName(familyName_TextField.getText());
     employee.setDepartment(allDepartments.get(department_ComboBox.getSelectedIndex()));
     employee.setCareerDgree(pos_TextField.getText());
-    employee.setEmail(mail_TextField.getText());
+    
+    employee.setEmail(is_MailValid(mail_TextField.getText()));
   
     if (updateFlag) { 
         employee.setUpdate_Date(new Date(System.currentTimeMillis()));
@@ -384,18 +385,26 @@ public class StaffScreen extends javax.swing.JPanel {
       
     }
           List<EmployeeDto> employees = new ArrayList<>(); 
+          
           employees.add(employee);
-        try {
-            ;
-           if (EmployeeBaoObj.saveEmployees(employees)) {
-                JOptionPane.showMessageDialog(this, "saved ");
-                employeeTableReset(EmployeeBaoObj.listEmployee());
-                insertPanel.setVisible(false);
-            } else
-                JOptionPane.showMessageDialog(this, "can not save ");
-        } catch (LTAException ltae) {
-            JOptionPane.showMessageDialog(this, "can not save ");
-        } 
+          {
+                  
+                  
+                  try {
+                      
+                     if (EmployeeBaoObj.saveEmployees(employees)) {
+                          JOptionPane.showMessageDialog(this, "saved ");
+                          employeeTableReset(EmployeeBaoObj.listEmployee());
+                          insertPanel.setVisible(false);
+                      } else
+                          JOptionPane.showMessageDialog(this, "can not save ");
+                  } catch (LTAException ltae) {
+                      JOptionPane.showMessageDialog(this, "can not save ");
+                  } 
+              
+          }
+          
+          
     }//GEN-LAST:event_btnSaveMouseClicked
 
 
@@ -457,4 +466,26 @@ public class StaffScreen extends javax.swing.JPanel {
             department_ComboBox.addItem(Departments.get(i).getName());
         }
 }
+
+
+    public static String is_MailValid(String input) {
+        String resultMail = null;
+        if (input.contains("@")) {
+            String end_str = "@fayoum.edu.eg";
+            boolean ends = input.endsWith(end_str);
+            try {
+                if (ends == false) {
+                    JOptionPane.showMessageDialog(null, "Wrong Email Format\nFormat must ends with@fayoum.edu.eg");
+                }
+                else  resultMail = input ;
+
+            } catch (Exception e) {
+                System.out.println(e);
+            }
+        } else {
+            resultMail = input + "@fayoum.edu.eg";
+        }
+
+        return resultMail;
+    }
 }
