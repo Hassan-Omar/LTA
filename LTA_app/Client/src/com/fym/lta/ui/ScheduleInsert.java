@@ -21,6 +21,7 @@ import java.io.FileInputStream;
 import java.io.IOException;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
 
@@ -385,7 +386,32 @@ public class ScheduleInsert extends javax.swing.JPanel
         {"Day" ,"Slot 1" ,"Slot 2" ,"Slot 3" ,"Slot 4" }));
     }
   
-  
+    
+     // this method implmented by mina 
+    private String[] string_splitter(String Word ){
+                // types of the charchters that will be in the name
+                String result[] = Word.split("[/ ,.-]");
+                String name [] = new String[5];
+            try{ 
+                for (int i=0,j=0 ; i<result.length; i++,j++){   
+                if (result[i].toLowerCase().equalsIgnoreCase("el")||result[i].toLowerCase().equalsIgnoreCase("abd")||
+                        result[i].toLowerCase().equalsIgnoreCase("abdel")){
+                    name[j] =result[i].concat(" ").concat(result[++i]);
+                    
+                }
+                
+                else
+                    name[j]=result[i];
+                }
+                System.out.println(Arrays.toString(name));
+            }
+            catch (Exception e){
+                System.out.println(e);    
+            }    
+       return name; }
+    
+    
+    
   void readXLX()
   {
       
@@ -446,11 +472,14 @@ public class ScheduleInsert extends javax.swing.JPanel
                                   // you need to cut the string and set the name as comming +++++++++
                                   // use string cut or any format
                                   //+++++++++++++++++++++++++++++++++++++++
-                                  instructor.setFName("a");
-                                  instructor.setSName("b");
-                                  instructor.setLName("c");
-                                  instructor.setFamilyName("d");
-                                  instructor.setCareerDgree("PROF");
+                                  String[] enteredName = string_splitter(StaffName1.getCell(k).toString());
+                                  instructor.setFName(enteredName[1]);
+                                  instructor.setSName(enteredName[2]);
+                                  instructor.setLName(enteredName[3]);
+                                  instructor.setFamilyName(enteredName[4]);
+                                  instructor.setCareerDgree(enteredName[0]);
+                                  
+                                  
                                   //+++++++++++++++++++++++++++++++++++++++
                                   instructor.setInsertedBy(LoginEngine.currentUser);
                                   instructor.setUpdatedBy(LoginEngine.currentUser);
@@ -519,14 +548,8 @@ public class ScheduleInsert extends javax.swing.JPanel
                           e.printStackTrace();
                       }
                   }
-             
-              
-          
-
-
-           
-      
-      
+     
       } 
+  
     
 }
