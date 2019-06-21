@@ -10,7 +10,7 @@ import java.util.List;
 
 /**
  *
- * @author Nada
+ * @author H,Omar
  */
 public class AutoAssignment extends javax.swing.JPanel {
     
@@ -18,7 +18,9 @@ public class AutoAssignment extends javax.swing.JPanel {
     List<DepartmentDto> allDepartments  = new BaoFactory().createDepartmentBao().listDepartment();
 
     SchedualBao SchedualBaoObj ;
-
+    
+    public static int slotNO = 0 ;
+   
     /** Creates new form AutoAssignment */
     public AutoAssignment() {
         initComponents();
@@ -56,7 +58,10 @@ public class AutoAssignment extends javax.swing.JPanel {
    AllocationAlgorthim allocBusinees  =  new AllocationAlgorthim () ; 
        String report =  allocBusinees.alloc_All() ;
        System.out.println(report);
-
+       // progress bar 
+        ProgressFrame pro = new ProgressFrame() ;
+        pro.setVisible(true);
+        pro.setN(slotNO);
     }//GEN-LAST:event_assignBtnMouseClicked
 
 

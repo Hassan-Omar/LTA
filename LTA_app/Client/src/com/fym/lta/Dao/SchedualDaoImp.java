@@ -1,11 +1,11 @@
 package com.fym.lta.dao;
 
 import com.fym.lta.common.ConnectionFactory;
+import com.fym.lta.common.LTAException;
 import com.fym.lta.common.Queries;
 import com.fym.lta.dto.SchedualDto;
 import com.fym.lta.dto.SlotDto;
 
-import java.sql.SQLException;
 import java.sql.Types;
 
 import java.util.ArrayList;
@@ -130,7 +130,7 @@ public class SchedualDaoImp implements SchedualDao {
         return false;
     }
 
-    public boolean insert_Schedual(SchedualDto schedual) throws SQLException {
+    public boolean insert_Schedual(SchedualDto schedual) throws LTAException {
         try (JdbcRowSet jdbcR = RowSetProvider.newFactory().createJdbcRowSet()) {
             jdbcR.setUrl(ConnectionFactory.getUrl());
             jdbcR.setUsername(ConnectionFactory.getUsername());
@@ -179,18 +179,21 @@ public class SchedualDaoImp implements SchedualDao {
             jdbcR.execute();
 
             jdbcR.commit();
-            return true;
-        } catch (java.sql.SQLIntegrityConstraintViolationException e) {
-            e.printStackTrace();
-        }
+                return true;
+                } catch (java.sql.SQLIntegrityConstraintViolationException e) {
+                LTAException ex = new LTAException();
+                ex.setExactMessage("Role Name Already Exists!!!");
+                throw ex;
+                } catch (Exception e) {
+                e.printStackTrace();
+                }
 
-
-        return false;
+                return false;
     }
 
 
     @Override
-    public boolean update_Schedual(SchedualDto schedual) throws SQLException {
+    public boolean update_Schedual(SchedualDto schedual) throws LTAException {
 
         try (JdbcRowSet jdbcR = RowSetProvider.newFactory().createJdbcRowSet()) {
             jdbcR.setUrl(ConnectionFactory.getUrl());
@@ -239,13 +242,16 @@ public class SchedualDaoImp implements SchedualDao {
 
             jdbcR.execute();
             jdbcR.commit();
+                return true;
+                } catch (java.sql.SQLIntegrityConstraintViolationException e) {
+                LTAException ex = new LTAException();
+                ex.setExactMessage("Role Name Already Exists!!!");
+                throw ex;
+                } catch (Exception e) {
+                e.printStackTrace();
+                }
 
-            return true;
-        } catch (java.sql.SQLIntegrityConstraintViolationException e) {
-            e.printStackTrace();
-        }
-
-        return false;
+                return false;
     }
 
     @Override
@@ -312,5 +318,13 @@ public class SchedualDaoImp implements SchedualDao {
 
         return scheduals;
 
+    }
+
+    @Override
+    public SchedualDto getSlectedTable(String tableCode) {
+        
+        // ABDO YOU SHOULD WRITE THIS 
+        
+        return null;
     }
 }

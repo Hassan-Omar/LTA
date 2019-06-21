@@ -4,6 +4,7 @@ import com.fym.lta.dto.DepartmentDto;
 import com.fym.lta.dto.LocationDto;
 import com.fym.lta.dto.SchedualDto;
 import com.fym.lta.dto.SlotDto;
+import com.fym.lta.ui.AutoAssignment;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -20,12 +21,11 @@ public class AllocationAlgorthim {
     List<DepartmentDto> allDeparts = new BaoFactory().createDepartmentBao().listDepartment();
 
 
-    public float calc_UtilizationFactor() {
-        return 0;
-    }
 
     public String alloc_All() { // loops on all departments
-        for (int i = 0; i < allDeparts.size(); i++) {
+    int depNum = allDeparts.size();
+    
+        for (int i = 0; i < depNum; i++) {
             List<SchedualDto> schedualIn_Depart = schedualBaoObj.listSchedual_inDeparts(allDeparts.get(i).getCode());
             // loops on the department's schedual
             for (int k = 0; k < schedualIn_Depart.size(); k++) { // calling allocate_Table method to allocate  table no k
@@ -35,13 +35,16 @@ public class AllocationAlgorthim {
                     report += " table no " + k + " dep name " + allDeparts.get(i).getCode();
 
             }
+             // i think  depNum  well never >= 100  so i don't need if statment 
+             int ratio = 100 / depNum ; 
+             AutoAssignment.slotNO += ratio;
         }
 
         return report;
     }
 
 
-    // method to  connect location  and alloce for a certian one table 
+    // method to  connect location  and alloc for a certian one table 
     public boolean allocate_Table(SchedualDto currentSchedual, String depCode) {
 
         // get the number of student
@@ -57,13 +60,14 @@ public class AllocationAlgorthim {
         // loop on the slots      
         for (int i = 0; i < currentSlots.size(); i++) 
         {
-        
+          // System.out.println("i"+i + "size"+currentSlots.get(i).getSlot_id());
            List<LocationDto> filterdRooms = filterLocation(rooms_inDep ,currentSlots.get(i).getCode());
            LocationDto chosenRoom = decitionMake(filterdRooms , studentNum , currentSlots.get(i).getPrefSpace() ) ; 
            
            // update this location 
            chosenRoom.setAssignedSlot(currentSlots.get(i));
            locationBaoObj.saveLocationSlot(chosenRoom); 
+           
             // update availableRooms list  
             /* rooms_inDep.remove(chosenRoom);
             assigSlots.add(currentSlots.get(i));

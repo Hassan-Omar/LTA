@@ -70,7 +70,7 @@ public class UserDaoImp implements UserDao {
     }
 
     @Override
-    public List<UserDto> search_Users(String email) {
+    public List<UserDto> search_Users(String username) {
         List<UserDto> users = null;
 
         try (JdbcRowSet jdbcRs = RowSetProvider.newFactory().createJdbcRowSet()) {
@@ -78,7 +78,7 @@ public class UserDaoImp implements UserDao {
             jdbcRs.setUsername(ConnectionFactory.getUsername());
             jdbcRs.setPassword(ConnectionFactory.getPassword());
             jdbcRs.setCommand(Queries.USER_SEARCH);
-            jdbcRs.setString(1, '%' + email.toLowerCase().trim() + '%');
+            jdbcRs.setString(1, '%' + username.toLowerCase().trim() + '%');
 
             jdbcRs.execute();
 

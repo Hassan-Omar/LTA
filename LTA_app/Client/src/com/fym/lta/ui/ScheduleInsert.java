@@ -15,6 +15,8 @@ import com.fym.lta.dto.LocationTypeDto;
 import com.fym.lta.dto.SchedualDto;
 import com.fym.lta.dto.SlotDto;
 
+import java.awt.HeadlessException;
+
 import java.io.FileInputStream;
 import java.io.IOException;
 
@@ -68,8 +70,10 @@ public class ScheduleInsert extends javax.swing.JPanel
         jLabel1 = new javax.swing.JLabel();
         deleteBTN = new javax.swing.JButton();
         PanelInsert = new javax.swing.JPanel();
-        insert = new javax.swing.JButton();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        table2 = new javax.swing.JTable();
         jLabel2 = new javax.swing.JLabel();
+        jButton1 = new javax.swing.JButton();
 
         setLayout(null);
 
@@ -102,17 +106,14 @@ public class ScheduleInsert extends javax.swing.JPanel
         table.setRowHeight(30);
         jScrollPane1.setViewportView(table);
         table.getColumnModel().getColumn(0).setResizable(false);
-        table.getColumnModel().getColumn(0).setHeaderValue("SCHEDULECODE");
         table.getColumnModel().getColumn(1).setResizable(false);
-        table.getColumnModel().getColumn(1).setHeaderValue("AcademicYear");
         table.getColumnModel().getColumn(2).setResizable(false);
-        table.getColumnModel().getColumn(2).setHeaderValue("CodeDeparment");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING)
+            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 510, Short.MAX_VALUE)
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -120,7 +121,7 @@ public class ScheduleInsert extends javax.swing.JPanel
         );
 
         add(jPanel1);
-        jPanel1.setBounds(10, 260, 462, 250);
+        jPanel1.setBounds(10, 260, 520, 250);
 
         insertBTN.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         insertBTN.setText("Insert  New ");
@@ -135,7 +136,7 @@ public class ScheduleInsert extends javax.swing.JPanel
             }
         });
         add(insertBTN);
-        insertBTN.setBounds(310, 190, 160, 54);
+        insertBTN.setBounds(370, 190, 160, 54);
 
         searchBTN.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         searchBTN.setText("Search");
@@ -150,7 +151,7 @@ public class ScheduleInsert extends javax.swing.JPanel
             }
         });
         add(searchBTN);
-        searchBTN.setBounds(370, 100, 97, 50);
+        searchBTN.setBounds(310, 90, 97, 60);
 
         ScheduleCode.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         ScheduleCode.addActionListener(new java.awt.event.ActionListener() {
@@ -179,177 +180,77 @@ public class ScheduleInsert extends javax.swing.JPanel
             }
         });
         add(deleteBTN);
-        deleteBTN.setBounds(120, 190, 111, 50);
+        deleteBTN.setBounds(220, 190, 111, 50);
 
         PanelInsert.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
-        insert.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        insert.setText("Open");
-        insert.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                insertActionPerformed(evt);
+        table2.setFont(new java.awt.Font("Tekton Pro Cond", 1, 24)); // NOI18N
+        table2.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "Day", "Slot1", "slot2", "slot4", "slot4"
+            }
+        ) {
+            Class[] types = new Class [] {
+                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.Object.class, java.lang.Object.class
+            };
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, false
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
             }
         });
+        table2.setRowHeight(40);
+        jScrollPane2.setViewportView(table2);
+        table2.getColumnModel().getColumn(0).setResizable(false);
+        table2.getColumnModel().getColumn(1).setResizable(false);
+        table2.getColumnModel().getColumn(2).setResizable(false);
+        table2.getColumnModel().getColumn(3).setResizable(false);
+        table2.getColumnModel().getColumn(4).setResizable(false);
+        table2.getAccessibleContext().setAccessibleDescription("");
 
         javax.swing.GroupLayout PanelInsertLayout = new javax.swing.GroupLayout(PanelInsert);
         PanelInsert.setLayout(PanelInsertLayout);
         PanelInsertLayout.setHorizontalGroup(
             PanelInsertLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(PanelInsertLayout.createSequentialGroup()
-                .addGap(146, 146, 146)
-                .addComponent(insert, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(154, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, PanelInsertLayout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 574, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
         PanelInsertLayout.setVerticalGroup(
             PanelInsertLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(PanelInsertLayout.createSequentialGroup()
-                .addContainerGap(101, Short.MAX_VALUE)
-                .addComponent(insert, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(136, 136, 136))
+            .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 408, Short.MAX_VALUE)
         );
 
         add(PanelInsert);
-        PanelInsert.setBounds(510, 225, 445, 290);
+        PanelInsert.setBounds(550, 105, 570, 410);
 
         jLabel2.setFont(new java.awt.Font("Times New Roman", 1, 24)); // NOI18N
         jLabel2.setText("Scheduels Screen");
         add(jLabel2);
         jLabel2.setBounds(420, 10, 177, 28);
+
+        jButton1.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        jButton1.setText("view content");
+        jButton1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jButton1MouseClicked(evt);
+            }
+        });
+        add(jButton1);
+        jButton1.setBounds(20, 190, 151, 50);
     }//GEN-END:initComponents
 
-    private void insertActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_insertActionPerformed
-        //Choose XLS FILE
-        JFileChooser Chooser = new JFileChooser();
-        int Variable = Chooser.showOpenDialog(null);
-    
-    
-              if (Variable == JFileChooser.APPROVE_OPTION) 
-                {                     
-
-                    try {
-                        
-                        
-                        HSSFWorkbook lta = new HSSFWorkbook(new FileInputStream(Chooser.getSelectedFile()));
-                        HSSFSheet Sheet = lta.getSheet("Sheet0");
-                        HSSFRow CodeDeparment = Sheet.getRow(0); // Row (1)
-                        HSSFRow Acadimcyear = Sheet.getRow(1); // Row (2)
-                        HSSFRow SCHEDULECODE = Sheet.getRow(2); // Row (2)
- 
-          
-                        // rows
-                        SchedualDto schudel = new SchedualDto();
-
-                        List<SlotDto> slots =  new ArrayList<>();
-                        SchedualBao SchedualBao = new BaoFactory().createSchedualBao();
-                        EmployeeBao EmployeeBao = new BaoFactory().createemployeeBao();
-                        CourseBao CourseBao = new BaoFactory().createCourseBao();
-                        
-                        float temp = Float.parseFloat(Acadimcyear.getCell(1).toString());
-                        int acadYear = (int)temp ; 
-                        schudel.setAcademicYear(acadYear);
-                        schudel.setSCHEDULECODE(SCHEDULECODE.getCell(1).toString());
-                        schudel.setCodeDeparment(CodeDeparment.getCell(1).toString());
-                        float temp1 = Float.parseFloat(Acadimcyear.getCell(3).toString()) ;
-                        int num = (int) temp1;
-                        schudel.setStudent_number(num );
-                        int slotCode = 1;
-                        
-                        List<CourseDto> courses = new ArrayList<>();
-                        List<EmployeeDto> employees = new ArrayList<>();
-                        for (int i = 5; i < 30; i += 5)
-                        {   
-                            
-                            HSSFRow courseName = Sheet.getRow(i); 
-                            HSSFRow StaffName1 = Sheet.getRow(i + 1);
-                            HSSFRow StaffName2 = Sheet.getRow(i + 2);
-                            HSSFRow Type = Sheet.getRow(i + 3);
-                            HSSFRow PrefSpace = Sheet.getRow(i + 4);   
-                            
-                            for (int k = 1; k < 9; k += 2)
-                            {                        
-                                EmployeeDto instructor = new EmployeeDto();
-                                CourseDto course = new CourseDto();
-                                List<EmployeeDto> instructors = new ArrayList<>();
-                                
-                                instructor.setEmail(StaffName1.getCell(k + 1).toString());
-                                // you need to cut the string and set the name as comming +++++++++
-                                // use string cut or any format
-                                //+++++++++++++++++++++++++++++++++++++++
-                                instructor.setFName("a");
-                                instructor.setSName("b");
-                                instructor.setLName("c");
-                                instructor.setFamilyName("d");
-                                instructor.setCareerDgree("PROF");
-                                //+++++++++++++++++++++++++++++++++++++++
-                                instructor.setInsertedBy(LoginEngine.currentUser);
-                                instructor.setUpdatedBy(LoginEngine.currentUser);
-                                instructor.setInertion_Date(new Date(System.currentTimeMillis()));
-                                instructor.setUpdate_Date(new Date(System.currentTimeMillis()));
-                                DepartmentDto department = new DepartmentDto(); 
-                                department.setCode(schudel.getCodeDeparment());
-                                instructor.setDepartment(department);
-                                
-                              
-                                instructors.add(instructor);
-                                employees.add(instructor);
-                                course.setInstructors(instructors);
-                                course.setCode(courseName.getCell(k + 1).toString());
-                                course.setName(courseName.getCell(k).toString());
-                                course.setInsertedBy(LoginEngine.currentUser);
-                                course.setUpdatedBy(LoginEngine.currentUser);
-                                course.setInertion_Date(new Date(System.currentTimeMillis()));
-                                course.setUpdate_Date(new Date(System.currentTimeMillis()));
-                               
-                                DepartmentDto department_course = new DepartmentDto(); 
-                                department_course.setCode(schudel.getCodeDeparment());
-                                course.setDepartment(department_course);
-                               
-                                LocationTypeDto locType = new LocationTypeDto() ;
-                                locType.setCode(PrefSpace.getCell(k+1).toString());
-                                course.setNeededLocType(locType);
-                                if(course.getCode()!="" && course.getName()!=""&&course.getCode()!=null);
-                                courses.add(course);
-                               
-                               
-                                SlotDto slot = new SlotDto();
-                                slot.setCode(slotCode);
-                                slot.setCurrentCourse(course);
-                                slot.setPrefSpace(PrefSpace.getCell(k + 1).toString());
-                                slot.setType(Type.getCell(k + 1).toString());
-                                if(slot.getCurrentCourse().getCode()!=null)
-                                slots.add(slot);
-                                slotCode++;
-                            } // end of inner loop
-
-                        } // end of outer loop 
-                        
-                        CourseBao.saveCourses(courses);
-                         try {
-                            EmployeeBao.saveEmployees(employees);
-                             } catch (LTAException ltae) {
-                             ltae.printStackTrace();
-                        }
-                         schudel.setSchedual_Slots(slots);
-                    
-                          if( SchedualBao.saveSchedual(schudel))
-                            JOptionPane.showMessageDialog(this, " saved");
-                            else
-                            JOptionPane.showMessageDialog(this, "don't save"); 
-                    
-                    } catch (IOException e) {
-                        e.printStackTrace();
-                    }
-                }
-           
-            
-      
-
-
-         
-    }//GEN-LAST:event_insertActionPerformed
-
     private void insertBTNMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_insertBTNMouseClicked
-        PanelInsert.setVisible(true);
+        readXLX();
 
     }//GEN-LAST:event_insertBTNMouseClicked
 
@@ -415,6 +316,15 @@ public class ScheduleInsert extends javax.swing.JPanel
         // TODO add your handling code here:
     }//GEN-LAST:event_ScheduleCodeActionPerformed
 
+    private void jButton1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MouseClicked
+    jScrollPane2.setVisible(true);
+        if (table.getSelectedRow() >= 0)
+        {
+         schedualBao.getSlectedTable(table.getValueAt(table.getSelectedRow(), 0).toString());
+        }
+             else JOptionPane.showMessageDialog(null, "select a table to view");
+    }//GEN-LAST:event_jButton1MouseClicked
+
     public void TableReset(List<SchedualDto> scheduals) 
     {
 
@@ -437,14 +347,186 @@ public class ScheduleInsert extends javax.swing.JPanel
     private javax.swing.JPanel PanelInsert;
     private javax.swing.JTextField ScheduleCode;
     private javax.swing.JButton deleteBTN;
-    private javax.swing.JButton insert;
     private javax.swing.JButton insertBTN;
+    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JButton searchBTN;
     private javax.swing.JTable table;
+    private javax.swing.JTable table2;
     // End of variables declaration//GEN-END:variables
+   
+    public void Table2Reset(List<SlotDto> slots) 
+    {  int index = 0 ;
 
+        Object[][] sArray = new Object[5][5];
+        //======
+        sArray[0][0] = "Sunday";
+        sArray[1][0] = "Monday";
+        sArray[2][0] = "Tuesday";
+        sArray[3][0] = "Wednesday";
+        sArray[4][0] = "Thursday";
+        //======
+        
+        
+        for (int i = 0; i<5;i++)
+        {  
+           
+          for(int k=1; k<6; k++)
+          {  
+               sArray[i][k] = slots.get(index).getSlot_id();
+               index++;
+           }
+        }
+        table2.setModel(new javax.swing.table.DefaultTableModel(sArray, new String[]
+        {"Day" ,"Slot 1" ,"Slot 2" ,"Slot 3" ,"Slot 4" }));
+    }
+  
+  
+  void readXLX()
+  {
+      
+          //Choose XLS FILE
+          JFileChooser Chooser = new JFileChooser();
+          int Variable = Chooser.showOpenDialog(null);
+          
+          
+                if (Variable == JFileChooser.APPROVE_OPTION) 
+                  {                     
+
+                      try {
+                          
+                          
+                          HSSFWorkbook lta = new HSSFWorkbook(new FileInputStream(Chooser.getSelectedFile()));
+                          HSSFSheet Sheet = lta.getSheet("Sheet0");
+                          HSSFRow CodeDeparment = Sheet.getRow(0); // Row (1)
+                          HSSFRow Acadimcyear = Sheet.getRow(1); // Row (2)
+                          HSSFRow SCHEDULECODE = Sheet.getRow(2); // Row (2)
+          
+            
+                          // rows
+                          SchedualDto schudel = new SchedualDto();
+
+                          List<SlotDto> slots =  new ArrayList<>();
+                          SchedualBao SchedualBao = new BaoFactory().createSchedualBao();
+                          EmployeeBao EmployeeBao = new BaoFactory().createemployeeBao();
+                          CourseBao CourseBao = new BaoFactory().createCourseBao();
+                          
+                          float temp = Float.parseFloat(Acadimcyear.getCell(1).toString());
+                          int acadYear = (int)temp ; 
+                          schudel.setAcademicYear(acadYear);
+                          schudel.setSCHEDULECODE(SCHEDULECODE.getCell(1).toString());
+                          schudel.setCodeDeparment(CodeDeparment.getCell(1).toString());
+                          float temp1 = Float.parseFloat(Acadimcyear.getCell(3).toString()) ;
+                          int num = (int) temp1;
+                          schudel.setStudent_number(num );
+                          int slotCode = 1;
+                          
+                          List<CourseDto> courses = new ArrayList<>();
+                          List<EmployeeDto> employees = new ArrayList<>();
+                          for (int i = 5; i < 30; i += 5)
+                          {   
+                              
+                              HSSFRow courseName = Sheet.getRow(i); 
+                              HSSFRow StaffName1 = Sheet.getRow(i + 1);
+                              HSSFRow StaffName2 = Sheet.getRow(i + 2);
+                              HSSFRow Type = Sheet.getRow(i + 3);
+                              HSSFRow PrefSpace = Sheet.getRow(i + 4);   
+                              
+                              for (int k = 1; k < 9; k += 2)
+                              {                        
+                                  EmployeeDto instructor = new EmployeeDto();
+                                  CourseDto course = new CourseDto();
+                                  List<EmployeeDto> instructors = new ArrayList<>();
+                                  
+                                  instructor.setEmail(StaffName1.getCell(k + 1).toString());
+                                  // you need to cut the string and set the name as comming +++++++++
+                                  // use string cut or any format
+                                  //+++++++++++++++++++++++++++++++++++++++
+                                  instructor.setFName("a");
+                                  instructor.setSName("b");
+                                  instructor.setLName("c");
+                                  instructor.setFamilyName("d");
+                                  instructor.setCareerDgree("PROF");
+                                  //+++++++++++++++++++++++++++++++++++++++
+                                  instructor.setInsertedBy(LoginEngine.currentUser);
+                                  instructor.setUpdatedBy(LoginEngine.currentUser);
+                                  instructor.setInertion_Date(new Date(System.currentTimeMillis()));
+                                  instructor.setUpdate_Date(new Date(System.currentTimeMillis()));
+                                  DepartmentDto department = new DepartmentDto(); 
+                                  department.setCode(schudel.getCodeDeparment());
+                                  instructor.setDepartment(department);
+                                  
+                                
+                                  instructors.add(instructor);
+                                  employees.add(instructor);
+                                  course.setInstructors(instructors);
+                                  course.setCode(courseName.getCell(k + 1).toString());
+                                  course.setName(courseName.getCell(k).toString());
+                                  course.setInsertedBy(LoginEngine.currentUser);
+                                  course.setUpdatedBy(LoginEngine.currentUser);
+                                  course.setInertion_Date(new Date(System.currentTimeMillis()));
+                                  course.setUpdate_Date(new Date(System.currentTimeMillis()));
+                                 
+                                  DepartmentDto department_course = new DepartmentDto(); 
+                                  department_course.setCode(schudel.getCodeDeparment());
+                                  course.setDepartment(department_course);
+                                 
+                                  LocationTypeDto locType = new LocationTypeDto() ;
+                                  locType.setCode(PrefSpace.getCell(k+1).toString());
+                                  course.setNeededLocType(locType);
+                                  if(course.getCode()!="" && course.getName()!=""&&course.getCode()!=null);
+                                  courses.add(course);
+                                 
+                                 
+                                  SlotDto slot = new SlotDto();
+                                  slot.setCode(slotCode);
+                                  slot.setCurrentCourse(course);
+                                  slot.setPrefSpace(PrefSpace.getCell(k + 1).toString());
+                                  slot.setType(Type.getCell(k + 1).toString());
+                                  if(slot.getCurrentCourse().getCode()!=null)
+                                  slots.add(slot);
+                                  slotCode++;
+                              } // end of inner loop
+
+                          } // end of outer loop 
+                          
+                          CourseBao.saveCourses(courses);
+                           try {
+                              EmployeeBao.saveEmployees(employees);
+                               } catch (LTAException ltae) {
+                               ltae.printStackTrace();
+                          }
+                           schudel.setSchedual_Slots(slots);
+
+                try {
+                    if (SchedualBao.saveSchedual(schudel))
+                        JOptionPane.showMessageDialog(this, " saved");
+                    else
+                        JOptionPane.showMessageDialog(this, "don't save");
+                } catch (LTAException ltae) {
+                    
+                    JOptionPane.showMessageDialog(this, "don't save Error in DB");
+                } catch (HeadlessException he) {
+                    // TODO: Add catch code
+                    he.printStackTrace();
+                }
+                      
+                      } catch (IOException e) {
+                          e.printStackTrace();
+                      }
+                  }
+             
+              
+          
+
+
+           
+      
+      
+      } 
+    
 }
