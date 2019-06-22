@@ -252,6 +252,10 @@ public class Queries {
 
     public static final String LIST_SCHEDULE_INDEPART =
         "SELECT * FROM GRADE_SCHEDULE " + "WHERE GRADE_SCHEDULE.DEPARTMENT_CODE = ? ";
+   
+    public static final String SHOW_SCHEDULE_SLOTS  ="SELECT w.position, w.FNAME,w.sname, y.name,y.code ,z.code ,x.id from employee w ,slot x, course y,location z,location_slot s where w.email=x.staff_email and x.course_code=y.code and z.l_id=s.location_id and x.id=s.slot_id  and x.s_code= ?";
+    public static final String SHOW_SCHEDULE = "SELECT * FROM GRADE_SCHEDULE WHERE SCHEDULECODE = ? ";
+
 
     //________________________________________________________________________________
 

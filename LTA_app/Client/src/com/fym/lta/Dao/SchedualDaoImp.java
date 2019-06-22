@@ -3,6 +3,7 @@ package com.fym.lta.dao;
 import com.fym.lta.common.ConnectionFactory;
 import com.fym.lta.common.LTAException;
 import com.fym.lta.common.Queries;
+import com.fym.lta.dto.LocationDto;
 import com.fym.lta.dto.SchedualDto;
 import com.fym.lta.dto.SlotDto;
 
@@ -321,10 +322,48 @@ public class SchedualDaoImp implements SchedualDao {
     }
 
     @Override
-    public SchedualDto getSlectedTable(String tableCode) {
-        
-        // ABDO YOU SHOULD WRITE THIS 
-        
-        return null;
-    }
+    public SchedualDto getSlectedTable(String tableCode) 
+    {      List<SlotDto> slots = null ;
+           SlotDto slot = null ;
+        SchedualDto    result  = new SchedualDto() ;
+
+        try (JdbcRowSet jdbcR = RowSetProvider.newFactory().createJdbcRowSet()) {
+            jdbcR.setUrl(ConnectionFactory.getUrl());
+            jdbcR.setUsername(ConnectionFactory.getUsername());
+            jdbcR.setPassword(ConnectionFactory.getPassword());
+ 
+            jdbcR.setCommand(Queries.SHOW_SCHEDULE_SLOTS);
+            jdbcR.setString(1, tableCode);
+            jdbcR.execute();
+            
+            while(jdbcR.next())
+            { 
+                if(slots==null)
+                    slots = new ArrayList<>() ;     
+                
+                slot = new SlotDto();
+            LocationDto loc = new LocationDto() ;
+                loc.setCode(jdbcR.getString(6));
+                slot.setCurrentLocation(loc);
+                slot.setSlot_id(jdbcR.getInt(7));
+                
+                System.out.println(slot.getSlot_id());
+                
+                slots.add(slot);
+            }
+            result.setSchedual_Slots(slots);
+            
+            jdbcR.setCommand(Queries.SHOW_SCHEDULE);
+            jdbcR.setString(1, tableCode);
+            jdbcR.execute();
+            while(jdbcR.next())
+            {
+                result.setAcademicYear(jdbcR.getInt(2));
+                
+            }
+            
+        } 
+        catch(Exception e)
+        {  }
+    return result ;}
 }

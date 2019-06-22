@@ -107,8 +107,11 @@ public class ScheduleInsert extends javax.swing.JPanel
         table.setRowHeight(30);
         jScrollPane1.setViewportView(table);
         table.getColumnModel().getColumn(0).setResizable(false);
+        table.getColumnModel().getColumn(0).setHeaderValue("SCHEDULECODE");
         table.getColumnModel().getColumn(1).setResizable(false);
+        table.getColumnModel().getColumn(1).setHeaderValue("AcademicYear");
         table.getColumnModel().getColumn(2).setResizable(false);
+        table.getColumnModel().getColumn(2).setHeaderValue("CodeDeparment");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -118,7 +121,7 @@ public class ScheduleInsert extends javax.swing.JPanel
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 206, Short.MAX_VALUE)
+            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 196, Short.MAX_VALUE)
         );
 
         add(jPanel1);
@@ -212,10 +215,15 @@ public class ScheduleInsert extends javax.swing.JPanel
         table2.setRowHeight(40);
         jScrollPane2.setViewportView(table2);
         table2.getColumnModel().getColumn(0).setResizable(false);
+        table2.getColumnModel().getColumn(0).setHeaderValue("Day");
         table2.getColumnModel().getColumn(1).setResizable(false);
+        table2.getColumnModel().getColumn(1).setHeaderValue("Slot1");
         table2.getColumnModel().getColumn(2).setResizable(false);
+        table2.getColumnModel().getColumn(2).setHeaderValue("slot2");
         table2.getColumnModel().getColumn(3).setResizable(false);
+        table2.getColumnModel().getColumn(3).setHeaderValue("slot4");
         table2.getColumnModel().getColumn(4).setResizable(false);
+        table2.getColumnModel().getColumn(4).setHeaderValue("slot4");
         table2.getAccessibleContext().setAccessibleDescription("");
 
         javax.swing.GroupLayout PanelInsertLayout = new javax.swing.GroupLayout(PanelInsert);
@@ -228,11 +236,13 @@ public class ScheduleInsert extends javax.swing.JPanel
         );
         PanelInsertLayout.setVerticalGroup(
             PanelInsertLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 408, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, PanelInsertLayout.createSequentialGroup()
+                .addGap(0, 45, Short.MAX_VALUE)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 353, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
         add(PanelInsert);
-        PanelInsert.setBounds(550, 105, 570, 410);
+        PanelInsert.setBounds(550, 115, 570, 400);
 
         jLabel2.setFont(new java.awt.Font("Times New Roman", 1, 24)); // NOI18N
         jLabel2.setText("Scheduels Screen");
@@ -321,7 +331,9 @@ public class ScheduleInsert extends javax.swing.JPanel
     jScrollPane2.setVisible(true);
         if (table.getSelectedRow() >= 0)
         {
-         schedualBao.getSlectedTable(table.getValueAt(table.getSelectedRow(), 0).toString());
+     SchedualDto sch =   schedualBao.getSlectedTable(table.getValueAt(table.getSelectedRow(), 0).toString());
+           
+            Table2Reset(sch.getSchedual_Slots());
         }
              else JOptionPane.showMessageDialog(null, "select a table to view");
     }//GEN-LAST:event_jButton1MouseClicked
@@ -363,7 +375,7 @@ public class ScheduleInsert extends javax.swing.JPanel
     public void Table2Reset(List<SlotDto> slots) 
     {  int index = 0 ;
 
-        Object[][] sArray = new Object[5][5];
+        Object[][] sArray = new Object[5][6];
         //======
         sArray[0][0] = "Sunday";
         sArray[1][0] = "Monday";
