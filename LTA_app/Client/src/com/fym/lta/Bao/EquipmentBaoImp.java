@@ -1,5 +1,6 @@
 package com.fym.lta.bao;
 
+import com.fym.lta.common.LTAException;
 import com.fym.lta.dao.DaoFactory;
 import com.fym.lta.dao.EquipmentDao;
 
@@ -13,7 +14,7 @@ public class EquipmentBaoImp implements EquipmentBao {
     
     private EquipmentDao daoEquipment = new DaoFactory().createEquipmentDao();
     
-    public boolean insertEquipment(EquipmentDto Equipment) {
+    public boolean insertEquipment(EquipmentDto Equipment)throws LTAException {
         boolean saveFlage = true;
         try{
                 saveFlage = daoEquipment.insert_Equipment(Equipment);
@@ -30,7 +31,7 @@ public class EquipmentBaoImp implements EquipmentBao {
         return flag;
     }
     
-    public boolean updateEquipment(EquipmentDto Equipment)
+    public boolean updateEquipment(EquipmentDto Equipment) throws LTAException
     
     { return daoEquipment.Update_Equipment(Equipment);
                    }

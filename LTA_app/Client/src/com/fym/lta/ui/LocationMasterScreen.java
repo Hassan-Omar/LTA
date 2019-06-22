@@ -2,6 +2,7 @@
 package com.fym.lta.ui;
 
 import com.fym.lta.bao.BaoFactory;
+import com.fym.lta.bao.FloorBao;
 import com.fym.lta.bao.LocationBao;
 import com.fym.lta.bao.LoginEngine;
 import com.fym.lta.common.LTAException;
@@ -23,19 +24,22 @@ import javax.swing.JOptionPane;
  */
 public class LocationMasterScreen extends javax.swing.JPanel {
     
-    //To create a refrence from LocationBao , EquipmentBao 
+    //To create a refrence from LocationBao , FloorBao 
     private LocationBao Locationbusiness  = new BaoFactory().createLocationBao();
+    
+    private FloorBao Floorbusiness  = new BaoFactory().createFloorBao();
     
     // flag , if it equals 1 we update, if zero we insert  
     private int Location_idUpdate ;
    
     //To Get list of building , floor , location type to set comboBox items 
     List<BuildingDto> Allbuildings = new BaoFactory().createBuildingBao().listBuilding();
-    List<FloorDto> Allfloors = new BaoFactory().createFloorBao().listFloor();
+    List<FloorDto> Allfloors ;
     List<LocationTypeDto> AlllocationTypes = new BaoFactory().createLocationTypeBao().listLocationType();
     List<EquipmentDto> AllEquipments = new BaoFactory().createEquipmentBao().ListAll();
 
 
+  
         /*To add comboBox items
         We get a list of saved items in Database*/
      void listComboBuildings(List<BuildingDto> building) {
@@ -45,7 +49,7 @@ public class LocationMasterScreen extends javax.swing.JPanel {
     }
      
     void listComboFloors(List<FloorDto> floor) {
-          for (int i = 0; i < floor.size(); i++) {
+          for (int i = 0; i < floor.size(); i++) { 
              floor_combo.addItem(floor.get(i).getCode());
                     }
     }
@@ -99,7 +103,7 @@ public class LocationMasterScreen extends javax.swing.JPanel {
       if(Locationbusiness.ListAll()!=null)
       setTableModel(Locationbusiness.ListAll());
         listComboBuildings(Allbuildings);
-        listComboFloors(Allfloors);
+        //listComboFloors(Allfloors);
         listComboLocationTypes(AlllocationTypes);
         listEquipments(AllEquipments);
         define_location.setVisible(false);
@@ -161,20 +165,30 @@ public class LocationMasterScreen extends javax.swing.JPanel {
         ));
         LocationTable.setRowHeight(30);
         jScrollPane1.setViewportView(LocationTable);
+        LocationTable.getColumnModel().getColumn(0).setHeaderValue("Title 1");
+        LocationTable.getColumnModel().getColumn(1).setHeaderValue("Title 2");
+        LocationTable.getColumnModel().getColumn(2).setHeaderValue("Title 3");
+        LocationTable.getColumnModel().getColumn(3).setHeaderValue("Title 4");
+        LocationTable.getColumnModel().getColumn(4).setHeaderValue("Title 5");
+        LocationTable.getColumnModel().getColumn(5).setHeaderValue("Title 6");
+        LocationTable.getColumnModel().getColumn(6).setHeaderValue("Title 7");
+        LocationTable.getColumnModel().getColumn(7).setHeaderValue("Title 8");
+        LocationTable.getColumnModel().getColumn(8).setHeaderValue("Title 9");
+        LocationTable.getColumnModel().getColumn(9).setHeaderValue("Title 10");
+        LocationTable.getColumnModel().getColumn(10).setHeaderValue("Title 11");
+        LocationTable.getColumnModel().getColumn(11).setHeaderValue("Title 12");
 
         javax.swing.GroupLayout masterLayout = new javax.swing.GroupLayout(master);
         master.setLayout(masterLayout);
         masterLayout.setHorizontalGroup(
             masterLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(masterLayout.createSequentialGroup()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 681, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
+            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 680, Short.MAX_VALUE)
         );
         masterLayout.setVerticalGroup(
             masterLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, masterLayout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 379, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(0, 3, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 343, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
         add(master);
@@ -250,6 +264,11 @@ public class LocationMasterScreen extends javax.swing.JPanel {
         jLabel4.setText("Capacity");
 
         building_combo.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        building_combo.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                building_comboItemStateChanged(evt);
+            }
+        });
         building_combo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 building_comboActionPerformed(evt);
@@ -445,7 +464,6 @@ public class LocationMasterScreen extends javax.swing.JPanel {
             FloorObject.setFloor_id(Allfloors.get(floor_combo.getSelectedIndex()).getFloor_id());
             LocationObject.setFloor(FloorObject);
             LocationTypeObject.setLocationType_id(AlllocationTypes.get(type_combo.getSelectedIndex()).getLocationType_id());
-            System.out.println(AlllocationTypes.get(type_combo.getSelectedIndex()));
             LocationObject.setType(LocationTypeObject);
          
              //To Check whether to insert or update data// 
@@ -484,13 +502,25 @@ public class LocationMasterScreen extends javax.swing.JPanel {
             e.printStackTrace();
         }
     }//GEN-LAST:event_saveActionPerformed
-
+   
     private void building_comboActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_building_comboActionPerformed
-        // TODO add your handling code here:
+    //  if (!(building_combo.getSelectedItem().equals(null))) {
+      floor_combo.removeAllItems();
+      BuildingDto SelectedBuilding = new BuildingDto();
+      SelectedBuilding.setBuilding_id(Allbuildings.get(building_combo.getSelectedIndex()).getBuilding_id());     
+      Allfloors = Floorbusiness.filterFloor(SelectedBuilding.getBuilding_id()); 
+      listComboFloors(Allfloors);
+
+    //  }    
+    
     }//GEN-LAST:event_building_comboActionPerformed
 
     private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
     }//GEN-LAST:event_jTextField1ActionPerformed
+   
+    private void building_comboItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_building_comboItemStateChanged
+       
+    }//GEN-LAST:event_building_comboItemStateChanged
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

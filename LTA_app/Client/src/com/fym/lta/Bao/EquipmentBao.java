@@ -1,5 +1,6 @@
 package com.fym.lta.bao;
 
+import com.fym.lta.common.LTAException;
 import com.fym.lta.dto.EquipmentDto;
 
 import com.fym.lta.dto.LocationDto;
@@ -11,7 +12,7 @@ public interface EquipmentBao {
      * insert new Equipment if it doesn't exists
      * otherwise it updates the exis. once
      */
-    public boolean insertEquipment(EquipmentDto Equipment);
+    public boolean insertEquipment(EquipmentDto Equipment)throws LTAException;
 
 
     /**
@@ -29,7 +30,7 @@ public interface EquipmentBao {
     /**
      * Update an Equipment 
      */
-    public boolean updateEquipment(EquipmentDto Equipment);
+    public boolean updateEquipment(EquipmentDto Equipment)throws LTAException;
     
     /**
      * List All Equipments 

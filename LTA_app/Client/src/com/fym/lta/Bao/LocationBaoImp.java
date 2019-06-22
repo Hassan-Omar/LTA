@@ -24,6 +24,8 @@ public class LocationBaoImp implements LocationBao {
 
 
     @Override
+
+
     public boolean updateLocation(LocationDto Location)throws LTAException
     
     { return daoLocation.Update_Location(Location);
@@ -62,14 +64,10 @@ public class LocationBaoImp implements LocationBao {
 
     @Override
     public boolean saveLocationSlot(LocationDto loc) {
-        boolean status = false ;
+        if (daoLocation.isSlotAssigned(loc))
+        return daoLocation.updateLocationSlot(loc);
         
-        if (isSlotAssigned(loc))
-            status= daoLocation.updateLocationSlot(loc);
-        else 
-            status = daoLocation.insertLocationSlot(loc);
-        
-        return status ;
+        return daoLocation.insertLocationSlot(loc);
     }
 
     @Override

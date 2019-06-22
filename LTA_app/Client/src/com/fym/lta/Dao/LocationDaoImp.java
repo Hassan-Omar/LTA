@@ -230,10 +230,10 @@ public class LocationDaoImp implements LocationDao {
                 lFilter.setFloor((new FloorDto(jdbcRs.getString("floor_code"),
                                                new BuildingDto(jdbcRs.getString("building_code")))));
                 lFilter.setType(new LocationTypeDto(jdbcRs.getString("type_code")));
-                lFilter.setInsertedBy(jdbcRs.getString(8));
-                lFilter.setInertion_Date(jdbcRs.getDate(9));
-                lFilter.setUpdatedBy(jdbcRs.getString(10));
-                lFilter.setUpdate_Date(jdbcRs.getDate(11));
+                lFilter.setInsertedBy(jdbcRs.getString(7));
+                lFilter.setInertion_Date(jdbcRs.getDate(8));
+                lFilter.setUpdatedBy(jdbcRs.getString(9));
+                lFilter.setUpdate_Date(jdbcRs.getDate(10));
 
                 locations.add(lFilter);
 
@@ -353,8 +353,8 @@ public class LocationDaoImp implements LocationDao {
             jdbcRs.setPassword(ConnectionFactory.getPassword());
 
             jdbcRs.setCommand(Queries.IS_SLOT_ASSIGNED);          
-            //jdbcRs.setInt(1, loc.getLocation_id());
-            jdbcRs.setInt(1, loc.getAssignedSlot().getSlot_id());
+            jdbcRs.setInt(1, loc.getLocation_id());
+            jdbcRs.setInt(2, loc.getAssignedSlot().getSlot_id());
             jdbcRs.execute();
             if(jdbcRs.next())
             return true;

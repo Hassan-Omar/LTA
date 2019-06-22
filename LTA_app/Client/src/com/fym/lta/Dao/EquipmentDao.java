@@ -1,5 +1,6 @@
 package com.fym.lta.dao;
 
+import com.fym.lta.common.LTAException;
 import com.fym.lta.dto.EquipmentDto;
 
 import com.fym.lta.dto.LocationDto;
@@ -19,11 +20,11 @@ public interface EquipmentDao {
 
     // this behavior to insert  Equipment 
 
-    public boolean insert_Equipment(EquipmentDto Equipment);
+    public boolean insert_Equipment(EquipmentDto Equipment) throws LTAException;
 
     // this behavior to update Equipment data
 
-    public boolean Update_Equipment(EquipmentDto Equipment);
+    public boolean Update_Equipment(EquipmentDto Equipment)throws LTAException;
 
     // this behavior to check Equipment existance 
     

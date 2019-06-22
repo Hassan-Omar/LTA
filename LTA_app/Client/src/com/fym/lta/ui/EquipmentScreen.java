@@ -3,6 +3,7 @@ package com.fym.lta.ui;
 import com.fym.lta.bao.BaoFactory;
 import com.fym.lta.bao.EquipmentBao;
 import com.fym.lta.bao.LoginEngine;
+import com.fym.lta.common.LTAException;
 import com.fym.lta.dto.EquipmentDto;
 import com.fym.lta.dto.LocationDto;
 
@@ -376,30 +377,35 @@ public class EquipmentScreen extends javax.swing.JPanel {
             EquipmentObject.setLocation_equipment(LocationObject);
           
             //To Check whether to insert or update data// 
-            if(Equipment_idUpdate !=0)
-            {       
+       if(Equipment_idUpdate !=0){
+                  
                 EquipmentObject.setCode(EquipmentTable.getValueAt(EquipmentTable.getSelectedRow(), 0).toString());
                     EquipmentObject.setUpdatedBy(LoginEngine.currentUser);
                     EquipmentObject.setUpdate_Date(new Date(System.currentTimeMillis()));
-                if(Equipmentbusiness.updateEquipment(EquipmentObject)) {
-                    JOptionPane.showMessageDialog(this, "Location Updated Successfully");
-                    setTableModel(Equipmentbusiness.ListAll());
-                       }
-                else
-                JOptionPane.showMessageDialog(this, "Error occured in update");}
-            else
-            {            
+            try {  if(Equipmentbusiness.updateEquipment(EquipmentObject)) {
+                      JOptionPane.showMessageDialog(this, "Location Updated Successfully");
+                      setTableModel(Equipmentbusiness.ListAll());}
+                         
+                   else
+                      JOptionPane.showMessageDialog(this, "Error occured in update");} 
+            catch(LTAException ex){
+                   JOptionPane.showMessageDialog(this, "Error in Data base");}
+            }
+        else{
+                        
                 EquipmentObject.setCode(code.getText());
                 EquipmentObject.setInsertedBy(LoginEngine.currentUser);
                 EquipmentObject.setInertion_Date(new Date(System.currentTimeMillis()));
                 EquipmentObject.setStartingTime(new Date(System.currentTimeMillis()));
                 
-                
-                if( Equipmentbusiness.insertEquipment(EquipmentObject)){
-                JOptionPane.showMessageDialog(this, "Location Saved Successfully");
-                setTableModel(Equipmentbusiness.ListAll());
-             }else
-            JOptionPane.showMessageDialog(this, "Error occured in insertion");
+             try {
+               if( Equipmentbusiness.insertEquipment(EquipmentObject)){
+                  JOptionPane.showMessageDialog(this, "Location Saved Successfully");
+                  setTableModel(Equipmentbusiness.ListAll());}
+              else
+                 JOptionPane.showMessageDialog(this, "Error occured in insertion");}
+            catch(LTAException ex){
+                JOptionPane.showMessageDialog(this, "Error in Data base");}
         }
 
         } catch(java.lang.NumberFormatException e){

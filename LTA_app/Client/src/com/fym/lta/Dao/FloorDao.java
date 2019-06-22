@@ -31,4 +31,7 @@ public interface FloorDao {
 
     // this behavior to check Floor existance    
     public List<FloorDto> searchFloor(String code);
+    
+    //this behavior is to list all floors that located inside a specific building
+    public List<FloorDto> getFloorsOfBuilding(int building_id);
 }

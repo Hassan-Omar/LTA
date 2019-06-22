@@ -1,6 +1,7 @@
 package com.fym.lta.dao;
 
 import com.fym.lta.common.ConnectionFactory;
+import com.fym.lta.common.LTAException;
 import com.fym.lta.common.Queries;
 import com.fym.lta.dto.EquipmentDto;
 import com.fym.lta.dto.LocationDto;
@@ -65,7 +66,7 @@ public class EquipmentDaoImp implements EquipmentDao {
                     }
     }
     //this is to insert an equipment using its ID into a specific location
-    public boolean insert_Equipment(EquipmentDto Equipment) {
+    public boolean insert_Equipment(EquipmentDto Equipment) throws LTAException {
         try(JdbcRowSet jdbc = RowSetProvider.newFactory().createJdbcRowSet();) {
                     jdbc.setUrl(ConnectionFactory.getUrl());
                     jdbc.setUsername(ConnectionFactory.getUsername());
@@ -96,7 +97,7 @@ public class EquipmentDaoImp implements EquipmentDao {
         return false;    
     }
     //this is to update an equipment using its ID
-    public boolean Update_Equipment(EquipmentDto Equipment) {
+    public boolean Update_Equipment(EquipmentDto Equipment) throws LTAException {
         try(JdbcRowSet jdbc = RowSetProvider.newFactory().createJdbcRowSet();) {
                     jdbc.setUrl(ConnectionFactory.getUrl());
                     jdbc.setUsername(ConnectionFactory.getUsername());

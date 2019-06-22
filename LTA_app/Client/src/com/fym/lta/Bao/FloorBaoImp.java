@@ -62,5 +62,9 @@ public class FloorBaoImp implements FloorBao {
         return flag;
         
         }
+    //this behavior is to list all floors that located inside a specific building
+public List<FloorDto> filterFloor(int building_id){
+    return FloorDaoObj.getFloorsOfBuilding(building_id);
+}
 
 }
