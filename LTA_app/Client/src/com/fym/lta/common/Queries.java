@@ -143,6 +143,10 @@ public class Queries {
     public static final String FLOORS_SEARCH =
         "SELECT X.ID, X.CODE ,X.DESCRIPTON , Y.CODE " + "FROM FLOOR X , BUILDING Y " +
         "WHERE X.ID_BUILDING =Y.B_ID AND LOWER(X.CODE) LIKE ?";
+
+    public static final String FLOOR_FILTER = "Select Floor.Id ,Floor.Code  From Floor Join Building On Floor.Id_Building = Building.B_Id " + 
+    "where Building.B_Id = ? ";
+    
     //___________________________________________________________________________________
 
 

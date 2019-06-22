@@ -34,7 +34,8 @@ public interface FloorBao {
      */
     public boolean deleteFloor(FloorDto floor);
 
-
+    //this behavior is to list all floors that located inside a specific building
+    public List<FloorDto> filterFloor(int building_id);
 
 
 }

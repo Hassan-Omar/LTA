@@ -6,6 +6,9 @@ import com.fym.lta.common.Queries;
 import com.fym.lta.dto.BuildingDto;
 import com.fym.lta.dto.FloorDto;
 
+import com.fym.lta.dto.LocationDto;
+import com.fym.lta.dto.LocationTypeDto;
+
 import java.sql.Types;
 
 import java.util.ArrayList;
@@ -196,6 +199,34 @@ public class FloorDaoImp implements FloorDao {
 
         return Floors;
         }
+    
+    //this behavior is to list all floors that located inside a specific building
+    public List<FloorDto> getFloorsOfBuilding(int building_id){
+        List<FloorDto> floor = null;
+        try (JdbcRowSet jdbcRs = RowSetProvider.newFactory().createJdbcRowSet()) {
+
+            jdbcRs.setUrl(ConnectionFactory.getUrl());
+            jdbcRs.setUsername(ConnectionFactory.getUsername());
+            jdbcRs.setPassword(ConnectionFactory.getPassword());
+            jdbcRs.setCommand(Queries.FLOOR_FILTER);
+            jdbcRs.setInt(1, building_id);
+            jdbcRs.execute();
+            while (jdbcRs.next()) {
+                if (floor == null)
+                    floor = new ArrayList<>();
+                FloorDto fFilter = new FloorDto();
+                fFilter.setFloor_id(jdbcRs.getInt(1));
+                fFilter.setCode(jdbcRs.getString(2));
+                floor.add(fFilter);}
+            } 
+        catch (Exception e) {
+            e.printStackTrace();
+            }
+
+            return floor;
+            }
+
+    
 
 
 
