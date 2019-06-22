@@ -65,7 +65,7 @@ public class Main_Core {
                               // now we know that login  done successfully so we can pass this user to our system
                 LoginEngine.currentUser = usernameDe;
                     // select Look and Feel
-                    Utilities.setSmartLookAndFeel();
+                    Utilities.setLookAndFeel();
                     MMenu mu = new MMenu();
                     mu.setVisible(true);
                 

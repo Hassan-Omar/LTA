@@ -3,6 +3,9 @@ package com.fym.lta.dao;
 import com.fym.lta.common.ConnectionFactory;
 import com.fym.lta.common.LTAException;
 import com.fym.lta.common.Queries;
+import com.fym.lta.dto.CourseDto;
+import com.fym.lta.dto.DepartmentDto;
+import com.fym.lta.dto.EmployeeDto;
 import com.fym.lta.dto.LocationDto;
 import com.fym.lta.dto.SchedualDto;
 import com.fym.lta.dto.SlotDto;
@@ -339,16 +342,28 @@ public class SchedualDaoImp implements SchedualDao {
             while(jdbcR.next())
             { 
                 if(slots==null)
-                    slots = new ArrayList<>() ;     
-                
+                    slots = new ArrayList<>() ;
+
                 slot = new SlotDto();
-            LocationDto loc = new LocationDto() ;
+
+                //Set staff name and dgree 
+                EmployeeDto staff = new EmployeeDto();
+                staff.setCareerDgree(jdbcR.getString(1));
+                staff.setFName(jdbcR.getString(2));
+                staff.setSName(jdbcR.getString(3));
+                slot.setCrrentStaffMemb(staff);
+                //set Course name and code
+                CourseDto Course = new CourseDto();
+                Course.setName(jdbcR.getString(4));
+                Course.setCode(jdbcR.getString(5));
+                slot.setCurrentCourse(Course);
+                //set Location
+                LocationDto loc = new LocationDto();
                 loc.setCode(jdbcR.getString(6));
                 slot.setCurrentLocation(loc);
+                //set Slot ID 
                 slot.setSlot_id(jdbcR.getInt(7));
-                
-                System.out.println(slot.getSlot_id());
-                
+                        
                 slots.add(slot);
             }
             result.setSchedual_Slots(slots);
@@ -357,8 +372,17 @@ public class SchedualDaoImp implements SchedualDao {
             jdbcR.setString(1, tableCode);
             jdbcR.execute();
             while(jdbcR.next())
-            {
+            {   
+                result.setSCHEDULECODE(jdbcR.getString(1));
                 result.setAcademicYear(jdbcR.getInt(2));
+                result.setStudent_number(jdbcR.getInt(3));
+                result.setId(jdbcR.getInt(4));
+                
+                DepartmentDto dep = new DepartmentDto();
+                dep.setCode(jdbcR.getString(5));
+                dep.setName(jdbcR.getString(6));
+                
+                result.setDepartment(dep);
                 
             }
             
