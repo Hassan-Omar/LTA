@@ -1,9 +1,13 @@
 package com.fym.lta.ui;
 
+import com.jtattoo.plaf.mint.MintLookAndFeel;
+
 import java.math.BigInteger;
 
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
+
+import java.util.Properties;
 
 import javax.swing.JButton;
 import javax.swing.JOptionPane;
@@ -100,7 +104,7 @@ public class Utilities {
         base2[j] = true ; 
         else 
         base2[j] = false ;
-       //  System.out.print(base2[i]);
+       
     }
     return base2;
     }
@@ -108,8 +112,25 @@ public class Utilities {
     
         public  static void setSmartLookAndFeel(){
                 try {
-                    // select Look and Feel
-                    UIManager.setLookAndFeel("com.jtattoo.plaf.smart.SmartLookAndFeel");
+                  Properties props = new Properties();
+                    props.put("logoString", " "); // this only to make a light side in menu
+                     MintLookAndFeel.setCurrentTheme(props);
+                    
+                  // UIManager.setLookAndFeel("com.jtattoo.plaf.aluminium.AluminiumLookAndFeel"); // the best theme 
+                    // UIManager.setLookAndFeel("com.jtattoo.plaf.mcwin.McWinLookAndFeel");  // mac theme
+                   //  UIManager.setLookAndFeel("com.jtattoo.plaf.hifi.HiFiLookAndFeel"); // night theme 
+                 UIManager.setLookAndFeel("com.jtattoo.plaf.mint.MintLookAndFeel");
+                    // UIManager.setLookAndFeel("com.jtattoo.plaf.graphite.GraphiteLookAndFeel"); 
+                    //UIManager.setLookAndFeel("com.jtattoo.plaf.noire.NoireLookAndFeel");  
+                   // UIManager.setLookAndFeel("com.jtattoo.plaf.smart.SmartLookAndFeel");
+                  // UIManager.setLookAndFeel("com.jtattoo.plaf.aero.AeroLookAndFeel"); 
+                   // UIManager.setLookAndFeel("com.jtattoo.plaf.acryl.AcrylLookAndFeel");
+                    //UIManager.setLookAndFeel("com.jtattoo.plaf.texture.TextureLookAndFeel");
+                  //  UIManager.setLookAndFeel("com.jtattoo.plaf.bernstein.BernsteinLookAndFeel"); 
+                  //  UIManager.setLookAndFeel("com.jtattoo.plaf.fast.FastLookAndFeel"); 
+                  //  UIManager.setLookAndFeel("com.jtattoo.plaf.luna.LunaLookAndFeel"); 
+                    
+                 
                 } catch (Exception ex) {
                     ex.printStackTrace();
                 }
