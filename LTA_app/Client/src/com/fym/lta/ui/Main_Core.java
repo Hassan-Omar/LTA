@@ -12,8 +12,6 @@ import java.io.FileOutputStream;
 import java.io.FileReader;
 import java.io.IOException;
 
-import javax.swing.UIManager;
-
 
 public class Main_Core {
 
@@ -64,15 +62,13 @@ public class Main_Core {
             if (userBaoObj.isExists(usernameDe)) {
 
 
-                try {                // now we know that login  done successfully so we can pass this user to our system
+                              // now we know that login  done successfully so we can pass this user to our system
                 LoginEngine.currentUser = usernameDe;
                     // select Look and Feel
-                    UIManager.setLookAndFeel("com.jtattoo.plaf.smart.SmartLookAndFeel");
+                    Utilities.setSmartLookAndFeel();
                     MMenu mu = new MMenu();
                     mu.setVisible(true);
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
+                
                
             } else {
                 Login log = new Login();

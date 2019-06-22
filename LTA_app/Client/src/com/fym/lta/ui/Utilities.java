@@ -7,6 +7,7 @@ import java.security.NoSuchAlgorithmException;
 
 import javax.swing.JButton;
 import javax.swing.JOptionPane;
+import javax.swing.UIManager;
 
 public class Utilities {
    
@@ -105,6 +106,13 @@ public class Utilities {
     }
     
     
-    
+        public  static void setSmartLookAndFeel(){
+                try {
+                    // select Look and Feel
+                    UIManager.setLookAndFeel("com.jtattoo.plaf.smart.SmartLookAndFeel");
+                } catch (Exception ex) {
+                    ex.printStackTrace();
+                }
+            }   
     }
 

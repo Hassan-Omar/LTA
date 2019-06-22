@@ -3,27 +3,11 @@ package com.fym.lta.ui;
 import com.fym.lta.bao.BaoFactory;
 import com.fym.lta.dto.ScreenDto;
 
-import java.awt.BorderLayout;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.awt.event.KeyEvent;
-import java.awt.event.WindowAdapter;
-import java.awt.event.WindowEvent;
-
 import java.io.File;
 
 import java.util.List;
 
-import javax.swing.BorderFactory;
-import javax.swing.JEditorPane;
-import javax.swing.JMenu;
-import javax.swing.JMenuBar;
-import javax.swing.JMenuItem;
 import javax.swing.JPanel;
-import javax.swing.JScrollPane;
-import javax.swing.JSplitPane;
-import javax.swing.JTree;
-import javax.swing.KeyStroke;
 
 /**
  *
@@ -50,7 +34,7 @@ public class MMenu extends javax.swing.JFrame
     /** Creates new form MMenu */
     public MMenu() {
        
-                super("Minimal-Frame-Application");
+                /* super("Minimal-Frame-Application");
                 
                 // setup menu
                 JMenuBar menuBar = new JMenuBar();
@@ -90,7 +74,7 @@ public class MMenu extends javax.swing.JFrame
                 setLocation(32, 32);
                 setSize(400, 300);
                 show();
-           
+            */
         initComponents(); 
 
     }
@@ -106,6 +90,7 @@ public class MMenu extends javax.swing.JFrame
         mainPanel = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jMenuBar1 = new javax.swing.JMenuBar();
+        jMenu6 = new javax.swing.JMenu();
         jMenu5 = new javax.swing.JMenu();
         jMenu3 = new javax.swing.JMenu();
         buildingM_Item = new javax.swing.JMenuItem();
@@ -149,6 +134,14 @@ public class MMenu extends javax.swing.JFrame
                 .addContainerGap(292, Short.MAX_VALUE))
         );
 
+        jMenu6.setText("Home                  ");
+        jMenu6.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenu6ActionPerformed(evt);
+            }
+        });
+        jMenuBar1.add(jMenu6);
+
         jMenu5.setText("Tables                  ");
         jMenu5.setActionCommand("Insert New   ");
         jMenu5.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -156,8 +149,6 @@ public class MMenu extends javax.swing.JFrame
                 jMenu5MouseClicked(evt);
             }
         });
-
-		if(controlOnMenu(14)) 
         jMenuBar1.add(jMenu5);
 
         jMenu3.setText("Basic Data Management                  ");
@@ -176,8 +167,6 @@ public class MMenu extends javax.swing.JFrame
                 floorM_ItemActionPerformed(evt);
             }
         });
-
-	    if(controlOnMenu(2)) 
         jMenu3.add(floorM_Item);
 
         locationTypeM_Item.setText("location Type");
@@ -185,9 +174,7 @@ public class MMenu extends javax.swing.JFrame
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 locationTypeM_ItemActionPerformed(evt);
             }
-
-        });	    
-		if(controlOnMenu(3))
+        });
         jMenu3.add(locationTypeM_Item);
 
         departmentM_Item.setText("Departments");
@@ -196,9 +183,6 @@ public class MMenu extends javax.swing.JFrame
                 departmentM_ItemActionPerformed(evt);
             }
         });
-
-			    
-		if(controlOnMenu(4)) 
         jMenu3.add(departmentM_Item);
 
         courseM_Item.setText("Course");
@@ -215,8 +199,6 @@ public class MMenu extends javax.swing.JFrame
                 staffM_ItemActionPerformed(evt);
             }
         });
-
-		 if(controlOnMenu(6)) 
         jMenu3.add(staffM_Item);
 
         jMenuItem1.setText("Equipment");
@@ -225,13 +207,11 @@ public class MMenu extends javax.swing.JFrame
                 jMenuItem1ActionPerformed(evt);
             }
         });
-
-		if(controlOnMenu(7)) 
         jMenu3.add(jMenuItem1);
 
         jMenuBar1.add(jMenu3);
 
-        jMenu2.setText(" Locations & spaces management ");
+        jMenu2.setText(" Locations’and spaces management                  ");
 
         locationMasterM_Item.setText("Locations master screen");
         locationMasterM_Item.addActionListener(new java.awt.event.ActionListener() {
@@ -239,8 +219,6 @@ public class MMenu extends javax.swing.JFrame
                 locationMasterM_ItemActionPerformed(evt);
             }
         });
-
-		 if(controlOnMenu(11)) 
         jMenu2.add(locationMasterM_Item);
 
         locationManualM_Item.setText("Location Manual Assignment");
@@ -248,9 +226,7 @@ public class MMenu extends javax.swing.JFrame
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 locationManualM_ItemActionPerformed(evt);
             }
-
-        });	   
-		if(controlOnMenu(12))
+        });
         jMenu2.add(locationManualM_Item);
 
         locationAutoM_Item.setText("Location Automatic Assignment");
@@ -259,8 +235,6 @@ public class MMenu extends javax.swing.JFrame
                 locationAutoM_ItemActionPerformed(evt);
             }
         });
-
-		 if(controlOnMenu(13)) 
         jMenu2.add(locationAutoM_Item);
 
         jMenuBar1.add(jMenu2);
@@ -279,7 +253,6 @@ public class MMenu extends javax.swing.JFrame
                 userM_ItemActionPerformed(evt);
             }
         });
-		if(controlOnMenu(8))
         jMenu1.add(userM_Item);
 
         roleM_Item.setText("Role");
@@ -287,9 +260,7 @@ public class MMenu extends javax.swing.JFrame
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 roleM_ItemActionPerformed(evt);
             }
-
-        });	    
-		if(controlOnMenu(9))
+        });
         jMenu1.add(roleM_Item);
 
         roleScreenM_Item.setText("Role Screens");
@@ -298,14 +269,11 @@ public class MMenu extends javax.swing.JFrame
                 roleScreenM_ItemActionPerformed(evt);
             }
         });
-
-        if(controlOnMenu(2)) 
         jMenu1.add(roleScreenM_Item);
 
         jMenuBar1.add(jMenu1);
 
         jMenu4.setText("About                  ");
-		if(controlOnMenu(16))
         jMenuBar1.add(jMenu4);
 
         report.setText("Report                  ");
@@ -314,7 +282,6 @@ public class MMenu extends javax.swing.JFrame
                 reportMouseClicked(evt);
             }
         });
-		if(controlOnMenu(15))
         jMenuBar1.add(report);
 
         logout.setText(" Log Out");
@@ -449,6 +416,12 @@ public class MMenu extends javax.swing.JFrame
         switchtoPanel(new MailScreen() ) ; 
     }//GEN-LAST:event_reportMouseClicked
 
+    private void jMenu6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenu6ActionPerformed
+  
+  this.repaint();
+  
+    }//GEN-LAST:event_jMenu6ActionPerformed
+
 
     /**
      * @param args the command line arguments
@@ -496,6 +469,7 @@ public class MMenu extends javax.swing.JFrame
     private javax.swing.JMenu jMenu3;
     private javax.swing.JMenu jMenu4;
     private javax.swing.JMenu jMenu5;
+    private javax.swing.JMenu jMenu6;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JMenuItem locationAutoM_Item;
