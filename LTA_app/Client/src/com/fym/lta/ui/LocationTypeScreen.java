@@ -55,7 +55,11 @@ public class LocationTypeScreen extends javax.swing.JPanel {
     @SuppressWarnings("unchecked")
     private void initComponents() {//GEN-BEGIN:initComponents
 
-        jPanel1 = new javax.swing.JPanel();
+        popup = new javax.swing.JPopupMenu();
+        jMenuItem1 = new javax.swing.JMenuItem();
+        jMenuItem2 = new javax.swing.JMenuItem();
+        jMenuItem3 = new javax.swing.JMenuItem();
+        lPanel = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         Table = new javax.swing.JTable();
         updateLocationTypeBTN = new javax.swing.JButton();
@@ -72,7 +76,37 @@ public class LocationTypeScreen extends javax.swing.JPanel {
         code1 = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
 
-        jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Location Type", 0, 0, new java.awt.Font("Tekton Pro Cond", 1, 36))); // NOI18N
+        jMenuItem1.setText("Print");
+        jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem1ActionPerformed(evt);
+            }
+        });
+        popup.add(jMenuItem1);
+
+        jMenuItem2.setText("Expor to PDF");
+        jMenuItem2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem2ActionPerformed(evt);
+            }
+        });
+        popup.add(jMenuItem2);
+
+        jMenuItem3.setText("Export to XLX");
+        jMenuItem3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem3ActionPerformed(evt);
+            }
+        });
+        popup.add(jMenuItem3);
+
+        addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseReleased(java.awt.event.MouseEvent evt) {
+                formMouseReleased(evt);
+            }
+        });
+
+        lPanel.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Location Type", 0, 0, new java.awt.Font("Tekton Pro Cond", 1, 36))); // NOI18N
 
         Table.setFont(new java.awt.Font("Tekton Pro Cond", 1, 18)); // NOI18N
         Table.setModel(new javax.swing.table.DefaultTableModel(
@@ -96,18 +130,18 @@ public class LocationTypeScreen extends javax.swing.JPanel {
         Table.getColumnModel().getColumn(0).setHeaderValue("Location Type Code");
         Table.getColumnModel().getColumn(1).setHeaderValue("Description");
 
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
+        javax.swing.GroupLayout lPanelLayout = new javax.swing.GroupLayout(lPanel);
+        lPanel.setLayout(lPanelLayout);
+        lPanelLayout.setHorizontalGroup(
+            lPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(lPanelLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 481, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+        lPanelLayout.setVerticalGroup(
+            lPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, lPanelLayout.createSequentialGroup()
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 430, Short.MAX_VALUE)
                 .addContainerGap())
         );
@@ -234,7 +268,7 @@ public class LocationTypeScreen extends javax.swing.JPanel {
                         .addContainerGap()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(lPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGroup(layout.createSequentialGroup()
                                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                         .addComponent(LocationTypeEnteredCode, javax.swing.GroupLayout.PREFERRED_SIZE, 266, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -270,7 +304,7 @@ public class LocationTypeScreen extends javax.swing.JPanel {
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(updateLocationTypeBTN, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGap(13, 13, 13)))
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(lPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
             .addGroup(layout.createSequentialGroup()
                 .addGap(42, 42, 42)
@@ -373,6 +407,29 @@ public class LocationTypeScreen extends javax.swing.JPanel {
         // TODO add your handling code here:
     }//GEN-LAST:event_descActionPerformed
 
+    private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
+        Utilities.printRecord(lPanel);
+    }//GEN-LAST:event_jMenuItem1ActionPerformed
+
+    private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
+
+        Utilities.export_PDF(Table);
+
+    }//GEN-LAST:event_jMenuItem2ActionPerformed
+
+    private void jMenuItem3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem3ActionPerformed
+
+        Utilities.export_XLX(Table);
+    }//GEN-LAST:event_jMenuItem3ActionPerformed
+
+    private void formMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_formMouseReleased
+
+        if(evt.isPopupTrigger())
+           {
+           popup.show(this, evt.getX(), evt.getY());    
+           }
+    }//GEN-LAST:event_formMouseReleased
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextField LocationTypeEnteredCode;
@@ -386,8 +443,12 @@ public class LocationTypeScreen extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
-    private javax.swing.JPanel jPanel1;
+    private javax.swing.JMenuItem jMenuItem1;
+    private javax.swing.JMenuItem jMenuItem2;
+    private javax.swing.JMenuItem jMenuItem3;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JPanel lPanel;
+    private javax.swing.JPopupMenu popup;
     private javax.swing.JButton save1;
     private javax.swing.JButton searchLocationTypeBTN;
     private javax.swing.JButton updateLocationTypeBTN;

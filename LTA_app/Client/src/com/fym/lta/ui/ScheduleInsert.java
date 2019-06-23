@@ -100,6 +100,11 @@ public class ScheduleInsert extends javax.swing.JPanel
         popup.add(jMenuItem2);
 
         jMenuItem3.setText("Export to XLX");
+        jMenuItem3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem3ActionPerformed(evt);
+            }
+        });
         popup.add(jMenuItem3);
 
         addKeyListener(new java.awt.event.KeyAdapter() {
@@ -374,6 +379,12 @@ popup.show(table_Panel, evt.getX(), evt.getY());
     Utilities.export_PDF(table2);
  
     }//GEN-LAST:event_jMenuItem2ActionPerformed
+
+    private void jMenuItem3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem3ActionPerformed
+
+    Utilities.export_XLX(table2);
+
+    }//GEN-LAST:event_jMenuItem3ActionPerformed
 
     public void TableReset(List<SchedualDto> scheduals) 
     {

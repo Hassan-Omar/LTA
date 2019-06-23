@@ -77,7 +77,11 @@ public class EquipmentScreen extends javax.swing.JPanel {
     @SuppressWarnings("unchecked")
     private void initComponents() {//GEN-BEGIN:initComponents
 
-        master = new javax.swing.JPanel();
+        popup1 = new javax.swing.JPopupMenu();
+        jMenuItem2 = new javax.swing.JMenuItem();
+        jMenuItem3 = new javax.swing.JMenuItem();
+        jMenuItem4 = new javax.swing.JMenuItem();
+        ePanel = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         EquipmentTable = new javax.swing.JTable();
         insert = new javax.swing.JButton();
@@ -98,10 +102,39 @@ public class EquipmentScreen extends javax.swing.JPanel {
         jLabel8 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
 
+        jMenuItem2.setText("Print");
+        jMenuItem2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem2ActionPerformed(evt);
+            }
+        });
+        popup1.add(jMenuItem2);
+
+        jMenuItem3.setText("Expor to PDF");
+        jMenuItem3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem3ActionPerformed(evt);
+            }
+        });
+        popup1.add(jMenuItem3);
+
+        jMenuItem4.setText("Export to XLX");
+        jMenuItem4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem4ActionPerformed(evt);
+            }
+        });
+        popup1.add(jMenuItem4);
+
+        addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseReleased(java.awt.event.MouseEvent evt) {
+                formMouseReleased(evt);
+            }
+        });
         setLayout(null);
 
-        master.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Equipments", 0, 0, new java.awt.Font("Tekton Pro Cond", 0, 36))); // NOI18N
-        master.setPreferredSize(new java.awt.Dimension(400, 400));
+        ePanel.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Equipments", 0, 0, new java.awt.Font("Tekton Pro Cond", 0, 36))); // NOI18N
+        ePanel.setPreferredSize(new java.awt.Dimension(400, 400));
 
         EquipmentTable.setFont(new java.awt.Font("Tekton Pro", 0, 18)); // NOI18N
         EquipmentTable.setModel(new javax.swing.table.DefaultTableModel(
@@ -117,26 +150,38 @@ public class EquipmentScreen extends javax.swing.JPanel {
         EquipmentTable.setPreferredSize(new java.awt.Dimension(512, 512));
         EquipmentTable.setRowHeight(30);
         jScrollPane1.setViewportView(EquipmentTable);
+        EquipmentTable.getColumnModel().getColumn(0).setHeaderValue("Title 1");
+        EquipmentTable.getColumnModel().getColumn(1).setHeaderValue("Title 2");
+        EquipmentTable.getColumnModel().getColumn(2).setHeaderValue("Title 3");
+        EquipmentTable.getColumnModel().getColumn(3).setHeaderValue("Title 4");
+        EquipmentTable.getColumnModel().getColumn(4).setHeaderValue("Title 5");
+        EquipmentTable.getColumnModel().getColumn(5).setHeaderValue("Title 6");
+        EquipmentTable.getColumnModel().getColumn(6).setHeaderValue("Title 7");
+        EquipmentTable.getColumnModel().getColumn(7).setHeaderValue("Title 8");
+        EquipmentTable.getColumnModel().getColumn(8).setHeaderValue("Title 9");
+        EquipmentTable.getColumnModel().getColumn(9).setHeaderValue("Title 10");
+        EquipmentTable.getColumnModel().getColumn(10).setHeaderValue("Title 11");
+        EquipmentTable.getColumnModel().getColumn(11).setHeaderValue("Title 12");
 
-        javax.swing.GroupLayout masterLayout = new javax.swing.GroupLayout(master);
-        master.setLayout(masterLayout);
-        masterLayout.setHorizontalGroup(
-            masterLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(masterLayout.createSequentialGroup()
+        javax.swing.GroupLayout ePanelLayout = new javax.swing.GroupLayout(ePanel);
+        ePanel.setLayout(ePanelLayout);
+        ePanelLayout.setHorizontalGroup(
+            ePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(ePanelLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 586, Short.MAX_VALUE)
                 .addContainerGap())
         );
-        masterLayout.setVerticalGroup(
-            masterLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(masterLayout.createSequentialGroup()
+        ePanelLayout.setVerticalGroup(
+            ePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(ePanelLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 262, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
-        add(master);
-        master.setBounds(40, 300, 620, 330);
+        add(ePanel);
+        ePanel.setBounds(40, 300, 620, 330);
 
         insert.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         insert.setText("Insert New ");
@@ -416,12 +461,35 @@ public class EquipmentScreen extends javax.swing.JPanel {
         }
     }//GEN-LAST:event_saveActionPerformed
 
+    private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
+        Utilities.printRecord(ePanel);
+    }//GEN-LAST:event_jMenuItem2ActionPerformed
+
+    private void jMenuItem3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem3ActionPerformed
+
+        Utilities.export_PDF(EquipmentTable);
+    }//GEN-LAST:event_jMenuItem3ActionPerformed
+
+    private void jMenuItem4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem4ActionPerformed
+
+        Utilities.export_XLX(EquipmentTable);
+    }//GEN-LAST:event_jMenuItem4ActionPerformed
+
+    private void formMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_formMouseReleased
+
+    if(evt.isPopupTrigger())
+       {
+       popup.show(this, evt.getX(), evt.getY());    
+       }
+    }//GEN-LAST:event_formMouseReleased
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel DefineEquipment;
     private javax.swing.JTable EquipmentTable;
     private javax.swing.JTextField code;
     private javax.swing.JButton delete;
+    private javax.swing.JPanel ePanel;
     private javax.swing.JButton insert;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -429,10 +497,15 @@ public class EquipmentScreen extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
+    private javax.swing.JMenuItem jMenuItem1;
+    private javax.swing.JMenuItem jMenuItem2;
+    private javax.swing.JMenuItem jMenuItem3;
+    private javax.swing.JMenuItem jMenuItem4;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTextField jTextField1;
     private javax.swing.JComboBox location_combo;
-    private javax.swing.JPanel master;
+    private javax.swing.JPopupMenu popup;
+    private javax.swing.JPopupMenu popup1;
     private javax.swing.JButton save;
     private javax.swing.JButton search;
     private javax.swing.JTextField type;

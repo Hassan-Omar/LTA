@@ -44,14 +44,16 @@ public class DepartmentsScreen extends javax.swing.JPanel {
     @SuppressWarnings("unchecked")
     private void initComponents() {//GEN-BEGIN:initComponents
 
+        popup = new javax.swing.JPopupMenu();
+        jMenuItem1 = new javax.swing.JMenuItem();
+        jMenuItem2 = new javax.swing.JMenuItem();
+        jMenuItem3 = new javax.swing.JMenuItem();
         jLabel1 = new javax.swing.JLabel();
         btnSearch = new javax.swing.JButton();
         jLabel3 = new javax.swing.JLabel();
         departmentCode_TextField = new javax.swing.JTextField();
         departmrntDeleteBtn = new javax.swing.JButton();
         departmrntUpdateBtn = new javax.swing.JButton();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        DepartmentTable = new javax.swing.JTable();
         departmrntInsertBtn = new javax.swing.JButton();
         insertPanel = new javax.swing.JPanel();
         btnSave = new javax.swing.JButton();
@@ -61,6 +63,39 @@ public class DepartmentsScreen extends javax.swing.JPanel {
         code_TextField = new javax.swing.JTextField();
         name_TextField = new javax.swing.JTextField();
         homeBuilding_ComboBox = new javax.swing.JComboBox();
+        dPanel = new javax.swing.JPanel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        DepartmentTable = new javax.swing.JTable();
+
+        jMenuItem1.setText("Print");
+        jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem1ActionPerformed(evt);
+            }
+        });
+        popup.add(jMenuItem1);
+
+        jMenuItem2.setText("Expor to PDF");
+        jMenuItem2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem2ActionPerformed(evt);
+            }
+        });
+        popup.add(jMenuItem2);
+
+        jMenuItem3.setText("Export to XLX");
+        jMenuItem3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem3ActionPerformed(evt);
+            }
+        });
+        popup.add(jMenuItem3);
+
+        addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseReleased(java.awt.event.MouseEvent evt) {
+                formMouseReleased(evt);
+            }
+        });
 
         jLabel1.setFont(new java.awt.Font("Times New Roman", 1, 24)); // NOI18N
         jLabel1.setText("Department Screen");
@@ -79,7 +114,7 @@ public class DepartmentsScreen extends javax.swing.JPanel {
         });
 
         jLabel3.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        jLabel3.setText("Code");
+        jLabel3.setText("Search");
 
         departmentCode_TextField.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
@@ -103,18 +138,6 @@ public class DepartmentsScreen extends javax.swing.JPanel {
                 departmrntUpdateBtnActionPerformed(evt);
             }
         });
-
-        DepartmentTable.setFont(new java.awt.Font("Tekton Pro Cond", 1, 24)); // NOI18N
-        DepartmentTable.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-
-            },
-            new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
-            }
-        ));
-        DepartmentTable.setRowHeight(30);
-        jScrollPane1.setViewportView(DepartmentTable);
 
         departmrntInsertBtn.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         departmrntInsertBtn.setText("Insert new");
@@ -181,9 +204,44 @@ public class DepartmentsScreen extends javax.swing.JPanel {
                 .addGroup(insertPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel7)
                     .addComponent(homeBuilding_ComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 13, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 33, Short.MAX_VALUE)
                 .addComponent(btnSave, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(47, 47, 47))
+        );
+
+        dPanel.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Departments", 0, 0, new java.awt.Font("Tekton Pro Cond", 1, 36))); // NOI18N
+
+        DepartmentTable.setFont(new java.awt.Font("Tekton Pro Cond", 1, 24)); // NOI18N
+        DepartmentTable.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "Title 1", "Title 2", "Title 3", "Title 4"
+            }
+        ));
+        DepartmentTable.setRowHeight(30);
+        jScrollPane1.setViewportView(DepartmentTable);
+        DepartmentTable.getColumnModel().getColumn(0).setHeaderValue("Title 1");
+        DepartmentTable.getColumnModel().getColumn(1).setHeaderValue("Title 2");
+        DepartmentTable.getColumnModel().getColumn(2).setHeaderValue("Title 3");
+        DepartmentTable.getColumnModel().getColumn(3).setHeaderValue("Title 4");
+
+        javax.swing.GroupLayout dPanelLayout = new javax.swing.GroupLayout(dPanel);
+        dPanel.setLayout(dPanelLayout);
+        dPanelLayout.setHorizontalGroup(
+            dPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(dPanelLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 510, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+        dPanelLayout.setVerticalGroup(
+            dPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(dPanelLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 198, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
@@ -191,31 +249,34 @@ public class DepartmentsScreen extends javax.swing.JPanel {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(67, 67, 67)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                                .addComponent(departmrntUpdateBtn)
+                                .addGap(77, 77, 77)
+                                .addComponent(departmrntDeleteBtn)
+                                .addGap(0, 0, Short.MAX_VALUE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(departmentCode_TextField, javax.swing.GroupLayout.PREFERRED_SIZE, 233, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(btnSearch)))
+                        .addGap(24, 24, 24)
+                        .addComponent(departmrntInsertBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(68, 68, 68))
+                    .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addComponent(departmrntUpdateBtn)
-                                        .addGap(44, 44, 44)
-                                        .addComponent(departmrntDeleteBtn)
-                                        .addGap(55, 55, 55)
-                                        .addComponent(departmrntInsertBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addComponent(departmentCode_TextField, javax.swing.GroupLayout.PREFERRED_SIZE, 233, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGap(103, 103, 103)
-                                        .addComponent(btnSearch)))
-                                .addGap(14, 14, 14)))
-                        .addGap(120, 120, 120)
-                        .addComponent(insertPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(467, 467, 467)
-                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 206, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addComponent(dPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(insertPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(89, 89, 89))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(458, 458, 458)
+                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 206, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(618, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -223,10 +284,10 @@ public class DepartmentsScreen extends javax.swing.JPanel {
                 .addContainerGap()
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(19, 19, 19)
-                .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
+                        .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(departmentCode_TextField, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(btnSearch, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -235,10 +296,10 @@ public class DepartmentsScreen extends javax.swing.JPanel {
                             .addComponent(departmrntUpdateBtn)
                             .addComponent(departmrntDeleteBtn)
                             .addComponent(departmrntInsertBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(24, 24, 24)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 198, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap(63, Short.MAX_VALUE))
-                    .addComponent(insertPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(dPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(insertPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
         );
     }//GEN-END:initComponents
     
@@ -345,12 +406,34 @@ else JOptionPane.showMessageDialog(null,"select a Department to delete");
             JOptionPane.showMessageDialog(this, "can not save "); 
     }//GEN-LAST:event_btnSaveMouseClicked
 
+    private void formMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_formMouseReleased
+  if(evt.isPopupTrigger())
+       {
+       popup.show(this, evt.getX(), evt.getY());    
+       }
+    }//GEN-LAST:event_formMouseReleased
+
+    private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
+        Utilities.printRecord(dPanel);
+    }//GEN-LAST:event_jMenuItem1ActionPerformed
+
+    private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
+
+        Utilities.export_PDF(DepartmentTable);
+    }//GEN-LAST:event_jMenuItem2ActionPerformed
+
+    private void jMenuItem3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem3ActionPerformed
+
+        Utilities.export_XLX(DepartmentTable);
+    }//GEN-LAST:event_jMenuItem3ActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTable DepartmentTable;
     private javax.swing.JButton btnSave;
     private javax.swing.JButton btnSearch;
     private javax.swing.JTextField code_TextField;
+    private javax.swing.JPanel dPanel;
     private javax.swing.JTextField departmentCode_TextField;
     private javax.swing.JButton departmrntDeleteBtn;
     private javax.swing.JButton departmrntInsertBtn;
@@ -362,8 +445,12 @@ else JOptionPane.showMessageDialog(null,"select a Department to delete");
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
+    private javax.swing.JMenuItem jMenuItem1;
+    private javax.swing.JMenuItem jMenuItem2;
+    private javax.swing.JMenuItem jMenuItem3;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTextField name_TextField;
+    private javax.swing.JPopupMenu popup;
     // End of variables declaration//GEN-END:variables
     
     

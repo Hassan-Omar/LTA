@@ -90,7 +90,6 @@ public class MMenu extends javax.swing.JFrame
         mainPanel = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jMenuBar1 = new javax.swing.JMenuBar();
-        jMenu6 = new javax.swing.JMenu();
         jMenu5 = new javax.swing.JMenu();
         jMenu3 = new javax.swing.JMenu();
         buildingM_Item = new javax.swing.JMenuItem();
@@ -133,14 +132,6 @@ public class MMenu extends javax.swing.JFrame
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 244, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(292, Short.MAX_VALUE))
         );
-
-        jMenu6.setText("Home                  ");
-        jMenu6.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenu6ActionPerformed(evt);
-            }
-        });
-        jMenuBar1.add(jMenu6);
 
         jMenu5.setText("Tables                  ");
         jMenu5.setActionCommand("Insert New   ");
@@ -416,12 +407,6 @@ public class MMenu extends javax.swing.JFrame
         switchtoPanel(new MailScreen() ) ; 
     }//GEN-LAST:event_reportMouseClicked
 
-    private void jMenu6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenu6ActionPerformed
-  
-  this.repaint();
-  
-    }//GEN-LAST:event_jMenu6ActionPerformed
-
 
     /**
      * @param args the command line arguments
@@ -469,7 +454,6 @@ public class MMenu extends javax.swing.JFrame
     private javax.swing.JMenu jMenu3;
     private javax.swing.JMenu jMenu4;
     private javax.swing.JMenu jMenu5;
-    private javax.swing.JMenu jMenu6;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JMenuItem locationAutoM_Item;

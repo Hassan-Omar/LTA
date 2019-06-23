@@ -58,11 +58,15 @@ private CourseBao courseobjBao = new BaoFactory().createCourseBao();
     @SuppressWarnings("unchecked")
     private void initComponents() {//GEN-BEGIN:initComponents
 
+        popup = new javax.swing.JPopupMenu();
+        jMenuItem1 = new javax.swing.JMenuItem();
+        jMenuItem2 = new javax.swing.JMenuItem();
+        jMenuItem3 = new javax.swing.JMenuItem();
         btnSearch = new javax.swing.JButton();
         search_textField = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
-        jPanel1 = new javax.swing.JPanel();
+        cPanel = new javax.swing.JPanel();
         updateCourseBtn = new javax.swing.JButton();
         deleteCourseBtn = new javax.swing.JButton();
         insertCourseBtn = new javax.swing.JButton();
@@ -84,6 +88,36 @@ private CourseBao courseobjBao = new BaoFactory().createCourseBao();
         jScrollPane2 = new javax.swing.JScrollPane();
         descrption = new javax.swing.JTextArea();
         Departmentlapel2 = new javax.swing.JLabel();
+
+        jMenuItem1.setText("Print");
+        jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem1ActionPerformed(evt);
+            }
+        });
+        popup.add(jMenuItem1);
+
+        jMenuItem2.setText("Expor to PDF");
+        jMenuItem2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem2ActionPerformed(evt);
+            }
+        });
+        popup.add(jMenuItem2);
+
+        jMenuItem3.setText("Export to XLX");
+        jMenuItem3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem3ActionPerformed(evt);
+            }
+        });
+        popup.add(jMenuItem3);
+
+        addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseReleased(java.awt.event.MouseEvent evt) {
+                formMouseReleased(evt);
+            }
+        });
 
         btnSearch.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         btnSearch.setText("Search");
@@ -107,7 +141,7 @@ private CourseBao courseobjBao = new BaoFactory().createCourseBao();
         jLabel2.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jLabel2.setText("Search");
 
-        jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Courses", 0, 0, new java.awt.Font("Tekton Pro Cond", 1, 36))); // NOI18N
+        cPanel.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Courses", 0, 0, new java.awt.Font("Tekton Pro Cond", 1, 36))); // NOI18N
 
         updateCourseBtn.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         updateCourseBtn.setText("Update");
@@ -144,10 +178,10 @@ private CourseBao courseobjBao = new BaoFactory().createCourseBao();
         ));
         courseTable.setRowHeight(30);
         courseTable.addHierarchyBoundsListener(new java.awt.event.HierarchyBoundsListener() {
-            public void ancestorMoved(java.awt.event.HierarchyEvent evt) {
-            }
             public void ancestorResized(java.awt.event.HierarchyEvent evt) {
                 courseTableAncestorResized(evt);
+            }
+            public void ancestorMoved(java.awt.event.HierarchyEvent evt) {
             }
         });
         jScrollPane1.setViewportView(courseTable);
@@ -157,14 +191,14 @@ private CourseBao courseobjBao = new BaoFactory().createCourseBao();
         courseTable.getColumnModel().getColumn(3).setHeaderValue("Department");
         courseTable.getColumnModel().getColumn(4).setHeaderValue("preferred location type");
 
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
+        javax.swing.GroupLayout cPanelLayout = new javax.swing.GroupLayout(cPanel);
+        cPanel.setLayout(cPanelLayout);
+        cPanelLayout.setHorizontalGroup(
+            cPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(cPanelLayout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addGroup(cPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, cPanelLayout.createSequentialGroup()
                         .addComponent(updateCourseBtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGap(103, 103, 103)
                         .addComponent(deleteCourseBtn)
@@ -172,11 +206,11 @@ private CourseBao courseobjBao = new BaoFactory().createCourseBao();
                         .addComponent(insertCourseBtn))
                     .addComponent(jScrollPane1)))
         );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
+        cPanelLayout.setVerticalGroup(
+            cPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(cPanelLayout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(cPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(updateCourseBtn)
                     .addComponent(deleteCourseBtn)
                     .addComponent(insertCourseBtn))
@@ -330,7 +364,7 @@ private CourseBao courseobjBao = new BaoFactory().createCourseBao();
                                 .addComponent(search_textField, javax.swing.GroupLayout.PREFERRED_SIZE, 229, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(54, 54, 54)
                                 .addComponent(btnSearch))
-                            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(cPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(30, 30, 30)
                         .addComponent(insertPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(69, 69, 69))))
@@ -351,7 +385,7 @@ private CourseBao courseobjBao = new BaoFactory().createCourseBao();
                             .addComponent(search_textField, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(btnSearch, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(18, 18, 18)
-                        .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(cPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(insertPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(14, Short.MAX_VALUE))
         );
@@ -494,6 +528,29 @@ private CourseBao courseobjBao = new BaoFactory().createCourseBao();
     
     }//GEN-LAST:event_updateCourseBtnMouseClicked
 
+    private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
+        Utilities.printRecord(cPanel);
+    }//GEN-LAST:event_jMenuItem1ActionPerformed
+
+    private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
+
+        Utilities.export_PDF(courseTable);
+
+    }//GEN-LAST:event_jMenuItem2ActionPerformed
+
+    private void jMenuItem3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem3ActionPerformed
+
+        Utilities.export_XLX(courseTable);
+    }//GEN-LAST:event_jMenuItem3ActionPerformed
+
+    private void formMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_formMouseReleased
+
+    if(evt.isPopupTrigger())
+       {
+       popup.show(this, evt.getX(), evt.getY());    
+       }
+    }//GEN-LAST:event_formMouseReleased
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JComboBox Department_ComboBox;
@@ -502,6 +559,7 @@ private CourseBao courseobjBao = new BaoFactory().createCourseBao();
     private javax.swing.JLabel Departmentlapel2;
     private javax.swing.JButton btnSave;
     private javax.swing.JButton btnSearch;
+    private javax.swing.JPanel cPanel;
     private javax.swing.JTextField code_textField;
     private javax.swing.JLabel codelapel;
     private javax.swing.JTable courseTable;
@@ -513,12 +571,15 @@ private CourseBao courseobjBao = new BaoFactory().createCourseBao();
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
-    private javax.swing.JPanel jPanel1;
+    private javax.swing.JMenuItem jMenuItem1;
+    private javax.swing.JMenuItem jMenuItem2;
+    private javax.swing.JMenuItem jMenuItem3;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTextField name_textField;
     private javax.swing.JLabel namelapel;
     private javax.swing.JLabel namelapel1;
+    private javax.swing.JPopupMenu popup;
     private javax.swing.JComboBox prefered_ComboBox;
     private javax.swing.JTextField search_textField;
     private javax.swing.JButton updateCourseBtn;
