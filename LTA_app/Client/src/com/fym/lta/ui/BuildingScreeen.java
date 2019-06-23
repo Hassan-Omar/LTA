@@ -388,15 +388,13 @@ public class BuildingScreeen extends javax.swing.JPanel {
 
 
     private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
-   
-    
+ 
     Utilities.export_PDF(buildingTable);
     }//GEN-LAST:event_jMenuItem2ActionPerformed
 
     private void jMenuItem3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem3ActionPerformed
    
-   
-    
+    Utilities.export_XLX(buildingTable);
     }//GEN-LAST:event_jMenuItem3ActionPerformed
 
     private void formMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_formMouseReleased
