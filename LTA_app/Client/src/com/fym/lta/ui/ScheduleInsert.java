@@ -92,6 +92,11 @@ public class ScheduleInsert extends javax.swing.JPanel
         popup.add(jMenuItem1);
 
         jMenuItem2.setText("Expor to PDF");
+        jMenuItem2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem2ActionPerformed(evt);
+            }
+        });
         popup.add(jMenuItem2);
 
         jMenuItem3.setText("Export to XLX");
@@ -246,19 +251,17 @@ public class ScheduleInsert extends javax.swing.JPanel
         table_Panel.setLayout(table_PanelLayout);
         table_PanelLayout.setHorizontalGroup(
             table_PanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, table_PanelLayout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 574, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 568, Short.MAX_VALUE)
         );
         table_PanelLayout.setVerticalGroup(
             table_PanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, table_PanelLayout.createSequentialGroup()
-                .addGap(0, 45, Short.MAX_VALUE)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 353, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(0, 93, Short.MAX_VALUE)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 365, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
         add(table_Panel);
-        table_Panel.setBounds(550, 115, 570, 400);
+        table_Panel.setBounds(550, 55, 570, 460);
 
         jLabel2.setFont(new java.awt.Font("Times New Roman", 1, 24)); // NOI18N
         jLabel2.setText("Scheduels Screen");
@@ -363,10 +366,20 @@ if(evt.isPopupTrigger())
 {
 popup.show(table_Panel, evt.getX(), evt.getY());    
 }
-
-
        
     }//GEN-LAST:event_table_PanelMouseReleased
+
+    private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
+    
+        String[] headers = new String[5] ;
+        headers[0]="Day" ;
+        headers[1]="Slot 1 \r\n8:50   10:30" ;
+        headers[2]="Slot 2 \r\n10:40   12:10" ;
+        headers[3]="Slot 3 \r\n12:20   01:50" ;
+        headers[4]="Slot 4 \r\n02:00   03:30" ;
+    Utilities.export_PDF(table2, headers);
+ 
+    }//GEN-LAST:event_jMenuItem2ActionPerformed
 
     public void TableReset(List<SchedualDto> scheduals) 
     {

@@ -2,12 +2,18 @@ package com.fym.lta.ui;
 
 import com.jtattoo.plaf.mint.MintLookAndFeel;
 
+import com.lowagie.text.Document;
+import com.lowagie.text.pdf.PdfPTable;
+import com.lowagie.text.pdf.PdfWriter;
+
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.print.PageFormat;
 import java.awt.print.Printable;
 import java.awt.print.PrinterException;
 import java.awt.print.PrinterJob;
+
+import java.io.FileOutputStream;
 
 import java.math.BigInteger;
 
@@ -17,8 +23,10 @@ import java.security.NoSuchAlgorithmException;
 import java.util.Properties;
 
 import javax.swing.JButton;
+import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.JTable;
 import javax.swing.UIManager;
 
 public class Utilities {
@@ -211,5 +219,60 @@ public class Utilities {
              }
          }
      }
+
+//++++++++++++++++++++++++++++++++
+     
+     public static void export_PDF(JTable inputTable , String[]headers)
+     {   String path = ""; // hold the path which the user will choos
+         
+         // define java file chooser 
+         JFileChooser  fchooser = new JFileChooser();
+         // set mode 
+         fchooser.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
+         // showing save file dialoug 
+         int uValue = fchooser.showSaveDialog(null);
+         
+         // check if the user select the place or no selecting
+         if(uValue==JFileChooser.APPROVE_OPTION)
+         {
+             path = fchooser.getSelectedFile().getPath();
+          }
+          
+          // create the document 
+         Document doc  = new Document() ;
+         // Calling writer and open the stream to write
+        try {
+            PdfWriter.getInstance(doc, new FileOutputStream(path + "Exported_LTA.pdf"));
+            doc.open();
+             // create output table    
+            PdfPTable outTable = new PdfPTable(inputTable.getRowCount());
+            // loop to add header 
+            for(int i=0; i<headers.length; i++)
+            {
+                outTable.addCell(headers[i]);
+            }
+            
+            // using neasted loop to getting the data from input table 
+            for(int k=0; k<inputTable.getRowCount(); k++)
+            {
+               for(int j=0; j<headers.length; j++)    
+                   outTable.addCell(inputTable.getValueAt(k, j).toString());
+            }
+            
+            // add the table to document 
+            doc.add(outTable);
+            JOptionPane.showMessageDialog(null, "the file saved"); 
+                System.out.println(outTable.size());
+        } catch (Exception e) {
+            
+            JOptionPane.showMessageDialog(null, "error"+e.getMessage());
+        }
+
+      // close the document 
+        doc.close();
+
+    }
+
+
 
 }
