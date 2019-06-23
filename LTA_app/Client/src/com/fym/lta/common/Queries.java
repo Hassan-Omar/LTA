@@ -187,14 +187,14 @@ public class Queries {
         "UPDATE LOCATION SET  DESCRIPTION = ?, CAPACITY = ? ,FLOOR_ID = ? ,TYPE_ID = ?,UPDATED_BY = ? , UPDATE_DATE =?   WHERE CODE =? ";
 
     public static final String LOCATION_SEARCH =
-        "select location.l_id,location.code ,location.description ,location.capacity,location.status,building.code building_code , floor.code floor_code  ,location_type.code  type_code ,location.inserted_by,location.insertion_date,location.updated_by,location.update_date " +
+        "select location.l_id,location.code ,location.description ,location.capacity,building.code building_code , floor.code floor_code  ,location_type.code  type_code ,location.inserted_by,location.insertion_date,location.updated_by,location.update_date " +
         "from location , floor ,building ,location_type " +
         "where location.floor_id = floor.id and floor.id_building = building.b_id and location.type_id =location_type.t_id  and LOWER(location.CODE) LIKE ?";
 
-    public static final String LOCATION_FILTER =
-        "select location.l_id,location.code ,location.description ,location.capacity,location.status,building.code building_code , floor.code floor_code  ,location_type.code type_code ,location.inserted_by,location.insertion_date,location.updated_by,location.update_date " +
+     public static final String LOCATION_FILTER =
+        "select location.L_ID, location.code ,location.description ,location.capacity,building.code building_code, floor.code floor_code  ,location_type.code type_code " +
         "from location , floor ,building ,location_type " +
-        "where location.floor_id = floor.id and floor.id_building = building.b_id and location.type_id =location_type.t_id  and LOWER(location_type.code) LIKE ? and lower(building.code) like ? ";
+        "where location.floor_id = floor.id and floor.id_building = building.b_id and location.type_id =location_type.t_id  and location_type.code LIKE ? and building.code like ? ";
 
     public static final String AVAILABLE_ROOM =
         "SELECT X.L_ID ,X.CAPACITY , O.DESCRIPTION " +

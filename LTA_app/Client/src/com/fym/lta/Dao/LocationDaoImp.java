@@ -206,7 +206,7 @@ public class LocationDaoImp implements LocationDao {
         return locations;
     }
 
-    //this is to filter locations based on location type and building
+   //this is to filter locations based on location type and building
     public List<LocationDto> filter(String LocationTypeCode, String BuildingCode) {
         List<LocationDto> locations = null;
 
@@ -222,19 +222,13 @@ public class LocationDaoImp implements LocationDao {
                 if (locations == null)
                     locations = new ArrayList<>();
                 LocationDto lFilter = new LocationDto();
-                lFilter.setCode(jdbcRs.getString(2));
                 lFilter.setLocation_id(jdbcRs.getInt(1));
+                lFilter.setCode(jdbcRs.getString(2));
                 lFilter.setDescription(jdbcRs.getString(3));
                 lFilter.setCapacity(jdbcRs.getInt(4));
-                //lFilter.setStatus(jdbcRs.getString(5));
                 lFilter.setFloor((new FloorDto(jdbcRs.getString("floor_code"),
-                                               new BuildingDto(jdbcRs.getString("building_code")))));
+                                              new BuildingDto(jdbcRs.getString("building_code")))));
                 lFilter.setType(new LocationTypeDto(jdbcRs.getString("type_code")));
-                lFilter.setInsertedBy(jdbcRs.getString(7));
-                lFilter.setInertion_Date(jdbcRs.getDate(8));
-                lFilter.setUpdatedBy(jdbcRs.getString(9));
-                lFilter.setUpdate_Date(jdbcRs.getDate(10));
-
                 locations.add(lFilter);
 
             }

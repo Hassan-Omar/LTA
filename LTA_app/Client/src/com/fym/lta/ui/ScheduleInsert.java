@@ -19,7 +19,9 @@ import java.awt.HeadlessException;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 
+import java.io.File;
 import java.io.FileInputStream;
+import java.io.FileOutputStream;
 import java.io.IOException;
 
 import java.util.ArrayList;
@@ -676,5 +678,96 @@ popup.show(table_Panel, evt.getX(), evt.getY());
                   }
      
       } 
+
+
+  //inside button
+
+   private void writeToExcel (SchedualDto schedule){  
+           JFileChooser fileChooser = new JFileChooser();
+           fileChooser.setDialogTitle("Specify a file to save");   
+           int returnVal =  fileChooser.showSaveDialog(this);     
+           if (returnVal == JFileChooser.APPROVE_OPTION) {
+             String  filepath = fileChooser.getSelectedFile().getAbsolutePath();
+             File file = new File(filepath +".xls");
+                if (file.exists() == false) {
+                        HSSFWorkbook workbook = new HSSFWorkbook();
+                        HSSFSheet Sheet = workbook.createSheet(); 
+                        HSSFRow DepartmentCodeRow = Sheet.createRow(0);
+                        HSSFRow AcademicYearRow = Sheet.createRow(1);
+                        HSSFRow ScheduleCodeRow = Sheet.createRow(2);
+                        HSSFRow TimeSlotRow = Sheet.createRow(3);
+                        HSSFRow RowAfterTimeSlot = Sheet.createRow(4);
+                        
+                        
+                        AcademicYearRow.createCell(1).setCellValue(schedule.getAcademicYear());
+                        DepartmentCodeRow.createCell(0).setCellValue(schedule.getDepartment().getName());
+                        DepartmentCodeRow.createCell(1).setCellValue(schedule.getCodeDeparment()); 
+                        ScheduleCodeRow.createCell(0).setCellValue("SCHEDULECODE"); 
+                        ScheduleCodeRow.createCell(1).setCellValue(schedule.getSCHEDULECODE()); 
+                        AcademicYearRow.createCell(2).setCellValue("STUDENT NUMBER");
+                        AcademicYearRow.createCell(3).setCellValue(schedule.getStudent_number());
+                        TimeSlotRow.createCell(0).setCellValue("Time slot");
+                        TimeSlotRow.createCell(1).setCellValue("1st slot");
+                        TimeSlotRow.createCell(3).setCellValue("2nd slot");
+                        TimeSlotRow.createCell(5).setCellValue("3rd slot");
+                        TimeSlotRow.createCell(7).setCellValue("4th slot");
+                          for(int i=1; i<8; i+=2) {
+                              RowAfterTimeSlot.createCell(i).setCellValue("start-end");}
+                        RowAfterTimeSlot.createCell(2).setCellValue("8.50");
+                        RowAfterTimeSlot.createCell(4).setCellValue("10.20");
+                        RowAfterTimeSlot.createCell(6).setCellValue("12.30");
+                        RowAfterTimeSlot.createCell(8).setCellValue("2");
+                        HSSFRow row1 =  Sheet.createRow(5);
+                        row1.createCell(0).setCellValue("Sunday");
+                        HSSFRow row2 =  Sheet.createRow(10);
+                        row2.createCell(0).setCellValue("Monday");
+                        HSSFRow row3 =  Sheet.createRow(15);
+                        row3.createCell(0).setCellValue("Tuesday");
+                        HSSFRow row4 =  Sheet.createRow(20);
+                        row4.createCell(0).setCellValue("Wednesday");
+                        HSSFRow row5 =  Sheet.createRow(25);
+                        row5.createCell(0).setCellValue("Thursday");
+
+                        for (int i = 5; i < 30; i += 5){                       
+                             HSSFRow courseNameRow = Sheet.createRow(i); 
+                             HSSFRow StaffNameRow = Sheet.createRow(i + 1);
+                             HSSFRow TypeRow = Sheet.createRow(i + 3);
+                             HSSFRow PrefSpaceRow = Sheet.createRow(i + 4);   
+                                         
+                              for (int k = 1; k < 9; k += 2){                                    
+                                   EmployeeDto instructor = new EmployeeDto();
+                                   StaffNameRow.createCell(k).setCellValue(instructor.getCareerDgree()+" "+instructor.getFName()+ " " +instructor.getSName()+ " "+instructor.getLName()+" "+instructor.getFamilyName());                               
+                           
+                                   CourseDto course = new CourseDto();
+                                   courseNameRow.createCell(k+1).setCellValue(course.getCode());
+                                   courseNameRow.createCell(k).setCellValue(course.getName());
+                                    
+                                   LocationTypeDto loctionType = new LocationTypeDto() ;
+                                   TypeRow.createCell(k).setCellValue("Type");
+                                   TypeRow.createCell(k+1).setCellValue(loctionType.getCode());
+                                   PrefSpaceRow.createCell(k).setCellValue("PrefSpace");
+                                   PrefSpaceRow.createCell(k+1).setCellValue(course.getNeededLocType().getCode());
+                                             } // end of inner loop
+                                             } // end of outer loop
+                               try (
+                                  //Write the workbook in file 
+                                   FileOutputStream out = new FileOutputStream(file)) {
+                                   workbook.write(out);
+                                   JOptionPane.showMessageDialog(this, "File Saved Successfully ");
+                                       }
+                        catch (IOException e){
+                            System.out.println("error");
+                              }
+                    }
+               
+                         else { // Sheet already exists
+                              JOptionPane.showMessageDialog(this,"File already exist");}       
+                               
+                     }
+                     else { // Sheet already exists
+                       JOptionPane.showMessageDialog(this,"User cancelled  ");}       
+                        
+                           }
+                
     
 }
