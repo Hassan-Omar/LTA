@@ -363,7 +363,7 @@ public class ScheduleInsert extends javax.swing.JPanel
     }//GEN-LAST:event_jMenuItem3ActionPerformed
 
     private void formMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_formMouseReleased
-   
+
     if(evt.isPopupTrigger())
     {
     popup.show(this, evt.getX(), evt.getY());    
