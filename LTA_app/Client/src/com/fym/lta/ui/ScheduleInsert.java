@@ -16,6 +16,9 @@ import com.fym.lta.dto.SchedualDto;
 import com.fym.lta.dto.SlotDto;
 
 import java.awt.HeadlessException;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 
 import java.io.FileInputStream;
 import java.io.IOException;
@@ -32,7 +35,6 @@ import org.apache.poi.hssf.usermodel.HSSFRow;
 import org.apache.poi.hssf.usermodel.HSSFSheet;
 import org.apache.poi.hssf.usermodel.HSSFWorkbook;
 
-
 public class ScheduleInsert extends javax.swing.JPanel 
 {
     @SuppressWarnings("oracle.jdeveloper.java.serialversionuid-stale")
@@ -41,14 +43,16 @@ public class ScheduleInsert extends javax.swing.JPanel
     private  SchedualBao schedualBao = new BaoFactory().createSchedualBao();    
     private  List<SchedualDto> searchSchedual;
     boolean SchedualAvailabilty = true;
-
+    private KeyListener listener;
 
     /** Creates new form ScheduleInsert */
     public ScheduleInsert() {
         initComponents();
-        PanelInsert.setVisible(false);
+        table_Panel.setVisible(false);
         if(schedualBao.listAll()!=null)
             TableReset(schedualBao.listAll());
+        this.requestFocus();
+              this.addKeyListener(listener);
         // roleID = 14 
         // now one step we will create an object of ScreenBao to know the current permission 
         int permissionType = new BaoFactory().createScreenBao().getCurrentPermission(14);
@@ -70,12 +74,17 @@ public class ScheduleInsert extends javax.swing.JPanel
         ScheduleCode = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
         deleteBTN = new javax.swing.JButton();
-        PanelInsert = new javax.swing.JPanel();
+        table_Panel = new javax.swing.JPanel();
         jScrollPane2 = new javax.swing.JScrollPane();
         table2 = new javax.swing.JTable();
         jLabel2 = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
 
+        addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                formKeyPressed(evt);
+            }
+        });
         setLayout(null);
 
         jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Schedules", 0, 0, new java.awt.Font("Tekton Pro Cond", 1, 36))); // NOI18N
@@ -121,7 +130,7 @@ public class ScheduleInsert extends javax.swing.JPanel
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 196, Short.MAX_VALUE)
+            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 206, Short.MAX_VALUE)
         );
 
         add(jPanel1);
@@ -134,11 +143,6 @@ public class ScheduleInsert extends javax.swing.JPanel
                 insertBTNMouseClicked(evt);
             }
         });
-        insertBTN.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                insertBTNActionPerformed(evt);
-            }
-        });
         add(insertBTN);
         insertBTN.setBounds(370, 190, 160, 54);
 
@@ -147,11 +151,6 @@ public class ScheduleInsert extends javax.swing.JPanel
         searchBTN.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 searchBTNMouseClicked(evt);
-            }
-        });
-        searchBTN.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                searchBTNActionPerformed(evt);
             }
         });
         add(searchBTN);
@@ -178,15 +177,15 @@ public class ScheduleInsert extends javax.swing.JPanel
                 deleteBTNMouseClicked(evt);
             }
         });
-        deleteBTN.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                deleteBTNActionPerformed(evt);
-            }
-        });
         add(deleteBTN);
         deleteBTN.setBounds(220, 190, 111, 50);
 
-        PanelInsert.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        table_Panel.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        table_Panel.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                table_PanelMouseClicked(evt);
+            }
+        });
 
         table2.setFont(new java.awt.Font("Tekton Pro Cond", 1, 24)); // NOI18N
         table2.setModel(new javax.swing.table.DefaultTableModel(
@@ -226,23 +225,23 @@ public class ScheduleInsert extends javax.swing.JPanel
         table2.getColumnModel().getColumn(4).setHeaderValue("slot4");
         table2.getAccessibleContext().setAccessibleDescription("");
 
-        javax.swing.GroupLayout PanelInsertLayout = new javax.swing.GroupLayout(PanelInsert);
-        PanelInsert.setLayout(PanelInsertLayout);
-        PanelInsertLayout.setHorizontalGroup(
-            PanelInsertLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, PanelInsertLayout.createSequentialGroup()
+        javax.swing.GroupLayout table_PanelLayout = new javax.swing.GroupLayout(table_Panel);
+        table_Panel.setLayout(table_PanelLayout);
+        table_PanelLayout.setHorizontalGroup(
+            table_PanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, table_PanelLayout.createSequentialGroup()
                 .addGap(0, 0, Short.MAX_VALUE)
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 574, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
-        PanelInsertLayout.setVerticalGroup(
-            PanelInsertLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, PanelInsertLayout.createSequentialGroup()
+        table_PanelLayout.setVerticalGroup(
+            table_PanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, table_PanelLayout.createSequentialGroup()
                 .addGap(0, 45, Short.MAX_VALUE)
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 353, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
-        add(PanelInsert);
-        PanelInsert.setBounds(550, 115, 570, 400);
+        add(table_Panel);
+        table_Panel.setBounds(550, 115, 570, 400);
 
         jLabel2.setFont(new java.awt.Font("Times New Roman", 1, 24)); // NOI18N
         jLabel2.setText("Scheduels Screen");
@@ -266,7 +265,7 @@ public class ScheduleInsert extends javax.swing.JPanel
     }//GEN-LAST:event_insertBTNMouseClicked
 
     private void searchBTNMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_searchBTNMouseClicked
-        PanelInsert.setVisible(false);
+        table_Panel.setVisible(false);
         if (ScheduleCode.getText() != null) 
         {searchSchedual = schedualBao.SearchSchedual(ScheduleCode.getText());  }
      else {
@@ -286,7 +285,7 @@ public class ScheduleInsert extends javax.swing.JPanel
 
     private void deleteBTNMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_deleteBTNMouseClicked
 
-        PanelInsert.setVisible(false);
+        table_Panel.setVisible(false);
         if (table.getSelectedRow() >= 0)
         {
             String selectedCode = table.getValueAt(table.getSelectedRow(), 0).toString();
@@ -311,32 +310,38 @@ public class ScheduleInsert extends javax.swing.JPanel
         }
     }//GEN-LAST:event_deleteBTNMouseClicked
 
-    private void searchBTNActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchBTNActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_searchBTNActionPerformed
-
-    private void deleteBTNActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteBTNActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_deleteBTNActionPerformed
-
-    private void insertBTNActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_insertBTNActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_insertBTNActionPerformed
-
     private void ScheduleCodeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ScheduleCodeActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_ScheduleCodeActionPerformed
 
     private void jButton1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MouseClicked
-    jScrollPane2.setVisible(true);
-        if (table.getSelectedRow() >= 0)
+    table_Panel.setVisible(true);
+        /*  if (table.getSelectedRow() >= 0)
         {
      SchedualDto sch =   schedualBao.getSlectedTable(table.getValueAt(table.getSelectedRow(), 0).toString());
            
             Table2Reset(sch.getSchedual_Slots());
         }
-             else JOptionPane.showMessageDialog(null, "select a table to view");
+             else JOptionPane.showMessageDialog(null, "select a table to view"); */
     }//GEN-LAST:event_jButton1MouseClicked
+
+    private void formKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_formKeyPressed
+   
+      System.out.println("pressed"); 
+    if (evt.isControlDown() && evt.getKeyCode() == KeyEvent.VK_P)
+    {
+        // this means ctrl+p is pressed 
+        Utilities.printRecord(table_Panel);
+    }
+       
+    }//GEN-LAST:event_formKeyPressed
+
+    private void table_PanelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_table_PanelMouseClicked
+  
+   
+    
+    
+    }//GEN-LAST:event_table_PanelMouseClicked
 
     public void TableReset(List<SchedualDto> scheduals) 
     {
@@ -357,7 +362,6 @@ public class ScheduleInsert extends javax.swing.JPanel
     }
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JPanel PanelInsert;
     private javax.swing.JTextField ScheduleCode;
     private javax.swing.JButton deleteBTN;
     private javax.swing.JButton insertBTN;
@@ -370,6 +374,7 @@ public class ScheduleInsert extends javax.swing.JPanel
     private javax.swing.JButton searchBTN;
     private javax.swing.JTable table;
     private javax.swing.JTable table2;
+    private javax.swing.JPanel table_Panel;
     // End of variables declaration//GEN-END:variables
    
     public void Table2Reset(List<SlotDto> slots) 
@@ -562,6 +567,18 @@ public class ScheduleInsert extends javax.swing.JPanel
                   }
      
       } 
-  
-    
+    private class KeyLis extends KeyAdapter {
+       @Override
+       public void keyPressed(KeyEvent e) {
+          switch (e.getKeyCode()) {
+          case KeyEvent.VK_LEFT:
+             System.out.println("VK_LEFT pressed");
+             break;
+          case KeyEvent.VK_RIGHT:
+             System.out.println("VK_RIGHT pressed");
+             break;
+          }
+       }
+    }
+
 }
