@@ -21,7 +21,6 @@ import java.awt.print.PrinterJob;
 
 import java.io.File;
 import java.io.FileOutputStream;
-
 import java.io.IOException;
 
 import java.math.BigInteger;
@@ -319,8 +318,8 @@ public class Utilities {
 }
    
     //++++++++++++++++++++++++++++++++
-         // method to export the table to xls format 
-         public static void export_XLX(JTable inputTable)
+         // method to export the schedual table to xls format 
+         public static void exportSch_XLX(JTable inputTable)
          {   
             SchedualDto schedule = new SchedualDto();
             JFileChooser fileChooser = new JFileChooser();
@@ -408,5 +407,115 @@ public class Utilities {
                         JOptionPane.showMessageDialog(null,"User cancelled  ");}       
                          
                             }   
+        
+      
+      
+      
+      
+      
+            public static void schResetModel(JTable table, List<SlotDto> slots) 
+            {  
+
+               if(slots !=null)
+               {
+                    Object[][] sArray = new Object[5][5];
+                    //======
+                    sArray[0][0] = "Sunday";
+                    sArray[1][0] = "Monday";
+                    sArray[2][0] = "Tuesday";
+                    sArray[3][0] = "Wednesday";
+                    sArray[4][0] = "Thursday";
+                    //======
+                    
+                    // loop and check 
+                    for(int i=0; i<slots.size() ;i++)
+                    {
+                        switch(slots.get(i).getCode())
+                        {            
+                            case 1:
+                            sArray[0][1] = slots.get(i).getCode()+"\r\n"+slots.get(i).getCurrentCourse().getName();
+                            break ;
+                            case 2:
+                            sArray[0][2] = slots.get(i).getCode()+"\r\n"+slots.get(i).getCurrentCourse().getName();
+                            break ;
+                            case 3:
+                            sArray[0][3] = slots.get(i).getCode()+"\r\n"+slots.get(i).getCurrentCourse().getName();
+                            break ;
+                            case 4:
+                            sArray[0][4] = slots.get(i).getCode()+"\r\n"+slots.get(i).getCurrentCourse().getName();
+                            break ;
+                            case 5:
+                            sArray[1][1] = slots.get(i).getCode()+"\r\n"+slots.get(i).getCurrentCourse().getName();
+                            break ;
+                            case 6:
+                            sArray[1][2] = slots.get(i).getCode()+"\r\n"+slots.get(i).getCurrentCourse().getName();
+                            break ;
+                            case 7:
+                            sArray[1][3] = slots.get(i).getCode()+"\r\n"+slots.get(i).getCurrentCourse().getName();
+                            break ;
+                            case 8:
+                            sArray[1][4] = slots.get(i).getCode()+"\r\n"+slots.get(i).getCurrentCourse().getName();
+                            break ;
+                            case 9:
+                            sArray[2][1] = slots.get(i).getCode()+"\r\n"+slots.get(i).getCurrentCourse().getName();
+                            break ;
+                            case 10:
+                            sArray[2][2] = slots.get(i).getCode()+"\r\n"+slots.get(i).getCurrentCourse().getName();
+                            break ;
+                            case 11:
+                            sArray[2][3] = slots.get(i).getCode()+"\r\n"+slots.get(i).getCurrentCourse().getName();
+                            break ;
+                            case 12:
+                            sArray[2][4] = slots.get(i).getCode()+"\r\n"+slots.get(i).getCurrentCourse().getName();
+                            break ;
+                            case 13:
+                            sArray[3][1] = slots.get(i).getCode()+"\r\n"+slots.get(i).getCurrentCourse().getName();
+                            break ;
+                            case 14:
+                            sArray[3][2] = slots.get(i).getCode()+"\r\n"+slots.get(i).getCurrentCourse().getName();
+                            break ;
+                            case 15:
+                            sArray[3][3] = slots.get(i).getCode()+"\r\n"+slots.get(i).getCurrentCourse().getName();
+                            break ;
+                            case 16:
+                            sArray[3][4] = slots.get(i).getCode()+"\r\n"+slots.get(i).getCurrentCourse().getName();
+                            break ;
+                            case 17:
+                            sArray[4][1] = slots.get(i).getCode()+"\r\n"+slots.get(i).getCurrentCourse().getName();
+                            break ;
+                            case 18:
+                            sArray[4][2] = slots.get(i).getCode()+"\r\n"+slots.get(i).getCurrentCourse().getName();
+                            break ;
+                            case 19:
+                            sArray[4][3] = slots.get(i).getCode()+"\r\n"+slots.get(i).getCurrentCourse().getName();
+                            break ;
+                            case 20:
+                            sArray[4][4] = slots.get(i).getCode()+"\r\n"+slots.get(i).getCurrentCourse().getName();
+                            break ;
+                           
+                        }
+                      //  System.out.println(slots.get(i).getCode());
+                    }
+                    
+                    table.setModel(new javax.swing.table.DefaultTableModel(sArray, new String[]
+                    {"Day" ,"Slot 1" ,"Slot 2" ,"Slot 3" ,"Slot 4" }));   
+                }
+                else JOptionPane.showMessageDialog(null, "this table not assigend ");
+                
+               
+            }
+            
+      
+      
+      
+        
+ //++++++++++++++++++++++++++++++++
+     // method to export the schedual table to xls format 
+    public static void export_XLX(JTable inputTable)
+    {
+     }
+        
+        
+        
         }  
 

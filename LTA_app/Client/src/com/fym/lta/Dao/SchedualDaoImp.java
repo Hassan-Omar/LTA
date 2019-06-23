@@ -171,6 +171,8 @@ public class SchedualDaoImp implements SchedualDao {
 
 
                 jdbcR.execute();
+                System.out.println("reci" + slot.getCode());
+                
             }
 
 
@@ -363,7 +365,7 @@ public class SchedualDaoImp implements SchedualDao {
                 slot.setCurrentLocation(loc);
                 //set Slot ID 
                 slot.setSlot_id(jdbcR.getInt(7));
-                        
+                slot.setCode(jdbcR.getInt(8));       
                 slots.add(slot);
             }
             result.setSchedual_Slots(slots);

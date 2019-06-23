@@ -16,7 +16,6 @@ import com.fym.lta.dto.SchedualDto;
 import com.fym.lta.dto.SlotDto;
 
 import java.awt.HeadlessException;
-import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 
 import java.io.File;
@@ -109,9 +108,9 @@ public class ScheduleInsert extends javax.swing.JPanel
         });
         popup.add(jMenuItem3);
 
-        addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyPressed(java.awt.event.KeyEvent evt) {
-                formKeyPressed(evt);
+        addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseReleased(java.awt.event.MouseEvent evt) {
+                formMouseReleased(evt);
             }
         });
         setLayout(null);
@@ -210,13 +209,8 @@ public class ScheduleInsert extends javax.swing.JPanel
         deleteBTN.setBounds(220, 190, 111, 50);
 
         table_Panel.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        table_Panel.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseReleased(java.awt.event.MouseEvent evt) {
-                table_PanelMouseReleased(evt);
-            }
-        });
 
-        table2.setFont(new java.awt.Font("Tekton Pro Cond", 1, 24)); // NOI18N
+        table2.setFont(new java.awt.Font("Tekton Pro Cond", 0, 14)); // NOI18N
         table2.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
@@ -240,7 +234,7 @@ public class ScheduleInsert extends javax.swing.JPanel
                 return canEdit [columnIndex];
             }
         });
-        table2.setRowHeight(40);
+        table2.setRowHeight(80);
         jScrollPane2.setViewportView(table2);
         table2.getColumnModel().getColumn(0).setResizable(false);
         table2.getColumnModel().getColumn(0).setHeaderValue("Day");
@@ -342,39 +336,19 @@ public class ScheduleInsert extends javax.swing.JPanel
     }//GEN-LAST:event_ScheduleCodeActionPerformed
 
     private void jButton1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MouseClicked
-    table_Panel.setVisible(true);
-          if (table.getSelectedRow() >= 0)
-        {
+    if (table.getSelectedRow() >= 0)
+{ table_Panel.setVisible(true);
      SchedualDto sch =   schedualBao.getSlectedTable(table.getValueAt(table.getSelectedRow(), 0).toString());
            
-            Table2Reset(sch.getSchedual_Slots());
+            Utilities.schResetModel(table2, sch.getSchedual_Slots());
         }
              else JOptionPane.showMessageDialog(null, "select a table to view"); 
     }//GEN-LAST:event_jButton1MouseClicked
-
-    private void formKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_formKeyPressed
-   
-      System.out.println("pressed"); 
-    if (evt.isControlDown() && evt.getKeyCode() == KeyEvent.VK_P)
-    {
-        // this means ctrl+p is pressed 
-        Utilities.printRecord(table_Panel);
-    }
-       
-    }//GEN-LAST:event_formKeyPressed
 
     private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
     Utilities.printRecord(table_Panel);
 
     }//GEN-LAST:event_jMenuItem1ActionPerformed
-
-    private void table_PanelMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_table_PanelMouseReleased
-if(evt.isPopupTrigger())
-{
-popup.show(table_Panel, evt.getX(), evt.getY());    
-}
-       
-    }//GEN-LAST:event_table_PanelMouseReleased
 
     private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
      
@@ -384,9 +358,18 @@ popup.show(table_Panel, evt.getX(), evt.getY());
 
     private void jMenuItem3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem3ActionPerformed
 
-    Utilities.export_XLX(table2);
+    Utilities.exportSch_XLX(table2);
 
     }//GEN-LAST:event_jMenuItem3ActionPerformed
+
+    private void formMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_formMouseReleased
+   
+    if(evt.isPopupTrigger())
+    {
+    popup.show(this, evt.getX(), evt.getY());    
+    }
+       
+    }//GEN-LAST:event_formMouseReleased
 
     public void TableReset(List<SchedualDto> scheduals) 
     {
@@ -426,94 +409,7 @@ popup.show(table_Panel, evt.getX(), evt.getY());
     private javax.swing.JPanel table_Panel;
     // End of variables declaration//GEN-END:variables
    
-    public void Table2Reset(List<SlotDto> slots) 
-    {  int index = 0 ;
 
-        Object[][] sArray = new Object[5][5];
-        //======
-        sArray[0][0] = "Sunday";
-        sArray[1][0] = "Monday";
-        sArray[2][0] = "Tuesday";
-        sArray[3][0] = "Wednesday";
-        sArray[4][0] = "Thursday";
-        //======
-        
-        // loop and check 
-        for(int i=0; i<slots.size() ;i++)
-        {
-            switch(slots.get(i).getCode())
-            {            
-                case 1:
-                sArray[0][1] = slots.get(i);
-                break ;
-                case 2:
-                sArray[0][2] = slots.get(i);
-                break ;
-                case 3:
-                sArray[0][3] = slots.get(i);
-                break ;
-                case 4:
-                sArray[0][4] = slots.get(i);
-                break ;
-                case 5:
-                sArray[1][1] = slots.get(i);
-                break ;
-                case 6:
-                sArray[1][2] = slots.get(i);
-                break ;
-                case 7:
-                sArray[1][3] = slots.get(i);
-                break ;
-                case 8:
-                sArray[1][4] = slots.get(i);
-                break ;
-                case 9:
-                sArray[2][1] = slots.get(i);
-                break ;
-                case 10:
-                sArray[2][2] = slots.get(i);
-                break ;
-                case 11:
-                sArray[2][3] = slots.get(i);
-                break ;
-                case 12:
-                sArray[2][4] = slots.get(i);
-                break ;
-                case 13:
-                sArray[3][1] = slots.get(i);
-                break ;
-                case 14:
-                sArray[3][2] = slots.get(i);
-                break ;
-                case 15:
-                sArray[3][3] = slots.get(i);
-                break ;
-                case 16:
-                sArray[3][4] = slots.get(i);
-                break ;
-                case 17:
-                sArray[4][1] = slots.get(i);
-                break ;
-                case 18:
-                sArray[4][2] = slots.get(i);
-                break ;
-                case 19:
-                sArray[4][3] = slots.get(i);
-                break ;
-                case 20:
-                sArray[4][4] = slots.get(i);
-                break ;
-               
-            }
-        }
-        
-        
-        
-        
-        table2.setModel(new javax.swing.table.DefaultTableModel(sArray, new String[]
-        {"Day" ,"Slot 1" ,"Slot 2" ,"Slot 3" ,"Slot 4" }));
-    }
-  
     
      // this method implmented by mina 
     private String[] string_splitter(String Word ){
@@ -600,13 +496,25 @@ popup.show(table_Panel, evt.getX(), evt.getY());
                                   // you need to cut the string and set the name as comming +++++++++
                                   // use string cut or any format
                                   //+++++++++++++++++++++++++++++++++++++++
-                                  String[] enteredName = string_splitter(StaffName1.getCell(k).toString());
-                                  instructor.setFName(enteredName[1]);
-                                  instructor.setSName(enteredName[2]);
-                                  instructor.setLName(enteredName[3]);
-                                  instructor.setFamilyName(enteredName[4]);
-                                  instructor.setCareerDgree(enteredName[0]);
-                                  
+                        /*   try {
+                            String[] enteredName = string_splitter(StaffName1.getCell(k).toString());
+                            instructor.setFName(enteredName[1]);
+                            instructor.setSName(enteredName[2]);
+                            instructor.setLName(enteredName[3]);
+                            instructor.setFamilyName(enteredName[4]);
+                            instructor.setCareerDgree(enteredName[0]);
+
+
+                        } catch (Exception e) {
+                            
+                            e.printStackTrace();
+                        } */
+                        instructor.setFName("a");
+                        instructor.setSName("b");
+                        instructor.setLName("c");
+                        instructor.setFamilyName("d");
+                        instructor.setCareerDgree("dr");
+
                                   
                                   //+++++++++++++++++++++++++++++++++++++++
                                   instructor.setInsertedBy(LoginEngine.currentUser);
@@ -647,6 +555,8 @@ popup.show(table_Panel, evt.getX(), evt.getY());
                                   if(slot.getCurrentCourse().getCode()!=null)
                                   slots.add(slot);
                                   slotCode++;
+                                  
+                                  System.out.println("code_in"+slotCode);
                               } // end of inner loop
 
                           } // end of outer loop 
