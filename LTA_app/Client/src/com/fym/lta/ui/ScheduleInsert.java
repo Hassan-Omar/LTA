@@ -336,13 +336,13 @@ public class ScheduleInsert extends javax.swing.JPanel
 
     private void jButton1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MouseClicked
     table_Panel.setVisible(true);
-        /*  if (table.getSelectedRow() >= 0)
+          if (table.getSelectedRow() >= 0)
         {
      SchedualDto sch =   schedualBao.getSlectedTable(table.getValueAt(table.getSelectedRow(), 0).toString());
            
             Table2Reset(sch.getSchedual_Slots());
         }
-             else JOptionPane.showMessageDialog(null, "select a table to view"); */
+             else JOptionPane.showMessageDialog(null, "select a table to view"); 
     }//GEN-LAST:event_jButton1MouseClicked
 
     private void formKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_formKeyPressed
@@ -370,14 +370,8 @@ popup.show(table_Panel, evt.getX(), evt.getY());
     }//GEN-LAST:event_table_PanelMouseReleased
 
     private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
-    
-        String[] headers = new String[5] ;
-        headers[0]="Day" ;
-        headers[1]="Slot 1 \r\n8:50   10:30" ;
-        headers[2]="Slot 2 \r\n10:40   12:10" ;
-        headers[3]="Slot 3 \r\n12:20   01:50" ;
-        headers[4]="Slot 4 \r\n02:00   03:30" ;
-    Utilities.export_PDF(table2, headers);
+     
+    Utilities.export_PDF(table2);
  
     }//GEN-LAST:event_jMenuItem2ActionPerformed
 
@@ -422,7 +416,7 @@ popup.show(table_Panel, evt.getX(), evt.getY());
     public void Table2Reset(List<SlotDto> slots) 
     {  int index = 0 ;
 
-        Object[][] sArray = new Object[5][6];
+        Object[][] sArray = new Object[5][5];
         //======
         sArray[0][0] = "Sunday";
         sArray[1][0] = "Monday";
@@ -431,16 +425,78 @@ popup.show(table_Panel, evt.getX(), evt.getY());
         sArray[4][0] = "Thursday";
         //======
         
-        
-        for (int i = 0; i<5;i++)
-        {  
-           
-          for(int k=1; k<6; k++)
-          {  
-               sArray[i][k] = slots.get(index).getSlot_id();
-               index++;
-           }
+        // loop and check 
+        for(int i=0; i<slots.size() ;i++)
+        {
+            switch(slots.get(i).getCode())
+            {            
+                case 1:
+                sArray[0][1] = slots.get(i);
+                break ;
+                case 2:
+                sArray[0][2] = slots.get(i);
+                break ;
+                case 3:
+                sArray[0][3] = slots.get(i);
+                break ;
+                case 4:
+                sArray[0][4] = slots.get(i);
+                break ;
+                case 5:
+                sArray[1][1] = slots.get(i);
+                break ;
+                case 6:
+                sArray[1][2] = slots.get(i);
+                break ;
+                case 7:
+                sArray[1][3] = slots.get(i);
+                break ;
+                case 8:
+                sArray[1][4] = slots.get(i);
+                break ;
+                case 9:
+                sArray[2][1] = slots.get(i);
+                break ;
+                case 10:
+                sArray[2][2] = slots.get(i);
+                break ;
+                case 11:
+                sArray[2][3] = slots.get(i);
+                break ;
+                case 12:
+                sArray[2][4] = slots.get(i);
+                break ;
+                case 13:
+                sArray[3][1] = slots.get(i);
+                break ;
+                case 14:
+                sArray[3][2] = slots.get(i);
+                break ;
+                case 15:
+                sArray[3][3] = slots.get(i);
+                break ;
+                case 16:
+                sArray[3][4] = slots.get(i);
+                break ;
+                case 17:
+                sArray[4][1] = slots.get(i);
+                break ;
+                case 18:
+                sArray[4][2] = slots.get(i);
+                break ;
+                case 19:
+                sArray[4][3] = slots.get(i);
+                break ;
+                case 20:
+                sArray[4][4] = slots.get(i);
+                break ;
+               
+            }
         }
+        
+        
+        
+        
         table2.setModel(new javax.swing.table.DefaultTableModel(sArray, new String[]
         {"Day" ,"Slot 1" ,"Slot 2" ,"Slot 3" ,"Slot 4" }));
     }

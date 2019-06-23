@@ -64,7 +64,11 @@ public class UsersScreen extends javax.swing.JPanel {
     @SuppressWarnings("unchecked")
     private void initComponents() {//GEN-BEGIN:initComponents
 
-        jPanel1 = new javax.swing.JPanel();
+        popup = new javax.swing.JPopupMenu();
+        jMenuItem1 = new javax.swing.JMenuItem();
+        jMenuItem2 = new javax.swing.JMenuItem();
+        jMenuItem3 = new javax.swing.JMenuItem();
+        users_TableaPanel = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         usersTable = new javax.swing.JTable();
         ubdateUserBTN = new javax.swing.JButton();
@@ -86,7 +90,37 @@ public class UsersScreen extends javax.swing.JPanel {
         employeesLabel = new java.awt.Label();
         jLabel5 = new javax.swing.JLabel();
 
-        jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Users\n", 0, 0, new java.awt.Font("Tekton Pro Cond", 1, 36))); // NOI18N
+        jMenuItem1.setText("Print");
+        jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem1ActionPerformed(evt);
+            }
+        });
+        popup.add(jMenuItem1);
+
+        jMenuItem2.setText("Expor to PDF");
+        jMenuItem2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem2ActionPerformed(evt);
+            }
+        });
+        popup.add(jMenuItem2);
+
+        jMenuItem3.setText("Export to XLX");
+        jMenuItem3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem3ActionPerformed(evt);
+            }
+        });
+        popup.add(jMenuItem3);
+
+        addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseReleased(java.awt.event.MouseEvent evt) {
+                formMouseReleased(evt);
+            }
+        });
+
+        users_TableaPanel.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Users\n", 0, 0, new java.awt.Font("Tekton Pro Cond", 1, 36))); // NOI18N
 
         usersTable.setFont(new java.awt.Font("Tekton Pro Cond", 1, 18)); // NOI18N
         usersTable.setModel(new javax.swing.table.DefaultTableModel(
@@ -114,19 +148,23 @@ public class UsersScreen extends javax.swing.JPanel {
         });
         usersTable.setRowHeight(30);
         jScrollPane1.setViewportView(usersTable);
+        usersTable.getColumnModel().getColumn(0).setHeaderValue("Name");
+        usersTable.getColumnModel().getColumn(1).setHeaderValue("null");
+        usersTable.getColumnModel().getColumn(2).setHeaderValue("Login Username");
+        usersTable.getColumnModel().getColumn(3).setHeaderValue("Role");
 
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
+        javax.swing.GroupLayout users_TableaPanelLayout = new javax.swing.GroupLayout(users_TableaPanel);
+        users_TableaPanel.setLayout(users_TableaPanelLayout);
+        users_TableaPanelLayout.setHorizontalGroup(
+            users_TableaPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(users_TableaPanelLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 680, Short.MAX_VALUE)
                 .addContainerGap())
         );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+        users_TableaPanelLayout.setVerticalGroup(
+            users_TableaPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, users_TableaPanelLayout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 249, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
@@ -297,7 +335,7 @@ public class UsersScreen extends javax.swing.JPanel {
                             .addGap(106, 106, 106)
                             .addComponent(searchUserBTN))
                         .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 333, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(users_TableaPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGroup(layout.createSequentialGroup()
                             .addComponent(ubdateUserBTN, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGap(133, 133, 133)
@@ -326,7 +364,7 @@ public class UsersScreen extends javax.swing.JPanel {
                             .addComponent(deleteUserBTN, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(insertUserBTN, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(32, 32, 32)
-                        .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(users_TableaPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(61, 61, 61)
                         .addComponent(insertPanel, javax.swing.GroupLayout.PREFERRED_SIZE, 607, javax.swing.GroupLayout.PREFERRED_SIZE)))
@@ -494,6 +532,29 @@ public class UsersScreen extends javax.swing.JPanel {
         // TODO add your handling code here:
     }//GEN-LAST:event_userRoleComboActionPerformed
 
+    private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
+        Utilities.printRecord(users_TableaPanel);
+    }//GEN-LAST:event_jMenuItem1ActionPerformed
+
+    private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
+ 
+        Utilities.export_PDF(usersTable);
+
+    }//GEN-LAST:event_jMenuItem2ActionPerformed
+
+    private void formMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_formMouseReleased
+    if(evt.isPopupTrigger())
+    {
+    popup.show(this, evt.getX(), evt.getY());    
+    }
+    }//GEN-LAST:event_formMouseReleased
+
+    private void jMenuItem3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem3ActionPerformed
+
+    Utilities.export_XLX(usersTable);
+
+    }//GEN-LAST:event_jMenuItem3ActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton deleteUserBTN;
@@ -506,10 +567,13 @@ public class UsersScreen extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
-    private javax.swing.JPanel jPanel1;
+    private javax.swing.JMenuItem jMenuItem1;
+    private javax.swing.JMenuItem jMenuItem2;
+    private javax.swing.JMenuItem jMenuItem3;
     private javax.swing.JScrollPane jScrollPane1;
     private java.awt.Label label1;
     private javax.swing.JLabel mailLabel;
+    private javax.swing.JPopupMenu popup;
     private javax.swing.JButton searchUserBTN;
     private javax.swing.JButton ubdateUserBTN;
     private javax.swing.JTextField userEnteredName;
@@ -517,6 +581,7 @@ public class UsersScreen extends javax.swing.JPanel {
     private javax.swing.JComboBox userRoleCombo;
     private javax.swing.JTextField usernameBox;
     private javax.swing.JTable usersTable;
+    private javax.swing.JPanel users_TableaPanel;
     // End of variables declaration//GEN-END:variables
     
     public void userTableReset(List<UserDto> users) 

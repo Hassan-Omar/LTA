@@ -1,5 +1,7 @@
 package com.fym.lta.ui;
 
+import com.fym.lta.dto.SlotDto;
+
 import com.jtattoo.plaf.mint.MintLookAndFeel;
 
 import com.lowagie.text.Document;
@@ -20,6 +22,8 @@ import java.math.BigInteger;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 
+import java.util.Collections;
+import java.util.List;
 import java.util.Properties;
 
 import javax.swing.JButton;
@@ -221,10 +225,11 @@ public class Utilities {
      }
 
 //++++++++++++++++++++++++++++++++
-     
-     public static void export_PDF(JTable inputTable , String[]headers)
+     // method to export the table to pdf format 
+     public static void export_PDF(JTable inputTable )
      {   String path = ""; // hold the path which the user will choos
-         
+          
+         int colNum = inputTable.getColumnCount(); 
          // define java file chooser 
          JFileChooser  fchooser = new JFileChooser();
          // set mode 
@@ -245,18 +250,26 @@ public class Utilities {
             PdfWriter.getInstance(doc, new FileOutputStream(path + "Exported_LTA.pdf"));
             doc.open();
              // create output table    
-            PdfPTable outTable = new PdfPTable(inputTable.getRowCount());
-            // loop to add header 
-            for(int i=0; i<headers.length; i++)
-            {
-                outTable.addCell(headers[i]);
-            }
+            PdfPTable outTable = new PdfPTable(colNum);
+             // loop to add header 
+            for(int i=0; i<colNum; i++)
+            {   // adding heeders 
+                outTable.addCell(inputTable.getColumnName(i));
+            } 
+         
             
             // using neasted loop to getting the data from input table 
             for(int k=0; k<inputTable.getRowCount(); k++)
             {
-               for(int j=0; j<headers.length; j++)    
-                   outTable.addCell(inputTable.getValueAt(k, j).toString());
+               for(int j=0; j<colNum; j++)    
+               {  // null exp pointer 
+                   try {
+                        outTable.addCell(inputTable.getValueAt(k, j).toString());
+                    } catch (Exception e) {
+                        outTable.addCell(" ");
+                    }
+                   
+               }
             }
             
             // add the table to document 
@@ -273,6 +286,31 @@ public class Utilities {
 
     }
 
+// mehtod to sort the list based on the code 
 
+   public static List<SlotDto> sort_ByCode(List<SlotDto> slots)
+   {
+     for(int i=0; i<slots.size(); i++)
+       {
+          for (int k=0; k<slots.size()-i-1 ; k++)
+          {
+           if(slots.get(k+1).getCode() < slots.get(k).getCode() )
+           {// sawp slot no i , i+1 
+           Collections.swap(slots, k, k+1);
+           }
+           
+          }
 
+       }
+     
+     
+   return slots ; 
+}
+   
+    //++++++++++++++++++++++++++++++++
+         // method to export the table to pdf format 
+         public static void export_XLX(JTable inputTable)
+         {
+             
+        }  
 }
