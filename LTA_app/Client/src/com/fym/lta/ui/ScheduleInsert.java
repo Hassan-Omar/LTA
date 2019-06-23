@@ -16,7 +16,6 @@ import com.fym.lta.dto.SchedualDto;
 import com.fym.lta.dto.SlotDto;
 
 import java.awt.HeadlessException;
-import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 
@@ -66,6 +65,10 @@ public class ScheduleInsert extends javax.swing.JPanel
     @SuppressWarnings("unchecked")
     private void initComponents() {//GEN-BEGIN:initComponents
 
+        popup = new javax.swing.JPopupMenu();
+        jMenuItem1 = new javax.swing.JMenuItem();
+        jMenuItem2 = new javax.swing.JMenuItem();
+        jMenuItem3 = new javax.swing.JMenuItem();
         jPanel1 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         table = new javax.swing.JTable();
@@ -79,6 +82,20 @@ public class ScheduleInsert extends javax.swing.JPanel
         table2 = new javax.swing.JTable();
         jLabel2 = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
+
+        jMenuItem1.setText("Print");
+        jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem1ActionPerformed(evt);
+            }
+        });
+        popup.add(jMenuItem1);
+
+        jMenuItem2.setText("Expor to PDF");
+        popup.add(jMenuItem2);
+
+        jMenuItem3.setText("Export to XLX");
+        popup.add(jMenuItem3);
 
         addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
@@ -182,8 +199,8 @@ public class ScheduleInsert extends javax.swing.JPanel
 
         table_Panel.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         table_Panel.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                table_PanelMouseClicked(evt);
+            public void mouseReleased(java.awt.event.MouseEvent evt) {
+                table_PanelMouseReleased(evt);
             }
         });
 
@@ -336,12 +353,20 @@ public class ScheduleInsert extends javax.swing.JPanel
        
     }//GEN-LAST:event_formKeyPressed
 
-    private void table_PanelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_table_PanelMouseClicked
-  
-   
-    
-    
-    }//GEN-LAST:event_table_PanelMouseClicked
+    private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
+    Utilities.printRecord(table_Panel);
+
+    }//GEN-LAST:event_jMenuItem1ActionPerformed
+
+    private void table_PanelMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_table_PanelMouseReleased
+if(evt.isPopupTrigger())
+{
+popup.show(table_Panel, evt.getX(), evt.getY());    
+}
+
+
+       
+    }//GEN-LAST:event_table_PanelMouseReleased
 
     public void TableReset(List<SchedualDto> scheduals) 
     {
@@ -368,9 +393,13 @@ public class ScheduleInsert extends javax.swing.JPanel
     private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JMenuItem jMenuItem1;
+    private javax.swing.JMenuItem jMenuItem2;
+    private javax.swing.JMenuItem jMenuItem3;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JPopupMenu popup;
     private javax.swing.JButton searchBTN;
     private javax.swing.JTable table;
     private javax.swing.JTable table2;
@@ -567,18 +596,5 @@ public class ScheduleInsert extends javax.swing.JPanel
                   }
      
       } 
-    private class KeyLis extends KeyAdapter {
-       @Override
-       public void keyPressed(KeyEvent e) {
-          switch (e.getKeyCode()) {
-          case KeyEvent.VK_LEFT:
-             System.out.println("VK_LEFT pressed");
-             break;
-          case KeyEvent.VK_RIGHT:
-             System.out.println("VK_RIGHT pressed");
-             break;
-          }
-       }
-    }
-
+    
 }
