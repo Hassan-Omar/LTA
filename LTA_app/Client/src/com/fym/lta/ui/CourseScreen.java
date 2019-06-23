@@ -67,9 +67,6 @@ private CourseBao courseobjBao = new BaoFactory().createCourseBao();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         cPanel = new javax.swing.JPanel();
-        updateCourseBtn = new javax.swing.JButton();
-        deleteCourseBtn = new javax.swing.JButton();
-        insertCourseBtn = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         courseTable = new javax.swing.JTable();
         insertPanel = new javax.swing.JPanel();
@@ -88,6 +85,9 @@ private CourseBao courseobjBao = new BaoFactory().createCourseBao();
         jScrollPane2 = new javax.swing.JScrollPane();
         descrption = new javax.swing.JTextArea();
         Departmentlapel2 = new javax.swing.JLabel();
+        updateCourseBtn = new javax.swing.JButton();
+        deleteCourseBtn = new javax.swing.JButton();
+        insertCourseBtn = new javax.swing.JButton();
 
         jMenuItem1.setText("Print");
         jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
@@ -143,30 +143,6 @@ private CourseBao courseobjBao = new BaoFactory().createCourseBao();
 
         cPanel.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Courses", 0, 0, new java.awt.Font("Tekton Pro Cond", 1, 36))); // NOI18N
 
-        updateCourseBtn.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        updateCourseBtn.setText("Update");
-        updateCourseBtn.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                updateCourseBtnMouseClicked(evt);
-            }
-        });
-
-        deleteCourseBtn.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        deleteCourseBtn.setText("Delete");
-        deleteCourseBtn.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                deleteCourseBtnActionPerformed(evt);
-            }
-        });
-
-        insertCourseBtn.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        insertCourseBtn.setText("Insert New ");
-        insertCourseBtn.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                insertCourseBtnMouseClicked(evt);
-            }
-        });
-
         courseTable.setFont(new java.awt.Font("Tekton Pro Cond", 1, 18)); // NOI18N
         courseTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -197,25 +173,13 @@ private CourseBao courseobjBao = new BaoFactory().createCourseBao();
             cPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(cPanelLayout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(cPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, cPanelLayout.createSequentialGroup()
-                        .addComponent(updateCourseBtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGap(103, 103, 103)
-                        .addComponent(deleteCourseBtn)
-                        .addGap(112, 112, 112)
-                        .addComponent(insertCourseBtn))
-                    .addComponent(jScrollPane1)))
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 547, Short.MAX_VALUE))
         );
         cPanelLayout.setVerticalGroup(
             cPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(cPanelLayout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(cPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(updateCourseBtn)
-                    .addComponent(deleteCourseBtn)
-                    .addComponent(insertCourseBtn))
-                .addGap(18, 18, 18)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 802, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 733, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -346,6 +310,30 @@ private CourseBao courseobjBao = new BaoFactory().createCourseBao();
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
+        updateCourseBtn.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        updateCourseBtn.setText("Update");
+        updateCourseBtn.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                updateCourseBtnMouseClicked(evt);
+            }
+        });
+
+        deleteCourseBtn.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        deleteCourseBtn.setText("Delete");
+        deleteCourseBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                deleteCourseBtnActionPerformed(evt);
+            }
+        });
+
+        insertCourseBtn.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        insertCourseBtn.setText("Insert New ");
+        insertCourseBtn.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                insertCourseBtnMouseClicked(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -359,13 +347,19 @@ private CourseBao courseobjBao = new BaoFactory().createCourseBao();
                         .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 319, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(468, 468, 468))
                     .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(search_textField, javax.swing.GroupLayout.PREFERRED_SIZE, 229, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(54, 54, 54)
                                 .addComponent(btnSearch))
-                            .addComponent(cPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(30, 30, 30)
+                            .addComponent(cPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(updateCourseBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(105, 105, 105)
+                                .addComponent(deleteCourseBtn)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(insertCourseBtn)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 30, Short.MAX_VALUE)
                         .addComponent(insertPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(69, 69, 69))))
         );
@@ -384,10 +378,15 @@ private CourseBao courseobjBao = new BaoFactory().createCourseBao();
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(search_textField, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(btnSearch, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(18, 18, 18)
+                        .addGap(28, 28, 28)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(insertCourseBtn)
+                            .addComponent(deleteCourseBtn)
+                            .addComponent(updateCourseBtn))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(cPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(insertPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(14, Short.MAX_VALUE))
+                .addContainerGap(64, Short.MAX_VALUE))
         );
     }//GEN-END:initComponents
 
@@ -588,23 +587,24 @@ private CourseBao courseobjBao = new BaoFactory().createCourseBao();
     
     public void courseTableReset(List<CourseDto> courses) {
        
-        Object[][] coursesArr = new Object[courses.size()][7];
+        Object[][] coursesArr = new Object[courses.size()][8];
 
         for (int i = 0; i < courses.size(); i++) {
 
             coursesArr[i][0] = courses.get(i).getName();
             coursesArr[i][1] = courses.get(i).getCode();
             coursesArr[i][2] = courses.get(i).getDescription();
-            coursesArr[i][3] = courses.get(i).getInsertedBy();
-            coursesArr[i][4] = courses.get(i).getInertion_Date();
-            coursesArr[i][5] = courses.get(i).getUpdatedBy();
-            coursesArr[i][6] = courses.get(i).getUpdate_Date();
+            coursesArr[i][3] = courses.get(i).getHoursperWeak();
+            coursesArr[i][4] = courses.get(i).getInsertedBy();
+            coursesArr[i][5] = courses.get(i).getInertion_Date();
+            coursesArr[i][6] = courses.get(i).getUpdatedBy();
+            coursesArr[i][7] = courses.get(i).getUpdate_Date();
 
            
 
         }
       courseTable.setModel(new javax.swing.table.DefaultTableModel(coursesArr, new String[] {
-                                                                     "Name", "code" ,"s per Description","Inserted By",
+                                                                     "Name", "code" ,"Description","Hours per Weak","Inserted By",
  "  Insertion Date", "Updated By", "Update Date"
             }
                                                                    ));

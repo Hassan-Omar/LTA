@@ -41,7 +41,7 @@ public class CourseDaoImp implements CourseDao {
                 Course.setUpdatedBy(jdbcRs.getString(6));
                 Course.setInertion_Date(jdbcRs.getDate(7));
                 Course.setUpdate_Date(jdbcRs.getDate(8));
-                 
+                Course.setHoursperWeak(jdbcRs.getInt(9));
                 Courses.add(Course);
 
             }

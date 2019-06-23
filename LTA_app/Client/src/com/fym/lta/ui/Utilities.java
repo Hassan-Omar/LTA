@@ -254,7 +254,7 @@ public class Utilities {
              // loop to add header 
             for(int i=0; i<colNum; i++)
             {   // adding heeders 
-                outTable.addCell(inputTable.getColumnName(i));
+                outTable.addCell("+"+inputTable.getColumnName(i));
             } 
          
             
