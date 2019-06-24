@@ -173,10 +173,11 @@ public class EquipmentScreen extends javax.swing.JPanel {
             ePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(ePanelLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 274, Short.MAX_VALUE))
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 307, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        add(ePanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 210, 620, 330));
+        add(ePanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 210, 620, 360));
 
         insert.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         insert.setText("Insert New ");
@@ -298,12 +299,12 @@ public class EquipmentScreen extends javax.swing.JPanel {
                     .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(28, 28, 28)
                 .addComponent(save, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(25, Short.MAX_VALUE))
         );
 
-        add(DefineEquipment, new org.netbeans.lib.awtextra.AbsoluteConstraints(730, 160, -1, 390));
+        add(DefineEquipment, new org.netbeans.lib.awtextra.AbsoluteConstraints(730, 160, -1, 410));
 
-        jLabel8.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jLabel8.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jLabel8.setText("Search");
         add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 40, 150, 30));
 

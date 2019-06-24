@@ -67,7 +67,6 @@ public class LocationTypeScreen extends javax.swing.JPanel {
         LocationTypeEnteredCode = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
         insertLocationTypeBTN = new javax.swing.JButton();
-        searchLocationTypeBTN = new javax.swing.JButton();
         insertPanel = new javax.swing.JPanel();
         save1 = new javax.swing.JButton();
         desc = new javax.swing.JTextField();
@@ -75,6 +74,7 @@ public class LocationTypeScreen extends javax.swing.JPanel {
         jLabel3 = new javax.swing.JLabel();
         code1 = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
+        searchBuildingBTN = new javax.swing.JButton();
 
         jMenuItem1.setText("Print");
         jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
@@ -105,6 +105,7 @@ public class LocationTypeScreen extends javax.swing.JPanel {
                 formMouseReleased(evt);
             }
         });
+        setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         lPanel.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Location Type", 0, 0, new java.awt.Font("Tekton Pro Cond", 1, 36))); // NOI18N
 
@@ -134,65 +135,56 @@ public class LocationTypeScreen extends javax.swing.JPanel {
         lPanel.setLayout(lPanelLayout);
         lPanelLayout.setHorizontalGroup(
             lPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(lPanelLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 481, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 540, Short.MAX_VALUE)
         );
         lPanelLayout.setVerticalGroup(
             lPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, lPanelLayout.createSequentialGroup()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 430, Short.MAX_VALUE)
-                .addContainerGap())
+            .addGroup(lPanelLayout.createSequentialGroup()
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 334, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 2, Short.MAX_VALUE))
         );
 
-        updateLocationTypeBTN.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        add(lPanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 200, 550, 380));
+
+        updateLocationTypeBTN.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         updateLocationTypeBTN.setText("Update");
         updateLocationTypeBTN.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 updateLocationTypeBTNActionPerformed(evt);
             }
         });
+        add(updateLocationTypeBTN, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 160, 80, 30));
 
-        deleteLocationTypeBTN.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        deleteLocationTypeBTN.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         deleteLocationTypeBTN.setLabel("Delete");
         deleteLocationTypeBTN.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 deleteLocationTypeBTNMouseClicked(evt);
             }
         });
+        add(deleteLocationTypeBTN, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 160, 80, 30));
 
         LocationTypeEnteredCode.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         LocationTypeEnteredCode.setText(" ");
         LocationTypeEnteredCode.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        add(LocationTypeEnteredCode, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 70, 230, 30));
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jLabel1.setText("Search");
+        add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 40, 123, 30));
 
-        insertLocationTypeBTN.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        insertLocationTypeBTN.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         insertLocationTypeBTN.setText("Insert  New ");
         insertLocationTypeBTN.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 insertLocationTypeBTNMouseClicked(evt);
             }
         });
-
-        searchLocationTypeBTN.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        searchLocationTypeBTN.setText("       Search       ");
-        searchLocationTypeBTN.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                searchLocationTypeBTNMouseClicked(evt);
-            }
-        });
-        searchLocationTypeBTN.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                searchLocationTypeBTNActionPerformed(evt);
-            }
-        });
+        add(insertLocationTypeBTN, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 160, 120, 30));
 
         insertPanel.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
-        save1.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        save1.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         save1.setText("Save");
         save1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -207,10 +199,10 @@ public class LocationTypeScreen extends javax.swing.JPanel {
             }
         });
 
-        jLabel2.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        jLabel2.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel2.setText("Description");
 
-        jLabel3.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        jLabel3.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel3.setText("Code");
 
         code1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
@@ -224,97 +216,52 @@ public class LocationTypeScreen extends javax.swing.JPanel {
                 .addGroup(insertPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 24, Short.MAX_VALUE)
                 .addGroup(insertPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(insertPanelLayout.createSequentialGroup()
-                        .addComponent(save1, javax.swing.GroupLayout.PREFERRED_SIZE, 147, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap(154, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, insertPanelLayout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
-                        .addGroup(insertPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(insertPanelLayout.createSequentialGroup()
-                                .addComponent(desc, javax.swing.GroupLayout.PREFERRED_SIZE, 265, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addContainerGap())
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, insertPanelLayout.createSequentialGroup()
-                                .addComponent(code1, javax.swing.GroupLayout.PREFERRED_SIZE, 164, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(125, 125, 125))))))
+                        .addComponent(desc, javax.swing.GroupLayout.PREFERRED_SIZE, 265, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(24, 24, 24))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, insertPanelLayout.createSequentialGroup()
+                        .addComponent(code1, javax.swing.GroupLayout.PREFERRED_SIZE, 164, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(125, 125, 125))))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, insertPanelLayout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(save1, javax.swing.GroupLayout.PREFERRED_SIZE, 127, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(124, 124, 124))
         );
         insertPanelLayout.setVerticalGroup(
             insertPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(insertPanelLayout.createSequentialGroup()
-                .addGap(82, 82, 82)
+                .addGap(88, 88, 88)
                 .addGroup(insertPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(code1, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(code1, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(25, 25, 25)
                 .addGroup(insertPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(desc, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(131, 131, 131)
-                .addComponent(save1, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(156, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 118, Short.MAX_VALUE)
+                .addComponent(save1, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(37, 37, 37))
         );
+
+        add(insertPanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 120, -1, 450));
 
         jLabel4.setFont(new java.awt.Font("Times New Roman", 1, 24)); // NOI18N
         jLabel4.setText("LocationTypes Screen ");
+        add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(365, 0, 250, 40));
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
-        this.setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(lPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGroup(layout.createSequentialGroup()
-                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addComponent(LocationTypeEnteredCode, javax.swing.GroupLayout.PREFERRED_SIZE, 266, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addGap(43, 43, 43)
-                                    .addComponent(searchLocationTypeBTN)))
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(updateLocationTypeBTN, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(74, 74, 74)
-                                .addComponent(deleteLocationTypeBTN, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(insertLocationTypeBTN)))
-                        .addGap(18, 18, 18)
-                        .addComponent(insertPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(365, 365, 365)
-                        .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 298, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(60, Short.MAX_VALUE))
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(23, 23, 23)
-                .addComponent(searchLocationTypeBTN, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(24, 24, 24)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(insertLocationTypeBTN, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(deleteLocationTypeBTN, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(updateLocationTypeBTN, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGap(13, 13, 13)))
-                .addComponent(lPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
-            .addGroup(layout.createSequentialGroup()
-                .addGap(42, 42, 42)
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(LocationTypeEnteredCode, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE))
-            .addGroup(layout.createSequentialGroup()
-                .addGap(116, 116, 116)
-                .addComponent(insertPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-        );
+        searchBuildingBTN.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        searchBuildingBTN.setText("Search");
+        searchBuildingBTN.setMaximumSize(new java.awt.Dimension(70, 30));
+        searchBuildingBTN.setMinimumSize(new java.awt.Dimension(70, 30));
+        searchBuildingBTN.setPreferredSize(new java.awt.Dimension(70, 30));
+        searchBuildingBTN.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                searchBuildingBTNMouseClicked(evt);
+            }
+        });
+        add(searchBuildingBTN, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 60, 80, 50));
     }//GEN-END:initComponents
 
     private void updateLocationTypeBTNActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_updateLocationTypeBTNActionPerformed
@@ -358,25 +305,6 @@ public class LocationTypeScreen extends javax.swing.JPanel {
     jLabel3.setVisible(true);
     code1.setVisible(true);
     }//GEN-LAST:event_insertLocationTypeBTNMouseClicked
-
-    private void searchLocationTypeBTNMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_searchLocationTypeBTNMouseClicked
-    try{
-        insertPanel.setVisible(true);
-    String Code = null; // hold entered data
-    if (LocationTypeEnteredCode.getText()!= null )
-        
-    setTableModel(LocationTypeListInDatabase.SearchLocationType(LocationTypeEnteredCode.getText())) ;
-    else
-    setTableModel(LocationTypeListInDatabase.listLocationType()) ;
-    }catch (Exception e) {
-    // TODO: Add catch code
-    e.printStackTrace();
-    }
-    }//GEN-LAST:event_searchLocationTypeBTNMouseClicked
-
-    private void searchLocationTypeBTNActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchLocationTypeBTNActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_searchLocationTypeBTNActionPerformed
 
     private void save1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_save1ActionPerformed
      
@@ -430,6 +358,22 @@ public class LocationTypeScreen extends javax.swing.JPanel {
            }
     }//GEN-LAST:event_formMouseReleased
 
+    private void searchBuildingBTNMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_searchBuildingBTNMouseClicked
+
+    try{
+    insertPanel.setVisible(true);
+    String Code = null; // hold entered data
+    if (LocationTypeEnteredCode.getText()!= null )
+    
+    setTableModel(LocationTypeListInDatabase.SearchLocationType(LocationTypeEnteredCode.getText())) ;
+    else
+    setTableModel(LocationTypeListInDatabase.listLocationType()) ;
+    }catch (Exception e) {
+    // TODO: Add catch code
+    e.printStackTrace();
+    }
+    }//GEN-LAST:event_searchBuildingBTNMouseClicked
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextField LocationTypeEnteredCode;
@@ -450,7 +394,7 @@ public class LocationTypeScreen extends javax.swing.JPanel {
     private javax.swing.JPanel lPanel;
     private javax.swing.JPopupMenu popup;
     private javax.swing.JButton save1;
-    private javax.swing.JButton searchLocationTypeBTN;
+    private javax.swing.JButton searchBuildingBTN;
     private javax.swing.JButton updateLocationTypeBTN;
     // End of variables declaration//GEN-END:variables
 
