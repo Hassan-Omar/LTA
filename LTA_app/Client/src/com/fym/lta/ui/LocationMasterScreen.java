@@ -127,6 +127,7 @@ public class LocationMasterScreen extends javax.swing.JPanel {
         jMenuItem2 = new javax.swing.JMenuItem();
         jMenuItem3 = new javax.swing.JMenuItem();
         jMenuItem4 = new javax.swing.JMenuItem();
+        jMenuItem5 = new javax.swing.JMenuItem();
         master = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         LocationTable = new javax.swing.JTable();
@@ -175,6 +176,14 @@ public class LocationMasterScreen extends javax.swing.JPanel {
             }
         });
         popup1.add(jMenuItem4);
+
+        jMenuItem5.setText("Hide Insertion Panel");
+        jMenuItem5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem5ActionPerformed(evt);
+            }
+        });
+        popup1.add(jMenuItem5);
 
         setPreferredSize(new java.awt.Dimension(400, 400));
         addMouseListener(new java.awt.event.MouseAdapter() {
@@ -523,6 +532,10 @@ public class LocationMasterScreen extends javax.swing.JPanel {
         Utilities.export_XLX(LocationTable);
     }//GEN-LAST:event_jMenuItem4ActionPerformed
 
+    private void jMenuItem5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem5ActionPerformed
+        define_location.setVisible(false);
+    }//GEN-LAST:event_jMenuItem5ActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTable LocationTable;
@@ -545,6 +558,7 @@ public class LocationMasterScreen extends javax.swing.JPanel {
     private javax.swing.JMenuItem jMenuItem2;
     private javax.swing.JMenuItem jMenuItem3;
     private javax.swing.JMenuItem jMenuItem4;
+    private javax.swing.JMenuItem jMenuItem5;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTextField jTextField1;
     private javax.swing.JPanel master;

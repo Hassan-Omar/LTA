@@ -68,6 +68,7 @@ public class UsersScreen extends javax.swing.JPanel {
         jMenuItem1 = new javax.swing.JMenuItem();
         jMenuItem2 = new javax.swing.JMenuItem();
         jMenuItem3 = new javax.swing.JMenuItem();
+        jMenuItem4 = new javax.swing.JMenuItem();
         users_TableaPanel = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         usersTable = new javax.swing.JTable();
@@ -113,6 +114,14 @@ public class UsersScreen extends javax.swing.JPanel {
             }
         });
         popup.add(jMenuItem3);
+
+        jMenuItem4.setText("Hide Insertion Panel");
+        jMenuItem4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem4ActionPerformed(evt);
+            }
+        });
+        popup.add(jMenuItem4);
 
         addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseReleased(java.awt.event.MouseEvent evt) {
@@ -454,7 +463,6 @@ public class UsersScreen extends javax.swing.JPanel {
             
                 if (userBaoObj.saveUser(user)) {
                     JOptionPane.showMessageDialog(this, "User Saved ");
-                    insertPanel.setVisible(false);
                     userTableReset(userBaoObj.listAll());
 
                 } else
@@ -513,6 +521,10 @@ public class UsersScreen extends javax.swing.JPanel {
 
     }//GEN-LAST:event_jMenuItem3ActionPerformed
 
+    private void jMenuItem4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem4ActionPerformed
+        insertPanel.setVisible(false);
+    }//GEN-LAST:event_jMenuItem4ActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton deleteUserBTN;
@@ -528,6 +540,7 @@ public class UsersScreen extends javax.swing.JPanel {
     private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JMenuItem jMenuItem2;
     private javax.swing.JMenuItem jMenuItem3;
+    private javax.swing.JMenuItem jMenuItem4;
     private javax.swing.JScrollPane jScrollPane1;
     private java.awt.Label label1;
     private javax.swing.JLabel mailLabel;

@@ -52,6 +52,7 @@ public class RoleScreen extends javax.swing.JPanel {
         jMenuItem1 = new javax.swing.JMenuItem();
         jMenuItem2 = new javax.swing.JMenuItem();
         jMenuItem3 = new javax.swing.JMenuItem();
+        jMenuItem4 = new javax.swing.JMenuItem();
         roleEnteredCode = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
         searchUserBTN = new javax.swing.JButton();
@@ -66,9 +67,9 @@ public class RoleScreen extends javax.swing.JPanel {
         ubdateRoleBTN = new javax.swing.JButton();
         deleteRoleBTN = new javax.swing.JButton();
         insertRoleBTN = new javax.swing.JButton();
-        roles_Panel1 = new javax.swing.JPanel();
+        roles_Panel = new javax.swing.JPanel();
         jScrollPane3 = new javax.swing.JScrollPane();
-        rolesTable1 = new javax.swing.JTable();
+        rolesTable = new javax.swing.JTable();
 
         jMenuItem1.setText("Print");
         jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
@@ -93,6 +94,14 @@ public class RoleScreen extends javax.swing.JPanel {
             }
         });
         popup.add(jMenuItem3);
+
+        jMenuItem4.setText("Hide Insertion Panel");
+        jMenuItem4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem4ActionPerformed(evt);
+            }
+        });
+        popup.add(jMenuItem4);
 
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
@@ -202,10 +211,10 @@ public class RoleScreen extends javax.swing.JPanel {
         });
         add(insertRoleBTN, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 160, 120, 30));
 
-        roles_Panel1.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Roles", 0, 0, new java.awt.Font("Tekton Pro Cond", 1, 36))); // NOI18N
+        roles_Panel.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Roles", 0, 0, new java.awt.Font("Tekton Pro Cond", 1, 36))); // NOI18N
 
-        rolesTable1.setFont(new java.awt.Font("Tekton Pro Cond", 1, 18)); // NOI18N
-        rolesTable1.setModel(new javax.swing.table.DefaultTableModel(
+        rolesTable.setFont(new java.awt.Font("Tekton Pro Cond", 1, 18)); // NOI18N
+        rolesTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
@@ -228,23 +237,23 @@ public class RoleScreen extends javax.swing.JPanel {
                 return canEdit [columnIndex];
             }
         });
-        rolesTable1.setRowHeight(30);
-        jScrollPane3.setViewportView(rolesTable1);
-        rolesTable1.getColumnModel().getColumn(0).setHeaderValue("Code");
-        rolesTable1.getColumnModel().getColumn(1).setHeaderValue("Decription");
+        rolesTable.setRowHeight(30);
+        jScrollPane3.setViewportView(rolesTable);
+        rolesTable.getColumnModel().getColumn(0).setHeaderValue("Code");
+        rolesTable.getColumnModel().getColumn(1).setHeaderValue("Decription");
 
-        javax.swing.GroupLayout roles_Panel1Layout = new javax.swing.GroupLayout(roles_Panel1);
-        roles_Panel1.setLayout(roles_Panel1Layout);
-        roles_Panel1Layout.setHorizontalGroup(
-            roles_Panel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        javax.swing.GroupLayout roles_PanelLayout = new javax.swing.GroupLayout(roles_Panel);
+        roles_Panel.setLayout(roles_PanelLayout);
+        roles_PanelLayout.setHorizontalGroup(
+            roles_PanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jScrollPane3, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 540, Short.MAX_VALUE)
         );
-        roles_Panel1Layout.setVerticalGroup(
-            roles_Panel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        roles_PanelLayout.setVerticalGroup(
+            roles_PanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jScrollPane3, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 356, Short.MAX_VALUE)
         );
 
-        add(roles_Panel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 210, 550, 400));
+        add(roles_Panel, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 210, 550, 400));
     }//GEN-END:initComponents
 
     private void ubdateRoleBTNActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ubdateRoleBTNActionPerformed
@@ -371,6 +380,10 @@ public class RoleScreen extends javax.swing.JPanel {
     Utilities.export_XLX(rolesTable);
     }//GEN-LAST:event_jMenuItem3ActionPerformed
 
+    private void jMenuItem4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem4ActionPerformed
+        insertUpdatePanel.setVisible(false);
+    }//GEN-LAST:event_jMenuItem4ActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton SaveBtn;
@@ -385,16 +398,14 @@ public class RoleScreen extends javax.swing.JPanel {
     private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JMenuItem jMenuItem2;
     private javax.swing.JMenuItem jMenuItem3;
-    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JMenuItem jMenuItem4;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
     private java.awt.Label label1;
     private javax.swing.JPopupMenu popup;
     private javax.swing.JTextField roleEnteredCode;
     private javax.swing.JTable rolesTable;
-    private javax.swing.JTable rolesTable1;
     private javax.swing.JPanel roles_Panel;
-    private javax.swing.JPanel roles_Panel1;
     private javax.swing.JButton searchUserBTN;
     private javax.swing.JButton ubdateRoleBTN;
     // End of variables declaration//GEN-END:variables

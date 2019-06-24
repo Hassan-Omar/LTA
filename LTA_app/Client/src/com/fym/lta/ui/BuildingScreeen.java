@@ -44,6 +44,7 @@ public class BuildingScreeen extends javax.swing.JPanel {
         jMenuItem1 = new javax.swing.JMenuItem();
         jMenuItem2 = new javax.swing.JMenuItem();
         jMenuItem3 = new javax.swing.JMenuItem();
+        jMenuItem4 = new javax.swing.JMenuItem();
         bPanel = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         buildingTable = new javax.swing.JTable();
@@ -85,6 +86,14 @@ public class BuildingScreeen extends javax.swing.JPanel {
         });
         popup.add(jMenuItem3);
 
+        jMenuItem4.setText("Hide Insertion Panel");
+        jMenuItem4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem4ActionPerformed(evt);
+            }
+        });
+        popup.add(jMenuItem4);
+
         addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseReleased(java.awt.event.MouseEvent evt) {
                 formMouseReleased(evt);
@@ -120,16 +129,14 @@ public class BuildingScreeen extends javax.swing.JPanel {
         bPanel.setLayout(bPanelLayout);
         bPanelLayout.setHorizontalGroup(
             bPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(bPanelLayout.createSequentialGroup()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 708, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 2, Short.MAX_VALUE))
+            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 540, Short.MAX_VALUE)
         );
         bPanelLayout.setVerticalGroup(
             bPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 246, Short.MAX_VALUE)
         );
 
-        add(bPanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 210, 720, 290));
+        add(bPanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 210, 550, 290));
         bPanel.getAccessibleContext().setAccessibleName("Building ");
 
         ubdateBuildingBTN.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
@@ -148,7 +155,7 @@ public class BuildingScreeen extends javax.swing.JPanel {
                 deleteBuildingBTNMouseClicked(evt);
             }
         });
-        add(deleteBuildingBTN, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 160, 80, 30));
+        add(deleteBuildingBTN, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 160, 80, 30));
 
         BuildingEnteredCode.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         BuildingEnteredCode.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
@@ -176,7 +183,7 @@ public class BuildingScreeen extends javax.swing.JPanel {
                 insertBuildingBTNActionPerformed(evt);
             }
         });
-        add(insertBuildingBTN, new org.netbeans.lib.awtextra.AbsoluteConstraints(630, 160, 120, 30));
+        add(insertBuildingBTN, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 160, 120, 30));
 
         searchBuildingBTN.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         searchBuildingBTN.setText("Search");
@@ -242,16 +249,16 @@ public class BuildingScreeen extends javax.swing.JPanel {
                 .addGroup(insertPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(code, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(53, 53, 53)
+                .addGap(26, 26, 26)
                 .addGroup(insertPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(desc, javax.swing.GroupLayout.PREFERRED_SIZE, 169, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(68, Short.MAX_VALUE))
+                .addContainerGap(35, Short.MAX_VALUE))
         );
 
-        add(insertPanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(810, 60, -1, 430));
+        add(insertPanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(710, 130, -1, 370));
 
         jLabel4.setFont(new java.awt.Font("Times New Roman", 1, 24)); // NOI18N
         jLabel4.setText("Buildings Screen ");
@@ -338,7 +345,7 @@ public class BuildingScreeen extends javax.swing.JPanel {
         if (business.saveBuilding(b)) {
             JOptionPane.showMessageDialog(this, "Saved");
             buildingTableReset(business.listBuilding());
-            insertPanel.setVisible(false);
+           
         } else
             JOptionPane.showMessageDialog(this, "Can't Save");
     }//GEN-LAST:event_jButton1MouseClicked
@@ -371,6 +378,10 @@ public class BuildingScreeen extends javax.swing.JPanel {
     }
     }//GEN-LAST:event_formMouseReleased
 
+    private void jMenuItem4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem4ActionPerformed
+    insertPanel.setVisible(false);
+    }//GEN-LAST:event_jMenuItem4ActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextField BuildingEnteredCode;
@@ -389,6 +400,7 @@ public class BuildingScreeen extends javax.swing.JPanel {
     private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JMenuItem jMenuItem2;
     private javax.swing.JMenuItem jMenuItem3;
+    private javax.swing.JMenuItem jMenuItem4;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JPopupMenu popup;
     private javax.swing.JButton searchBuildingBTN;

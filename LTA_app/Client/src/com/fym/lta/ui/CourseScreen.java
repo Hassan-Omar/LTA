@@ -62,6 +62,7 @@ private CourseBao courseobjBao = new BaoFactory().createCourseBao();
         jMenuItem1 = new javax.swing.JMenuItem();
         jMenuItem2 = new javax.swing.JMenuItem();
         jMenuItem3 = new javax.swing.JMenuItem();
+        jMenuItem5 = new javax.swing.JMenuItem();
         btnSearch = new javax.swing.JButton();
         search_textField = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
@@ -113,6 +114,14 @@ private CourseBao courseobjBao = new BaoFactory().createCourseBao();
         });
         popup.add(jMenuItem3);
 
+        jMenuItem5.setText("Hide Insertion Panel");
+        jMenuItem5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem5ActionPerformed(evt);
+            }
+        });
+        popup.add(jMenuItem5);
+
         addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseReleased(java.awt.event.MouseEvent evt) {
                 formMouseReleased(evt);
@@ -163,10 +172,10 @@ private CourseBao courseobjBao = new BaoFactory().createCourseBao();
         ));
         courseTable.setRowHeight(30);
         courseTable.addHierarchyBoundsListener(new java.awt.event.HierarchyBoundsListener() {
+            public void ancestorMoved(java.awt.event.HierarchyEvent evt) {
+            }
             public void ancestorResized(java.awt.event.HierarchyEvent evt) {
                 courseTableAncestorResized(evt);
-            }
-            public void ancestorMoved(java.awt.event.HierarchyEvent evt) {
             }
         });
         jScrollPane1.setViewportView(courseTable);
@@ -434,7 +443,7 @@ private CourseBao courseobjBao = new BaoFactory().createCourseBao();
   
                  if (courseobjBao.saveCourses(courses)) {
                           JOptionPane.showMessageDialog(this, "Course Saved ");
-                          insertPanel.setVisible(false);
+                      
                           courseTableReset(courseobjBao.listCourses());
 
                 }
@@ -514,6 +523,10 @@ private CourseBao courseobjBao = new BaoFactory().createCourseBao();
        }
     }//GEN-LAST:event_formMouseReleased
 
+    private void jMenuItem5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem5ActionPerformed
+        insertPanel.setVisible(false);
+    }//GEN-LAST:event_jMenuItem5ActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JComboBox Department_ComboBox;
@@ -537,6 +550,8 @@ private CourseBao courseobjBao = new BaoFactory().createCourseBao();
     private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JMenuItem jMenuItem2;
     private javax.swing.JMenuItem jMenuItem3;
+    private javax.swing.JMenuItem jMenuItem4;
+    private javax.swing.JMenuItem jMenuItem5;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTextField name_textField;

@@ -48,6 +48,7 @@ public class DepartmentsScreen extends javax.swing.JPanel {
         jMenuItem1 = new javax.swing.JMenuItem();
         jMenuItem2 = new javax.swing.JMenuItem();
         jMenuItem3 = new javax.swing.JMenuItem();
+        jMenuItem4 = new javax.swing.JMenuItem();
         jLabel1 = new javax.swing.JLabel();
         btnSearch = new javax.swing.JButton();
         jLabel3 = new javax.swing.JLabel();
@@ -90,6 +91,14 @@ public class DepartmentsScreen extends javax.swing.JPanel {
             }
         });
         popup.add(jMenuItem3);
+
+        jMenuItem4.setText("Hide Insertion Panel");
+        jMenuItem4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem4ActionPerformed(evt);
+            }
+        });
+        popup.add(jMenuItem4);
 
         addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseReleased(java.awt.event.MouseEvent evt) {
@@ -351,7 +360,7 @@ else JOptionPane.showMessageDialog(null,"select a Department to delete");
         if (departmentBaoObj.saveDepartment(department)) {
             JOptionPane.showMessageDialog(this, "saved ");
             departmentTableReset(departmentBaoObj.listDepartment());
-            insertPanel.setVisible(false);
+           
         } else
             JOptionPane.showMessageDialog(this, "can not save "); 
     }//GEN-LAST:event_btnSaveMouseClicked
@@ -377,6 +386,10 @@ else JOptionPane.showMessageDialog(null,"select a Department to delete");
         Utilities.export_XLX(DepartmentTable);
     }//GEN-LAST:event_jMenuItem3ActionPerformed
 
+    private void jMenuItem4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem4ActionPerformed
+        insertPanel.setVisible(false);
+    }//GEN-LAST:event_jMenuItem4ActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTable DepartmentTable;
@@ -398,6 +411,7 @@ else JOptionPane.showMessageDialog(null,"select a Department to delete");
     private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JMenuItem jMenuItem2;
     private javax.swing.JMenuItem jMenuItem3;
+    private javax.swing.JMenuItem jMenuItem4;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTextField name_TextField;
     private javax.swing.JPopupMenu popup;

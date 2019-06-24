@@ -70,6 +70,7 @@ public class ScheduleInsert extends javax.swing.JPanel {
         jMenuItem1 = new javax.swing.JMenuItem();
         jMenuItem2 = new javax.swing.JMenuItem();
         jMenuItem3 = new javax.swing.JMenuItem();
+        jMenuItem4 = new javax.swing.JMenuItem();
         jPanel1 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         table = new javax.swing.JTable();
@@ -110,6 +111,14 @@ public class ScheduleInsert extends javax.swing.JPanel {
             }
         });
         popup.add(jMenuItem3);
+
+        jMenuItem4.setText("Hide the content");
+        jMenuItem4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem4ActionPerformed(evt);
+            }
+        });
+        popup.add(jMenuItem4);
 
         addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseReleased(java.awt.event.MouseEvent evt) {
@@ -370,6 +379,10 @@ public class ScheduleInsert extends javax.swing.JPanel {
        
     }//GEN-LAST:event_formMouseReleased
 
+    private void jMenuItem4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem4ActionPerformed
+        table_Panel.setVisible(false);
+    }//GEN-LAST:event_jMenuItem4ActionPerformed
+
     public void TableReset(List<SchedualDto> scheduals) {
 
         Object[][] schedualArr = new Object[scheduals.size()][4];
@@ -400,6 +413,7 @@ public class ScheduleInsert extends javax.swing.JPanel {
     private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JMenuItem jMenuItem2;
     private javax.swing.JMenuItem jMenuItem3;
+    private javax.swing.JMenuItem jMenuItem4;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
