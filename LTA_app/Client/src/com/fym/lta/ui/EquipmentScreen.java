@@ -77,7 +77,7 @@ public class EquipmentScreen extends javax.swing.JPanel {
     @SuppressWarnings("unchecked")
     private void initComponents() {//GEN-BEGIN:initComponents
 
-        popup1 = new javax.swing.JPopupMenu();
+        popup = new javax.swing.JPopupMenu();
         jMenuItem2 = new javax.swing.JMenuItem();
         jMenuItem3 = new javax.swing.JMenuItem();
         jMenuItem4 = new javax.swing.JMenuItem();
@@ -108,7 +108,7 @@ public class EquipmentScreen extends javax.swing.JPanel {
                 jMenuItem2ActionPerformed(evt);
             }
         });
-        popup1.add(jMenuItem2);
+        popup.add(jMenuItem2);
 
         jMenuItem3.setText("Expor to PDF");
         jMenuItem3.addActionListener(new java.awt.event.ActionListener() {
@@ -116,7 +116,7 @@ public class EquipmentScreen extends javax.swing.JPanel {
                 jMenuItem3ActionPerformed(evt);
             }
         });
-        popup1.add(jMenuItem3);
+        popup.add(jMenuItem3);
 
         jMenuItem4.setText("Export to XLX");
         jMenuItem4.addActionListener(new java.awt.event.ActionListener() {
@@ -124,19 +124,19 @@ public class EquipmentScreen extends javax.swing.JPanel {
                 jMenuItem4ActionPerformed(evt);
             }
         });
-        popup1.add(jMenuItem4);
+        popup.add(jMenuItem4);
 
         addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseReleased(java.awt.event.MouseEvent evt) {
                 formMouseReleased(evt);
             }
         });
-        setLayout(null);
+        setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         ePanel.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Equipments", 0, 0, new java.awt.Font("Tekton Pro Cond", 0, 36))); // NOI18N
         ePanel.setPreferredSize(new java.awt.Dimension(400, 400));
 
-        EquipmentTable.setFont(new java.awt.Font("Tekton Pro", 0, 18)); // NOI18N
+        EquipmentTable.setFont(new java.awt.Font("Tekton Pro", 0, 12)); // NOI18N
         EquipmentTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
@@ -167,63 +167,57 @@ public class EquipmentScreen extends javax.swing.JPanel {
         ePanel.setLayout(ePanelLayout);
         ePanelLayout.setHorizontalGroup(
             ePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(ePanelLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 586, Short.MAX_VALUE)
-                .addContainerGap())
+            .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 610, Short.MAX_VALUE)
         );
         ePanelLayout.setVerticalGroup(
             ePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(ePanelLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 262, Short.MAX_VALUE)
-                .addContainerGap())
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 274, Short.MAX_VALUE))
         );
 
-        add(ePanel);
-        ePanel.setBounds(40, 300, 620, 330);
+        add(ePanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 210, 620, 330));
 
-        insert.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        insert.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         insert.setText("Insert New ");
         insert.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 insertActionPerformed(evt);
             }
         });
-        add(insert);
-        insert.setBounds(500, 220, 160, 59);
+        add(insert, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 160, 120, 30));
 
-        delete.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        delete.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         delete.setText("Delete ");
         delete.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 deleteActionPerformed(evt);
             }
         });
-        add(delete);
-        delete.setBounds(280, 220, 110, 59);
+        add(delete, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 160, 80, 30));
 
-        update.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        update.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         update.setText("Update ");
         update.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 updateActionPerformed(evt);
             }
         });
-        add(update);
-        update.setBounds(40, 220, 130, 59);
-        add(jTextField1);
-        jTextField1.setBounds(40, 110, 389, 45);
+        add(update, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 160, 90, 30));
 
-        search.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        jTextField1.setMaximumSize(new java.awt.Dimension(2, 20));
+        jTextField1.setMinimumSize(new java.awt.Dimension(2, 20));
+        jTextField1.setPreferredSize(new java.awt.Dimension(2, 20));
+        add(jTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 70, 230, 30));
+
+        search.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         search.setText("Search");
         search.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 searchActionPerformed(evt);
             }
         });
-        add(search);
-        search.setBounds(490, 100, 107, 60);
+        add(search, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 60, 80, 50));
 
         DefineEquipment.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
@@ -234,19 +228,19 @@ public class EquipmentScreen extends javax.swing.JPanel {
             }
         });
 
-        jLabel7.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        jLabel7.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jLabel7.setText("Location  ");
 
-        jLabel2.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        jLabel2.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jLabel2.setText("Code");
 
-        jLabel3.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        jLabel3.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jLabel3.setText("Type");
 
-        jLabel4.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        jLabel4.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jLabel4.setText("Number of used years");
 
-        save.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        save.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         save.setText("Save");
         save.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -260,28 +254,27 @@ public class EquipmentScreen extends javax.swing.JPanel {
             DefineEquipmentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(DefineEquipmentLayout.createSequentialGroup()
                 .addGap(42, 42, 42)
-                .addGroup(DefineEquipmentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(DefineEquipmentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(DefineEquipmentLayout.createSequentialGroup()
                         .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(108, 108, 108)
-                        .addComponent(location_combo, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, Short.MAX_VALUE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(location_combo, javax.swing.GroupLayout.PREFERRED_SIZE, 183, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(DefineEquipmentLayout.createSequentialGroup()
                         .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, 206, Short.MAX_VALUE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(years_number, javax.swing.GroupLayout.PREFERRED_SIZE, 156, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, DefineEquipmentLayout.createSequentialGroup()
-                        .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 62, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(code, javax.swing.GroupLayout.PREFERRED_SIZE, 156, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(DefineEquipmentLayout.createSequentialGroup()
-                        .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(type, javax.swing.GroupLayout.PREFERRED_SIZE, 156, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(74, 74, 74))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(years_number, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, DefineEquipmentLayout.createSequentialGroup()
+                        .addGroup(DefineEquipmentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 62, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(152, 152, 152)
+                        .addGroup(DefineEquipmentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(code)
+                            .addComponent(type))))
+                .addGap(44, 44, 44))
             .addGroup(DefineEquipmentLayout.createSequentialGroup()
                 .addGap(200, 200, 200)
-                .addComponent(save, javax.swing.GroupLayout.PREFERRED_SIZE, 78, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(save, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         DefineEquipmentLayout.setVerticalGroup(
@@ -303,23 +296,20 @@ public class EquipmentScreen extends javax.swing.JPanel {
                 .addGroup(DefineEquipmentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(years_number, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(50, 50, 50)
-                .addComponent(save, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(68, Short.MAX_VALUE))
+                .addGap(28, 28, 28)
+                .addComponent(save, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        add(DefineEquipment);
-        DefineEquipment.setBounds(800, 145, 492, 470);
+        add(DefineEquipment, new org.netbeans.lib.awtextra.AbsoluteConstraints(730, 160, -1, 390));
 
         jLabel8.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jLabel8.setText("Search");
-        add(jLabel8);
-        jLabel8.setBounds(40, 70, 150, 30);
+        add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 40, 150, 30));
 
         jLabel6.setFont(new java.awt.Font("Times New Roman", 1, 24)); // NOI18N
         jLabel6.setText("Equipment Screen ");
-        add(jLabel6);
-        jLabel6.setBounds(570, 10, 195, 28);
+        add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(570, 10, -1, -1));
     }//GEN-END:initComponents
 
     private void insertActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_insertActionPerformed
@@ -497,7 +487,6 @@ public class EquipmentScreen extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
-    private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JMenuItem jMenuItem2;
     private javax.swing.JMenuItem jMenuItem3;
     private javax.swing.JMenuItem jMenuItem4;
@@ -505,7 +494,6 @@ public class EquipmentScreen extends javax.swing.JPanel {
     private javax.swing.JTextField jTextField1;
     private javax.swing.JComboBox location_combo;
     private javax.swing.JPopupMenu popup;
-    private javax.swing.JPopupMenu popup1;
     private javax.swing.JButton save;
     private javax.swing.JButton search;
     private javax.swing.JTextField type;

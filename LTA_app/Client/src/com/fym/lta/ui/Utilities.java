@@ -28,7 +28,6 @@ import java.math.BigInteger;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 
-import java.util.Collections;
 import java.util.List;
 import java.util.Properties;
 
@@ -298,7 +297,7 @@ public class Utilities {
 
 // mehtod to sort the list based on the code 
 
-   public static List<SlotDto> sort_ByCode(List<SlotDto> slots)
+   /*  public static List<SlotDto> sort_ByCode(List<SlotDto> slots)
    {
      for(int i=0; i<slots.size(); i++)
        {
@@ -315,7 +314,7 @@ public class Utilities {
      
      
    return slots ; 
-}
+} */
    
     //++++++++++++++++++++++++++++++++
          // method to export the schedual table to xls format 

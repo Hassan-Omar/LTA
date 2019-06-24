@@ -32,12 +32,12 @@ private CourseBao courseobjBao = new BaoFactory().createCourseBao();
     // how to get location types in combo box 
     List<LocationTypeDto> allLocationType = new BaoFactory().createLocationTypeBao().listLocationType();
 
-
-    
+ 
+   
     /** Creates new form CourseSearch */
     public CourseScreen() 
 
-{
+{ 
         initComponents();
         if(allDepartments!=null)
         listComboDepartment(allDepartments);
@@ -118,9 +118,11 @@ private CourseBao courseobjBao = new BaoFactory().createCourseBao();
                 formMouseReleased(evt);
             }
         });
+        setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        btnSearch.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        btnSearch.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         btnSearch.setText("Search");
+        btnSearch.setPreferredSize(new java.awt.Dimension(70, 30));
         btnSearch.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 btnSearchMouseClicked(evt);
@@ -131,19 +133,26 @@ private CourseBao courseobjBao = new BaoFactory().createCourseBao();
                 btnSearchActionPerformed(evt);
             }
         });
+        add(btnSearch, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 60, 80, 50));
 
-        search_textField.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        search_textField.setFont(new java.awt.Font("Tahoma", 0, 10)); // NOI18N
         search_textField.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        search_textField.setMaximumSize(new java.awt.Dimension(2, 20));
+        search_textField.setMinimumSize(new java.awt.Dimension(2, 20));
+        search_textField.setPreferredSize(new java.awt.Dimension(2, 20));
+        add(search_textField, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 70, 229, 33));
 
         jLabel1.setFont(new java.awt.Font("Times New Roman", 1, 24)); // NOI18N
         jLabel1.setText("Course Screen ");
+        add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 0, 170, 39));
 
         jLabel2.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jLabel2.setText("Search");
+        add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 40, 163, -1));
 
         cPanel.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Courses", 0, 0, new java.awt.Font("Tekton Pro Cond", 1, 36))); // NOI18N
 
-        courseTable.setFont(new java.awt.Font("Tekton Pro Cond", 1, 18)); // NOI18N
+        courseTable.setFont(new java.awt.Font("Tekton Pro Cond", 1, 12)); // NOI18N
         courseTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
@@ -172,35 +181,37 @@ private CourseBao courseobjBao = new BaoFactory().createCourseBao();
         cPanelLayout.setHorizontalGroup(
             cPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(cPanelLayout.createSequentialGroup()
-                .addContainerGap()
+                .addGap(0, 0, 0)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 547, Short.MAX_VALUE))
         );
         cPanelLayout.setVerticalGroup(
             cPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(cPanelLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 733, Short.MAX_VALUE)
-                .addContainerGap())
+            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 436, Short.MAX_VALUE)
         );
+
+        add(cPanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 190, -1, 480));
 
         insertPanel.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
         jLabel3.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jLabel3.setText("Course Insert");
 
-        codelapel.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        codelapel.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         codelapel.setText("Code");
 
-        namelapel.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        namelapel.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         namelapel.setText("Name");
 
         Department_ComboBox.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
 
-        Departmentlapel.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        Departmentlapel.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         Departmentlapel.setText("Department ");
 
-        btnSave.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        btnSave.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         btnSave.setText("Save");
+        btnSave.setMaximumSize(new java.awt.Dimension(60, 30));
+        btnSave.setMinimumSize(new java.awt.Dimension(60, 30));
+        btnSave.setPreferredSize(new java.awt.Dimension(60, 30));
         btnSave.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 btnSaveMouseClicked(evt);
@@ -213,12 +224,12 @@ private CourseBao courseobjBao = new BaoFactory().createCourseBao();
 
         prefered_ComboBox.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
 
-        Departmentlapel1.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        Departmentlapel1.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         Departmentlapel1.setText("pref_Space");
 
         hours_perWeak.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
 
-        namelapel1.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        namelapel1.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         namelapel1.setText("Hours per Week");
 
         descrption.setColumns(20);
@@ -226,7 +237,7 @@ private CourseBao courseobjBao = new BaoFactory().createCourseBao();
         descrption.setRows(5);
         jScrollPane2.setViewportView(descrption);
 
-        Departmentlapel2.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        Departmentlapel2.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         Departmentlapel2.setText("Description");
 
         javax.swing.GroupLayout insertPanelLayout = new javax.swing.GroupLayout(insertPanel);
@@ -234,7 +245,7 @@ private CourseBao courseobjBao = new BaoFactory().createCourseBao();
         insertPanelLayout.setHorizontalGroup(
             insertPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(insertPanelLayout.createSequentialGroup()
-                .addGap(44, 44, 44)
+                .addGap(23, 23, 23)
                 .addGroup(insertPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(insertPanelLayout.createSequentialGroup()
                         .addGap(193, 193, 193)
@@ -243,32 +254,26 @@ private CourseBao courseobjBao = new BaoFactory().createCourseBao();
                     .addGroup(insertPanelLayout.createSequentialGroup()
                         .addGroup(insertPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(insertPanelLayout.createSequentialGroup()
-                                .addComponent(Departmentlapel2)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 83, Short.MAX_VALUE)
-                                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 245, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(insertPanelLayout.createSequentialGroup()
-                                .addComponent(Departmentlapel1)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(prefered_ComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 187, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(insertPanelLayout.createSequentialGroup()
                                 .addGroup(insertPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(codelapel, javax.swing.GroupLayout.PREFERRED_SIZE, 61, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(namelapel, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(namelapel1, javax.swing.GroupLayout.PREFERRED_SIZE, 159, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(namelapel1, javax.swing.GroupLayout.PREFERRED_SIZE, 159, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(Departmentlapel)
+                                    .addComponent(Departmentlapel1))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 25, Short.MAX_VALUE)
                                 .addGroup(insertPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(code_textField, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 245, Short.MAX_VALUE)
+                                    .addComponent(hours_perWeak)
+                                    .addComponent(prefered_ComboBox, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(code_textField, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 319, Short.MAX_VALUE)
                                     .addComponent(name_textField, javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(hours_perWeak)))
-                            .addGroup(insertPanelLayout.createSequentialGroup()
-                                .addComponent(Departmentlapel)
+                                    .addComponent(Department_ComboBox, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, insertPanelLayout.createSequentialGroup()
+                                .addComponent(Departmentlapel2)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(Department_ComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 187, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addGroup(insertPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(btnSave, javax.swing.GroupLayout.PREFERRED_SIZE, 129, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 319, javax.swing.GroupLayout.PREFERRED_SIZE))))
                         .addContainerGap())))
-            .addGroup(insertPanelLayout.createSequentialGroup()
-                .addGap(175, 175, 175)
-                .addComponent(btnSave, javax.swing.GroupLayout.PREFERRED_SIZE, 129, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
         );
         insertPanelLayout.setVerticalGroup(
             insertPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -305,89 +310,48 @@ private CourseBao courseobjBao = new BaoFactory().createCourseBao();
                     .addGroup(insertPanelLayout.createSequentialGroup()
                         .addGap(60, 60, 60)
                         .addComponent(Departmentlapel2)))
-                .addGap(57, 57, 57)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(btnSave, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(12, Short.MAX_VALUE))
         );
 
-        updateCourseBtn.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        add(insertPanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(650, 60, 540, 610));
+
+        updateCourseBtn.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         updateCourseBtn.setText("Update");
+        updateCourseBtn.setMaximumSize(new java.awt.Dimension(73, 25));
+        updateCourseBtn.setMinimumSize(new java.awt.Dimension(73, 25));
+        updateCourseBtn.setPreferredSize(new java.awt.Dimension(73, 25));
         updateCourseBtn.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 updateCourseBtnMouseClicked(evt);
             }
         });
+        add(updateCourseBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 150, 80, 30));
 
-        deleteCourseBtn.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        deleteCourseBtn.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         deleteCourseBtn.setText("Delete");
+        deleteCourseBtn.setMaximumSize(new java.awt.Dimension(73, 25));
+        deleteCourseBtn.setMinimumSize(new java.awt.Dimension(73, 25));
+        deleteCourseBtn.setPreferredSize(new java.awt.Dimension(73, 25));
         deleteCourseBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 deleteCourseBtnActionPerformed(evt);
             }
         });
+        add(deleteCourseBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 160, 80, 30));
 
-        insertCourseBtn.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        insertCourseBtn.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         insertCourseBtn.setText("Insert New ");
+        insertCourseBtn.setMaximumSize(new java.awt.Dimension(110, 25));
+        insertCourseBtn.setMinimumSize(new java.awt.Dimension(110, 25));
+        insertCourseBtn.setPreferredSize(new java.awt.Dimension(110, 25));
         insertCourseBtn.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 insertCourseBtnMouseClicked(evt);
             }
         });
-
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
-        this.setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 163, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 319, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(468, 468, 468))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(search_textField, javax.swing.GroupLayout.PREFERRED_SIZE, 229, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(54, 54, 54)
-                                .addComponent(btnSearch))
-                            .addComponent(cPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(updateCourseBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(105, 105, 105)
-                                .addComponent(deleteCourseBtn)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(insertCourseBtn)))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 30, Short.MAX_VALUE)
-                        .addComponent(insertPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(69, 69, 69))))
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(24, 24, 24))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)))
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(search_textField, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(btnSearch, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(28, 28, 28)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(insertCourseBtn)
-                            .addComponent(deleteCourseBtn)
-                            .addComponent(updateCourseBtn))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(cPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(insertPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(64, Short.MAX_VALUE))
-        );
+        add(insertCourseBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 160, 120, 30));
     }//GEN-END:initComponents
 
     private void courseTableAncestorResized(java.awt.event.HierarchyEvent evt) {//GEN-FIRST:event_courseTableAncestorResized

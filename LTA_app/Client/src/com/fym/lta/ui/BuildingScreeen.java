@@ -90,10 +90,11 @@ public class BuildingScreeen extends javax.swing.JPanel {
                 formMouseReleased(evt);
             }
         });
+        setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         bPanel.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Buildings", 0, 0, new java.awt.Font("Tekton Pro Cond", 1, 36))); // NOI18N
 
-        buildingTable.setFont(new java.awt.Font("Tekton Pro Cond", 0, 18)); // NOI18N
+        buildingTable.setFont(new java.awt.Font("Tekton Pro Cond", 0, 12)); // NOI18N
         buildingTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
@@ -120,42 +121,51 @@ public class BuildingScreeen extends javax.swing.JPanel {
         bPanelLayout.setHorizontalGroup(
             bPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(bPanelLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 707, Short.MAX_VALUE)
-                .addContainerGap())
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 708, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 2, Short.MAX_VALUE))
         );
         bPanelLayout.setVerticalGroup(
             bPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, bPanelLayout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 249, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 246, Short.MAX_VALUE)
         );
 
-        ubdateBuildingBTN.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        add(bPanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 210, 720, 290));
+        bPanel.getAccessibleContext().setAccessibleName("Building ");
+
+        ubdateBuildingBTN.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         ubdateBuildingBTN.setText("Update");
         ubdateBuildingBTN.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 ubdateBuildingBTNActionPerformed(evt);
             }
         });
+        add(ubdateBuildingBTN, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 160, 80, 30));
 
-        deleteBuildingBTN.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        deleteBuildingBTN.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         deleteBuildingBTN.setLabel("Delete");
         deleteBuildingBTN.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 deleteBuildingBTNMouseClicked(evt);
             }
         });
+        add(deleteBuildingBTN, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 160, 80, 30));
 
         BuildingEnteredCode.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         BuildingEnteredCode.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        BuildingEnteredCode.setMaximumSize(new java.awt.Dimension(2, 20));
+        BuildingEnteredCode.setMinimumSize(new java.awt.Dimension(2, 20));
+        BuildingEnteredCode.setPreferredSize(new java.awt.Dimension(2, 20));
+        add(BuildingEnteredCode, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 70, 230, 30));
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jLabel1.setText("Search");
+        add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 20, 333, 39));
 
-        insertBuildingBTN.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        insertBuildingBTN.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         insertBuildingBTN.setText("Insert  New ");
+        insertBuildingBTN.setMaximumSize(new java.awt.Dimension(110, 25));
+        insertBuildingBTN.setMinimumSize(new java.awt.Dimension(110, 25));
+        insertBuildingBTN.setPreferredSize(new java.awt.Dimension(110, 25));
         insertBuildingBTN.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 insertBuildingBTNMouseClicked(evt);
@@ -166,19 +176,26 @@ public class BuildingScreeen extends javax.swing.JPanel {
                 insertBuildingBTNActionPerformed(evt);
             }
         });
+        add(insertBuildingBTN, new org.netbeans.lib.awtextra.AbsoluteConstraints(630, 160, 120, 30));
 
-        searchBuildingBTN.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        searchBuildingBTN.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         searchBuildingBTN.setText("Search");
+        searchBuildingBTN.setMaximumSize(new java.awt.Dimension(70, 30));
+        searchBuildingBTN.setMinimumSize(new java.awt.Dimension(70, 30));
+        searchBuildingBTN.setPreferredSize(new java.awt.Dimension(70, 30));
         searchBuildingBTN.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 searchBuildingBTNMouseClicked(evt);
             }
         });
+        add(searchBuildingBTN, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 60, 80, 50));
 
-        jLabel2.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        insertPanel.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+
+        jLabel2.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jLabel2.setText("Description");
 
-        jLabel3.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        jLabel3.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jLabel3.setText("Code");
 
         code.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
@@ -191,8 +208,11 @@ public class BuildingScreeen extends javax.swing.JPanel {
             }
         });
 
-        jButton1.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        jButton1.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jButton1.setText("Save");
+        jButton1.setMaximumSize(new java.awt.Dimension(60, 30));
+        jButton1.setMinimumSize(new java.awt.Dimension(60, 30));
+        jButton1.setPreferredSize(new java.awt.Dimension(60, 30));
         jButton1.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jButton1MouseClicked(evt);
@@ -220,7 +240,7 @@ public class BuildingScreeen extends javax.swing.JPanel {
             .addGroup(insertPanelLayout.createSequentialGroup()
                 .addGap(26, 26, 26)
                 .addGroup(insertPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(code, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(code, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(53, 53, 53)
                 .addGroup(insertPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -228,68 +248,14 @@ public class BuildingScreeen extends javax.swing.JPanel {
                     .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(68, Short.MAX_VALUE))
         );
+
+        add(insertPanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(810, 60, -1, 430));
 
         jLabel4.setFont(new java.awt.Font("Times New Roman", 1, 24)); // NOI18N
         jLabel4.setText("Buildings Screen ");
-
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
-        this.setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(40, 40, 40)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(bPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(ubdateBuildingBTN, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(138, 138, 138)
-                        .addComponent(deleteBuildingBTN, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(141, 141, 141)
-                        .addComponent(insertBuildingBTN, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(1, 1, 1)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 333, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(BuildingEnteredCode, javax.swing.GroupLayout.PREFERRED_SIZE, 296, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(38, 38, 38)
-                                .addComponent(searchBuildingBTN)))))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 25, Short.MAX_VALUE)
-                .addComponent(insertPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 231, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(6, 6, 6)
-                .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(BuildingEnteredCode, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(searchBuildingBTN, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 6, Short.MAX_VALUE)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(ubdateBuildingBTN, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                .addComponent(deleteBuildingBTN, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(insertBuildingBTN, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(18, 18, 18)
-                        .addComponent(bPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap())
-                    .addComponent(insertPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-        );
-
-        bPanel.getAccessibleContext().setAccessibleName("Building ");
+        add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 0, 210, 40));
     }//GEN-END:initComponents
     //Update Buttom
     private void ubdateBuildingBTNActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ubdateBuildingBTNActionPerformed
