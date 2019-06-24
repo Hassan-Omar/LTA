@@ -81,6 +81,9 @@ public class ScheduleInsert extends javax.swing.JPanel {
         table_Panel = new javax.swing.JPanel();
         jScrollPane2 = new javax.swing.JScrollPane();
         table2 = new javax.swing.JTable();
+        dep = new javax.swing.JLabel();
+        acdYear = new javax.swing.JLabel();
+        tCode = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
 
@@ -113,7 +116,7 @@ public class ScheduleInsert extends javax.swing.JPanel {
                 formMouseReleased(evt);
             }
         });
-        setLayout(null);
+        setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Schedules", 0, 0, new java.awt.Font("Tekton Pro Cond", 1, 36))); // NOI18N
 
@@ -154,35 +157,32 @@ public class ScheduleInsert extends javax.swing.JPanel {
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 510, Short.MAX_VALUE)
+            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 550, Short.MAX_VALUE)
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 206, Short.MAX_VALUE)
+            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 276, Short.MAX_VALUE)
         );
 
-        add(jPanel1);
-        jPanel1.setBounds(10, 260, 520, 250);
+        add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 200, 560, 320));
 
-        insertBTN.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        insertBTN.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         insertBTN.setText("Insert  New ");
         insertBTN.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 insertBTNMouseClicked(evt);
             }
         });
-        add(insertBTN);
-        insertBTN.setBounds(370, 190, 160, 54);
+        add(insertBTN, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 160, 120, 30));
 
-        searchBTN.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        searchBTN.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         searchBTN.setText("Search");
         searchBTN.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 searchBTNMouseClicked(evt);
             }
         });
-        add(searchBTN);
-        searchBTN.setBounds(310, 90, 97, 60);
+        add(searchBTN, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 60, 80, 50));
 
         ScheduleCode.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         ScheduleCode.addActionListener(new java.awt.event.ActionListener() {
@@ -190,25 +190,23 @@ public class ScheduleInsert extends javax.swing.JPanel {
                 ScheduleCodeActionPerformed(evt);
             }
         });
-        add(ScheduleCode);
-        ScheduleCode.setBounds(10, 100, 250, 40);
+        add(ScheduleCode, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 70, 230, 30));
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jLabel1.setText("Search");
-        add(jLabel1);
-        jLabel1.setBounds(10, 60, 110, 30);
+        add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 40, 110, 30));
 
-        deleteBTN.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        deleteBTN.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         deleteBTN.setLabel("Delete");
         deleteBTN.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 deleteBTNMouseClicked(evt);
             }
         });
-        add(deleteBTN);
-        deleteBTN.setBounds(220, 190, 111, 50);
+        add(deleteBTN, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 160, 80, 30));
 
         table_Panel.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        table_Panel.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         table2.setFont(new java.awt.Font("Tekton Pro Cond", 0, 14)); // NOI18N
         table2.setModel(new javax.swing.table.DefaultTableModel(
@@ -248,36 +246,34 @@ public class ScheduleInsert extends javax.swing.JPanel {
         table2.getColumnModel().getColumn(4).setHeaderValue("slot4");
         table2.getAccessibleContext().setAccessibleDescription("");
 
-        javax.swing.GroupLayout table_PanelLayout = new javax.swing.GroupLayout(table_Panel);
-        table_Panel.setLayout(table_PanelLayout);
-        table_PanelLayout.setHorizontalGroup(
-            table_PanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 568, Short.MAX_VALUE)
-        );
-        table_PanelLayout.setVerticalGroup(
-            table_PanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, table_PanelLayout.createSequentialGroup()
-                .addGap(0, 93, Short.MAX_VALUE)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 365, javax.swing.GroupLayout.PREFERRED_SIZE))
-        );
+        table_Panel.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(1, 129, 628, 410));
 
-        add(table_Panel);
-        table_Panel.setBounds(550, 55, 570, 460);
+        dep.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        dep.setText("Department");
+        table_Panel.add(dep, new org.netbeans.lib.awtextra.AbsoluteConstraints(1, 76, 160, 30));
+
+        acdYear.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        acdYear.setText("Academic Year");
+        table_Panel.add(acdYear, new org.netbeans.lib.awtextra.AbsoluteConstraints(1, 28, 160, 30));
+
+        tCode.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        tCode.setText("Table Code");
+        table_Panel.add(tCode, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 30, 160, 30));
+
+        add(table_Panel, new org.netbeans.lib.awtextra.AbsoluteConstraints(650, 160, 630, 540));
 
         jLabel2.setFont(new java.awt.Font("Times New Roman", 1, 24)); // NOI18N
         jLabel2.setText("Scheduels Screen");
-        add(jLabel2);
-        jLabel2.setBounds(420, 10, 177, 28);
+        add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 10, -1, -1));
 
-        jButton1.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        jButton1.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jButton1.setText("view content");
         jButton1.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jButton1MouseClicked(evt);
             }
         });
-        add(jButton1);
-        jButton1.setBounds(20, 190, 151, 50);
+        add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 160, 120, 30));
     }//GEN-END:initComponents
 
     private void insertBTNMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_insertBTNMouseClicked
@@ -338,6 +334,10 @@ public class ScheduleInsert extends javax.swing.JPanel {
     private void jButton1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MouseClicked
         if (table.getSelectedRow() >= 0) {
             table_Panel.setVisible(true);
+            tCode.setText( tCode.getText() +table.getValueAt(table.getSelectedRow(), 0).toString() );
+            acdYear.setText( acdYear.getText() +table.getValueAt(table.getSelectedRow(), 1).toString() );
+            dep.setText( dep.getText() +table.getValueAt(table.getSelectedRow(), 2).toString() );
+ 
             SchedualDto sch = schedualBao.getSlectedTable(table.getValueAt(table.getSelectedRow(), 0).toString());
 
             Utilities.schResetModel(table2, sch.getSchedual_Slots());
@@ -390,7 +390,9 @@ public class ScheduleInsert extends javax.swing.JPanel {
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextField ScheduleCode;
+    private javax.swing.JLabel acdYear;
     private javax.swing.JButton deleteBTN;
+    private javax.swing.JLabel dep;
     private javax.swing.JButton insertBTN;
     private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
@@ -403,6 +405,7 @@ public class ScheduleInsert extends javax.swing.JPanel {
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JPopupMenu popup;
     private javax.swing.JButton searchBTN;
+    private javax.swing.JLabel tCode;
     private javax.swing.JTable table;
     private javax.swing.JTable table2;
     private javax.swing.JPanel table_Panel;
