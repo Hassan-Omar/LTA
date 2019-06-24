@@ -2,9 +2,8 @@
 package com.fym.lta.ui;
 
 import com.fym.lta.bao.BaoFactory;
-import com.fym.lta.bao.LoginEngine;
-import com.fym.lta.bao.UserBao;
-import com.fym.lta.dto.UserDto;
+import com.fym.lta.bao.EmployeeBao;
+import com.fym.lta.dto.EmployeeDto;
 
 import java.io.File;
 
@@ -37,14 +36,14 @@ import javax.swing.JOptionPane;
  */
 public class MailScreen extends javax.swing.JPanel {
     
-    private UserBao userBaoObj = new BaoFactory().createUserBao();
-    private List<UserDto> searchReturnedUsers; 
+    private EmployeeBao empBaoObj = new BaoFactory().createemployeeBao();
+    private List<EmployeeDto> searchReturnedUsers; 
 
     /** Creates new form MailScreen */
     public MailScreen() {
         initComponents();
-        if(userBaoObj.listAll() != null )
-        userTableReset(userBaoObj.listAll()) ;
+        if(empBaoObj.listEmployee() != null )
+        userTableReset(empBaoObj.listEmployee()) ;
         // now one step we will create an object of ScreenBao to know the current permission 
        // int permissionType = new BaoFactory().createScreenBao().getCurrentPermission(15);
       //  Utilities.mandate(null,null , null ,15, Utilities.convertTOBase2(permissionType));
@@ -76,7 +75,11 @@ public class MailScreen extends javax.swing.JPanel {
         remotePass = new javax.swing.JPasswordField();
         jLabel1 = new javax.swing.JLabel();
         btnSend1 = new javax.swing.JButton();
+        jLabel5 = new javax.swing.JLabel();
 
+        setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        userTable.setFont(new java.awt.Font("Tekton Pro", 1, 12)); // NOI18N
         userTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
@@ -103,37 +106,49 @@ public class MailScreen extends javax.swing.JPanel {
         userTable.getColumnModel().getColumn(2).setHeaderValue("Title 3");
         userTable.getColumnModel().getColumn(3).setHeaderValue("Title 4");
 
-        jLabel2.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        jLabel2.setText("E-mail ");
+        add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 160, 510, 370));
+        add(email_TextField, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 80, 228, 35));
 
-        btnSearch.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        jLabel2.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        jLabel2.setText("Search");
+        add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 40, 101, 35));
+
+        btnSearch.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         btnSearch.setText("Search");
         btnSearch.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 btnSearchMouseClicked(evt);
             }
         });
+        add(btnSearch, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 70, 80, 50));
 
         jPanel1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jLabel3.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        jLabel3.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jLabel3.setText("Email to  ");
+        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(25, 13, 103, 38));
+        jPanel1.add(emailTo_TextField, new org.netbeans.lib.awtextra.AbsoluteConstraints(172, 19, 230, 30));
 
         msgTopic.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 msgTopicActionPerformed(evt);
             }
         });
+        jPanel1.add(msgTopic, new org.netbeans.lib.awtextra.AbsoluteConstraints(172, 70, 230, 30));
 
-        jLabel4.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        jLabel4.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jLabel4.setText("Email topic ");
+        jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(25, 69, -1, 39));
 
         emailBody_TextField.setColumns(20);
         emailBody_TextField.setRows(5);
         jScrollPane2.setViewportView(emailBody_TextField);
 
-        addAttach.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        addAttach.setText("Add attachement");
+        jPanel1.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(172, 115, 320, 189));
+
+        addAttach.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        addAttach.setText("Attachement");
         addAttach.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 addAttachMouseClicked(evt);
@@ -144,17 +159,20 @@ public class MailScreen extends javax.swing.JPanel {
                 addAttachActionPerformed(evt);
             }
         });
+        jPanel1.add(addAttach, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 270, -1, 34));
 
         remotePass.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 remotePassActionPerformed(evt);
             }
         });
+        jPanel1.add(remotePass, new org.netbeans.lib.awtextra.AbsoluteConstraints(172, 400, 190, 30));
 
-        jLabel1.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        jLabel1.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jLabel1.setText("password");
+        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(25, 400, 102, 51));
 
-        btnSend1.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        btnSend1.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         btnSend1.setText("Send");
         btnSend1.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -166,101 +184,13 @@ public class MailScreen extends javax.swing.JPanel {
                 btnSend1ActionPerformed(evt);
             }
         });
+        jPanel1.add(btnSend1, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 390, 110, 50));
 
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGap(125, 125, 125)
-                                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 332, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGap(24, 24, 24)
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(jLabel4)
-                                    .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGap(34, 34, 34)
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(msgTopic, javax.swing.GroupLayout.PREFERRED_SIZE, 233, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(emailTo_TextField, javax.swing.GroupLayout.PREFERRED_SIZE, 233, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 35, Short.MAX_VALUE)
-                        .addComponent(addAttach))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(remotePass, javax.swing.GroupLayout.PREFERRED_SIZE, 260, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(100, 100, 100)
-                        .addComponent(btnSend1, javax.swing.GroupLayout.PREFERRED_SIZE, 151, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(10, 10, 10)))
-                .addContainerGap())
-        );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(remotePass, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(emailTo_TextField, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGap(18, 18, 18)
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                    .addComponent(msgTopic, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGap(18, 18, 18)
-                                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 211, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                                .addGap(54, 54, 54)
-                                .addComponent(addAttach, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(46, 46, 46)
-                        .addComponent(btnSend1, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(29, Short.MAX_VALUE))
-        );
+        add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(620, 80, 660, -1));
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
-        this.setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(93, 93, 93)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(4, 4, 4)
-                        .addComponent(email_TextField, javax.swing.GroupLayout.PREFERRED_SIZE, 228, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(43, 43, 43)
-                        .addComponent(btnSearch)))
-                .addGap(55, 55, 55)
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(34, Short.MAX_VALUE))
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(74, 74, 74)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(email_TextField, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(btnSearch, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 259, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(37, 37, 37))
-        );
+        jLabel5.setFont(new java.awt.Font("Times New Roman", 1, 24)); // NOI18N
+        jLabel5.setText("Reports Screen ");
+        add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 0, 250, 30));
     }//GEN-END:initComponents
    
    
@@ -291,18 +221,20 @@ public class MailScreen extends javax.swing.JPanel {
 
     private void btnSearchMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnSearchMouseClicked
     if (email_TextField.getText() != null) {
-
-        searchReturnedUsers = userBaoObj.seachForUsers(email_TextField.getText());
+ 
+     EmployeeDto emp = new EmployeeDto() ; 
+     emp.setFName(email_TextField.getText());
+        searchReturnedUsers = empBaoObj.SearchEmployee(emp);
     }
 
     else {
         // no input will return all users
-        searchReturnedUsers = userBaoObj.listAll();
+        searchReturnedUsers = empBaoObj.listEmployee();
     }
 
     if (searchReturnedUsers == null) {
         JOptionPane.showMessageDialog(this, "not found");
-        userTableReset(userBaoObj.listAll());
+        userTableReset(empBaoObj.listEmployee());
     }
 
     else
@@ -334,10 +266,10 @@ public class MailScreen extends javax.swing.JPanel {
    // if (userTable.getSelectedRow()<0)
     //  JOptionPane.showMessageDialog(this, "There is no user have been selected/n please Select a user");
         // this will give you current user's mail 
-        String currentUserEmail =  userBaoObj.getCurrentUserEmail(LoginEngine.currentUser); 
+        //String currentUserEmail =  userBaoObj.getCurrentUserEmail(LoginEngine.currentUser); 
     
         // this only to test and you need to delete in future 
-        currentUserEmail = "nadaelrayse@gmail.com" ; 
+       String currentUserEmail = "nadaelrayse@gmail.com" ; 
     
     
        final String username = currentUserEmail ;
@@ -453,6 +385,7 @@ public class MailScreen extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
@@ -462,22 +395,21 @@ public class MailScreen extends javax.swing.JPanel {
     // End of variables declaration//GEN-END:variables
 
 
-    public void userTableReset(List<UserDto> users) 
+    public void userTableReset(List<EmployeeDto> emps) 
     { 
-        Object[][] usersArr = new Object[users.size()][4];
+        Object[][] empsArr = new Object[emps.size()][2];
 
-        for (int i = 0; i < users.size();i++) {
+        for (int i = 0; i < emps.size();i++) {
             // View the full name
-            usersArr[i][0] =
-                               users.get(i).getFName() + " " + users.get(i).getSName() + " " + users.get(i).getLName() +
-                               " " + users.get(i).getFamilyName();
+            empsArr[i][0] =
+                               emps.get(i).getFName() + " " + emps.get(i).getSName() + " " + emps.get(i).getLName() +
+                               " " + emps.get(i).getFamilyName();
 
-            usersArr[i][1] = users.get(i).getEmail();
-            usersArr[i][2] = users.get(i).getUserName();
-            usersArr[i][3] = users.get(i).getUserRole().getCode();
+            empsArr[i][1] = emps.get(i).getEmail();
+         
         }
-        userTable.setModel(new javax.swing.table.DefaultTableModel(usersArr, new String[] {
-                                                                    "Name", "Email", "Login Username", "Role code "
+        userTable.setModel(new javax.swing.table.DefaultTableModel(empsArr, new String[] {
+                                                                    "Name", "Email"
             }));
     }
 

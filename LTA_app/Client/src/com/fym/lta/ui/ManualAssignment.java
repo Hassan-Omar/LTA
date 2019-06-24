@@ -89,7 +89,6 @@ public class ManualAssignment extends javax.swing.JPanel {
      */
     @SuppressWarnings("unchecked")
     private void initComponents() {//GEN-BEGIN:initComponents
-        java.awt.GridBagConstraints gridBagConstraints;
 
         type_combo = new javax.swing.JComboBox();
         building_combo = new javax.swing.JComboBox();
@@ -105,8 +104,7 @@ public class ManualAssignment extends javax.swing.JPanel {
         jScrollPane2 = new javax.swing.JScrollPane();
         SlotsTable = new javax.swing.JTable();
 
-        setBorder(javax.swing.BorderFactory.createTitledBorder("Location Manual Assignment"));
-        setLayout(new java.awt.GridBagLayout());
+        setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         type_combo.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         type_combo.addActionListener(new java.awt.event.ActionListener() {
@@ -114,15 +112,7 @@ public class ManualAssignment extends javax.swing.JPanel {
                 type_comboActionPerformed(evt);
             }
         });
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 1;
-        gridBagConstraints.gridheight = 3;
-        gridBagConstraints.ipadx = 137;
-        gridBagConstraints.ipady = 36;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(23, 245, 0, 0);
-        add(type_combo, gridBagConstraints);
+        add(type_combo, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 60, 140, 30));
 
         building_combo.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         building_combo.addActionListener(new java.awt.event.ActionListener() {
@@ -130,40 +120,17 @@ public class ManualAssignment extends javax.swing.JPanel {
                 building_comboActionPerformed(evt);
             }
         });
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 2;
-        gridBagConstraints.gridy = 1;
-        gridBagConstraints.gridwidth = 2;
-        gridBagConstraints.gridheight = 3;
-        gridBagConstraints.ipadx = 133;
-        gridBagConstraints.ipady = 36;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(23, 266, 0, 0);
-        add(building_combo, gridBagConstraints);
+        add(building_combo, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 60, 156, 30));
 
-        jLabel1.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        jLabel1.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jLabel1.setText("Choose Location Type");
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 0;
-        gridBagConstraints.gridwidth = 2;
-        gridBagConstraints.ipady = 10;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(135, 226, 0, 0);
-        add(jLabel1, gridBagConstraints);
+        add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 10, 160, 30));
 
-        jLabel2.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        jLabel2.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jLabel2.setText("Choose Building  ");
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 2;
-        gridBagConstraints.gridy = 0;
-        gridBagConstraints.ipadx = 12;
-        gridBagConstraints.ipady = 10;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(135, 248, 0, 0);
-        add(jLabel2, gridBagConstraints);
+        add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 10, 166, 30));
 
-        master.setBorder(javax.swing.BorderFactory.createTitledBorder("Locations "));
+        master.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Locations ", 0, 0, new java.awt.Font("Tekton Pro", 1, 36))); // NOI18N
         master.setPreferredSize(new java.awt.Dimension(400, 400));
 
         LocationTable.setModel(new javax.swing.table.DefaultTableModel(
@@ -219,70 +186,43 @@ public class ManualAssignment extends javax.swing.JPanel {
         master.setLayout(masterLayout);
         masterLayout.setHorizontalGroup(
             masterLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 1102, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addGroup(masterLayout.createSequentialGroup()
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 648, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 2, Short.MAX_VALUE))
         );
         masterLayout.setVerticalGroup(
             masterLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 529, Short.MAX_VALUE)
+            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 406, Short.MAX_VALUE)
         );
 
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 8;
-        gridBagConstraints.gridwidth = 7;
-        gridBagConstraints.ipady = 506;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(0, 139, 82, 0);
-        add(master, gridBagConstraints);
+        add(master, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 140, 660, 450));
 
-        done.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        done.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         done.setText("Filter Locations");
         done.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 doneActionPerformed(evt);
             }
         });
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 4;
-        gridBagConstraints.gridy = 3;
-        gridBagConstraints.gridwidth = 2;
-        gridBagConstraints.gridheight = 5;
-        gridBagConstraints.ipady = 28;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(32, 139, 0, 0);
-        add(done, gridBagConstraints);
+        add(done, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 10, -1, 50));
 
-        refresh.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        refresh.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         refresh.setText("Refresh");
         refresh.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 refreshActionPerformed(evt);
             }
         });
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 4;
-        gridBagConstraints.gridy = 0;
-        gridBagConstraints.gridheight = 2;
-        gridBagConstraints.ipady = 15;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(157, 168, 0, 0);
-        add(refresh, gridBagConstraints);
+        add(refresh, new org.netbeans.lib.awtextra.AbsoluteConstraints(620, 100, -1, 30));
 
-        assign.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        assign.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         assign.setText("Assign Location");
         assign.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 assignActionPerformed(evt);
             }
         });
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 7;
-        gridBagConstraints.gridy = 3;
-        gridBagConstraints.gridheight = 4;
-        gridBagConstraints.ipady = 15;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(16, 53, 0, 0);
-        add(assign, gridBagConstraints);
+        add(assign, new org.netbeans.lib.awtextra.AbsoluteConstraints(1160, 600, -1, 40));
 
         SlotsTable.setFont(new java.awt.Font("Tekton Pro Cond", 1, 24)); // NOI18N
         SlotsTable.setModel(new javax.swing.table.DefaultTableModel(
@@ -315,27 +255,19 @@ public class ManualAssignment extends javax.swing.JPanel {
         slotsPanel.setLayout(slotsPanelLayout);
         slotsPanelLayout.setHorizontalGroup(
             slotsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, slotsPanelLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 487, Short.MAX_VALUE)
-                .addContainerGap())
+            .addGroup(slotsPanelLayout.createSequentialGroup()
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 557, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 3, Short.MAX_VALUE))
         );
         slotsPanelLayout.setVerticalGroup(
             slotsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, slotsPanelLayout.createSequentialGroup()
+            .addGroup(slotsPanelLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 526, Short.MAX_VALUE))
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 413, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 7;
-        gridBagConstraints.gridy = 8;
-        gridBagConstraints.gridwidth = 2;
-        gridBagConstraints.ipadx = 468;
-        gridBagConstraints.ipady = 503;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(12, 116, 82, 71);
-        add(slotsPanel, gridBagConstraints);
+        add(slotsPanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(730, 160, 560, 430));
     }//GEN-END:initComponents
 
     private void type_comboActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_type_comboActionPerformed
