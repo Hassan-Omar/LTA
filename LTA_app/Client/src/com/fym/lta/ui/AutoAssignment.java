@@ -79,8 +79,7 @@ public class AutoAssignment extends javax.swing.JPanel {
        // progress bar 
         progressPanel.setVisible(false);
 
-        timer = new Timer (500 ,assignBtn.getActionListeners()[0]);
-             timer.start();
+
     }//GEN-LAST:event_assignBtnMouseClicked
 
 

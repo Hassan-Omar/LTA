@@ -166,14 +166,16 @@ public class ScheduleInsert extends javax.swing.JPanel {
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 550, Short.MAX_VALUE)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 355, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 15, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 276, Short.MAX_VALUE)
         );
 
-        add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 200, 560, 320));
+        add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 200, 380, 320));
 
         insertBTN.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         insertBTN.setText("Insert  New ");
@@ -182,7 +184,7 @@ public class ScheduleInsert extends javax.swing.JPanel {
                 insertBTNMouseClicked(evt);
             }
         });
-        add(insertBTN, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 160, 120, 30));
+        add(insertBTN, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 160, 120, 30));
 
         searchBTN.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         searchBTN.setText("Search");
@@ -212,12 +214,17 @@ public class ScheduleInsert extends javax.swing.JPanel {
                 deleteBTNMouseClicked(evt);
             }
         });
-        add(deleteBTN, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 160, 80, 30));
+        deleteBTN.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                deleteBTNActionPerformed(evt);
+            }
+        });
+        add(deleteBTN, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 160, 80, 30));
 
         table_Panel.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         table_Panel.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        table2.setFont(new java.awt.Font("Tekton Pro Cond", 0, 14)); // NOI18N
+        table2.setFont(new java.awt.Font("Tekton Pro Cond", 1, 12)); // NOI18N
         table2.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
@@ -241,7 +248,8 @@ public class ScheduleInsert extends javax.swing.JPanel {
                 return canEdit [columnIndex];
             }
         });
-        table2.setRowHeight(80);
+        table2.setEnabled(false);
+        table2.setRowHeight(15);
         jScrollPane2.setViewportView(table2);
         table2.getColumnModel().getColumn(0).setResizable(false);
         table2.getColumnModel().getColumn(0).setHeaderValue("Day");
@@ -255,7 +263,7 @@ public class ScheduleInsert extends javax.swing.JPanel {
         table2.getColumnModel().getColumn(4).setHeaderValue("slot4");
         table2.getAccessibleContext().setAccessibleDescription("");
 
-        table_Panel.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(1, 129, 628, 410));
+        table_Panel.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(1, 129, 730, 530));
 
         dep.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         dep.setText("Department");
@@ -269,7 +277,7 @@ public class ScheduleInsert extends javax.swing.JPanel {
         tCode.setText("Table Code");
         table_Panel.add(tCode, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 30, 160, 30));
 
-        add(table_Panel, new org.netbeans.lib.awtextra.AbsoluteConstraints(650, 160, 630, 540));
+        add(table_Panel, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 90, 860, 660));
 
         jLabel2.setFont(new java.awt.Font("Times New Roman", 1, 24)); // NOI18N
         jLabel2.setText("Scheduels Screen");
@@ -345,7 +353,7 @@ public class ScheduleInsert extends javax.swing.JPanel {
             table_Panel.setVisible(true);
             tCode.setText( tCode.getText() +table.getValueAt(table.getSelectedRow(), 0).toString() );
             acdYear.setText( acdYear.getText() +table.getValueAt(table.getSelectedRow(), 1).toString() );
-            dep.setText( dep.getText() +table.getValueAt(table.getSelectedRow(), 2).toString() );
+            dep.setText( dep.getText() +table.getValueAt(table.getSelectedRow(), 3).toString() );
  
             SchedualDto sch = schedualBao.getSlectedTable(table.getValueAt(table.getSelectedRow(), 0).toString());
 
@@ -367,8 +375,7 @@ public class ScheduleInsert extends javax.swing.JPanel {
 
     private void jMenuItem3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem3ActionPerformed
 
-        Utilities.exportSch_XLX(table2);
-
+        Utilities.export_XLX(table2);
     }//GEN-LAST:event_jMenuItem3ActionPerformed
 
     private void formMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_formMouseReleased
@@ -382,6 +389,10 @@ public class ScheduleInsert extends javax.swing.JPanel {
     private void jMenuItem4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem4ActionPerformed
         table_Panel.setVisible(false);
     }//GEN-LAST:event_jMenuItem4ActionPerformed
+
+    private void deleteBTNActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteBTNActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_deleteBTNActionPerformed
 
     public void TableReset(List<SchedualDto> scheduals) {
 
@@ -537,7 +548,7 @@ public class ScheduleInsert extends javax.swing.JPanel {
                         instructors.add(instructor);
                         if((instructor.getFName()!=null && instructor.getSName()!=null)&&(instructor.getFName()!="" && instructor.getSName()!=""))
                         employees.add(instructor);
-                        // second instructor 
+                        /*  // second instructor 
                         {
                             instructor2.setEmail(StaffName2.getCell(k + 1).toString()+"@fayoum.edu.eg");
                             // you need to cut the string and set the name as comming +++++++++
@@ -573,7 +584,7 @@ public class ScheduleInsert extends javax.swing.JPanel {
                             employees.add(instructor2);
    
                             
-                        }
+                        } */
                         course.setInstructors(instructors);
                         course.setCode(courseName.getCell(k + 1).toString());
                         course.setName(courseName.getCell(k).toString());

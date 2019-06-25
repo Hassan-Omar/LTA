@@ -9,8 +9,6 @@ import com.fym.lta.ui.AutoAssignment;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.swing.JOptionPane;
-
 public class AllocationAlgorthim {
 
     //var to hold the value of saving table after allocation ;
@@ -21,7 +19,7 @@ public class AllocationAlgorthim {
 
     // list of all departments stored on DB
     List<DepartmentDto> allDeparts = new BaoFactory().createDepartmentBao().listDepartment();
-
+    static String Errors = "";
 
 
     public String alloc_All() { // loops on all departments
@@ -42,7 +40,7 @@ public class AllocationAlgorthim {
              AutoAssignment.slotNO += ratio;
         }
 
-        return report;
+        return report+Errors;
     }
 
 
@@ -62,13 +60,16 @@ public class AllocationAlgorthim {
         // loop on the slots      
         for (int i = 0; i < currentSlots.size(); i++) 
         {
-          // System.out.println("i"+i + "size"+currentSlots.get(i).getSlot_id());
+         
            List<LocationDto> filterdRooms = filterLocation(rooms_inDep ,currentSlots.get(i).getCode());
            LocationDto chosenRoom = decitionMake(filterdRooms , studentNum , currentSlots.get(i).getPrefSpace() ) ; 
+          
            if(chosenRoom==null)
-           {JOptionPane.showMessageDialog(null, "i can't find a proper location ");}
+           {Errors+="can't alloc for"+currentSlots.get(i).getCode(); 
+           }
             else
            {
+         
            // update this location 
            chosenRoom.setAssignedSlot(currentSlots.get(i));
             System.out.println(chosenRoom.getLocation_id());
