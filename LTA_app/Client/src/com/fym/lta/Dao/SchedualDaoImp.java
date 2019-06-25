@@ -337,7 +337,7 @@ public class SchedualDaoImp implements SchedualDao {
             jdbcR.setUrl(ConnectionFactory.getUrl());
             jdbcR.setUsername(ConnectionFactory.getUsername());
             jdbcR.setPassword(ConnectionFactory.getPassword());
- 
+    
             jdbcR.setCommand(Queries.SHOW_SCHEDULE_SLOTS);
             jdbcR.setString(1, tableCode);
             jdbcR.execute();
@@ -368,6 +368,10 @@ public class SchedualDaoImp implements SchedualDao {
                 slot.setSlot_id(jdbcR.getInt(7));
                 slot.setCode(jdbcR.getInt(8));       
                 slots.add(slot);
+            
+            
+                System.out.println("\n in Dao imo \n "+slots.get(0).getCurrentCourse().getName());
+
             }
             result.setSchedual_Slots(slots);
             
@@ -393,4 +397,5 @@ public class SchedualDaoImp implements SchedualDao {
         catch(Exception e)
         {  }
     return result ;}
-}
+    }
+
