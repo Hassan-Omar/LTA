@@ -237,7 +237,7 @@ public class SchedualDaoImp implements SchedualDao {
 
 
                 jdbcR.execute();
-               // System.out.println(slot.getCode() + "ucode");
+               
             }
 
             jdbcR.setCommand(Queries.UPDATE_SCHEDULE);

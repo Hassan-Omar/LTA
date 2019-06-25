@@ -6,18 +6,14 @@ import com.fym.lta.bao.LocationBao;
 import com.fym.lta.bao.SchedualBao;
 import com.fym.lta.dto.BuildingDto;
 import com.fym.lta.dto.DepartmentDto;
-import com.fym.lta.dto.FloorDto;
 import com.fym.lta.dto.LocationDto;
 import com.fym.lta.dto.LocationTypeDto;
-
 import com.fym.lta.dto.SchedualDto;
 import com.fym.lta.dto.SlotDto;
 
 import java.util.List;
 
 import javax.swing.JOptionPane;
-
-import org.w3.x2000.x09.xmldsig.ObjectType;
 
 /**
  *
@@ -90,10 +86,10 @@ public class ManualAssignment extends javax.swing.JPanel {
             listComboLocationTypes(AlllocationTypes);
             listComboDepartments(DepartmentsList);
             slotsPanel.setVisible(false);
-          //  assign.setVisible(false);
+         
             
         } catch (Exception e) {
-            // TODO: Add catch code
+           
             e.printStackTrace();
         }
         
@@ -219,7 +215,7 @@ public class ManualAssignment extends javax.swing.JPanel {
         );
         masterLayout.setVerticalGroup(
             masterLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 396, Short.MAX_VALUE)
+            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 406, Short.MAX_VALUE)
         );
 
         add(master, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 140, 660, 450));
@@ -301,6 +297,7 @@ public class ManualAssignment extends javax.swing.JPanel {
             }
         });
 
+        assign.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         assign.setText("assign");
         assign.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {

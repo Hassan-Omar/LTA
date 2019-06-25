@@ -36,8 +36,8 @@ public class ScreenRoles extends javax.swing.JPanel {
         resetTableMod(screenBaoObj.getAll_Screen(allRoles.get(0)));
      
         // now one step we will create an object of ScreenBao to know the current permission
-        int permissionType = new BaoFactory().createScreenBao().getCurrentPermission(10);
-        Utilities.mandate(null, null, null, 10, Utilities.convertTOBase2(permissionType));
+       // int permissionType = new BaoFactory().createScreenBao().getCurrentPermission(10);
+      // Utilities.mandate(null, null, null, 10, Utilities.convertTOBase2(permissionType));
     }
 
     /** This method is called from within the constructor to
@@ -121,7 +121,7 @@ public class ScreenRoles extends javax.swing.JPanel {
 
         label1.setFont(new java.awt.Font("Times New Roman", 1, 24)); // NOI18N
         label1.setText("Screen_Role Assignment Screen");
-        add(label1, new org.netbeans.lib.awtextra.AbsoluteConstraints(457, 12, 383, 55));
+        add(label1, new org.netbeans.lib.awtextra.AbsoluteConstraints(570, 10, 383, 40));
 
         doneBtn.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         doneBtn.setText("Done");

@@ -51,18 +51,25 @@ public class Utilities {
         if (base2 != null) { // now we will hide the buttons wich the user can't access
             if (base2[3] && updateBTN != null)
                 updateBTN.setVisible(true);
+            else 
+                updateBTN.setVisible(false);  
+            
             if (base2[2] && insertBTN != null)
                 insertBTN.setVisible(true);
+            else 
+                insertBTN.setVisible(false);
+            
             if (base2[1] && deleteBTN != null)
                 deleteBTN.setVisible(true);
-
+            else 
+                deleteBTN.setVisible(false);
         } else {
             updateBTN.setVisible(false);
             insertBTN.setVisible(false);
             deleteBTN.setVisible(false);
             JOptionPane.showMessageDialog(null, "Your Role not assigned yet so you can only view the data ");
         }
-        System.out.println(base2);
+        
 
     }
 

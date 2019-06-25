@@ -55,7 +55,7 @@ public class ScheduleInsert extends javax.swing.JPanel {
         // roleID = 14
         // now one step we will create an object of ScreenBao to know the current permission
         int permissionType = new BaoFactory().createScreenBao().getCurrentPermission(14);
-        Utilities.mandate(null, insertBTN, deleteBTN, 14, Utilities.convertTOBase2(permissionType));
+        Utilities.mandate(viewBtn, insertBTN, deleteBTN, 14, Utilities.convertTOBase2(permissionType));
     }
 
     /** This method is called from within the constructor to
@@ -86,7 +86,7 @@ public class ScheduleInsert extends javax.swing.JPanel {
         acdYear = new javax.swing.JLabel();
         tCode = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
+        viewBtn = new javax.swing.JButton();
 
         jMenuItem1.setText("Print");
         jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
@@ -275,14 +275,14 @@ public class ScheduleInsert extends javax.swing.JPanel {
         jLabel2.setText("Scheduels Screen");
         add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 10, -1, -1));
 
-        jButton1.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        jButton1.setText("view content");
-        jButton1.addMouseListener(new java.awt.event.MouseAdapter() {
+        viewBtn.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        viewBtn.setText("view content");
+        viewBtn.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jButton1MouseClicked(evt);
+                viewBtnMouseClicked(evt);
             }
         });
-        add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 160, 120, 30));
+        add(viewBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 160, 120, 30));
     }//GEN-END:initComponents
 
     private void insertBTNMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_insertBTNMouseClicked
@@ -340,7 +340,7 @@ public class ScheduleInsert extends javax.swing.JPanel {
         // TODO add your handling code here:
     }//GEN-LAST:event_ScheduleCodeActionPerformed
 
-    private void jButton1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MouseClicked
+    private void viewBtnMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_viewBtnMouseClicked
         if (table.getSelectedRow() >= 0) {
             table_Panel.setVisible(true);
             tCode.setText( tCode.getText() +table.getValueAt(table.getSelectedRow(), 0).toString() );
@@ -352,7 +352,7 @@ public class ScheduleInsert extends javax.swing.JPanel {
             Utilities.schResetModel(table2, sch.getSchedual_Slots());
         } else
             JOptionPane.showMessageDialog(null, "select a table to view"); 
-    }//GEN-LAST:event_jButton1MouseClicked
+    }//GEN-LAST:event_viewBtnMouseClicked
 
     private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
         Utilities.printRecord(table_Panel);
@@ -407,7 +407,6 @@ public class ScheduleInsert extends javax.swing.JPanel {
     private javax.swing.JButton deleteBTN;
     private javax.swing.JLabel dep;
     private javax.swing.JButton insertBTN;
-    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JMenuItem jMenuItem1;
@@ -423,6 +422,7 @@ public class ScheduleInsert extends javax.swing.JPanel {
     private javax.swing.JTable table;
     private javax.swing.JTable table2;
     private javax.swing.JPanel table_Panel;
+    private javax.swing.JButton viewBtn;
     // End of variables declaration//GEN-END:variables
    
 
