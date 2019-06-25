@@ -3,10 +3,14 @@ package com.fym.lta.ui;
 
 import com.fym.lta.bao.BaoFactory;
 import com.fym.lta.bao.LocationBao;
+import com.fym.lta.bao.SchedualBao;
 import com.fym.lta.dto.BuildingDto;
+import com.fym.lta.dto.DepartmentDto;
+import com.fym.lta.dto.FloorDto;
 import com.fym.lta.dto.LocationDto;
 import com.fym.lta.dto.LocationTypeDto;
 
+import com.fym.lta.dto.SchedualDto;
 import com.fym.lta.dto.SlotDto;
 
 import java.util.List;
@@ -23,11 +27,14 @@ public class ManualAssignment extends javax.swing.JPanel {
     
     //To create a refrence from LocationBao 
     private LocationBao Locationbusiness  = new BaoFactory().createLocationBao();
-    
+    private SchedualBao Schedulebuisness = new BaoFactory().createSchedualBao();
+    LocationDto chosenRoom = new LocationDto();
+
     //To Get list of building , location type to set comboBox items 
     List<BuildingDto> Allbuildings = new BaoFactory().createBuildingBao().listBuilding();
     List<LocationTypeDto> AlllocationTypes = new BaoFactory().createLocationTypeBao().listLocationType(); 
-   
+    List<DepartmentDto> DepartmentsList = new BaoFactory().createDepartmentBao().listDepartment();
+  
     //To add comboBox items//
     // We get a list of saved items in Database//
     void listComboBuildings(List<BuildingDto> building) {
@@ -41,6 +48,19 @@ public class ManualAssignment extends javax.swing.JPanel {
              type_combo.addItem(LocationType.get(i).getCode());
                     }
     }
+    
+    void listComboDepartments(List<DepartmentDto> department) {
+       for (int i = 0; i < department.size(); i++) {
+           department_combo.addItem(department.get(i).getCode());
+                 }
+    }
+    
+    void listComboSchedules(List<SchedualDto> schedule) {
+      for (int i = 0; i < schedule.size(); i++) { 
+         schedule_combo.addItem(schedule.get(i).getSCHEDULECODE());
+                }
+    }
+    
     
     // To Set the retrieved data from database into the locationTable// 
     private void setTableModel(List<LocationDto> location  ){
@@ -68,6 +88,7 @@ public class ManualAssignment extends javax.swing.JPanel {
             setTableModel(Locationbusiness.ListAll());
             listComboBuildings(Allbuildings); 
             listComboLocationTypes(AlllocationTypes);
+            listComboDepartments(DepartmentsList);
             slotsPanel.setVisible(false);
           //  assign.setVisible(false);
             
@@ -99,10 +120,16 @@ public class ManualAssignment extends javax.swing.JPanel {
         LocationTable = new javax.swing.JTable();
         done = new javax.swing.JButton();
         refresh = new javax.swing.JButton();
-        assign = new javax.swing.JButton();
+        show = new javax.swing.JButton();
         slotsPanel = new javax.swing.JPanel();
         jScrollPane2 = new javax.swing.JScrollPane();
         SlotsTable = new javax.swing.JTable();
+        jLabel3 = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
+        schedule_combo = new javax.swing.JComboBox();
+        department_combo = new javax.swing.JComboBox();
+        view = new javax.swing.JButton();
+        assign = new javax.swing.JButton();
 
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
@@ -192,7 +219,7 @@ public class ManualAssignment extends javax.swing.JPanel {
         );
         masterLayout.setVerticalGroup(
             masterLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 406, Short.MAX_VALUE)
+            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 396, Short.MAX_VALUE)
         );
 
         add(master, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 140, 660, 450));
@@ -215,14 +242,14 @@ public class ManualAssignment extends javax.swing.JPanel {
         });
         add(refresh, new org.netbeans.lib.awtextra.AbsoluteConstraints(620, 100, -1, 30));
 
-        assign.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        assign.setText("Assign Location");
-        assign.addActionListener(new java.awt.event.ActionListener() {
+        show.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        show.setText("show schedules");
+        show.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                assignActionPerformed(evt);
+                showActionPerformed(evt);
             }
         });
-        add(assign, new org.netbeans.lib.awtextra.AbsoluteConstraints(1160, 600, -1, 40));
+        add(show, new org.netbeans.lib.awtextra.AbsoluteConstraints(1350, 420, -1, 40));
 
         SlotsTable.setFont(new java.awt.Font("Tekton Pro Cond", 1, 24)); // NOI18N
         SlotsTable.setModel(new javax.swing.table.DefaultTableModel(
@@ -251,23 +278,83 @@ public class ManualAssignment extends javax.swing.JPanel {
         SlotsTable.setRowHeight(40);
         jScrollPane2.setViewportView(SlotsTable);
 
+        jLabel3.setText("Choose Schedule");
+
+        jLabel4.setText("Choose Department");
+
+        schedule_combo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                schedule_comboActionPerformed(evt);
+            }
+        });
+
+        department_combo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                department_comboActionPerformed(evt);
+            }
+        });
+
+        view.setText("view Contents");
+        view.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                viewActionPerformed(evt);
+            }
+        });
+
+        assign.setText("assign");
+        assign.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                assignActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout slotsPanelLayout = new javax.swing.GroupLayout(slotsPanel);
         slotsPanel.setLayout(slotsPanelLayout);
         slotsPanelLayout.setHorizontalGroup(
             slotsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jScrollPane2, javax.swing.GroupLayout.Alignment.TRAILING)
             .addGroup(slotsPanelLayout.createSequentialGroup()
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 557, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 3, Short.MAX_VALUE))
+                .addGap(124, 124, 124)
+                .addGroup(slotsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(department_combo, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel4))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 79, Short.MAX_VALUE)
+                .addGroup(slotsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(slotsPanelLayout.createSequentialGroup()
+                        .addComponent(schedule_combo, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(32, 32, 32)
+                        .addComponent(view))
+                    .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap())
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, slotsPanelLayout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(assign, javax.swing.GroupLayout.PREFERRED_SIZE, 176, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(153, 153, 153))
         );
         slotsPanelLayout.setVerticalGroup(
             slotsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(slotsPanelLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 413, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, slotsPanelLayout.createSequentialGroup()
+                .addGap(6, 6, 6)
+                .addGroup(slotsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, 22, Short.MAX_VALUE)
+                    .addComponent(jLabel4))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(slotsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(slotsPanelLayout.createSequentialGroup()
+                        .addGroup(slotsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(schedule_combo, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(department_combo, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 24, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, slotsPanelLayout.createSequentialGroup()
+                        .addComponent(view)
+                        .addGap(11, 11, 11)))
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 310, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(assign, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(26, 26, 26))
         );
 
-        add(slotsPanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(730, 160, 560, 430));
+        add(slotsPanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(730, 130, 570, 480));
     }//GEN-END:initComponents
 
     private void type_comboActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_type_comboActionPerformed
@@ -304,28 +391,59 @@ public class ManualAssignment extends javax.swing.JPanel {
        setTableModel(Locationbusiness.ListAll());
         slotsPanel.setVisible(false);
     }//GEN-LAST:event_refreshActionPerformed
-
-    private void assignActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_assignActionPerformed
+    private void showActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_showActionPerformed
      //To get the filtered location list
      List <LocationDto> RoomList = Locationbusiness.filterLocations(type_combo.getSelectedItem().toString(),building_combo.getSelectedItem().toString()); 
-      
       //before assign, check if filtered list isn't empty& location was selected
       if(LocationTable.getSelectedRow()>=0 && RoomList != null){
-          slotsPanel.setVisible(true);   
-       //   if(SlotsTable.getSelectedRow()>=0){
-      //  int row = SlotsTable.getSelectedRow();
-     //   int column = SlotsTable.getSelectedColumn();
-     //   SlotDto assignedSlot = (SlotDto)SlotsTable.getValueAt(row, column);
-          LocationDto chosenRoom = new LocationDto();
-          chosenRoom= RoomList.get(LocationTable.getSelectedRow());
-    //    chosenRoom.setAssignedSlot(assignedSlot);
-          System.out.println(chosenRoom.getLocation_id());
-      //  Locationbusiness.saveLocationSlot(chosenRoom); }
-    } 
+                slotsPanel.setVisible(true);   
+                chosenRoom= RoomList.get(LocationTable.getSelectedRow());
+                System.out.println(chosenRoom.getLocation_id());}
       else {
-         
           JOptionPane.showMessageDialog(this, "Please, filter locations first and select one\n"+"Then, Assign.");     
       }
+    }//GEN-LAST:event_showActionPerformed
+
+    private void schedule_comboActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_schedule_comboActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_schedule_comboActionPerformed
+
+    private void department_comboActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_department_comboActionPerformed
+     schedule_combo.removeAllItems();
+         DepartmentDto SelectedDepartment = new DepartmentDto();
+         SelectedDepartment.setCode(DepartmentsList.get(department_combo.getSelectedIndex()).getCode());     
+     List<SchedualDto> SchedulesList = Schedulebuisness.listSchedual_inDeparts(SelectedDepartment.getCode()); 
+      if(SchedulesList != null){
+         listComboSchedules(SchedulesList);}
+ 
+    }//GEN-LAST:event_department_comboActionPerformed
+    private void viewActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_viewActionPerformed
+            if (department_combo.getSelectedItem() != null && schedule_combo.getSelectedItem() != null) {
+             SchedualDto schedule = Schedulebuisness.getSlectedTable(schedule_combo.getSelectedItem().toString());
+             Utilities.schResetModel(SlotsTable, schedule.getSchedual_Slots());  
+         }
+         else{
+           JOptionPane.showMessageDialog(this, " select department and schedule to view"); }
+        
+    }//GEN-LAST:event_viewActionPerformed
+
+    private void assignActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_assignActionPerformed
+     if(SlotsTable.getSelectedRow()>=0){
+         int row = SlotsTable.getSelectedRow();
+         int column = SlotsTable.getSelectedColumn();
+            SlotDto assignedSlot = new SlotDto();
+
+      //    LocationDto chosenRoom = new LocationDto();
+  //      chosenRoom= RoomList.get(LocationTable.getSelectedRow());
+          chosenRoom.setAssignedSlot(assignedSlot);
+  //      System.out.println(chosenRoom.getLocation_id());
+          Locationbusiness.saveLocationSlot(chosenRoom); 
+         JOptionPane.showMessageDialog(this, "Location assigned Successfully"); 
+ }
+     else{
+         JOptionPane.showMessageDialog(this,"please, select a slot first ");
+     }
+    
     }//GEN-LAST:event_assignActionPerformed
 
 
@@ -334,15 +452,21 @@ public class ManualAssignment extends javax.swing.JPanel {
     private javax.swing.JTable SlotsTable;
     private javax.swing.JButton assign;
     private javax.swing.JComboBox building_combo;
+    private javax.swing.JComboBox department_combo;
     private javax.swing.JButton done;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JPanel master;
     private javax.swing.JButton refresh;
+    private javax.swing.JComboBox schedule_combo;
+    private javax.swing.JButton show;
     private javax.swing.JPanel slotsPanel;
     private javax.swing.JComboBox type_combo;
+    private javax.swing.JButton view;
     // End of variables declaration//GEN-END:variables
 
 
