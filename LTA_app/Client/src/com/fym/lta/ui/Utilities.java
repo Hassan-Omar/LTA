@@ -41,6 +41,10 @@ import javax.swing.UIManager;
 import org.apache.poi.hssf.usermodel.HSSFRow;
 import org.apache.poi.hssf.usermodel.HSSFSheet;
 import org.apache.poi.hssf.usermodel.HSSFWorkbook;
+import org.apache.poi.ss.usermodel.Cell;
+import org.apache.poi.ss.usermodel.CreationHelper;
+import org.apache.poi.ss.usermodel.Row;
+import org.apache.poi.ss.usermodel.Sheet;
 
 public class Utilities {
 
@@ -911,6 +915,54 @@ public class Utilities {
      // method to export the schedual table to xls format 
     public static void export_XLX(JTable inputTable)
     {
+        
+                     JFileChooser fileChooser = new JFileChooser();
+                     fileChooser.setDialogTitle("Specify a file to save");   
+                     int returnVal =  fileChooser.showSaveDialog(null);     
+                     if (returnVal == JFileChooser.APPROVE_OPTION)
+                     {
+                       String  filepath = fileChooser.getSelectedFile().getAbsolutePath();
+                       File file = new File(filepath +".xls");
+                          if (file.exists() == false) 
+                          {
+                                  
+                               
+
+                                     HSSFWorkbook wb = new HSSFWorkbook();
+                                     CreationHelper createhelper = wb.getCreationHelper();
+                                     Sheet sheet = wb.createSheet("new sheet");
+                                     Row row = null;
+                                     Cell cell = null;
+                                     for (int i=0;i<inputTable.getRowCount();i++)
+                                                 {
+                                         row = sheet.createRow(i);
+                                         for (int j=0;j<inputTable.getColumnCount();j++) {
+                                              
+                                             cell = row.createCell(j);
+                                             cell.setCellValue((String) inputTable.getValueAt(i, j));
+                                         }
+                                     }
+                         
+                                 
+                                         try (
+                                            //Write the workbook in file 
+                                             FileOutputStream out = new FileOutputStream(file)) 
+                                         {
+                                                     wb.write(out);
+                                                       out.close();
+                                             JOptionPane.showMessageDialog(null, "File Saved Successfully ");
+                                                 }
+                                  catch (IOException e){
+                                      System.out.println("error");
+                                        }
+                              }
+                         
+                                   else { // Sheet already exists
+                                        JOptionPane.showMessageDialog(null,"File already exist");}       
+                                         
+                               }
+                               else { // Sheet already exists
+                                 JOptionPane.showMessageDialog(null,"User cancelled  ");}    
      }
         
         
