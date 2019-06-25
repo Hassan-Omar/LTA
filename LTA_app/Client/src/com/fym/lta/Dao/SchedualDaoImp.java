@@ -171,7 +171,7 @@ public class SchedualDaoImp implements SchedualDao {
 
 
                 jdbcR.execute();
-                System.out.println("reci" + slot.getCode());
+               // System.out.println("reci" + slot.getCode());
                 
             }
 
@@ -202,18 +202,18 @@ public class SchedualDaoImp implements SchedualDao {
     public boolean update_Schedual(SchedualDto schedual) throws LTAException {
 
         try (JdbcRowSet jdbcR = RowSetProvider.newFactory().createJdbcRowSet()) {
-            jdbcR.setUrl(ConnectionFactory.getUrl());
-            jdbcR.setUsername(ConnectionFactory.getUsername());
-            jdbcR.setPassword(ConnectionFactory.getPassword());
-            jdbcR.setAutoCommit(false);
+                    jdbcR.setUrl(ConnectionFactory.getUrl());
+                    jdbcR.setUsername(ConnectionFactory.getUsername());
+                    jdbcR.setPassword(ConnectionFactory.getPassword());
+                    jdbcR.setAutoCommit(false);
 
-            List<SlotDto> slots = schedual.getSchedual_Slots();
+                    List<SlotDto> slots = schedual.getSchedual_Slots();
 
             for (int i = 0; i < slots.size(); i++) {
                 SlotDto slot = slots.get(i);
                 jdbcR.setCommand(Queries.UPDATE_SLOT);
 
-                jdbcR.setString(1, slot.getCurrentCourse().getCode());
+               jdbcR.setString(1, slot.getCurrentCourse().getCode());
 
                 if (slot.getCurrentCourse().getInstructors() != null)
                     jdbcR.setString(2, slot.getCurrentCourse().getInstructors().get(0).getEmail());
@@ -226,18 +226,17 @@ public class SchedualDaoImp implements SchedualDao {
                 else
                     jdbcR.setNull(3, Types.VARCHAR);
 
-
                 jdbcR.setString(4, slot.getType());
-                jdbcR.setInt(5, slot.getCode());
 
+                jdbcR.setString(5, slot.getPrefSpace());
 
-                jdbcR.setString(6, slot.getPrefSpace());
-
-                jdbcR.setString(7, schedual.getSCHEDULECODE());
+                jdbcR.setString(6, schedual.getSCHEDULECODE());
+                
+                jdbcR.setInt(7, slot.getCode());
 
 
                 jdbcR.execute();
-               
+                
             }
 
             jdbcR.setCommand(Queries.UPDATE_SCHEDULE);

@@ -273,7 +273,7 @@ public class Queries {
         "INSERT INTO SLOT ( COURSE_CODE , STAFF_EMAIL ,STAFF_EMAIL2 , CODE ,TYPE ,PREFSPACE ,S_CODE) VALUES(?,?,?,?,?,?,?) ";
 
     public static final String UPDATE_SLOT =
-        "UPDATE SLOT SET COURSE_CODE = ? , STAFF_EMAIL =? , STAFF_EMAIL2 =? , TYPE = ? ,CODE = ? , PREFSPACE=? WHERE S_CODE = ? ";
+        "UPDATE SLOT SET COURSE_CODE = ? , STAFF_EMAIL =? , STAFF_EMAIL2 =?  , TYPE = ?, PREFSPACE=? WHERE S_CODE = ? AND CODE = ?  ";
 
     public static final String IS_SLOT_EXIST =
         "SELECT ID FROM SLOT WHERE CODE =? AND COURSE_CODE = ? AND STAFF_EMAIL =? AND STAFF_EMAIL2 = ? AND S_CODE = ? ";

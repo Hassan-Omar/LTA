@@ -15,7 +15,7 @@ public class AllocationAlgorthim {
 
     //var to hold the value of saving table after allocation ;
     boolean saveStatus = false, saveStatus2 = false;
-    String report = " Error in \r\n"; // this to hold the value which we need to told to the user
+    String report = " @ \r\n"; // this to hold the value which we need to told to the user
     SchedualBao schedualBaoObj = new BaoFactory().createSchedualBao();
     LocationBao locationBaoObj = new BaoFactory().createLocationBao();
 
@@ -35,7 +35,7 @@ public class AllocationAlgorthim {
 
                 if (!saveStatus2)
                     report += " table no " + k + " dep name " + allDeparts.get(i).getCode();
-
+                
             }
              // i think  depNum  well never >= 100  so i don't need if statment 
              int ratio = 100 / depNum ; 

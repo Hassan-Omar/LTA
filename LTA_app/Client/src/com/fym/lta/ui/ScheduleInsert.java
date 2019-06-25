@@ -501,10 +501,11 @@ public class ScheduleInsert extends javax.swing.JPanel {
 
                     for (int k = 1; k < 9; k += 2) {
                         EmployeeDto instructor = new EmployeeDto();
+                        EmployeeDto instructor2 = new EmployeeDto();
                         CourseDto course = new CourseDto();
                         List<EmployeeDto> instructors = new ArrayList<>();
 
-                        instructor.setEmail(StaffName1.getCell(k + 1).toString());
+                        instructor.setEmail(StaffName1.getCell(k + 1).toString()+"@fayoum.edu.eg");
                         // you need to cut the string and set the name as comming +++++++++
                         // use string cut or any format
                         //+++++++++++++++++++++++++++++++++++++++
@@ -534,10 +535,45 @@ public class ScheduleInsert extends javax.swing.JPanel {
                         department.setCode(schudel.getCodeDeparment());
                         instructor.setDepartment(department);
                         instructors.add(instructor);
-                        if((instructor.getFName()!=null && instructor.getSName()!=null)&(instructor.getFName()!="" && instructor.getSName()!=""))
+                        if((instructor.getFName()!=null && instructor.getSName()!=null)&&(instructor.getFName()!="" && instructor.getSName()!=""))
                         employees.add(instructor);
+                        // second instructor 
+                        {
+                            instructor2.setEmail(StaffName2.getCell(k + 1).toString()+"@fayoum.edu.eg");
+                            // you need to cut the string and set the name as comming +++++++++
+                            // use string cut or any format
+                            //+++++++++++++++++++++++++++++++++++++++
+                            try {
+                                String[] enteredName = string_splitter(StaffName2.getCell(k).toString());
+                                instructor.setFName(enteredName[1]);
+                                instructor2.setSName(enteredName[2]);
+                                if (enteredName[3] != null)
+                                    instructor2.setLName(enteredName[3]);
+                                if (enteredName[4] != null)
+                                    instructor2.setFamilyName(enteredName[4]);
+                                instructor2.setCareerDgree(enteredName[0]);
 
 
+                            } catch (Exception e) {
+
+                                e.printStackTrace();
+                            }
+
+
+                            //+++++++++++++++++++++++++++++++++++++++
+                            instructor2.setInsertedBy(LoginEngine.currentUser);
+                            instructor2.setUpdatedBy(LoginEngine.currentUser);
+                            instructor2.setInertion_Date(new Date(System.currentTimeMillis()));
+                            instructor2.setUpdate_Date(new Date(System.currentTimeMillis()));
+                            DepartmentDto department2 = new DepartmentDto();
+                            department.setCode(schudel.getCodeDeparment());
+                            instructor2.setDepartment(department2);
+                            instructors.add(instructor2);
+                            if((instructor2.getFName()!=null && instructor2.getSName()!=null)&&(instructor2.getFName()!="" && instructor2.getSName()!=""))
+                            employees.add(instructor2);
+   
+                            
+                        }
                         course.setInstructors(instructors);
                         course.setCode(courseName.getCell(k + 1).toString());
                         course.setName(courseName.getCell(k).toString());
@@ -604,7 +640,7 @@ public class ScheduleInsert extends javax.swing.JPanel {
 
                     JOptionPane.showMessageDialog(this, "don't save Error in DB");
                 } catch (HeadlessException he) {
-                    // TODO: Add catch code
+                   
                     he.printStackTrace();
                 }
 
