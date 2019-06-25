@@ -62,7 +62,7 @@ public class Utilities {
             deleteBTN.setVisible(false);
             JOptionPane.showMessageDialog(null, "Your Role not assigned yet so you can only view the data ");
         }
-
+        System.out.println(base2);
 
     }
 

@@ -8,6 +8,7 @@ import com.fym.lta.dto.DepartmentDto;
 import com.fym.lta.dto.EmployeeDto;
 
 import java.sql.SQLException;
+import java.sql.Types;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -106,10 +107,17 @@ public class EmployeeDaoImp implements EmployeeDao {
                     jdbcRs.setCommand(Queries.UPDATE_EMPLOYEE);
                                                                                           
                     jdbcRs.setString(1, employee.getFName());  
-                    jdbcRs.setString(2, employee.getSName()); 
-                    jdbcRs.setString(3, employee.getLName());
-                    jdbcRs.setString(4, employee.getFamilyName());
-                    
+                    jdbcRs.setString(2, employee.getSName());
+                  
+                    if( employee.getLName()!=null)
+                        jdbcRs.setString(3, employee.getLName());
+                    else
+                        jdbcRs.setNull(3, Types.VARCHAR);
+                   
+                    if( employee.getFamilyName()!=null)
+                        jdbcRs.setString(4, employee.getFamilyName());
+                    else 
+                        jdbcRs.setNull(4, Types.VARCHAR);
                     
                     if (employee.getUpdatedBy() != null)
                         jdbcRs.setString(5, employee.getUpdatedBy());

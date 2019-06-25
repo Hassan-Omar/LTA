@@ -151,7 +151,11 @@ public class DepartmentDaoImp implements DepartmentDao {
             jdbcRs.setCommand(Queries.UPDATE_BUILDING_TO_DEPARTMENT);
 
             jdbcRs.setString(2, department.getCode());
+            if(department.getHomebuilding()!=null)
             jdbcRs.setInt(1, department.getHomebuilding().getBuilding_id());
+            else 
+                jdbcRs.setNull(1, Types.VARCHAR);
+            
             jdbcRs.execute();
             jdbcRs.commit();
             return true;

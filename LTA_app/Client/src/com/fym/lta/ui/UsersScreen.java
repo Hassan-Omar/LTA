@@ -53,6 +53,7 @@ public class UsersScreen extends javax.swing.JPanel {
         
         // now one step we will create an object of ScreenBao to know the current permission 
         int permissionType = new BaoFactory().createScreenBao().getCurrentPermission(8);
+        System.out.println(permissionType+"permissionType");
         Utilities.mandate(ubdateUserBTN,insertUserBTN , deleteUserBTN ,8, Utilities.convertTOBase2(permissionType));
     }
 

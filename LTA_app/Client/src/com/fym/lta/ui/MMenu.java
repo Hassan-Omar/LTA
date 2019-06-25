@@ -140,6 +140,7 @@ public class MMenu extends javax.swing.JFrame
                 jMenu5MouseClicked(evt);
             }
         });
+		if(new  BaoFactory().createScreenBao().getCurrentPermission(14) >= 8)
         jMenuBar1.add(jMenu5);
 
         jMenu3.setText("Basic Data Management                  ");
@@ -150,6 +151,7 @@ public class MMenu extends javax.swing.JFrame
                 buildingM_ItemActionPerformed(evt);
             }
         });
+		if(new  BaoFactory().createScreenBao().getCurrentPermission(1) >= 8)
         jMenu3.add(buildingM_Item);
 
         floorM_Item.setText("Building Floor");
@@ -158,6 +160,7 @@ public class MMenu extends javax.swing.JFrame
                 floorM_ItemActionPerformed(evt);
             }
         });
+		if(new  BaoFactory().createScreenBao().getCurrentPermission(2) >= 8)
         jMenu3.add(floorM_Item);
 
         locationTypeM_Item.setText("location Type");
@@ -166,6 +169,7 @@ public class MMenu extends javax.swing.JFrame
                 locationTypeM_ItemActionPerformed(evt);
             }
         });
+		if(new  BaoFactory().createScreenBao().getCurrentPermission(3) >= 8)
         jMenu3.add(locationTypeM_Item);
 
         departmentM_Item.setText("Departments");
@@ -174,6 +178,7 @@ public class MMenu extends javax.swing.JFrame
                 departmentM_ItemActionPerformed(evt);
             }
         });
+		if(new  BaoFactory().createScreenBao().getCurrentPermission(4) >= 8)
         jMenu3.add(departmentM_Item);
 
         courseM_Item.setText("Course");
@@ -182,6 +187,7 @@ public class MMenu extends javax.swing.JFrame
                 courseM_ItemActionPerformed(evt);
             }
         });
+		if(new  BaoFactory().createScreenBao().getCurrentPermission(5) >= 8)
         jMenu3.add(courseM_Item);
 
         staffM_Item.setText("Staff Member ");
@@ -190,6 +196,7 @@ public class MMenu extends javax.swing.JFrame
                 staffM_ItemActionPerformed(evt);
             }
         });
+		if(new  BaoFactory().createScreenBao().getCurrentPermission(6) >= 8)
         jMenu3.add(staffM_Item);
 
         jMenuItem1.setText("Equipment");
@@ -198,6 +205,7 @@ public class MMenu extends javax.swing.JFrame
                 jMenuItem1ActionPerformed(evt);
             }
         });
+		if(new  BaoFactory().createScreenBao().getCurrentPermission(7) >= 8)
         jMenu3.add(jMenuItem1);
 
         jMenuBar1.add(jMenu3);
@@ -210,6 +218,7 @@ public class MMenu extends javax.swing.JFrame
                 locationMasterM_ItemActionPerformed(evt);
             }
         });
+		if(new  BaoFactory().createScreenBao().getCurrentPermission(11) >= 8)
         jMenu2.add(locationMasterM_Item);
 
         locationManualM_Item.setText("Location Manual Assignment");
@@ -218,6 +227,7 @@ public class MMenu extends javax.swing.JFrame
                 locationManualM_ItemActionPerformed(evt);
             }
         });
+		if(new  BaoFactory().createScreenBao().getCurrentPermission(12) >= 8)
         jMenu2.add(locationManualM_Item);
 
         locationAutoM_Item.setText("Location Automatic Assignment");
@@ -226,6 +236,7 @@ public class MMenu extends javax.swing.JFrame
                 locationAutoM_ItemActionPerformed(evt);
             }
         });
+		if(new  BaoFactory().createScreenBao().getCurrentPermission(13) >= 8)
         jMenu2.add(locationAutoM_Item);
 
         jMenuBar1.add(jMenu2);
@@ -244,6 +255,7 @@ public class MMenu extends javax.swing.JFrame
                 userM_ItemActionPerformed(evt);
             }
         });
+		if(new  BaoFactory().createScreenBao().getCurrentPermission(8) >= 8)
         jMenu1.add(userM_Item);
 
         roleM_Item.setText("Role");
@@ -252,6 +264,7 @@ public class MMenu extends javax.swing.JFrame
                 roleM_ItemActionPerformed(evt);
             }
         });
+		if(new  BaoFactory().createScreenBao().getCurrentPermission(9) >= 8)
         jMenu1.add(roleM_Item);
 
         roleScreenM_Item.setText("Role Screens");
@@ -260,11 +273,13 @@ public class MMenu extends javax.swing.JFrame
                 roleScreenM_ItemActionPerformed(evt);
             }
         });
+		if(new  BaoFactory().createScreenBao().getCurrentPermission(10) >= 8)
         jMenu1.add(roleScreenM_Item);
 
         jMenuBar1.add(jMenu1);
 
         jMenu4.setText("About                  ");
+		if(new  BaoFactory().createScreenBao().getCurrentPermission(16) >= 8)
         jMenuBar1.add(jMenu4);
 
         report.setText("Report                  ");
@@ -273,6 +288,7 @@ public class MMenu extends javax.swing.JFrame
                 reportMouseClicked(evt);
             }
         });
+		if(new  BaoFactory().createScreenBao().getCurrentPermission(15) >= 8)
         jMenuBar1.add(report);
 
         logout.setText(" Log Out");

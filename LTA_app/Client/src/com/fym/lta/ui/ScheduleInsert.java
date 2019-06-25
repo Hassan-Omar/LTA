@@ -435,7 +435,7 @@ public class ScheduleInsert extends javax.swing.JPanel {
         try {
             for (int i = 0, j = 0; i < result.length; i++, j++) {
                 if (result[i].toLowerCase().equalsIgnoreCase("el") || result[i].toLowerCase().equalsIgnoreCase("abd") ||
-                    result[i].toLowerCase().equalsIgnoreCase("abdel")) {
+                    result[i].toLowerCase().equalsIgnoreCase("abd_el")) {
                     name[j] = result[i].concat(" ").concat(result[++i]);
 
                 }
@@ -446,7 +446,8 @@ public class ScheduleInsert extends javax.swing.JPanel {
             System.out.println(Arrays.toString(name));
         } catch (Exception e) {
             System.out.println(e);
-        }
+        } 
+         
         return name;
     }
 
@@ -533,6 +534,7 @@ public class ScheduleInsert extends javax.swing.JPanel {
                         department.setCode(schudel.getCodeDeparment());
                         instructor.setDepartment(department);
                         instructors.add(instructor);
+                        if((instructor.getFName()!=null && instructor.getSName()!=null)&(instructor.getFName()!="" && instructor.getSName()!=""))
                         employees.add(instructor);
 
 
@@ -551,8 +553,8 @@ public class ScheduleInsert extends javax.swing.JPanel {
                         LocationTypeDto locType = new LocationTypeDto();
                         locType.setCode(PrefSpace.getCell(k + 1).toString());
                         course.setNeededLocType(locType);
-                        if (course.getCode() != "" && course.getName() != "" && course.getCode() != null)
-                            ;
+                       
+                        if((course.getCode()!=null && course.getName()!=null)&&(course.getCode()!="" && course.getName()!=""))
                         courses.add(course);
 
 
@@ -561,8 +563,10 @@ public class ScheduleInsert extends javax.swing.JPanel {
                         slot.setCurrentCourse(course);
                         slot.setPrefSpace(PrefSpace.getCell(k + 1).toString());
                         slot.setType(Type.getCell(k + 1).toString());
-                        if (slot.getCurrentCourse().getCode() != null)
+                        
+                        if((slot.getCurrentCourse().getCode()!=null && slot.getCurrentCourse().getName()!=null)&&(slot.getCurrentCourse().getCode()!="" && slot.getCurrentCourse().getName()!=""))
                         slots.add(slot);
+                        
                         slotCode++;
 
                        
@@ -576,6 +580,10 @@ public class ScheduleInsert extends javax.swing.JPanel {
                     DepartmentDto dep = new DepartmentDto();
                     dep.setName(Deparment.getCell(0).toString());
                     dep.setCode(Deparment.getCell(1).toString());
+                    dep.setInsertedBy(LoginEngine.currentUser);
+                    dep.setUpdatedBy(LoginEngine.currentUser);
+                    dep.setInertion_Date(new Date(System.currentTimeMillis()));
+                    dep.setUpdate_Date(new Date(System.currentTimeMillis()));
                     new BaoFactory().createDepartmentBao().saveDepartment(dep);
 
 
