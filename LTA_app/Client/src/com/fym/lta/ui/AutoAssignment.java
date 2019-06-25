@@ -8,6 +8,8 @@ import com.fym.lta.dto.DepartmentDto;
 
 import java.util.List;
 
+import javax.swing.Timer;
+
 /**
  *
  * @author H,Omar
@@ -18,13 +20,14 @@ public class AutoAssignment extends javax.swing.JPanel {
     List<DepartmentDto> allDepartments  = new BaoFactory().createDepartmentBao().listDepartment();
 
     SchedualBao SchedualBaoObj ;
-    
-    public static int slotNO = 0 ;
+    public static int slotNO =0 ; 
+
+    private Timer timer ;
    
     /** Creates new form AutoAssignment */
     public AutoAssignment() {
         initComponents();
- 
+        progressPanel.setVisible(false);
         //String permissionType = new BaoFactory().createScreenBao().getCurrentPermission(13);
         //Utilities.mandate(null ,null , null ,13,permissionType);
     }
@@ -38,8 +41,11 @@ public class AutoAssignment extends javax.swing.JPanel {
     private void initComponents() {//GEN-BEGIN:initComponents
 
         assignBtn = new javax.swing.JButton();
+        progressPanel = new javax.swing.JPanel();
+        jLabel1 = new javax.swing.JLabel();
+        jProgressBar1 = new javax.swing.JProgressBar();
+        reprot = new javax.swing.JLabel();
 
-        setBorder(javax.swing.BorderFactory.createTitledBorder("Location Automatic Assignment"));
         setLayout(null);
 
         assignBtn.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
@@ -50,22 +56,39 @@ public class AutoAssignment extends javax.swing.JPanel {
             }
         });
         add(assignBtn);
-        assignBtn.setBounds(300, 160, 120, 80);
+        assignBtn.setBounds(30, 30, 120, 80);
+
+        progressPanel.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        progressPanel.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jLabel1.setFont(new java.awt.Font("Tekton Pro Cond", 0, 18)); // NOI18N
+        jLabel1.setText("Progress In Allocation ");
+        progressPanel.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 90, -1, -1));
+        progressPanel.add(jProgressBar1, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 170, 520, 30));
+        progressPanel.add(reprot, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 230, 530, 90));
+
+        add(progressPanel);
+        progressPanel.setBounds(220, 30, 600, 400);
     }//GEN-END:initComponents
 
     private void assignBtnMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_assi
 
    AllocationAlgorthim allocBusinees  =  new AllocationAlgorthim () ; 
        String report =  allocBusinees.alloc_All() ;
-       System.out.println(report);
+       reprot.setText(report);
        // progress bar 
-        ProgressFrame pro = new ProgressFrame() ;
-        pro.setVisible(true);
-        pro.setN(slotNO);
+        progressPanel.setVisible(false);
+
+        timer = new Timer (500 ,assignBtn.getActionListeners()[0]);
+             timer.start();
     }//GEN-LAST:event_assignBtnMouseClicked
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton assignBtn;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JProgressBar jProgressBar1;
+    private javax.swing.JPanel progressPanel;
+    private javax.swing.JLabel reprot;
     // End of variables declaration//GEN-END:variables
 }

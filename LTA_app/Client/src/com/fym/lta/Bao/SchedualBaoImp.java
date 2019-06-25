@@ -4,14 +4,8 @@ package com.fym.lta.bao;
 import com.fym.lta.common.LTAException;
 import com.fym.lta.dao.DaoFactory;
 import com.fym.lta.dao.SchedualDao;
-import com.fym.lta.dto.CourseDto;
-import com.fym.lta.dto.EmployeeDto;
 import com.fym.lta.dto.SchedualDto;
-import com.fym.lta.dto.SlotDto;
 
-import java.sql.SQLException;
-
-import java.util.ArrayList;
 import java.util.List;
 
 
@@ -26,9 +20,9 @@ public class SchedualBaoImp implements SchedualBao {
 
         if (schedualDao.isExist(schedual.getSCHEDULECODE())) {
            
-                status = schedualDao.update_Schedual(schedual);
-
-             
+               // status = schedualDao.update_Schedual(schedual);
+               schedualDao.delete_Schedual(schedual.getSCHEDULECODE());
+               status = schedualDao.insert_Schedual(schedual);
         } else
           
                 status = schedualDao.insert_Schedual(schedual);

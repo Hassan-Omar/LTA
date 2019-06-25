@@ -145,8 +145,17 @@ public class EmployeeDaoImp implements EmployeeDao {
                     
                     jdbcRs.setString(1, employee.getFName());  
                     jdbcRs.setString(2, employee.getSName()); 
-                    jdbcRs.setString(3,employee.getLName());
-                    jdbcRs.setString(4,employee.getFamilyName());
+                    
+                    if(employee.getLName()!=null)
+                        jdbcRs.setString(3,employee.getLName());
+                    else
+                        jdbcRs.setNull(3, java.sql.Types.DATE);
+                    
+                    if(employee.getFamilyName()!=null)
+                        jdbcRs.setString(4,employee.getFamilyName());
+                    else
+                        jdbcRs.setNull(4, java.sql.Types.DATE);
+                    
                     
                     jdbcRs.setString(5, employee.getInsertedBy());
                     

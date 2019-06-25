@@ -448,6 +448,7 @@ public class StaffScreen extends javax.swing.JPanel {
     
     void listComboDepartment(List<DepartmentDto> Departments) {
         for (int i = 0; i < Departments.size(); i++) {
+            if(Departments!=null)
             department_ComboBox.addItem(Departments.get(i).getName());
         }
 }

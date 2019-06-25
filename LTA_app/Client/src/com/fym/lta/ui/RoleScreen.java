@@ -103,6 +103,11 @@ public class RoleScreen extends javax.swing.JPanel {
         });
         popup.add(jMenuItem4);
 
+        addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseReleased(java.awt.event.MouseEvent evt) {
+                formMouseReleased(evt);
+            }
+        });
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         roleEnteredCode.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
@@ -383,6 +388,15 @@ public class RoleScreen extends javax.swing.JPanel {
     private void jMenuItem4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem4ActionPerformed
         insertUpdatePanel.setVisible(false);
     }//GEN-LAST:event_jMenuItem4ActionPerformed
+
+    private void formMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_formMouseReleased
+
+
+    if (evt.isPopupTrigger()) {
+        popup.show(this, evt.getX(), evt.getY());
+    }
+    
+    }//GEN-LAST:event_formMouseReleased
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
