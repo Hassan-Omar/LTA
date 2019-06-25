@@ -157,6 +157,7 @@ public class ManualAssignment extends javax.swing.JPanel {
         master.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Locations ", 0, 0, new java.awt.Font("Tekton Pro", 1, 36))); // NOI18N
         master.setPreferredSize(new java.awt.Dimension(400, 400));
 
+        LocationTable.setFont(new java.awt.Font("Calibri", 1, 18)); // NOI18N
         LocationTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null, null, null},
@@ -248,7 +249,7 @@ public class ManualAssignment extends javax.swing.JPanel {
         });
         add(show, new org.netbeans.lib.awtextra.AbsoluteConstraints(1350, 420, -1, 40));
 
-        SlotsTable.setFont(new java.awt.Font("Tekton Pro Cond", 1, 24)); // NOI18N
+        SlotsTable.setFont(new java.awt.Font("Tekton Pro Cond", 1, 18)); // NOI18N
         SlotsTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
@@ -426,7 +427,7 @@ public class ManualAssignment extends javax.swing.JPanel {
     }//GEN-LAST:event_viewActionPerformed
 
     private void assignActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_assignActionPerformed
-     if(SlotsTable.getSelectedRow()>=0){
+        try{      if(SlotsTable.getSelectedRow()>=0){
              int row = SlotsTable.getSelectedRow();
              int column = SlotsTable.getSelectedColumn();
              SlotDto assignedSlot = new SlotDto();
@@ -438,116 +439,140 @@ public class ManualAssignment extends javax.swing.JPanel {
                           SlotArray[0][1]= slots.get(i);
                           SlotArray[1][1] = slots.get(i);
                           SlotArray[2][1] = slots.get(i); 
-                          SlotArray[3][1] = slots.get(i);}   
+                          SlotArray[3][1] = slots.get(i);
+                          SlotArray[4][1] = slots.get(i);}   
                  if (slots.get(i).getCode() ==2 ){
                           SlotArray[0][2]= slots.get(i);
                           SlotArray[1][2]= slots.get(i);
                           SlotArray[2][2]= slots.get(i);
-                          SlotArray[3][2]= slots.get(i);}
+                          SlotArray[3][2]= slots.get(i);
+                          SlotArray[4][2] = slots.get(i);}
                  if (slots.get(i).getCode() == 3){
                           SlotArray[0][3]= slots.get(i);
                           SlotArray[1][3]= slots.get(i);
                           SlotArray[2][3]= slots.get(i);
-                          SlotArray[3][3]= slots.get(i);}
+                          SlotArray[3][3]= slots.get(i);
+                          SlotArray[4][3] = slots.get(i);}
                  if (slots.get(i).getCode() == 4){
                           SlotArray[0][4]= slots.get(i);
                           SlotArray[1][4]= slots.get(i);
                           SlotArray[2][4]= slots.get(i);
-                          SlotArray[3][4]= slots.get(i);}
+                          SlotArray[3][4]= slots.get(i);
+                          SlotArray[4][4] = slots.get(i);}
                  if (slots.get(i).getCode() == 5){
                           SlotArray[5][1]= slots.get(i);
                           SlotArray[6][1]= slots.get(i);
                           SlotArray[7][1]= slots.get(i);
-                          SlotArray[8][1]= slots.get(i);}
+                          SlotArray[8][1]= slots.get(i);
+                          SlotArray[9][1] = slots.get(i);}
                  if (slots.get(i).getCode() == 6){
                           SlotArray[5][2]= slots.get(i);
                           SlotArray[6][2]= slots.get(i);
                           SlotArray[7][2]= slots.get(i);
-                          SlotArray[8][2]= slots.get(i);}
+                          SlotArray[8][2]= slots.get(i);
+                          SlotArray[9][2] = slots.get(i);}
                  if (slots.get(i).getCode() == 7){
                           SlotArray[5][3]= slots.get(i);
                           SlotArray[6][3]= slots.get(i);
                           SlotArray[7][3]= slots.get(i);
-                          SlotArray[8][3]= slots.get(i);}
+                          SlotArray[8][3]= slots.get(i);
+                          SlotArray[9][3] = slots.get(i);}
                  if (slots.get(i).getCode() == 8){
                           SlotArray[5][4]= slots.get(i);
                           SlotArray[6][4]= slots.get(i);
                           SlotArray[7][4]= slots.get(i);
-                          SlotArray[8][4]= slots.get(i);}
+                          SlotArray[8][4]= slots.get(i);
+                          SlotArray[9][4] = slots.get(i);}
                      if (slots.get(i).getCode() == 9){
                      SlotArray[10][1]= slots.get(i);
                      SlotArray[11][1]= slots.get(i);
                      SlotArray[12][1]= slots.get(i);
-                     SlotArray[13][1]= slots.get(i);}
+                     SlotArray[13][1]= slots.get(i);
+                     SlotArray[14][1]= slots.get(i);}
                  
                     if (slots.get(i).getCode() == 10){
                    SlotArray[10][2]= slots.get(i);
                    SlotArray[11][2]= slots.get(i);
                    SlotArray[12][2]= slots.get(i);
-                   SlotArray[13][2]= slots.get(i);}
+                   SlotArray[13][2]= slots.get(i);
+                   SlotArray[14][2]= slots.get(i);}
 
                    if (slots.get(i).getCode() == 11){
                               SlotArray[10][3]= slots.get(i);
                               SlotArray[11][3]= slots.get(i);
                               SlotArray[12][3]= slots.get(i);
-                              SlotArray[13][3]= slots.get(i);}
+                              SlotArray[13][3]= slots.get(i);
+                              SlotArray[14][3]= slots.get(i);}
                           
                    if (slots.get(i).getCode() == 12){
                      SlotArray[10][4]= slots.get(i);
                      SlotArray[11][4]= slots.get(i);
                      SlotArray[12][4]= slots.get(i);
-                     SlotArray[13][4]= slots.get(i);}
+                     SlotArray[13][4]= slots.get(i);
+                     SlotArray[14][4]= slots.get(i);}
                  if (slots.get(i).getCode() == 13){
                    SlotArray[15][1]= slots.get(i);
                    SlotArray[16][1]= slots.get(i);
                    SlotArray[17][1]= slots.get(i);
-                   SlotArray[18][1]= slots.get(i);}
+                   SlotArray[18][1]= slots.get(i);
+                   SlotArray[19][1]= slots.get(i);}
                  if (slots.get(i).getCode() == 14){
                    SlotArray[15][2]= slots.get(i);
                   SlotArray[16][2]= slots.get(i);
                    SlotArray[17][2]= slots.get(i);
-                   SlotArray[18][2]= slots.get(i);}
+                   SlotArray[18][2]= slots.get(i);
+                   SlotArray[19][2]= slots.get(i);}
                  if (slots.get(i).getCode() == 15){
                    SlotArray[15][3]= slots.get(i);
                    SlotArray[16][3]= slots.get(i);
                    SlotArray[17][3]= slots.get(i);
-                   SlotArray[18][3]= slots.get(i);}
+                   SlotArray[18][3]= slots.get(i);
+                   SlotArray[19][3]= slots.get(i);}
                  if (slots.get(i).getCode() == 16){
                    SlotArray[15][4]= slots.get(i);
                    SlotArray[16][4]= slots.get(i);
                    SlotArray[17][4]= slots.get(i);
-                   SlotArray[18][4]= slots.get(i);}
+                   SlotArray[18][4]= slots.get(i);
+                   SlotArray[19][4]= slots.get(i);}
                  if (slots.get(i).getCode() == 17){
                    SlotArray[20][1]= slots.get(i);
                    SlotArray[21][1]= slots.get(i);
                    SlotArray[22][1]= slots.get(i);
-                   SlotArray[23][1]= slots.get(i);}
+                   SlotArray[23][1]= slots.get(i);
+                   SlotArray[24][1]= slots.get(i);}
                  if (slots.get(i).getCode() == 18){
                    SlotArray[20][2]= slots.get(i);
                    SlotArray[21][2]= slots.get(i);
                    SlotArray[22][2]= slots.get(i);
-                   SlotArray[23][2]= slots.get(i);}
+                   SlotArray[23][2]= slots.get(i);
+                   SlotArray[24][2]= slots.get(i);}
                  if (slots.get(i).getCode() == 19){
                    SlotArray[20][3]= slots.get(i);
                    SlotArray[21][3]= slots.get(i);
                    SlotArray[22][3]= slots.get(i);
-                   SlotArray[23][3]= slots.get(i);}
+                   SlotArray[23][3]= slots.get(i);
+                   SlotArray[24][3]= slots.get(i);}
+                 
                  if (slots.get(i).getCode() == 20){
                    SlotArray[20][4]= slots.get(i);
                    SlotArray[21][4]= slots.get(i);
                    SlotArray[22][4]= slots.get(i);
-                   SlotArray[23][4]= slots.get(i);}
+                   SlotArray[23][4]= slots.get(i);
+                   SlotArray[24][4]= slots.get(i);}
              }  
-             assignedSlot = SlotArray [row][column];
-          System.out.println(assignedSlot.getCode());
-            if(assignedSlot != null){    
-                chosenRoom.setAssignedSlot(assignedSlot);
-                Locationbusiness.saveLocationSlot(chosenRoom); 
-                JOptionPane.showMessageDialog(this, "Location assigned Successfully");}
-      }
+               assignedSlot = SlotArray [row][column];    
+               System.out.println(assignedSlot.getCode());
+                if(assignedSlot != null){    
+                   chosenRoom.setAssignedSlot(assignedSlot);
+                   Locationbusiness.saveLocationSlot(chosenRoom); 
+                  JOptionPane.showMessageDialog(this, "Location assigned Successfully");}
+      }  
      else{
          JOptionPane.showMessageDialog(this,"please, select a slot first ");
-     }
+     }}
+        catch(java.lang.NullPointerException ex){
+            JOptionPane.showMessageDialog(this,"please, select a specific slot, Not a Day! ");
+        }
      
     }//GEN-LAST:event_assignActionPerformed
 
