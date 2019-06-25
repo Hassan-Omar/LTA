@@ -25,7 +25,8 @@ public class ManualAssignment extends javax.swing.JPanel {
     private LocationBao Locationbusiness  = new BaoFactory().createLocationBao();
     private SchedualBao Schedulebuisness = new BaoFactory().createSchedualBao();
     LocationDto chosenRoom = new LocationDto();
-
+    SchedualDto Chosenschedule = new SchedualDto();
+    
     //To Get list of building , location type to set comboBox items 
     List<BuildingDto> Allbuildings = new BaoFactory().createBuildingBao().listBuilding();
     List<LocationTypeDto> AlllocationTypes = new BaoFactory().createLocationTypeBao().listLocationType(); 
@@ -215,7 +216,7 @@ public class ManualAssignment extends javax.swing.JPanel {
         );
         masterLayout.setVerticalGroup(
             masterLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 406, Short.MAX_VALUE)
+            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 396, Short.MAX_VALUE)
         );
 
         add(master, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 140, 660, 450));
@@ -239,7 +240,7 @@ public class ManualAssignment extends javax.swing.JPanel {
         add(refresh, new org.netbeans.lib.awtextra.AbsoluteConstraints(620, 100, -1, 30));
 
         show.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        show.setText("show schedules");
+        show.setText("show schedule");
         show.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 showActionPerformed(evt);
@@ -416,8 +417,8 @@ public class ManualAssignment extends javax.swing.JPanel {
     }//GEN-LAST:event_department_comboActionPerformed
     private void viewActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_viewActionPerformed
             if (department_combo.getSelectedItem() != null && schedule_combo.getSelectedItem() != null) {
-             SchedualDto schedule = Schedulebuisness.getSlectedTable(schedule_combo.getSelectedItem().toString());
-             Utilities.schResetModel(SlotsTable, schedule.getSchedual_Slots());  
+              Chosenschedule = Schedulebuisness.getSlectedTable(schedule_combo.getSelectedItem().toString());
+             Utilities.schResetModel(SlotsTable, Chosenschedule.getSchedual_Slots());  
          }
          else{
            JOptionPane.showMessageDialog(this, " select department and schedule to view"); }
@@ -426,21 +427,128 @@ public class ManualAssignment extends javax.swing.JPanel {
 
     private void assignActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_assignActionPerformed
      if(SlotsTable.getSelectedRow()>=0){
-         int row = SlotsTable.getSelectedRow();
-         int column = SlotsTable.getSelectedColumn();
-            SlotDto assignedSlot = new SlotDto();
+             int row = SlotsTable.getSelectedRow();
+             int column = SlotsTable.getSelectedColumn();
+             SlotDto assignedSlot = new SlotDto();
+             SlotDto[][] SlotArray = new SlotDto[25][5];
+             List<SlotDto> slots = Chosenschedule.getSchedual_Slots(); 
+              int i ;
+             for ( i = 0; i< slots.size();i++ ){
+                 if (slots.get(i).getCode() == 1){
+                          SlotArray[0][1]= slots.get(i);
+                          SlotArray[1][1] = slots.get(i);
+                          SlotArray[2][1] = slots.get(i); 
+                          SlotArray[3][1] = slots.get(i);}   
+                 if (slots.get(i).getCode() ==2 ){
+                          SlotArray[0][2]= slots.get(i);
+                          SlotArray[1][2]= slots.get(i);
+                          SlotArray[2][2]= slots.get(i);
+                          SlotArray[3][2]= slots.get(i);}
+                 if (slots.get(i).getCode() == 3){
+                          SlotArray[0][3]= slots.get(i);
+                          SlotArray[1][3]= slots.get(i);
+                          SlotArray[2][3]= slots.get(i);
+                          SlotArray[3][3]= slots.get(i);}
+                 if (slots.get(i).getCode() == 4){
+                          SlotArray[0][4]= slots.get(i);
+                          SlotArray[1][4]= slots.get(i);
+                          SlotArray[2][4]= slots.get(i);
+                          SlotArray[3][4]= slots.get(i);}
+                 if (slots.get(i).getCode() == 5){
+                          SlotArray[5][1]= slots.get(i);
+                          SlotArray[6][1]= slots.get(i);
+                          SlotArray[7][1]= slots.get(i);
+                          SlotArray[8][1]= slots.get(i);}
+                 if (slots.get(i).getCode() == 6){
+                          SlotArray[5][2]= slots.get(i);
+                          SlotArray[6][2]= slots.get(i);
+                          SlotArray[7][2]= slots.get(i);
+                          SlotArray[8][2]= slots.get(i);}
+                 if (slots.get(i).getCode() == 7){
+                          SlotArray[5][3]= slots.get(i);
+                          SlotArray[6][3]= slots.get(i);
+                          SlotArray[7][3]= slots.get(i);
+                          SlotArray[8][3]= slots.get(i);}
+                 if (slots.get(i).getCode() == 8){
+                          SlotArray[5][4]= slots.get(i);
+                          SlotArray[6][4]= slots.get(i);
+                          SlotArray[7][4]= slots.get(i);
+                          SlotArray[8][4]= slots.get(i);}
+                     if (slots.get(i).getCode() == 9){
+                     SlotArray[10][1]= slots.get(i);
+                     SlotArray[11][1]= slots.get(i);
+                     SlotArray[12][1]= slots.get(i);
+                     SlotArray[13][1]= slots.get(i);}
+                 
+                    if (slots.get(i).getCode() == 10){
+                   SlotArray[10][2]= slots.get(i);
+                   SlotArray[11][2]= slots.get(i);
+                   SlotArray[12][2]= slots.get(i);
+                   SlotArray[13][2]= slots.get(i);}
 
-      //    LocationDto chosenRoom = new LocationDto();
-  //      chosenRoom= RoomList.get(LocationTable.getSelectedRow());
-          chosenRoom.setAssignedSlot(assignedSlot);
-  //      System.out.println(chosenRoom.getLocation_id());
-          Locationbusiness.saveLocationSlot(chosenRoom); 
-         JOptionPane.showMessageDialog(this, "Location assigned Successfully"); 
- }
+                   if (slots.get(i).getCode() == 11){
+                              SlotArray[10][3]= slots.get(i);
+                              SlotArray[11][3]= slots.get(i);
+                              SlotArray[12][3]= slots.get(i);
+                              SlotArray[13][3]= slots.get(i);}
+                          
+                   if (slots.get(i).getCode() == 12){
+                     SlotArray[10][4]= slots.get(i);
+                     SlotArray[11][4]= slots.get(i);
+                     SlotArray[12][4]= slots.get(i);
+                     SlotArray[13][4]= slots.get(i);}
+                 if (slots.get(i).getCode() == 13){
+                   SlotArray[15][1]= slots.get(i);
+                   SlotArray[16][1]= slots.get(i);
+                   SlotArray[17][1]= slots.get(i);
+                   SlotArray[18][1]= slots.get(i);}
+                 if (slots.get(i).getCode() == 14){
+                   SlotArray[15][2]= slots.get(i);
+                  SlotArray[16][2]= slots.get(i);
+                   SlotArray[17][2]= slots.get(i);
+                   SlotArray[18][2]= slots.get(i);}
+                 if (slots.get(i).getCode() == 15){
+                   SlotArray[15][3]= slots.get(i);
+                   SlotArray[16][3]= slots.get(i);
+                   SlotArray[17][3]= slots.get(i);
+                   SlotArray[18][3]= slots.get(i);}
+                 if (slots.get(i).getCode() == 16){
+                   SlotArray[15][4]= slots.get(i);
+                   SlotArray[16][4]= slots.get(i);
+                   SlotArray[17][4]= slots.get(i);
+                   SlotArray[18][4]= slots.get(i);}
+                 if (slots.get(i).getCode() == 17){
+                   SlotArray[20][1]= slots.get(i);
+                   SlotArray[21][1]= slots.get(i);
+                   SlotArray[22][1]= slots.get(i);
+                   SlotArray[23][1]= slots.get(i);}
+                 if (slots.get(i).getCode() == 18){
+                   SlotArray[20][2]= slots.get(i);
+                   SlotArray[21][2]= slots.get(i);
+                   SlotArray[22][2]= slots.get(i);
+                   SlotArray[23][2]= slots.get(i);}
+                 if (slots.get(i).getCode() == 19){
+                   SlotArray[20][3]= slots.get(i);
+                   SlotArray[21][3]= slots.get(i);
+                   SlotArray[22][3]= slots.get(i);
+                   SlotArray[23][3]= slots.get(i);}
+                 if (slots.get(i).getCode() == 20){
+                   SlotArray[20][4]= slots.get(i);
+                   SlotArray[21][4]= slots.get(i);
+                   SlotArray[22][4]= slots.get(i);
+                   SlotArray[23][4]= slots.get(i);}
+             }  
+             assignedSlot = SlotArray [row][column];
+          System.out.println(assignedSlot.getCode());
+            if(assignedSlot != null){    
+                chosenRoom.setAssignedSlot(assignedSlot);
+                Locationbusiness.saveLocationSlot(chosenRoom); 
+                JOptionPane.showMessageDialog(this, "Location assigned Successfully");}
+      }
      else{
          JOptionPane.showMessageDialog(this,"please, select a slot first ");
      }
-    
+     
     }//GEN-LAST:event_assignActionPerformed
 
 
