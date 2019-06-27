@@ -245,7 +245,7 @@ public class EmployeeDaoImp implements EmployeeDao {
                 EmployeeDto lSerch = new EmployeeDto () ;
                 lSerch.setFName(jdbcRs.getString(1));
                 lSerch.setSName(jdbcRs.getString(2));
-                Employee.setLName(jdbcRs.getString(3));
+                lSerch.setLName(jdbcRs.getString(3));
                 lSerch.setFamilyName(jdbcRs.getString(4));
                 
                 lSerch.setInsertedBy(jdbcRs.getString(5));

@@ -1,20 +1,26 @@
 package com.fym.lta.ui;
 
 import com.fym.lta.bao.BaoFactory;
+import com.fym.lta.bao.SearchEngine;
 import com.fym.lta.dto.ScreenDto;
+import com.fym.lta.dto.SearchDto;
+
+import java.awt.event.KeyEvent;
 
 import java.io.File;
 
 import java.util.List;
 
 import javax.swing.JPanel;
+import javax.swing.JTextField;
 
 /**
  *
  * @author h.omar
  */
-public class MMenu extends javax.swing.JFrame
-{
+public class MMenu extends javax.swing.JFrame {
+    JTextField search;
+
     // create bao object and get all avaialable screens in one steps
     List<ScreenDto> availableScreens = new BaoFactory().createScreenBao().list_Of_AavailableScreens();
 
@@ -33,9 +39,17 @@ public class MMenu extends javax.swing.JFrame
 
     /** Creates new form MMenu */
     public MMenu() {
-       
-              
-        initComponents(); 
+
+
+        initComponents();
+        search = new JTextField("  Seach ....  ");
+        jMenuBar1.add(search);
+    search.setText("search");
+                search.addKeyListener(new java.awt.event.KeyAdapter() {
+                    public void keyPressed(java.awt.event.KeyEvent evt) {
+                        searchKeyPressed(evt);
+                    }
+                });
 
     }
 
@@ -89,10 +103,12 @@ public class MMenu extends javax.swing.JFrame
         mainPanelLayout.setVerticalGroup(
             mainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(mainPanelLayout.createSequentialGroup()
-                .addGap(219, 219, 219)
+                .addGap(181, 181, 181)
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 244, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(292, Short.MAX_VALUE))
         );
+
+        jMenuBar1.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
 
         jMenu5.setText("Tables                  ");
         jMenu5.setActionCommand("Insert New   ");
@@ -163,7 +179,7 @@ public class MMenu extends javax.swing.JFrame
 
         jMenuBar1.add(jMenu3);
 
-        jMenu2.setText(" Locations’and spaces management                  ");
+        jMenu2.setText(" Locations and spaces management                  ");
 
         locationMasterM_Item.setText("Locations master screen");
         locationMasterM_Item.addActionListener(new java.awt.event.ActionListener() {
@@ -266,7 +282,7 @@ public class MMenu extends javax.swing.JFrame
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(27, Short.MAX_VALUE)
+                .addContainerGap(65, Short.MAX_VALUE)
                 .addComponent(mainPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
@@ -279,7 +295,7 @@ public class MMenu extends javax.swing.JFrame
     }//GEN-LAST:event_jMenuItem3ActionPerformed
 
     private void courseM_ItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_courseM_ItemActionPerformed
-      switchtoPanel(new CourseScreen() );
+        switchtoPanel(new CourseScreen());
     }//GEN-LAST:event_courseM_ItemActionPerformed
 
     private void jMenu1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jMenu1MouseClicked
@@ -331,7 +347,7 @@ public class MMenu extends javax.swing.JFrame
     }//GEN-LAST:event_locationMasterM_ItemActionPerformed
 
     private void jMenu5MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jMenu5MouseClicked
-    switchtoPanel(new ScheduleInsert()) ;
+        switchtoPanel(new ScheduleInsert());
     }//GEN-LAST:event_jMenu5MouseClicked
 
 
@@ -344,42 +360,54 @@ public class MMenu extends javax.swing.JFrame
     }//GEN-LAST:event_assigendrolequicksearchActionPerformed
 
     private void locationTypeM_ItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_locationTypeM_ItemActionPerformed
-    switchtoPanel(new LocationTypeScreen() ) ;
+        switchtoPanel(new LocationTypeScreen());
     }//GEN-LAST:event_locationTypeM_ItemActionPerformed
 
 
     private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
-    switchtoPanel(new EquipmentScreen()); 
+        switchtoPanel(new EquipmentScreen()); 
     }//GEN-LAST:event_jMenuItem1ActionPerformed
 
 
     private void floorM_ItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_floorM_ItemActionPerformed
-    switchtoPanel(new FloorScreen()) ; 
+        switchtoPanel(new FloorScreen()); 
     }//GEN-LAST:event_floorM_ItemActionPerformed
 
     private void locationManualM_ItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_locationManualM_ItemActionPerformed
-    switchtoPanel(new ManualAssignment()) ; 
+        switchtoPanel(new ManualAssignment()); 
     }//GEN-LAST:event_locationManualM_ItemActionPerformed
 
 
     private void departmentM_ItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_departmentM_ItemActionPerformed
-       switchtoPanel(new DepartmentsScreen() );
+        switchtoPanel(new DepartmentsScreen());
        
     }//GEN-LAST:event_departmentM_ItemActionPerformed
 
     private void locationAutoM_ItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_locationAutoM_ItemActionPerformed
-       switchtoPanel(new AutoAssignment() );
+        switchtoPanel(new AutoAssignment());
     
     }//GEN-LAST:event_locationAutoM_ItemActionPerformed
 
     private void reportMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_reportMouseClicked
-        switchtoPanel(new MailScreen() ) ; 
+        switchtoPanel(new MailScreen()); 
     }//GEN-LAST:event_reportMouseClicked
 
     private void jMenu6MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jMenu6MouseClicked
-    switchtoPanel(new Setting() ) ; 
+        switchtoPanel(new Setting()); 
     }//GEN-LAST:event_jMenu6MouseClicked
 
+    private void jTextField1KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField1KeyPressed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextField1KeyPressed
+
+    private void searchKeyPressed(java.awt.event.KeyEvent evt) {
+        List<SearchDto> result ;
+        if (evt.getKeyCode() == KeyEvent.VK_ENTER)
+        {
+            result = SearchEngine.SearchList(search.getText());  
+            switchtoPanel( new SearchViewr(result) );
+        }
+    }
 
     /**
      * @param args the command line arguments
@@ -447,14 +475,11 @@ public class MMenu extends javax.swing.JFrame
     boolean controlOnMenu(int id) {
         for (int i = 0; i < availableScreens.size(); i++) {
             int screenID = availableScreens.get(i).getScreen_id();
-           if (screenID==id)
-             return true;
-                 }
-     return false;   }
-    
-    
-    
-    
+            if (screenID == id)
+                return true;
+        }
+        return false;
+    }
 
 
 }

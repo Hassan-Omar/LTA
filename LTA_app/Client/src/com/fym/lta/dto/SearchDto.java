@@ -1,51 +1,31 @@
 package com.fym.lta.dto;
 
+
 public class SearchDto {
-    public SearchDto() {
-        }
-    private LocationDto location; 
-    private BuildingDto building ; 
-    private LocationTypeDto type ; 
-    private FloorDto floor ; 
-    private EquipmentDto equipment ;
+        public SearchDto() {
+            }
+        
+       private String type ; 
+       private String search_value;
 
-    public void setLocation(LocationDto location) {
-        this.location = location;
-    }
-
-    public LocationDto getLocation() {
-        return location;
-    }
-
-    public void setBuilding(BuildingDto building) {
-        this.building = building;
-    }
-
-    public BuildingDto getBuilding() {
-        return building;
-    }
-
-    public void setType(LocationTypeDto type) {
+    public void setType(String type) {
         this.type = type;
     }
 
-    public LocationTypeDto getType() {
+    public String getType() {
         return type;
     }
 
-    public void setFloor(FloorDto floor) {
-        this.floor = floor;
+
+    public void setSearch_value(String search_value) {
+        this.search_value = search_value;
     }
 
-    public FloorDto getFloor() {
-        return floor;
+    public String getSearch_value() {
+        return search_value;
     }
 
-    public void setEquipment(EquipmentDto equipment) {
-        this.equipment = equipment;
-    }
 
-    public EquipmentDto getEquipment() {
-        return equipment;
-    }
 }
+
+

@@ -138,7 +138,6 @@
    <hash n="oracle.jdeveloper.model.PathsConfiguration">
       <hash n="javaContentSet">
          <list n="pattern-filters">
-            <string v="-com/fym/lta/dto/SearchDto.java"/>
             <string v="+**"/>
          </list>
          <list n="url-path">
