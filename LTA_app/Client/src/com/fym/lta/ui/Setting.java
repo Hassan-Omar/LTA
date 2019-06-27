@@ -1,6 +1,8 @@
 
 package com.fym.lta.ui;
 
+import javax.swing.ButtonGroup;
+
 
 /**
  *
@@ -11,7 +13,9 @@ public class Setting extends javax.swing.JPanel {
     /** Creates new form Setting */
     public Setting() {
         initComponents(); 
-     
+        ButtonGroup bg = new ButtonGroup( );
+        bg.add(upper);
+        bg.add(side);
     }
 
     /** This method is called from within the constructor to
@@ -23,18 +27,18 @@ public class Setting extends javax.swing.JPanel {
     private void initComponents() {//GEN-BEGIN:initComponents
 
         themes = new javax.swing.JComboBox();
-        jLabel1 = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
+        jPanel1 = new javax.swing.JPanel();
+        side = new javax.swing.JRadioButton();
+        upper = new javax.swing.JRadioButton();
+        jLabel1 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
 
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         themes.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         themes.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Aluminum", "Mac", "HiFi", "Mint", "Graphite", "Noire", "Smart", "Aero", "Acry", "Texture", "Bernstein", "Fast look", "Luna" }));
         add(themes, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 110, 230, -1));
-
-        jLabel1.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jLabel1.setText("Themes");
-        add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 44, 230, 40));
 
         jButton1.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jButton1.setText("Apply");
@@ -43,7 +47,38 @@ public class Setting extends javax.swing.JPanel {
                 jButton1ActionPerformed(evt);
             }
         });
-        add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 121, 110, 60));
+        add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 320, 110, 60));
+
+        jPanel1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        side.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        side.setText("Side menu ( Desktop Interface )");
+        side.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                sideActionPerformed(evt);
+            }
+        });
+        jPanel1.add(side, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 140, 240, 40));
+
+        upper.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        upper.setText("Drop down from the top ( Web Interface )");
+        upper.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                upperActionPerformed(evt);
+            }
+        });
+        jPanel1.add(upper, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 70, 290, 40));
+
+        jLabel1.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel1.setText("Menus");
+        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 10, 230, 40));
+
+        add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 60, 320, 190));
+
+        jLabel2.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel2.setText("Themes");
+        add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 44, 230, 40));
     }//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
@@ -53,11 +88,23 @@ public class Setting extends javax.swing.JPanel {
         
     }//GEN-LAST:event_jButton1ActionPerformed
 
+    private void sideActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sideActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_sideActionPerformed
+
+    private void upperActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_upperActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_upperActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JPanel jPanel1;
+    private javax.swing.JRadioButton side;
     private javax.swing.JComboBox themes;
+    private javax.swing.JRadioButton upper;
     // End of variables declaration//GEN-END:variables
 
 
