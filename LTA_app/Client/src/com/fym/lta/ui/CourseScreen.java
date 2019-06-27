@@ -122,6 +122,7 @@ private CourseBao courseobjBao = new BaoFactory().createCourseBao();
         });
         popup.add(jMenuItem5);
 
+        setBackground(new java.awt.Color(0, 0, 0));
         addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseReleased(java.awt.event.MouseEvent evt) {
                 formMouseReleased(evt);
@@ -129,8 +130,11 @@ private CourseBao courseobjBao = new BaoFactory().createCourseBao();
         });
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
+        btnSearch.setBackground(new java.awt.Color(0, 0, 0));
         btnSearch.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        btnSearch.setText("Search");
+        btnSearch.setIcon(new javax.swing.ImageIcon("C:\\Oracle\\Middleware\\LTA\\icons\\search.png")); // NOI18N
+        btnSearch.setBorder(null);
+        btnSearch.setBorderPainted(false);
         btnSearch.setPreferredSize(new java.awt.Dimension(70, 30));
         btnSearch.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -152,15 +156,18 @@ private CourseBao courseobjBao = new BaoFactory().createCourseBao();
         add(search_textField, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 70, 229, 33));
 
         jLabel1.setFont(new java.awt.Font("Times New Roman", 1, 24)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setText("Course Screen ");
         add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 0, 170, 39));
 
         jLabel2.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        jLabel2.setText("Search");
-        add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 40, 163, -1));
+        jLabel2.setIcon(new javax.swing.ImageIcon("C:\\Oracle\\Middleware\\LTA\\icons\\search2.png")); // NOI18N
+        add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 40, 140, 30));
 
+        cPanel.setBackground(new java.awt.Color(0, 0, 0));
         cPanel.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Courses", 0, 0, new java.awt.Font("Tekton Pro Cond", 1, 36))); // NOI18N
 
+        courseTable.setBackground(new java.awt.Color(51, 98, 114));
         courseTable.setFont(new java.awt.Font("Tekton Pro Cond", 1, 12)); // NOI18N
         courseTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -171,11 +178,12 @@ private CourseBao courseobjBao = new BaoFactory().createCourseBao();
             }
         ));
         courseTable.setRowHeight(30);
+        courseTable.setSelectionBackground(new java.awt.Color(22, 224, 236));
         courseTable.addHierarchyBoundsListener(new java.awt.event.HierarchyBoundsListener() {
-            public void ancestorMoved(java.awt.event.HierarchyEvent evt) {
-            }
             public void ancestorResized(java.awt.event.HierarchyEvent evt) {
                 courseTableAncestorResized(evt);
+            }
+            public void ancestorMoved(java.awt.event.HierarchyEvent evt) {
             }
         });
         jScrollPane1.setViewportView(courseTable);
@@ -195,29 +203,42 @@ private CourseBao courseobjBao = new BaoFactory().createCourseBao();
         );
         cPanelLayout.setVerticalGroup(
             cPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 436, Short.MAX_VALUE)
+            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 456, Short.MAX_VALUE)
         );
 
-        add(cPanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 190, -1, 480));
+        add(cPanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 190, -1, 500));
 
+        insertPanel.setBackground(new java.awt.Color(51, 98, 114));
         insertPanel.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        insertPanel.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel3.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        jLabel3.setForeground(new java.awt.Color(255, 255, 255));
         jLabel3.setText("Course Insert");
+        insertPanel.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(217, 31, -1, -1));
 
         codelapel.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        codelapel.setForeground(new java.awt.Color(255, 255, 255));
         codelapel.setText("Code");
+        insertPanel.add(codelapel, new org.netbeans.lib.awtextra.AbsoluteConstraints(24, 78, 61, 34));
 
         namelapel.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        namelapel.setForeground(new java.awt.Color(255, 255, 255));
         namelapel.setText("Name");
+        insertPanel.add(namelapel, new org.netbeans.lib.awtextra.AbsoluteConstraints(24, 139, 77, 33));
 
         Department_ComboBox.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        insertPanel.add(Department_ComboBox, new org.netbeans.lib.awtextra.AbsoluteConstraints(208, 269, 319, 52));
 
         Departmentlapel.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        Departmentlapel.setForeground(new java.awt.Color(255, 255, 255));
         Departmentlapel.setText("Department ");
+        insertPanel.add(Departmentlapel, new org.netbeans.lib.awtextra.AbsoluteConstraints(24, 290, -1, -1));
 
+        btnSave.setBackground(new java.awt.Color(0, 0, 0));
         btnSave.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        btnSave.setText("Save");
+        btnSave.setIcon(new javax.swing.ImageIcon("C:\\Oracle\\Middleware\\LTA\\icons\\save.png")); // NOI18N
+        btnSave.setBorderPainted(false);
         btnSave.setMaximumSize(new java.awt.Dimension(60, 30));
         btnSave.setMinimumSize(new java.awt.Dimension(60, 30));
         btnSave.setPreferredSize(new java.awt.Dimension(60, 30));
@@ -226,108 +247,53 @@ private CourseBao courseobjBao = new BaoFactory().createCourseBao();
                 btnSaveMouseClicked(evt);
             }
         });
+        insertPanel.add(btnSave, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 550, 140, 60));
 
         code_textField.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        code_textField.setBorder(null);
+        insertPanel.add(code_textField, new org.netbeans.lib.awtextra.AbsoluteConstraints(208, 78, 319, 35));
 
         name_textField.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        name_textField.setBorder(null);
+        insertPanel.add(name_textField, new org.netbeans.lib.awtextra.AbsoluteConstraints(208, 131, 319, 33));
 
         prefered_ComboBox.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        insertPanel.add(prefered_ComboBox, new org.netbeans.lib.awtextra.AbsoluteConstraints(208, 355, 319, 52));
 
         Departmentlapel1.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        Departmentlapel1.setForeground(new java.awt.Color(255, 255, 255));
         Departmentlapel1.setText("pref_Space");
+        insertPanel.add(Departmentlapel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(24, 376, -1, -1));
 
         hours_perWeak.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        hours_perWeak.setBorder(null);
+        insertPanel.add(hours_perWeak, new org.netbeans.lib.awtextra.AbsoluteConstraints(208, 200, 319, 32));
 
         namelapel1.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        namelapel1.setForeground(new java.awt.Color(255, 255, 255));
         namelapel1.setText("Hours per Week");
+        insertPanel.add(namelapel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(24, 200, 159, 33));
 
         descrption.setColumns(20);
         descrption.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         descrption.setRows(5);
+        descrption.setBorder(null);
         jScrollPane2.setViewportView(descrption);
 
+        insertPanel.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(208, 442, 319, -1));
+
         Departmentlapel2.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        Departmentlapel2.setForeground(new java.awt.Color(255, 255, 255));
         Departmentlapel2.setText("Description");
+        insertPanel.add(Departmentlapel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(24, 467, -1, -1));
 
-        javax.swing.GroupLayout insertPanelLayout = new javax.swing.GroupLayout(insertPanel);
-        insertPanel.setLayout(insertPanelLayout);
-        insertPanelLayout.setHorizontalGroup(
-            insertPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(insertPanelLayout.createSequentialGroup()
-                .addGap(23, 23, 23)
-                .addGroup(insertPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(insertPanelLayout.createSequentialGroup()
-                        .addGap(193, 193, 193)
-                        .addComponent(jLabel3)
-                        .addGap(0, 0, Short.MAX_VALUE))
-                    .addGroup(insertPanelLayout.createSequentialGroup()
-                        .addGroup(insertPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(insertPanelLayout.createSequentialGroup()
-                                .addGroup(insertPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(codelapel, javax.swing.GroupLayout.PREFERRED_SIZE, 61, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(namelapel, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(namelapel1, javax.swing.GroupLayout.PREFERRED_SIZE, 159, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(Departmentlapel)
-                                    .addComponent(Departmentlapel1))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 25, Short.MAX_VALUE)
-                                .addGroup(insertPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(hours_perWeak)
-                                    .addComponent(prefered_ComboBox, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(code_textField, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 319, Short.MAX_VALUE)
-                                    .addComponent(name_textField, javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(Department_ComboBox, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, insertPanelLayout.createSequentialGroup()
-                                .addComponent(Departmentlapel2)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addGroup(insertPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(btnSave, javax.swing.GroupLayout.PREFERRED_SIZE, 129, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 319, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                        .addContainerGap())))
-        );
-        insertPanelLayout.setVerticalGroup(
-            insertPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(insertPanelLayout.createSequentialGroup()
-                .addGap(30, 30, 30)
-                .addComponent(jLabel3)
-                .addGap(25, 25, 25)
-                .addGroup(insertPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(codelapel, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(code_textField, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGroup(insertPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(insertPanelLayout.createSequentialGroup()
-                        .addGap(26, 26, 26)
-                        .addComponent(namelapel, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(insertPanelLayout.createSequentialGroup()
-                        .addGap(18, 18, 18)
-                        .addComponent(name_textField, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(28, 28, 28)
-                .addGroup(insertPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(hours_perWeak, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(namelapel1, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(36, 36, 36)
-                .addGroup(insertPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(Department_ComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(Departmentlapel))
-                .addGap(34, 34, 34)
-                .addGroup(insertPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(prefered_ComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(Departmentlapel1))
-                .addGroup(insertPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(insertPanelLayout.createSequentialGroup()
-                        .addGap(35, 35, 35)
-                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(insertPanelLayout.createSequentialGroup()
-                        .addGap(60, 60, 60)
-                        .addComponent(Departmentlapel2)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(btnSave, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(12, Short.MAX_VALUE))
-        );
+        add(insertPanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(650, 60, 540, 630));
 
-        add(insertPanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(650, 60, 540, 610));
-
+        updateCourseBtn.setBackground(new java.awt.Color(0, 0, 0));
         updateCourseBtn.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        updateCourseBtn.setText("Update");
+        updateCourseBtn.setIcon(new javax.swing.ImageIcon("C:\\Oracle\\Middleware\\LTA\\icons\\update.png")); // NOI18N
+        updateCourseBtn.setBorder(null);
+        updateCourseBtn.setBorderPainted(false);
         updateCourseBtn.setMaximumSize(new java.awt.Dimension(73, 25));
         updateCourseBtn.setMinimumSize(new java.awt.Dimension(73, 25));
         updateCourseBtn.setPreferredSize(new java.awt.Dimension(73, 25));
@@ -338,8 +304,11 @@ private CourseBao courseobjBao = new BaoFactory().createCourseBao();
         });
         add(updateCourseBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 150, 80, 30));
 
+        deleteCourseBtn.setBackground(new java.awt.Color(0, 0, 0));
         deleteCourseBtn.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        deleteCourseBtn.setText("Delete");
+        deleteCourseBtn.setIcon(new javax.swing.ImageIcon("C:\\Oracle\\Middleware\\LTA\\icons\\delete.png")); // NOI18N
+        deleteCourseBtn.setBorder(null);
+        deleteCourseBtn.setBorderPainted(false);
         deleteCourseBtn.setMaximumSize(new java.awt.Dimension(73, 25));
         deleteCourseBtn.setMinimumSize(new java.awt.Dimension(73, 25));
         deleteCourseBtn.setPreferredSize(new java.awt.Dimension(73, 25));
@@ -350,8 +319,11 @@ private CourseBao courseobjBao = new BaoFactory().createCourseBao();
         });
         add(deleteCourseBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 160, 80, 30));
 
+        insertCourseBtn.setBackground(new java.awt.Color(0, 0, 0));
         insertCourseBtn.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        insertCourseBtn.setText("Insert New ");
+        insertCourseBtn.setIcon(new javax.swing.ImageIcon("C:\\Oracle\\Middleware\\LTA\\icons\\insert.png")); // NOI18N
+        insertCourseBtn.setBorder(null);
+        insertCourseBtn.setBorderPainted(false);
         insertCourseBtn.setMaximumSize(new java.awt.Dimension(110, 25));
         insertCourseBtn.setMinimumSize(new java.awt.Dimension(110, 25));
         insertCourseBtn.setPreferredSize(new java.awt.Dimension(110, 25));
@@ -550,7 +522,6 @@ private CourseBao courseobjBao = new BaoFactory().createCourseBao();
     private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JMenuItem jMenuItem2;
     private javax.swing.JMenuItem jMenuItem3;
-    private javax.swing.JMenuItem jMenuItem4;
     private javax.swing.JMenuItem jMenuItem5;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;

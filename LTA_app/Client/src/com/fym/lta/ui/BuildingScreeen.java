@@ -258,7 +258,7 @@ public class BuildingScreeen extends javax.swing.JPanel {
         jLabel4.setFont(new java.awt.Font("Times New Roman", 1, 24)); // NOI18N
         jLabel4.setForeground(new java.awt.Color(255, 255, 255));
         jLabel4.setText("Buildings Screen ");
-        add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 0, 210, 40));
+        add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 10, 210, 40));
     }//GEN-END:initComponents
     //Update Buttom
     private void ubdateBuildingBTNActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ubdateBuildingBTNActionPerformed
