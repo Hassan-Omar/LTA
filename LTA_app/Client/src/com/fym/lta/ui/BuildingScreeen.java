@@ -94,6 +94,7 @@ public class BuildingScreeen extends javax.swing.JPanel {
         });
         popup.add(jMenuItem4);
 
+        setBackground(new java.awt.Color(0, 0, 0));
         addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseReleased(java.awt.event.MouseEvent evt) {
                 formMouseReleased(evt);
@@ -101,9 +102,11 @@ public class BuildingScreeen extends javax.swing.JPanel {
         });
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
+        bPanel.setBackground(new java.awt.Color(0, 0, 0));
         bPanel.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Buildings", 0, 0, new java.awt.Font("Tekton Pro Cond", 1, 36))); // NOI18N
 
-        buildingTable.setFont(new java.awt.Font("Tekton Pro Cond", 0, 12)); // NOI18N
+        buildingTable.setBackground(new java.awt.Color(51, 98, 114));
+        buildingTable.setFont(new java.awt.Font("Tekton Pro Cond", 0, 24)); // NOI18N
         buildingTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
@@ -121,6 +124,7 @@ public class BuildingScreeen extends javax.swing.JPanel {
             }
         });
         buildingTable.setRowHeight(30);
+        buildingTable.setSelectionBackground(new java.awt.Color(22, 224, 236));
         jScrollPane1.setViewportView(buildingTable);
         buildingTable.getColumnModel().getColumn(0).setHeaderValue("Code");
         buildingTable.getColumnModel().getColumn(1).setHeaderValue("Description");
@@ -139,8 +143,10 @@ public class BuildingScreeen extends javax.swing.JPanel {
         add(bPanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 210, 550, 290));
         bPanel.getAccessibleContext().setAccessibleName("Building ");
 
+        ubdateBuildingBTN.setBackground(new java.awt.Color(0, 0, 0));
         ubdateBuildingBTN.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        ubdateBuildingBTN.setText("Update");
+        ubdateBuildingBTN.setIcon(new javax.swing.ImageIcon("C:\\Oracle\\Middleware\\LTA\\icons\\update.png")); // NOI18N
+        ubdateBuildingBTN.setBorderPainted(false);
         ubdateBuildingBTN.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 ubdateBuildingBTNActionPerformed(evt);
@@ -148,8 +154,11 @@ public class BuildingScreeen extends javax.swing.JPanel {
         });
         add(ubdateBuildingBTN, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 160, 80, 30));
 
+        deleteBuildingBTN.setBackground(new java.awt.Color(0, 0, 0));
         deleteBuildingBTN.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        deleteBuildingBTN.setLabel("Delete");
+        deleteBuildingBTN.setIcon(new javax.swing.ImageIcon("C:\\Oracle\\Middleware\\LTA\\icons\\delete.png")); // NOI18N
+        deleteBuildingBTN.setText("");
+        deleteBuildingBTN.setBorderPainted(false);
         deleteBuildingBTN.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 deleteBuildingBTNMouseClicked(evt);
@@ -165,11 +174,13 @@ public class BuildingScreeen extends javax.swing.JPanel {
         add(BuildingEnteredCode, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 70, 230, 30));
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        jLabel1.setText("Search");
-        add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 20, 333, 39));
+        jLabel1.setIcon(new javax.swing.ImageIcon("C:\\Oracle\\Middleware\\LTA\\icons\\search2.png")); // NOI18N
+        add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 49, 100, 20));
 
+        insertBuildingBTN.setBackground(new java.awt.Color(0, 0, 0));
         insertBuildingBTN.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        insertBuildingBTN.setText("Insert  New ");
+        insertBuildingBTN.setIcon(new javax.swing.ImageIcon("C:\\Oracle\\Middleware\\LTA\\icons\\insert.png")); // NOI18N
+        insertBuildingBTN.setBorderPainted(false);
         insertBuildingBTN.setMaximumSize(new java.awt.Dimension(110, 25));
         insertBuildingBTN.setMinimumSize(new java.awt.Dimension(110, 25));
         insertBuildingBTN.setPreferredSize(new java.awt.Dimension(110, 25));
@@ -185,8 +196,10 @@ public class BuildingScreeen extends javax.swing.JPanel {
         });
         add(insertBuildingBTN, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 160, 120, 30));
 
+        searchBuildingBTN.setBackground(new java.awt.Color(0, 0, 0));
         searchBuildingBTN.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        searchBuildingBTN.setText("Search");
+        searchBuildingBTN.setIcon(new javax.swing.ImageIcon("C:\\Oracle\\Middleware\\LTA\\icons\\search.png")); // NOI18N
+        searchBuildingBTN.setBorderPainted(false);
         searchBuildingBTN.setMaximumSize(new java.awt.Dimension(70, 30));
         searchBuildingBTN.setMinimumSize(new java.awt.Dimension(70, 30));
         searchBuildingBTN.setPreferredSize(new java.awt.Dimension(70, 30));
@@ -197,26 +210,39 @@ public class BuildingScreeen extends javax.swing.JPanel {
         });
         add(searchBuildingBTN, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 60, 80, 50));
 
+        insertPanel.setBackground(new java.awt.Color(51, 98, 114));
         insertPanel.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        insertPanel.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
+        jLabel2.setBackground(new java.awt.Color(51, 98, 114));
         jLabel2.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        jLabel2.setForeground(new java.awt.Color(255, 255, 255));
         jLabel2.setText("Description");
+        insertPanel.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(13, 107, 148, 42));
 
         jLabel3.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        jLabel3.setForeground(new java.awt.Color(255, 255, 255));
         jLabel3.setText("Code");
+        insertPanel.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(13, 27, 126, 54));
 
         code.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        code.setBorder(null);
+        insertPanel.add(code, new org.netbeans.lib.awtextra.AbsoluteConstraints(195, 37, 204, 33));
 
         desc.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         desc.setText(" ");
+        desc.setBorder(null);
         desc.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 descActionPerformed(evt);
             }
         });
+        insertPanel.add(desc, new org.netbeans.lib.awtextra.AbsoluteConstraints(195, 107, 270, 169));
 
+        jButton1.setBackground(new java.awt.Color(0, 0, 0));
         jButton1.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jButton1.setText("Save");
+        jButton1.setIcon(new javax.swing.ImageIcon("C:\\Oracle\\Middleware\\LTA\\icons\\save.png")); // NOI18N
+        jButton1.setBorderPainted(false);
         jButton1.setMaximumSize(new java.awt.Dimension(60, 30));
         jButton1.setMinimumSize(new java.awt.Dimension(60, 30));
         jButton1.setPreferredSize(new java.awt.Dimension(60, 30));
@@ -225,42 +251,12 @@ public class BuildingScreeen extends javax.swing.JPanel {
                 jButton1MouseClicked(evt);
             }
         });
+        insertPanel.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 300, 140, 60));
 
-        javax.swing.GroupLayout insertPanelLayout = new javax.swing.GroupLayout(insertPanel);
-        insertPanel.setLayout(insertPanelLayout);
-        insertPanelLayout.setHorizontalGroup(
-            insertPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, insertPanelLayout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(insertPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 126, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 148, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 34, Short.MAX_VALUE)
-                .addGroup(insertPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(code, javax.swing.GroupLayout.PREFERRED_SIZE, 204, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(desc, javax.swing.GroupLayout.PREFERRED_SIZE, 286, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 147, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(37, 37, 37))
-        );
-        insertPanelLayout.setVerticalGroup(
-            insertPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(insertPanelLayout.createSequentialGroup()
-                .addGap(26, 26, 26)
-                .addGroup(insertPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(code, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(26, 26, 26)
-                .addGroup(insertPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(desc, javax.swing.GroupLayout.PREFERRED_SIZE, 169, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(35, Short.MAX_VALUE))
-        );
-
-        add(insertPanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(710, 130, -1, 370));
+        add(insertPanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(710, 130, 510, 370));
 
         jLabel4.setFont(new java.awt.Font("Times New Roman", 1, 24)); // NOI18N
+        jLabel4.setForeground(new java.awt.Color(255, 255, 255));
         jLabel4.setText("Buildings Screen ");
         add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 0, 210, 40));
     }//GEN-END:initComponents
