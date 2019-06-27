@@ -202,7 +202,6 @@ public class UsersScreen extends javax.swing.JPanel {
         deleteUserBTN.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         deleteUserBTN.setForeground(new java.awt.Color(255, 255, 255));
         deleteUserBTN.setIcon(new javax.swing.ImageIcon("C:\\Oracle\\Middleware\\LTA\\icons\\delete.png")); // NOI18N
-        deleteUserBTN.setText("");
         deleteUserBTN.setBorder(null);
         deleteUserBTN.setBorderPainted(false);
         deleteUserBTN.addMouseListener(new java.awt.event.MouseAdapter() {
