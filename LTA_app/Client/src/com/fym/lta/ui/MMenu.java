@@ -34,47 +34,7 @@ public class MMenu extends javax.swing.JFrame
     /** Creates new form MMenu */
     public MMenu() {
        
-                /* super("Minimal-Frame-Application");
-                
-                // setup menu
-                JMenuBar menuBar = new JMenuBar();
-                JMenu menu = new JMenu("File");
-                menu.setMnemonic(3);
-                JMenuItem menuItem = new JMenuItem("Exit");
-                menuItem.setMnemonic(4);
-                menuItem.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_F4, KeyEvent.ALT_MASK));
-                menuItem.addActionListener(new ActionListener() {
-                    public void actionPerformed(ActionEvent event) {
-                        System.exit(0);
-                    }
-                });
-                menu.add(menuItem);
-                menuBar.add(menu);
-                setJMenuBar(menuBar);
-                
-                // setup widgets
-                JPanel contentPanel = new JPanel(new BorderLayout());
-                contentPanel.setBorder(BorderFactory.createEmptyBorder(0, 4, 4, 4));
-                JScrollPane westPanel = new JScrollPane(new JTree());
-                JEditorPane editor = new JEditorPane("text/plain", "Hello World");
-                JScrollPane eastPanel = new JScrollPane(editor);
-                JSplitPane splitPane = new JSplitPane(JSplitPane.HORIZONTAL_SPLIT, true, westPanel,eastPanel);
-                splitPane.setDividerLocation(148);
-                contentPanel.add(splitPane, BorderLayout.CENTER);
-                setContentPane(contentPanel);
-                
-                // add listeners
-                addWindowListener(new WindowAdapter() {
-                    public void windowClosing(WindowEvent e) {
-                        System.exit(0);
-                    }
-                });
-                
-                // show application
-                setLocation(32, 32);
-                setSize(400, 300);
-                show();
-            */
+              
         initComponents(); 
 
     }
@@ -109,6 +69,7 @@ public class MMenu extends javax.swing.JFrame
         roleScreenM_Item = new javax.swing.JMenuItem();
         jMenu4 = new javax.swing.JMenu();
         report = new javax.swing.JMenu();
+        jMenu6 = new javax.swing.JMenu();
         logout = new javax.swing.JMenu();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -140,7 +101,6 @@ public class MMenu extends javax.swing.JFrame
                 jMenu5MouseClicked(evt);
             }
         });
-		if(new  BaoFactory().createScreenBao().getCurrentPermission(14) >= 8)
         jMenuBar1.add(jMenu5);
 
         jMenu3.setText("Basic Data Management                  ");
@@ -151,7 +111,6 @@ public class MMenu extends javax.swing.JFrame
                 buildingM_ItemActionPerformed(evt);
             }
         });
-		if(new  BaoFactory().createScreenBao().getCurrentPermission(1) >= 8)
         jMenu3.add(buildingM_Item);
 
         floorM_Item.setText("Building Floor");
@@ -160,7 +119,6 @@ public class MMenu extends javax.swing.JFrame
                 floorM_ItemActionPerformed(evt);
             }
         });
-		if(new  BaoFactory().createScreenBao().getCurrentPermission(2) >= 8)
         jMenu3.add(floorM_Item);
 
         locationTypeM_Item.setText("location Type");
@@ -169,7 +127,6 @@ public class MMenu extends javax.swing.JFrame
                 locationTypeM_ItemActionPerformed(evt);
             }
         });
-		if(new  BaoFactory().createScreenBao().getCurrentPermission(3) >= 8)
         jMenu3.add(locationTypeM_Item);
 
         departmentM_Item.setText("Departments");
@@ -178,7 +135,6 @@ public class MMenu extends javax.swing.JFrame
                 departmentM_ItemActionPerformed(evt);
             }
         });
-		if(new  BaoFactory().createScreenBao().getCurrentPermission(4) >= 8)
         jMenu3.add(departmentM_Item);
 
         courseM_Item.setText("Course");
@@ -187,7 +143,6 @@ public class MMenu extends javax.swing.JFrame
                 courseM_ItemActionPerformed(evt);
             }
         });
-		if(new  BaoFactory().createScreenBao().getCurrentPermission(5) >= 8)
         jMenu3.add(courseM_Item);
 
         staffM_Item.setText("Staff Member ");
@@ -196,7 +151,6 @@ public class MMenu extends javax.swing.JFrame
                 staffM_ItemActionPerformed(evt);
             }
         });
-		if(new  BaoFactory().createScreenBao().getCurrentPermission(6) >= 8)
         jMenu3.add(staffM_Item);
 
         jMenuItem1.setText("Equipment");
@@ -205,7 +159,6 @@ public class MMenu extends javax.swing.JFrame
                 jMenuItem1ActionPerformed(evt);
             }
         });
-		if(new  BaoFactory().createScreenBao().getCurrentPermission(7) >= 8)
         jMenu3.add(jMenuItem1);
 
         jMenuBar1.add(jMenu3);
@@ -218,7 +171,6 @@ public class MMenu extends javax.swing.JFrame
                 locationMasterM_ItemActionPerformed(evt);
             }
         });
-		if(new  BaoFactory().createScreenBao().getCurrentPermission(11) >= 8)
         jMenu2.add(locationMasterM_Item);
 
         locationManualM_Item.setText("Location Manual Assignment");
@@ -227,7 +179,6 @@ public class MMenu extends javax.swing.JFrame
                 locationManualM_ItemActionPerformed(evt);
             }
         });
-		if(new  BaoFactory().createScreenBao().getCurrentPermission(12) >= 8)
         jMenu2.add(locationManualM_Item);
 
         locationAutoM_Item.setText("Location Automatic Assignment");
@@ -236,7 +187,6 @@ public class MMenu extends javax.swing.JFrame
                 locationAutoM_ItemActionPerformed(evt);
             }
         });
-		if(new  BaoFactory().createScreenBao().getCurrentPermission(13) >= 8)
         jMenu2.add(locationAutoM_Item);
 
         jMenuBar1.add(jMenu2);
@@ -255,7 +205,6 @@ public class MMenu extends javax.swing.JFrame
                 userM_ItemActionPerformed(evt);
             }
         });
-		if(new  BaoFactory().createScreenBao().getCurrentPermission(8) >= 8)
         jMenu1.add(userM_Item);
 
         roleM_Item.setText("Role");
@@ -264,7 +213,6 @@ public class MMenu extends javax.swing.JFrame
                 roleM_ItemActionPerformed(evt);
             }
         });
-		if(new  BaoFactory().createScreenBao().getCurrentPermission(9) >= 8)
         jMenu1.add(roleM_Item);
 
         roleScreenM_Item.setText("Role Screens");
@@ -273,13 +221,11 @@ public class MMenu extends javax.swing.JFrame
                 roleScreenM_ItemActionPerformed(evt);
             }
         });
-		if(new  BaoFactory().createScreenBao().getCurrentPermission(10) >= 8)
         jMenu1.add(roleScreenM_Item);
 
         jMenuBar1.add(jMenu1);
 
         jMenu4.setText("About                  ");
-		if(new  BaoFactory().createScreenBao().getCurrentPermission(16) >= 8)
         jMenuBar1.add(jMenu4);
 
         report.setText("Report                  ");
@@ -288,8 +234,15 @@ public class MMenu extends javax.swing.JFrame
                 reportMouseClicked(evt);
             }
         });
-		if(new  BaoFactory().createScreenBao().getCurrentPermission(15) >= 8)
         jMenuBar1.add(report);
+
+        jMenu6.setText("Settings                  ");
+        jMenu6.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jMenu6MouseClicked(evt);
+            }
+        });
+        jMenuBar1.add(jMenu6);
 
         logout.setText(" Log Out");
         logout.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -313,7 +266,7 @@ public class MMenu extends javax.swing.JFrame
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(26, Short.MAX_VALUE)
+                .addContainerGap(27, Short.MAX_VALUE)
                 .addComponent(mainPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
@@ -423,6 +376,10 @@ public class MMenu extends javax.swing.JFrame
         switchtoPanel(new MailScreen() ) ; 
     }//GEN-LAST:event_reportMouseClicked
 
+    private void jMenu6MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jMenu6MouseClicked
+    switchtoPanel(new Setting() ) ; 
+    }//GEN-LAST:event_jMenu6MouseClicked
+
 
     /**
      * @param args the command line arguments
@@ -470,6 +427,7 @@ public class MMenu extends javax.swing.JFrame
     private javax.swing.JMenu jMenu3;
     private javax.swing.JMenu jMenu4;
     private javax.swing.JMenu jMenu5;
+    private javax.swing.JMenu jMenu6;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JMenuItem locationAutoM_Item;
@@ -493,4 +451,10 @@ public class MMenu extends javax.swing.JFrame
              return true;
                  }
      return false;   }
+    
+    
+    
+    
+
+
 }

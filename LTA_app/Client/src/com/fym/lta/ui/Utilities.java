@@ -145,34 +145,7 @@ public class Utilities {
         return base2;
     }
 
- // this method to install setLookAndFeel
-    public static void setLookAndFeel() {
-        try {
-            Properties props = new Properties();
-            props.put("logoString", " "); // this only to make a light side in menu
-            MintLookAndFeel.setCurrentTheme(props);
-
-            // UIManager.setLookAndFeel("com.jtattoo.plaf.aluminium.AluminiumLookAndFeel"); // the best theme
-            // UIManager.setLookAndFeel("com.jtattoo.plaf.mcwin.McWinLookAndFeel");  // mac theme
-            //  UIManager.setLookAndFeel("com.jtattoo.plaf.hifi.HiFiLookAndFeel"); // night theme
-            UIManager.setLookAndFeel("com.jtattoo.plaf.mint.MintLookAndFeel");
-            // UIManager.setLookAndFeel("com.jtattoo.plaf.graphite.GraphiteLookAndFeel");
-            //UIManager.setLookAndFeel("com.jtattoo.plaf.noire.NoireLookAndFeel");
-            // UIManager.setLookAndFeel("com.jtattoo.plaf.smart.SmartLookAndFeel");
-            // UIManager.setLookAndFeel("com.jtattoo.plaf.aero.AeroLookAndFeel");
-            // UIManager.setLookAndFeel("com.jtattoo.plaf.acryl.AcrylLookAndFeel");
-            //UIManager.setLookAndFeel("com.jtattoo.plaf.texture.TextureLookAndFeel");
-            //  UIManager.setLookAndFeel("com.jtattoo.plaf.bernstein.BernsteinLookAndFeel");
-            //  UIManager.setLookAndFeel("com.jtattoo.plaf.fast.FastLookAndFeel");
-            //  UIManager.setLookAndFeel("com.jtattoo.plaf.luna.LunaLookAndFeel");
-
-
-        } catch (Exception ex) {
-            ex.printStackTrace();
-        }
-    }
-
-
+ 
     // method to ckeck if the char > max length implmented 
 
     public static boolean char_Limit_Ckeck(String word, int length) {
@@ -967,5 +940,62 @@ public class Utilities {
         
         
         
+       
+       
+       
+// this method to install setLookAndFeel
+   public static void setLookAndFeel(int index) {
+                   try {
+                       Properties props = new Properties();
+                       props.put("logoString", " "); // this only to make a light side in menu
+                       MintLookAndFeel.setCurrentTheme(props);
+                       switch(index)
+                       {
+                        case 0 :
+                        UIManager.setLookAndFeel("com.jtattoo.plaf.aluminium.AluminiumLookAndFeel"); // the best theme
+                        break ; 
+                       
+                        case 1 :
+                           UIManager.setLookAndFeel("com.jtattoo.plaf.mcwin.McWinLookAndFeel");  // mac theme
+                        break ; 
+                       
+                        case 2 :
+                            UIManager.setLookAndFeel("com.jtattoo.plaf.hifi.HiFiLookAndFeel"); // night theme
+                        break ; 
+                       
+                       case 3 :
+                            UIManager.setLookAndFeel("com.jtattoo.plaf.mint.MintLookAndFeel");
+                       break ;
+                       
+                       case 4 :
+                            UIManager.setLookAndFeel("com.jtattoo.plaf.graphite.GraphiteLookAndFeel");
+                       break ; 
+                       
+                       case 5 :
+                       UIManager.setLookAndFeel("com.jtattoo.plaf.noire.NoireLookAndFeel");
+                       break ; 
+                       
+                       // UIManager.setLookAndFeel("com.jtattoo.plaf.smart.SmartLookAndFeel");
+                       // UIManager.setLookAndFeel("com.jtattoo.plaf.aero.AeroLookAndFeel");
+                       // UIManager.setLookAndFeel("com.jtattoo.plaf.acryl.AcrylLookAndFeel");
+                       //UIManager.setLookAndFeel("com.jtattoo.plaf.texture.TextureLookAndFeel");
+                       //  UIManager.setLookAndFeel("com.jtattoo.plaf.bernstein.BernsteinLookAndFeel");
+                       //  UIManager.setLookAndFeel("com.jtattoo.plaf.fast.FastLookAndFeel");
+                       //  UIManager.setLookAndFeel("com.jtattoo.plaf.luna.LunaLookAndFeel");
+                       }
+                        
+                     //  Main_Core.mu = new MMenu();
+                       Main_Core.mu.revalidate(); Main_Core.mu.repaint();
+                       Main_Core.mu.switchtoPanel(new Setting());
+                   
+                   } catch (Exception ex) {
+                       ex.printStackTrace();
+                   }
+               }
+
+       
+       
+       
+       
         }  
 

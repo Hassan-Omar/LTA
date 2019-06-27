@@ -46,7 +46,7 @@ public class AutoAssignment extends javax.swing.JPanel {
         jProgressBar1 = new javax.swing.JProgressBar();
         reprot = new javax.swing.JLabel();
 
-        setLayout(null);
+        setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         assignBtn.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         assignBtn.setText("Assign");
@@ -55,8 +55,7 @@ public class AutoAssignment extends javax.swing.JPanel {
                 assignBtnMouseClicked(evt);
             }
         });
-        add(assignBtn);
-        assignBtn.setBounds(30, 30, 120, 80);
+        add(assignBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 30, 120, 80));
 
         progressPanel.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         progressPanel.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -67,8 +66,7 @@ public class AutoAssignment extends javax.swing.JPanel {
         progressPanel.add(jProgressBar1, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 170, 520, 30));
         progressPanel.add(reprot, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 230, 530, 90));
 
-        add(progressPanel);
-        progressPanel.setBounds(220, 30, 600, 400);
+        add(progressPanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 30, 600, 400));
     }//GEN-END:initComponents
 
     private void assignBtnMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_assi
