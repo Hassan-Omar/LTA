@@ -8,8 +8,6 @@ import com.fym.lta.dto.DepartmentDto;
 
 import java.util.List;
 
-import javax.swing.Timer;
-
 /**
  *
  * @author H,Omar
@@ -20,16 +18,16 @@ public class AutoAssignment extends javax.swing.JPanel {
     List<DepartmentDto> allDepartments  = new BaoFactory().createDepartmentBao().listDepartment();
 
     SchedualBao SchedualBaoObj ;
-    public static int slotNO =0 ; 
-
-    private Timer timer ;
+  
    
     /** Creates new form AutoAssignment */
     public AutoAssignment() {
         initComponents();
-        progressPanel.setVisible(false);
-        //String permissionType = new BaoFactory().createScreenBao().getCurrentPermission(13);
-        //Utilities.mandate(null ,null , null ,13,permissionType);
+        progressPanel.setVisible(true);
+        errorsField.setVisible(true);
+   
+        assignBtn.setIcon(new javax.swing.ImageIcon("C:\\Oracle\\Middleware\\LTA\\icons\\assign.png")); // NOI18N
+        jLabel1.setIcon(new javax.swing.ImageIcon("C:\\Oracle\\Middleware\\LTA\\icons\\progBar.png")); // NOI18N
     }
 
     /** This method is called from within the constructor to
@@ -46,7 +44,7 @@ public class AutoAssignment extends javax.swing.JPanel {
         bar = new javax.swing.JProgressBar();
         reprot = new javax.swing.JLabel();
         jScrollPane3 = new javax.swing.JScrollPane();
-        errors = new javax.swing.JTextArea();
+        errorsField = new javax.swing.JTextArea();
 
         setBackground(new java.awt.Color(0, 0, 0));
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -75,39 +73,38 @@ public class AutoAssignment extends javax.swing.JPanel {
         progressPanel.add(bar, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 170, 640, 30));
 
         reprot.setForeground(new java.awt.Color(255, 255, 255));
-        reprot.setText("eryteru");
         progressPanel.add(reprot, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 230, 530, 70));
 
         add(progressPanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 30, 720, 400));
 
-        errors.setBackground(new java.awt.Color(0, 0, 0));
-        errors.setColumns(20);
-        errors.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        errors.setForeground(new java.awt.Color(255, 0, 0));
-        errors.setRows(20);
-        errors.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(204, 240, 240)));
-        errors.setDisabledTextColor(new java.awt.Color(255, 255, 255));
-        jScrollPane3.setViewportView(errors);
+        errorsField.setBackground(new java.awt.Color(0, 0, 0));
+        errorsField.setColumns(20);
+        errorsField.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        errorsField.setForeground(new java.awt.Color(255, 0, 0));
+        errorsField.setRows(20);
+        errorsField.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(204, 240, 240)));
+        errorsField.setDisabledTextColor(new java.awt.Color(255, 255, 255));
+        jScrollPane3.setViewportView(errorsField);
 
         add(jScrollPane3, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 460, 720, 140));
     }//GEN-END:initComponents
 
     private void assignBtnMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_assi
+    // progress bar 
+     progressPanel.setVisible(true);
+     errorsField.setVisible(true);
 
-   AllocationAlgorthim allocBusinees  =  new AllocationAlgorthim () ; 
-       String report =  allocBusinees.alloc_All() ;
-       reprot.setText(report);
-       // progress bar 
-        progressPanel.setVisible(false);
-
-
+     AllocationAlgorthim allocBusinees  =  new AllocationAlgorthim () ; 
+      String errors =  allocBusinees.alloc_All(bar,reprot) ;
+      
+        errorsField.setText(errors);
     }//GEN-LAST:event_assignBtnMouseClicked
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton assignBtn;
     private javax.swing.JProgressBar bar;
-    private javax.swing.JTextArea errors;
+    private javax.swing.JTextArea errorsField;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JPanel progressPanel;

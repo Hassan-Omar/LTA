@@ -4,16 +4,18 @@ import com.fym.lta.dto.DepartmentDto;
 import com.fym.lta.dto.LocationDto;
 import com.fym.lta.dto.SchedualDto;
 import com.fym.lta.dto.SlotDto;
-import com.fym.lta.ui.AutoAssignment;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class AllocationAlgorthim {
+import javax.swing.JLabel;
+import javax.swing.JProgressBar;
 
+public class AllocationAlgorthim {
+    int ratio = 0; 
     //var to hold the value of saving table after allocation ;
     boolean saveStatus = false, saveStatus2 = false;
-    String report = " @ \r\n"; // this to hold the value which we need to told to the user
+   // String report = " @ \r\n"; // this to hold the value which we need to told to the user
     SchedualBao schedualBaoObj = new BaoFactory().createSchedualBao();
     LocationBao locationBaoObj = new BaoFactory().createLocationBao();
 
@@ -22,30 +24,32 @@ public class AllocationAlgorthim {
     static String Errors = "";
 
 
-    public String alloc_All() { // loops on all departments
+    public String alloc_All(JProgressBar bar ,JLabel report ) { // loops on all departments
     int depNum = allDeparts.size();
     
         for (int i = 0; i < depNum; i++) {
             List<SchedualDto> schedualIn_Depart = schedualBaoObj.listSchedual_inDeparts(allDeparts.get(i).getCode());
             // loops on the department's schedual
+            
+           int schNum  =  schedualIn_Depart.size()*depNum;
             for (int k = 0; k < schedualIn_Depart.size(); k++) { // calling allocate_Table method to allocate  table no k
-                saveStatus2 = allocate_Table(schedualIn_Depart.get(k), allDeparts.get(i).getCode());
+                saveStatus2 = allocate_Table(schedualIn_Depart.get(k), allDeparts.get(i).getCode(), report);
 
-                if (!saveStatus2)
-                    report += " table no " + k + " dep name " + allDeparts.get(i).getCode();
                 
             }
              // i think  depNum  well never >= 100  so i don't need if statment 
-             int ratio = 100 / depNum ; 
-             AutoAssignment.slotNO += ratio;
+           
+           
+            bar.setValue(ratio*100/(schNum*20));
+            
         }
 
-        return report+Errors;
+        return Errors;
     }
 
 
     // method to  connect location  and alloc for a certian one table 
-    public boolean allocate_Table(SchedualDto currentSchedual, String depCode) {
+    public boolean allocate_Table(SchedualDto currentSchedual, String depCode,JLabel report) {
 
         // get the number of student
         int studentNum = currentSchedual.getStudent_number();
@@ -65,14 +69,14 @@ public class AllocationAlgorthim {
            LocationDto chosenRoom = decitionMake(filterdRooms , studentNum , currentSlots.get(i).getPrefSpace() ) ; 
           
            if(chosenRoom==null)
-           {Errors+="can't alloc for"+currentSlots.get(i).getCode(); 
+           {Errors+="can't alloc for Slot Number "+currentSlots.get(i).getCode()+"\r\nin "+currentSchedual.getSCHEDULECODE(); 
            }
             else
            {
          
            // update this location 
            chosenRoom.setAssignedSlot(currentSlots.get(i));
-            System.out.println(chosenRoom.getLocation_id());
+           // System.out.println(chosenRoom.getLocation_id());
            locationBaoObj.saveLocationSlot(chosenRoom); 
            }
             // update availableRooms list  
@@ -82,7 +86,11 @@ public class AllocationAlgorthim {
             rooms_inDep.add(chosenRoom); */
             
             rooms_inDep = locationBaoObj.getAvailableLocations(depCode);            
-            
+            ratio += ratio;
+            report.setText("Table Code "+currentSchedual.getSCHEDULECODE()+"Slot"+currentSlots.get(i).getCode() + "Reserved");
+            report.revalidate();
+            report.repaint();
+        
         }
 
         return saveStatus;
