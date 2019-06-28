@@ -53,6 +53,7 @@ public class RoleScreen extends javax.swing.JPanel {
         jMenuItem2 = new javax.swing.JMenuItem();
         jMenuItem3 = new javax.swing.JMenuItem();
         jMenuItem4 = new javax.swing.JMenuItem();
+        jMenuItem7 = new javax.swing.JMenuItem();
         roleEnteredCode = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
         searchUserBTN = new javax.swing.JButton();
@@ -102,6 +103,14 @@ public class RoleScreen extends javax.swing.JPanel {
             }
         });
         popup.add(jMenuItem4);
+
+        jMenuItem7.setText("Import Sheet");
+        jMenuItem7.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem7ActionPerformed(evt);
+            }
+        });
+        popup.add(jMenuItem7);
 
         setBackground(new java.awt.Color(0, 0, 0));
         addMouseListener(new java.awt.event.MouseAdapter() {
@@ -419,6 +428,11 @@ public class RoleScreen extends javax.swing.JPanel {
     
     }//GEN-LAST:event_formMouseReleased
 
+    private void jMenuItem7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem7ActionPerformed
+
+      // TableReset(readlist());
+    }//GEN-LAST:event_jMenuItem7ActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton SaveBtn;
@@ -434,6 +448,9 @@ public class RoleScreen extends javax.swing.JPanel {
     private javax.swing.JMenuItem jMenuItem2;
     private javax.swing.JMenuItem jMenuItem3;
     private javax.swing.JMenuItem jMenuItem4;
+    private javax.swing.JMenuItem jMenuItem5;
+    private javax.swing.JMenuItem jMenuItem6;
+    private javax.swing.JMenuItem jMenuItem7;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
     private java.awt.Label label1;

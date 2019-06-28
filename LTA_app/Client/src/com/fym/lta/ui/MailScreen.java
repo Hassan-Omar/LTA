@@ -3,6 +3,7 @@ package com.fym.lta.ui;
 
 import com.fym.lta.bao.BaoFactory;
 import com.fym.lta.bao.EmployeeBao;
+import com.fym.lta.bao.LoginEngine;
 import com.fym.lta.dto.EmployeeDto;
 
 import java.io.File;
@@ -79,32 +80,22 @@ public class MailScreen extends javax.swing.JPanel {
 
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        userTable.setFont(new java.awt.Font("Tekton Pro", 1, 12)); // NOI18N
+        userTable.setFont(new java.awt.Font("Tekton Pro Cond", 0, 18)); // NOI18N
         userTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+
             },
             new String [] {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
+        userTable.setRowHeight(25);
         userTable.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseExited(java.awt.event.MouseEvent evt) {
                 userTableMouseExited(evt);
             }
         });
         jScrollPane1.setViewportView(userTable);
-        userTable.getColumnModel().getColumn(0).setHeaderValue("Title 1");
-        userTable.getColumnModel().getColumn(1).setHeaderValue("Title 2");
-        userTable.getColumnModel().getColumn(2).setHeaderValue("Title 3");
-        userTable.getColumnModel().getColumn(3).setHeaderValue("Title 4");
 
         add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 160, 510, 370));
         add(email_TextField, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 80, 228, 35));
@@ -266,10 +257,10 @@ public class MailScreen extends javax.swing.JPanel {
    // if (userTable.getSelectedRow()<0)
     //  JOptionPane.showMessageDialog(this, "There is no user have been selected/n please Select a user");
         // this will give you current user's mail 
-        //String currentUserEmail =  userBaoObj.getCurrentUserEmail(LoginEngine.currentUser); 
+        String currentUserEmail =  new BaoFactory().createUserBao().getCurrentUserEmail(LoginEngine.currentUser); 
     
         // this only to test and you need to delete in future 
-       String currentUserEmail = "nadaelrayse@gmail.com" ; 
+       //String currentUserEmail = "nadaelrayse@gmail.com" ; 
     
     
        final String username = currentUserEmail ;
@@ -358,7 +349,7 @@ public class MailScreen extends javax.swing.JPanel {
         
         
         catch (MessagingException e) {
-            e.printStackTrace();
+            JOptionPane.showMessageDialog(this, "Error"+e.getMessage());
         }
     
 

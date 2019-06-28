@@ -6,19 +6,28 @@ import com.fym.lta.bao.BuildingBao;
 import com.fym.lta.bao.LoginEngine;
 import com.fym.lta.dto.BuildingDto;
 
+import java.io.FileInputStream;
+
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.Iterator;
 import java.util.List;
 
+import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 
-/**
- *
- * @author karima
- */
+import org.apache.poi.ss.usermodel.Cell;
+import org.apache.poi.ss.usermodel.Row;
+import org.apache.poi.xssf.usermodel.XSSFSheet;
+import org.apache.poi.xssf.usermodel.XSSFWorkbook;
+
+
 public class BuildingScreeen extends javax.swing.JPanel {
 
     BuildingBao buildingBaoObject = new BaoFactory().createBuildingBao();
     boolean updateFlag = false;
+
+    List<BuildingDto> buildings = new ArrayList<>();
 
     /** Creates new form Building */
     public BuildingScreeen() {
@@ -26,10 +35,12 @@ public class BuildingScreeen extends javax.swing.JPanel {
         if (buildingBaoObject.listBuilding() != null)
             buildingTableReset(buildingBaoObject.listBuilding());
         insertPanel.setVisible(false);
+        saveListBtn.setVisible(false);
         // screenID = 1
         // now one step we will create an object of ScreenBao to know the current permission
         int permissionType = new BaoFactory().createScreenBao().getCurrentPermission(1);
-        Utilities.mandate(ubdateBuildingBTN, insertBuildingBTN, deleteBuildingBTN, 1,  Utilities.convertTOBase2(permissionType));
+        Utilities.mandate(ubdateBuildingBTN, insertBuildingBTN, deleteBuildingBTN, 1,
+                          Utilities.convertTOBase2(permissionType));
     }
 
     /** This method is called from within the constructor to
@@ -45,6 +56,7 @@ public class BuildingScreeen extends javax.swing.JPanel {
         jMenuItem2 = new javax.swing.JMenuItem();
         jMenuItem3 = new javax.swing.JMenuItem();
         jMenuItem4 = new javax.swing.JMenuItem();
+        jMenuItem5 = new javax.swing.JMenuItem();
         bPanel = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         buildingTable = new javax.swing.JTable();
@@ -61,6 +73,7 @@ public class BuildingScreeen extends javax.swing.JPanel {
         desc = new javax.swing.JTextField();
         jButton1 = new javax.swing.JButton();
         jLabel4 = new javax.swing.JLabel();
+        saveListBtn = new javax.swing.JButton();
 
         jMenuItem1.setText("Print");
         jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
@@ -93,6 +106,14 @@ public class BuildingScreeen extends javax.swing.JPanel {
             }
         });
         popup.add(jMenuItem4);
+
+        jMenuItem5.setText("Import Sheet");
+        jMenuItem5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem5ActionPerformed(evt);
+            }
+        });
+        popup.add(jMenuItem5);
 
         setBackground(new java.awt.Color(0, 0, 0));
         addMouseListener(new java.awt.event.MouseAdapter() {
@@ -260,15 +281,30 @@ public class BuildingScreeen extends javax.swing.JPanel {
         jLabel4.setForeground(new java.awt.Color(255, 255, 255));
         jLabel4.setIcon(new javax.swing.ImageIcon("C:\\Oracle\\Middleware\\LTA\\icons\\building.png")); // NOI18N
         add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 0, 280, 50));
+
+        saveListBtn.setBackground(new java.awt.Color(0, 0, 0));
+        saveListBtn.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        saveListBtn.setIcon(new javax.swing.ImageIcon("C:\\Oracle\\Middleware\\LTA\\icons\\save.png")); // NOI18N
+        saveListBtn.setBorderPainted(false);
+        saveListBtn.setMaximumSize(new java.awt.Dimension(60, 30));
+        saveListBtn.setMinimumSize(new java.awt.Dimension(60, 30));
+        saveListBtn.setPreferredSize(new java.awt.Dimension(60, 30));
+        saveListBtn.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                saveListBtnMouseClicked(evt);
+            }
+        });
+        add(saveListBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 510, 90, 40));
     }//GEN-END:initComponents
     //Update Buttom
     private void ubdateBuildingBTNActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ubdateBuildingBTNActionPerformed
-    if (buildingTable.getSelectedRow() >= 0) {
+        if (buildingTable.getSelectedRow() >= 0) {
 
-        code.setText(buildingTable.getValueAt(buildingTable.getSelectedRow(), 0).toString());
-        insertPanel.setVisible(true);
-        code.setEnabled(false);
-        updateFlag = true;        } else
+            code.setText(buildingTable.getValueAt(buildingTable.getSelectedRow(), 0).toString());
+            insertPanel.setVisible(true);
+            code.setEnabled(false);
+            updateFlag = true;
+        } else
             JOptionPane.showMessageDialog(this, "select a Building to updaet");
     }//GEN-LAST:event_ubdateBuildingBTNActionPerformed
 
@@ -342,7 +378,7 @@ public class BuildingScreeen extends javax.swing.JPanel {
         if (business.saveBuilding(b)) {
             JOptionPane.showMessageDialog(this, "Saved");
             buildingTableReset(business.listBuilding());
-           
+
         } else
             JOptionPane.showMessageDialog(this, "Can't Save");
     }//GEN-LAST:event_jButton1MouseClicked
@@ -359,25 +395,49 @@ public class BuildingScreeen extends javax.swing.JPanel {
 
     private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
  
-    Utilities.export_PDF(buildingTable);
+        Utilities.export_PDF(buildingTable);
     }//GEN-LAST:event_jMenuItem2ActionPerformed
 
     private void jMenuItem3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem3ActionPerformed
    
-    Utilities.export_XLX(buildingTable);
+        Utilities.export_XLX(buildingTable);
     }//GEN-LAST:event_jMenuItem3ActionPerformed
 
     private void formMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_formMouseReleased
 
-    if(evt.isPopupTrigger())
-    {
-    popup.show(this, evt.getX(), evt.getY());    
-    }
+        if (evt.isPopupTrigger()) {
+            popup.show(this, evt.getX(), evt.getY());
+        }
     }//GEN-LAST:event_formMouseReleased
 
     private void jMenuItem4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem4ActionPerformed
-    insertPanel.setVisible(false);
+        insertPanel.setVisible(false);
     }//GEN-LAST:event_jMenuItem4ActionPerformed
+
+    private void saveListBtnMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_saveListBtnMouseClicked
+
+        boolean status = false;
+        if (buildings != null) {
+            for (int i = 0; i < buildings.size(); i++) {
+                status = buildingBaoObject.saveBuilding(buildings.get(i));
+                status = status && status;
+            }
+        }
+
+        if (status) {
+            JOptionPane.showMessageDialog(this, "All Seved");
+            buildingTableReset(buildingBaoObject.listBuilding());
+        } else
+            JOptionPane.showMessageDialog(this, "Error in Save some Buildings ");
+
+        saveListBtn.setVisible(false);
+    }//GEN-LAST:event_saveListBtnMouseClicked
+
+    private void jMenuItem5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem5ActionPerformed
+
+        buildingTableReset(readlist()); 
+
+    }//GEN-LAST:event_jMenuItem5ActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -398,8 +458,10 @@ public class BuildingScreeen extends javax.swing.JPanel {
     private javax.swing.JMenuItem jMenuItem2;
     private javax.swing.JMenuItem jMenuItem3;
     private javax.swing.JMenuItem jMenuItem4;
+    private javax.swing.JMenuItem jMenuItem5;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JPopupMenu popup;
+    private javax.swing.JButton saveListBtn;
     private javax.swing.JButton searchBuildingBTN;
     private javax.swing.JButton ubdateBuildingBTN;
     // End of variables declaration//GEN-END:variables
@@ -428,4 +490,64 @@ public class BuildingScreeen extends javax.swing.JPanel {
     }
 
 
+    public List<BuildingDto> readlist() {
+
+        //Choose XLS FILE
+        JFileChooser Chooser = new JFileChooser();
+        int Variable = Chooser.showOpenDialog(null);
+        List<BuildingDto> Buildings = new ArrayList<>();
+        ;
+
+        if (Variable == JFileChooser.APPROVE_OPTION) {
+            try {
+
+                XSSFWorkbook workbook = new XSSFWorkbook(new FileInputStream(Chooser.getSelectedFile()));
+                //Get first/desired sheet from the workbook
+                XSSFSheet sheet = workbook.getSheetAt(0);
+                //Iterate through each rows one by one
+                Iterator<Row> rowIterator = sheet.iterator();
+
+                while (rowIterator.hasNext()) {
+
+                    Row row = rowIterator.next();
+                    Iterator cellIterator = row.cellIterator();
+                    // create Building object from BuildingDto
+                    BuildingDto Building = new BuildingDto();
+                    while (cellIterator.hasNext()) {
+                        Cell cell = (Cell) cellIterator.next();
+
+                        //Cell with index 1 contains Code
+
+                        if (cell.getColumnIndex() == 0 && cell.getRowIndex() != 0) {
+                            Building.setCode(cell.getStringCellValue());
+                        }
+                        //Cell with index 2 To save  Description
+                        if (cell.getColumnIndex() == 1 && cell.getRowIndex() != 0) {
+                            Building.setDescription(cell.getStringCellValue());
+
+                        }
+
+                        Building.setINSERTED_BY(LoginEngine.currentUser);
+                        Building.setINSERTION_DATE(new Date(System.currentTimeMillis()));
+
+                    }
+                    // check if the code equal null or not
+                    if (Building.getCode() != null) {
+                        Buildings.add(Building);
+                    }
+
+                }
+
+            }
+
+            catch (Exception e) {
+                e.printStackTrace();
+            }
+
+        }
+        saveListBtn.setVisible(true);
+        buildings = Buildings;
+        return Buildings;
+
+    }
 }

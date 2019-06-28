@@ -43,9 +43,10 @@ public class AutoAssignment extends javax.swing.JPanel {
         assignBtn = new javax.swing.JButton();
         progressPanel = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
-        jProgressBar1 = new javax.swing.JProgressBar();
+        bar = new javax.swing.JProgressBar();
         reprot = new javax.swing.JLabel();
-        jPanel1 = new javax.swing.JPanel();
+        jScrollPane3 = new javax.swing.JScrollPane();
+        errors = new javax.swing.JTextArea();
 
         setBackground(new java.awt.Color(0, 0, 0));
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -67,21 +68,28 @@ public class AutoAssignment extends javax.swing.JPanel {
 
         jLabel1.setFont(new java.awt.Font("Tekton Pro Cond", 0, 18)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel1.setText("Progress In Allocation  Process  ");
-        progressPanel.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 70, 250, 70));
+        jLabel1.setIcon(new javax.swing.ImageIcon("C:\\Oracle\\Middleware\\LTA\\icons\\progBar.png")); // NOI18N
+        progressPanel.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 70, 640, 70));
 
-        jProgressBar1.setForeground(new java.awt.Color(207, 229, 255));
-        progressPanel.add(jProgressBar1, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 170, 520, 30));
+        bar.setForeground(new java.awt.Color(207, 229, 255));
+        progressPanel.add(bar, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 170, 640, 30));
 
         reprot.setForeground(new java.awt.Color(255, 255, 255));
         reprot.setText("eryteru");
         progressPanel.add(reprot, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 230, 530, 70));
 
-        add(progressPanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 30, 600, 400));
+        add(progressPanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 30, 720, 400));
 
-        jPanel1.setBackground(new java.awt.Color(0, 0, 0));
-        jPanel1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(51, 255, 255)));
-        add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 470, 600, 190));
+        errors.setBackground(new java.awt.Color(0, 0, 0));
+        errors.setColumns(20);
+        errors.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        errors.setForeground(new java.awt.Color(255, 0, 0));
+        errors.setRows(20);
+        errors.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(204, 240, 240)));
+        errors.setDisabledTextColor(new java.awt.Color(255, 255, 255));
+        jScrollPane3.setViewportView(errors);
+
+        add(jScrollPane3, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 460, 720, 140));
     }//GEN-END:initComponents
 
     private void assignBtnMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_assi
@@ -98,9 +106,10 @@ public class AutoAssignment extends javax.swing.JPanel {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton assignBtn;
+    private javax.swing.JProgressBar bar;
+    private javax.swing.JTextArea errors;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JPanel jPanel1;
-    private javax.swing.JProgressBar jProgressBar1;
+    private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JPanel progressPanel;
     private javax.swing.JLabel reprot;
     // End of variables declaration//GEN-END:variables

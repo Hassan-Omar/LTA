@@ -63,6 +63,7 @@ private CourseBao courseobjBao = new BaoFactory().createCourseBao();
         jMenuItem2 = new javax.swing.JMenuItem();
         jMenuItem3 = new javax.swing.JMenuItem();
         jMenuItem5 = new javax.swing.JMenuItem();
+        jMenuItem6 = new javax.swing.JMenuItem();
         btnSearch = new javax.swing.JButton();
         search_textField = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
@@ -121,6 +122,14 @@ private CourseBao courseobjBao = new BaoFactory().createCourseBao();
             }
         });
         popup.add(jMenuItem5);
+
+        jMenuItem6.setText("Import Sheet");
+        jMenuItem6.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem6ActionPerformed(evt);
+            }
+        });
+        popup.add(jMenuItem6);
 
         setBackground(new java.awt.Color(0, 0, 0));
         addMouseListener(new java.awt.event.MouseAdapter() {
@@ -200,7 +209,7 @@ private CourseBao courseobjBao = new BaoFactory().createCourseBao();
             cPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(cPanelLayout.createSequentialGroup()
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 538, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 12, Short.MAX_VALUE))
+                .addGap(0, 2, Short.MAX_VALUE))
         );
         cPanelLayout.setVerticalGroup(
             cPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -502,6 +511,11 @@ private CourseBao courseobjBao = new BaoFactory().createCourseBao();
         insertPanel.setVisible(false);
     }//GEN-LAST:event_jMenuItem5ActionPerformed
 
+    private void jMenuItem6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem6ActionPerformed
+
+     //TableReset(readlist());
+    }//GEN-LAST:event_jMenuItem6ActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JComboBox Department_ComboBox;
@@ -526,6 +540,7 @@ private CourseBao courseobjBao = new BaoFactory().createCourseBao();
     private javax.swing.JMenuItem jMenuItem2;
     private javax.swing.JMenuItem jMenuItem3;
     private javax.swing.JMenuItem jMenuItem5;
+    private javax.swing.JMenuItem jMenuItem6;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTextField name_textField;

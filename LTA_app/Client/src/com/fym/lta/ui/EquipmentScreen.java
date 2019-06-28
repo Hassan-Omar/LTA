@@ -82,6 +82,7 @@ public class EquipmentScreen extends javax.swing.JPanel {
         jMenuItem3 = new javax.swing.JMenuItem();
         jMenuItem4 = new javax.swing.JMenuItem();
         jMenuItem5 = new javax.swing.JMenuItem();
+        jMenuItem6 = new javax.swing.JMenuItem();
         ePanel = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         EquipmentTable = new javax.swing.JTable();
@@ -134,6 +135,14 @@ public class EquipmentScreen extends javax.swing.JPanel {
             }
         });
         popup.add(jMenuItem5);
+
+        jMenuItem6.setText("Import Sheet");
+        jMenuItem6.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem6ActionPerformed(evt);
+            }
+        });
+        popup.add(jMenuItem6);
 
         setBackground(new java.awt.Color(0, 0, 0));
         addMouseListener(new java.awt.event.MouseAdapter() {
@@ -471,6 +480,11 @@ public class EquipmentScreen extends javax.swing.JPanel {
         DefineEquipment.setVisible(false);
     }//GEN-LAST:event_jMenuItem5ActionPerformed
 
+    private void jMenuItem6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem6ActionPerformed
+
+        // TableReset(readlist());
+    }//GEN-LAST:event_jMenuItem6ActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel DefineEquipment;
@@ -489,6 +503,7 @@ public class EquipmentScreen extends javax.swing.JPanel {
     private javax.swing.JMenuItem jMenuItem3;
     private javax.swing.JMenuItem jMenuItem4;
     private javax.swing.JMenuItem jMenuItem5;
+    private javax.swing.JMenuItem jMenuItem6;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTextField jTextField1;
     private javax.swing.JComboBox location_combo;

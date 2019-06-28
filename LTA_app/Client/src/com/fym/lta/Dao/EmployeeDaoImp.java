@@ -59,7 +59,17 @@ public class EmployeeDaoImp implements EmployeeDao {
                 DepartmentDto dep = new DepartmentDto() ; 
                 dep.setName(jdbcRs.getString(12));
                 Employee.setDepartment(dep);
-
+                
+                // if the last name is null then this employee has only 2 
+                if(Employee.getLName()==null)
+                {
+                    Employee.setLName(" ");
+                    Employee.setFamilyName(" ");
+                }
+                if(Employee.getFamilyName()==null)
+                { 
+                    Employee.setFamilyName(" ");
+                }
                 Employees.add(Employee);
 
             }
@@ -260,6 +270,18 @@ public class EmployeeDaoImp implements EmployeeDao {
                 DepartmentDto dep = new DepartmentDto() ; 
                 dep.setName(jdbcRs.getString(12));
                 lSerch.setDepartment(dep);
+               
+                // if the last name is null then this employee has only 2 
+                if(lSerch.getLName()==null)
+                {
+                    lSerch.setLName(" ");
+                    lSerch.setFamilyName(" ");
+                }
+                if(lSerch.getFamilyName()==null)
+                { 
+                    lSerch.setFamilyName(" ");
+                }
+                
                 employees.add(lSerch);
 
             }

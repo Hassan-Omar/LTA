@@ -161,7 +161,7 @@ public class UsersScreen extends javax.swing.JPanel {
                 return canEdit [columnIndex];
             }
         });
-        usersTable.setRowHeight(30);
+        usersTable.setRowHeight(25);
         usersTable.setSelectionBackground(new java.awt.Color(22, 224, 236));
         jScrollPane1.setViewportView(usersTable);
         usersTable.getColumnModel().getColumn(0).setHeaderValue("Name");
@@ -281,7 +281,7 @@ public class UsersScreen extends javax.swing.JPanel {
         label1.setText("Role");
         insertPanel.add(label1, new org.netbeans.lib.awtextra.AbsoluteConstraints(21, 278, 42, 43));
 
-        doneBTN.setBackground(new java.awt.Color(0, 0, 0));
+        doneBTN.setBackground(new java.awt.Color(51, 98, 114));
         doneBTN.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         doneBTN.setIcon(new javax.swing.ImageIcon("C:\\Oracle\\Middleware\\LTA\\icons\\save.png")); // NOI18N
         doneBTN.setBorder(null);
@@ -545,6 +545,16 @@ public class UsersScreen extends javax.swing.JPanel {
         Object[][] usersArr = new Object[users.size()][7];
 
         for (int i = 0; i < users.size();i++) {
+            
+            if(users.get(i).getLName()==null)
+            {
+                users.get(i).setLName("");
+                users.get(i).setFamilyName("");
+            }
+            if(users.get(i).getFamilyName()==null)
+            { users.get(i).setFamilyName("");
+            }
+            
             // View the full name
             usersArr[i][0] =
                                users.get(i).getFName() + " " + users.get(i).getSName() + " " + users.get(i).getLName() +

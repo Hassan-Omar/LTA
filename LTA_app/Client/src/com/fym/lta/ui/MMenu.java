@@ -102,7 +102,7 @@ public class MMenu extends javax.swing.JFrame {
         jMenuBar1.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
 
         jMenu5.setForeground(new java.awt.Color(255, 255, 255));
-        jMenu5.setText("Tables                  ");
+        jMenu5.setText("Tables         ");
         jMenu5.setActionCommand("Insert New   ");
         jMenu5.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -112,7 +112,7 @@ public class MMenu extends javax.swing.JFrame {
         jMenuBar1.add(jMenu5);
 
         jMenu3.setForeground(new java.awt.Color(255, 255, 255));
-        jMenu3.setText("Basic Data Management                  ");
+        jMenu3.setText("         Basic Data Management         ");
 
         buildingM_Item.setText("Building");
         buildingM_Item.addActionListener(new java.awt.event.ActionListener() {
@@ -173,7 +173,7 @@ public class MMenu extends javax.swing.JFrame {
         jMenuBar1.add(jMenu3);
 
         jMenu2.setForeground(new java.awt.Color(255, 255, 255));
-        jMenu2.setText(" Locations and spaces management                  ");
+        jMenu2.setText("          Locations and spaces management          ");
 
         locationMasterM_Item.setText("Locations master screen");
         locationMasterM_Item.addActionListener(new java.awt.event.ActionListener() {
@@ -202,7 +202,7 @@ public class MMenu extends javax.swing.JFrame {
         jMenuBar1.add(jMenu2);
 
         jMenu1.setForeground(new java.awt.Color(255, 255, 255));
-        jMenu1.setText("Authentication and Authorization                  ");
+        jMenu1.setText("         Authentication and Authorization         ");
         jMenu1.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jMenu1MouseClicked(evt);
@@ -237,7 +237,7 @@ public class MMenu extends javax.swing.JFrame {
         jMenuBar1.add(jMenu1);
 
         report.setForeground(new java.awt.Color(255, 255, 255));
-        report.setText("Report                  ");
+        report.setText("         Report         ");
         report.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 reportMouseClicked(evt);
@@ -246,7 +246,7 @@ public class MMenu extends javax.swing.JFrame {
         jMenuBar1.add(report);
 
         jMenu6.setForeground(new java.awt.Color(255, 255, 255));
-        jMenu6.setText("Settings                  ");
+        jMenu6.setText("         Settings         ");
         jMenu6.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jMenu6MouseClicked(evt);
@@ -255,7 +255,7 @@ public class MMenu extends javax.swing.JFrame {
         jMenuBar1.add(jMenu6);
 
         logout.setForeground(new java.awt.Color(255, 255, 255));
-        logout.setText(" Log Out                  ");
+        logout.setText("          Log Out         ");
         logout.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 logoutMouseClicked(evt);
@@ -264,7 +264,7 @@ public class MMenu extends javax.swing.JFrame {
         jMenuBar1.add(logout);
 
         jMenu4.setForeground(new java.awt.Color(255, 255, 255));
-        jMenu4.setText("Help                  ");
+        jMenu4.setText("         Help         ");
         jMenu4.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jMenu4MouseClicked(evt);

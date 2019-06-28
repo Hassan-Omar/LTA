@@ -128,6 +128,7 @@ public class LocationMasterScreen extends javax.swing.JPanel {
         jMenuItem3 = new javax.swing.JMenuItem();
         jMenuItem4 = new javax.swing.JMenuItem();
         jMenuItem5 = new javax.swing.JMenuItem();
+        jMenuItem6 = new javax.swing.JMenuItem();
         master = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         LocationTable = new javax.swing.JTable();
@@ -184,6 +185,14 @@ public class LocationMasterScreen extends javax.swing.JPanel {
             }
         });
         popup1.add(jMenuItem5);
+
+        jMenuItem6.setText("Import Sheet");
+        jMenuItem6.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem6ActionPerformed(evt);
+            }
+        });
+        popup1.add(jMenuItem6);
 
         setBackground(new java.awt.Color(0, 0, 0));
         setPreferredSize(new java.awt.Dimension(400, 400));
@@ -556,6 +565,11 @@ public class LocationMasterScreen extends javax.swing.JPanel {
         define_location.setVisible(false);
     }//GEN-LAST:event_jMenuItem5ActionPerformed
 
+    private void jMenuItem6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem6ActionPerformed
+
+        //TableReset(readlist());
+    }//GEN-LAST:event_jMenuItem6ActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTable LocationTable;
@@ -579,6 +593,7 @@ public class LocationMasterScreen extends javax.swing.JPanel {
     private javax.swing.JMenuItem jMenuItem3;
     private javax.swing.JMenuItem jMenuItem4;
     private javax.swing.JMenuItem jMenuItem5;
+    private javax.swing.JMenuItem jMenuItem6;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTextField jTextField1;
     private javax.swing.JPanel master;
