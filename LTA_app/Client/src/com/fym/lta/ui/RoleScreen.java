@@ -103,6 +103,7 @@ public class RoleScreen extends javax.swing.JPanel {
         });
         popup.add(jMenuItem4);
 
+        setBackground(new java.awt.Color(0, 0, 0));
         addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseReleased(java.awt.event.MouseEvent evt) {
                 formMouseReleased(evt);
@@ -115,11 +116,13 @@ public class RoleScreen extends javax.swing.JPanel {
         add(roleEnteredCode, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 70, 230, 30));
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        jLabel1.setText("Search");
-        add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 30, 110, 39));
+        jLabel1.setIcon(new javax.swing.ImageIcon("C:\\Oracle\\Middleware\\LTA\\icons\\search2.png")); // NOI18N
+        add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 49, 110, 20));
 
+        searchUserBTN.setBackground(new java.awt.Color(0, 0, 0));
         searchUserBTN.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        searchUserBTN.setText("Search");
+        searchUserBTN.setIcon(new javax.swing.ImageIcon("C:\\Oracle\\Middleware\\LTA\\icons\\search.png")); // NOI18N
+        searchUserBTN.setBorderPainted(false);
         searchUserBTN.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 searchUserBTNMouseClicked(evt);
@@ -127,17 +130,22 @@ public class RoleScreen extends javax.swing.JPanel {
         });
         add(searchUserBTN, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 60, 80, 50));
 
+        insertUpdatePanel.setBackground(new java.awt.Color(51, 98, 114));
         insertUpdatePanel.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
         enteredCodeBox.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        enteredCodeBox.setBorder(null);
 
         enteredDescription.setColumns(20);
         enteredDescription.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         enteredDescription.setRows(5);
+        enteredDescription.setBorder(null);
         jScrollPane2.setViewportView(enteredDescription);
 
+        SaveBtn.setBackground(new java.awt.Color(0, 0, 0));
         SaveBtn.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        SaveBtn.setText("Save");
+        SaveBtn.setIcon(new javax.swing.ImageIcon("C:\\Oracle\\Middleware\\LTA\\icons\\save.png")); // NOI18N
+        SaveBtn.setBorderPainted(false);
         SaveBtn.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 SaveBtnMouseClicked(evt);
@@ -145,9 +153,11 @@ public class RoleScreen extends javax.swing.JPanel {
         });
 
         codeLabel.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        codeLabel.setForeground(new java.awt.Color(255, 255, 255));
         codeLabel.setText("Code");
 
         label1.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        label1.setForeground(new java.awt.Color(255, 255, 255));
         label1.setText("Description");
 
         javax.swing.GroupLayout insertUpdatePanelLayout = new javax.swing.GroupLayout(insertUpdatePanel);
@@ -186,11 +196,14 @@ public class RoleScreen extends javax.swing.JPanel {
         add(insertUpdatePanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(650, 160, -1, 450));
 
         jLabel4.setFont(new java.awt.Font("Times New Roman", 1, 24)); // NOI18N
+        jLabel4.setForeground(new java.awt.Color(255, 255, 255));
         jLabel4.setText("Roles Screen ");
         add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(589, 0, 231, 54));
 
+        ubdateRoleBTN.setBackground(new java.awt.Color(0, 0, 0));
         ubdateRoleBTN.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        ubdateRoleBTN.setText("Update");
+        ubdateRoleBTN.setIcon(new javax.swing.ImageIcon("C:\\Oracle\\Middleware\\LTA\\icons\\update.png")); // NOI18N
+        ubdateRoleBTN.setBorderPainted(false);
         ubdateRoleBTN.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 ubdateRoleBTNActionPerformed(evt);
@@ -198,8 +211,11 @@ public class RoleScreen extends javax.swing.JPanel {
         });
         add(ubdateRoleBTN, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 160, 80, 30));
 
+        deleteRoleBTN.setBackground(new java.awt.Color(0, 0, 0));
         deleteRoleBTN.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        deleteRoleBTN.setLabel("Delete");
+        deleteRoleBTN.setIcon(new javax.swing.ImageIcon("C:\\Oracle\\Middleware\\LTA\\icons\\delete.png")); // NOI18N
+        deleteRoleBTN.setText("");
+        deleteRoleBTN.setBorderPainted(false);
         deleteRoleBTN.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 deleteRoleBTNMouseClicked(evt);
@@ -207,8 +223,10 @@ public class RoleScreen extends javax.swing.JPanel {
         });
         add(deleteRoleBTN, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 160, 80, 30));
 
+        insertRoleBTN.setBackground(new java.awt.Color(0, 0, 0));
         insertRoleBTN.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        insertRoleBTN.setText("Insert  New ");
+        insertRoleBTN.setIcon(new javax.swing.ImageIcon("C:\\Oracle\\Middleware\\LTA\\icons\\insert.png")); // NOI18N
+        insertRoleBTN.setBorderPainted(false);
         insertRoleBTN.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 insertRoleBTNMouseClicked(evt);
@@ -216,8 +234,10 @@ public class RoleScreen extends javax.swing.JPanel {
         });
         add(insertRoleBTN, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 160, 120, 30));
 
+        roles_Panel.setBackground(new java.awt.Color(0, 0, 0));
         roles_Panel.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Roles", 0, 0, new java.awt.Font("Tekton Pro Cond", 1, 36))); // NOI18N
 
+        rolesTable.setBackground(new java.awt.Color(51, 98, 114));
         rolesTable.setFont(new java.awt.Font("Tekton Pro Cond", 1, 18)); // NOI18N
         rolesTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -243,6 +263,7 @@ public class RoleScreen extends javax.swing.JPanel {
             }
         });
         rolesTable.setRowHeight(30);
+        rolesTable.setSelectionBackground(new java.awt.Color(22, 224, 236));
         jScrollPane3.setViewportView(rolesTable);
         rolesTable.getColumnModel().getColumn(0).setHeaderValue("Code");
         rolesTable.getColumnModel().getColumn(1).setHeaderValue("Decription");

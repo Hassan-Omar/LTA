@@ -117,7 +117,6 @@ public class ManualAssignment extends javax.swing.JPanel {
         LocationTable = new javax.swing.JTable();
         done = new javax.swing.JButton();
         refresh = new javax.swing.JButton();
-        show = new javax.swing.JButton();
         slotsPanel = new javax.swing.JPanel();
         jScrollPane2 = new javax.swing.JScrollPane();
         SlotsTable = new javax.swing.JTable();
@@ -126,8 +125,10 @@ public class ManualAssignment extends javax.swing.JPanel {
         schedule_combo = new javax.swing.JComboBox();
         department_combo = new javax.swing.JComboBox();
         view = new javax.swing.JButton();
+        show = new javax.swing.JButton();
         assign = new javax.swing.JButton();
 
+        setBackground(new java.awt.Color(0, 0, 0));
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         type_combo.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
@@ -147,16 +148,20 @@ public class ManualAssignment extends javax.swing.JPanel {
         add(building_combo, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 60, 156, 30));
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setText("Choose Location Type");
         add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 10, 160, 30));
 
         jLabel2.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        jLabel2.setForeground(new java.awt.Color(255, 255, 255));
         jLabel2.setText("Choose Building  ");
         add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 10, 166, 30));
 
+        master.setBackground(new java.awt.Color(0, 0, 0));
         master.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Locations ", 0, 0, new java.awt.Font("Tekton Pro", 1, 36))); // NOI18N
         master.setPreferredSize(new java.awt.Dimension(400, 400));
 
+        LocationTable.setBackground(new java.awt.Color(51, 98, 114));
         LocationTable.setFont(new java.awt.Font("Calibri", 1, 18)); // NOI18N
         LocationTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -205,6 +210,7 @@ public class ManualAssignment extends javax.swing.JPanel {
                 "Title 1", "Title 2", "Title 3", "Title 4", "Title 5", "Title 6"
             }
         ));
+        LocationTable.setSelectionBackground(new java.awt.Color(22, 224, 236));
         jScrollPane1.setViewportView(LocationTable);
 
         javax.swing.GroupLayout masterLayout = new javax.swing.GroupLayout(master);
@@ -212,43 +218,42 @@ public class ManualAssignment extends javax.swing.JPanel {
         masterLayout.setHorizontalGroup(
             masterLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(masterLayout.createSequentialGroup()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 648, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 2, Short.MAX_VALUE))
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 527, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 3, Short.MAX_VALUE))
         );
         masterLayout.setVerticalGroup(
             masterLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 396, Short.MAX_VALUE)
+            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 436, Short.MAX_VALUE)
         );
 
-        add(master, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 140, 660, 450));
+        add(master, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 140, 540, 480));
 
+        done.setBackground(new java.awt.Color(0, 0, 0));
         done.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        done.setText("Filter Locations");
+        done.setIcon(new javax.swing.ImageIcon("C:\\Oracle\\Middleware\\LTA\\icons\\filter.png")); // NOI18N
+        done.setBorderPainted(false);
         done.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 doneActionPerformed(evt);
             }
         });
-        add(done, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 10, -1, 50));
+        add(done, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 10, 160, 50));
 
+        refresh.setBackground(new java.awt.Color(0, 0, 0));
         refresh.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        refresh.setText("Refresh");
+        refresh.setIcon(new javax.swing.ImageIcon("C:\\Oracle\\Middleware\\LTA\\icons\\refershBTN.png")); // NOI18N
+        refresh.setBorderPainted(false);
         refresh.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 refreshActionPerformed(evt);
             }
         });
-        add(refresh, new org.netbeans.lib.awtextra.AbsoluteConstraints(620, 100, -1, 30));
+        add(refresh, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 110, 40, 40));
 
-        show.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        show.setText("show schedule");
-        show.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                showActionPerformed(evt);
-            }
-        });
-        add(show, new org.netbeans.lib.awtextra.AbsoluteConstraints(1350, 420, -1, 40));
+        slotsPanel.setBackground(new java.awt.Color(51, 98, 114));
+        slotsPanel.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
+        SlotsTable.setBackground(new java.awt.Color(51, 98, 114));
         SlotsTable.setFont(new java.awt.Font("Tekton Pro Cond", 1, 18)); // NOI18N
         SlotsTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -274,86 +279,66 @@ public class ManualAssignment extends javax.swing.JPanel {
             }
         });
         SlotsTable.setRowHeight(40);
+        SlotsTable.setSelectionBackground(new java.awt.Color(22, 224, 236));
         jScrollPane2.setViewportView(SlotsTable);
 
-        jLabel3.setText("Choose Schedule");
+        slotsPanel.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 91, 710, 360));
 
+        jLabel3.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel3.setText("Choose Schedule");
+        slotsPanel.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 10, 123, 22));
+
+        jLabel4.setForeground(new java.awt.Color(255, 255, 255));
         jLabel4.setText("Choose Department");
+        slotsPanel.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 10, -1, -1));
 
         schedule_combo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 schedule_comboActionPerformed(evt);
             }
         });
+        slotsPanel.add(schedule_combo, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 40, 117, 33));
 
         department_combo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 department_comboActionPerformed(evt);
             }
         });
+        slotsPanel.add(department_combo, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 40, 104, 33));
 
-        view.setText("view Contents");
+        view.setBackground(new java.awt.Color(0, 0, 0));
+        view.setIcon(new javax.swing.ImageIcon("C:\\Oracle\\Middleware\\LTA\\icons\\view.png")); // NOI18N
+        view.setBorderPainted(false);
         view.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 viewActionPerformed(evt);
             }
         });
+        slotsPanel.add(view, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 40, 130, 30));
 
+        add(slotsPanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(620, 160, 730, 460));
+
+        show.setBackground(new java.awt.Color(0, 0, 0));
+        show.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        show.setIcon(new javax.swing.ImageIcon("C:\\Oracle\\Middleware\\LTA\\icons\\show.png")); // NOI18N
+        show.setBorderPainted(false);
+        show.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                showActionPerformed(evt);
+            }
+        });
+        add(show, new org.netbeans.lib.awtextra.AbsoluteConstraints(620, 110, 130, 40));
+
+        assign.setBackground(new java.awt.Color(0, 0, 0));
         assign.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        assign.setText("assign");
+        assign.setIcon(new javax.swing.ImageIcon("C:\\Oracle\\Middleware\\LTA\\icons\\assign.png")); // NOI18N
+        assign.setBorderPainted(false);
         assign.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 assignActionPerformed(evt);
             }
         });
-
-        javax.swing.GroupLayout slotsPanelLayout = new javax.swing.GroupLayout(slotsPanel);
-        slotsPanel.setLayout(slotsPanelLayout);
-        slotsPanelLayout.setHorizontalGroup(
-            slotsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane2, javax.swing.GroupLayout.Alignment.TRAILING)
-            .addGroup(slotsPanelLayout.createSequentialGroup()
-                .addGap(124, 124, 124)
-                .addGroup(slotsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(department_combo, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel4))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 79, Short.MAX_VALUE)
-                .addGroup(slotsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(slotsPanelLayout.createSequentialGroup()
-                        .addComponent(schedule_combo, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(32, 32, 32)
-                        .addComponent(view))
-                    .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap())
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, slotsPanelLayout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(assign, javax.swing.GroupLayout.PREFERRED_SIZE, 176, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(153, 153, 153))
-        );
-        slotsPanelLayout.setVerticalGroup(
-            slotsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, slotsPanelLayout.createSequentialGroup()
-                .addGap(6, 6, 6)
-                .addGroup(slotsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, 22, Short.MAX_VALUE)
-                    .addComponent(jLabel4))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(slotsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(slotsPanelLayout.createSequentialGroup()
-                        .addGroup(slotsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(schedule_combo, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(department_combo, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 24, Short.MAX_VALUE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, slotsPanelLayout.createSequentialGroup()
-                        .addComponent(view)
-                        .addGap(11, 11, 11)))
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 310, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(assign, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(26, 26, 26))
-        );
-
-        add(slotsPanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(730, 130, 570, 480));
+        add(assign, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 640, 80, 40));
     }//GEN-END:initComponents
 
     private void type_comboActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_type_comboActionPerformed

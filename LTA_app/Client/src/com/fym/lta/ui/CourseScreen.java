@@ -132,7 +132,7 @@ private CourseBao courseobjBao = new BaoFactory().createCourseBao();
 
         btnSearch.setBackground(new java.awt.Color(0, 0, 0));
         btnSearch.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        btnSearch.setIcon(new javax.swing.ImageIcon("C:\\Oracle\\Middleware\\LTA\\icons\\search.png")); // NOI18N
+        btnSearch.setIcon(new javax.swing.ImageIcon("C:\\Oracle\\Middleware\\Oracle_Home\\hassan ui\\LTA\\icons\\search.png")); // NOI18N
         btnSearch.setBorder(null);
         btnSearch.setBorderPainted(false);
         btnSearch.setPreferredSize(new java.awt.Dimension(70, 30));
@@ -161,11 +161,11 @@ private CourseBao courseobjBao = new BaoFactory().createCourseBao();
         add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 0, 170, 39));
 
         jLabel2.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        jLabel2.setIcon(new javax.swing.ImageIcon("C:\\Oracle\\Middleware\\LTA\\icons\\search2.png")); // NOI18N
+        jLabel2.setIcon(new javax.swing.ImageIcon("C:\\Oracle\\Middleware\\Oracle_Home\\hassan ui\\LTA\\icons\\search2.png")); // NOI18N
         add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 40, 140, 30));
 
         cPanel.setBackground(new java.awt.Color(0, 0, 0));
-        cPanel.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Courses", 0, 0, new java.awt.Font("Tekton Pro Cond", 1, 36))); // NOI18N
+        cPanel.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Courses", 0, 0, new java.awt.Font("Tekton Pro Cond", 2, 24))); // NOI18N
 
         courseTable.setBackground(new java.awt.Color(51, 98, 114));
         courseTable.setFont(new java.awt.Font("Tekton Pro Cond", 1, 12)); // NOI18N
@@ -180,10 +180,10 @@ private CourseBao courseobjBao = new BaoFactory().createCourseBao();
         courseTable.setRowHeight(30);
         courseTable.setSelectionBackground(new java.awt.Color(22, 224, 236));
         courseTable.addHierarchyBoundsListener(new java.awt.event.HierarchyBoundsListener() {
+            public void ancestorMoved(java.awt.event.HierarchyEvent evt) {
+            }
             public void ancestorResized(java.awt.event.HierarchyEvent evt) {
                 courseTableAncestorResized(evt);
-            }
-            public void ancestorMoved(java.awt.event.HierarchyEvent evt) {
             }
         });
         jScrollPane1.setViewportView(courseTable);
@@ -203,7 +203,7 @@ private CourseBao courseobjBao = new BaoFactory().createCourseBao();
         );
         cPanelLayout.setVerticalGroup(
             cPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 456, Short.MAX_VALUE)
+            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 461, Short.MAX_VALUE)
         );
 
         add(cPanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 190, -1, 500));
@@ -237,7 +237,7 @@ private CourseBao courseobjBao = new BaoFactory().createCourseBao();
 
         btnSave.setBackground(new java.awt.Color(0, 0, 0));
         btnSave.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        btnSave.setIcon(new javax.swing.ImageIcon("C:\\Oracle\\Middleware\\LTA\\icons\\save.png")); // NOI18N
+        btnSave.setIcon(new javax.swing.ImageIcon("C:\\Oracle\\Middleware\\Oracle_Home\\hassan ui\\LTA\\icons\\save.png")); // NOI18N
         btnSave.setBorderPainted(false);
         btnSave.setMaximumSize(new java.awt.Dimension(60, 30));
         btnSave.setMinimumSize(new java.awt.Dimension(60, 30));
@@ -291,7 +291,7 @@ private CourseBao courseobjBao = new BaoFactory().createCourseBao();
 
         updateCourseBtn.setBackground(new java.awt.Color(0, 0, 0));
         updateCourseBtn.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        updateCourseBtn.setIcon(new javax.swing.ImageIcon("C:\\Oracle\\Middleware\\LTA\\icons\\update.png")); // NOI18N
+        updateCourseBtn.setIcon(new javax.swing.ImageIcon("C:\\Oracle\\Middleware\\Oracle_Home\\hassan ui\\LTA\\icons\\update.png")); // NOI18N
         updateCourseBtn.setBorder(null);
         updateCourseBtn.setBorderPainted(false);
         updateCourseBtn.setMaximumSize(new java.awt.Dimension(73, 25));
@@ -306,7 +306,7 @@ private CourseBao courseobjBao = new BaoFactory().createCourseBao();
 
         deleteCourseBtn.setBackground(new java.awt.Color(0, 0, 0));
         deleteCourseBtn.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        deleteCourseBtn.setIcon(new javax.swing.ImageIcon("C:\\Oracle\\Middleware\\LTA\\icons\\delete.png")); // NOI18N
+        deleteCourseBtn.setIcon(new javax.swing.ImageIcon("C:\\Oracle\\Middleware\\Oracle_Home\\hassan ui\\LTA\\icons\\delete.png")); // NOI18N
         deleteCourseBtn.setBorder(null);
         deleteCourseBtn.setBorderPainted(false);
         deleteCourseBtn.setMaximumSize(new java.awt.Dimension(73, 25));
@@ -321,7 +321,7 @@ private CourseBao courseobjBao = new BaoFactory().createCourseBao();
 
         insertCourseBtn.setBackground(new java.awt.Color(0, 0, 0));
         insertCourseBtn.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        insertCourseBtn.setIcon(new javax.swing.ImageIcon("C:\\Oracle\\Middleware\\LTA\\icons\\insert.png")); // NOI18N
+        insertCourseBtn.setIcon(new javax.swing.ImageIcon("C:\\Oracle\\Middleware\\Oracle_Home\\hassan ui\\LTA\\icons\\insert.png")); // NOI18N
         insertCourseBtn.setBorder(null);
         insertCourseBtn.setBorderPainted(false);
         insertCourseBtn.setMaximumSize(new java.awt.Dimension(110, 25));

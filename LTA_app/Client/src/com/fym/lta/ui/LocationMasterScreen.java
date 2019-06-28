@@ -185,6 +185,7 @@ public class LocationMasterScreen extends javax.swing.JPanel {
         });
         popup1.add(jMenuItem5);
 
+        setBackground(new java.awt.Color(0, 0, 0));
         setPreferredSize(new java.awt.Dimension(400, 400));
         addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseReleased(java.awt.event.MouseEvent evt) {
@@ -193,9 +194,11 @@ public class LocationMasterScreen extends javax.swing.JPanel {
         });
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        master.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Locations ", 0, 0, new java.awt.Font("Tekton Pro Cond", 1, 36))); // NOI18N
+        master.setBackground(new java.awt.Color(0, 0, 0));
+        master.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Locations ", 0, 0, new java.awt.Font("Tekton Pro Cond", 2, 24))); // NOI18N
         master.setPreferredSize(new java.awt.Dimension(400, 400));
 
+        LocationTable.setBackground(new java.awt.Color(51, 98, 114));
         LocationTable.setFont(new java.awt.Font("Tekton Pro", 0, 24)); // NOI18N
         LocationTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -206,6 +209,7 @@ public class LocationMasterScreen extends javax.swing.JPanel {
             }
         ));
         LocationTable.setRowHeight(30);
+        LocationTable.setSelectionBackground(new java.awt.Color(22, 224, 236));
         jScrollPane1.setViewportView(LocationTable);
         LocationTable.getColumnModel().getColumn(0).setHeaderValue("Title 1");
         LocationTable.getColumnModel().getColumn(1).setHeaderValue("Title 2");
@@ -228,13 +232,15 @@ public class LocationMasterScreen extends javax.swing.JPanel {
         );
         masterLayout.setVerticalGroup(
             masterLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 376, Short.MAX_VALUE)
+            .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 388, Short.MAX_VALUE)
         );
 
         add(master, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 200, 550, 420));
 
+        insertLocationBtn.setBackground(new java.awt.Color(0, 0, 0));
         insertLocationBtn.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        insertLocationBtn.setText("Insert New ");
+        insertLocationBtn.setIcon(new javax.swing.ImageIcon("C:\\Oracle\\Middleware\\LTA\\icons\\insert.png")); // NOI18N
+        insertLocationBtn.setBorderPainted(false);
         insertLocationBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 insertLocationBtnActionPerformed(evt);
@@ -242,8 +248,10 @@ public class LocationMasterScreen extends javax.swing.JPanel {
         });
         add(insertLocationBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 160, 120, 30));
 
+        deleteLocationBtn.setBackground(new java.awt.Color(0, 0, 0));
         deleteLocationBtn.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        deleteLocationBtn.setText("Delete ");
+        deleteLocationBtn.setIcon(new javax.swing.ImageIcon("C:\\Oracle\\Middleware\\LTA\\icons\\delete.png")); // NOI18N
+        deleteLocationBtn.setBorderPainted(false);
         deleteLocationBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 deleteLocationBtnActionPerformed(evt);
@@ -251,8 +259,10 @@ public class LocationMasterScreen extends javax.swing.JPanel {
         });
         add(deleteLocationBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 160, 80, 30));
 
+        updateLocationBtn.setBackground(new java.awt.Color(0, 0, 0));
         updateLocationBtn.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        updateLocationBtn.setText("Update  ");
+        updateLocationBtn.setIcon(new javax.swing.ImageIcon("C:\\Oracle\\Middleware\\LTA\\icons\\update.png")); // NOI18N
+        updateLocationBtn.setBorderPainted(false);
         updateLocationBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 updateLocationBtnActionPerformed(evt);
@@ -268,8 +278,10 @@ public class LocationMasterScreen extends javax.swing.JPanel {
         });
         add(jTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 70, 230, -1));
 
+        search.setBackground(new java.awt.Color(0, 0, 0));
         search.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        search.setText("Search");
+        search.setIcon(new javax.swing.ImageIcon("C:\\Oracle\\Middleware\\LTA\\icons\\search.png")); // NOI18N
+        search.setBorderPainted(false);
         search.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 searchActionPerformed(evt);
@@ -277,40 +289,47 @@ public class LocationMasterScreen extends javax.swing.JPanel {
         });
         add(search, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 60, 80, 50));
 
+        define_location.setBackground(new java.awt.Color(51, 98, 114));
         define_location.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        define_location.setForeground(new java.awt.Color(255, 255, 255));
         define_location.setToolTipText("");
-        define_location.setLayout(null);
+        define_location.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel2.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        jLabel2.setForeground(new java.awt.Color(255, 255, 255));
         jLabel2.setText("Code");
-        define_location.add(jLabel2);
-        jLabel2.setBounds(47, 181, 95, 29);
+        define_location.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(47, 181, 95, 29));
 
         jLabel3.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        jLabel3.setForeground(new java.awt.Color(255, 255, 255));
         jLabel3.setText("Description");
-        define_location.add(jLabel3);
-        jLabel3.setBounds(47, 253, 69, 15);
+        define_location.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(47, 253, -1, -1));
 
+        save.setBackground(new java.awt.Color(0, 0, 0));
         save.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        save.setText("Save");
+        save.setIcon(new javax.swing.ImageIcon("C:\\Oracle\\Middleware\\LTA\\icons\\save.png")); // NOI18N
+        save.setText(" ");
+        save.setBorderPainted(false);
         save.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 saveActionPerformed(evt);
             }
         });
-        define_location.add(save);
-        save.setBounds(236, 371, 130, 55);
+        define_location.add(save, new org.netbeans.lib.awtextra.AbsoluteConstraints(236, 371, 140, 60));
 
         jLabel4.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        jLabel4.setForeground(new java.awt.Color(255, 255, 255));
         jLabel4.setText("Capacity");
-        define_location.add(jLabel4);
-        jLabel4.setBounds(47, 310, 69, 28);
-        define_location.add(code);
-        code.setBounds(208, 182, 217, 29);
-        define_location.add(desc);
-        desc.setBounds(208, 223, 217, 69);
-        define_location.add(capacity);
-        capacity.setBounds(208, 310, 217, 31);
+        define_location.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(47, 310, 69, 28));
+
+        code.setBorder(null);
+        define_location.add(code, new org.netbeans.lib.awtextra.AbsoluteConstraints(208, 182, 217, 29));
+
+        desc.setBorder(null);
+        define_location.add(desc, new org.netbeans.lib.awtextra.AbsoluteConstraints(208, 223, 217, 69));
+
+        capacity.setBorder(null);
+        define_location.add(capacity, new org.netbeans.lib.awtextra.AbsoluteConstraints(208, 310, 217, 31));
 
         building_combo.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         building_combo.addItemListener(new java.awt.event.ItemListener() {
@@ -323,39 +342,37 @@ public class LocationMasterScreen extends javax.swing.JPanel {
                 building_comboActionPerformed(evt);
             }
         });
-        define_location.add(building_combo);
-        building_combo.setBounds(42, 51, 113, 42);
+        define_location.add(building_combo, new org.netbeans.lib.awtextra.AbsoluteConstraints(42, 51, 113, 42));
 
         floor_combo.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        define_location.add(floor_combo);
-        floor_combo.setBounds(240, 50, 113, 42);
+        define_location.add(floor_combo, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 50, 113, 42));
 
         jLabel5.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        jLabel5.setForeground(new java.awt.Color(255, 255, 255));
         jLabel5.setText("Choose Building ");
-        define_location.add(jLabel5);
-        jLabel5.setBounds(29, 21, 158, 15);
+        define_location.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(29, 21, 158, -1));
 
         jLabel6.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        jLabel6.setForeground(new java.awt.Color(255, 255, 255));
         jLabel6.setText("Choose Floor ");
-        define_location.add(jLabel6);
-        jLabel6.setBounds(240, 20, 122, 15);
+        define_location.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 20, 122, -1));
 
         jLabel7.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        jLabel7.setForeground(new java.awt.Color(255, 255, 255));
         jLabel7.setText("Location Type ");
-        define_location.add(jLabel7);
-        jLabel7.setBounds(419, 21, 154, 15);
+        define_location.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(419, 21, 154, -1));
 
         type_combo.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        define_location.add(type_combo);
-        type_combo.setBounds(419, 51, 113, 42);
+        define_location.add(type_combo, new org.netbeans.lib.awtextra.AbsoluteConstraints(419, 51, 113, 42));
 
         add(define_location, new org.netbeans.lib.awtextra.AbsoluteConstraints(650, 160, 570, 460));
 
         jLabel8.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        jLabel8.setText("Search");
-        add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 30, 196, 48));
+        jLabel8.setIcon(new javax.swing.ImageIcon("C:\\Oracle\\Middleware\\LTA\\icons\\search2.png")); // NOI18N
+        add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 50, 196, -1));
 
         jLabel9.setFont(new java.awt.Font("Times New Roman", 1, 24)); // NOI18N
+        jLabel9.setForeground(new java.awt.Color(255, 255, 255));
         jLabel9.setText("Locations Screen ");
         add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 10, 190, -1));
     }//GEN-END:initComponents

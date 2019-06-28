@@ -120,6 +120,7 @@ public class StaffScreen extends javax.swing.JPanel {
         });
         popup.add(jMenuItem5);
 
+        setBackground(new java.awt.Color(0, 0, 0));
         addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseReleased(java.awt.event.MouseEvent evt) {
                 formMouseReleased(evt);
@@ -128,12 +129,14 @@ public class StaffScreen extends javax.swing.JPanel {
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        jLabel1.setText("Search");
+        jLabel1.setIcon(new javax.swing.ImageIcon("C:\\Oracle\\Middleware\\Oracle_Home\\hassan ui\\LTA\\icons\\search2.png")); // NOI18N
         add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 38, 66, 30));
         add(name_TextField, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 70, 230, 30));
 
+        btnSearch.setBackground(new java.awt.Color(0, 0, 0));
         btnSearch.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        btnSearch.setText("Search");
+        btnSearch.setIcon(new javax.swing.ImageIcon("C:\\Oracle\\Middleware\\Oracle_Home\\hassan ui\\LTA\\icons\\search.png")); // NOI18N
+        btnSearch.setBorderPainted(false);
         btnSearch.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 btnSearchMouseClicked(evt);
@@ -141,8 +144,10 @@ public class StaffScreen extends javax.swing.JPanel {
         });
         add(btnSearch, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 60, 80, 50));
 
+        btnUpdate.setBackground(new java.awt.Color(0, 0, 0));
         btnUpdate.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        btnUpdate.setText("Update ");
+        btnUpdate.setIcon(new javax.swing.ImageIcon("C:\\Oracle\\Middleware\\Oracle_Home\\hassan ui\\LTA\\icons\\update.png")); // NOI18N
+        btnUpdate.setBorderPainted(false);
         btnUpdate.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 btnUpdateMouseClicked(evt);
@@ -150,8 +155,10 @@ public class StaffScreen extends javax.swing.JPanel {
         });
         add(btnUpdate, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 160, 90, 30));
 
+        btnDelete.setBackground(new java.awt.Color(0, 0, 0));
         btnDelete.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        btnDelete.setText("Delete");
+        btnDelete.setIcon(new javax.swing.ImageIcon("C:\\Oracle\\Middleware\\Oracle_Home\\hassan ui\\LTA\\icons\\delete.png")); // NOI18N
+        btnDelete.setBorderPainted(false);
         btnDelete.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 btnDeleteMouseClicked(evt);
@@ -159,8 +166,10 @@ public class StaffScreen extends javax.swing.JPanel {
         });
         add(btnDelete, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 160, 80, 30));
 
+        btnInsert.setBackground(new java.awt.Color(0, 0, 0));
         btnInsert.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        btnInsert.setText("Insert New  ");
+        btnInsert.setIcon(new javax.swing.ImageIcon("C:\\Oracle\\Middleware\\Oracle_Home\\hassan ui\\LTA\\icons\\insert.png")); // NOI18N
+        btnInsert.setBorderPainted(false);
         btnInsert.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 btnInsertMouseClicked(evt);
@@ -168,62 +177,86 @@ public class StaffScreen extends javax.swing.JPanel {
         });
         add(btnInsert, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 160, 120, 30));
 
+        insertPanel.setBackground(new java.awt.Color(51, 98, 114));
         insertPanel.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         insertPanel.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel5.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        jLabel5.setForeground(new java.awt.Color(255, 255, 255));
         jLabel5.setText("First Name ");
         insertPanel.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(13, 27, -1, 26));
 
         jLabel6.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        jLabel6.setForeground(new java.awt.Color(255, 255, 255));
         jLabel6.setText("Second Name ");
         insertPanel.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(152, 27, -1, 26));
 
         jLabel7.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        jLabel7.setForeground(new java.awt.Color(255, 255, 255));
         jLabel7.setText("Last Name");
         insertPanel.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(292, 27, -1, 26));
 
         jLabel8.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        jLabel8.setForeground(new java.awt.Color(255, 255, 255));
         jLabel8.setText("Family Name");
         insertPanel.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(432, 30, 110, 26));
+
+        pos_TextField.setBorder(null);
         insertPanel.add(pos_TextField, new org.netbeans.lib.awtextra.AbsoluteConstraints(168, 242, 210, 30));
+
+        sname_TextField.setBorder(null);
         insertPanel.add(sname_TextField, new org.netbeans.lib.awtextra.AbsoluteConstraints(152, 60, 110, 30));
+
+        lname_TextField.setBorder(null);
         insertPanel.add(lname_TextField, new org.netbeans.lib.awtextra.AbsoluteConstraints(292, 60, 110, 30));
+
+        familyName_TextField.setBorder(null);
         insertPanel.add(familyName_TextField, new org.netbeans.lib.awtextra.AbsoluteConstraints(432, 60, 110, 30));
 
         jLabel9.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        jLabel9.setForeground(new java.awt.Color(255, 255, 255));
         jLabel9.setText("Department ");
         insertPanel.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(12, 169, 110, 26));
 
         jLabel10.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        jLabel10.setForeground(new java.awt.Color(255, 255, 255));
         jLabel10.setText("Email");
         insertPanel.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(12, 307, 95, 26));
 
         insertPanel.add(department_ComboBox, new org.netbeans.lib.awtextra.AbsoluteConstraints(168, 167, 204, 30));
 
+        btnSave.setBackground(new java.awt.Color(0, 0, 0));
         btnSave.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        btnSave.setText("Save");
+        btnSave.setIcon(new javax.swing.ImageIcon("C:\\Oracle\\Middleware\\Oracle_Home\\hassan ui\\LTA\\icons\\save.png")); // NOI18N
+        btnSave.setBorderPainted(false);
         btnSave.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 btnSaveMouseClicked(evt);
             }
         });
-        insertPanel.add(btnSave, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 400, 127, 55));
+        insertPanel.add(btnSave, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 400, 140, 60));
+
+        mail_TextField.setBorder(null);
         insertPanel.add(mail_TextField, new org.netbeans.lib.awtextra.AbsoluteConstraints(168, 306, 272, 30));
+
+        fname_TextField.setBorder(null);
         insertPanel.add(fname_TextField, new org.netbeans.lib.awtextra.AbsoluteConstraints(13, 60, 110, 30));
 
         jLabel11.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        jLabel11.setForeground(new java.awt.Color(255, 255, 255));
         jLabel11.setText("Posistion ");
         insertPanel.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(12, 248, 95, 26));
 
         add(insertPanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(660, 160, 552, 475));
 
         jLabel4.setFont(new java.awt.Font("Times New Roman", 1, 24)); // NOI18N
+        jLabel4.setForeground(new java.awt.Color(255, 255, 255));
         jLabel4.setText("Employees Screen ");
         add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 0, 230, 54));
 
-        sPanel.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Employees", 0, 0, new java.awt.Font("Tekton Pro", 1, 36))); // NOI18N
+        sPanel.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Employees", 0, 0, new java.awt.Font("Tekton Pro", 2, 24))); // NOI18N
 
+        staffTable.setBackground(new java.awt.Color(51, 98, 114));
         staffTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
@@ -235,6 +268,7 @@ public class StaffScreen extends javax.swing.JPanel {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
+        staffTable.setSelectionBackground(new java.awt.Color(22, 224, 236));
         jScrollPane1.setViewportView(staffTable);
 
         javax.swing.GroupLayout sPanelLayout = new javax.swing.GroupLayout(sPanel);
@@ -245,7 +279,7 @@ public class StaffScreen extends javax.swing.JPanel {
         );
         sPanelLayout.setVerticalGroup(
             sPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 396, Short.MAX_VALUE)
+            .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 401, Short.MAX_VALUE)
         );
 
         add(sPanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 200, 550, 440));

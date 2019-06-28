@@ -120,6 +120,7 @@ public class ScheduleInsert extends javax.swing.JPanel {
         });
         popup.add(jMenuItem4);
 
+        setBackground(new java.awt.Color(0, 0, 0));
         addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseReleased(java.awt.event.MouseEvent evt) {
                 formMouseReleased(evt);
@@ -127,8 +128,11 @@ public class ScheduleInsert extends javax.swing.JPanel {
         });
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
+        jPanel1.setBackground(new java.awt.Color(0, 0, 0));
         jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Schedules", 0, 0, new java.awt.Font("Tekton Pro Cond", 1, 36))); // NOI18N
+        jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
+        table.setBackground(new java.awt.Color(51, 98, 114));
         table.setFont(new java.awt.Font("Tekton Pro Cond", 1, 24)); // NOI18N
         table.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -154,6 +158,7 @@ public class ScheduleInsert extends javax.swing.JPanel {
             }
         });
         table.setRowHeight(30);
+        table.setSelectionBackground(new java.awt.Color(22, 224, 236));
         jScrollPane1.setViewportView(table);
         table.getColumnModel().getColumn(0).setResizable(false);
         table.getColumnModel().getColumn(0).setHeaderValue("SCHEDULECODE");
@@ -162,23 +167,14 @@ public class ScheduleInsert extends javax.swing.JPanel {
         table.getColumnModel().getColumn(2).setResizable(false);
         table.getColumnModel().getColumn(2).setHeaderValue("CodeDeparment");
 
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 355, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 15, Short.MAX_VALUE))
-        );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 276, Short.MAX_VALUE)
-        );
+        jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(5, 39, 340, 276));
 
-        add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 200, 380, 320));
+        add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 200, 350, 320));
 
+        insertBTN.setBackground(new java.awt.Color(0, 0, 0));
         insertBTN.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        insertBTN.setText("Insert  New ");
+        insertBTN.setIcon(new javax.swing.ImageIcon("C:\\Oracle\\Middleware\\LTA\\icons\\insert.png")); // NOI18N
+        insertBTN.setBorderPainted(false);
         insertBTN.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 insertBTNMouseClicked(evt);
@@ -186,8 +182,10 @@ public class ScheduleInsert extends javax.swing.JPanel {
         });
         add(insertBTN, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 160, 120, 30));
 
+        searchBTN.setBackground(new java.awt.Color(0, 0, 0));
         searchBTN.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        searchBTN.setText("Search");
+        searchBTN.setIcon(new javax.swing.ImageIcon("C:\\Oracle\\Middleware\\LTA\\icons\\search.png")); // NOI18N
+        searchBTN.setBorderPainted(false);
         searchBTN.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 searchBTNMouseClicked(evt);
@@ -204,11 +202,14 @@ public class ScheduleInsert extends javax.swing.JPanel {
         add(ScheduleCode, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 70, 230, 30));
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        jLabel1.setText("Search");
+        jLabel1.setIcon(new javax.swing.ImageIcon("C:\\Oracle\\Middleware\\LTA\\icons\\search2.png")); // NOI18N
         add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 40, 110, 30));
 
+        deleteBTN.setBackground(new java.awt.Color(0, 0, 0));
         deleteBTN.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        deleteBTN.setLabel("Delete");
+        deleteBTN.setIcon(new javax.swing.ImageIcon("C:\\Oracle\\Middleware\\LTA\\icons\\delete.png")); // NOI18N
+        deleteBTN.setText("");
+        deleteBTN.setBorderPainted(false);
         deleteBTN.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 deleteBTNMouseClicked(evt);
@@ -221,9 +222,11 @@ public class ScheduleInsert extends javax.swing.JPanel {
         });
         add(deleteBTN, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 160, 80, 30));
 
+        table_Panel.setBackground(new java.awt.Color(51, 98, 114));
         table_Panel.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         table_Panel.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
+        table2.setBackground(new java.awt.Color(51, 98, 114));
         table2.setFont(new java.awt.Font("Tekton Pro Cond", 1, 12)); // NOI18N
         table2.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -250,6 +253,7 @@ public class ScheduleInsert extends javax.swing.JPanel {
         });
         table2.setEnabled(false);
         table2.setRowHeight(15);
+        table2.setSelectionBackground(new java.awt.Color(22, 224, 236));
         jScrollPane2.setViewportView(table2);
         table2.getColumnModel().getColumn(0).setResizable(false);
         table2.getColumnModel().getColumn(0).setHeaderValue("Day");
@@ -263,28 +267,34 @@ public class ScheduleInsert extends javax.swing.JPanel {
         table2.getColumnModel().getColumn(4).setHeaderValue("slot4");
         table2.getAccessibleContext().setAccessibleDescription("");
 
-        table_Panel.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(1, 129, 730, 530));
+        table_Panel.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(11, 129, 840, 520));
 
         dep.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        dep.setForeground(new java.awt.Color(255, 255, 255));
         dep.setText("Department");
-        table_Panel.add(dep, new org.netbeans.lib.awtextra.AbsoluteConstraints(1, 76, 160, 30));
+        table_Panel.add(dep, new org.netbeans.lib.awtextra.AbsoluteConstraints(11, 76, 150, 30));
 
         acdYear.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        acdYear.setForeground(new java.awt.Color(255, 255, 255));
         acdYear.setText("Academic Year");
-        table_Panel.add(acdYear, new org.netbeans.lib.awtextra.AbsoluteConstraints(1, 28, 160, 30));
+        table_Panel.add(acdYear, new org.netbeans.lib.awtextra.AbsoluteConstraints(11, 28, 150, 30));
 
         tCode.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        tCode.setForeground(new java.awt.Color(255, 255, 255));
         tCode.setText("Table Code");
         table_Panel.add(tCode, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 30, 160, 30));
 
         add(table_Panel, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 90, 860, 660));
 
         jLabel2.setFont(new java.awt.Font("Times New Roman", 1, 24)); // NOI18N
+        jLabel2.setForeground(new java.awt.Color(255, 255, 255));
         jLabel2.setText("Scheduels Screen");
         add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 10, -1, -1));
 
+        viewBtn.setBackground(new java.awt.Color(0, 0, 0));
         viewBtn.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        viewBtn.setText("view content");
+        viewBtn.setIcon(new javax.swing.ImageIcon("C:\\Oracle\\Middleware\\LTA\\icons\\view.png")); // NOI18N
+        viewBtn.setBorderPainted(false);
         viewBtn.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 viewBtnMouseClicked(evt);

@@ -120,6 +120,7 @@ public class FloorScreen extends javax.swing.JPanel {
         });
         popup.add(jMenuItem4);
 
+        setBackground(new java.awt.Color(0, 0, 0));
         addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseReleased(java.awt.event.MouseEvent evt) {
                 formMouseReleased(evt);
@@ -127,8 +128,10 @@ public class FloorScreen extends javax.swing.JPanel {
         });
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        fPanel.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Building Floors", 0, 0, new java.awt.Font("Tekton Pro Cond", 1, 36))); // NOI18N
+        fPanel.setBackground(new java.awt.Color(0, 0, 0));
+        fPanel.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Building Floors", 0, 0, new java.awt.Font("Tekton Pro Cond", 2, 24))); // NOI18N
 
+        floorTable.setBackground(new java.awt.Color(51, 98, 114));
         floorTable.setFont(new java.awt.Font("Tekton Pro Cond", 0, 18)); // NOI18N
         floorTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -147,6 +150,7 @@ public class FloorScreen extends javax.swing.JPanel {
             }
         });
         floorTable.setRowHeight(30);
+        floorTable.setSelectionBackground(new java.awt.Color(22, 224, 236));
         jScrollPane1.setViewportView(floorTable);
         floorTable.getColumnModel().getColumn(0).setHeaderValue("Code");
         floorTable.getColumnModel().getColumn(1).setHeaderValue("Description");
@@ -155,27 +159,28 @@ public class FloorScreen extends javax.swing.JPanel {
         fPanel.setLayout(fPanelLayout);
         fPanelLayout.setHorizontalGroup(
             fPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 540, Short.MAX_VALUE)
+            .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 550, Short.MAX_VALUE)
         );
         fPanelLayout.setVerticalGroup(
             fPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, fPanelLayout.createSequentialGroup()
+            .addGroup(fPanelLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 310, Short.MAX_VALUE))
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 326, Short.MAX_VALUE))
         );
 
-        add(fPanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 200, 550, -1));
+        add(fPanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 200, 560, 370));
 
         FloorEnteredCode.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         FloorEnteredCode.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         add(FloorEnteredCode, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 70, 230, 30));
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        jLabel1.setText("Search");
         add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 39, 105, 30));
 
+        searchFloorBTN.setBackground(new java.awt.Color(0, 0, 0));
         searchFloorBTN.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        searchFloorBTN.setText("Search");
+        searchFloorBTN.setIcon(new javax.swing.ImageIcon("C:\\Oracle\\Middleware\\LTA\\icons\\search.png")); // NOI18N
+        searchFloorBTN.setBorderPainted(false);
         searchFloorBTN.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 searchFloorBTNMouseClicked(evt);
@@ -183,22 +188,32 @@ public class FloorScreen extends javax.swing.JPanel {
         });
         add(searchFloorBTN, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 60, 80, 50));
 
+        insertPanel.setBackground(new java.awt.Color(51, 98, 114));
         insertPanel.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        insertPanel.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         code.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        code.setBorder(null);
+        insertPanel.add(code, new org.netbeans.lib.awtextra.AbsoluteConstraints(295, 23, 152, 34));
 
         codeLabel.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        codeLabel.setForeground(new java.awt.Color(255, 255, 255));
         codeLabel.setText("Code");
+        insertPanel.add(codeLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(45, 13, 108, 54));
 
         desc.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        desc.setBorder(null);
         desc.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 descActionPerformed(evt);
             }
         });
+        insertPanel.add(desc, new org.netbeans.lib.awtextra.AbsoluteConstraints(295, 85, 280, 75));
 
+        save.setBackground(new java.awt.Color(0, 0, 0));
         save.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        save.setText("Save");
+        save.setIcon(new javax.swing.ImageIcon("C:\\Oracle\\Middleware\\LTA\\icons\\save.png")); // NOI18N
+        save.setBorderPainted(false);
         save.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 saveMouseClicked(evt);
@@ -209,62 +224,33 @@ public class FloorScreen extends javax.swing.JPanel {
                 saveActionPerformed(evt);
             }
         });
+        insertPanel.add(save, new org.netbeans.lib.awtextra.AbsoluteConstraints(277, 323, 140, 60));
 
+        jLabel6.setBackground(new java.awt.Color(255, 255, 255));
         jLabel6.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        jLabel6.setForeground(new java.awt.Color(255, 255, 255));
         jLabel6.setText("Description:");
+        insertPanel.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(45, 101, 206, 42));
 
+        jLabel7.setBackground(new java.awt.Color(255, 255, 255));
         jLabel7.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        jLabel7.setForeground(new java.awt.Color(255, 255, 255));
         jLabel7.setText("Choose Building");
+        insertPanel.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(45, 217, 211, 42));
 
-        javax.swing.GroupLayout insertPanelLayout = new javax.swing.GroupLayout(insertPanel);
-        insertPanel.setLayout(insertPanelLayout);
-        insertPanelLayout.setHorizontalGroup(
-            insertPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(insertPanelLayout.createSequentialGroup()
-                .addGap(44, 44, 44)
-                .addGroup(insertPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(codeLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 206, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 211, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(39, 39, 39)
-                .addGroup(insertPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(code, javax.swing.GroupLayout.PREFERRED_SIZE, 152, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(desc, javax.swing.GroupLayout.PREFERRED_SIZE, 334, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(buildingComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 211, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(16, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, insertPanelLayout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(save, javax.swing.GroupLayout.PREFERRED_SIZE, 134, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(234, 234, 234))
-        );
-        insertPanelLayout.setVerticalGroup(
-            insertPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(insertPanelLayout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(insertPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(code, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(codeLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(insertPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(desc, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(57, 57, 57)
-                .addGroup(insertPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(buildingComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 64, Short.MAX_VALUE)
-                .addComponent(save, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(30, 30, 30))
-        );
+        insertPanel.add(buildingComboBox, new org.netbeans.lib.awtextra.AbsoluteConstraints(295, 225, 211, 29));
 
-        add(insertPanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(650, 160, -1, 410));
+        add(insertPanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(650, 160, 610, 410));
 
         jLabel4.setFont(new java.awt.Font("Times New Roman", 1, 24)); // NOI18N
+        jLabel4.setForeground(new java.awt.Color(255, 255, 255));
         jLabel4.setText("Floors Screen ");
         add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(498, 0, 231, 54));
 
+        insertFloorBTN.setBackground(new java.awt.Color(0, 0, 0));
         insertFloorBTN.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        insertFloorBTN.setText("Insert  New");
+        insertFloorBTN.setIcon(new javax.swing.ImageIcon("C:\\Oracle\\Middleware\\LTA\\icons\\insert.png")); // NOI18N
+        insertFloorBTN.setBorderPainted(false);
         insertFloorBTN.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 insertFloorBTNActionPerformed(evt);
@@ -272,23 +258,29 @@ public class FloorScreen extends javax.swing.JPanel {
         });
         add(insertFloorBTN, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 160, 120, 30));
 
+        deleteFloorBTN.setBackground(new java.awt.Color(0, 0, 0));
         deleteFloorBTN.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        deleteFloorBTN.setIcon(new javax.swing.ImageIcon("C:\\Oracle\\Middleware\\LTA\\icons\\delete.png")); // NOI18N
+        deleteFloorBTN.setBorderPainted(false);
         deleteFloorBTN.setLabel("Delete");
         deleteFloorBTN.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 deleteFloorBTNMouseClicked(evt);
             }
         });
-        add(deleteFloorBTN, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 160, 80, 30));
+        add(deleteFloorBTN, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 160, 90, 30));
 
+        updateFloorBTN.setBackground(new java.awt.Color(0, 0, 0));
         updateFloorBTN.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        updateFloorBTN.setText("Update");
+        updateFloorBTN.setIcon(new javax.swing.ImageIcon("C:\\Oracle\\Middleware\\LTA\\icons\\update.png")); // NOI18N
+        updateFloorBTN.setText("\n");
+        updateFloorBTN.setBorderPainted(false);
         updateFloorBTN.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 updateFloorBTNActionPerformed(evt);
             }
         });
-        add(updateFloorBTN, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 160, 80, 30));
+        add(updateFloorBTN, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 160, 90, 30));
     }//GEN-END:initComponents
 
 

@@ -100,6 +100,8 @@ public class DepartmentsScreen extends javax.swing.JPanel {
         });
         popup.add(jMenuItem4);
 
+        setBackground(new java.awt.Color(0, 0, 0));
+        setForeground(new java.awt.Color(255, 255, 255));
         addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseReleased(java.awt.event.MouseEvent evt) {
                 formMouseReleased(evt);
@@ -108,11 +110,15 @@ public class DepartmentsScreen extends javax.swing.JPanel {
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel1.setFont(new java.awt.Font("Times New Roman", 1, 24)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setText("Department Screen");
         add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(458, 12, 206, 29));
 
+        btnSearch.setBackground(new java.awt.Color(0, 0, 0));
         btnSearch.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        btnSearch.setText("Search ");
+        btnSearch.setIcon(new javax.swing.ImageIcon("C:\\Oracle\\Middleware\\Oracle_Home\\hassan ui\\LTA\\icons\\search.png")); // NOI18N
+        btnSearch.setText(" ");
+        btnSearch.setBorderPainted(false);
         btnSearch.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 btnSearchMouseClicked(evt);
@@ -123,17 +129,20 @@ public class DepartmentsScreen extends javax.swing.JPanel {
                 btnSearchActionPerformed(evt);
             }
         });
-        add(btnSearch, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 60, 80, 50));
+        add(btnSearch, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 60, 110, 50));
 
         jLabel3.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        jLabel3.setText("Search");
+        jLabel3.setIcon(new javax.swing.ImageIcon("C:\\Oracle\\Middleware\\Oracle_Home\\hassan ui\\LTA\\icons\\search2.png")); // NOI18N
+        jLabel3.setText(" ");
         add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(34, 35, 71, 20));
 
         departmentCode_TextField.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         add(departmentCode_TextField, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 70, 230, 30));
 
+        departmrntDeleteBtn.setBackground(new java.awt.Color(0, 0, 0));
         departmrntDeleteBtn.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        departmrntDeleteBtn.setText("Delete ");
+        departmrntDeleteBtn.setIcon(new javax.swing.ImageIcon("C:\\Oracle\\Middleware\\Oracle_Home\\hassan ui\\LTA\\icons\\delete.png")); // NOI18N
+        departmrntDeleteBtn.setBorderPainted(false);
         departmrntDeleteBtn.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 departmrntDeleteBtnMouseClicked(evt);
@@ -146,8 +155,10 @@ public class DepartmentsScreen extends javax.swing.JPanel {
         });
         add(departmrntDeleteBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 160, 80, 30));
 
+        departmrntUpdateBtn.setBackground(new java.awt.Color(0, 0, 0));
         departmrntUpdateBtn.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        departmrntUpdateBtn.setText("Update");
+        departmrntUpdateBtn.setIcon(new javax.swing.ImageIcon("C:\\Oracle\\Middleware\\Oracle_Home\\hassan ui\\LTA\\icons\\update.png")); // NOI18N
+        departmrntUpdateBtn.setBorderPainted(false);
         departmrntUpdateBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 departmrntUpdateBtnActionPerformed(evt);
@@ -155,8 +166,10 @@ public class DepartmentsScreen extends javax.swing.JPanel {
         });
         add(departmrntUpdateBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 160, 80, 30));
 
+        departmrntInsertBtn.setBackground(new java.awt.Color(0, 0, 0));
         departmrntInsertBtn.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        departmrntInsertBtn.setText("Insert new");
+        departmrntInsertBtn.setIcon(new javax.swing.ImageIcon("C:\\Oracle\\Middleware\\Oracle_Home\\hassan ui\\LTA\\icons\\insert.png")); // NOI18N
+        departmrntInsertBtn.setBorderPainted(false);
         departmrntInsertBtn.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 departmrntInsertBtnMouseClicked(evt);
@@ -164,72 +177,48 @@ public class DepartmentsScreen extends javax.swing.JPanel {
         });
         add(departmrntInsertBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 160, 120, 30));
 
+        insertPanel.setBackground(new java.awt.Color(51, 98, 114));
         insertPanel.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        insertPanel.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
+        btnSave.setBackground(new java.awt.Color(0, 0, 0));
         btnSave.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        btnSave.setText("Save");
+        btnSave.setIcon(new javax.swing.ImageIcon("C:\\Oracle\\Middleware\\Oracle_Home\\hassan ui\\LTA\\icons\\save.png")); // NOI18N
+        btnSave.setBorderPainted(false);
         btnSave.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 btnSaveMouseClicked(evt);
             }
         });
+        insertPanel.add(btnSave, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 250, 140, 60));
 
         jLabel5.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        jLabel5.setForeground(new java.awt.Color(255, 255, 255));
         jLabel5.setText("Code");
+        insertPanel.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(38, 43, -1, -1));
 
         jLabel6.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        jLabel6.setForeground(new java.awt.Color(255, 255, 255));
         jLabel6.setText("Name");
+        insertPanel.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(38, 120, -1, -1));
 
         jLabel7.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        jLabel7.setForeground(new java.awt.Color(255, 255, 255));
         jLabel7.setText("Home Building ");
+        insertPanel.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(38, 211, -1, -1));
+        insertPanel.add(code_TextField, new org.netbeans.lib.awtextra.AbsoluteConstraints(205, 37, 134, 30));
 
-        javax.swing.GroupLayout insertPanelLayout = new javax.swing.GroupLayout(insertPanel);
-        insertPanel.setLayout(insertPanelLayout);
-        insertPanelLayout.setHorizontalGroup(
-            insertPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(insertPanelLayout.createSequentialGroup()
-                .addGap(37, 37, 37)
-                .addGroup(insertPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel7)
-                    .addComponent(jLabel6)
-                    .addComponent(jLabel5))
-                .addGap(75, 75, 75)
-                .addGroup(insertPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(name_TextField)
-                    .addComponent(homeBuilding_ComboBox, 0, 266, Short.MAX_VALUE)
-                    .addGroup(insertPanelLayout.createSequentialGroup()
-                        .addComponent(code_TextField, javax.swing.GroupLayout.PREFERRED_SIZE, 134, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, Short.MAX_VALUE)))
-                .addContainerGap())
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, insertPanelLayout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(btnSave, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(137, 137, 137))
-        );
-        insertPanelLayout.setVerticalGroup(
-            insertPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, insertPanelLayout.createSequentialGroup()
-                .addGap(36, 36, 36)
-                .addGroup(insertPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel5)
-                    .addComponent(code_TextField, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(47, 47, 47)
-                .addGroup(insertPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel6)
-                    .addComponent(name_TextField, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(59, 59, 59)
-                .addGroup(insertPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel7)
-                    .addComponent(homeBuilding_ComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 50, Short.MAX_VALUE)
-                .addComponent(btnSave, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(19, 19, 19))
-        );
+        name_TextField.setBorder(null);
+        insertPanel.add(name_TextField, new org.netbeans.lib.awtextra.AbsoluteConstraints(205, 114, 220, 30));
 
-        add(insertPanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(670, 110, -1, -1));
+        insertPanel.add(homeBuilding_ComboBox, new org.netbeans.lib.awtextra.AbsoluteConstraints(205, 203, 240, 32));
 
-        dPanel.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Departments", 0, 0, new java.awt.Font("Tekton Pro Cond", 1, 36))); // NOI18N
+        add(insertPanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(670, 110, 470, 330));
 
+        dPanel.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Departments", 0, 0, new java.awt.Font("Tekton Pro Cond", 2, 24))); // NOI18N
+
+        DepartmentTable.setAutoCreateRowSorter(true);
+        DepartmentTable.setBackground(new java.awt.Color(51, 98, 114));
         DepartmentTable.setFont(new java.awt.Font("Tekton Pro Cond", 1, 12)); // NOI18N
         DepartmentTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -240,6 +229,7 @@ public class DepartmentsScreen extends javax.swing.JPanel {
             }
         ));
         DepartmentTable.setRowHeight(30);
+        DepartmentTable.setSelectionBackground(new java.awt.Color(22, 224, 236));
         jScrollPane1.setViewportView(DepartmentTable);
         DepartmentTable.getColumnModel().getColumn(0).setHeaderValue("Title 1");
         DepartmentTable.getColumnModel().getColumn(1).setHeaderValue("Title 2");
