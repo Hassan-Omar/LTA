@@ -95,9 +95,11 @@ public class AutoAssignment extends javax.swing.JPanel {
      errorsField.setVisible(true);
 
      AllocationAlgorthim allocBusinees  =  new AllocationAlgorthim () ; 
+        System.out.print("System.out.print(reprot);"+reprot.getText());
       String errors =  allocBusinees.alloc_All(bar,reprot) ;
-      
+        System.out.print("System.out.print(reprot);"+reprot.getText());
         errorsField.setText(errors);
+        
     }//GEN-LAST:event_assignBtnMouseClicked
 
 

@@ -45,6 +45,16 @@ public class StaffScreen extends javax.swing.JPanel {
         int permissionType = new BaoFactory().createScreenBao().getCurrentPermission(5);
         Utilities.mandate(btnUpdate , btnInsert , btnDelete ,5, Utilities.convertTOBase2(permissionType));
         
+        jLabel4.setIcon(new javax.swing.ImageIcon("C:\\Oracle\\Middleware\\LTA\\icons\\employee.png")); // NOI18N
+
+        btnInsert.setIcon(new javax.swing.ImageIcon("C:\\Oracle\\Middleware\\LTA\\icons\\insert.png")); // NOI18N
+        btnUpdate.setIcon(new javax.swing.ImageIcon("C:\\Oracle\\Middleware\\LTA\\icons\\update.png")); // NOI18N
+        btnSearch.setIcon(new javax.swing.ImageIcon("C:\\Oracle\\Middleware\\LTA\\icons\\search.png")); // NOI18N
+        btnDelete.setIcon(new javax.swing.ImageIcon("C:\\Oracle\\Middleware\\LTA\\icons\\delete.png")); // NOI18N
+        
+        jLabel1.setIcon(new javax.swing.ImageIcon("C:\\Oracle\\Middleware\\LTA\\icons\\search2.png")); // NOI18N
+        saveBTN.setIcon(new javax.swing.ImageIcon("C:\\Oracle\\Middleware\\LTA\\icons\\save.png")); // NOI18N
+        
         
     }
 
@@ -79,7 +89,7 @@ public class StaffScreen extends javax.swing.JPanel {
         jLabel9 = new javax.swing.JLabel();
         jLabel10 = new javax.swing.JLabel();
         department_ComboBox = new javax.swing.JComboBox();
-        btnSave = new javax.swing.JButton();
+        saveBTN = new javax.swing.JButton();
         mail_TextField = new javax.swing.JTextField();
         fname_TextField = new javax.swing.JTextField();
         jLabel11 = new javax.swing.JLabel();
@@ -225,16 +235,16 @@ public class StaffScreen extends javax.swing.JPanel {
 
         insertPanel.add(department_ComboBox, new org.netbeans.lib.awtextra.AbsoluteConstraints(168, 167, 204, 30));
 
-        btnSave.setBackground(new java.awt.Color(51, 98, 114));
-        btnSave.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        btnSave.setIcon(new javax.swing.ImageIcon("C:\\Oracle\\Middleware\\LTA\\icons\\save.png")); // NOI18N
-        btnSave.setBorderPainted(false);
-        btnSave.addMouseListener(new java.awt.event.MouseAdapter() {
+        saveBTN.setBackground(new java.awt.Color(51, 98, 114));
+        saveBTN.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        saveBTN.setIcon(new javax.swing.ImageIcon("C:\\Oracle\\Middleware\\LTA\\icons\\save.png")); // NOI18N
+        saveBTN.setBorderPainted(false);
+        saveBTN.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                btnSaveMouseClicked(evt);
+                saveBTNMouseClicked(evt);
             }
         });
-        insertPanel.add(btnSave, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 390, 140, 60));
+        insertPanel.add(saveBTN, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 390, 140, 60));
 
         mail_TextField.setBorder(null);
         insertPanel.add(mail_TextField, new org.netbeans.lib.awtextra.AbsoluteConstraints(168, 306, 272, 30));
@@ -283,7 +293,9 @@ public class StaffScreen extends javax.swing.JPanel {
         );
         sPanelLayout.setVerticalGroup(
             sPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 408, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, sPanelLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 396, Short.MAX_VALUE))
         );
 
         add(sPanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 200, 550, 440));
@@ -353,7 +365,7 @@ public class StaffScreen extends javax.swing.JPanel {
         updateFlag = false;
     }//GEN-LAST:event_btnInsertMouseClicked
 
-    private void btnSaveMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnSaveMouseClicked
+    private void saveBTNMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_saveBTNMouseClicked
     EmployeeDto employee = new EmployeeDto();
 
 
@@ -397,7 +409,7 @@ public class StaffScreen extends javax.swing.JPanel {
           }
           
           
-    }//GEN-LAST:event_btnSaveMouseClicked
+    }//GEN-LAST:event_saveBTNMouseClicked
 
     private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
         Utilities.printRecord(sPanel);
@@ -428,7 +440,6 @@ public class StaffScreen extends javax.swing.JPanel {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnDelete;
     private javax.swing.JButton btnInsert;
-    private javax.swing.JButton btnSave;
     private javax.swing.JButton btnSearch;
     private javax.swing.JButton btnUpdate;
     private javax.swing.JComboBox department_ComboBox;
@@ -455,6 +466,7 @@ public class StaffScreen extends javax.swing.JPanel {
     private javax.swing.JPopupMenu popup;
     private javax.swing.JTextField pos_TextField;
     private javax.swing.JPanel sPanel;
+    private javax.swing.JButton saveBTN;
     private javax.swing.JTextField sname_TextField;
     private javax.swing.JTable staffTable;
     // End of variables declaration//GEN-END:variables

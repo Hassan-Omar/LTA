@@ -24,6 +24,9 @@ public class Login extends javax.swing.JFrame {
     /** Creates new form Login */
     public Login() {
         initComponents();
+        login_btn.setIcon(new javax.swing.ImageIcon("C:\\Oracle\\Middleware\\LTA\\icons\\loginBTN.png")); // NOI18N
+        jLabel3.setIcon(new javax.swing.ImageIcon("C:\\Oracle\\Middleware\\LTA\\icons\\loginBackgrond.png")); // NOI18N
+
     }
 
     /** This method is called from within the constructor to
@@ -115,7 +118,7 @@ public class Login extends javax.swing.JFrame {
 
         if (jCheckBox1.isSelected()) // this means i must store this values encrypted in ab file
 
-        {System.out.println("======>"+loginStatus +"password  "+ Utilities.getMd5(new String (userPassword.getPassword())));
+        {///System.out.println("======>"+loginStatus +"password  "+ Utilities.getMd5(new String (userPassword.getPassword())));
             if (loginStatus) {
 
                 LoginEngine.currentUser = username.getText();

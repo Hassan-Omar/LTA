@@ -1,6 +1,7 @@
 
 package com.fym.lta.ui;
 
+
 /**
  *
  * @author h.omar
@@ -10,6 +11,12 @@ public class Help extends javax.swing.JPanel {
     /** Creates new form Help */
     public Help() {
         initComponents();
+        jLabel1.setIcon(new javax.swing.ImageIcon("C:\\Oracle\\Middleware\\LTA\\icons\\tables.png")); // NOI18N
+        jLabel2.setIcon(new javax.swing.ImageIcon("C:\\Oracle\\Middleware\\LTA\\icons\\baisc.png")); // NOI18N
+        jLabel3.setIcon(new javax.swing.ImageIcon("C:\\Oracle\\Middleware\\LTA\\icons\\loc_mod.png")); // NOI18N
+        jLabel4.setIcon(new javax.swing.ImageIcon("C:\\Oracle\\Middleware\\LTA\\icons\\autho.png")); // NOI18N
+        jLabel5.setIcon(new javax.swing.ImageIcon("C:\\Oracle\\Middleware\\LTA\\icons\\report.png")); // NOI18N
+                
     }
 
     /** This method is called from within the constructor to

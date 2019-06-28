@@ -48,6 +48,17 @@ private CourseBao courseobjBao = new BaoFactory().createCourseBao();
         insertPanel.setVisible(false);
         int permissionType = new BaoFactory().createScreenBao().getCurrentPermission(6);
         Utilities.mandate(updateCourseBtn,insertCourseBtn , deleteCourseBtn ,6, Utilities.convertTOBase2(permissionType)); 
+        jLabel1.setIcon(new javax.swing.ImageIcon("C:\\Oracle\\Middleware\\LTA\\icons\\course.png")); // NOI18N
+
+        insertCourseBtn.setIcon(new javax.swing.ImageIcon("C:\\Oracle\\Middleware\\LTA\\icons\\insert.png")); // NOI18N
+        updateCourseBtn.setIcon(new javax.swing.ImageIcon("C:\\Oracle\\Middleware\\LTA\\icons\\update.png")); // NOI18N
+        btnSearch.setIcon(new javax.swing.ImageIcon("C:\\Oracle\\Middleware\\LTA\\icons\\search.png")); // NOI18N
+        deleteCourseBtn.setIcon(new javax.swing.ImageIcon("C:\\Oracle\\Middleware\\LTA\\icons\\delete.png")); // NOI18N
+        
+        jLabel2.setIcon(new javax.swing.ImageIcon("C:\\Oracle\\Middleware\\LTA\\icons\\search2.png")); // NOI18N
+        btnSave.setIcon(new javax.swing.ImageIcon("C:\\Oracle\\Middleware\\LTA\\icons\\save.png")); // NOI18N
+        
+   
     }
 
     /** This method is called from within the constructor to

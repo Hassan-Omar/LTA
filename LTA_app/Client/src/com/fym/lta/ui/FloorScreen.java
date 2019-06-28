@@ -13,10 +13,6 @@ import java.util.List;
 import javax.swing.JOptionPane;
 
 
-/**
- *
- * @author
- */
 public class FloorScreen extends javax.swing.JPanel {
     FloorBao FloorListInDatabase = new BaoFactory().createFloorBao();
     boolean updateFlag;
@@ -50,7 +46,17 @@ public class FloorScreen extends javax.swing.JPanel {
         int permissionType = new BaoFactory().createScreenBao().getCurrentPermission(2);
         System.out.println(permissionType+"permissionType");
         Utilities.mandate(updateFloorBTN, insertFloorBTN, deleteFloorBTN, 2,  Utilities.convertTOBase2(permissionType));
+      
+        jLabel4.setIcon(new javax.swing.ImageIcon("C:\\Oracle\\Middleware\\LTA\\icons\\floor.png")); // NOI18N
 
+        insertFloorBTN.setIcon(new javax.swing.ImageIcon("C:\\Oracle\\Middleware\\LTA\\icons\\insert.png")); // NOI18N
+        updateFloorBTN.setIcon(new javax.swing.ImageIcon("C:\\Oracle\\Middleware\\LTA\\icons\\update.png")); // NOI18N
+        searchFloorBTN.setIcon(new javax.swing.ImageIcon("C:\\Oracle\\Middleware\\LTA\\icons\\search.png")); // NOI18N
+        deleteFloorBTN.setIcon(new javax.swing.ImageIcon("C:\\Oracle\\Middleware\\LTA\\icons\\delete.png")); // NOI18N
+        
+        jLabel1.setIcon(new javax.swing.ImageIcon("C:\\Oracle\\Middleware\\LTA\\icons\\search2.png")); // NOI18N
+        save.setIcon(new javax.swing.ImageIcon("C:\\Oracle\\Middleware\\LTA\\icons\\save.png")); // NOI18N
+        
         if (allBuilding != null)
             listCombo(allBuilding);
     }

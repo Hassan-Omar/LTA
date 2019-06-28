@@ -56,6 +56,13 @@ public class ScheduleInsert extends javax.swing.JPanel {
         // now one step we will create an object of ScreenBao to know the current permission
         int permissionType = new BaoFactory().createScreenBao().getCurrentPermission(14);
         Utilities.mandate(viewBtn, insertBTN, deleteBTN, 14, Utilities.convertTOBase2(permissionType));
+        insertBTN.setIcon(new javax.swing.ImageIcon("C:\\Oracle\\Middleware\\LTA\\icons\\insert.png")); // NOI18N
+        searchBTN.setIcon(new javax.swing.ImageIcon("C:\\Oracle\\Middleware\\LTA\\icons\\search.png")); // NOI18N
+        jLabel1.setIcon(new javax.swing.ImageIcon("C:\\Oracle\\Middleware\\LTA\\icons\\search2.png")); // NOI18N
+        deleteBTN.setIcon(new javax.swing.ImageIcon("C:\\Oracle\\Middleware\\LTA\\icons\\delete.png")); // NOI18N
+        add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 0, 280, 50));
+        viewBtn.setIcon(new javax.swing.ImageIcon("C:\\Oracle\\Middleware\\LTA\\icons\\view.png")); // NOI18N
+
     }
 
     /** This method is called from within the constructor to

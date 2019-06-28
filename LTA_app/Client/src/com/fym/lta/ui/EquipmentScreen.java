@@ -65,6 +65,15 @@ public class EquipmentScreen extends javax.swing.JPanel {
         DefineEquipment.setVisible(false);
         int permissionType = new BaoFactory().createScreenBao().getCurrentPermission(7);
         Utilities.mandate(update ,insert , delete ,7, Utilities.convertTOBase2(permissionType)); 
+        jLabel6.setIcon(new javax.swing.ImageIcon("C:\\Oracle\\Middleware\\LTA\\icons\\equip.png")); // NOI18N
+
+        insert.setIcon(new javax.swing.ImageIcon("C:\\Oracle\\Middleware\\LTA\\icons\\insert.png")); // NOI18N
+        update.setIcon(new javax.swing.ImageIcon("C:\\Oracle\\Middleware\\LTA\\icons\\update.png")); // NOI18N
+        search.setIcon(new javax.swing.ImageIcon("C:\\Oracle\\Middleware\\LTA\\icons\\search.png")); // NOI18N
+        delete.setIcon(new javax.swing.ImageIcon("C:\\Oracle\\Middleware\\LTA\\icons\\delete.png")); // NOI18N
+        
+        jLabel8.setIcon(new javax.swing.ImageIcon("C:\\Oracle\\Middleware\\LTA\\icons\\search2.png")); // NOI18N
+        save.setIcon(new javax.swing.ImageIcon("C:\\Oracle\\Middleware\\LTA\\icons\\save.png")); // NOI18N
         
         
     }

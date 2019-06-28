@@ -55,6 +55,18 @@ public class UsersScreen extends javax.swing.JPanel {
         int permissionType = new BaoFactory().createScreenBao().getCurrentPermission(8);
         System.out.println(permissionType+"permissionType");
         Utilities.mandate(ubdateUserBTN,insertUserBTN , deleteUserBTN ,8, Utilities.convertTOBase2(permissionType));
+   
+        jLabel5.setIcon(new javax.swing.ImageIcon("C:\\Oracle\\Middleware\\LTA\\icons\\user_title.png")); // NOI18N
+
+        insertUserBTN.setIcon(new javax.swing.ImageIcon("C:\\Oracle\\Middleware\\LTA\\icons\\insert.png")); // NOI18N
+        ubdateUserBTN.setIcon(new javax.swing.ImageIcon("C:\\Oracle\\Middleware\\LTA\\icons\\update.png")); // NOI18N
+        searchUserBTN.setIcon(new javax.swing.ImageIcon("C:\\Oracle\\Middleware\\LTA\\icons\\search.png")); // NOI18N
+        deleteUserBTN.setIcon(new javax.swing.ImageIcon("C:\\Oracle\\Middleware\\LTA\\icons\\delete.png")); // NOI18N
+        
+        jLabel1.setIcon(new javax.swing.ImageIcon("C:\\Oracle\\Middleware\\LTA\\icons\\search2.png")); // NOI18N
+        saveBTN.setIcon(new javax.swing.ImageIcon("C:\\Oracle\\Middleware\\LTA\\icons\\save.png")); // NOI18N
+        
+   
     }
 
     /** This method is called from within the constructor to
@@ -86,7 +98,7 @@ public class UsersScreen extends javax.swing.JPanel {
         jLabel4 = new javax.swing.JLabel();
         mailLabel = new javax.swing.JLabel();
         label1 = new java.awt.Label();
-        doneBTN = new javax.swing.JButton();
+        saveBTN = new javax.swing.JButton();
         userRoleCombo = new javax.swing.JComboBox();
         employeesCombo = new javax.swing.JComboBox();
         employeesLabel = new java.awt.Label();
@@ -281,17 +293,17 @@ public class UsersScreen extends javax.swing.JPanel {
         label1.setText("Role");
         insertPanel.add(label1, new org.netbeans.lib.awtextra.AbsoluteConstraints(21, 278, 42, 43));
 
-        doneBTN.setBackground(new java.awt.Color(51, 98, 114));
-        doneBTN.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        doneBTN.setIcon(new javax.swing.ImageIcon("C:\\Oracle\\Middleware\\LTA\\icons\\save.png")); // NOI18N
-        doneBTN.setBorder(null);
-        doneBTN.setBorderPainted(false);
-        doneBTN.addMouseListener(new java.awt.event.MouseAdapter() {
+        saveBTN.setBackground(new java.awt.Color(51, 98, 114));
+        saveBTN.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        saveBTN.setIcon(new javax.swing.ImageIcon("C:\\Oracle\\Middleware\\LTA\\icons\\save.png")); // NOI18N
+        saveBTN.setBorder(null);
+        saveBTN.setBorderPainted(false);
+        saveBTN.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                doneBTNMouseClicked(evt);
+                saveBTNMouseClicked(evt);
             }
         });
-        insertPanel.add(doneBTN, new org.netbeans.lib.awtextra.AbsoluteConstraints(212, 375, 140, 60));
+        insertPanel.add(saveBTN, new org.netbeans.lib.awtextra.AbsoluteConstraints(212, 375, 140, 60));
 
         userRoleCombo.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         userRoleCombo.addActionListener(new java.awt.event.ActionListener() {
@@ -395,7 +407,7 @@ public class UsersScreen extends javax.swing.JPanel {
    
     }//GEN-LAST:event_ubdateUserBTNMouseClicked
 
-    private void doneBTNMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_doneBTNMouseClicked
+    private void saveBTNMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_saveBTNMouseClicked
         boolean flag = true; // holding the value of the upate or insert the user , falg to control on
 
         UserDto user = new UserDto();
@@ -460,7 +472,7 @@ public class UsersScreen extends javax.swing.JPanel {
         } else
             JOptionPane.showMessageDialog(this, "please Change user name ");
         
-    }//GEN-LAST:event_doneBTNMouseClicked
+    }//GEN-LAST:event_saveBTNMouseClicked
 
     private void usernameBoxMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_usernameBoxMouseExited
         if (userBaoObj.isExists(usernameBox.getText()) && !(updateFlage)) {
@@ -511,7 +523,6 @@ public class UsersScreen extends javax.swing.JPanel {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton deleteUserBTN;
-    private javax.swing.JButton doneBTN;
     private javax.swing.JComboBox employeesCombo;
     private java.awt.Label employeesLabel;
     private javax.swing.JPanel insertPanel;
@@ -528,6 +539,7 @@ public class UsersScreen extends javax.swing.JPanel {
     private java.awt.Label label1;
     private javax.swing.JLabel mailLabel;
     private javax.swing.JPopupMenu popup;
+    private javax.swing.JButton saveBTN;
     private javax.swing.JButton searchUserBTN;
     private javax.swing.JButton ubdateUserBTN;
     private javax.swing.JTextField userEnteredName;

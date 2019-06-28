@@ -38,6 +38,17 @@ public class RoleScreen extends javax.swing.JPanel {
         // now one step we will create an object of ScreenBao to know the current permission
         int permissionType = new BaoFactory().createScreenBao().getCurrentPermission(9);
         Utilities.mandate(ubdateRoleBTN, insertRoleBTN, deleteRoleBTN, 9, Utilities.convertTOBase2(permissionType));
+    
+        jLabel4.setIcon(new javax.swing.ImageIcon("C:\\Oracle\\Middleware\\LTA\\icons\\role.png")); // NOI18N
+
+        insertRoleBTN.setIcon(new javax.swing.ImageIcon("C:\\Oracle\\Middleware\\LTA\\icons\\insert.png")); // NOI18N
+        ubdateRoleBTN.setIcon(new javax.swing.ImageIcon("C:\\Oracle\\Middleware\\LTA\\icons\\update.png")); // NOI18N
+        searchUserBTN.setIcon(new javax.swing.ImageIcon("C:\\Oracle\\Middleware\\LTA\\icons\\search.png")); // NOI18N
+        deleteRoleBTN.setIcon(new javax.swing.ImageIcon("C:\\Oracle\\Middleware\\LTA\\icons\\delete.png")); // NOI18N
+        
+        jLabel1.setIcon(new javax.swing.ImageIcon("C:\\Oracle\\Middleware\\LTA\\icons\\search2.png")); // NOI18N
+        saveBTN.setIcon(new javax.swing.ImageIcon("C:\\Oracle\\Middleware\\LTA\\icons\\save.png")); // NOI18N
+        
     }
 
     /** This method is called from within the constructor to
@@ -61,7 +72,7 @@ public class RoleScreen extends javax.swing.JPanel {
         enteredCodeBox = new javax.swing.JTextField();
         jScrollPane2 = new javax.swing.JScrollPane();
         enteredDescription = new javax.swing.JTextArea();
-        SaveBtn = new javax.swing.JButton();
+        saveBTN = new javax.swing.JButton();
         codeLabel = new javax.swing.JLabel();
         label1 = new java.awt.Label();
         jLabel4 = new javax.swing.JLabel();
@@ -151,13 +162,13 @@ public class RoleScreen extends javax.swing.JPanel {
         enteredDescription.setBorder(null);
         jScrollPane2.setViewportView(enteredDescription);
 
-        SaveBtn.setBackground(new java.awt.Color(0, 0, 0));
-        SaveBtn.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        SaveBtn.setIcon(new javax.swing.ImageIcon("C:\\Oracle\\Middleware\\LTA\\icons\\save.png")); // NOI18N
-        SaveBtn.setBorderPainted(false);
-        SaveBtn.addMouseListener(new java.awt.event.MouseAdapter() {
+        saveBTN.setBackground(new java.awt.Color(51, 98, 114));
+        saveBTN.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        saveBTN.setIcon(new javax.swing.ImageIcon("C:\\Oracle\\Middleware\\LTA\\icons\\save.png")); // NOI18N
+        saveBTN.setBorderPainted(false);
+        saveBTN.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                SaveBtnMouseClicked(evt);
+                saveBTNMouseClicked(evt);
             }
         });
 
@@ -183,7 +194,7 @@ public class RoleScreen extends javax.swing.JPanel {
                     .addGroup(insertUpdatePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                         .addComponent(enteredCodeBox, javax.swing.GroupLayout.Alignment.LEADING)
                         .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 283, Short.MAX_VALUE))
-                    .addComponent(SaveBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 127, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(saveBTN, javax.swing.GroupLayout.PREFERRED_SIZE, 127, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap())
         );
         insertUpdatePanelLayout.setVerticalGroup(
@@ -197,9 +208,9 @@ public class RoleScreen extends javax.swing.JPanel {
                 .addGroup(insertUpdatePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(label1, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(78, 78, 78)
-                .addComponent(SaveBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(24, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 91, Short.MAX_VALUE)
+                .addComponent(saveBTN, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
         );
 
         add(insertUpdatePanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(650, 160, -1, 450));
@@ -357,7 +368,7 @@ public class RoleScreen extends javax.swing.JPanel {
      
     }//GEN-LAST:event_searchUserBTNMouseClicked
 
-    private void SaveBtnMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_SaveBtnMouseClicked
+    private void saveBTNMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_saveBTNMouseClicked
 
 
         
@@ -399,7 +410,7 @@ public class RoleScreen extends javax.swing.JPanel {
      
      
      
-    }//GEN-LAST:event_SaveBtnMouseClicked
+    }//GEN-LAST:event_saveBTNMouseClicked
 
     private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
         Utilities.printRecord(roles_Panel);
@@ -435,7 +446,6 @@ public class RoleScreen extends javax.swing.JPanel {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton SaveBtn;
     private javax.swing.JLabel codeLabel;
     private javax.swing.JButton deleteRoleBTN;
     private javax.swing.JTextField enteredCodeBox;
@@ -448,8 +458,6 @@ public class RoleScreen extends javax.swing.JPanel {
     private javax.swing.JMenuItem jMenuItem2;
     private javax.swing.JMenuItem jMenuItem3;
     private javax.swing.JMenuItem jMenuItem4;
-    private javax.swing.JMenuItem jMenuItem5;
-    private javax.swing.JMenuItem jMenuItem6;
     private javax.swing.JMenuItem jMenuItem7;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
@@ -458,6 +466,7 @@ public class RoleScreen extends javax.swing.JPanel {
     private javax.swing.JTextField roleEnteredCode;
     private javax.swing.JTable rolesTable;
     private javax.swing.JPanel roles_Panel;
+    private javax.swing.JButton saveBTN;
     private javax.swing.JButton searchUserBTN;
     private javax.swing.JButton ubdateRoleBTN;
     // End of variables declaration//GEN-END:variables

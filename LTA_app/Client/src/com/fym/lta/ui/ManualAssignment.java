@@ -94,10 +94,11 @@ public class ManualAssignment extends javax.swing.JPanel {
             e.printStackTrace();
         }
         
-        // now one step we will create an object of ScreenBao to know the current permission 
-       // int permissionType = new BaoFactory().createScreenBao().getCurrentPermission(12);
-       // Utilities.mandate(ubdateUserBTN,insertUserBTN , deleteUserBTN ,12, Utilities.convertTOBase2(permissionType));
-        
+        refresh.setIcon(new javax.swing.ImageIcon("C:\\Oracle\\Middleware\\LTA\\icons\\refershBTN.png")); // NOI18N
+        view.setIcon(new javax.swing.ImageIcon("C:\\Oracle\\Middleware\\LTA\\icons\\view.png")); // NOI18N
+        show.setIcon(new javax.swing.ImageIcon("C:\\Oracle\\Middleware\\LTA\\icons\\show.png")); // NOI18N
+        assign.setIcon(new javax.swing.ImageIcon("C:\\Oracle\\Middleware\\LTA\\icons\\assign.png")); // NOI18N
+
     }
 
     /** This method is called from within the constructor to
