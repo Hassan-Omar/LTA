@@ -129,11 +129,12 @@ public class ScheduleInsert extends javax.swing.JPanel {
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jPanel1.setBackground(new java.awt.Color(0, 0, 0));
-        jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Schedules", 0, 0, new java.awt.Font("Tekton Pro Cond", 1, 36))); // NOI18N
+        jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(204, 240, 240)), "Schedules", 0, 0, new java.awt.Font("Tekton Pro Cond", 1, 36), new java.awt.Color(204, 240, 240))); // NOI18N
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         table.setBackground(new java.awt.Color(51, 98, 114));
-        table.setFont(new java.awt.Font("Tekton Pro Cond", 1, 24)); // NOI18N
+        table.setFont(new java.awt.Font("Tekton Pro Cond", 0, 18)); // NOI18N
+        table.setForeground(new java.awt.Color(255, 255, 255));
         table.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
@@ -157,7 +158,7 @@ public class ScheduleInsert extends javax.swing.JPanel {
                 return canEdit [columnIndex];
             }
         });
-        table.setRowHeight(30);
+        table.setRowHeight(25);
         table.setSelectionBackground(new java.awt.Color(22, 224, 236));
         jScrollPane1.setViewportView(table);
         table.getColumnModel().getColumn(0).setResizable(false);
@@ -167,7 +168,7 @@ public class ScheduleInsert extends javax.swing.JPanel {
         table.getColumnModel().getColumn(2).setResizable(false);
         table.getColumnModel().getColumn(2).setHeaderValue("CodeDeparment");
 
-        jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(5, 39, 340, 276));
+        jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(5, 45, 340, 270));
 
         add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 200, 350, 320));
 
@@ -208,7 +209,6 @@ public class ScheduleInsert extends javax.swing.JPanel {
         deleteBTN.setBackground(new java.awt.Color(0, 0, 0));
         deleteBTN.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         deleteBTN.setIcon(new javax.swing.ImageIcon("C:\\Oracle\\Middleware\\LTA\\icons\\delete.png")); // NOI18N
-        deleteBTN.setText("");
         deleteBTN.setBorderPainted(false);
         deleteBTN.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -267,7 +267,7 @@ public class ScheduleInsert extends javax.swing.JPanel {
         table2.getColumnModel().getColumn(4).setHeaderValue("slot4");
         table2.getAccessibleContext().setAccessibleDescription("");
 
-        table_Panel.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(11, 129, 840, 520));
+        table_Panel.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(11, 129, 840, 470));
 
         dep.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         dep.setForeground(new java.awt.Color(255, 255, 255));
@@ -284,12 +284,12 @@ public class ScheduleInsert extends javax.swing.JPanel {
         tCode.setText("Table Code");
         table_Panel.add(tCode, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 30, 160, 30));
 
-        add(table_Panel, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 90, 860, 660));
+        add(table_Panel, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 140, 860, 610));
 
         jLabel2.setFont(new java.awt.Font("Times New Roman", 1, 24)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel2.setText("Scheduels Screen");
-        add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 10, -1, -1));
+        jLabel2.setIcon(new javax.swing.ImageIcon("C:\\Oracle\\Middleware\\LTA\\icons\\sch.png")); // NOI18N
+        add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 0, 280, 50));
 
         viewBtn.setBackground(new java.awt.Color(0, 0, 0));
         viewBtn.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N

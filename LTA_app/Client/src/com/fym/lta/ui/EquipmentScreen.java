@@ -148,7 +148,8 @@ public class EquipmentScreen extends javax.swing.JPanel {
         ePanel.setPreferredSize(new java.awt.Dimension(400, 400));
 
         EquipmentTable.setBackground(new java.awt.Color(51, 98, 114));
-        EquipmentTable.setFont(new java.awt.Font("Tekton Pro", 0, 12)); // NOI18N
+        EquipmentTable.setFont(new java.awt.Font("Tekton Pro", 0, 18)); // NOI18N
+        EquipmentTable.setForeground(new java.awt.Color(255, 255, 255));
         EquipmentTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
@@ -160,7 +161,7 @@ public class EquipmentScreen extends javax.swing.JPanel {
         EquipmentTable.setMaximumSize(new java.awt.Dimension(512, 512));
         EquipmentTable.setMinimumSize(new java.awt.Dimension(512, 512));
         EquipmentTable.setPreferredSize(new java.awt.Dimension(512, 512));
-        EquipmentTable.setRowHeight(30);
+        EquipmentTable.setRowHeight(25);
         EquipmentTable.setSelectionBackground(new java.awt.Color(22, 224, 236));
         jScrollPane1.setViewportView(EquipmentTable);
         EquipmentTable.getColumnModel().getColumn(0).setHeaderValue("Title 1");
@@ -301,7 +302,7 @@ public class EquipmentScreen extends javax.swing.JPanel {
 
         jLabel6.setFont(new java.awt.Font("Times New Roman", 1, 24)); // NOI18N
         jLabel6.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel6.setText("Equipment Screen ");
+        jLabel6.setIcon(new javax.swing.ImageIcon("C:\\Oracle\\Middleware\\LTA\\icons\\equip.png")); // NOI18N
         add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(570, 0, 280, 50));
     }//GEN-END:initComponents
 

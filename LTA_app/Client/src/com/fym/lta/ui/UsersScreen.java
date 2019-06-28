@@ -136,7 +136,7 @@ public class UsersScreen extends javax.swing.JPanel {
         users_TableaPanel.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(204, 240, 240)), "Users\n", 0, 0, new java.awt.Font("Tekton Pro Cond", 1, 36), new java.awt.Color(204, 240, 240))); // NOI18N
 
         usersTable.setBackground(new java.awt.Color(51, 98, 114));
-        usersTable.setFont(new java.awt.Font("Tekton Pro Cond", 0, 24)); // NOI18N
+        usersTable.setFont(new java.awt.Font("Tekton Pro Cond", 0, 18)); // NOI18N
         usersTable.setForeground(new java.awt.Color(255, 255, 255));
         usersTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {

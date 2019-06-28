@@ -133,6 +133,7 @@ public class FloorScreen extends javax.swing.JPanel {
 
         floorTable.setBackground(new java.awt.Color(51, 98, 114));
         floorTable.setFont(new java.awt.Font("Tekton Pro Cond", 0, 18)); // NOI18N
+        floorTable.setForeground(new java.awt.Color(255, 255, 255));
         floorTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
@@ -149,7 +150,7 @@ public class FloorScreen extends javax.swing.JPanel {
                 return types [columnIndex];
             }
         });
-        floorTable.setRowHeight(30);
+        floorTable.setRowHeight(25);
         floorTable.setSelectionBackground(new java.awt.Color(22, 224, 236));
         jScrollPane1.setViewportView(floorTable);
         floorTable.getColumnModel().getColumn(0).setHeaderValue("Code");
@@ -175,7 +176,8 @@ public class FloorScreen extends javax.swing.JPanel {
         add(FloorEnteredCode, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 70, 230, 30));
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 39, 105, 30));
+        jLabel1.setIcon(new javax.swing.ImageIcon("C:\\Oracle\\Middleware\\LTA\\icons\\search2.png")); // NOI18N
+        add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 49, 105, 20));
 
         searchFloorBTN.setBackground(new java.awt.Color(0, 0, 0));
         searchFloorBTN.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
@@ -244,7 +246,7 @@ public class FloorScreen extends javax.swing.JPanel {
 
         jLabel4.setFont(new java.awt.Font("Times New Roman", 1, 24)); // NOI18N
         jLabel4.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel4.setText("Floors Screen ");
+        jLabel4.setIcon(new javax.swing.ImageIcon("C:\\Oracle\\Middleware\\LTA\\icons\\floor.png")); // NOI18N
         add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(498, 0, 231, 54));
 
         insertFloorBTN.setBackground(new java.awt.Color(0, 0, 0));

@@ -157,7 +157,7 @@ private CourseBao courseobjBao = new BaoFactory().createCourseBao();
 
         jLabel1.setFont(new java.awt.Font("Times New Roman", 1, 24)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel1.setText("Course Screen ");
+        jLabel1.setIcon(new javax.swing.ImageIcon("C:\\Oracle\\Middleware\\LTA\\icons\\course.png")); // NOI18N
         add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 0, 280, 50));
 
         jLabel2.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
@@ -168,7 +168,8 @@ private CourseBao courseobjBao = new BaoFactory().createCourseBao();
         cPanel.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Courses", 0, 0, new java.awt.Font("Tekton Pro Cond", 2, 24), new java.awt.Color(204, 240, 240))); // NOI18N
 
         courseTable.setBackground(new java.awt.Color(51, 98, 114));
-        courseTable.setFont(new java.awt.Font("Tekton Pro Cond", 1, 12)); // NOI18N
+        courseTable.setFont(new java.awt.Font("Tekton Pro Cond", 0, 18)); // NOI18N
+        courseTable.setForeground(new java.awt.Color(255, 255, 255));
         courseTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
@@ -177,7 +178,7 @@ private CourseBao courseobjBao = new BaoFactory().createCourseBao();
                 "Name", "Code", "Lecture Time ", "Department", "preferred location type"
             }
         ));
-        courseTable.setRowHeight(30);
+        courseTable.setRowHeight(25);
         courseTable.setSelectionBackground(new java.awt.Color(22, 224, 236));
         courseTable.addHierarchyBoundsListener(new java.awt.event.HierarchyBoundsListener() {
             public void ancestorResized(java.awt.event.HierarchyEvent evt) {
@@ -198,15 +199,17 @@ private CourseBao courseobjBao = new BaoFactory().createCourseBao();
         cPanelLayout.setHorizontalGroup(
             cPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(cPanelLayout.createSequentialGroup()
-                .addGap(0, 0, 0)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 547, Short.MAX_VALUE))
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 538, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 12, Short.MAX_VALUE))
         );
         cPanelLayout.setVerticalGroup(
             cPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 468, Short.MAX_VALUE)
+            .addGroup(cPanelLayout.createSequentialGroup()
+                .addGap(18, 18, 18)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 450, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
-        add(cPanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 190, -1, 500));
+        add(cPanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 190, 550, 500));
 
         insertPanel.setBackground(new java.awt.Color(51, 98, 114));
         insertPanel.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));

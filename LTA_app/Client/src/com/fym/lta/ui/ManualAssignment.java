@@ -162,7 +162,8 @@ public class ManualAssignment extends javax.swing.JPanel {
         master.setPreferredSize(new java.awt.Dimension(400, 400));
 
         LocationTable.setBackground(new java.awt.Color(51, 98, 114));
-        LocationTable.setFont(new java.awt.Font("Calibri", 1, 18)); // NOI18N
+        LocationTable.setFont(new java.awt.Font("Tekton Pro Cond", 0, 18)); // NOI18N
+        LocationTable.setForeground(new java.awt.Color(255, 255, 255));
         LocationTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null, null, null},
@@ -223,7 +224,9 @@ public class ManualAssignment extends javax.swing.JPanel {
         );
         masterLayout.setVerticalGroup(
             masterLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 436, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, masterLayout.createSequentialGroup()
+                .addGap(0, 14, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
         add(master, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 140, 540, 480));
@@ -306,7 +309,7 @@ public class ManualAssignment extends javax.swing.JPanel {
         });
         slotsPanel.add(department_combo, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 40, 104, 33));
 
-        view.setBackground(new java.awt.Color(0, 0, 0));
+        view.setBackground(new java.awt.Color(51, 98, 114));
         view.setIcon(new javax.swing.ImageIcon("C:\\Oracle\\Middleware\\LTA\\icons\\view.png")); // NOI18N
         view.setBorderPainted(false);
         view.addActionListener(new java.awt.event.ActionListener() {

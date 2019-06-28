@@ -265,6 +265,16 @@ public class MMenu extends javax.swing.JFrame {
 
         jMenu4.setForeground(new java.awt.Color(255, 255, 255));
         jMenu4.setText("Help                  ");
+        jMenu4.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jMenu4MouseClicked(evt);
+            }
+        });
+        jMenu4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenu4ActionPerformed(evt);
+            }
+        });
         jMenuBar1.add(jMenu4);
 
         setJMenuBar(jMenuBar1);
@@ -392,6 +402,16 @@ public class MMenu extends javax.swing.JFrame {
     private void jTextField1KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField1KeyPressed
         // TODO add your handling code here:
     }//GEN-LAST:event_jTextField1KeyPressed
+
+    private void jMenu4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenu4ActionPerformed
+     
+    }//GEN-LAST:event_jMenu4ActionPerformed
+
+    private void jMenu4MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jMenu4MouseClicked
+        
+    switchtoPanel(new Help());   
+    
+    }//GEN-LAST:event_jMenu4MouseClicked
 
     private void searchKeyPressed(java.awt.event.KeyEvent evt) {
         List<SearchDto> result ;

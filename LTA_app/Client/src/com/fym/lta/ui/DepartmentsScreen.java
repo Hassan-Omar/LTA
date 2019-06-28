@@ -111,7 +111,7 @@ public class DepartmentsScreen extends javax.swing.JPanel {
 
         jLabel1.setFont(new java.awt.Font("Times New Roman", 1, 24)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel1.setText("Department Screen");
+        jLabel1.setIcon(new javax.swing.ImageIcon("C:\\Oracle\\Middleware\\LTA\\icons\\department.png")); // NOI18N
         add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 0, 280, 50));
 
         btnSearch.setBackground(new java.awt.Color(0, 0, 0));
@@ -219,7 +219,8 @@ public class DepartmentsScreen extends javax.swing.JPanel {
 
         DepartmentTable.setAutoCreateRowSorter(true);
         DepartmentTable.setBackground(new java.awt.Color(51, 98, 114));
-        DepartmentTable.setFont(new java.awt.Font("Tekton Pro Cond", 1, 12)); // NOI18N
+        DepartmentTable.setFont(new java.awt.Font("Tekton Pro Cond", 1, 18)); // NOI18N
+        DepartmentTable.setForeground(new java.awt.Color(255, 255, 255));
         DepartmentTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
@@ -228,7 +229,7 @@ public class DepartmentsScreen extends javax.swing.JPanel {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
-        DepartmentTable.setRowHeight(30);
+        DepartmentTable.setRowHeight(25);
         DepartmentTable.setSelectionBackground(new java.awt.Color(22, 224, 236));
         jScrollPane1.setViewportView(DepartmentTable);
         DepartmentTable.getColumnModel().getColumn(0).setHeaderValue("Title 1");
@@ -244,12 +245,12 @@ public class DepartmentsScreen extends javax.swing.JPanel {
         );
         dPanelLayout.setVerticalGroup(
             dPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(dPanelLayout.createSequentialGroup()
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, dPanelLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 210, Short.MAX_VALUE))
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 216, Short.MAX_VALUE))
         );
 
-        add(dPanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(42, 202, 550, -1));
+        add(dPanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(42, 202, 550, 260));
     }//GEN-END:initComponents
     
   

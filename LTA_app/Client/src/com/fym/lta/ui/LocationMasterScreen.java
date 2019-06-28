@@ -199,7 +199,8 @@ public class LocationMasterScreen extends javax.swing.JPanel {
         master.setPreferredSize(new java.awt.Dimension(400, 400));
 
         LocationTable.setBackground(new java.awt.Color(51, 98, 114));
-        LocationTable.setFont(new java.awt.Font("Tekton Pro", 0, 24)); // NOI18N
+        LocationTable.setFont(new java.awt.Font("Tekton Pro", 0, 18)); // NOI18N
+        LocationTable.setForeground(new java.awt.Color(255, 255, 255));
         LocationTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
@@ -208,7 +209,7 @@ public class LocationMasterScreen extends javax.swing.JPanel {
                 "Title 1", "Title 2", "Title 3", "Title 4", "Title 5", "Title 6", "Title 7", "Title 8", "Title 9", "Title 10", "Title 11", "Title 12"
             }
         ));
-        LocationTable.setRowHeight(30);
+        LocationTable.setRowHeight(25);
         LocationTable.setSelectionBackground(new java.awt.Color(22, 224, 236));
         jScrollPane1.setViewportView(LocationTable);
         LocationTable.getColumnModel().getColumn(0).setHeaderValue("Title 1");
@@ -232,7 +233,9 @@ public class LocationMasterScreen extends javax.swing.JPanel {
         );
         masterLayout.setVerticalGroup(
             masterLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 388, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, masterLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 376, Short.MAX_VALUE))
         );
 
         add(master, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 200, 550, 420));
@@ -373,8 +376,8 @@ public class LocationMasterScreen extends javax.swing.JPanel {
 
         jLabel9.setFont(new java.awt.Font("Times New Roman", 1, 24)); // NOI18N
         jLabel9.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel9.setText("Locations Screen ");
-        add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 10, 190, -1));
+        jLabel9.setIcon(new javax.swing.ImageIcon("C:\\Oracle\\Middleware\\LTA\\icons\\loc.png")); // NOI18N
+        add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 0, 330, -1));
     }//GEN-END:initComponents
 
 

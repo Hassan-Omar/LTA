@@ -106,7 +106,8 @@ public class BuildingScreeen extends javax.swing.JPanel {
         bPanel.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(204, 240, 240)), "Buildings", 0, 0, new java.awt.Font("Tekton Pro Cond", 1, 36), new java.awt.Color(204, 240, 240))); // NOI18N
 
         buildingTable.setBackground(new java.awt.Color(51, 98, 114));
-        buildingTable.setFont(new java.awt.Font("Tekton Pro Cond", 0, 24)); // NOI18N
+        buildingTable.setFont(new java.awt.Font("Tekton Pro Cond", 0, 18)); // NOI18N
+        buildingTable.setForeground(new java.awt.Color(255, 255, 255));
         buildingTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
@@ -123,7 +124,7 @@ public class BuildingScreeen extends javax.swing.JPanel {
                 return types [columnIndex];
             }
         });
-        buildingTable.setRowHeight(30);
+        buildingTable.setRowHeight(25);
         buildingTable.setSelectionBackground(new java.awt.Color(22, 224, 236));
         jScrollPane1.setViewportView(buildingTable);
         buildingTable.getColumnModel().getColumn(0).setHeaderValue("Code");
@@ -137,7 +138,9 @@ public class BuildingScreeen extends javax.swing.JPanel {
         );
         bPanelLayout.setVerticalGroup(
             bPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 246, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, bPanelLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 234, Short.MAX_VALUE))
         );
 
         add(bPanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 210, 550, 290));
@@ -255,7 +258,7 @@ public class BuildingScreeen extends javax.swing.JPanel {
 
         jLabel4.setFont(new java.awt.Font("Times New Roman", 1, 24)); // NOI18N
         jLabel4.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel4.setText("Buildings Screen ");
+        jLabel4.setIcon(new javax.swing.ImageIcon("C:\\Oracle\\Middleware\\LTA\\icons\\building.png")); // NOI18N
         add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 0, 280, 50));
     }//GEN-END:initComponents
     //Update Buttom

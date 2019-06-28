@@ -122,6 +122,7 @@ public class LocationTypeScreen extends javax.swing.JPanel {
 
         Table.setBackground(new java.awt.Color(51, 98, 114));
         Table.setFont(new java.awt.Font("Tekton Pro Cond", 1, 18)); // NOI18N
+        Table.setForeground(new java.awt.Color(255, 255, 255));
         Table.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
@@ -138,7 +139,7 @@ public class LocationTypeScreen extends javax.swing.JPanel {
                 return types [columnIndex];
             }
         });
-        Table.setRowHeight(30);
+        Table.setRowHeight(25);
         Table.setSelectionBackground(new java.awt.Color(22, 224, 236));
         jScrollPane1.setViewportView(Table);
         Table.getColumnModel().getColumn(0).setHeaderValue("Location Type Code");
@@ -152,7 +153,9 @@ public class LocationTypeScreen extends javax.swing.JPanel {
         );
         lPanelLayout.setVerticalGroup(
             lPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 338, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, lPanelLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 326, Short.MAX_VALUE))
         );
 
         add(lPanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 200, 550, 370));
@@ -242,8 +245,8 @@ public class LocationTypeScreen extends javax.swing.JPanel {
 
         jLabel4.setFont(new java.awt.Font("Times New Roman", 1, 24)); // NOI18N
         jLabel4.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel4.setText("LocationTypes Screen ");
-        add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(365, 0, 280, 50));
+        jLabel4.setIcon(new javax.swing.ImageIcon("C:\\Oracle\\Middleware\\LTA\\icons\\locType.png")); // NOI18N
+        add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 0, 330, 50));
 
         searchBuildingBTN.setBackground(new java.awt.Color(0, 0, 0));
         searchBuildingBTN.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N

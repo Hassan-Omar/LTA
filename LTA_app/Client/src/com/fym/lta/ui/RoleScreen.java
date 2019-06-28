@@ -197,7 +197,7 @@ public class RoleScreen extends javax.swing.JPanel {
 
         jLabel4.setFont(new java.awt.Font("Times New Roman", 1, 24)); // NOI18N
         jLabel4.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel4.setText("Roles Screen ");
+        jLabel4.setIcon(new javax.swing.ImageIcon("C:\\Oracle\\Middleware\\LTA\\icons\\role.png")); // NOI18N
         add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(589, 0, 231, 54));
 
         ubdateRoleBTN.setBackground(new java.awt.Color(0, 0, 0));
@@ -214,7 +214,6 @@ public class RoleScreen extends javax.swing.JPanel {
         deleteRoleBTN.setBackground(new java.awt.Color(0, 0, 0));
         deleteRoleBTN.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         deleteRoleBTN.setIcon(new javax.swing.ImageIcon("C:\\Oracle\\Middleware\\LTA\\icons\\delete.png")); // NOI18N
-        deleteRoleBTN.setText("");
         deleteRoleBTN.setBorderPainted(false);
         deleteRoleBTN.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -235,10 +234,11 @@ public class RoleScreen extends javax.swing.JPanel {
         add(insertRoleBTN, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 160, 120, 30));
 
         roles_Panel.setBackground(new java.awt.Color(0, 0, 0));
-        roles_Panel.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Roles", 0, 0, new java.awt.Font("Tekton Pro Cond", 1, 36))); // NOI18N
+        roles_Panel.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(204, 240, 240)), "Roles", 0, 0, new java.awt.Font("Tekton Pro Cond", 1, 36), new java.awt.Color(204, 240, 240))); // NOI18N
 
         rolesTable.setBackground(new java.awt.Color(51, 98, 114));
         rolesTable.setFont(new java.awt.Font("Tekton Pro Cond", 1, 18)); // NOI18N
+        rolesTable.setForeground(new java.awt.Color(255, 255, 255));
         rolesTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
@@ -262,7 +262,7 @@ public class RoleScreen extends javax.swing.JPanel {
                 return canEdit [columnIndex];
             }
         });
-        rolesTable.setRowHeight(30);
+        rolesTable.setRowHeight(25);
         rolesTable.setSelectionBackground(new java.awt.Color(22, 224, 236));
         jScrollPane3.setViewportView(rolesTable);
         rolesTable.getColumnModel().getColumn(0).setHeaderValue("Code");

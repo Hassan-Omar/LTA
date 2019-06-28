@@ -251,13 +251,15 @@ public class StaffScreen extends javax.swing.JPanel {
 
         jLabel4.setFont(new java.awt.Font("Times New Roman", 1, 24)); // NOI18N
         jLabel4.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel4.setText("Employees Screen ");
+        jLabel4.setIcon(new javax.swing.ImageIcon("C:\\Oracle\\Middleware\\LTA\\icons\\employee.png")); // NOI18N
         add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 0, 280, 50));
 
         sPanel.setBackground(new java.awt.Color(0, 0, 0));
         sPanel.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(204, 240, 240)), "Employees", 0, 0, new java.awt.Font("Tekton Pro", 2, 24), new java.awt.Color(204, 240, 240))); // NOI18N
 
         staffTable.setBackground(new java.awt.Color(51, 98, 114));
+        staffTable.setFont(new java.awt.Font("Tekton Pro Cond", 0, 18)); // NOI18N
+        staffTable.setForeground(new java.awt.Color(255, 255, 255));
         staffTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
@@ -269,6 +271,7 @@ public class StaffScreen extends javax.swing.JPanel {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
+        staffTable.setRowHeight(25);
         staffTable.setSelectionBackground(new java.awt.Color(22, 224, 236));
         jScrollPane1.setViewportView(staffTable);
 
