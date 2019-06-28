@@ -133,7 +133,7 @@ public class UsersScreen extends javax.swing.JPanel {
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         users_TableaPanel.setBackground(new java.awt.Color(0, 0, 0));
-        users_TableaPanel.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Users\n", 0, 0, new java.awt.Font("Tekton Pro Cond", 1, 36))); // NOI18N
+        users_TableaPanel.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(204, 240, 240)), "Users\n", 0, 0, new java.awt.Font("Tekton Pro Cond", 1, 36), new java.awt.Color(204, 240, 240))); // NOI18N
 
         usersTable.setBackground(new java.awt.Color(51, 98, 114));
         usersTable.setFont(new java.awt.Font("Tekton Pro Cond", 0, 24)); // NOI18N
@@ -212,7 +212,7 @@ public class UsersScreen extends javax.swing.JPanel {
         add(deleteUserBTN, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 160, 80, 30));
 
         userEnteredName.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        userEnteredName.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        userEnteredName.setBorder(null);
         add(userEnteredName, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 70, 230, 30));
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
@@ -319,7 +319,7 @@ public class UsersScreen extends javax.swing.JPanel {
         jLabel5.setFont(new java.awt.Font("Times New Roman", 1, 24)); // NOI18N
         jLabel5.setIcon(new javax.swing.ImageIcon("C:\\Oracle\\Middleware\\LTA\\icons\\user_title.png")); // NOI18N
         jLabel5.setText("Users Screen ");
-        add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 10, 280, 70));
+        add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 0, 280, 50));
     }//GEN-END:initComponents
 
     private void searchUserBTNMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_searchUserBTNMouseClicked

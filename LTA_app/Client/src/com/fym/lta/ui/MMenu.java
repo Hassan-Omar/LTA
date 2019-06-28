@@ -81,14 +81,15 @@ public class MMenu extends javax.swing.JFrame {
         userM_Item = new javax.swing.JMenuItem();
         roleM_Item = new javax.swing.JMenuItem();
         roleScreenM_Item = new javax.swing.JMenuItem();
-        jMenu4 = new javax.swing.JMenu();
         report = new javax.swing.JMenu();
         jMenu6 = new javax.swing.JMenu();
         logout = new javax.swing.JMenu();
+        jMenu4 = new javax.swing.JMenu();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         mainPanel.setBackground(new java.awt.Color(0, 0, 0));
+        mainPanel.setForeground(new java.awt.Color(255, 255, 255));
         mainPanel.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel1.setBackground(new java.awt.Color(0, 0, 0));
@@ -96,8 +97,11 @@ public class MMenu extends javax.swing.JFrame {
         jLabel1.setIcon(new javax.swing.ImageIcon("C:\\Oracle\\Middleware\\LTA\\icons\\welcome.png")); // NOI18N
         mainPanel.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 130, 562, 348));
 
+        jMenuBar1.setBackground(new java.awt.Color(51, 98, 114));
+        jMenuBar1.setForeground(new java.awt.Color(255, 255, 255));
         jMenuBar1.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
 
+        jMenu5.setForeground(new java.awt.Color(255, 255, 255));
         jMenu5.setText("Tables                  ");
         jMenu5.setActionCommand("Insert New   ");
         jMenu5.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -107,6 +111,7 @@ public class MMenu extends javax.swing.JFrame {
         });
         jMenuBar1.add(jMenu5);
 
+        jMenu3.setForeground(new java.awt.Color(255, 255, 255));
         jMenu3.setText("Basic Data Management                  ");
 
         buildingM_Item.setText("Building");
@@ -149,7 +154,7 @@ public class MMenu extends javax.swing.JFrame {
         });
         jMenu3.add(courseM_Item);
 
-        staffM_Item.setText("Staff Member ");
+        staffM_Item.setText("Employees");
         staffM_Item.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 staffM_ItemActionPerformed(evt);
@@ -167,6 +172,7 @@ public class MMenu extends javax.swing.JFrame {
 
         jMenuBar1.add(jMenu3);
 
+        jMenu2.setForeground(new java.awt.Color(255, 255, 255));
         jMenu2.setText(" Locations and spaces management                  ");
 
         locationMasterM_Item.setText("Locations master screen");
@@ -195,6 +201,7 @@ public class MMenu extends javax.swing.JFrame {
 
         jMenuBar1.add(jMenu2);
 
+        jMenu1.setForeground(new java.awt.Color(255, 255, 255));
         jMenu1.setText("Authentication and Authorization                  ");
         jMenu1.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -229,9 +236,7 @@ public class MMenu extends javax.swing.JFrame {
 
         jMenuBar1.add(jMenu1);
 
-        jMenu4.setText("About                  ");
-        jMenuBar1.add(jMenu4);
-
+        report.setForeground(new java.awt.Color(255, 255, 255));
         report.setText("Report                  ");
         report.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -240,6 +245,7 @@ public class MMenu extends javax.swing.JFrame {
         });
         jMenuBar1.add(report);
 
+        jMenu6.setForeground(new java.awt.Color(255, 255, 255));
         jMenu6.setText("Settings                  ");
         jMenu6.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -248,13 +254,18 @@ public class MMenu extends javax.swing.JFrame {
         });
         jMenuBar1.add(jMenu6);
 
-        logout.setText(" Log Out");
+        logout.setForeground(new java.awt.Color(255, 255, 255));
+        logout.setText(" Log Out                  ");
         logout.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 logoutMouseClicked(evt);
             }
         });
         jMenuBar1.add(logout);
+
+        jMenu4.setForeground(new java.awt.Color(255, 255, 255));
+        jMenu4.setText("Help                  ");
+        jMenuBar1.add(jMenu4);
 
         setJMenuBar(jMenuBar1);
 
@@ -266,7 +277,7 @@ public class MMenu extends javax.swing.JFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(mainPanel, javax.swing.GroupLayout.DEFAULT_SIZE, 794, Short.MAX_VALUE)
+            .addComponent(mainPanel, javax.swing.GroupLayout.DEFAULT_SIZE, 795, Short.MAX_VALUE)
         );
 
         pack();

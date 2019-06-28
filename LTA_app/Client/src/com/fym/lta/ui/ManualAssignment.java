@@ -158,7 +158,7 @@ public class ManualAssignment extends javax.swing.JPanel {
         add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 10, 166, 30));
 
         master.setBackground(new java.awt.Color(0, 0, 0));
-        master.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Locations ", 0, 0, new java.awt.Font("Tekton Pro", 1, 36))); // NOI18N
+        master.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(204, 240, 240)), "Locations ", 0, 0, new java.awt.Font("Tekton Pro", 1, 36), new java.awt.Color(204, 240, 240))); // NOI18N
         master.setPreferredSize(new java.awt.Dimension(400, 400));
 
         LocationTable.setBackground(new java.awt.Color(51, 98, 114));

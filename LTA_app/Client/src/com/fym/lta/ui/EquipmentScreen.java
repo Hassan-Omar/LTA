@@ -144,7 +144,7 @@ public class EquipmentScreen extends javax.swing.JPanel {
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         ePanel.setBackground(new java.awt.Color(0, 0, 0));
-        ePanel.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Equipments", 0, 0, new java.awt.Font("Tekton Pro Cond", 2, 24))); // NOI18N
+        ePanel.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(204, 240, 240)), "Equipments", 0, 0, new java.awt.Font("Tekton Pro Cond", 2, 24), new java.awt.Color(204, 240, 240))); // NOI18N
         ePanel.setPreferredSize(new java.awt.Dimension(400, 400));
 
         EquipmentTable.setBackground(new java.awt.Color(51, 98, 114));
@@ -186,15 +186,14 @@ public class EquipmentScreen extends javax.swing.JPanel {
             ePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(ePanelLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 307, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 316, Short.MAX_VALUE))
         );
 
         add(ePanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 210, 620, 360));
 
         insert.setBackground(new java.awt.Color(0, 0, 0));
         insert.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        insert.setIcon(new javax.swing.ImageIcon("C:\\Oracle\\Middleware\\Oracle_Home\\hassan ui\\LTA\\icons\\insert.png")); // NOI18N
+        insert.setIcon(new javax.swing.ImageIcon("C:\\Oracle\\Middleware\\LTA\\icons\\insert.png")); // NOI18N
         insert.setBorderPainted(false);
         insert.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -205,7 +204,7 @@ public class EquipmentScreen extends javax.swing.JPanel {
 
         delete.setBackground(new java.awt.Color(0, 0, 0));
         delete.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        delete.setIcon(new javax.swing.ImageIcon("C:\\Oracle\\Middleware\\Oracle_Home\\hassan ui\\LTA\\icons\\delete.png")); // NOI18N
+        delete.setIcon(new javax.swing.ImageIcon("C:\\Oracle\\Middleware\\LTA\\icons\\delete.png")); // NOI18N
         delete.setBorderPainted(false);
         delete.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -216,7 +215,7 @@ public class EquipmentScreen extends javax.swing.JPanel {
 
         update.setBackground(new java.awt.Color(0, 0, 0));
         update.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        update.setIcon(new javax.swing.ImageIcon("C:\\Oracle\\Middleware\\Oracle_Home\\hassan ui\\LTA\\icons\\update.png")); // NOI18N
+        update.setIcon(new javax.swing.ImageIcon("C:\\Oracle\\Middleware\\LTA\\icons\\update.png")); // NOI18N
         update.setBorderPainted(false);
         update.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -225,6 +224,7 @@ public class EquipmentScreen extends javax.swing.JPanel {
         });
         add(update, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 160, 90, 30));
 
+        jTextField1.setBorder(null);
         jTextField1.setMaximumSize(new java.awt.Dimension(2, 20));
         jTextField1.setMinimumSize(new java.awt.Dimension(2, 20));
         jTextField1.setPreferredSize(new java.awt.Dimension(2, 20));
@@ -232,7 +232,7 @@ public class EquipmentScreen extends javax.swing.JPanel {
 
         search.setBackground(new java.awt.Color(0, 0, 0));
         search.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        search.setIcon(new javax.swing.ImageIcon("C:\\Oracle\\Middleware\\Oracle_Home\\hassan ui\\LTA\\icons\\search.png")); // NOI18N
+        search.setIcon(new javax.swing.ImageIcon("C:\\Oracle\\Middleware\\LTA\\icons\\search.png")); // NOI18N
         search.setBorderPainted(false);
         search.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -282,27 +282,27 @@ public class EquipmentScreen extends javax.swing.JPanel {
         years_number.setBorder(null);
         DefineEquipment.add(years_number, new org.netbeans.lib.awtextra.AbsoluteConstraints(267, 275, 180, 29));
 
-        save.setBackground(new java.awt.Color(0, 0, 0));
+        save.setBackground(new java.awt.Color(51, 98, 114));
         save.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        save.setIcon(new javax.swing.ImageIcon("C:\\Oracle\\Middleware\\Oracle_Home\\hassan ui\\LTA\\icons\\save.png")); // NOI18N
+        save.setIcon(new javax.swing.ImageIcon("C:\\Oracle\\Middleware\\LTA\\icons\\save.png")); // NOI18N
         save.setBorderPainted(false);
         save.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 saveActionPerformed(evt);
             }
         });
-        DefineEquipment.add(save, new org.netbeans.lib.awtextra.AbsoluteConstraints(201, 332, 140, 60));
+        DefineEquipment.add(save, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 340, 140, 60));
 
         add(DefineEquipment, new org.netbeans.lib.awtextra.AbsoluteConstraints(730, 160, 490, 410));
 
         jLabel8.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        jLabel8.setIcon(new javax.swing.ImageIcon("C:\\Oracle\\Middleware\\Oracle_Home\\hassan ui\\LTA\\icons\\search2.png")); // NOI18N
-        add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 40, 150, 30));
+        jLabel8.setIcon(new javax.swing.ImageIcon("C:\\Oracle\\Middleware\\LTA\\icons\\search2.png")); // NOI18N
+        add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 50, 150, 20));
 
         jLabel6.setFont(new java.awt.Font("Times New Roman", 1, 24)); // NOI18N
         jLabel6.setForeground(new java.awt.Color(255, 255, 255));
         jLabel6.setText("Equipment Screen ");
-        add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(570, 10, -1, -1));
+        add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(570, 0, 280, 50));
     }//GEN-END:initComponents
 
     private void insertActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_insertActionPerformed

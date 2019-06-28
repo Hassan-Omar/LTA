@@ -129,7 +129,7 @@ public class FloorScreen extends javax.swing.JPanel {
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         fPanel.setBackground(new java.awt.Color(0, 0, 0));
-        fPanel.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Building Floors", 0, 0, new java.awt.Font("Tekton Pro Cond", 2, 24))); // NOI18N
+        fPanel.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(204, 240, 240)), "Building Floors", 0, 0, new java.awt.Font("Tekton Pro Cond", 2, 24), new java.awt.Color(204, 240, 240))); // NOI18N
 
         floorTable.setBackground(new java.awt.Color(51, 98, 114));
         floorTable.setFont(new java.awt.Font("Tekton Pro Cond", 0, 18)); // NOI18N
@@ -210,7 +210,7 @@ public class FloorScreen extends javax.swing.JPanel {
         });
         insertPanel.add(desc, new org.netbeans.lib.awtextra.AbsoluteConstraints(295, 85, 280, 75));
 
-        save.setBackground(new java.awt.Color(0, 0, 0));
+        save.setBackground(new java.awt.Color(51, 98, 114));
         save.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         save.setIcon(new javax.swing.ImageIcon("C:\\Oracle\\Middleware\\LTA\\icons\\save.png")); // NOI18N
         save.setBorderPainted(false);

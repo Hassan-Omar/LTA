@@ -112,12 +112,11 @@ public class DepartmentsScreen extends javax.swing.JPanel {
         jLabel1.setFont(new java.awt.Font("Times New Roman", 1, 24)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setText("Department Screen");
-        add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(458, 12, 206, 29));
+        add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 0, 280, 50));
 
         btnSearch.setBackground(new java.awt.Color(0, 0, 0));
         btnSearch.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        btnSearch.setIcon(new javax.swing.ImageIcon("C:\\Oracle\\Middleware\\Oracle_Home\\hassan ui\\LTA\\icons\\search.png")); // NOI18N
-        btnSearch.setText(" ");
+        btnSearch.setIcon(new javax.swing.ImageIcon("C:\\Oracle\\Middleware\\LTA\\icons\\search.png")); // NOI18N
         btnSearch.setBorderPainted(false);
         btnSearch.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -132,16 +131,16 @@ public class DepartmentsScreen extends javax.swing.JPanel {
         add(btnSearch, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 60, 110, 50));
 
         jLabel3.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        jLabel3.setIcon(new javax.swing.ImageIcon("C:\\Oracle\\Middleware\\Oracle_Home\\hassan ui\\LTA\\icons\\search2.png")); // NOI18N
+        jLabel3.setIcon(new javax.swing.ImageIcon("C:\\Oracle\\Middleware\\LTA\\icons\\search2.png")); // NOI18N
         jLabel3.setText(" ");
-        add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(34, 35, 71, 20));
+        add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 50, 71, 20));
 
-        departmentCode_TextField.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        departmentCode_TextField.setBorder(null);
         add(departmentCode_TextField, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 70, 230, 30));
 
         departmrntDeleteBtn.setBackground(new java.awt.Color(0, 0, 0));
         departmrntDeleteBtn.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        departmrntDeleteBtn.setIcon(new javax.swing.ImageIcon("C:\\Oracle\\Middleware\\Oracle_Home\\hassan ui\\LTA\\icons\\delete.png")); // NOI18N
+        departmrntDeleteBtn.setIcon(new javax.swing.ImageIcon("C:\\Oracle\\Middleware\\LTA\\icons\\delete.png")); // NOI18N
         departmrntDeleteBtn.setBorderPainted(false);
         departmrntDeleteBtn.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -157,7 +156,7 @@ public class DepartmentsScreen extends javax.swing.JPanel {
 
         departmrntUpdateBtn.setBackground(new java.awt.Color(0, 0, 0));
         departmrntUpdateBtn.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        departmrntUpdateBtn.setIcon(new javax.swing.ImageIcon("C:\\Oracle\\Middleware\\Oracle_Home\\hassan ui\\LTA\\icons\\update.png")); // NOI18N
+        departmrntUpdateBtn.setIcon(new javax.swing.ImageIcon("C:\\Oracle\\Middleware\\LTA\\icons\\update.png")); // NOI18N
         departmrntUpdateBtn.setBorderPainted(false);
         departmrntUpdateBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -168,7 +167,7 @@ public class DepartmentsScreen extends javax.swing.JPanel {
 
         departmrntInsertBtn.setBackground(new java.awt.Color(0, 0, 0));
         departmrntInsertBtn.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        departmrntInsertBtn.setIcon(new javax.swing.ImageIcon("C:\\Oracle\\Middleware\\Oracle_Home\\hassan ui\\LTA\\icons\\insert.png")); // NOI18N
+        departmrntInsertBtn.setIcon(new javax.swing.ImageIcon("C:\\Oracle\\Middleware\\LTA\\icons\\insert.png")); // NOI18N
         departmrntInsertBtn.setBorderPainted(false);
         departmrntInsertBtn.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -181,16 +180,16 @@ public class DepartmentsScreen extends javax.swing.JPanel {
         insertPanel.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         insertPanel.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        btnSave.setBackground(new java.awt.Color(0, 0, 0));
+        btnSave.setBackground(new java.awt.Color(51, 98, 114));
         btnSave.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        btnSave.setIcon(new javax.swing.ImageIcon("C:\\Oracle\\Middleware\\Oracle_Home\\hassan ui\\LTA\\icons\\save.png")); // NOI18N
+        btnSave.setIcon(new javax.swing.ImageIcon("C:\\Oracle\\Middleware\\LTA\\icons\\save.png")); // NOI18N
         btnSave.setBorderPainted(false);
         btnSave.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 btnSaveMouseClicked(evt);
             }
         });
-        insertPanel.add(btnSave, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 250, 140, 60));
+        insertPanel.add(btnSave, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 280, 140, 60));
 
         jLabel5.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jLabel5.setForeground(new java.awt.Color(255, 255, 255));
@@ -213,9 +212,10 @@ public class DepartmentsScreen extends javax.swing.JPanel {
 
         insertPanel.add(homeBuilding_ComboBox, new org.netbeans.lib.awtextra.AbsoluteConstraints(205, 203, 240, 32));
 
-        add(insertPanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(670, 110, 470, 330));
+        add(insertPanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(670, 110, 470, 350));
 
-        dPanel.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Departments", 0, 0, new java.awt.Font("Tekton Pro Cond", 2, 24))); // NOI18N
+        dPanel.setBackground(new java.awt.Color(0, 0, 0));
+        dPanel.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(204, 240, 240)), "Departments", 0, 0, new java.awt.Font("Tekton Pro Cond", 2, 24), new java.awt.Color(204, 240, 240))); // NOI18N
 
         DepartmentTable.setAutoCreateRowSorter(true);
         DepartmentTable.setBackground(new java.awt.Color(51, 98, 114));

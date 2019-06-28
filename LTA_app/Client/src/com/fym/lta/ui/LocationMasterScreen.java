@@ -195,7 +195,7 @@ public class LocationMasterScreen extends javax.swing.JPanel {
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         master.setBackground(new java.awt.Color(0, 0, 0));
-        master.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Locations ", 0, 0, new java.awt.Font("Tekton Pro Cond", 2, 24))); // NOI18N
+        master.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(204, 240, 240)), "Locations ", 0, 0, new java.awt.Font("Tekton Pro Cond", 2, 24), new java.awt.Color(204, 240, 240))); // NOI18N
         master.setPreferredSize(new java.awt.Dimension(400, 400));
 
         LocationTable.setBackground(new java.awt.Color(51, 98, 114));
@@ -305,7 +305,7 @@ public class LocationMasterScreen extends javax.swing.JPanel {
         jLabel3.setText("Description");
         define_location.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(47, 253, -1, -1));
 
-        save.setBackground(new java.awt.Color(0, 0, 0));
+        save.setBackground(new java.awt.Color(51, 98, 114));
         save.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         save.setIcon(new javax.swing.ImageIcon("C:\\Oracle\\Middleware\\LTA\\icons\\save.png")); // NOI18N
         save.setText(" ");

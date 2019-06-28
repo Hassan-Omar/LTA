@@ -103,7 +103,7 @@ public class BuildingScreeen extends javax.swing.JPanel {
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         bPanel.setBackground(new java.awt.Color(0, 0, 0));
-        bPanel.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Buildings", 0, 0, new java.awt.Font("Tekton Pro Cond", 1, 36))); // NOI18N
+        bPanel.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(204, 240, 240)), "Buildings", 0, 0, new java.awt.Font("Tekton Pro Cond", 1, 36), new java.awt.Color(204, 240, 240))); // NOI18N
 
         buildingTable.setBackground(new java.awt.Color(51, 98, 114));
         buildingTable.setFont(new java.awt.Font("Tekton Pro Cond", 0, 24)); // NOI18N
@@ -157,7 +157,6 @@ public class BuildingScreeen extends javax.swing.JPanel {
         deleteBuildingBTN.setBackground(new java.awt.Color(0, 0, 0));
         deleteBuildingBTN.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         deleteBuildingBTN.setIcon(new javax.swing.ImageIcon("C:\\Oracle\\Middleware\\LTA\\icons\\delete.png")); // NOI18N
-        deleteBuildingBTN.setText("");
         deleteBuildingBTN.setBorderPainted(false);
         deleteBuildingBTN.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -167,7 +166,7 @@ public class BuildingScreeen extends javax.swing.JPanel {
         add(deleteBuildingBTN, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 160, 80, 30));
 
         BuildingEnteredCode.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        BuildingEnteredCode.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        BuildingEnteredCode.setBorder(null);
         BuildingEnteredCode.setMaximumSize(new java.awt.Dimension(2, 20));
         BuildingEnteredCode.setMinimumSize(new java.awt.Dimension(2, 20));
         BuildingEnteredCode.setPreferredSize(new java.awt.Dimension(2, 20));
@@ -211,7 +210,6 @@ public class BuildingScreeen extends javax.swing.JPanel {
         add(searchBuildingBTN, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 60, 80, 50));
 
         insertPanel.setBackground(new java.awt.Color(51, 98, 114));
-        insertPanel.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         insertPanel.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel2.setBackground(new java.awt.Color(51, 98, 114));
@@ -239,7 +237,7 @@ public class BuildingScreeen extends javax.swing.JPanel {
         });
         insertPanel.add(desc, new org.netbeans.lib.awtextra.AbsoluteConstraints(195, 107, 270, 169));
 
-        jButton1.setBackground(new java.awt.Color(0, 0, 0));
+        jButton1.setBackground(new java.awt.Color(51, 98, 114));
         jButton1.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jButton1.setIcon(new javax.swing.ImageIcon("C:\\Oracle\\Middleware\\LTA\\icons\\save.png")); // NOI18N
         jButton1.setBorderPainted(false);
@@ -258,7 +256,7 @@ public class BuildingScreeen extends javax.swing.JPanel {
         jLabel4.setFont(new java.awt.Font("Times New Roman", 1, 24)); // NOI18N
         jLabel4.setForeground(new java.awt.Color(255, 255, 255));
         jLabel4.setText("Buildings Screen ");
-        add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 10, 210, 40));
+        add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 0, 280, 50));
     }//GEN-END:initComponents
     //Update Buttom
     private void ubdateBuildingBTNActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ubdateBuildingBTNActionPerformed

@@ -118,7 +118,7 @@ public class LocationTypeScreen extends javax.swing.JPanel {
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         lPanel.setBackground(new java.awt.Color(0, 0, 0));
-        lPanel.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Location Type", 0, 0, new java.awt.Font("Tekton Pro Cond", 2, 24))); // NOI18N
+        lPanel.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(204, 240, 240)), "Location Type", 0, 0, new java.awt.Font("Tekton Pro Cond", 2, 24), new java.awt.Color(204, 240, 240))); // NOI18N
 
         Table.setBackground(new java.awt.Color(51, 98, 114));
         Table.setFont(new java.awt.Font("Tekton Pro Cond", 1, 18)); // NOI18N
@@ -204,7 +204,7 @@ public class LocationTypeScreen extends javax.swing.JPanel {
         insertPanel.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         insertPanel.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        save1.setBackground(new java.awt.Color(0, 0, 0));
+        save1.setBackground(new java.awt.Color(51, 98, 114));
         save1.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         save1.setIcon(new javax.swing.ImageIcon("C:\\Oracle\\Middleware\\LTA\\icons\\save.png")); // NOI18N
         save1.setBorderPainted(false);
@@ -213,7 +213,7 @@ public class LocationTypeScreen extends javax.swing.JPanel {
                 save1ActionPerformed(evt);
             }
         });
-        insertPanel.add(save1, new org.netbeans.lib.awtextra.AbsoluteConstraints(141, 302, 140, 60));
+        insertPanel.add(save1, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 310, 140, 60));
 
         desc.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         desc.setBorder(null);
@@ -243,7 +243,7 @@ public class LocationTypeScreen extends javax.swing.JPanel {
         jLabel4.setFont(new java.awt.Font("Times New Roman", 1, 24)); // NOI18N
         jLabel4.setForeground(new java.awt.Color(255, 255, 255));
         jLabel4.setText("LocationTypes Screen ");
-        add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(365, 0, 250, 40));
+        add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(365, 0, 280, 50));
 
         searchBuildingBTN.setBackground(new java.awt.Color(0, 0, 0));
         searchBuildingBTN.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
