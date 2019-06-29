@@ -12,7 +12,7 @@ import java.util.List;
  *
  * @author H,Omar
  */
-public class AutoAssignment extends javax.swing.JPanel {
+public class AutoAssignment extends javax.swing.JPanel implements Increamenter {
     
     // all departments stored in our db 
     List<DepartmentDto> allDepartments  = new BaoFactory().createDepartmentBao().listDepartment();
@@ -43,6 +43,7 @@ public class AutoAssignment extends javax.swing.JPanel {
         jLabel1 = new javax.swing.JLabel();
         bar = new javax.swing.JProgressBar();
         reprot = new javax.swing.JLabel();
+        percentage = new javax.swing.JLabel();
         jScrollPane3 = new javax.swing.JScrollPane();
         errorsField = new javax.swing.JTextArea();
 
@@ -69,11 +70,14 @@ public class AutoAssignment extends javax.swing.JPanel {
         jLabel1.setIcon(new javax.swing.ImageIcon("C:\\Oracle\\Middleware\\LTA\\icons\\progBar.png")); // NOI18N
         progressPanel.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 70, 640, 70));
 
-        bar.setForeground(new java.awt.Color(207, 229, 255));
+        bar.setForeground(new java.awt.Color(51, 98, 114));
         progressPanel.add(bar, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 170, 640, 30));
 
         reprot.setForeground(new java.awt.Color(255, 255, 255));
         progressPanel.add(reprot, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 230, 530, 70));
+
+        percentage.setForeground(new java.awt.Color(255, 255, 255));
+        progressPanel.add(percentage, new org.netbeans.lib.awtextra.AbsoluteConstraints(660, 200, 30, 30));
 
         add(progressPanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 30, 720, 400));
 
@@ -90,15 +94,10 @@ public class AutoAssignment extends javax.swing.JPanel {
     }//GEN-END:initComponents
 
     private void assignBtnMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_assi
-    // progress bar 
-     progressPanel.setVisible(true);
-     errorsField.setVisible(true);
-
+   
      AllocationAlgorthim allocBusinees  =  new AllocationAlgorthim () ; 
-        System.out.print("System.out.print(reprot);"+reprot.getText());
-      String errors =  allocBusinees.alloc_All(bar,reprot) ;
-        System.out.print("System.out.print(reprot);"+reprot.getText());
-        errorsField.setText(errors);
+     String errors =  allocBusinees.alloc_All(this) ;
+     errorsField.setText(errors);
         
     }//GEN-LAST:event_assignBtnMouseClicked
 
@@ -109,7 +108,15 @@ public class AutoAssignment extends javax.swing.JPanel {
     private javax.swing.JTextArea errorsField;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane3;
+    private javax.swing.JLabel percentage;
     private javax.swing.JPanel progressPanel;
     private javax.swing.JLabel reprot;
     // End of variables declaration//GEN-END:variables
+    @Override
+    public void increame(int num , String report ) {
+        bar.setValue(num);
+        reprot.setText(report);
+        percentage.setText( num + "%" );
+        
+    }
 }

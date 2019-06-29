@@ -4,18 +4,20 @@ import com.fym.lta.dto.DepartmentDto;
 import com.fym.lta.dto.LocationDto;
 import com.fym.lta.dto.SchedualDto;
 import com.fym.lta.dto.SlotDto;
+import com.fym.lta.ui.Increamenter;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.swing.JLabel;
-import javax.swing.JProgressBar;
+import javax.swing.JOptionPane;
+import javax.swing.SwingUtilities;
 
 public class AllocationAlgorthim {
-    int ratio = 0; 
+   
+    int sIndex = 0; 
     //var to hold the value of saving table after allocation ;
     boolean saveStatus = false, saveStatus2 = false;
-   // String report = " @ \r\n"; // this to hold the value which we need to told to the user
+   
     SchedualBao schedualBaoObj = new BaoFactory().createSchedualBao();
     LocationBao locationBaoObj = new BaoFactory().createLocationBao();
 
@@ -23,24 +25,23 @@ public class AllocationAlgorthim {
     List<DepartmentDto> allDeparts = new BaoFactory().createDepartmentBao().listDepartment();
     static String Errors = "";
 
-
-    public String alloc_All(JProgressBar bar ,JLabel report ) { // loops on all departments
+    int schNum = 0;
+    public String alloc_All(Increamenter ui) { // loops on all departments
     int depNum = allDeparts.size();
-    
+      
         for (int i = 0; i < depNum; i++) {
             List<SchedualDto> schedualIn_Depart = schedualBaoObj.listSchedual_inDeparts(allDeparts.get(i).getCode());
             // loops on the department's schedual
             
-           int schNum  =  schedualIn_Depart.size()*depNum;
+           schNum  =  schedualIn_Depart.size()*depNum;
             for (int k = 0; k < schedualIn_Depart.size(); k++) { // calling allocate_Table method to allocate  table no k
-                saveStatus2 = allocate_Table(schedualIn_Depart.get(k), allDeparts.get(i).getCode(), report);
+                saveStatus2 = allocate_Table(schedualIn_Depart.get(k), allDeparts.get(i).getCode(),ui );
 
                 
             }
              // i think  depNum  well never >= 100  so i don't need if statment 
            
            
-            bar.setValue(ratio*100/(schNum*20));
             
         }
 
@@ -49,7 +50,7 @@ public class AllocationAlgorthim {
 
 
     // method to  connect location  and alloc for a certian one table 
-    public boolean allocate_Table(SchedualDto currentSchedual, String depCode,JLabel report) {
+    public boolean allocate_Table(SchedualDto currentSchedual, String depCode ,Increamenter ui ) {
 
         // get the number of student
         int studentNum = currentSchedual.getStudent_number();
@@ -69,28 +70,33 @@ public class AllocationAlgorthim {
            LocationDto chosenRoom = decitionMake(filterdRooms , studentNum , currentSlots.get(i).getPrefSpace() ) ; 
           
            if(chosenRoom==null)
-           {Errors+="can't alloc for Slot Number "+currentSlots.get(i).getCode()+"\r\nin "+currentSchedual.getSCHEDULECODE(); 
+           {Errors+="can't alloc for Slot Number "+currentSlots.get(i).getCode()+" @ "+currentSchedual.getSCHEDULECODE() +"\r\n"; 
            }
             else
            {
          
            // update this location 
            chosenRoom.setAssignedSlot(currentSlots.get(i));
-           // System.out.println(chosenRoom.getLocation_id());
+           
            locationBaoObj.saveLocationSlot(chosenRoom); 
            }
-            // update availableRooms list  
-            /* rooms_inDep.remove(chosenRoom);
-            assigSlots.add(currentSlots.get(i));
-            chosenRoom.setAssignedSlots(assigSlots);
-            rooms_inDep.add(chosenRoom); */
+             
             
             rooms_inDep = locationBaoObj.getAvailableLocations(depCode);            
-            ratio += ratio;
-            report.setText("Table Code "+currentSchedual.getSCHEDULECODE()+"Slot"+currentSlots.get(i).getCode() + "Reserved");
-            report.revalidate();
-            report.repaint();
-        
+            sIndex ++;
+           String s =currentSlots.get(i).getCode()+"  @  "+currentSchedual.getSCHEDULECODE();
+            //System.out.println(sIndex*100/(schNum*20));
+            try {
+                                      SwingUtilities.invokeLater(new Runnable() {
+                                          public void run()
+                                          {
+                                           ui.increame(sIndex*100/(schNum*20) ,s );
+                                          }
+                                      });
+                                      java.lang.Thread.sleep(100);
+                                  } catch (InterruptedException e) {
+                                      JOptionPane.showMessageDialog(null, e.getMessage());
+                                  }
         }
 
         return saveStatus;
