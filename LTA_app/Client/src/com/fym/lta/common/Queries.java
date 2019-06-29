@@ -263,7 +263,7 @@ public class Queries {
     public static final String SHOW_SCHEDULE = "SELECT X.SCHEDULECODE  , X.ACADEMIC_YEAR , X.STUDENTS_NUMBER , X.ID , Y.CODE , Y.NAME " +
         "FROM GRADE_SCHEDULE X , DEPARTMENT Y  WHERE Y.CODE = X.DEPARTMENT_CODE AND  SCHEDULECODE = ? ";
 
-
+    public static final String LIST_ALLSLOTS  = "SELECT w.position, w.FNAME,w.sname, y.name,y.code  ,x.id ,x.CODE  from employee w ,slot x, course y where w.email=x.staff_email and x.course_code=y.code  and x.s_code = ?";
     //________________________________________________________________________________
 
 

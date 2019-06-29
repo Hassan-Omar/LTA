@@ -115,6 +115,8 @@ public class AutoAssignment extends javax.swing.JPanel implements Increamenter {
     @Override
     public void increame(int num , String report ) {
         bar.setValue(num);
+        bar.revalidate();
+        bar.repaint();
         reprot.setText(report);
         percentage.setText( num + "%" );
         

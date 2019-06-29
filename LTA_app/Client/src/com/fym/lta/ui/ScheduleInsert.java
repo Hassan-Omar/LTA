@@ -11,10 +11,12 @@ import com.fym.lta.common.LTAException;
 import com.fym.lta.dto.CourseDto;
 import com.fym.lta.dto.DepartmentDto;
 import com.fym.lta.dto.EmployeeDto;
+import com.fym.lta.dto.LocationDto;
 import com.fym.lta.dto.LocationTypeDto;
 import com.fym.lta.dto.SchedualDto;
 import com.fym.lta.dto.SlotDto;
 
+import java.awt.Component;
 import java.awt.HeadlessException;
 import java.awt.event.KeyListener;
 
@@ -30,6 +32,14 @@ import java.util.List;
 
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
+
+import javax.swing.JTable;
+import javax.swing.JTextArea;
+import javax.swing.UIManager;
+import javax.swing.border.EmptyBorder;
+import javax.swing.table.DefaultTableModel;
+
+import javax.swing.table.TableCellRenderer;
 
 import org.apache.poi.hssf.usermodel.HSSFRow;
 import org.apache.poi.hssf.usermodel.HSSFSheet;
@@ -87,11 +97,10 @@ public class ScheduleInsert extends javax.swing.JPanel {
         jLabel1 = new javax.swing.JLabel();
         deleteBTN = new javax.swing.JButton();
         table_Panel = new javax.swing.JPanel();
-        jScrollPane2 = new javax.swing.JScrollPane();
-        table2 = new javax.swing.JTable();
         dep = new javax.swing.JLabel();
         acdYear = new javax.swing.JLabel();
         tCode = new javax.swing.JLabel();
+        jScrollPane2 = new javax.swing.JScrollPane();
         jLabel2 = new javax.swing.JLabel();
         viewBtn = new javax.swing.JButton();
 
@@ -233,65 +242,25 @@ public class ScheduleInsert extends javax.swing.JPanel {
         table_Panel.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         table_Panel.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        table2.setBackground(new java.awt.Color(51, 98, 114));
-        table2.setFont(new java.awt.Font("Tekton Pro Cond", 1, 12)); // NOI18N
-        table2.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-
-            },
-            new String [] {
-                "Day", "Slot1", "slot2", "slot4", "slot4"
-            }
-        ) {
-            Class[] types = new Class [] {
-                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.Object.class, java.lang.Object.class
-            };
-            boolean[] canEdit = new boolean [] {
-                false, false, false, false, false
-            };
-
-            public Class getColumnClass(int columnIndex) {
-                return types [columnIndex];
-            }
-
-            public boolean isCellEditable(int rowIndex, int columnIndex) {
-                return canEdit [columnIndex];
-            }
-        });
-        table2.setEnabled(false);
-        table2.setRowHeight(15);
-        table2.setSelectionBackground(new java.awt.Color(22, 224, 236));
-        jScrollPane2.setViewportView(table2);
-        table2.getColumnModel().getColumn(0).setResizable(false);
-        table2.getColumnModel().getColumn(0).setHeaderValue("Day");
-        table2.getColumnModel().getColumn(1).setResizable(false);
-        table2.getColumnModel().getColumn(1).setHeaderValue("Slot1");
-        table2.getColumnModel().getColumn(2).setResizable(false);
-        table2.getColumnModel().getColumn(2).setHeaderValue("slot2");
-        table2.getColumnModel().getColumn(3).setResizable(false);
-        table2.getColumnModel().getColumn(3).setHeaderValue("slot4");
-        table2.getColumnModel().getColumn(4).setResizable(false);
-        table2.getColumnModel().getColumn(4).setHeaderValue("slot4");
-        table2.getAccessibleContext().setAccessibleDescription("");
-
-        table_Panel.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(11, 129, 840, 470));
-
         dep.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         dep.setForeground(new java.awt.Color(255, 255, 255));
-        dep.setText("Department");
-        table_Panel.add(dep, new org.netbeans.lib.awtextra.AbsoluteConstraints(11, 76, 150, 30));
+        dep.setText("Department   :  ");
+        table_Panel.add(dep, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 20, 150, 30));
 
         acdYear.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         acdYear.setForeground(new java.awt.Color(255, 255, 255));
-        acdYear.setText("Academic Year");
-        table_Panel.add(acdYear, new org.netbeans.lib.awtextra.AbsoluteConstraints(11, 28, 150, 30));
+        acdYear.setText("Academic Year  : ");
+        table_Panel.add(acdYear, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 20, 150, 30));
 
         tCode.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         tCode.setForeground(new java.awt.Color(255, 255, 255));
-        tCode.setText("Table Code");
-        table_Panel.add(tCode, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 30, 160, 30));
+        tCode.setText("Table Code   : ");
+        table_Panel.add(tCode, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 10, 160, 30));
 
-        add(table_Panel, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 140, 860, 610));
+        jScrollPane2.setAutoscrolls(true);
+        table_Panel.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 90, 830, 480));
+
+        add(table_Panel, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 80, 860, 580));
 
         jLabel2.setFont(new java.awt.Font("Times New Roman", 1, 24)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(255, 255, 255));
@@ -373,8 +342,93 @@ public class ScheduleInsert extends javax.swing.JPanel {
             dep.setText( dep.getText() +table.getValueAt(table.getSelectedRow(), 3).toString() );
  
             SchedualDto sch = schedualBao.getSlectedTable(table.getValueAt(table.getSelectedRow(), 0).toString());
+            List<SlotDto>  slots = new ArrayList<>();
+            
+         slots = sch.getSchedual_Slots(); ;
+            
+            SlotDto slot = new SlotDto();
+            //Set staff name and dgree 
+            EmployeeDto staff = new EmployeeDto();
+            staff.setCareerDgree("Eng");
+            staff.setFName("Fatma");
+            staff.setSName("mohamed");
+            slot.setCrrentStaffMemb(staff);
+            //set Course name and code
+            CourseDto Course = new CourseDto();
+            Course.setName("Calculus III and Linar Algebra");
+            Course.setCode("MAT102");
+            slot.setCurrentCourse(Course);
+            //set Location
+            LocationDto loc = new LocationDto();
+            loc.setCode("Not assigned");
+            slot.setCurrentLocation(loc);
+            //set Slot ID 
+            slot.setCode(4);                   
+            slots.add(slot);
+            //+++++++++++++++++++++
+            SlotDto slot2 = new SlotDto();
 
-            Utilities.schResetModel(table2, sch.getSchedual_Slots());
+            //Set staff name and dgree 
+            EmployeeDto staff2 = new EmployeeDto();
+            staff2.setCareerDgree("Eng");
+            staff2.setFName("Abdallah");
+            staff2.setSName("Salma");
+            slot2.setCrrentStaffMemb(staff2);
+            //set Course name and code
+            CourseDto Course2 = new CourseDto();
+            Course2.setName("oscillation and optics");
+            Course2.setCode("PHY 103555");
+            slot2.setCurrentCourse(Course2);
+            //set Location
+            LocationDto loc2 = new LocationDto();
+            loc2.setCode("Not assigned");
+            slot2.setCurrentLocation(loc2);
+            //set Slot ID 
+            slot2.setCode(10);                   
+            slots.add(slot2);
+            //+++++++++++++++++++++
+            SlotDto slot3 = new SlotDto();
+
+            //Set staff name and dgree 
+            EmployeeDto staff3 = new EmployeeDto();
+            staff3.setCareerDgree("DR");
+            staff3.setFName("Hamed");
+            staff3.setSName("el tahan");
+            slot3.setCrrentStaffMemb(staff3);
+            //set Course name and code
+            CourseDto Course3 = new CourseDto();
+            Course3.setName("Mechanical Engineering1");
+            Course3.setCode("MPE105");
+            slot3.setCurrentCourse(Course3);
+            //set Location
+            LocationDto loc3 = new LocationDto();
+            loc3.setCode("Not assigned");
+            slot3.setCurrentLocation(loc3);
+            slot3.setCode(19);                   
+           slots.add(slot3); 
+           /* ////////////
+           SlotDto slot1 = new SlotDto();
+
+           //Set staff name and dgree 
+           EmployeeDto staff1 = new EmployeeDto();
+           staff1.setCareerDgree("DR");
+           staff1.setFName("Ahmed ");
+           staff1.setSName("Abd elLatef");
+           slot1.setCrrentStaffMemb(staff1);
+           //set Course name and code
+           CourseDto Course1= new CourseDto();
+           Course1.setName(" oscillation and optics");
+           Course1.setCode("PHY1045");
+           slot1.setCurrentCourse(Course1);
+           //set Location
+           LocationDto loc1 = new LocationDto();
+           loc1.setCode("Not assigned");
+           slot1.setCurrentLocation(loc3);
+           slot1.setCode(1);                   
+           //slots.add(slot1); */
+           
+
+            drawtable(slots);
         } else
             JOptionPane.showMessageDialog(null, "select a table to view"); 
     }//GEN-LAST:event_viewBtnMouseClicked
@@ -386,13 +440,13 @@ public class ScheduleInsert extends javax.swing.JPanel {
 
     private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
      
-        Utilities.export_PDF(table2);
+        Utilities.export_PDF(tableshow);
  
     }//GEN-LAST:event_jMenuItem2ActionPerformed
 
     private void jMenuItem3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem3ActionPerformed
 
-        Utilities.export_XLX(table2);
+        Utilities.export_XLX(tableshow);
     }//GEN-LAST:event_jMenuItem3ActionPerformed
 
     private void formMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_formMouseReleased
@@ -448,7 +502,6 @@ public class ScheduleInsert extends javax.swing.JPanel {
     private javax.swing.JButton searchBTN;
     private javax.swing.JLabel tCode;
     private javax.swing.JTable table;
-    private javax.swing.JTable table2;
     private javax.swing.JPanel table_Panel;
     private javax.swing.JButton viewBtn;
     // End of variables declaration//GEN-END:variables
@@ -639,6 +692,7 @@ public class ScheduleInsert extends javax.swing.JPanel {
                 } // end of outer loop
 
 
+                /* 
                 try {
                     // save the department
                     DepartmentDto dep = new DepartmentDto();
@@ -656,7 +710,7 @@ public class ScheduleInsert extends javax.swing.JPanel {
 
                 } catch (LTAException ltae) {
                   JOptionPane.showMessageDialog(this, "Error "+ltae.getMessage());
-                }
+                } */
                 schudel.setSchedual_Slots(slots);
 
                 try {
@@ -682,7 +736,8 @@ public class ScheduleInsert extends javax.swing.JPanel {
 
     //inside button
 
-    private void writeToExcel(SchedualDto schedule) {
+    private void writeToExcel(SchedualDto schedule) 
+    {
         JFileChooser fileChooser = new JFileChooser();
         fileChooser.setDialogTitle("Specify a file to save");
         int returnVal = fileChooser.showSaveDialog(this);
@@ -711,7 +766,8 @@ public class ScheduleInsert extends javax.swing.JPanel {
                 TimeSlotRow.createCell(3).setCellValue("2nd slot");
                 TimeSlotRow.createCell(5).setCellValue("3rd slot");
                 TimeSlotRow.createCell(7).setCellValue("4th slot");
-                for (int i = 1; i < 8; i += 2) {
+                for (int i = 1; i < 8; i += 2)
+                {
                     RowAfterTimeSlot.createCell(i).setCellValue("start-end");
                 }
                 RowAfterTimeSlot.createCell(2).setCellValue("8.50");
@@ -772,6 +828,281 @@ public class ScheduleInsert extends javax.swing.JPanel {
         }
 
     }
+    DefaultTableModel dm ;
+      JTable tableshow  ;   
+    public void drawtable( List<SlotDto> slots) 
+                   {
 
+               Object[][] schedualArr = new Object[5][5];
 
+               schedualArr[0][0] = "Sunday";
+               schedualArr[1][0] = "Monday";
+               schedualArr[2][0] = "Tuesday";
+               schedualArr[3][0] = "Wednesday";
+               schedualArr[4][0] = "Thursday";
+
+           for (int i = 0; i < slots.size(); i++) 
+           {
+                   
+               //slot 1
+               if (slots.get(i).getCode() == 1) {
+
+                   schedualArr[0][1] =
+                       slots.get(i).getCurrentCourse().getName() + " " + "\n" + slots.get(i).getCurrentCourse().getCode() + " " +
+                       "\n" + slots.get(i).getCrrentStaffMemb().getCareerDgree() + " " +
+                       " " + slots.get(i).getCrrentStaffMemb().getFName() + " " + slots.get(i).getCrrentStaffMemb().getSName() + " " +
+                       "\n" +  " " +slots.get(i).getCurrentLocation().getCode();
+               }
+               //slot 2
+               else if (slots.get(i).getCode() == 2) {
+
+                   schedualArr[0][2] =
+                       slots.get(i).getCurrentCourse().getName() + "\n" + slots.get(i).getCurrentCourse().getCode() +
+                       "\n" + slots.get(i).getCrrentStaffMemb().getCareerDgree() + " " +
+                       slots.get(i).getCrrentStaffMemb().getFName() + " " + slots.get(i).getCrrentStaffMemb().getSName() +
+                       "\n" + slots.get(i).getCurrentLocation().getCode();
+
+               }
+               //slot 3
+               else if (slots.get(i).getCode() == 3) {
+
+                   schedualArr[0][3] =
+                       slots.get(i).getCurrentCourse().getName() + "\n" + slots.get(i).getCurrentCourse().getCode() +
+                       "\n" + slots.get(i).getCrrentStaffMemb().getCareerDgree() + " " +
+                       slots.get(i).getCrrentStaffMemb().getFName() + " " + slots.get(i).getCrrentStaffMemb().getSName() +
+                       "\n" + slots.get(i).getCurrentLocation().getCode();
+
+               }
+               //slot 4
+               else if (slots.get(i).getCode() == 4) {
+
+                   schedualArr[0][4] =
+                       slots.get(i).getCurrentCourse().getName() + "\n" + slots.get(i).getCurrentCourse().getCode() +
+                       "\n" + slots.get(i).getCrrentStaffMemb().getCareerDgree() + " " +
+                       slots.get(i).getCrrentStaffMemb().getFName() + " " + slots.get(i).getCrrentStaffMemb().getSName() +
+                       "\n" + slots.get(i).getCurrentLocation().getCode();
+
+               }
+               //slot 5
+               else if (slots.get(i).getCode() == 5) {
+
+                   schedualArr[1][1] =
+                       slots.get(i).getCurrentCourse().getName() + "\n" + slots.get(i).getCurrentCourse().getCode() +
+                       "\n" + slots.get(i).getCrrentStaffMemb().getCareerDgree() + " " +
+                       slots.get(i).getCrrentStaffMemb().getFName() + " " + slots.get(i).getCrrentStaffMemb().getSName() +
+                       "\n" + slots.get(i).getCurrentLocation().getCode();
+
+               }
+
+               //slot 6
+               else if (slots.get(i).getCode() == 6) {
+
+                   schedualArr[1][2] =
+                       slots.get(i).getCurrentCourse().getName() + "\n" + slots.get(i).getCurrentCourse().getCode() +
+                       "\n" + slots.get(i).getCrrentStaffMemb().getCareerDgree() + " " +
+                       slots.get(i).getCrrentStaffMemb().getFName() + " " + slots.get(i).getCrrentStaffMemb().getSName() +
+                       "\n" + slots.get(i).getCurrentLocation().getCode();
+
+               }
+               //slot 7
+               else if (slots.get(i).getCode() == 7) {
+
+                   schedualArr[1][3] =
+                       slots.get(i).getCurrentCourse().getName() + "\n" + slots.get(i).getCurrentCourse().getCode() +
+                       "\n" + slots.get(i).getCrrentStaffMemb().getCareerDgree() + " " +
+                       slots.get(i).getCrrentStaffMemb().getFName() + " " + slots.get(i).getCrrentStaffMemb().getSName() +
+                       "\n" + slots.get(i).getCurrentLocation().getCode();
+
+               }
+               //slot 8
+               else if (slots.get(i).getCode() == 8) {
+
+                   schedualArr[1][4] =
+                       slots.get(i).getCurrentCourse().getName() + "\n" + slots.get(i).getCurrentCourse().getCode() +
+                       "\n" + slots.get(i).getCrrentStaffMemb().getCareerDgree() + " " +
+                       slots.get(i).getCrrentStaffMemb().getFName() + " " + slots.get(i).getCrrentStaffMemb().getSName() +
+                       "\n" + slots.get(i).getCurrentLocation().getCode();
+
+               }
+               //slot 9
+               else if (slots.get(i).getCode() == 9) {
+
+                   schedualArr[2][1] =
+                       slots.get(i).getCurrentCourse().getName() + "\n" + slots.get(i).getCurrentCourse().getCode() +
+                       "\n" + slots.get(i).getCrrentStaffMemb().getCareerDgree() + " " +
+                       slots.get(i).getCrrentStaffMemb().getFName() + " " + slots.get(i).getCrrentStaffMemb().getSName() +
+                       "\n" + slots.get(i).getCurrentLocation().getCode();
+
+               }
+
+               //slot 10
+               else if (slots.get(i).getCode() == 10) {
+
+                   schedualArr[2][2] =
+                       slots.get(i).getCurrentCourse().getName() + "\n" + slots.get(i).getCurrentCourse().getCode() +
+                       "\n" + slots.get(i).getCrrentStaffMemb().getCareerDgree() + " " +
+                       slots.get(i).getCrrentStaffMemb().getFName() + " " + slots.get(i).getCrrentStaffMemb().getSName() +
+                       "\n" + slots.get(i).getCurrentLocation().getCode();
+
+               }
+               //slot 11
+               else if (slots.get(i).getCode() == 11) {
+
+                   schedualArr[2][3] =
+                       slots.get(i).getCurrentCourse().getName() + "\n" + slots.get(i).getCurrentCourse().getCode() +
+                       "\n" + slots.get(i).getCrrentStaffMemb().getCareerDgree() + " " +
+                       slots.get(i).getCrrentStaffMemb().getFName() + " " + slots.get(i).getCrrentStaffMemb().getSName() +
+                       "\n" + slots.get(i).getCurrentLocation().getCode();
+
+               }
+               //slot 12
+               else if (slots.get(i).getCode() == 12) {
+
+                   schedualArr[2][4] =
+                       slots.get(i).getCurrentCourse().getName() + "\n" + slots.get(i).getCurrentCourse().getCode() +
+                       "\n" + slots.get(i).getCrrentStaffMemb().getCareerDgree() + " " +
+                       slots.get(i).getCrrentStaffMemb().getFName() + " " + slots.get(i).getCrrentStaffMemb().getSName() +
+                       "\n" + slots.get(i).getCurrentLocation().getCode();
+
+               }
+               //slot 13
+               else if (slots.get(i).getCode() == 13) {
+
+                   schedualArr[3][1] =
+                       slots.get(i).getCurrentCourse().getName() + "\n" + slots.get(i).getCurrentCourse().getCode() +
+                       "\n" + slots.get(i).getCrrentStaffMemb().getCareerDgree() + " " +
+                       slots.get(i).getCrrentStaffMemb().getFName() + " " + slots.get(i).getCrrentStaffMemb().getSName() +
+                       "\n" + slots.get(i).getCurrentLocation().getCode();
+
+               }
+               //slot 14
+               else if (slots.get(i).getCode() == 14) {
+
+                   schedualArr[3][2] =
+                       slots.get(i).getCurrentCourse().getName() + "\n" + slots.get(i).getCurrentCourse().getCode() +
+                       "\n" + slots.get(i).getCrrentStaffMemb().getCareerDgree() + " " +
+                       slots.get(i).getCrrentStaffMemb().getFName() + " " + slots.get(i).getCrrentStaffMemb().getSName() +
+                       "\n" + slots.get(i).getCurrentLocation().getCode();
+
+               }
+               //slot 15
+               else if (slots.get(i).getCode() == 15) {
+
+                   schedualArr[3][3] =
+                       slots.get(i).getCurrentCourse().getName() + "\n" + slots.get(i).getCurrentCourse().getCode() +
+                       "\n" + slots.get(i).getCrrentStaffMemb().getCareerDgree() + " " +
+                       slots.get(i).getCrrentStaffMemb().getFName() + " " + slots.get(i).getCrrentStaffMemb().getSName() +
+                       "\n" + slots.get(i).getCurrentLocation().getCode();
+
+               }
+               //slot 16
+               else if (slots.get(i).getCode() == 16) {
+
+                   schedualArr[3][4] =
+                       slots.get(i).getCurrentCourse().getName() + "\n" + slots.get(i).getCurrentCourse().getCode() +
+                       "\n" + slots.get(i).getCrrentStaffMemb().getCareerDgree() + " " +
+                       slots.get(i).getCrrentStaffMemb().getFName() + " " + slots.get(i).getCrrentStaffMemb().getSName() +
+                       "\n" + slots.get(i).getCurrentLocation().getCode();
+
+               }
+               //slot 17
+               else if (slots.get(i).getCode() == 17) {
+
+                   schedualArr[4][1] =
+                       slots.get(i).getCurrentCourse().getName() + "\n" + slots.get(i).getCurrentCourse().getCode() +
+                       "\n" + slots.get(i).getCrrentStaffMemb().getCareerDgree() + " " +
+                       slots.get(i).getCrrentStaffMemb().getFName() + " " + slots.get(i).getCrrentStaffMemb().getSName() +
+                       "\n" + slots.get(i).getCurrentLocation().getCode();
+
+               }
+               //slot 18
+               else if (slots.get(i).getCode() == 18) {
+
+                   schedualArr[4][2] =
+                       slots.get(i).getCurrentCourse().getName() + "\n" + slots.get(i).getCurrentCourse().getCode() +
+                       "\n" + slots.get(i).getCrrentStaffMemb().getCareerDgree() + " " +
+                       slots.get(i).getCrrentStaffMemb().getFName() + " " + slots.get(i).getCrrentStaffMemb().getSName() +
+                       "\n" + slots.get(i).getCurrentLocation().getCode();
+
+               }
+               //slot 19
+               else if (slots.get(i).getCode() == 19) {
+
+                   schedualArr[4][3] =
+                       slots.get(i).getCurrentCourse().getName() + "\n" + slots.get(i).getCurrentCourse().getCode() +
+                       "\n" + slots.get(i).getCrrentStaffMemb().getCareerDgree() + " " +
+                       slots.get(i).getCrrentStaffMemb().getFName() + " " + slots.get(i).getCrrentStaffMemb().getSName() +
+                       "\n" + slots.get(i).getCurrentLocation().getCode();
+
+               }
+               //slot 20
+               else if (slots.get(i).getCode() == 20) {
+
+                   schedualArr[4][4] =
+                       slots.get(i).getCurrentCourse().getName() + "\n" + slots.get(i).getCurrentCourse().getCode() +
+                       "\n" + slots.get(i).getCrrentStaffMemb().getCareerDgree() + " " +
+                       slots.get(i).getCrrentStaffMemb().getFName() + " " + slots.get(i).getCrrentStaffMemb().getSName() +
+                       "\n" + slots.get(i).getCurrentLocation().getCode();
+
+               }
+                   
+    
+                                   
+               }
+               
+             dm = new DefaultTableModel() 
+                   {
+                 public Class getColumnClass(int columnIndex) 
+                 {
+                   return String.class;
+                 }};
+               
+               
+             dm.setDataVector(schedualArr, new Object[] { "Day","slot 1", "slot 2", "slot 3","slot 4" });
+
+               tableshow = new JTable(dm);
+
+               int lines = 5;
+               tableshow.setRowHeight(tableshow.getRowHeight() * lines);
+               
+               tableshow.setDefaultRenderer(String.class, new MultiLineCellRenderer());
+              jScrollPane2.setViewportView(tableshow);
+               tableshow.enable(false);
+               setSize(500, 400);
+               setVisible(true);
+           
+           }
+    class MultiLineCellRenderer extends JTextArea implements TableCellRenderer 
+       {
+
+         public Component getTableCellRendererComponent(JTable table, Object value,
+            
+           boolean isSelected, boolean hasFocus, int row, int column) 
+         {
+           if (isSelected) 
+           {
+             setForeground(table.getSelectionForeground());
+             setBackground(table.getSelectionBackground());
+           } else 
+           {
+             setForeground(table.getForeground());
+             setBackground(table.getBackground());
+           }
+           setFont(table.getFont());
+           if (hasFocus)
+           {
+             setBorder(UIManager.getBorder("Table.focusCellHighlightBorder"));
+             if (table.isCellEditable(row, column)) {
+               setForeground(UIManager.getColor("Table.focusCellForeground"));
+               setBackground(UIManager.getColor("Table.focusCellBackground"));
+             }
+           } else 
+           {
+             setBorder(new EmptyBorder(1, 2, 1, 2));
+           }
+           setText((value == null) ? "" : value.toString());
+           return this;
+         }
+
+       }
 }

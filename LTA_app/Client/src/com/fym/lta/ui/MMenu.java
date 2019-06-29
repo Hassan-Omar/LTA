@@ -1,6 +1,7 @@
 package com.fym.lta.ui;
 
 import com.fym.lta.bao.BaoFactory;
+import com.fym.lta.bao.ScreenBao;
 import com.fym.lta.bao.SearchEngine;
 import com.fym.lta.dto.ScreenDto;
 import com.fym.lta.dto.SearchDto;
@@ -22,7 +23,7 @@ public class MMenu extends javax.swing.JFrame {
     JTextField search;
 
     // create bao object and get all avaialable screens in one steps
-    List<ScreenDto> availableScreens = new BaoFactory().createScreenBao().list_Of_AavailableScreens();
+    ScreenBao sBaoObj = new BaoFactory().createScreenBao();
     //ScreenBao screenObj = new BaoFactory().createScreenBao();
     // this method to draw new panel on  our  main frame
     public void switchtoPanel(JPanel x) {
@@ -51,6 +52,257 @@ public class MMenu extends javax.swing.JFrame {
                     }
                 });
         jLabel1.setIcon(new javax.swing.ImageIcon("C:\\Oracle\\Middleware\\LTA\\icons\\welcome.png"));
+   
+        {
+            
+                mainPanel = new javax.swing.JPanel();
+                jLabel1 = new javax.swing.JLabel();
+                jMenuBar1 = new javax.swing.JMenuBar();
+                jMenu5 = new javax.swing.JMenu();
+                jMenu3 = new javax.swing.JMenu();
+                buildingM_Item = new javax.swing.JMenuItem();
+                floorM_Item = new javax.swing.JMenuItem();
+                locationTypeM_Item = new javax.swing.JMenuItem();
+                departmentM_Item = new javax.swing.JMenuItem();
+                courseM_Item = new javax.swing.JMenuItem();
+                staffM_Item = new javax.swing.JMenuItem();
+                jMenuItem1 = new javax.swing.JMenuItem();
+                jMenu2 = new javax.swing.JMenu();
+                locationMasterM_Item = new javax.swing.JMenuItem();
+                locationManualM_Item = new javax.swing.JMenuItem();
+                locationAutoM_Item = new javax.swing.JMenuItem();
+                jMenu1 = new javax.swing.JMenu();
+                userM_Item = new javax.swing.JMenuItem();
+                roleM_Item = new javax.swing.JMenuItem();
+                roleScreenM_Item = new javax.swing.JMenuItem();
+                report = new javax.swing.JMenu();
+                jMenu6 = new javax.swing.JMenu();
+                logout = new javax.swing.JMenu();
+                jMenu4 = new javax.swing.JMenu();
+
+                setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+
+                mainPanel.setBackground(new java.awt.Color(0, 0, 0));
+                mainPanel.setForeground(new java.awt.Color(255, 255, 255));
+                mainPanel.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+                jLabel1.setBackground(new java.awt.Color(0, 0, 0));
+                jLabel1.setFont(new java.awt.Font("Tekton Pro Ext", 1, 48)); // NOI18N
+                jLabel1.setIcon(new javax.swing.ImageIcon("C:\\Oracle\\Middleware\\LTA\\icons\\welcome.png")); // NOI18N
+                mainPanel.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 130, 562, 348));
+
+                jMenuBar1.setBackground(new java.awt.Color(51, 98, 114));
+                jMenuBar1.setForeground(new java.awt.Color(255, 255, 255));
+                jMenuBar1.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+
+                jMenu5.setForeground(new java.awt.Color(255, 255, 255));
+                jMenu5.setText("Tables         ");
+                jMenu5.setActionCommand("Insert New   ");
+                jMenu5.addMouseListener(new java.awt.event.MouseAdapter() {
+                    public void mouseClicked(java.awt.event.MouseEvent evt) {
+                        jMenu5MouseClicked(evt);
+                    }
+                });
+                        if(sBaoObj.getCurrentPermission(15)>=8)
+                        {jMenuBar1.add(jMenu5);}
+
+                jMenu3.setForeground(new java.awt.Color(255, 255, 255));
+                jMenu3.setText("         Basic Data Management         ");
+
+                buildingM_Item.setText("Building");
+                buildingM_Item.addActionListener(new java.awt.event.ActionListener() {
+                    public void actionPerformed(java.awt.event.ActionEvent evt) {
+                        buildingM_ItemActionPerformed(evt);
+                    }
+                });
+                         if(sBaoObj.getCurrentPermission(1)>=8)
+                         {jMenu3.add(buildingM_Item);}
+
+                floorM_Item.setText("Building Floor");
+                floorM_Item.addActionListener(new java.awt.event.ActionListener() {
+                    public void actionPerformed(java.awt.event.ActionEvent evt) {
+                        floorM_ItemActionPerformed(evt);
+                    }
+                });
+                      if(sBaoObj.getCurrentPermission(2)>=8)
+                        {jMenu3.add(floorM_Item);}
+
+                locationTypeM_Item.setText("location Type");
+                locationTypeM_Item.addActionListener(new java.awt.event.ActionListener() {
+                    public void actionPerformed(java.awt.event.ActionEvent evt) {
+                        locationTypeM_ItemActionPerformed(evt);
+                    }
+                });
+                          if(sBaoObj.getCurrentPermission(3)>=8)
+                        { jMenu3.add(locationTypeM_Item);}
+
+                departmentM_Item.setText("Departments");
+                departmentM_Item.addActionListener(new java.awt.event.ActionListener() {
+                    public void actionPerformed(java.awt.event.ActionEvent evt) {
+                        departmentM_ItemActionPerformed(evt);
+                    }
+                });
+                            if(sBaoObj.getCurrentPermission(4)>=8)
+                        {jMenu3.add(departmentM_Item);}
+
+                courseM_Item.setText("Course");
+                courseM_Item.addActionListener(new java.awt.event.ActionListener() {
+                    public void actionPerformed(java.awt.event.ActionEvent evt) {
+                        courseM_ItemActionPerformed(evt);
+                    }
+                });
+                if(sBaoObj.getCurrentPermission(5)>=8)
+                jMenu3.add(courseM_Item);
+
+                staffM_Item.setText("Employees");
+                staffM_Item.addActionListener(new java.awt.event.ActionListener() {
+                    public void actionPerformed(java.awt.event.ActionEvent evt) {
+                        staffM_ItemActionPerformed(evt);
+                    }
+                });
+                            if(sBaoObj.getCurrentPermission(6)>=8)
+                jMenu3.add(staffM_Item);
+
+                jMenuItem1.setText("Equipment");
+                jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
+                    public void actionPerformed(java.awt.event.ActionEvent evt) {
+                        jMenuItem1ActionPerformed(evt);
+                    }
+                });
+                if(sBaoObj.getCurrentPermission(7)>=8)
+                jMenu3.add(jMenuItem1);
+
+                jMenuBar1.add(jMenu3);
+
+                jMenu2.setForeground(new java.awt.Color(255, 255, 255));
+                jMenu2.setText("          Locations and spaces management          ");
+
+                locationMasterM_Item.setText("Locations master screen");
+                locationMasterM_Item.addActionListener(new java.awt.event.ActionListener() {
+                    public void actionPerformed(java.awt.event.ActionEvent evt) {
+                        locationMasterM_ItemActionPerformed(evt);
+                    }
+                });
+                if(sBaoObj.getCurrentPermission(11)>=8)
+                jMenu2.add(locationMasterM_Item);
+
+                locationManualM_Item.setText("Location Manual Assignment");
+                locationManualM_Item.addActionListener(new java.awt.event.ActionListener() {
+                    public void actionPerformed(java.awt.event.ActionEvent evt) {
+                        locationManualM_ItemActionPerformed(evt);
+                    }
+                });
+                if(sBaoObj.getCurrentPermission(12)>=8)
+                jMenu2.add(locationManualM_Item);
+
+                locationAutoM_Item.setText("Location Automatic Assignment");
+                locationAutoM_Item.addActionListener(new java.awt.event.ActionListener() {
+                    public void actionPerformed(java.awt.event.ActionEvent evt) {
+                        locationAutoM_ItemActionPerformed(evt);
+                    }
+                });
+                if(sBaoObj.getCurrentPermission(13)>=8)
+                jMenu2.add(locationAutoM_Item);
+
+                jMenuBar1.add(jMenu2);
+
+                jMenu1.setForeground(new java.awt.Color(255, 255, 255));
+                jMenu1.setText("         Authentication and Authorization         ");
+                jMenu1.addMouseListener(new java.awt.event.MouseAdapter() {
+                    public void mouseClicked(java.awt.event.MouseEvent evt) {
+                        jMenu1MouseClicked(evt);
+                    }
+                });
+
+                userM_Item.setText("User");
+                userM_Item.setName("user"); // NOI18N
+                userM_Item.addActionListener(new java.awt.event.ActionListener() {
+                    public void actionPerformed(java.awt.event.ActionEvent evt) {
+                        userM_ItemActionPerformed(evt);
+                    }
+                });
+                            if(sBaoObj.getCurrentPermission(8)>=8)
+                jMenu1.add(userM_Item);
+
+                roleM_Item.setText("Role");
+                roleM_Item.addActionListener(new java.awt.event.ActionListener() {
+                    public void actionPerformed(java.awt.event.ActionEvent evt) {
+                        roleM_ItemActionPerformed(evt);
+                    }
+                });
+                if(sBaoObj.getCurrentPermission(9)>=8)
+                jMenu1.add(roleM_Item);
+
+                roleScreenM_Item.setText("Role Screens");
+                roleScreenM_Item.addActionListener(new java.awt.event.ActionListener() {
+                    public void actionPerformed(java.awt.event.ActionEvent evt) {
+                        roleScreenM_ItemActionPerformed(evt);
+                    }
+                });
+                            if(sBaoObj.getCurrentPermission(10)>=8)
+                jMenu1.add(roleScreenM_Item);
+
+                jMenuBar1.add(jMenu1);
+
+                report.setForeground(new java.awt.Color(255, 255, 255));
+                report.setText("         Report         ");
+                report.addMouseListener(new java.awt.event.MouseAdapter() {
+                    public void mouseClicked(java.awt.event.MouseEvent evt) {
+                        reportMouseClicked(evt);
+                    }
+                });
+                        if(controlOnMenu(15))
+                jMenuBar1.add(report);
+
+                jMenu6.setForeground(new java.awt.Color(255, 255, 255));
+                jMenu6.setText("         Settings         ");
+                jMenu6.addMouseListener(new java.awt.event.MouseAdapter() {
+                    public void mouseClicked(java.awt.event.MouseEvent evt) {
+                        jMenu6MouseClicked(evt);
+                    }
+                });
+                jMenuBar1.add(jMenu6);
+
+                logout.setForeground(new java.awt.Color(255, 255, 255));
+                logout.setText("          Log Out         ");
+                logout.addMouseListener(new java.awt.event.MouseAdapter() {
+                    public void mouseClicked(java.awt.event.MouseEvent evt) {
+                        logoutMouseClicked(evt);
+                    }
+                });
+                jMenuBar1.add(logout);
+
+                jMenu4.setForeground(new java.awt.Color(255, 255, 255));
+                jMenu4.setText("         Help         ");
+                jMenu4.addMouseListener(new java.awt.event.MouseAdapter() {
+                    public void mouseClicked(java.awt.event.MouseEvent evt) {
+                        jMenu4MouseClicked(evt);
+                    }
+                });
+                jMenu4.addActionListener(new java.awt.event.ActionListener() {
+                    public void actionPerformed(java.awt.event.ActionEvent evt) {
+                        jMenu4ActionPerformed(evt);
+                    }
+                });
+                if(sBaoObj.getCurrentPermission(16)>=8)
+                jMenuBar1.add(jMenu4);
+
+                setJMenuBar(jMenuBar1);
+
+                javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
+                getContentPane().setLayout(layout);
+                layout.setHorizontalGroup(
+                    layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(mainPanel, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 1299, Short.MAX_VALUE)
+                );
+                layout.setVerticalGroup(
+                    layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(mainPanel, javax.swing.GroupLayout.DEFAULT_SIZE, 795, Short.MAX_VALUE)
+                );
+
+                pack();
+            }
+   
     }
 
     /** This method is called from within the constructor to
@@ -505,11 +757,11 @@ public class MMenu extends javax.swing.JFrame {
 
 
     boolean controlOnMenu(int id) {
-        for (int i = 0; i < availableScreens.size(); i++) {
+        /* for (int i = 0; i < availableScreens.size(); i++) {
             int screenID = availableScreens.get(i).getScreen_id();
             if (screenID == id)
                 return true;
-        }
+        } */
         return false;
     }
 

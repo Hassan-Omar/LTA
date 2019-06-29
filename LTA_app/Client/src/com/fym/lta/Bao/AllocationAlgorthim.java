@@ -1,5 +1,6 @@
 package com.fym.lta.bao;
 
+import com.fym.lta.dao.DaoFactory;
 import com.fym.lta.dto.DepartmentDto;
 import com.fym.lta.dto.LocationDto;
 import com.fym.lta.dto.SchedualDto;
@@ -26,6 +27,7 @@ public class AllocationAlgorthim {
     static String Errors = "";
 
     int schNum = 0;
+    int slotsNum = calculate_SlotsNum(allDeparts);
     public String alloc_All(Increamenter ui) { // loops on all departments
     int depNum = allDeparts.size();
       
@@ -76,27 +78,17 @@ public class AllocationAlgorthim {
            {
          
            // update this location 
-           chosenRoom.setAssignedSlot(currentSlots.get(i));
+           chosenRoom.setAssignedSlot(currentSlots.get(i));        
+            sIndex ++;
            
            locationBaoObj.saveLocationSlot(chosenRoom); 
            }
              
             
-            rooms_inDep = locationBaoObj.getAvailableLocations(depCode);            
-            sIndex ++;
+            rooms_inDep = locationBaoObj.getAvailableLocations(depCode);    
            String s =currentSlots.get(i).getCode()+"  @  "+currentSchedual.getSCHEDULECODE();
-            //System.out.println(sIndex*100/(schNum*20));
-            try {
-                                      SwingUtilities.invokeLater(new Runnable() {
-                                          public void run()
-                                          {
-                                           ui.increame(sIndex*100/(schNum*20) ,s );
-                                          }
-                                      });
-                                      java.lang.Thread.sleep(100);
-                                  } catch (InterruptedException e) {
-                                      JOptionPane.showMessageDialog(null, e.getMessage());
-                                  }
+            System.out.println(sIndex*100/slotsNum);
+                                           ui.increame(sIndex*100/slotsNum ,s );
         }
 
         return saveStatus;
@@ -195,5 +187,23 @@ public class AllocationAlgorthim {
         return resultLocation;
     }
 
+
+int calculate_SlotsNum(List<DepartmentDto> deps)
+{
+   int result = 0 ;
+   for(int y=0; y<deps.size(); y++)
+   {
+   List<SchedualDto> schs  =new DaoFactory().createSchedualDao().listSchedual_inDeparts(deps.get(y).getCode());
+   
+   
+   for(int i=0; i<schs.size(); i++)
+   {
+     result+= schs.get(i).getSchedual_Slots().size() ;
+       
+   }
+       
+    }
+   return result ; 
+}
 
 }

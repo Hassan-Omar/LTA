@@ -193,7 +193,7 @@ public class Utilities {
                         // Set Graphics Translations
                         graphics2D.translate(pageFormat.getImageableX()+10, pageFormat.getImageableY()+10);
                         // This is a page scale
-                        graphics2D.scale(1,1);
+                        graphics2D.scale(.7,.7);
                         
                         // Now paint panel as graphics2D
                         panel.paint(graphics2D);
@@ -239,14 +239,14 @@ public class Utilities {
          Document doc  = new Document() ;
          // Calling writer and open the stream to write
         try {
-            PdfWriter.getInstance(doc, new FileOutputStream(path + "Exported_LTA.pdf"));
+            PdfWriter.getInstance(doc, new FileOutputStream(path + ".pdf"));
             doc.open();
              // create output table    
             PdfPTable outTable = new PdfPTable(colNum);
              // loop to add header 
             for(int i=0; i<colNum; i++)
             {   // adding heeders 
-                outTable.addCell("+"+inputTable.getColumnName(i));
+                outTable.addCell(inputTable.getColumnName(i));
             } 
          
             

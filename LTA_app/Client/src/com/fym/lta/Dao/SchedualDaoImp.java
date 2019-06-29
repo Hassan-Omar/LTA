@@ -3,6 +3,7 @@ package com.fym.lta.dao;
 import com.fym.lta.common.ConnectionFactory;
 import com.fym.lta.common.LTAException;
 import com.fym.lta.common.Queries;
+import com.fym.lta.dao.SchedualDao;
 import com.fym.lta.dto.CourseDto;
 import com.fym.lta.dto.DepartmentDto;
 import com.fym.lta.dto.EmployeeDto;
@@ -10,9 +11,12 @@ import com.fym.lta.dto.LocationDto;
 import com.fym.lta.dto.SchedualDto;
 import com.fym.lta.dto.SlotDto;
 
+import com.sun.org.apache.bcel.internal.generic.Select;
+
 import java.sql.Types;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 import javax.sql.rowset.JdbcRowSet;
@@ -42,7 +46,7 @@ public class SchedualDaoImp implements SchedualDao {
                 table.setCodeDeparment(jdbcRs.getString(5));
 
                 // also you need to add the data inserted by , ...... etc
-
+                table.setSchedual_Slots(list_Slots(table.getSCHEDULECODE()));
 
                 scheduals.add(table);
 
@@ -293,6 +297,8 @@ public class SchedualDaoImp implements SchedualDao {
 
             }
             
+            if(scheduals == null)
+                return Collections.emptyList();
             for(int i=0 ;i<scheduals.size() ; i++)
             {
             
@@ -328,8 +334,8 @@ public class SchedualDaoImp implements SchedualDao {
 
     @Override
     public SchedualDto getSlectedTable(String tableCode) 
-    {      List<SlotDto> slots = null ;
-           SlotDto slot = null ;
+    {      List<SlotDto> slots = null , slots2 = null ;
+           
         SchedualDto    result  = new SchedualDto() ;
 
         try (JdbcRowSet jdbcR = RowSetProvider.newFactory().createJdbcRowSet()) {
@@ -346,7 +352,7 @@ public class SchedualDaoImp implements SchedualDao {
                 if(slots==null)
                     slots = new ArrayList<>() ;
 
-                slot = new SlotDto();
+                SlotDto slot = new SlotDto();
 
                 //Set staff name and dgree 
                 EmployeeDto staff = new EmployeeDto();
@@ -367,12 +373,32 @@ public class SchedualDaoImp implements SchedualDao {
                 slot.setSlot_id(jdbcR.getInt(7));
                 slot.setCode(jdbcR.getInt(8));       
                 slots.add(slot);
+          }
+           
             
-            
-                System.out.println("\n in Dao imo \n "+slots.get(0).getCurrentCourse().getName());
+            /* slots2 = list_Slots(tableCode);
 
-            }
-            result.setSchedual_Slots(slots);
+           System.out.println(slots2.size());
+            for(int s=0; s<slots2.size(); s++)
+            {
+                
+                      for(int h=0; h<slots.size(); h++)
+                      {   //System.out.println(slots.get(h).getCode()+"\n"); 
+                      int s1  = slots.get(h).getCode() ;
+                      int s2  =  slots2.get(s).getCode();
+                          System.out.println(s1 +"   "+s2);
+                          if(s2==s1)
+                           {     slots.add( slots2.get(s));
+                           System.out.println("in") ; 
+                       }
+                  }
+                
+             } */
+             
+            
+            result.setSchedual_Slots(slots);   
+            
+            
             
             jdbcR.setCommand(Queries.SHOW_SCHEDULE);
             jdbcR.setString(1, tableCode);
@@ -392,9 +418,72 @@ public class SchedualDaoImp implements SchedualDao {
                 
             }
             
+        
+            
         } 
         catch(Exception e)
         {  }
     return result ;}
+    
+    
+    
+    List<SlotDto> list_Slots(String code)
+    {
+        List<SlotDto> nonAsignedresult = null ; 
+        try (JdbcRowSet jdbcR = RowSetProvider.newFactory().createJdbcRowSet()) {
+                    jdbcR.setUrl(ConnectionFactory.getUrl());
+                    jdbcR.setUsername(ConnectionFactory.getUsername());
+                    jdbcR.setPassword(ConnectionFactory.getPassword());
+                  
+        
+                    jdbcR.setCommand(Queries.LIST_ALLSLOTS);
+                    jdbcR.setString(1, code);
+                    jdbcR.execute();
+
+                    while(jdbcR.next())
+                    { 
+                        if(nonAsignedresult==null)
+                            nonAsignedresult = new ArrayList<>() ;
+
+                        SlotDto slot = new SlotDto() ; 
+                        //Set staff name and dgree 
+                        EmployeeDto staff = new EmployeeDto();
+                        staff.setCareerDgree(jdbcR.getString(1));
+                        staff.setFName(jdbcR.getString(2));
+                        staff.setSName(jdbcR.getString(3));
+                        slot.setCrrentStaffMemb(staff);
+                        //set Course name and code
+                        CourseDto Course = new CourseDto();
+                        Course.setName(jdbcR.getString(4));
+                        Course.setCode(jdbcR.getString(5));
+                        slot.setCurrentCourse(Course);
+                        //set Location
+                        LocationDto loc = new LocationDto();
+                        loc.setCode("not Assigned yet");
+                        slot.setCurrentLocation(loc);
+                        //set Slot ID 
+                        slot.setSlot_id(jdbcR.getInt(6));
+                        slot.setCode(jdbcR.getInt(7));       
+                        nonAsignedresult.add(slot);
+                    
+                    
+
+                    }
+            
+                } catch (java.sql.SQLIntegrityConstraintViolationException e) {
+                
+                } catch (Exception e) {
+                e.printStackTrace();
+                }
+ 
+              
+     return nonAsignedresult ;    
+    }
+    
+    
+    
+    
+    
+    
     }
 
